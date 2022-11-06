@@ -1,0 +1,60 @@
+#side-profile-main {
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+}
+
+#setting-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    /* align-items: center; */
+}
+
+#side-mypage1>ul {
+    list-style: none;
+}
+
+#profile-img {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    vertical-align: top;
+    align-items: center;
+    justify-content: center;
+}
+
+#profile-box {
+    width: 58px;
+    height: 58px;
+    margin-right: 6px;
+}
+
+#side-profile {
+    float: left;
+    position: relative;
+    width: 58px;
+    height: 58px;
+    margin-right: 8px;
+}
+
+#profile-name{
+    font-size: 13px;
+    font-weight: bold;
+}
+
+/* 날짜 스타일 */
+#signUp-date > em{
+    font-style: normal;
+}
+
+#signUp-date{
+    font-size: 12px;
+    color: #666;
+    line-height: 15px;
+}
