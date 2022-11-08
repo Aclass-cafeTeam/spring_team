@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글형</title>
+
+    <link rel="stylesheet" href="/team_project/src/main/webapp/resources/css/border2.css">
+
+</head>
+<body>
+
+    <article class="article">
+        <div class="border-name">게시판명(메뉴명)</div>
+        <p class="border-start">게시판 설명(메뉴 설명)</p>
+
+            <div class="hidden">
+                <input type="checkbox" name="hidden" id="hidden">
+                <label for="hidden" id="hidden">
+                    <!-- announcement-dissimulate -->
+                    공지 숨기기
+                </label>
+                <span class="span">|</span>
+                <form action="#">
+                    <select name="amount">
+
+                        <option value="a">5개씩</option>
+                        <option value="b">10개씩</option>
+                        <option value="c">15개씩</option>
+                    </select>
+            
+                </form>
+            </div>
+    
+    <!-- 7행 14열 -->
+
+<table border="1" class="table">
+
+    <thead>
+        <tr>
+            <td></td>
+            <th class="empty">말머리</th>
+            <th colspan="2" class="title">제목</th>
+            <th class="th-writer">작성자</th>
+            <th class="th-date">작성일</th>
+            <th class="th-hits">조회</th>
+            <th><a href="#" class="th-like">좋아요</a></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td></td>
+            <td id="strong">공지</td>
+            <td><a href="#" id="strong-title">	
+                팀프로젝트 테스트 카페 카페를 시작합니다.
+            </a></td>
+            <td><a href="#" id="comment">[1]</a></td>
+            <td><a href="#" id="writer">JH</a></td>
+            <td id="reporting-date">2022.10.14.</td>
+            <td id="hits">2</td>
+            <td id="like">0</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+
+        <tr>
+            <td><input type="checkbox" id="border-check"></td>
+            <td id="border-number">4</td>
+            <td><a href="#" id="normal-title">
+                사진2
+            </a></td>
+            <td><a href="#" id="comment"></a></td>
+            <td><a href="#" id="writer">JH</a></td>
+            <td id="reporting-date">2022.10.25.</td>
+            <td id="hits">0</td>
+            <td id="like">0</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" id="border-check"></td>
+            <td id="border-number">3</td>
+            <td><a href="#" id="normal-title">
+                사진1
+            </a></td>
+            <td><a href="#" id="comment"></a></td>
+            <td><a href="#" id="writer">JH</a></td>
+            <td id="reporting-date">2022.10.25.</td>
+            <td id="hits">0</td>
+            <td id="like">0</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" id="border-check"></td>
+            <td id="border-number">2</td>
+            <td><a href="#" id="normal-title">
+                테스트입니다.
+            </a></td>
+            <td><a href="#" id="comment"></a></td>
+            <td><a href="#" id="writer">JH</a></td>
+            <td id="reporting-date">2022.10.24.</td>
+            <td id="hits">2</td>
+            <td id="like">0</td>
+        </tr>
+
+        <tr>
+            <td><input type="checkbox" id="border-check"></td>
+            <td id="border-number">1</td>
+            <td><a href="#" id="normal-title">
+                팀프로젝트 테스트 카페 카페를 시작합니다.
+            </a></td>
+            <td><a href="#" id="comment">[1]</a></td>
+            <td><a href="#" id="writer">JH</a></td>
+            <td id="reporting-date">2022.10.14.</td>
+            <td id="hits">2</td>
+            <td id="like">0</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+<div class="function">
+    <div class="all">
+        <input type="checkbox">전체선택
+    </div>
+
+    <div>
+        <div class="delete">
+            <button type="submit" class="delete-btn">삭제</button>
+        </div>
+    </div>
+
+    <div>
+        <div class="writing">
+            <button type="submit" class="writing-btn">글쓰기</button>
+        </div>
+    </div>
+</div>
+
+<div class="page">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">7</a>
+    <a href="#">8</a>
+    <a href="#">9</a>
+    <a href="#">10</a>
+    <span>|</span>
+    <span><a href="#" class="daum">다음</a></span>
+
+</div>
+
+<div class="last">
+    <div class="time">
+        <form action="#">
+            <select name="time" id="time">
+                <option value="aa">전체기간</option>
+                <option value="bb">1일</option>
+                <option value="cc">1주</option>
+                <option value="dd">1개월</option>
+                <option value="ee">6개월</option>
+                <option value="cc">1년</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="choice">
+        <form action="#">
+            <select name="choice" id="choice">
+                <option value="aa">제목만</option>
+                <option value="bb">글작성자</option>
+                <option value="cc">댓글내용</option>
+                <option value="dd">댓글작성자</option>
+            </select>
+        </form>
+    </div>
+
+    <article class="search-area">
+
+        <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
+        <form action="#">
+
+                <input type="text" id="query" name="query"
+                placeholder="검색어를 입력해주세요">
+                <button type="submit" id="search-btn" class="search">검색</button>
+                
+        </form>
+    </article>
+
+</div>
+
+</body>
+</html>
