@@ -1,8 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 
 <head>
     <meta charset="UTF-8">
@@ -11,21 +13,23 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>바이트레인</title>
-    <link rel="shortcut icon" href="../resource/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘  제작자: Shahid-Mehmood - Flaticon</a>
-    <link rel="stylesheet" href="../resource/css/main.css">
+
+    <link rel="shortcut icon" href="/resource/images/free-icon-train.png" type="image/x-icon">
+    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
+        Flaticon</a>
+    <link rel="stylesheet" href="/resource/css/main.css">
     <style>
-        #free-icon-train{
-        display: none;
-        opacity: 0;
-        visibility: hidden;
+        #free-icon-train {
+            display: none;
+            opacity: 0;
+            visibility: hidden;
         }
     </style>
-   
+
 </head>
 
 <body>
-    
+
     <main>
         <!-- **************************************헤더************************************** -->
         <header>
@@ -33,7 +37,10 @@
             <div id="header-top">
                 <div id="never-gnb" class="__web-inspector-hide-shortcut__">
                     <a href="http://www.naver.com" class="link_never">
-                        <img src="https://ssl.pstatic.net/static/cafe/icon_naver_190423.png" width="52" height="10" alt="NAVER">
+
+                        <img src="https://ssl.pstatic.net/static/cafe/icon_naver_190423.png" width="52" height="10"
+                            alt="NAVER">
+
                     </a>
                 </div>
                 <div id="header-top-menu">
@@ -43,24 +50,29 @@
                 </div>
             </div>
             <!-- 헤더 오른쪽 상단 메뉴 -->
-            
+
+
             <section id="pic">
-        
-                <img src="../resource/images/mainIMG.png"> 
+
+                <img src="../resource/images/mainIMG.png">
+
                 <section class="cafe_project_size">
                     <div class="cafe_project">
                         <div id="cafe_project_name">Train_Koraila</div>
                         <div id="cafe_project_names">Team_project Cafe</idv>
-                    </div>
+
+                        </div>
                 </section>
 
             </section>
-            
+
+
         </header>
         <!-- **************************************헤더************************************** -->
 
         <!-- **************************************네비************************************** -->
-        <nav> 
+
+        <nav>
             <ul class="special-menu">
                 <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
                 <li id="special-menu-1"><a class="link_special" href="#">📣 카페 이용..</a></li>
@@ -78,14 +90,21 @@
             <div id="content">
 
                 <ul id="ul-1">
-                    <a href="#"></a><img src="../resource/images/즐찾.PNG" width="26px" height="26px">
-                    <li><a href="#">카페정보</a></li>
-                    <li><a href="#">나의활동</a></li>
+                    <li>
+                        <a href="#"><img src="../resource/images/즐찾.PNG" width="26px" height="26px"></a>
+                    </li>
+                    <li><a href="#">
+                            <p>카페정보</p>
+                        </a></li>
+                    <li><a href="#">
+                            <p>나의활동</p>
+                        </a></li>
                 </ul>
 
                 <div id="cafe">
                     <ul>
-                        <li id="logo"><a href="#"><img src="../resource/images/고양아.jpg" width="58px" height="58px" /></a></li>
+                        <li id="logo"><a href="#"><img src="../resource/images/고양아.jpg" width="58px"
+                                    height="58px" /></a></li>
                         <li id="name">
                             <div id="inline">
                                 <div id="manager">매니저</div>
@@ -111,7 +130,7 @@
 
                 <div id="count-3">
                     <div id="star">
-                        <div id="star-img"><img src="../resource/images/즐찾.PNG" width="13px"></div>
+                        <div id="star-img"><img src="../resource/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
                         <div id="star1">즐겨찾는 멤버</div>
                         <div id="star-count">76,289명</div>
                     </div>
@@ -121,6 +140,47 @@
                     <div>팀프로젝트</div>
                     <div>주제 > 카페</div>
                 </div>
+
+                <!------------------------- 나의활동 ------------------------->
+                <!-- <div id="side-profile-main">
+                    <div id="side-profile1">
+                        <ul>
+                            <li>
+                                <div id="side-profile">
+                                    <a href="#"><img src="/src/main/webapp/resource/images/프로필 변경.PNG"
+                                            id="setting-icon"></a>
+                                    <div id="profile-box"><img src="/src/main/webapp/resource/images/프로필.PNG"
+                                            id="profile-img"></div>
+                                </div>
+                                <div id="profile-name">
+                                    이빨다뽑힘
+                                </div>
+                            </li>
+                            <li id="signUp-date">가입 <em>2022.10.17.</em></li>
+                            <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
+                        </ul>
+                    </div>
+                    <div id="side-profile2">
+                        <ul>
+                            <li>
+                                <span id="info-data"><img src="/src/main/webapp/resource/images/방문일.PNG">방문</span>
+                                <em>14<span>회</span></em>
+                            </li>
+                            <li>
+                                <span id="info-data"><img src="/src/main/webapp/resource/images/작성한 게시글 수.PNG">내가 쓴 글
+                                    보기</span>
+                                <em>0<span>개</span></em>
+                            </li>
+                            <li>
+                                <span id="info-data"><img src="/src/main/webapp/resource/images/작성한 댓글 수.PNG">내가 쓴
+                                    댓글보기</span>
+                                <em>0<span>개</span></em>
+                            </li>
+                        </ul>
+                    </div>
+                </div> -->
+                <!------------------------- 나의활동 ------------------------->
+
             </div>
 
 
@@ -143,21 +203,30 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-top">
-                        <li id="total-post"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">전체글보기</a></li>
-                        <li id="best-post"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">베스트게시글</a></li>
+                        <li id="total-post"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">전체글보기</a>
+                        </li>
+                        <li id="best-post"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">베스트게시글</a>
+                        </li>
                     </ul>
                 </div>
-                <div id="calender">
+                <!-- <div id="calender">
                     <ul>
                         <li><img src="../resource/images/캘린더.PNG" id="border-img"><a href="#">캘린더</a></li>
                     </ul>
-                </div>
+                </div> -->
+
+                <section id="board-basic">
+                    <div name="board-title">■ 기본 게시판</div>
+                </section>
+
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-basic">
                         <li id="notice"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">공지사항</a></li>
-                        <li id="board-any"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a></li>
-                        <li id="board-gradeup"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">등업게시판</a></li>
+                        <li id="board-any"><img src="../resource/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
+                        </li>
+                        <li id="board-gradeup"><img src="../resource/images/게시판.PNG" id="border-img"><a
+                                href="#">등업게시판</a></li>
                     </ul>
                 </div>
 
@@ -168,27 +237,27 @@
                     <div>
                         <ul id="board-menu">
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">제주 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">충청권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">강원권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">전라권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">경상권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="/Cafe/images/게시판.PNG" id="border-img">
+                                <img src="../resource/images/게시판.PNG" id="border-img">
                                 <a href="#">서울/수도권 나들이</a>
                             </li>
                         </ul>
@@ -200,11 +269,11 @@
 
                     <ul id="board-menu">
                         <li class="board">
-                            <img src="/Cafe/images/게시판.PNG" id="border-img">
+                            <img src="../resource/images/게시판.PNG" id="border-img">
                             <a href="#">국내 여행 Q/A</a>
                         </li>
                         <li class="board">
-                            <img src="/Cafe/images/게시판.PNG" id="border-img">
+                            <img src="../resource/images/게시판.PNG" id="border-img">
                             <a href="#">기타 Q/A</a>
                         </li>
                     </ul>
@@ -214,11 +283,11 @@
                     <div name="board-title">■ 갤러리 자료</div>
                     <ul id="board-menu">
                         <li class="board">
-                            <img src="/Cafe/images/앨범.PNG" id="border-img">
+                            <img src="../resource/images/앨범.PNG" id="border-img">
                             <a href="#">여행 후기</a>
                         </li>
                         <li class="board">
-                            <img src="/Cafe/images/앨범.PNG" id="border-img">
+                            <img src="../resource/images/앨범.PNG" id="border-img">
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
@@ -410,27 +479,28 @@
                     <ul>
                         <li id="ranking-member">
                             <div>
-                                <span id="member_id"><a href="#">하하</a></span>
+
+                                <span id="member_id">ㆍ<a href="#">하하</a></span>
                             </div>
                         </li>
                         <li id="ranking-member">
                             <div>
-                                <span id="member_id"><a href="#">호호</a></span>
+                                <span id="member_id">ㆍ<a href="#">호호</a></span>
                             </div>
                         </li>
                         <li id="ranking-member">
                             <div>
-                                <span id="member_id"><a href="#">히히</a></span>
+                                <span id="member_id">ㆍ<a href="#">히히</a></span>
                             </div>
                         </li>
                         <li id="ranking-member">
                             <div>
-                                <span id="member_id"><a href="#">후후</a></span>
+                                <span id="member_id">ㆍ<a href="#">후후</a></span>
                             </div>
                         </li>
                         <li id="ranking-member">
                             <div>
-                                <span id="member_id"><a href="#">쿠쿸</a></span>
+                                <span id="member_id">ㆍ<a href="#">쿠쿸</a></span>
                             </div>
                         </li>
                     </ul>
@@ -445,14 +515,15 @@
 
 
         </section>
-       
+
         <!-- **************************************카페 사이드!!!!!!!!!!!!!!!!!!!!!!!!************************************** -->
 
 
     </main>
 
-     <!-- **************************************푸터************************************** -->
-    <footer class="footer"> 
+    <!-- **************************************푸터************************************** -->
+    <footer class="footer">
+
 
         <h2 class="cafe_name">내일로,기차여행 커뮤니티 - 바이트레인 (게스트하우스, 게하)</h2>
         <span class="cafe_nbsp">|</span>
@@ -463,9 +534,8 @@
                 <span class="blind">NEVER 카페</span>
             </a>
         </h2>
-    
-    </footer> 
-    
+
+    </footer>
     <!-- **************************************푸터************************************** -->
 </body>
 
