@@ -1,8 +1,10 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html lang="ko">
+
 
 <head>
     <meta charset="UTF-8">
@@ -11,6 +13,7 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>바이트레인</title>
+
     <link rel="shortcut icon" href="/resource/images/free-icon-train.png" type="image/x-icon">
     <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
         Flaticon</a>
@@ -34,8 +37,10 @@
             <div id="header-top">
                 <div id="never-gnb" class="__web-inspector-hide-shortcut__">
                     <a href="http://www.naver.com" class="link_never">
+
                         <img src="https://ssl.pstatic.net/static/cafe/icon_naver_190423.png" width="52" height="10"
                             alt="NAVER">
+
                     </a>
                 </div>
                 <div id="header-top-menu">
@@ -46,22 +51,27 @@
             </div>
             <!-- 헤더 오른쪽 상단 메뉴 -->
 
+
             <section id="pic">
 
                 <img src="../resource/images/mainIMG.png">
+
                 <section class="cafe_project_size">
                     <div class="cafe_project">
                         <div id="cafe_project_name">Train_Koraila</div>
                         <div id="cafe_project_names">Team_project Cafe</idv>
+
                         </div>
                 </section>
 
             </section>
 
+
         </header>
         <!-- **************************************헤더************************************** -->
 
         <!-- **************************************네비************************************** -->
+
         <nav>
             <ul class="special-menu">
                 <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
@@ -131,7 +141,6 @@
                     <div>주제 > 카페</div>
                 </div>
 
-
                 <!------------------------- 나의활동 ------------------------->
                 <!-- <div id="side-profile-main">
                     <div id="side-profile1">
@@ -171,7 +180,6 @@
                     </div>
                 </div> -->
                 <!------------------------- 나의활동 ------------------------->
-
 
             </div>
 
@@ -471,6 +479,7 @@
                     <ul>
                         <li id="ranking-member">
                             <div>
+
                                 <span id="member_id">ㆍ<a href="#">하하</a></span>
                             </div>
                         </li>
@@ -515,6 +524,7 @@
     <!-- **************************************푸터************************************** -->
     <footer class="footer">
 
+
         <h2 class="cafe_name">내일로,기차여행 커뮤니티 - 바이트레인 (게스트하우스, 게하)</h2>
         <span class="cafe_nbsp">|</span>
         <a href="#" class="cafe_link">https://cafe.never.com/hkct
@@ -526,7 +536,6 @@
         </h2>
 
     </footer>
-
     <!-- **************************************푸터************************************** -->
 </body>
 
