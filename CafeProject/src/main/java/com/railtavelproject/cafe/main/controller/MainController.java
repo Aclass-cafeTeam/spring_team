@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
-public class mainController{
+public class MainController{
 
 	// forward 시 Controller 메서드의 반환형은
 		// String 또는 ModelAndView 둘 중 하나이다.
