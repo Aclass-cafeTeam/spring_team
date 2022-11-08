@@ -1,0 +1,62 @@
+@import url('./managerHeader.css');
+@import url('./managerFooter.css');
+
+body{
+    width: 100%;
+    height: 100%; 
+    margin: auto;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+body{
+    display: block;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 메인홈이라서 메인관리 메뉴만 색깔변경 */
+.nav_menu li:nth-of-type(5) a{
+    background-color: #39B900;
+    color: white;
+    border: 1px solid #797979;
+}
+
+/* menuSub 서브 네비 */
+.lnb_sub{
+    width: 100%;
+    height: 39px;
+    border-bottom: 1.5px solid #898989;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.lnb_sub > ul{
+    overflow: hidden;
+    width: 920px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lnb_sub li{
+    overflow: hidden;
+    width: 470px;
+    margin: 0px 0px 0px 225px;
+}
+
+.lnb_sub li a{
+    font-weight: bold;
+    color: #219900;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+
+/* menuSub 서브 네비 */
+
