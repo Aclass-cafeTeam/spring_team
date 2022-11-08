@@ -24,4 +24,4 @@ public class mainController{
 			// prefix : /WEB-INF/views/
 			// suffix : .jsp
 		}
-}   
+}     
