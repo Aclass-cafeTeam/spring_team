@@ -1,0 +1,258 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 전체 틀 */
+#mainArea{
+    width: 860px;
+}
+
+#subProfile{
+    display: flex;
+    align-items: center;
+}
+
+.profileInfo{
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+/* 마이페이지 상단 프로필이미지 */
+#profileImgBox{
+    height: 80px;
+    width: 80px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+}
+#profileImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+/* 마이페이지 상단 닉네임 */
+.nickArea{
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.count{
+    color: gray;
+    margin-right: 15px;
+}
+.num{
+    color: black;
+    font-weight: bold;
+}
+
+/* 마이페이지 네비 메뉴 */
+#navArea{
+    margin: 5px 5px 5px;
+    padding: 20px 0px;
+    font-size: 13px;
+    border-bottom: 2px solid #666;
+}
+
+.navMenu >a{
+    margin-right: 10px;
+}
+
+.navMenu{
+    display: flex;
+}
+
+
+.secessionMenu{
+    margin-left: auto;
+    color: #666;
+}
+
+.navMenu > a{
+    color: black;
+    text-decoration: none;
+}
+.navMenu>a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.navMenu>a:focus{
+    color: green;
+    cursor: text;
+    text-decoration: underline green;
+}
+
+/* 마이페이지 공통 태그 */
+ul{
+    list-style:none;
+}
+
+.myPage-main{
+    width: 860px;
+    padding: 0 30px;
+
+}
+
+.myPage-script{
+    display: inline-block;
+    width:100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    letter-spacing: -1px;
+
+}
+
+.myPage-subTitle{
+    width: 600px;
+    height: 50px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ddd ;
+
+}
+.myPage-subTitle>*{
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.myPage-subTitle>label{
+    width: 30%;
+    color:black;
+}
+
+.myPage-subTitle>span{
+    width: 70%;
+}
+
+.myPage-subTitle>input{
+    width: 100%;
+    height: 100%;
+    border:0;
+    outline: 0;
+    font-weight: normal;
+}
+
+.myPage-subTitle:focus-within{
+    border-bottom: 2px solid gray;
+
+}
+
+form[name="myPage-form"]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 마이페이지 공통 버튼 태그 */
+#myPage-update-btn {
+    height: 50px;
+    width: 300px;
+    margin: 50px 0;
+    border: 1px solid #73358C;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #73358C;
+    color: white;
+    cursor: pointer;
+}
+#myPage-update-btn:hover{
+    background-color: white;
+    color:#73358C;
+    background: #fff;
+    transition: color 0.5s ease-in-out;
+    overflow: hidden;
+    z-index: 1;
+}
+#myPage-check-btn{
+    height: 50px;
+    width: 70px;
+    border: 1px solid #73358C;
+    font-size: 11px;
+    background-color: #73358C;
+    color: white;
+    cursor: pointer;
+}
+#myPage-check-btn:hover{
+    background-color: white;
+    color:#73358C;
+    background: #fff;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* 게시글관련 메뉴 */
+.myBoardTb{
+    width: 100%;
+    font-size: 13px;
+}
+
+.boardNo, .reporting-date, .hits, .delete-date{
+    text-align: center;
+}
+
+.title{
+    text-align: left;
+    color: black;
+    text-decoration: none;
+}
+
+.title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.writer{
+    text-align: left;
+}
+
+.comment{
+    color: red;
+    text-decoration: none;
+}
+
+.comment:hover{
+    text-decoration: underline red;
+    cursor: pointer;
+}
+tbody td{
+    border-bottom: 1px solid #f2f2f2;
+}
+tr{
+    height: 30px;
+}
+.myBoard-th{
+    font-size: 13px;
+    height: 40px;
+    padding: 2px;
+    border-bottom: 1px solid #f2f2f2;
+    text-align: center;
+}
+.boardNo{
+    font-size: 10px;
+    color: #4e4e4e;
+}
+
+/* 회원 탈퇴 */
+#secessionArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* 회원 탈퇴 약관 */
+#secession-terms{
+    
+    width : 650px;
+    height: 200px;
+    margin: 30px;
+    font-size : 14px;
+    border: 1px solid #ddd;
+
+}
+
+
+

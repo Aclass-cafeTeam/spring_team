@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 탈퇴</title>
+    <link rel="stylesheet" href="../../resources/css/myPage.css">
+</head>
+<body>
+    <!-- main content 틀 -->
+    <div id="mainArea">
+
+         <!-- 마이페이지 상단 기본정보-->
+         <div id="subProfile">
+            <div id="profileImgBox"><img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image"></div>
+            <div class="profileInfo">
+                <div class="nickArea">닉네임</div>
+                <div class="infoArea">
+                    <span class="cafeGrade">새내기여행자</span>
+                    <div id="countArea">
+                        <span class="count">방문 <Strong class="num">100</Strong></span>
+                        <span class="count">작성글 <Strong class="num">100</Strong></span>
+                        <span class="count">작성 댓글 <Strong class="num">100</Strong></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 마이페이지 nav -->
+        <div id="navArea">
+            <div class="navMenu">
+                <a href="../myPage/myPageMain.html">내 정보</a>
+                <a href="../myPage/myPageBoard.html">작성글</a>
+                <a href="../myPage/myPageComment.html">댓글단 글</a>
+                <a href="../myPage/myPageLike.html">좋아요한 글</a>
+                <a href="../myPage/myPageDelete.html">삭제한 글</a>
+                <a href="../myPage/myPageSecession.html" id="secessionMenu">회원 탈퇴</a>
+            </div>
+        </div> 
+        <!-- 회원 탈퇴 -->
+        <section class="myPage-main">
+
+            <form action="#" method="POST" name="myPage-form"  onsubmit="return secessionValidate()">
+
+                <div class="secessionArea">
+                    <div class="myPage-subTitle"><label> 회원 탈퇴 안내</label></div>
+                    
+                    <span class="myPage-script">회원 탈퇴전 다음 사항을 숙지하시기 바랍니다.</span>
+
+                    <div class="myPage-subTitle">
+                        <label>유의 사항</label>
+                    </div>
+                    <div id="secession-terms">
+                        <br>
+                        1. 회원 탈퇴시 고객님의 개인 정보는 관련 법률에 의거한 개인 정보 보호정책에 따라 관리/파기됩니다.
+                        <br><br>
+                        2. 회원 탈퇴시 작성된 게시글 및 댓글은 자동으로 삭제되지 않습니다.
+                        
+                    </div>
+                    <div>
+                        <input type="checkbox" name="agree" id="agree">
+                        <label for="agree">위 유의사항을 확인했습니다.</label>
+                    </div>
+                    
+                    <div class="myPage-subTitle">
+                        <label>비밀번호</label>
+                        <input type="password" name="memberPw" id="memberPw" maxlength="30">   
+                        
+                    </div>
+                    <span class="myPage-script">본인 여부를 확인하기 위해서 비밀번호를 입력해주세요.</span>
+
+                    <button id="myPage-update-btn" type="reset">취소</button>
+                    <button id="myPage-update-btn">탈퇴</button>
+
+                </div> 
+
+            </form>
+
+        </section>
+    </div> 
+    <script src="../../resources/js/myPage.js"></script>
+</body>
+</html>
