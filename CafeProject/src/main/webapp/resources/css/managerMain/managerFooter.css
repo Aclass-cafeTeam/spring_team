@@ -1,0 +1,36 @@
+/* 푸터 */
+footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 988px;
+    height: 40px;
+    margin-top: 180px;
+    background: #363a41;
+}
+
+.cr{
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
+
+footer .cr em {
+    display: inline-block;
+    font-family: tahoma;
+    font-size: 9px;
+    line-height: 13px;
+    font-weight: bold;
+    color: #e1e1e2;
+    vertical-align: top;
+}
+
+footer .cr span {
+    display: inline-block;
+    font-size: 11px;
+    line-height: 15px;
+    color: #bebfc1;
+    vertical-align: top;
+    margin-left: 5px;
+}

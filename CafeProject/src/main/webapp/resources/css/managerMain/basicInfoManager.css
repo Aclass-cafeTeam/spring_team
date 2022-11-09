@@ -1,0 +1,235 @@
+@import url('./managerHeader.css');
+@import url('./managerFooter.css');
+
+body{
+    width: 100%;
+    height: 100%; 
+    margin: auto;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+body{
+    display: block;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 메인홈이라서 메인관리 메뉴만 색깔변경 */
+.nav_menu li:nth-of-type(2) a{
+    background-color: #39B900;
+    color: white;
+    border: 1px solid #797979;
+}
+
+/* menuSub 서브 네비 */
+.lnb_sub{
+    width: 100%;
+    height: 39px;
+    border-bottom: 1.5px solid #898989;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.lnb_sub > ul{
+    overflow: hidden;
+    width: 920px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+}
+
+.lnb_sub li{
+    overflow: hidden;
+    width: 470px;
+    margin: 0px 0px 0px 225px;
+}
+
+.lnb_sub li a{
+    font-weight: bold;
+    color: #219900;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+
+/* menuSub 서브 네비 */
+
+.basicInfoMain{
+    box-sizing: content-box;
+    /* display: inline-flex;
+    flex-direction: column; */
+    z-index: 20;
+    width: 920px;
+    height: 100%;
+    padding: 0 0 123px;
+    margin: 0px auto;  
+}
+
+.basicInfoMain .infofieldset{
+    border: none;
+}
+
+.infoMainFromtitle{
+    width: 920;
+    /* margin-top: 28px; */
+    height: 31px;
+    border-bottom: 3px solid #565b62;
+    display: block;
+    font-size: 1.5em;
+    margin-block-start: 0.83em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    color: #222527;
+}
+
+.infofieldset > .infoTablecol{
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+}
+
+.infofieldset .infoTablerow1 {
+    flex-basis: 20%;
+}
+
+.infofieldset .infoTablerow2 {
+    flex-basis: 80%;
+}
+
+.infofieldset .infoTablerow2 img{
+    width: 70px;
+    aspect-ratio: auto 70 / 70;
+    height: 70px;
+    border-radius: 40%;
+}
+
+.infofieldset .infoTablecol{
+    border-bottom: 1px solid #EBEBEB;
+}
+
+
+.infofieldset #infoTablecollast{
+    border-bottom: 1px solid #5B6067;
+}
+
+.infofieldset .infoTablerow1 p{
+    padding: 16px 0 0 3px;
+    color: #272727;
+    letter-spacing: -1px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 16px;
+}
+
+.basicInfoMain .infoTablerow2 .infoTablerow2Box{
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeAddress{
+    font-family: tahoma;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeName{
+    font-size: 16px;
+    font-weight: 700;
+    color: #272727;
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeDateBox{
+    display: inline-flex;
+    position: row;
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeDateText{
+    /* display: inline-flex;
+    position: row; */
+    font-weight: 400;
+    font-size: 12px;
+
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeDate{
+    padding-left: 3px;
+    color: #ff7200!important;
+    font-weight: 400;
+    font-size: 12px;
+}
+
+
+.basicInfoMain .infoTablerow2Box .infoCafeProfileBox{
+    font-size: 12px;
+    display: inline-flex;
+    position: row;
+}
+
+.basicInfoMain .infoTablerow2Box .infoCafeProfil{
+    padding-right: 10px;
+}
+
+
+.basicInfoMain .infoTablerow2Box .infoCafeProfilContent{
+    text-align: center;
+}
+
+.infoCafeProfilContent p:nth-of-type(1){
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.infoCafeProfilContent p:nth-of-type(2){
+    color: #959699;
+    font-size: 12px;
+}
+.infoCafeProfilContent p:nth-of-type(3){
+    font-size: 12px;
+    padding-left: 10px;
+    color: #2e9901!important;
+}
+
+.infoTablerow2 > .infoTablerow2Box{
+    font-size: 12px;
+}
+
+.infoTablerow2Box > .infocharacter p:nth-of-type(1){
+    font-weight: bold;
+}
+
+.infoTablerow2Box > .infocharacter  p:nth-of-type(2){
+    color: #959699;
+}
+
+.infoButton{
+    display: flex;
+    justify-content: center;
+}
+
+
+button{
+    display: inline-block;
+    height: 32px;
+    padding: 0 23px 0 24px;
+    background-color: rgb(10, 10, 59);
+    border-radius: 10%;
+    margin: 25px auto 0;
+    font-size: 12px;
+    line-height: 32px;
+    color: #fff;
+    text-align: center;
+    letter-spacing: -1px;
+    cursor: pointer;
+}

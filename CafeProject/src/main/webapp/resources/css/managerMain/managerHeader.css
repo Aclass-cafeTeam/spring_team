@@ -1,0 +1,202 @@
+/* 관리자 페이지 헤더 제일 상단 */
+.managerHeader-gnb{
+    /* 텍스트로 인식해서 커서 생기는 거 방지 */
+    user-select: none;
+    cursor: default;
+    /***************************/
+    min-width: 988px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #2a2d33;
+    position: relative;
+    z-index: 110;
+    width:100%;
+    height: 40px;
+    align-items: center;
+}
+
+.managerHeader-gnb > .tit_area{
+    display: flex;
+    align-items: center;
+    float: left;
+    margin: 0px 0px 0px 13px;
+}
+
+div.tit_area > h1,p{
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+
+/* 네버 로고/ 카페관리/ 카페 이름 */
+.go_nvr .go_adm .title {
+    display: inline;
+    /* overflow: hidden; */
+    width: 54px;
+    flex-wrap: nowrap;
+}
+
+.tit_area a{
+    text-decoration: none;
+}
+/* 네버로고 */
+a.go_nvr{
+    font-weight: bolder;
+    color: blueviolet;
+    font-size: 15px;
+}
+/* 카페관리 */
+a.go_adm{
+    color: white;
+    font-size: 11px;
+    margin-left: 4px;
+}
+/* 카페이름 */
+a.title{
+    font-size: 12.5px;
+    display: inline-block;
+    padding: 0px 8px;
+    height: 16px;
+    color: #8c8e92;
+}
+/* 카페이름 커서 올리면 밑줄 */
+a.title:hover{
+    text-decoration: underline;
+}
+/* ********************************************************* */
+/* 사용자이름 체크박스 */
+.header__nav {
+    display: none;
+}
+
+label[for='header-menu-toggle']{
+    cursor: pointer;
+    color:#8c8e92;
+    font-size: 14px;
+    padding-right: 14px;
+}
+
+label[for='header-menu-toggle']:hover{
+    text-decoration: underline;
+}
+
+.tit_menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 10px;
+}
+
+   /* 체크박스 인풋을 버튼으로 커스터마이즈 */
+.header__menu-btn {
+    all: unset;
+}
+.header__menu-btn::after{
+    top: 12px;
+    right: 10px;
+    position: absolute;
+    content: "▼";
+    font-size: 1px;
+    color: #8c8e92;
+}
+
+.header__menu-btn:checked + .header__nav {
+    display: inherit;
+    position: absolute;
+    top: 31px;
+    right: 0px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
+    z-index: 500;
+    width: 140px;
+    height: 40px;
+    border: 1px solid black;  
+}
+
+.header__nav > a {
+    color: black;
+    background-color: #f8f8f8;
+    text-decoration: none;
+    text-align: center;
+    display: flex;
+    width: 50%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+.header__nav > a:first-child{
+    border-right : 1px solid #ebebeb;
+}
+
+.header__nav > a:hover{
+    background-color: #455ba890;
+    color: white;
+}
+
+/* 네비 **** 메뉴란 */
+nav{
+    width: 100%;
+    min-width: 988px;
+    height: 71px;
+    background-color: #F5F6F7;
+    border-bottom: 0.5px solid black;
+}
+
+.nav_menu_back{
+    width: 100%;
+    min-width: 988px;
+    height: 68px;
+    background-color: #F5F6F7;
+    border-bottom: 2px solid #BBBCBD;
+}
+
+.nav_menu , .nav_menu> ul{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+/*     flex-wrap: nowrap; */
+    position: relative;
+    z-index: 50;
+    width: 920px;
+    height: 68px;
+    margin: 0 auto;
+}
+
+.nav_menu li{
+    display: flex;
+    /* flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap; */
+    width: 68px;
+    height: 67px;
+    border-left: 1px solid #ebebeb;
+    border-right: 1px solid #ebebeb;
+}
+.nav_menu img{
+    width: 20px;
+    height: 20px;
+}
+
+.nav_menu a{
+    display: flex;
+    width: 68px;
+    height: 67px;
+    flex-direction: column;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    font-size: 12px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.nav_menu a:hover{
+    background-color: white;
+    color: #39B900;
+
+}
+/* 네비 **** 메뉴란 ***************************************************************/
+
