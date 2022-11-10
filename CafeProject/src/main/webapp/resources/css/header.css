@@ -1,0 +1,116 @@
+/* header */
+#never-gnb{
+    align-self:flex-start;
+    height: 35px;
+    margin: 0;
+    z-index: 10;
+    cursor: pointer;
+  }
+
+.link_never{
+    float: left;
+    margin: 13px 40px 0 0;
+    display: flex;
+}
+#pic{
+    margin-bottom: 10px;
+    position: relative;
+}
+.cafe_project{
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    height: 50px;
+    width: 140px;
+    background-color: hsl(0, 0%, 80%,50%);
+    position: absolute;
+    right: 0%;
+    bottom: 4px;
+    /* border: solid 1px hsl(0, 0%, 80%,30%); */
+    font-size: 15px;
+    color: white;
+    font-weight: bold;
+    /* display: */
+    
+}
+#cafe_project_name,#cafe_project_names{
+    text-align: center;
+    height: 17px;
+}
+
+#header-top{
+    display: flex;
+    justify-content: space-between;
+}
+
+#header-top-menu a{
+    text-decoration: none; /* 밑줄 없애기 */
+    color : black; /* 글자 검정색 */
+    font-size: 12px;
+    padding: 9px;
+}
+
+#header-top-menu a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+#header-top-menu span{
+    color : #ccc; /* 글자 검정색 */
+    font-size: 12px;
+}
+
+#header-top-menu{
+    display: flex;
+    align-items: center;
+}
+
+nav {
+    height: 43px;
+    width: 1078px;
+    border: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    /* margin-top: -12px; */
+}
+
+nav>ul {
+    padding: 0px 24px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li[id="special-menu-1"]::before,li[id="special-menu-2"]::before{
+    content: "•";
+    color: #a3a9a9;
+    font-size:1px;
+    padding: 11px;
+}
+
+nav li{
+    flex-wrap: wrap;
+    display: inline-block;
+}
+
+nav li>a {
+    text-decoration: none;
+    color: black;
+    font-size: 13px;
+
+    /* display: block; */
+    height: 100%;
+
+   /*  display: flex; */
+    /* justify-content: center; */
+
+    width: 90px;
+    height: 20px;
+}
+
+nav li>a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
