@@ -17,7 +17,7 @@ a{
 }
 
 #content1{
-    width: 420px;
+    width: 430px;
 }
 
 #intro2{
@@ -31,16 +31,16 @@ a{
     padding-right: 10px;
     box-sizing: border-box;
     display: block;
-    width: 420px;
+    width: 430px;
 }
 
 #intro-album{
     float: right;
     margin-top: 24px;
-    padding-right: 10px;
+    padding-left: 10px;
     box-sizing: border-box;
     display: block;
-    width: 420px;
+    width: 430px;
 }
 
 #intro-board-tit-box{
@@ -171,3 +171,51 @@ a{
 }
 
 /* 앨범 */
+#album-content{
+    list-style: none;
+    font-size: 0px;
+    color: #333333;
+    padding-top: 16px;
+    /* display: inline-block; */
+    width: 106%;
+}
+
+#album-content > a{
+    text-decoration: none;
+    color: #333333;
+}
+
+#album-content > li{
+    margin-right: 12px;
+    height: 238px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+#photo-title{
+    padding-top: 8px;
+    font-weight: bold;
+}
+
+#photo-title> div> a{
+    color: #333333;
+}
+
+#photo-nick > div > a{
+    color: #333333;
+}
+
+#photo-nick{
+    padding-top: 6px;
+    height: 23px;
+}
+
+#photo-date{
+    padding-bottom: 10px;
+    color: #999999;
+    vertical-align: top;
+}
+
+#photo-img > a > img{
+    object-fit: cover;
+}
