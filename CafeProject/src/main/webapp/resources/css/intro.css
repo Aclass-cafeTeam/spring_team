@@ -1,0 +1,222 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+#intro1{
+    width: 860px;
+    border: 4px solid #eee;
+}
+
+#gate-box{
+    margin-right: 8px;
+    margin-left: 8px;
+}
+
+#content1{
+    width: 430px;
+}
+
+#intro2{
+    display: inline-flex;
+    align-content: space-between;
+}
+
+
+#intro-board{
+    margin-top: 24px;
+    padding-right: 10px;
+    box-sizing: border-box;
+    display: block;
+    width: 430px;
+}
+
+#intro-album{
+    float: right;
+    margin-top: 24px;
+    padding-left: 10px;
+    box-sizing: border-box;
+    display: block;
+    width: 430px;
+}
+
+#intro-board-tit-box{
+    border-bottom: 1px solid #666;
+    display: block;
+    clear: both;
+}
+
+#intro-board-tit{
+    padding-bottom: 8px;
+    display: block;
+    content: '';
+    display: block;
+    clear: both;
+}
+
+#intro-board-tit> h3:first-child{
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+#intro-board-tit > span{
+    display: block;
+    float: right;
+}
+
+/* 더보기 */
+#intro-board-tit > span > a{
+    position: relative;
+    top: -19px;
+    display: inline-block;
+    text-decoration: none;
+    color: #999;
+    font-size: 12px;
+    padding-top: 2px;
+    cursor: pointer;
+}
+
+#intro-notice-list{
+    font-size: 11px;
+    color: #FF4E59;
+    display: table-row;
+}
+
+#notice{
+    height: 17px;
+    color: #ff4e59;
+    font-weight: bold;
+}
+
+/* 게시글 박스 스타일 */
+#board-content{
+    padding: 4px 18px 4px 8px;
+    width: 340px;
+    display: flex;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+/* 공지제목 */
+#notice-board{
+    display: table-cell;
+    padding-top: 1px;
+    font-size: 13px;
+    height: 17px;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+/* 공지박스 공간 */
+#notice-tag-block{
+    padding-right: 8px;
+    width: 62px;
+    height: 21px;
+    flex-shrink: 0;
+}
+
+/* 공지박스안 글씨 */
+#notice-tag > strong{
+    font-weight: bold;
+    align-items: center;
+    text-align: center;
+    line-height: 18px;
+    
+}
+
+/* 공지 박스 */
+#notice-tag{
+    height: 20px;
+    border: 1px solid #ffc6c9;
+    background-color: #ffe3e4;
+    border-radius: 3px;
+    text-align: center;
+}
+
+/* 조회수 */
+#board-view{
+    padding: 4px 7px;
+    width: 80px;
+    color: #666;
+    text-align: right;
+    font-size: 13px;
+    height: 28px;
+}
+
+/* 게시글 옆에 점 */
+#board-dot{
+    padding-right: 8px;
+}
+
+/* 게시글 제목 */
+#board-name{
+    color: #333333;
+    font-size: 13px;
+    height: 17px;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+
+/* 앨범 */
+#album-content{
+    list-style: none;
+    font-size: 0px;
+    color: #333333;
+    padding-top: 16px;
+    /* display: inline-block; */
+    width: 106%;
+}
+
+#album-content > a{
+    text-decoration: none;
+    color: #333333;
+}
+
+#album-content > li{
+    margin-right: 12px;
+    height: 238px;
+    display: inline-block;
+    font-size: 13px;
+}
+
+#photo-title{
+    padding-top: 8px;
+    font-weight: bold;
+}
+
+#photo-title> div> a{
+    color: #333333;
+}
+
+#photo-nick > div > a{
+    color: #333333;
+}
+
+#photo-nick{
+    padding-top: 6px;
+    height: 23px;
+}
+
+#photo-date{
+    padding-bottom: 10px;
+    color: #999999;
+    vertical-align: top;
+}
+
+#photo-img > a > img{
+    object-fit: cover;
+}
