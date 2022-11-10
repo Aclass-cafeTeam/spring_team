@@ -13,7 +13,8 @@
 
          <!-- 마이페이지 상단 기본정보-->
          <div id="subProfile">
-            <div id="profileImgBox"><img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image"></div>
+            <div id="profileImgBox"><img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image">
+            <img id="setting-icon" src="../../resources/images/프로필 변경.PNG"></div>
             <div class="profileInfo">
                 <div class="nickArea">닉네임</div>
                 <div class="infoArea">
@@ -41,7 +42,7 @@
         <!-- 마이페이지 내정보 -->
         <!-- 
         변경가능 - 닉네임 , 비밀번호, 지역, 프로필 이미지
-        변경 불가 - 생년월일, 아이디(이메일)
+        변경 불가 - 아이디(이메일)
         -->
 
             <!-- 프로필 이미지
@@ -49,7 +50,6 @@
             비밀번호
             비밀번호 변경
             닉네임 변경
-            생년월일
             지역 -->
         <section class="myPage-main">
 
@@ -60,6 +60,8 @@
                     
                     <span class="myPage-script">정보 변경 후 수정 버튼을 누르세요.</span>
 
+                    <!-- 프로필 이미지 변경 추가해야함 -->
+
                     <div class="myPage-subTitle">
                         <label>아이디(이메일)</label>
                         <span>sample@cafe.team</span>
@@ -67,12 +69,16 @@
                     <div class="myPage-subTitle">
                         <label>닉네임</label>
                         <!-- maxlength 확인할 것 -->
-                        <input type="text" name="memberNickname" id="memberNickname" maxlength="10" placeholder="지금닉네임">  
+                        <input type="text" name="memberNickname" id="memberNickname" maxlength="10" placeholder="지금닉네임">
+                        <button class="myPage-check-btn">중복 확인</button>  
                     </div>
+                    <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
+                    <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span>
+
                     <div class="myPage-subTitle">
                         <label>현재 비밀번호</label>
                         <input type="password" name="memberPw" id="memberPw" maxlength="30">
-                        <button id="myPage-check-btn">확인</button>  
+                        <button class="myPage-check-btn">확인</button>  
                     </div>
                     <span class="myPage-script">현재 비밀번호를 입력해주세요.</span>
 
@@ -84,11 +90,7 @@
                     <div class="myPage-subTitle">
                         <label>새 비밀번호 확인</label>
                         <input type="password" name="memberPw" id="#" maxlength="30">
-                        <button id="myPage-check-btn">확인</button>
-                    </div>
-                    <div class="myPage-subTitle">
-                        <label>생년월일</label>
-                        <input type="date" name="memberPw" id="memberPw" maxlength="30">  
+                        <button class="myPage-check-btn">확인</button>
                     </div>
                     <div class="myPage-subTitle">
                         <label>거주 지역</label>
@@ -98,8 +100,8 @@
                             <option value="seoul">서울</option>
                         </select>  
                     </div>
-                    <button id="myPage-update-btn" type="reset">취소</button>
-                    <button id="myPage-update-btn">수정</button>
+                    <button class="myPage-update-btn" type="reset">취소</button>
+                    <button class="myPage-update-btn">수정</button>
 
                 </div> 
 

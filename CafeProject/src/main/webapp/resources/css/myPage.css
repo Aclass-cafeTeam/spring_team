@@ -32,6 +32,16 @@
     height: 100%;
     border-radius: 50%;
 }
+#setting-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    /* align-items: center; */
+}
 
 /* 마이페이지 상단 닉네임 */
 .nickArea{
@@ -149,7 +159,7 @@ form[name="myPage-form"]{
 }
 
 /* 마이페이지 공통 버튼 태그 */
-#myPage-update-btn {
+.myPage-update-btn {
     height: 50px;
     width: 300px;
     margin: 50px 0;
@@ -159,16 +169,18 @@ form[name="myPage-form"]{
     background-color: #73358C;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
 }
-#myPage-update-btn:hover{
+.myPage-update-btn:hover{
     background-color: white;
     color:#73358C;
     background: #fff;
     transition: color 0.5s ease-in-out;
     overflow: hidden;
     z-index: 1;
+    border-radius: 5px;
 }
-#myPage-check-btn{
+.myPage-check-btn{
     height: 50px;
     width: 70px;
     border: 1px solid #73358C;
@@ -176,13 +188,15 @@ form[name="myPage-form"]{
     background-color: #73358C;
     color: white;
     cursor: pointer;
+    border-radius: 5px;
 }
-#myPage-check-btn:hover{
+.myPage-check-btn:hover{
     background-color: white;
     color:#73358C;
     background: #fff;
     overflow: hidden;
     z-index: 1;
+    border-radius: 5px;
 }
 
 /* 게시글관련 메뉴 */
