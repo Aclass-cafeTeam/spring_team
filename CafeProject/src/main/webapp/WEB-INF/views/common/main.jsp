@@ -34,8 +34,8 @@
             <div id="header-top">
                 <div id="never-gnb" class="__web-inspector-hide-shortcut__">
                     <a href="http://www.naver.com" class="link_never">
-                        <img src="https://ssl.pstatic.net/static/cafe/icon_naver_190423.png" width="52" height="10"
-                            alt="NAVER">
+                        <img src="/resources/images/NEVER_logo.png" width="52" height="10"
+                            alt="NEVER">
                     </a>
                 </div>
                 <div id="header-top-menu">
@@ -177,7 +177,7 @@
 
 
             <div id="signUpbtn">
-                <a href="#" id="signUp">로그인</a>
+                <a href="/member/login" id="signUp">로그인</a>
             </div>
 
 
