@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+ <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -48,12 +48,12 @@
     
         <!-- content -->
         <section class="login-content">
-            <form action="main.html" method="POST" onsubmit="return loginValidate()" >
+            <form action="/member/login" method="POST" onsubmit="return loginValidate()" >
                 <div class="login-frm">
                     <div class="id-pw-wrap">
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-user"></i></div>
-                            <input type="text" id="memberEmail" placeholder="아이디(이메일)" maxlength="30" autocomplete="off">
+                            <input type="text" id="memberEmail" placeholder="아이디(이메일)" maxlength="30" autocomplete="off" value="${cookie.saveId.value}">
                         </div>
 
                         <div class="id-pw-row">
@@ -62,6 +62,10 @@
                         </div>
                         
                     </div>
+                    <%-- 쿠키에 saveId가 있는 경우 변수 생성--%>
+                    <c:if test="${!empty cookie.saveId.value}">
+                        <c:set var="temp" value="checked"/>
+                    </c:if>
                     
                     <div class="saveId-area">
                         <label for="saveId">
@@ -87,6 +91,14 @@
             </p>
         </section>
     </main>
+    <c:if test="${!empty message}">
+        <script>
+            alert("${message}")
+        </script>
+
+        <%-- message 1회 출력 후 session scope에서 삭제 --%>
+        <c:remove var="message" ></c:remove>
+    </c:if>
 
     <footer class="login-footer">
         <p> 
