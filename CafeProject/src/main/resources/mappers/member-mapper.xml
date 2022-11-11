@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="memberMapper">
+	<!-- namespace 속성 : 현재 공간(영역)에 대한 이름 (반드시 지정!) -->
+  <!-- <cache-ref namespace=""/> 무조건 삭제-->
+  
+  
+  <!-- resultMap 태그
+    - 마이바티스에서 select를 진행하는 경우
+    	기본적으로 java 객체 필드명 == ResultSet 컬럼명이 같을 때 
+    	자동으로 객체에 세팅이 되는데 
+    	
+    	다를 경우
+    	컬럼 값을 어떤 필드에 세팅할 지를 지정하는 태그 
+    	
+    	- 속성
+    	type : 연결힐 VO 객체의 타입(패키지 + 클래스명 or 별칭) 
+    																					myBatis-confing.xml 에서 지정
+    																					
+    	id : resultMap을 식별할 이름
+    	
+    	
+    	-->
+    	<!-- <resultMap type="edu.kh.project.member.model.vo.Member" id="member_rm"> -->
+    	<resultMap type="Member" id="member_rm">
+    	
+    		<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
+    		<id property="memberNo" column="MEMBER_NO"/>
+    		
+    		<!-- 나머지 일반 컬럼 -->
+    		<result property="memberEmail" column="MEMBER_EMAIL" />
+      <result property="memberPw" column="MEMBER_PW" />
+      <result property="memberNickname" column="MEMBER_NICKNAME" />
+      <result property="memberResidence" column="MEMBER_RESIDENCE" />
+      <result property="profileImage" column="PROFILE_IMG" />
+      <result property="enrollDate" column="ENROLL_DATE" />
+      <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+      <result property="authority" column="AUTHORITY_NAME" />
+      <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+    	</resultMap>
+ <!--  private int memberNo;
+	private String memberEmail;
+	private String memberPw;
+	private String memberNickname;
+	private String memberResidence;
+	private String profileImage;
+	private String enrollDate;
+	private String memberDeleteFlag;
+	private String authorityName;
+	private int memberLevelNo; -->
+  
+  <!-- "MEMBER_NO"   NUMBER      NOT NULL,
+   "MEMBER_EMAIL"   VARCHAR2(50)      NOT NULL,
+   "MEMBER_PW"   VARCHAR2(100)      NOT NULL,
+   "MEMBER_NICKNAME"   VARCHAR2(30)      NOT NULL,
+   "MEMBER_RESIDENCE"   VARCHAR2(30)      NULL,
+   "PROFILE_IMG"   VARCHAR2(300)      NULL,
+   "ENROLL_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
+   "MEMBER_DEL_FL"   CHAR(1)   DEFAULT 'N'   NOT NULL,
+   "AUTHORITY_NAME"   CHAR(1)   DEFAULT 'G'   NOT NULL,
+   "MEMBER_LEVEL_NO"   NUMBER      NULL -->
+  
+  
+
+  <!-- 로그인 -->
+  <select id="login" parameterType="string" resultMap="member_rm">
+  SELECT MEMBER_NO, MEMBER_EMAIL,MEMBER_PW, MEMBER_NICKNAME, MEMBER_RESIDENCE, PROFILE_IMG, AUTHORITY_NAME,
+   TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE,MEMBER_LEVEL_NO
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL = 'N'
+AND MEMBER_EMAIL = #{memberEmail}
+  </select>
+  
+
+  
+</mapper>
