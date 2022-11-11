@@ -78,7 +78,8 @@
         <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
         <section id="sideMenu">
             <div id="content">
-
+                <c:choose>
+                <c:when test="${empty sessionScope.loginMember}">
                 <ul id="ul-1">
                     <li>
                         <a href="#"><img src="../resources/images/즐찾.PNG" width="26px" height="26px"></a>
@@ -130,10 +131,14 @@
                     <div>팀프로젝트</div>
                     <div>주제 > 카페</div>
                 </div>
+                </c:when>
 
 
-                <!------------------------- 나의활동 ------------------------->
-                <!-- <div id="side-profile-main">
+               
+
+                <c:otherwise>
+                 <!------------------------- 나의활동 ------------------------->
+                <div id="side-profile-main">
                     <div id="side-profile1">
                         <ul>
                             <li>
@@ -169,7 +174,10 @@
                             </li>
                         </ul>
                     </div>
-                </div> -->
+                </div>
+                </c:otherwise>
+
+                </c:choose>
                 <!------------------------- 나의활동 ------------------------->
 
 
