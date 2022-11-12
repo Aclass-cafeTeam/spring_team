@@ -53,15 +53,16 @@
                     <div class="id-pw-wrap">
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-user"></i></div>
-                            <input type="text" id="memberEmail" placeholder="아이디(이메일)" maxlength="30" autocomplete="off" value="${cookie.saveId.value}">
+                            <input type="text" id="memberEmail" name="memberEmail" placeholder="아이디(이메일)" maxlength="30" autocomplete="off" value="${cookie.saveId.value}">
                         </div>
 
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-lock"></i></div>
-                            <input type="password" id="memberPw" placeholder="비밀번호"  maxlength="20" >
+                            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호"  maxlength="20" >
                         </div>
                         
                     </div>
+                    
                     <%-- 쿠키에 saveId가 있는 경우 변수 생성--%>
                     <c:if test="${!empty cookie.saveId.value}">
                         <c:set var="temp" value="checked"/>
@@ -69,7 +70,7 @@
                     
                     <div class="saveId-area">
                         <label for="saveId">
-                            <input type="checkbox" name="saveId" id="saveId">
+                            <input type="checkbox" name="saveId" id="saveId" ${temp} }>
                             <label for="saveId"> <i class="fas fa-check"></i>로그인 상태 유지</label>
                         </label>
                     </div>
@@ -91,14 +92,7 @@
             </p>
         </section>
     </main>
-    <c:if test="${!empty message}">
-        <script>
-            alert("${message}")
-        </script>
-
-        <%-- message 1회 출력 후 session scope에서 삭제 --%>
-        <c:remove var="message" ></c:remove>
-    </c:if>
+    
 
     <footer class="login-footer">
         <p> 
@@ -108,7 +102,16 @@
     </footer>
         
 
-    <script src="/resources/js/login.js"></script>        
+    <c:if test="${!empty message}">
+        <script>
+            alert("${message}")
+        </script>
+
+        <%-- message 1회 출력 후 session scope에서 삭제 --%>
+        <c:remove var="message" ></c:remove>
+    </c:if>
+    
+    <script src="/resources/js/member/login.js"></script>        
 
 </body>
 </html>
