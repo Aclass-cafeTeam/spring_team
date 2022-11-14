@@ -46,9 +46,9 @@
         
         
     
-        <!-- content onsubmit="return loginValidate()"-->
+        <!-- content -->
         <section class="login-content">
-            <form action="/member/login" method="post">
+            <form action="/member/login" method="POST" onsubmit="return loginValidate()" >
                 <div class="login-frm">
                     <div class="id-pw-wrap">
                         <div class="id-pw-row">
