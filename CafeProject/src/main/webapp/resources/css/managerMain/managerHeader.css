@@ -42,7 +42,7 @@ div.tit_area > h1,p{
 /* 네버로고 */
 a.go_nvr{
     font-weight: bolder;
-    color: blueviolet;
+    color: #73358C;
     font-size: 15px;
 }
 /* 카페관리 */
@@ -195,7 +195,7 @@ nav{
 
 .nav_menu a:hover{
     background-color: white;
-    color: #39B900;
+    color: #73358C;
 
 }
 /* 네비 **** 메뉴란 ***************************************************************/

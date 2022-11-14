@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -46,9 +46,9 @@
         
         
     
-        <!-- content -->
+        <!-- content onsubmit="return loginValidate()"-->
         <section class="login-content">
-            <form action="/member/login" method="POST" onsubmit="return loginValidate()" >
+            <form action="/member/login" method="post">
                 <div class="login-frm">
                     <div class="id-pw-wrap">
                         <div class="id-pw-row">
