@@ -1,4 +1,4 @@
- <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
@@ -46,19 +46,19 @@
         
         
     
-        <!-- content -->
+        <!-- content onsubmit="return loginValidate()"-->
         <section class="login-content">
-            <form action="/member/login" method="POST" onsubmit="return loginValidate()" >
+            <form action="/member/login" method="post">
                 <div class="login-frm">
                     <div class="id-pw-wrap">
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-user"></i></div>
-                            <input type="text" id="memberEmail" placeholder="아이디(이메일)" maxlength="30" autocomplete="off" value="${cookie.saveId.value}">
+                            <input type="text" name ="memberEmail" id='memberEmail' placeholder="아이디(이메일)" maxlength="30" autocomplete="off" value="${cookie.saveId.value}">
                         </div>
 
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-lock"></i></div>
-                            <input type="password" id="memberPw" placeholder="비밀번호"  maxlength="20" >
+                            <input type="password" id="memberPw" name ="memberPw" placeholder="비밀번호"  maxlength="20" >
                         </div>
                         
                     </div>
@@ -108,7 +108,7 @@
     </footer>
         
 
-    <script src="/resources/js/login.js"></script>        
+    <<!-- script src="/resources/js/login.js"></script>     -->    
 
 </body>
 </html>

@@ -104,6 +104,15 @@
                             <div id="since">since 2022.10.18.</div>
                         </li>
                     </ul>
+                    <c:choose>
+                    <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                    <div class="managerLink">
+                        <div class="managerLinkBox">
+                            <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                        </div>
+                    </div>
+                    </c:when>
+                    </c:choose>
                 </div>
 
                 <div id="cafe-member">
@@ -137,15 +146,75 @@
                
 
                 <c:otherwise>
+                    <ul id="ul-1">
+                        <li>
+                            <a href="#"><img src="../resources/images/즐찾.PNG" width="26px" height="26px"></a>
+                        </li>
+                        <li><a href="#">
+                                <p>카페정보</p>
+                            </a></li>
+                        <li><a href="#">
+                                <p>나의활동</p>
+                            </a></li>
+                    </ul>
+    
+                    <div id="cafe">
+                        <ul>
+                            <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
+                                        height="58px" /></a></li>
+                            <li id="name">
+                                <div id="inline">
+                                    <div id="manager">매니저</div>
+                                    <div><a href="#">카페팀</a></div>
+                                </div>
+                                <div id="since">since 2022.10.18.</div>
+                            </li>
+                        </ul>
+                        <c:choose>
+                        <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                        <div class="managerLink">
+                            <div class="managerLinkBox">
+                                <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                            </div>
+                        </div>
+                        </c:when>
+                        </c:choose>
+                    </div>
+    
+                    <div id="cafe-member">
+                        <div id="cafe-grade">
+                            <img src="../resources/images/카페등급.PNG" width="17px">
+                            <a><a href="#">나무3단계
+                        </div>
+    
+                        <div id="member-count">
+                            <img src="../resources/images/회원수.PNG" height="16px">
+                            <a href="#" id="count">657,879</a>
+                            <a href="#" id="count1">초대하기</a>
+                        </div>
+                    </div>
+    
+                    <div id="count-3">
+                        <div id="star">
+                            <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                            <div id="star1">즐겨찾는 멤버</div>
+                            <div id="star-count">76,289명</div>
+                        </div>
+                    </div>
+    
+                    <div id="cafe-type">
+                        <div>팀프로젝트</div>
+                        <div>주제 > 카페</div>
+                    </div>
                  <!------------------------- 나의활동 ------------------------->
-                <div id="side-profile-main">
+                <!-- <div id="side-profile-main">
                     <div id="side-profile1">
                         <ul>
                             <li>
                                 <div id="side-profile">
-                                    <a href="#"><img src="/src/main/webapp/resources/images/프로필 변경.PNG"
+                                    <a href="#"><img src="../../../resources/images/settings.png"
                                             id="setting-icon"></a>
-                                    <div id="profile-box"><img src="/src/main/webapp/resources/images/프로필.PNG"
+                                    <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
                                             id="profile-img"></div>
                                 </div>
                                 <div id="profile-name">
@@ -159,22 +228,22 @@
                     <div id="side-profile2">
                         <ul>
                             <li>
-                                <span id="info-data"><img src="/src/main/webapp/resources/images/방문일.PNG">방문</span>
+                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">방문</span>
                                 <em>14<span>회</span></em>
                             </li>
                             <li>
-                                <span id="info-data"><img src="/src/main/webapp/resources/images/작성한 게시글 수.PNG">내가 쓴 글
+                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴 글
                                     보기</span>
                                 <em>0<span>개</span></em>
                             </li>
                             <li>
-                                <span id="info-data"><img src="/src/main/webapp/resources/images/작성한 댓글 수.PNG">내가 쓴
+                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴
                                     댓글보기</span>
                                 <em>0<span>개</span></em>
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 </c:otherwise>
 
                 </c:choose>
@@ -183,11 +252,18 @@
 
             </div>
 
-
-            <div id="signUpbtn">
-                <a href="/member/login" id="signUp">로그인</a>
-            </div>
-
+            <c:choose>
+            <c:when test="${empty sessionScope.loginMember}">
+                <div id="signUpbtn">
+                    <a href="/member/login" id="signUp">로그인</a>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div id="signOutbtn">
+                    <a href="#" id="signOut">로그아웃</a>
+                </div>
+            </c:otherwise>
+            </c:choose>
 
             <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
             <div id="search">

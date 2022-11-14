@@ -53,7 +53,7 @@ div#cafe {
     padding-right: 10px;
     padding-top: 12px;
     padding-bottom: 12px;
-    height: 82px;
+    height: 100px;
     display: relative;
     border-bottom: 1px solid rgb(229, 229, 229);
     padding-top: 12px;
@@ -111,6 +111,26 @@ div#cafe {
     color: rgb(102, 102, 102);
     font-size: 10.6px;
 }
+
+/* 지윤 매니저링크 작성 */
+.manageLink{
+    display: inline-flex;
+    justify-content: flex-start;
+    align-content: center;
+}
+.managerLinkBox > a{
+    font-size: 13px;
+    color: rgb(102, 102, 102);
+    text-decoration: none;
+}
+.managerLinkBox img{
+    margin-right: 5px;
+}
+.managerLinkBox > a:hover{
+    text-decoration: underline;
+}
+
+/* 지윤 매니저링크 작성 */
 
 #cafe-member {
     width: 200px;
@@ -245,7 +265,7 @@ div#cafe {
     padding-top: 5px;
 }
 
-#signUpbtn {
+#signUpbtn , #signOutbtn{
     background-color: #5a5a5a;
     color: #FFFFFF;
     margin-bottom: 8px;
@@ -255,7 +275,7 @@ div#cafe {
     width: 200px;
 }
 
-#signUpbtn>#signUp {
+#signUpbtn>#signUp , #signOutbtn>#signOut{
     display: flex;
     align-content: center;
     justify-content: center;
