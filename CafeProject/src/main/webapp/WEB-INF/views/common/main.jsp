@@ -105,7 +105,7 @@
                         </li>
                     </ul>
                     <c:choose>
-                    <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                    <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                     <div class="managerLink">
                         <div class="managerLinkBox">
                             <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
@@ -171,7 +171,7 @@
                             </li>
                         </ul>
                         <c:choose>
-                        <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                         <div class="managerLink">
                             <div class="managerLinkBox">
                                 <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
