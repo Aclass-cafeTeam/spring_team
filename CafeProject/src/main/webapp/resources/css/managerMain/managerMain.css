@@ -28,7 +28,7 @@ body{
 
 /* 메인홈이라서 메인관리 메뉴만 색깔변경 */
 .nav_menu li:first-child a{
-    background-color: #39B900;
+    background-color: #73358C;
     color: white;
     border: 1px solid #797979;
 }
@@ -94,7 +94,7 @@ body{
 }
 .cafe_info_cont > h3 > a{
     display: inline-block;
-    color: #239400;
+    color: #73358C;
     word-break: break-all;
     text-decoration: none;
     font-weight: bold;
