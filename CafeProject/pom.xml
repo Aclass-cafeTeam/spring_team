@@ -17,6 +17,7 @@
 	</properties>
 	
 	<dependencies>
+		<!-- Lombok 라이브러리  -->
 		<!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
 		<dependency>
 		    <groupId>org.projectlombok</groupId>
@@ -198,6 +199,8 @@
 			<scope>test</scope>
 		</dependency>        
 	</dependencies>
+    
+    <!-- build : 프로젝트 빌드 시 사용되는 플러그인, 버전 정보 설정 -->
     <build>
         <plugins>
             <plugin>
@@ -214,13 +217,13 @@
                     <downloadJavadocs>true</downloadJavadocs>
                 </configuration>
             </plugin>
-            <plugin>
+            <plugin> 
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.5.1</version>
+                <version>3.8.1</version> <!-- 메이븐 컴파일 버전 변경 -->
                 <configuration>
-                    <source>1.6</source>
-                    <target>1.6</target>
+                    <source>11</source> <!-- jdk버전 -->
+                    <target>11</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
@@ -234,6 +237,13 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
-        </plugins>
+            
+             <!-- Could not initialize class org.apache.maven.plugin.war.util.WebappStructureSerializer -->
+		         <!-- 메이븐 구성 문제로 인한 pom.xml 오류 발생 시 해결 -->
+		         <plugin>
+		            <artifactId>maven-war-plugin</artifactId>
+		            <version>3.2.2</version>
+		         </plugin>
+        </plugins>        
     </build>
 </project>

@@ -105,7 +105,7 @@
                         </li>
                     </ul>
                     <c:choose>
-                    <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                    <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                     <div class="managerLink">
                         <div class="managerLinkBox">
                             <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
@@ -171,7 +171,7 @@
                             </li>
                         </ul>
                         <c:choose>
-                        <c:when test="${sessionScope.loginMember.authority=='M' ||sessionScope.loginMember.authority=='S' }">
+                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                         <div class="managerLink">
                             <div class="managerLinkBox">
                                 <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
@@ -260,7 +260,7 @@
             </c:when>
             <c:otherwise>
                 <div id="signOutbtn">
-                    <a href="#" id="signOut">로그아웃</a>
+                    <a href="/member/logout" id="signOut">로그아웃</a>
                 </div>
             </c:otherwise>
             </c:choose>
@@ -612,6 +612,8 @@
     </footer>
 
     <!-- **************************************푸터************************************** -->
+
+    <script src="/resources/js/main/main.js"></script>
 </body>
 
 </html>

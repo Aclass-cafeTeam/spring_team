@@ -1,8 +1,8 @@
 package com.railtavelproject.cafe.member.controller;
-
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -24,120 +24,75 @@ import com.railtavelproject.cafe.member.model.vo.Member;
 @Controller
 @SessionAttributes({"loginMember","message"})
 public class MemberController {
-   
-   @Autowired
-   private MemberService service;
-   
+		
+	// Service 객체 생성
+	@Autowired
+	private MemberService service ;
 
-   
-   @PostMapping("/member/login") //POST 방식의 /member/login 요청을 연결
-   public String login(@ModelAttribute Member inputMember,
-         Model model, 
-         RedirectAttributes ra,
-         @RequestParam(value ="saveId",required =false) String saveId,  // 체크박스 값 얻어오기
-         HttpServletResponse resp, //쿠키 전달용
-         @RequestHeader(value ="referer") String referer  //요청이전 주소
-         ) {
-      
-      // Model : 데이터 전달용 객체 
-      // -데이터를 Map 형식으로 저장하여 전달하는 객체
-      // -request scope 가 기본값
-      // + @SessionAttributes 어노테이션과 함께 작성 시 
-      // session scope로 변환 가능 
-      
-      //redirectAttributes
-      // - 리다이렉트 시 값을 전달하는 용도의 객체
-      // - 응답 전 : request scope
-      // - redirect 중 : session scope
-      // - 응답 후 : new request scope
-      
-      //System.out.println(inputMember);
-      
-      // Servlet 프로젝트 
-      // Servlet 객체 생성
-      // try ~ catch 내부에 코드 작성
-      
-      // Spring 프로젝트 
-      
-      //서비스 호출 후 결과 반환 받기
-	  System.out.println(inputMember);
-      Member loginMember = service.login(inputMember);
-     
-      String path = null; //리다일렉트 경로를 저장할 변수
-      
-         // 로그인 성공 시 loginMember를 세션에 추가
-         // 로그인 실패 시 "아이디 또는 비밀번호가 일치하지 않습니다" 세션에 추가
-      if(loginMember != null) {
-         System.out.println(loginMember);
-         path ="/";
-         // 로그인 성공 시 loginMember를 세션에 추가
-         
-         //addAttribute("K", V) == req.setAttribute("K",V)
-         model.addAttribute("loginMember",loginMember);
-         // -> request scope 상태
-         
-         //@SessionAttributes("loginMember") 클래스 위에 추가 
-         // -> session scope로 변환
-         
-         //******************************************************************
-         //쿠키 생성
-         Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
-         
-         //쿠키 유지 시간 지정
-         if(saveId != null) { //체크되었을 때 
-            
-            // 1년동안 쿠키 유지
-            cookie.setMaxAge(60*60*24*365);
-            
-         }else {//체크 안되었을 때 
-            //0초 동안 쿠키 유지 -> 생성과 동시에 삭제
-            // --> 클라이언트의 쿠키 파일을 삭제
-            cookie.setMaxAge(0);
-            
-         }
-         //크키가 사용되는 경로 지정
-         cookie.setPath("/");
-         
-         resp.addCookie(cookie);
-         //*********************************************************************
-      }else {
-         // 기존 : HttpServletRequest req; 객체를 통채로 들고 오는거
-         //        req.getHeader("referer");
-         // new  : @RequestHeader(value ="referer") String referer 
-         //         path = referer;
-         
-         path= referer; // 로그인 요청 전 페이지 주소(referer)
-         // 로그인 실패 시 "아이디 또는 비밀번호가 일치하지 않습니다." 세션에 추가
-//         model.addAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
-         // -> 메인 페이지 주소에 message 값 노출
-         // -> RedirectAttributes로 변환
-         ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다");
-         
-         //addFlashAttribute() : 잠깐 session scope에 추가
-      }
-      
-      return "redirect:" +path;
-   }
-   
-   //로그인 페이지 이동
-   @GetMapping("/member/login")
-   public String loginPage() {
-      return "member/login";
-   }
-   
-   //로그아웃
-   @GetMapping("/member/logout")
-   public String logout(SessionStatus status) {
-      // 기존 :
-      // HttpServletRequest req;
-      // HttpSession session = req.getSession();
-      // session.invalidate();
-      //session.invalidate(); // 세션 무효화
-      //-> 안됨 왜: @SessionAttributes로 session scope에 등록된 값을 무효화 시키려면
-      // SessionStatus 라는 별도의 객체를 이용해야 한다.
-      
-      status.setComplete();
-      
-      return "redirect:/";
-   }
+
+	//로그인 화면 페이지로 이동
+	@GetMapping("/member/login")
+	public String login() {
+		return "member/login";
+	}
+
+
+
+	// 로그인
+	@PostMapping("/member/login") // Post방식의 /member/login요청을 연결
+	public String login(@ModelAttribute Member inputMember, 
+						Model model, 
+						RedirectAttributes ra,
+						@RequestParam(value="saveId", required=false) String saveId, //체크박스 값 가져오기 required = false인 경우 전달된 파라미터가 없으면 null 
+						HttpServletResponse resp, // 쿠키 전달용
+						@RequestHeader(value="referer") String referer // 요청 이전 주소
+						) {
+	
+		
+		Member loginMember = service.login(inputMember);
+		
+		String path = null;  // 리다이렉트 경로를 저장할 변수
+		
+		// 로그인 성공과 실패에 따른 결과 -> 세션이 필요
+		// 로그인 실패시 "아이디 또는 비밀번호가 일치하지 않습니다" 세션에 추가
+		if(loginMember != null) { 
+			path = "/"; // 메인페이지
+			
+			model.addAttribute("loginMember", loginMember);
+			
+			
+			// 쿠키 생성
+			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+			
+			// 쿠키 유지 시간 지정
+			if(saveId != null) { 
+				cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+				
+			} else {
+				cookie.setMaxAge(0);
+			}
+			
+			cookie.setPath("/"); 
+			resp.addCookie(cookie);
+			
+			
+		} else {
+			path = referer; // 로그인 요청 전 페이지 주소(referer)
+			ra.addFlashAttribute( "message", "아이디 또는 비밀번호가 일치하지 않습니다");
+		}
+		
+		return "redirect:" + path;
+	}
+	
+	
+	
+	// 로그아웃 
+	@GetMapping("/member/logout")
+	public String logout(SessionStatus status) {
+		
+		// session scope에 등록된 loginMember를 무효화를 위해 SessionStatus라는 별도의 객체 사용
+		status.setComplete(); // SessionStatus객체의 setComplete()메서드를 통해 세션 상태를 무효화
+		
+		return "redirect:/";
+	}
 }

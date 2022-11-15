@@ -15,7 +15,7 @@ public class ExceptionController {
 			
 			e.printStackTrace();
 			
-			model.addAttribute("errorMessage", "서비스 이용 중 문재가 발생했습니다.");
+			model.addAttribute("errorMessage", "서비스 이용 중 문제가 발생했습니다.");
 			model.addAttribute("e", e);
 			
 			return "/common/error";
