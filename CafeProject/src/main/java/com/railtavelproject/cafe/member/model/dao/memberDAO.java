@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Repository
-public class memberDAO {
+public class MemberDAO {
 
    //DBCP + 마이바티스 이용 객체 DI(의존성 주입)
       @Autowired

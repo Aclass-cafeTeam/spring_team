@@ -6,7 +6,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.railtavelproject.cafe.member.model.dao.memberDAO;
+import com.railtavelproject.cafe.member.model.dao.MemberDAO;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Service
@@ -14,7 +14,7 @@ public class MemberServiceImpl  implements MemberService{
 
    // MemberDAO bean을 의존성 주입(DI)
       @Autowired
-      private memberDAO dao;
+      private MemberDAO dao;
       
       // spring-security.xml에서 등록된 시큐리티 빈을 의존성 주입   
       @Autowired
