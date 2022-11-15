@@ -260,7 +260,7 @@
             </c:when>
             <c:otherwise>
                 <div id="signOutbtn">
-                    <a href="#" id="signOut">로그아웃</a>
+                    <a href="/member/logout" id="signOut">로그아웃</a>
                 </div>
             </c:otherwise>
             </c:choose>
@@ -612,6 +612,8 @@
     </footer>
 
     <!-- **************************************푸터************************************** -->
+
+    <script src="/resources/js/main/main.js"></script>
 </body>
 
 </html>
