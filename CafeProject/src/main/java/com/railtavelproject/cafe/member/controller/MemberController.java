@@ -41,14 +41,13 @@ public class MemberController {
 	// 로그인
 	@PostMapping("/member/login") // Post방식의 /member/login요청을 연결
 	public String login(@ModelAttribute Member inputMember, 
-							Model model, 
-							RedirectAttributes ra,
-							@RequestParam(value="saveId", required=false) String saveId, //체크박스 값 가져오기
-							HttpServletResponse resp, // 쿠키 전달용
-							@RequestHeader(value="referer") String referer // 요청 이전 주소
-							) {
-		
-		System.out.println(inputMember);
+						Model model, 
+						RedirectAttributes ra,
+						@RequestParam(value="saveId", required=false) String saveId, //체크박스 값 가져오기 required = false인 경우 전달된 파라미터가 없으면 null 
+						HttpServletResponse resp, // 쿠키 전달용
+						@RequestHeader(value="referer") String referer // 요청 이전 주소
+						) {
+	
 		
 		Member loginMember = service.login(inputMember);
 		
@@ -83,5 +82,17 @@ public class MemberController {
 		}
 		
 		return "redirect:" + path;
+	}
+	
+	
+	
+	// 로그아웃 
+	@GetMapping("/member/logout")
+	public String logout(SessionStatus status) {
+		
+		// session scope에 등록된 loginMember를 무효화를 위해 SessionStatus라는 별도의 객체 사용
+		status.setComplete(); // SessionStatus객체의 setComplete()메서드를 통해 세션 상태를 무효화
+		
+		return "redirect:/";
 	}
 }
