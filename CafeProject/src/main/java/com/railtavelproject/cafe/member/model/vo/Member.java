@@ -11,7 +11,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Member {
-	private int memberNo;  //회원 번호
+	   private int memberNo;  //회원 번호
 	   private String memberEmail; //이메일
 	   private String memberPw; //비밀번호
 	   private String memberNickname; //닉네임
@@ -19,7 +19,7 @@ public class Member {
 	   private String profileImage; //프로필 이미지
 	   private String enrollDate; //가입일
 	   private String memberDeleteFlag; //탈퇴여부
-	   private String autority; //권한 분류 (G:일반회원, M:관리자, S:부관리자)
+	   private String authorityNo; //권한 분류 (2:일반회원, 0:관리자, 1:부관리자)
 	   
 	   private int memberLevelNo; // 회원 등급
 	   private String memberLevelName; // 등급명   
