@@ -11,17 +11,7 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>바이트레인</title>
-    <link rel="shortcut icon" href="../resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
-        Flaticon</a>
     <link rel="stylesheet" href="../resources/css/main.css">
-    <style>
-        #free-icon-train {
-            display: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
 
 </head>
 

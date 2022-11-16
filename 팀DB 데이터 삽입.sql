@@ -33,6 +33,15 @@ INSERT INTO AUTHORITY VALUES(0,'카페매니저','/resources/images/manager/카�
 INSERT INTO AUTHORITY VALUES(1,'부매니저','/resources/images/manager/부매니저.png');
 INSERT INTO AUTHORITY VALUES(2,'일반회원',NULL);
 
+----------------------------------------------------------------------
+--insert 데이터 삽입 
+--로그인이력------------------------------------------
+INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,SYSDATE,1);
+INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,SYSDATE,2);
+INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,SYSDATE,3);
+INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,SYSDATE,4);
+INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,SYSDATE,4);
+
 COMMIT;
 
 
