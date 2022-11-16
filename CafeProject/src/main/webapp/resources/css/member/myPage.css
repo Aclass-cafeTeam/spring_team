@@ -90,9 +90,9 @@
 }
 
 .navMenu>a:focus{
-    color: green;
+    color: #73358C;
     cursor: text;
-    text-decoration: underline green;
+    text-decoration: underline #73358C;
 }
 
 /* 마이페이지 공통 태그 */
