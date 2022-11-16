@@ -29,6 +29,7 @@
     		
     		<!-- 나머지 일반 컬럼 -->
     		<result property="memberEmail" column="MEMBER_EMAIL" />
+<<<<<<< HEAD
       <result property="memberPw" column="MEMBER_PW" />
       <result property="memberNickname" column="MEMBER_NICKNAME" />
       <result property="memberResidence" column="MEMBER_RESIDENCE" />
@@ -37,6 +38,16 @@
       <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
       <result property="authorityNo" column="AUTHORITY_NO" />
       <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+=======
+	      <result property="memberPw" column="MEMBER_PW" />
+	      <result property="memberNickname" column="MEMBER_NICKNAME" />
+	      <result property="memberResidence" column="MEMBER_RESIDENCE" />
+	      <result property="profileImage" column="PROFILE_IMG" />
+	      <result property="enrollDate" column="ENROLL_DATE" />
+	      <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+	      <result property="authorityNo" column="AUTHORITY_NO" />
+	      <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+>>>>>>> main
     	</resultMap>
  <!--  private int memberNo;
 	private String memberEmail;
