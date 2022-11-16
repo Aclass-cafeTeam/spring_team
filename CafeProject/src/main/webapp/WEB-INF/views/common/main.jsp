@@ -68,173 +68,181 @@
         <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
         <section id="sideMenu">
             <div id="content">
-                <c:choose>
-                <c:when test="${empty sessionScope.loginMember}">
                 <ul id="ul-1">
                     <li>
                         <a href="#"><img src="../resources/images/즐찾.PNG" width="26px" height="26px"></a>
                     </li>
-                    <li><a href="#">
+                    <li><a href="#" id="btn1">
                             <p>카페정보</p>
                         </a></li>
-                    <li><a href="#">
+                    <li><a href="#" id="btn2">
                             <p>나의활동</p>
                         </a></li>
                 </ul>
 
-                <div id="cafe">
-                    <ul>
-                        <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
-                                    height="58px" /></a></li>
-                        <li id="name">
-                            <div id="inline">
-                                <div id="manager">매니저</div>
-                                <div><a href="#">카페팀</a></div>
+                <c:choose>
+                <c:when test="${empty sessionScope.loginMember}">
+                
+                <div>
+                    <span>
+                        <div id="cafe">
+                            <ul>
+                                <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
+                                            height="58px" /></a></li>
+                                <li id="name">
+                                    <div id="inline">
+                                        <div id="manager">매니저</div>
+                                        <div><a href="#">카페팀</a></div>
+                                    </div>
+                                    <div id="since">since 2022.10.18.</div>
+                                </li>
+                            </ul>
+                            <c:choose>
+                            <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
+                            <div class="managerLink">
+                                <div class="managerLinkBox">
+                                    <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                </div>
                             </div>
-                            <div id="since">since 2022.10.18.</div>
-                        </li>
-                    </ul>
-                    <c:choose>
-                    <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
-                    <div class="managerLink">
-                        <div class="managerLinkBox">
-                            <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                            </c:when>
+                            </c:choose>
                         </div>
-                    </div>
-                    </c:when>
-                    </c:choose>
-                </div>
 
-                <div id="cafe-member">
-                    <div id="cafe-grade">
-                        <img src="../resources/images/카페등급.PNG" width="17px">
-                        <a><a href="#">나무3단계
-                    </div>
+                        <div id="cafe-member">
+                            <div id="cafe-grade">
+                                <img src="../resources/images/카페등급.PNG" width="17px">
+                                <a><a href="#">나무3단계
+                            </div>
 
-                    <div id="member-count">
-                        <img src="../resources/images/회원수.PNG" height="16px">
-                        <a href="#" id="count">657,879</a>
-                        <a href="#" id="count1">초대하기</a>
-                    </div>
-                </div>
+                            <div id="member-count">
+                                <img src="../resources/images/회원수.PNG" height="16px">
+                                <a href="#" id="count">657,879</a>
+                                <a href="#" id="count1">초대하기</a>
+                            </div>
+                        </div>
 
-                <div id="count-3">
-                    <div id="star">
-                        <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                        <div id="star1">즐겨찾는 멤버</div>
-                        <div id="star-count">76,289명</div>
-                    </div>
-                </div>
+                        <div id="count-3">
+                            <div id="star">
+                                <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                                <div id="star1">즐겨찾는 멤버</div>
+                                <div id="star-count">76,289명</div>
+                            </div>
+                        </div>
 
-                <div id="cafe-type">
-                    <div>팀프로젝트</div>
-                    <div>주제 > 카페</div>
+                        <div id="cafe-type">
+                            <div>팀프로젝트</div>
+                            <div>주제 > 카페</div>
+                        </div>
+                    </span>
                 </div>
                 </c:when>
+                </c:choose>
+                
 
 
                
-
-                <c:otherwise>
-                    <ul id="ul-1">
-                        <li>
-                            <a href="#"><img src="../resources/images/즐찾.PNG" width="26px" height="26px"></a>
-                        </li>
-                        <li><a href="#">
-                                <p>카페정보</p>
-                            </a></li>
-                        <li><a href="#">
-                                <p>나의활동</p>
-                            </a></li>
-                    </ul>
+                <c:choose>
+                <c:when test="${!empty sessionScope.loginMember}">
+                    
     
-                    <div id="cafe">
-                        <ul>
-                            <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
-                                        height="58px" /></a></li>
-                            <li id="name">
-                                <div id="inline">
-                                    <div id="manager">매니저</div>
-                                    <div><a href="#">카페팀</a></div>
+                    <div  class="cafe-info" id="cafe-info">
+                        <span>
+                            <div id="cafe">
+                                <ul>
+                                    <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
+                                                height="58px" /></a></li>
+                                    <li id="name">
+                                        <div id="inline">
+                                            <div id="manager">매니저</div>
+                                            <div><a href="#">카페팀</a></div>
+                                        </div>
+                                        <div id="since">since 2022.10.18.</div>
+                                    </li>
+                                </ul>
+                                <c:choose>
+                                <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
+                                <div class="managerLink">
+                                    <div class="managerLinkBox">
+                                        <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                    </div>
                                 </div>
-                                <div id="since">since 2022.10.18.</div>
-                            </li>
-                        </ul>
-                        <c:choose>
-                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
-                        <div class="managerLink">
-                            <div class="managerLinkBox">
-                                <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                </c:when>
+                                </c:choose>
+                            </div>
+            
+                            <div id="cafe-member">
+                                <div id="cafe-grade">
+                                    <img src="../resources/images/카페등급.PNG" width="17px">
+                                    <a><a href="#">나무3단계
+                                </div>
+            
+                                <div id="member-count">
+                                    <img src="../resources/images/회원수.PNG" height="16px">
+                                    <a href="#" id="count">657,879</a>
+                                    <a href="#" id="count1">초대하기</a>
+                                </div>
+                            </div>
+            
+                            <div id="count-3">
+                                <div id="star">
+                                    <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                                    <div id="star1">즐겨찾는 멤버</div>
+                                    <div id="star-count">76,289명</div>
+                                </div>
+                            </div>
+            
+                            <div id="cafe-type">
+                                <div>팀프로젝트</div>
+                                <div>주제 > 카페</div>
+                            </div>
+                        </span>
+                    </div>
+                    
+                 <!------------------------- 나의활동 ------------------------->
+                
+                <div class="my-active" id="my-active">
+                    <span>
+                        <div id="side-profile-main">
+                            <div id="side-profile1">
+                                <ul>
+                                    <li>
+                                        <div id="side-profile">
+                                            <a href="#"><img src="../../../resources/images/settings.png"
+                                                    id="setting-icon"></a>
+                                            <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
+                                                    id="profile-img"></div>
+                                        </div>
+                                        <div id="profile-name">
+                                            이빨다뽑힘
+                                        </div>
+                                    </li>
+                                    <li id="signUp-date">가입 <em>2022.10.17.</em></li>
+                                    <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
+                                </ul>
+                            </div>
+                            <div id="side-profile2">
+                                <ul>
+                                    <li>
+                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">방문</span>
+                                        <em>14<span>회</span></em>
+                                    </li>
+                                    <li>
+                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴 글
+                                            보기</span>
+                                        <em>0<span>개</span></em>
+                                    </li>
+                                    <li>
+                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴
+                                            댓글보기</span>
+                                        <em>0<span>개</span></em>
+                                    </li>
+                                </ul>
                             </div>
                         </div>
-                        </c:when>
-                        </c:choose>
-                    </div>
-    
-                    <div id="cafe-member">
-                        <div id="cafe-grade">
-                            <img src="../resources/images/카페등급.PNG" width="17px">
-                            <a><a href="#">나무3단계
-                        </div>
-    
-                        <div id="member-count">
-                            <img src="../resources/images/회원수.PNG" height="16px">
-                            <a href="#" id="count">657,879</a>
-                            <a href="#" id="count1">초대하기</a>
-                        </div>
-                    </div>
-    
-                    <div id="count-3">
-                        <div id="star">
-                            <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                            <div id="star1">즐겨찾는 멤버</div>
-                            <div id="star-count">76,289명</div>
-                        </div>
-                    </div>
-    
-                    <div id="cafe-type">
-                        <div>팀프로젝트</div>
-                        <div>주제 > 카페</div>
-                    </div>
-                 <!------------------------- 나의활동 ------------------------->
-                <!-- <div id="side-profile-main">
-                    <div id="side-profile1">
-                        <ul>
-                            <li>
-                                <div id="side-profile">
-                                    <a href="#"><img src="../../../resources/images/settings.png"
-                                            id="setting-icon"></a>
-                                    <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
-                                            id="profile-img"></div>
-                                </div>
-                                <div id="profile-name">
-                                    이빨다뽑힘
-                                </div>
-                            </li>
-                            <li id="signUp-date">가입 <em>2022.10.17.</em></li>
-                            <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
-                        </ul>
-                    </div>
-                    <div id="side-profile2">
-                        <ul>
-                            <li>
-                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">방문</span>
-                                <em>14<span>회</span></em>
-                            </li>
-                            <li>
-                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴 글
-                                    보기</span>
-                                <em>0<span>개</span></em>
-                            </li>
-                            <li>
-                                <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴
-                                    댓글보기</span>
-                                <em>0<span>개</span></em>
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
-                </c:otherwise>
+                    </span>
+                </div>
+                </c:when>
+                
 
                 </c:choose>
                 <!------------------------- 나의활동 ------------------------->
