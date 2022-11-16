@@ -10,6 +10,7 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/resources/css/member/login.css">
     
+    <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <main>

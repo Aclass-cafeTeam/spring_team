@@ -8,6 +8,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>내일로, 기차로! 카페 전체 멤버 관리</title>
+    <link rel="stylesheet" href="../../resources/css/managerMain/totalMemberManager.css">
   
 </head>
 <body>
