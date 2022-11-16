@@ -95,4 +95,12 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	
+
+	// 회원가입 창으로 이동
+	@GetMapping("/member/signUp")
+	public String signUp() {
+		return "member/signUp";
+	}
 }

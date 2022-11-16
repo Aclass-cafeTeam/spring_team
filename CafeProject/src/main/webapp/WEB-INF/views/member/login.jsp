@@ -31,16 +31,10 @@
         <header class="header">
             <div class="header-inner">
                 
-                <a href="#" target="_blank">
-                    <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
+                <a href="/">
+                     <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
                 </a>
                 
-                <!-- <select class="lang-switch">
-                    <option value="KR">한국어</option>
-                    <option value="US">English</option>
-                    <option value="CN">中文(简体)</option>
-                    <option value="TW">中文(台灣)</option>
-                </select> -->
             </div>
         </header>
         
@@ -88,7 +82,7 @@
             <p class="find-area">
                 <a href="#">ID/PW찾기</a>
                 <span> | </span>
-                <a href="/signUp.html">회원가입</a>
+                <a href="/member/signUp">회원가입</a>
             </p>
         </section>
     </main>
@@ -96,7 +90,7 @@
 
     <footer class="login-footer">
         <p> 
-            <a href="/main.html" target="_blank"><img src="/resources/images/NEVER_logo.png" width="70px" height="15px" alt="logo"></a> Copyright<strong> &copy;NEVER Corp.</strong> All Rights Reserved.
+            <a href="/"><img src="/resources/images/NEVER_logo.png" width="70px" height="15px" alt="logo"></a> Copyright<strong> &copy;NEVER Corp.</strong> All Rights Reserved.
             <!-- &copy;  저작권 마크 -->
         </p>
     </footer>

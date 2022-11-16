@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카페 가입하기</title>
-    <link rel="stylesheet" href="/resources/css/signUp.css">
+    <link rel="stylesheet" href="/resources/css/member/signUp.css">
 
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
@@ -14,8 +17,10 @@
 
 <body>
 
-    <section class="joinCafeSection">
+    <%-- 인클루드 헤더 네브 푸터!!!!!--%>
 
+    <%-- 카페 가입하기 --%>
+    <section class="joinCafeSection">
         <div class="boardMenuInfo">
             <h1 class="signUpTitle">카페 가입하기</h1>
             <p class="signUpSubject">카페 가입을 위한 정보를 입력해주세요.</p>
@@ -139,19 +144,23 @@
                     </div>
                 </div>
             
-            
-                <!-- 가입 관련 안내 문구 -->
-                <div class="joinInfo">
-                    <li>가입 신청이 수락되면 <strong>'내소식'</strong>에서 알려드립니다.</li>
-                    <li>가입 신청 후 <strong>3개월 </strong>이상 수락되지 않으면 자동 신청 해제됩니다.</li>
-                    <li> 이 카페에서 활동하는 동안 원활한 카페 운영을 위하여 (필수) 아이디, 별명, 활동내역, (선택) 성별, 연령대, 이름(단, 이름은 실명 공개 카페에 한해 공개)이 이 카페의 운영진에게 공개되며, 최소한의 제재 기록은 카페 탈퇴 후에도 보관됩니다. 본 동의를 거부하실 수 있으나, 카페 가입이 불가능합니다.</li>
-                </div>
 
                 <!-- 보안절차 -->
                 <div class="signUpRow">
                     <label>보안절차</label>
-                    <!-- <div class="reCaptcha2" data-stiekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz"></div> -->
-                    <div class="g-recaptcha" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz" data-callback="onSubmit"></button>
+                    <div class="inputArea">
+                        <!-- <div class="reCaptcha2" data-stiekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz"></div> -->
+                        <div class="g-recaptcha" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz" data-callback="onSubmit"></button>
+                    </div>
+                </div>
+            
+                <!-- 가입 관련 안내 문구 -->
+                <div class="signUpRow">
+                    <div class="joinInfo">
+                        <li>가입 신청이 수락되면 <strong>'내소식'</strong>에서 알려드립니다.</li>
+                        <li>가입 신청 후 <strong>3개월 </strong>이상 수락되지 않으면 자동 신청 해제됩니다.</li>
+                        <li> 이 카페에서 활동하는 동안 원활한 카페 운영을 위하여 (필수) 아이디, 별명, 활동내역, (선택) 성별, 연령대, 이름(단, 이름은 실명 공개 카페에 한해 공개)이 이 카페의 운영진에게 공개되며, 최소한의 제재 기록은 카페 탈퇴 후에도 보관됩니다. 본 동의를 거부하실 수 있으나, 카페 가입이 불가능합니다.</li>
+                    </div>
                 </div>
                 
             </div>
