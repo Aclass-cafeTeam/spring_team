@@ -65,7 +65,8 @@
   	SELECT COUNT(*) TOTALMEMBER FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
   </select>
-  
-
-  
+  <select id="mainBoardCount" resultType="_int">
+  	SELECT COUNT(*) FROM "BOARD" 
+  	WHERE BOARD_DEL_FL ='N'
+  </select>
 </mapper>

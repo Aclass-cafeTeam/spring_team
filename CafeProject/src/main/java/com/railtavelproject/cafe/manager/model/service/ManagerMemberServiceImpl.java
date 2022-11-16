@@ -9,4 +9,16 @@ import com.railtavelproject.cafe.manager.model.dao.ManagerMemberDAO;
 public class ManagerMemberServiceImpl implements ManagerMemberService{
 	@Autowired
 	private ManagerMemberDAO dao;
+
+	@Override
+	public int memberCount() {
+		int mainMemberCount = dao.memberCount();
+		return mainMemberCount;
+	}
+
+	@Override
+	public int boardCount() {
+		int mainBoardCount = dao.boardCount();
+		return mainBoardCount;
+	}
 }

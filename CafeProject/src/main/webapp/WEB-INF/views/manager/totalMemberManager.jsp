@@ -21,7 +21,7 @@
 
                   <div class="tit_area">
                       <h1><a href="#" class="go_nvr">NEVER</a>
-                          <a href="#" class="go_adm">카페관리</a></h1>
+                          <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
                       <p><a href="../main.html" class="title">내일로, 기차로! 카페</a></p>
                   </div>
 
@@ -46,13 +46,13 @@
                   <div class="nav_menu">
                       <ul>
                           <li clss="managerHome">
-                              <a href="../managerMain/managerMain.html"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                              <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
                           </li>
                           <li>
                               <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
                           </li>
                           <li>
-                              <a href="../managerMain/totalMemberManager.html"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                              <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                           </li>
                           <li>
                               <a href="../managerMain/joinMemberManager.html"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>

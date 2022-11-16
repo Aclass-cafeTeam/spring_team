@@ -9,5 +9,16 @@ public class ManagerMemberDAO {
 	
 	@Autowired //같은 자료형
 	private SqlSessionTemplate sqlsession;
+
+	public int memberCount() {
+		int mainMemberCount = sqlsession.selectOne("managerMapper.mainMemberCount");
+		return mainMemberCount;
+	}
+
+	public int boardCount() {
+		// TODO Auto-generated method stub
+		int mainBoardCount = sqlsession.selectOne("managerMapper.mainBoardCount");
+		return mainBoardCount;
+	}
 	
 }
