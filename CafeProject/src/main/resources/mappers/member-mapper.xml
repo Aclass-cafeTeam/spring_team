@@ -3,6 +3,8 @@
 <mapper namespace="memberMapper">
 
 <resultMap type="Member" id="member_rm">
+<!-- resultMap의 type="Member" -> mybatis.config에서 지정 -->
+
 	<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
 	<id property="memberNo" column="MEMBER_NO"/>
 	
@@ -14,7 +16,7 @@
 	 <result property="profileImage" column="PROFILE_IMG" />
 	 <result property="enrollDate" column="ENROLL_DATE" />
 	 <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
-	 <result property="authorityNO" column="AUTHORITY_NO" />
+	 <result property="authorityNo" column="AUTHORITY_NO" />
 	 <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
 </resultMap>
  <!--  private int memberNo;
