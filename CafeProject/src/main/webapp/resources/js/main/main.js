@@ -13,3 +13,33 @@ signOut.addEventListener("click", function(event){
 
 
 });
+
+// 카페정보 버튼
+const btn1 = document.getElementById("btn1");
+// 나의활동 버튼
+const btn2 = document.getElementById("btn2");
+
+
+
+btn2.addEventListener("click", function(){
+    
+    
+ 
+    const info = document.querySelectorAll("#content > .cafe-info")[0];
+    const info1 = Array.from(info);
+   
+
+    const active = document.querySelectorAll("#content > .my-active")[0];
+    const active1 = Array.from(active);
+    
+    
+
+    if(info.className == "cafe-info"){
+        info.classList.remove("cafe-info");
+        info.classList.add("cafe-info2");
+        
+        active.classList.remove("my-active");
+        active.classList.add("my-active2");
+    }
+
+});
