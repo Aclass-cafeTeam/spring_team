@@ -4,17 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>삭제한 게시글</title>
+    <title>프로필 이미지 수정</title>
     <link rel="stylesheet" href="../../resources/css/member/myPage.css">
 </head>
 <body>
-          <!-- main content 틀 -->
-          <div id="mainArea">
+    <!-- main content 틀 -->
+    <div id="mainArea">
 
         <!-- 마이페이지 상단 기본정보-->
         <div id="subProfile">
-            <div id="profileImgBox"><img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image">
-                <a href="../member/myPageProfile.html"><img id="setting-icon" src="../../resources/images/프로필 변경.PNG"></a></div>
+            <div id="profileImgBox">
+                <img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image">
+                <a href="../member/myPageProfile.html">
+                    <img id="setting-icon" src="../../resources/images/프로필 변경.PNG">
+                </a>
+            </div>
             <div class="profileInfo">
                 <div class="nickArea">닉네임</div>
                 <div class="infoArea">
@@ -39,23 +43,25 @@
                 <a href="../member/myPageSecession.html" id="secessionMenu">회원 탈퇴</a>
             </div>
         </div> 
-           <!-- 삭제한 글 -->
-           <div id="myBoardArea">
-               <table class="myBoardTb">
-                   <thead>
-                       <tr>
-                           <th class="myBoard-th">제목</th>
-                           <th class="myBoard-th">삭제일</th>
-                       </tr>
-                   </thead>
-                   <tbody>
-                       <tr>
-                           <td><a href="#" class="title">제목제목제목</a></td>
-                           <td class="delete-date">2022.10.01.</td>
-                       </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div> 
+        <!-- 프로필 이미지 수정 -->
+        <section class="myPage-main">
+                <div class="myPage-subTitle"><label>프로필 변경</label></div>
+                    
+                <span class="myPage-script">이미지 선택 후 변경하기 버튼을 누르세요.</span>
+                    <form action="#" method="POST" name="myPage-form">
+                        <div class="profile-image-area">
+                            <img src="../../resources/images/프로필.PNG" id="profile-image">   
+                            <span id="delete-image">&times;</span>
+                        </div>
+
+                        <div class="profile-btn-area">
+                            <label for="input-image">이미지 선택</label>
+                            <input type="file" name="profileImage" id="input-image">
+                            <button class="myPage-update-btn" type="submit">변경하기</button>
+                        </div>
+                    </form>
+        </section>
+    </div> 
+    <script src="../../resources/js/member/myPage.js"></script>
 </body>
 </html>

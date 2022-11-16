@@ -11,10 +11,10 @@
     <!-- main content 틀 -->
     <div id="mainArea">
 
-         <!-- 마이페이지 상단 기본정보-->
-         <div id="subProfile">
+        <!-- 마이페이지 상단 기본정보-->
+        <div id="subProfile">
             <div id="profileImgBox"><img id="profileImg" src="../../resources/images/프로필.PNG" alt="Progile Image">
-            <img id="setting-icon" src="../../resources/images/프로필 변경.PNG"></div>
+                <a href="../member/myPageProfile.html"><img id="setting-icon" src="../../resources/images/프로필 변경.PNG"></a></div>
             <div class="profileInfo">
                 <div class="nickArea">닉네임</div>
                 <div class="infoArea">
@@ -30,14 +30,15 @@
         <!-- 마이페이지 nav -->
         <div id="navArea">
             <div class="navMenu">
-                <a href="../member/myPageMain.html">내 정보</a>
+                <a href="../member/myPageProfile.html">프로필</a>
+                <a href="../member/myPageMain.html">회원 정보</a>
                 <a href="../member/myPageBoard.html">작성글</a>
                 <a href="../member/myPageComment.html">댓글단 글</a>
                 <a href="../member/myPageLike.html">좋아요한 글</a>
                 <a href="../member/myPageDelete.html">삭제한 글</a>
                 <a href="../member/myPageSecession.html" id="secessionMenu">회원 탈퇴</a>
             </div>
-        </div> 
+        </div>
         
         <!-- 마이페이지 내정보 -->
         <!-- 
@@ -100,8 +101,10 @@
                             <option value="seoul">서울</option>
                         </select>  
                     </div>
-                    <button class="myPage-update-btn" type="reset">취소</button>
-                    <button class="myPage-update-btn">수정</button>
+                    <div class="myPage-btn-area">
+                        <button class="myPage-update-btn" type="reset">취소</button>
+                        <button class="myPage-update-btn">수정</button>
+                    </div>
 
                 </div> 
 

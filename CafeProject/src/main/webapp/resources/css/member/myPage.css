@@ -100,6 +100,7 @@ ul{
     list-style:none;
 }
 
+/* 마이페이지 메인 섹션 */
 .myPage-main{
     width: 860px;
     padding: 0 30px;
@@ -159,17 +160,29 @@ form[name="myPage-form"]{
 }
 
 /* 마이페이지 공통 버튼 태그 */
-.myPage-update-btn {
-    height: 50px;
-    width: 300px;
+.myPage-btn-area{
+    width: 100%;
+    /* margin: 50px 0; */
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.myPage-update-btn{
+    width: 110px;
+    height: 33px;
     margin: 50px 0;
+    padding: 5px 10px;
     border: 1px solid #73358C;
-    font-size: 20px;
+    font-size: 14px;
     font-weight: bold;
+    text-align: center;
     background-color: #73358C;
     color: white;
     cursor: pointer;
     border-radius: 5px;
+    display: inline-block;
 }
 .myPage-update-btn:hover{
     background-color: white;
@@ -266,6 +279,86 @@ tr{
     font-size : 14px;
     border: 1px solid #ddd;
 
+}
+
+/* 프로필 이미지 변경 */
+
+/* 프로필 이미지 영역 */
+.profile-image-area{
+    width: 200px;
+    height: 200px;
+
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* 프로필 이미지 */
+#profile-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+/* 프로필 버튼 영역의 모든 자식 요소 */
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+
+    padding: 5px 10px;
+    border: 1px solid #73358C;
+    background-color: white;
+    color: #73358C;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 프로필 버튼 영역 */
+.profile-btn-area{
+    width: 230px;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+
+    padding: 5px 10px;
+    border: 1px solid #73358C;
+    background-color: white;
+    color: #73358C;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+#input-image{
+    display: none;
+}
+
+.profile-btn-area > button{
+    background-color: #73358C;
+    color: white;
+    border: 0;
+}
+
+/* 프로필 이미지 삭제 버튼 */
+#delete-image{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    cursor: pointer;
 }
 
 
