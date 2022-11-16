@@ -16,7 +16,7 @@
 	 <result property="profileImage" column="PROFILE_IMG" />
 	 <result property="enrollDate" column="ENROLL_DATE" />
 	 <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
-	 <result property="authorityNO" column="AUTHORITY_NO" />
+	 <result property="authorityNo" column="AUTHORITY_NO" />
 	 <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
 </resultMap>
  <!--  private int memberNo;
