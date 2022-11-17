@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="myPageMapper">
+
+	<resultMap type="Member" id="member_rm">
+ 
+ 	<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그 -->
+ 	<id property="memberNo" column="MEMBER_NO"/>
+ 	
+ 	 <!--  나머지 일반 컬럼 -->
+	 <result property="memberEmail" column="MEMBER_EMAIL" />
+	 <result property="memberPw" column="MEMBER_PW" />
+	 <result property="memberNickname" column="MEMBER_NICKNAME" />
+	 <result property="memberResidence" column="MEMBER_RESIDENCE" />
+	 <result property="profileImage" column="PROFILE_IMG" />
+	 <result property="enrollDate" column="ENROLL_DATE" />
+	 <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+	 <result property="authorityNo" column="AUTHORITY_NO" />
+	 <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+ </resultMap>
+ 
+ <!-- 암호화된 비밀번호 조회 -->
+ <select id="selectCurrentPw" parameterType="_int" resultType="string">
+ 	SELECT MEMBER_PW
+ 	FROM "MEMBER"
+ 	WHERE MEMBER_NO = #{memberNo}
+ </select>
+
+ <!-- 회원 탈퇴 -->
+ <update id="secession">
+ UPDATE "MEMBER" SET
+ MEMBER_DEL_FL = 'Y'
+ WHERE MEMBER_NO=#{memberNo}
+ </update>
+
+<!-- 프로필 이미지 수정 -->
+<update id="updateProfile">
+UPDATE "MEMBER" SET
+PROFILE_IMG = #{profileImage}
+WHERE MEMBER_NO = #{memberNo}
+
+</update>
+</mapper>
