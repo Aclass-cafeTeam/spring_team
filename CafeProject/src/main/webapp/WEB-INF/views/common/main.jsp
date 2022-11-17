@@ -11,17 +11,7 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>바이트레인</title>
-    <link rel="shortcut icon" href="../resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
-        Flaticon</a>
     <link rel="stylesheet" href="../resources/css/main.css">
-    <style>
-        #free-icon-train {
-            display: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
 
 </head>
 
@@ -217,13 +207,13 @@
                                 <ul>
                                     <li>
                                         <div id="side-profile">
-                                            <a href="#"><img src="../../../resources/images/settings.png"
+                                            <a href="/member/myPage/profile"><img src="../../../resources/images/settings.png"
                                                     id="setting-icon"></a>
                                             <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
                                                     id="profile-img"></div>
                                         </div>
                                         <div id="profile-name">
-                                            이빨다뽑힘
+                                            <a href="/member/myPage/info">이빨다뽑힘</a>
                                         </div>
                                     </li>
                                     <li id="signUp-date">가입 <em>2022.10.17.</em></li>
@@ -593,7 +583,7 @@
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
 
             <section id="delete">
-                <p><a href="#">카페탈퇴하기</a></p>
+                <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
             </section>
 
 
