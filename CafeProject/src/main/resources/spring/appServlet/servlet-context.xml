@@ -32,7 +32,7 @@
 	<resources mapping="/resources/**" location="/resources/" />
 	
 	<!-- favicon 추가 -->
-	<!-- <resources mapping="/favicon.ico" location="/resources/images/favicon.ico" /> -->
+	<resources mapping="/favicon.ico" location="/resources/images/favicon.ico" />
 
 
 

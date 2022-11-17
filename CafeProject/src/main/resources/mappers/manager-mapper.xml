@@ -60,17 +60,13 @@
    "AUTHORITY_NAME"   CHAR(1)   DEFAULT 'G'   NOT NULL,
    "MEMBER_LEVEL_NO"   NUMBER      NULL -->
   
-  
-
-  <!-- 로그인 -->
-  <select id="login" parameterType="string" resultMap="member_rm">
-  	SELECT MEMBER_NO, MEMBER_EMAIL,MEMBER_PW, MEMBER_NICKNAME, MEMBER_RESIDENCE, PROFILE_IMG, AUTHORITY_NO,
-   	TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일" HH24"시" MI"분" SS"초"') AS ENROLL_DATE,MEMBER_LEVEL_NO
-		FROM "MEMBER"
+  <!-- 메인화면에서 멤버 수 불러오기 -->
+  <select id="mainMemberCount" resultType="_int">
+  	SELECT COUNT(*) TOTALMEMBER FROM "MEMBER"
 		WHERE MEMBER_DEL_FL = 'N'
-		AND MEMBER_EMAIL = #{memberEmail}
   </select>
-  
-
-  
+  <select id="mainBoardCount" resultType="_int">
+  	SELECT COUNT(*) FROM "BOARD" 
+  	WHERE BOARD_DEL_FL ='N'
+  </select>
 </mapper>
