@@ -207,13 +207,13 @@
                                 <ul>
                                     <li>
                                         <div id="side-profile">
-                                            <a href="#"><img src="../../../resources/images/settings.png"
+                                            <a href="/member/myPage/profile"><img src="../../../resources/images/settings.png"
                                                     id="setting-icon"></a>
                                             <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
                                                     id="profile-img"></div>
                                         </div>
                                         <div id="profile-name">
-                                            이빨다뽑힘
+                                            <a href="/member/myPage/info">이빨다뽑힘</a>
                                         </div>
                                     </li>
                                     <li id="signUp-date">가입 <em>2022.10.17.</em></li>
@@ -583,7 +583,7 @@
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
 
             <section id="delete">
-                <p><a href="#">카페탈퇴하기</a></p>
+                <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
             </section>
 
 
