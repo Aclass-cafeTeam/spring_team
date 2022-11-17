@@ -3,7 +3,6 @@ package com.railtavelproject.cafe.member.model.service;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +17,7 @@ public class MemberServiceImpl implements MemberService{
 	// MemberDAO bean 의존성 주입(DI)
 	@Autowired
 	private MemberDAO dao;
+	
 	
 	// spring-security.xml에서 등록한 bean을 의존성 주입(DI)
 	@Autowired 
@@ -51,6 +51,19 @@ public class MemberServiceImpl implements MemberService{
 		}
 				
 		return loginMember;
+	}
+
+
+	// 회원가입
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int signUp(Member member) {
+		
+		// 입력받은 비밀번호를 암호화
+		String encPw = bcrypt.encode(member.getMemberPw());
+		member.setMemberPw(encPw);
+		
+		return dao.signUp(member);
 	}
 
 }

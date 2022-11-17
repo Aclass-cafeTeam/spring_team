@@ -120,7 +120,7 @@
                     <label for="residence">지역(선택사항)</label>
                     <div class="inputArea">
                         <div class="select">
-                            <select name="area" id="residence">
+                            <select name="memberResidence" id="residence">
                                 <option selected disabled>시/도 선택</option>
                                 <option value="서울">서울</option>
                                 <option value="경기">경기</option>

@@ -103,4 +103,40 @@ public class MemberController {
 	public String signUp() {
 		return "member/signUp";
 	}
+	
+	
+	// 회원가입
+	@PostMapping("/member/signUp")
+	public String signUp(@ModelAttribute Member member, RedirectAttributes ra, @RequestHeader("referer") String referer) {
+		
+		int result = service.signUp(member);
+		
+		String path = null; // 리다이렉트 경로 지정
+		String message = null;		
+		if (result > 0) {
+			path = "/";
+			message = member.getMemberNickname() + "님, 환영합니다.";
+		} else {
+			path = referer;
+			message = "회원가입을 다시 시도해주세요.";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		return "redirect:" + path;
+	}
+	
+	
+	// MemberController에서 발생하는 모든 예외를 하나의 메서드에 모아서 처리
+	// @ExceptionHandler(Exception.class)
+	public String exceptionHandler(Exception e, Model model) {
+		
+		// Exception e : 발생한 예외를 전달 받는 매개변수
+		e.printStackTrace();
+		
+		model.addAttribute("errorMessage","회원 관련 서비스 이용 중 문제가 발생했습니다.");
+		model.addAttribute("e", e);
+		
+		return "common/error";
+	}
+	
 }

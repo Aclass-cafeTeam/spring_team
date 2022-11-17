@@ -23,15 +23,25 @@
             <!-- 헤더 왼쪽 상단 로고 -->
             <div id="header-top">
                 <div id="never-gnb" class="__web-inspector-hide-shortcut__">
-                    <a href="http://www.naver.com" class="link_never">
+                    <a href="/" class="link_never">
                         <img src="/resources/images/NEVER_logo.png" width="52" height="10"
                             alt="NEVER">
                     </a>
                 </div>
                 <div id="header-top-menu">
+                    
                     <a href="/"> 카페홈 </a>
                     <span>|</span>
-                    <a href="#"> 강민규 </a>
+                    <c:choose>
+                        <c:when test="${empty sessionScope.loginMember}">
+                            <a href="/member/login"> 로그인 </a>
+                        </c:when>
+                        
+                        <c:otherwise>
+                            <a href="/member/myPage/info">${loginMember.memberNickname}</a>
+                        </c:otherwise>
+                    </c:choose>
+                    
                 </div>
             </div>
             <!-- 헤더 오른쪽 상단 메뉴 -->
@@ -140,7 +150,7 @@
                 
 
 
-               
+
                 <c:choose>
                 <c:when test="${!empty sessionScope.loginMember}">
                     
@@ -198,7 +208,7 @@
                         </span>
                     </div>
                     
-                 <!------------------------- 나의활동 ------------------------->
+                <!------------------------- 나의활동 ------------------------->
                 
                 <div class="my-active" id="my-active">
                     <span>
@@ -609,7 +619,15 @@
 
     </footer>
 
-    <!-- **************************************푸터************************************** -->
+    <%-- session scope 내에 message속성이 존재하는 경우
+    alert(JS)기능을 이용해서 내용 출력 --%>
+    <c:if test="${!empty message}">
+        <script> 
+            alert("${message}");
+        </script> 
+        <c:remove var="message" />
+    </c:if>
+     <!-- **************************************푸터************************************** -->
 
     <script src="/resources/js/main/main.js"></script>
 </body>
