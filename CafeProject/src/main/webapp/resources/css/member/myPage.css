@@ -1,0 +1,365 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 전체 틀 */
+#mainArea{
+    width: 860px;
+}
+
+#subProfile{
+    display: flex;
+    align-items: center;
+}
+
+.profileInfo{
+    padding-left: 20px;
+    font-size: 13px;
+}
+
+/* 마이페이지 상단 프로필이미지 */
+#profileImgBox{
+    height: 80px;
+    width: 80px;
+    border: 1px solid #ccc;
+    border-radius: 50%;
+    position: relative;
+}
+#profileImg{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+#setting-icon {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    display: inline-block;
+    /* align-items: center; */
+}
+
+/* 마이페이지 상단 닉네임 */
+.nickArea{
+    font-weight: bolder;
+    font-size: 15px;
+}
+
+.count{
+    color: gray;
+    margin-right: 15px;
+}
+.num{
+    color: black;
+    font-weight: bold;
+}
+
+/* 마이페이지 네비 메뉴 */
+#navArea{
+    margin: 5px 5px 5px;
+    padding: 20px 0px;
+    font-size: 13px;
+    border-bottom: 2px solid #666;
+}
+
+.navMenu >a{
+    margin-right: 10px;
+}
+
+.navMenu{
+    display: flex;
+}
+
+
+.secessionMenu{
+    margin-left: auto;
+    color: #666;
+}
+
+.navMenu > a{
+    color: black;
+    text-decoration: none;
+}
+.navMenu>a:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.navMenu>a:focus{
+    color: #73358C;
+    cursor: text;
+    text-decoration: underline #73358C;
+}
+
+/* 마이페이지 공통 태그 */
+ul{
+    list-style:none;
+}
+
+/* 마이페이지 메인 섹션 */
+.myPage-main{
+    width: 860px;
+    padding: 0 30px;
+
+}
+
+.myPage-script{
+    display: inline-block;
+    width:100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    letter-spacing: -1px;
+
+}
+
+.myPage-subTitle{
+    width: 600px;
+    height: 50px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid #ddd ;
+
+}
+.myPage-subTitle>*{
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.myPage-subTitle>label{
+    width: 30%;
+    color:black;
+}
+
+.myPage-subTitle>span{
+    width: 70%;
+}
+
+.myPage-subTitle>input{
+    width: 100%;
+    height: 100%;
+    border:0;
+    outline: 0;
+    font-weight: normal;
+}
+
+.myPage-subTitle:focus-within{
+    border-bottom: 2px solid gray;
+
+}
+
+form[name="myPage-form"]{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 마이페이지 공통 버튼 태그 */
+.myPage-btn-area{
+    width: 100%;
+    /* margin: 50px 0; */
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.myPage-update-btn{
+    width: 110px;
+    height: 33px;
+    margin: 50px 0;
+    padding: 5px 10px;
+    border: 1px solid #73358C;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #73358C;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    display: inline-block;
+}
+.myPage-update-btn:hover{
+    background-color: white;
+    color:#73358C;
+    background: #fff;
+    transition: color 0.5s ease-in-out;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 5px;
+}
+.myPage-check-btn{
+    height: 50px;
+    width: 70px;
+    border: 1px solid #73358C;
+    font-size: 11px;
+    background-color: #73358C;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.myPage-check-btn:hover{
+    background-color: white;
+    color:#73358C;
+    background: #fff;
+    overflow: hidden;
+    z-index: 1;
+    border-radius: 5px;
+}
+
+/* 게시글관련 메뉴 */
+.myBoardTb{
+    width: 100%;
+    font-size: 13px;
+}
+
+.boardNo, .reporting-date, .hits, .delete-date{
+    text-align: center;
+}
+
+.title{
+    text-align: left;
+    color: black;
+    text-decoration: none;
+}
+
+.title:hover{
+    text-decoration: underline;
+    cursor: pointer;
+}
+.writer{
+    text-align: left;
+}
+
+.comment{
+    color: red;
+    text-decoration: none;
+}
+
+.comment:hover{
+    text-decoration: underline red;
+    cursor: pointer;
+}
+tbody td{
+    border-bottom: 1px solid #f2f2f2;
+}
+tr{
+    height: 30px;
+}
+.myBoard-th{
+    font-size: 13px;
+    height: 40px;
+    padding: 2px;
+    border-bottom: 1px solid #f2f2f2;
+    text-align: center;
+}
+.boardNo{
+    font-size: 10px;
+    color: #4e4e4e;
+}
+
+/* 회원 탈퇴 */
+#secessionArea{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* 회원 탈퇴 약관 */
+#secession-terms{
+    
+    width : 650px;
+    height: 200px;
+    margin: 30px;
+    font-size : 14px;
+    border: 1px solid #ddd;
+
+}
+
+/* 프로필 이미지 변경 */
+
+/* 프로필 이미지 영역 */
+.profile-image-area{
+    width: 200px;
+    height: 200px;
+
+    border: 3px solid #ddd;
+    border-radius: 50%;
+    margin-top: 20px;
+    position: relative;
+}
+
+/* 프로필 이미지 */
+#profile-image{
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+/* 프로필 버튼 영역의 모든 자식 요소 */
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+
+    padding: 5px 10px;
+    border: 1px solid #73358C;
+    background-color: white;
+    color: #73358C;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+/* 프로필 버튼 영역 */
+.profile-btn-area{
+    width: 230px;
+    margin: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.profile-btn-area > *{
+    width: 110px;
+    height: 33px;
+
+    padding: 5px 10px;
+    border: 1px solid #73358C;
+    background-color: white;
+    color: #73358C;
+
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+
+    cursor: pointer;
+}
+
+#input-image{
+    display: none;
+}
+
+.profile-btn-area > button{
+    background-color: #73358C;
+    color: white;
+    border: 0;
+}
+
+/* 프로필 이미지 삭제 버튼 */
+#delete-image{
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: inline-block;
+    cursor: pointer;
+}
+
+
+
