@@ -1,0 +1,174 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+
+/* 카페 가입하기 화면 전체 너비와 높이 */
+.joinCafeSection{
+    width: 860px;
+    /* height: 100vh; */
+}
+
+/* 가입하기 화면 제목과 부제목 */
+.signUpTitle {
+    font-size: 32px;    
+}
+
+.signUpSubject {
+    font-size: 12px;
+    color: #676767;
+}
+
+
+/* 가입하기 양식 내부 */
+.signUpArea {
+    margin-top: 28px;
+    padding: 8px 32px 32px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    font-size: 13px;
+}
+
+.signUpRow{
+    padding:20px 0px;
+    display: flex;
+    border-bottom: 1px solid #ddd;
+}
+
+
+.info-head, label{
+    width: 108px;
+    font-weight: bold;
+}
+
+.signUpRow > div {
+    width:686px;
+}
+
+
+/* 인풋박스 */
+input {
+    width: 250px;
+    height: 40px;
+    border: none;
+    background-color: #f5f6f8;
+    border-radius: 5px;
+    padding: 0 38px 0px 12px;
+    cursor: pointer;
+}
+
+
+/* 인증번호 확인 */
+/* .verify-frm {
+    display: none;
+} */
+
+
+/* 인증번호 버튼 */
+.verify-btn {
+    width: 150px;
+    letter-spacing: -1px;
+    padding: 8px 20px;
+    background-color: white;
+    border:1px solid #ddd;
+    cursor: pointer;
+    
+}
+
+.signUp-message{
+    margin-top: 10px;
+    font-size: 14px;
+    letter-spacing: -1px;
+}
+
+
+
+
+/* ////////////////////////////////////////////////////////////////// */
+/* 지역(선택사항) */
+
+/* select박스 */
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    outline: 0;
+    box-shadow: none;
+    border: 0!important;
+    background-color: #f5f6f8;
+    /* background-image: none; */
+
+    flex:1;
+    padding: 0 1em;
+    color :  #676767;
+    cursor: pointer;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+/* select박스를 감싸는 div */
+.select{
+    position: relative;
+    display: flex;
+    width: 19.5em;
+    height: 3em;
+    line-height: 3;
+    background-color: #f5f6f8;
+    border-radius: .25em;
+}
+
+.select::after{
+    content: '\25BC';
+    position: absolute;
+    top:0;
+    right:0;
+    padding:0 1em;
+    /* background-color: #676767; */
+    cursor: pointer;
+    pointer-events: none;
+    
+}
+
+/* ////////////////////////////////////////////////////////////////// */
+
+
+
+/* 카페 가입과 관련된 안내 */
+.joinInfo {
+    font-size: 12px;
+    color: #676767;
+    padding-top: 20px;
+}
+
+
+/* 가입하기 버튼 */
+.btn {
+    text-align: center;
+    margin-top: 16px;
+}
+
+#signUp-btn{
+    padding : 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #73358C;
+    color: white;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* 메세지 색상 지정 */
+.confirm{ color : green; }
+.error{ color : red; }
+
+
+label{
+    cursor: default;
+}

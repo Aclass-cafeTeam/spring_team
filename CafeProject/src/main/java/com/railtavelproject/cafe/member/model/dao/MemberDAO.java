@@ -10,17 +10,25 @@ import com.railtavelproject.cafe.member.model.vo.Member;
 public class MemberDAO {
 
    //DBCP + 마이바티스 이용 객체 DI(의존성 주입)
-      @Autowired
-      private SqlSessionTemplate sqlSession;
-      
-      /** 로그인 DAO
-       * @param memberEmail
-       * @return loginMember
-       */
-      public Member login(String memberEmail) {
-         //  sqlSession.selectOne("매퍼이름.태그id",SQL 작성 시 필요한 값)
-         
-         return sqlSession.selectOne("memberMapper.login",memberEmail);
-      }
+  @Autowired
+  private SqlSessionTemplate sqlSession;
+  
+	/** 로그인 DAO
+	* @param memberEmail
+	* @return loginMember
+	*/
+	public Member login(String memberEmail) {
+		//  sqlSession.selectOne("매퍼이름.태그id",SQL 작성 시 필요한 값)
+	 	return sqlSession.selectOne("memberMapper.login",memberEmail);
+	}
+
+  
+	/** 회원가입 DAO
+		 * @param member
+		 * @return result
+		 */
+	public int signUp(Member member) {
+		return sqlSession.insert("memberMapper.signUp", member);
+	}
 
 }
