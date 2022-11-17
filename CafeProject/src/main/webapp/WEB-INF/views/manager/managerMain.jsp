@@ -10,16 +10,8 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>내일로, 기차로! 카페 관리자 메인화면</title>
-    <link rel="shortcut icon" href="/team_project/src/main/webapp/resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘  제작자: Shahid-Mehmood - Flaticon</a>
     <link rel="stylesheet" href="../../resources/css/managerMain/managerMain.css">
-    <style>
-        #free-icon-train{
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-        }
-    </style>
+    
 
 </head>
 
@@ -33,9 +25,9 @@
                 <div class="managerHeader-gnb">
 
                     <div class="tit_area">
-                        <h1><a href="#" class="go_nvr">NEVER</a>
-                            <a href="#" class="go_adm">카페관리</a></h1>
-                        <p><a href="../main.html" class="title">내일로, 기차로! 카페</a></p>
+                        <h1><a href="/" class="go_nvr">NEVER</a>
+                            <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
+                        <p><a href="/" class="title">내일로, 기차로! 카페</a></p>
                     </div>
 
                     <div class="tit_menu">
@@ -59,7 +51,7 @@
                     <div class="nav_menu">
                         <ul>
                             <li clss="managerHome">
-                                <a href="../managerMain/managerMain.html"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                                <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
                             </li>
                             <li>
                                 <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
@@ -100,7 +92,7 @@
 
                     <div class="cafe_info_cont">
 						<h3>
-                            <a href="../managerMain/managerMain.html">내일로, 기차로! 카페</a>
+                            <a href="/manager/managerMain">내일로, 기차로! 카페</a>
                         </h3>
 						
 						<ul class="info_lst">
@@ -108,13 +100,13 @@
                                 <span class="ico_mem">
                                     <img src="../../resources/images/free-icon-multiple-users-silhouette-33308.png" alt="멤버수" class="blind">
                                 </span>
-                                <em class="thm">100</em>
+                                <em class="thm">${memberCount}</em>
                             </li>
                             <li>
                                 <span class="ico_cnt">
                                     <img src="../../resources/images/free-icon-chat-5465360.png" alt="게시글수" class="blind">
                                 </span>
-                                <em class="thm">21</em>
+                                <em class="thm">${boardCount}</em>
                             </li>
 						</ul>
 

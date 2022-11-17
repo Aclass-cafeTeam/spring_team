@@ -401,4 +401,14 @@ table {
   text-indent: initial;
   border-spacing: 2px;
 }
+
+.img > img{
+  width:20px;
+  height:20px;
+}
+
+.c_gy2 > img{
+  width:11px;
+  height:11px; 
+} 
 /* 데이터 출력 테이블 */

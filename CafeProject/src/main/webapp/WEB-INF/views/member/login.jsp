@@ -10,21 +10,7 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/resources/css/member/login.css">
     
-    <link rel="shortcut icon" href="../resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
-     Flaticon</a>
-
-    <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
-    
-    <style>
-        #free-icon-train {
-            display: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
-
 </head>
 <body>
     <main>
