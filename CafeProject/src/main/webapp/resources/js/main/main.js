@@ -2,7 +2,7 @@
 const signOut= document.getElementById("signOut");
 
 if(signOut != null){
-	signOut.addEventListener("click", function(event){
+    signOut.addEventListener("click", function(event){
     
         if (!confirm("로그아웃하시겠습니까?")) {
             // 취소(아니오) 버튼 클릭 시 이벤트
