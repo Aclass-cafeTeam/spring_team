@@ -30,14 +30,16 @@
                 </div>
                 <div id="header-top-menu">
                     
-                    <a href="/"> 카페홈 </a>
-                    <span>|</span>
                     <c:choose>
                         <c:when test="${empty sessionScope.loginMember}">
+                            <a href="/member/signUp"> 회원가입 </a>
+                            <span>|</span>
                             <a href="/member/login"> 로그인 </a>
                         </c:when>
                         
                         <c:otherwise>
+                            <a href="/"> 카페홈 </a>
+                            <span>|</span>
                             <a href="/member/myPage/info">${loginMember.memberNickname}</a>
                         </c:otherwise>
                     </c:choose>
