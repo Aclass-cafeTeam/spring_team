@@ -10,37 +10,17 @@
     <title>로그인</title>
     <link rel="stylesheet" href="/resources/css/member/login.css">
     
-    <link rel="shortcut icon" href="../resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘 제작자: Shahid-Mehmood -
-     Flaticon</a>
-
-    <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
-    
-    <style>
-        #free-icon-train {
-            display: none;
-            opacity: 0;
-            visibility: hidden;
-        }
-    </style>
-
 </head>
 <body>
     <main>
         <header class="header">
             <div class="header-inner">
                 
-                <a href="#" target="_blank">
-                    <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
+                <a href="/">
+                     <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
                 </a>
                 
-                <!-- <select class="lang-switch">
-                    <option value="KR">한국어</option>
-                    <option value="US">English</option>
-                    <option value="CN">中文(简体)</option>
-                    <option value="TW">中文(台灣)</option>
-                </select> -->
             </div>
         </header>
         
@@ -88,7 +68,7 @@
             <p class="find-area">
                 <a href="#">ID/PW찾기</a>
                 <span> | </span>
-                <a href="/signUp.html">회원가입</a>
+                <a href="/member/signUp">회원가입</a>
             </p>
         </section>
     </main>
@@ -96,7 +76,7 @@
 
     <footer class="login-footer">
         <p> 
-            <a href="/main.html" target="_blank"><img src="/resources/images/NEVER_logo.png" width="70px" height="15px" alt="logo"></a> Copyright<strong> &copy;NEVER Corp.</strong> All Rights Reserved.
+            <a href="/"><img src="/resources/images/NEVER_logo.png" width="70px" height="15px" alt="logo"></a> Copyright<strong> &copy;NEVER Corp.</strong> All Rights Reserved.
             <!-- &copy;  저작권 마크 -->
         </p>
     </footer>

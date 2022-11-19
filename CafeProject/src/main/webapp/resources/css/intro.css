@@ -10,6 +10,8 @@ a{
 #intro1{
     width: 860px;
     border: 4px solid #eee;
+    display: flex;
+    justify-content: center;
 }
 
 #gate-box{

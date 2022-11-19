@@ -5,9 +5,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.7.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!-- 빈들이 모여있는 태그 
-spring이 만들어주는 객체 bean -->
-<!-- XML 방식으로 bcrypt 암호화 bean 생성 -->
+
+	<!-- XML 방식으로 bcrypt 암호화 bean 생성
+	하단 Namespaces에서 security 체크 -->	
 	<bean id="bcryptPasswordEncoder"
 				class ="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 </beans>

@@ -8,16 +8,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>내일로, 기차로! 카페 전체 멤버 관리</title>
-  <link rel="shortcut icon" href="/team_project/src/main/webapp/resources/images/free-icon-train.png" type="image/x-icon">
-    <a href="https://www.flaticon.com/kr/free-icons/" title="기차 아이콘" id="free-icon-train">기차 아이콘  제작자: Shahid-Mehmood - Flaticon</a>
     <link rel="stylesheet" href="../../resources/css/managerMain/totalMemberManager.css">
-    <style>
-        #free-icon-train{
-        display: none;
-        opacity: 0;
-        visibility: hidden;
-        }
-    </style>
+  
 </head>
 <body>
   <main>    
@@ -29,7 +21,7 @@
 
                   <div class="tit_area">
                       <h1><a href="#" class="go_nvr">NEVER</a>
-                          <a href="#" class="go_adm">카페관리</a></h1>
+                          <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
                       <p><a href="../main.html" class="title">내일로, 기차로! 카페</a></p>
                   </div>
 
@@ -54,13 +46,13 @@
                   <div class="nav_menu">
                       <ul>
                           <li clss="managerHome">
-                              <a href="../managerMain/managerMain.html"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                              <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
                           </li>
                           <li>
                               <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
                           </li>
                           <li>
-                              <a href="../managerMain/totalMemberManager.html"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                              <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                           </li>
                           <li>
                               <a href="../managerMain/joinMemberManager.html"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>

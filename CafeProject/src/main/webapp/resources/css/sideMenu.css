@@ -649,6 +649,21 @@ section #border-img {
 
 
 /* ********************************************사이드메뉴 프로필 */
+#content > .my-active{
+    display: none;
+}
+#content > .my-active2{
+    display: block;
+}
+
+#content > .cafe-info{
+    display: block;
+}
+
+#content > .cafe-info2{
+    display: none;
+}
+
 
 #side-profile-main {
     width: 200px;
