@@ -18,7 +18,7 @@
             <div class="header-inner">
                 
                 <a href="/">
-                     <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
+                    <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
                 </a>
                 
             </div>
@@ -43,7 +43,7 @@
                         
                     </div>
                     
-                    <%-- 쿠키에 saveId가 있는 경우 변수 생성--%>
+                    <!-- 쿠키에 saveId가 있는 경우 변수 생성-->
                     <c:if test="${!empty cookie.saveId.value}">
                         <c:set var="temp" value="checked"/>
                     </c:if>
@@ -87,7 +87,7 @@
             alert("${message}")
         </script>
 
-        <%-- message 1회 출력 후 session scope에서 삭제 --%>
+        <!-- message 1회 출력 후 session scope에서 삭제 -->
         <c:remove var="message" ></c:remove>
     </c:if>
     

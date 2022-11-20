@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카페 가입하기</title>
     <link rel="stylesheet" href="/resources/css/member/signUp.css">
+    <link rel="stylesheet" href="/resources/css/main.css">
 
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
@@ -17,9 +18,13 @@
 
 <body>
 
-    <%-- 인클루드 헤더 네브 푸터!!!!!--%>
+    <!-- header -->
+    <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-    <%-- 카페 가입하기 --%>
+    <!-- sideMenu -->
+
+
+    <!-- 카페 가입하기 -->
     <section class="joinCafeSection">
         <div class="boardMenuInfo">
             <h1 class="signUpTitle">카페 가입하기</h1>
@@ -53,7 +58,7 @@
                     <label for="memberEmail">아이디</label>
                     <div class="inputArea">
                         <input type="text" name="memberEmail" id="memberEmail" placeholder="아이디(이메일)"
-                        maxlength="20" autocomplete="off" >
+                        maxlength="30" autocomplete="off" required >
                         <button type="button" class="verify-btn">인증번호 받기</button> 
                         <div class="signUp-message">
                             <span id="emailMessage"></span>
@@ -108,8 +113,8 @@
                         <input type="text" name="memberNickname" id="memberNickname" maxlength="20" 
                             placeholder="닉네임" autocomplete="off" >
                         <div  class="signUp-message">
-                            <span id="nickMessage">닉네임을 입력해주세요.</span> 0/20byte
-                            <!-- signUp-message confirm  사용할 수 있는 닉네임입니다. -->
+                            <span id="nickMessage"></span><span id="bite"></span>
+                            
                         </div>
                     </div>
                 </div>
@@ -145,14 +150,6 @@
                 </div>
             
 
-                <!-- 보안절차 -->
-                <div class="signUpRow">
-                    <label>보안절차</label>
-                    <div class="inputArea">
-                        <!-- <div class="reCaptcha2" data-stiekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz"></div> -->
-                        <div class="g-recaptcha" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz" data-callback="onSubmit"></button>
-                    </div>
-                </div>
             
                 <!-- 가입 관련 안내 문구 -->
                 <div class="signUpRow">
@@ -174,13 +171,18 @@
 
     </section>
 
-    <!-- jQueryCDN -->
-    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <!-- footer -->
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <!-- 보안절차 reCaptcha -->
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- site key : 6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz -->
     <!-- secret key : 6LcVIgIjAAAAAByntQQHon2PJS2e0cYnBzm6rc7F -->
-    <script src="/resources/js/signUp.js"></script>
+    
+    <!-- jQueryCDN -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="/resources/js/member/signUp.js"></script> 
+
 </body>
 </html>

@@ -9,9 +9,10 @@ const message = document.getElementById("loginMessage");
 function loginValidate() {
     
     if(email.value.trim().length == 0) {
-        message.innerText = "아이디를 입력하세요.";
+        message.innerText = "아이디(이메일)를 입력하세요.";
         message.classList.add("error");
         email.focus();
+        email.value="";
         return false;
     } 
 
@@ -19,6 +20,7 @@ function loginValidate() {
         message.innerText = "비밀번호를 입력하세요.";
         message.classList.add("error");
         pw.focus();
+        pw.value="";
         return false;
     } 
     return true;

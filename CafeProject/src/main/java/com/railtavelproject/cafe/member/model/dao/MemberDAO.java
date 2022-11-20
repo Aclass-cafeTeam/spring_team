@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.member.model.vo.Member;
 
+/**
+ * @author shuxi
+ *
+ */
 @Repository
 public class MemberDAO {
 
@@ -29,6 +33,26 @@ public class MemberDAO {
 		 */
 	public int signUp(Member member) {
 		return sqlSession.insert("memberMapper.signUp", member);
+	}
+
+
+	
+	/** 이메일 중복 검사
+	 * @param memberEmail
+	 * @return result
+	 */
+	public int emailDupCheck(String memberEmail) {
+		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
+	}
+
+
+	
+	/** 닉네임 중복 검사
+	 * @param memberNickname
+	 * @return result
+	 */
+	public int nickDupCheck(String memberNickname) {
+		return sqlSession.selectOne("memberMapper.nickDupCheck", memberNickname);
 	}
 
 }

@@ -38,9 +38,11 @@
 }
 
 
-.info-head, label{
+label{
     width: 108px;
     font-weight: bold;
+    margin: auto;
+    cursor: default;
 }
 
 .signUpRow > div {
@@ -169,6 +171,3 @@ select::-ms-expand {
 .error{ color : red; }
 
 
-label{
-    cursor: default;
-}
