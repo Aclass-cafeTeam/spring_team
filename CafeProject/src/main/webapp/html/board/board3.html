@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>앨범형</title>
+
+    <link rel="stylesheet" href="../../resources/css/board/board3.css">
+
+</head>
+<body>
+
+    <article class="article">
+        <div class="board-name">게시판명(메뉴명)</div>
+        <p class="board-start">게시판 설명(메뉴 설명)</p>
+
+            <div class="hidden">
+                <input type="checkbox" name="hidden" id="#">
+                <label for="hidden" id="#">
+                    <!-- announcement-dissimulate -->
+                    공지 숨기기
+                </label>
+            </div>
+    
+    <!-- 7행 14열 -->
+<div>
+    <table board="1" class="table">
+
+        <thead>
+            <tr>
+                <td></td>
+                <th class="empty"></th>
+                <th colspan="2" class="title">제목</th>
+                <th class="th-writer">작성자</th>
+                <th class="th-date">작성일</th>
+                <th class="th-hits">조회</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <td>&nbsp</td>
+                <td class="strong">공지</td>
+                <td><a href="#" class="strong-title">	
+                    팀프로젝트 테스트 카페 카페를 시작합니다.
+                </a></td>
+                <td><a href="#" class="comment">[1]</a></td>
+                <td><a href="#" class="writer">JH</a></td>
+                <td class="reporting-date">2022.10.14.</td>
+                <td class="hits">2</td>
+            </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<ul class="ul">
+    <li>
+        <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+        <div class="flex">
+            <div class="img-title"><a href="#" class="img-title">글 + 사진 입니당</a></div>
+            <div class="img-comment"><a href="#" class="img-comment">[2]</a></div>
+        </div>
+        <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+        <div class="flex">
+            <div class="img-date">2022.10.26.</div>
+            <span class="img-span">•</span>
+            <div class="img-hits">조회 4</div>
+        </div>
+    </li>
+    
+    <li>
+        <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+        <div class="flex">
+            <div class="img-title"><a href="#" class="img-title">사진 입니당</a></div>
+            <div class="img-comment"><a href="#" class="img-comment"></a></div>
+        </div>
+        <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+        <div class="flex">
+            <div class="img-date">2022.10.26.</div>
+            <span class="img-span">•</span>
+            <div class="img-hits">조회 0</div>
+        </div>
+    </li>
+
+    <li>
+        <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+        <div class="flex">
+            <div class="img-title"><a href="#" class="img-title">사진2</a></div>
+            <div class="img-comment"><a href="#" class="img-comment"></a></div>
+        </div>
+        <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+        <div class="flex">
+            <div class="img-date">2022.10.25.</div>
+            <span class="img-span">•</span>
+            <div class="img-hits">조회 1</div>
+        </div>
+    </li>
+
+    <li>
+        <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+        <div class="flex">
+            <div class="img-title"><a href="#" class="img-title">사진1</a></div>
+            <div class="img-comment"><a href="#" class="img-comment"></a></div>
+        </div>
+        <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+        <div class="flex">
+            <div class="img-date">2022.10.25.</div>
+            <span class="img-span">•</span>
+            <div class="img-hits">조회 0</div>
+        </div>
+    </li>
+
+</ul>
+
+
+<div>
+    <div class="writing">
+    <button type="submit" class="writing-btn">글쓰기</button>
+    </div>
+</div>
+<div>&nbsp</div>
+
+<div class="page">
+    <a href="#">1</a>
+    <a href="#">2</a>
+    <a href="#">3</a>
+    <a href="#">4</a>
+    <a href="#">5</a>
+    <a href="#">6</a>
+    <a href="#">7</a>
+    <a href="#">8</a>
+    <a href="#">9</a>
+    <a href="#">10</a>
+    <span>|</span>
+    <span><a href="#" class="daum">다음</a></span>
+
+</div>
+
+<div class="last">
+    <div class="time-">
+        <form action="#">
+            <select name="time" class="time">
+                <option value="aa">전체기간</option>
+                <option value="bb">1일</option>
+                <option value="cc">1주</option>
+                <option value="dd">1개월</option>
+                <option value="ee">6개월</option>
+                <option value="cc">1년</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="choice-">
+        <form action="#">
+            <select name="choice" class="choice">
+                <option value="aa">제목만</option>
+                <option value="bb">글작성자</option>
+                <option value="cc">댓글내용</option>
+                <option value="dd">댓글작성자</option>
+            </select>
+        </form>
+    </div>
+
+    <article class="search-area">
+
+        <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
+        <form action="#">
+
+                <input type="text" class="query" name="query"
+                placeholder="검색어를 입력해주세요">
+                <button type="submit" id="search-btn" class="search">검색</button>
+                
+        </form>
+    </article>
+
+</div>
+
+</body>
+</html>
