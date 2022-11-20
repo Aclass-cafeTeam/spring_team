@@ -177,20 +177,22 @@
                     </div>
                     <!-- 댓글 수 -->
                     <div class="srch_info">
-                      <input type="hidden" name="countBy" class="_countBy" value="1">
-                      <select class="_period">
-                      <option value="0">전체기간</option>
-                      <option value="1">최근1개월</option>
-                      </select>
-                      <span class="txt txt2 _txtPeriod">동안</span>
-                      <label for="_commentCountInput">댓글수</label>
-                      <input type="text" class="text _commentCount _count" id="_commentCountInput" maxlength="5" value="0"> <span class="txt">개</span>
-                      <select class="_above">
-                      <option value="1">이상</option>
-                      <option value="0">이하</option>
-                      </select>
-                      <span class="txt">인 멤버</span>
-                      <a href="#" class="btn_type2_gn _submitComment _submitDetail" searchtype="commentspace"><span class="_submitComment _submitDetail" searchtype="commentspace">검색</span></a>
+                      <form action ="/manager/selectDetailComment" class="CommentfrmSearch" method="get" name="CommentrmSearch" id="CommentfrmSearch">
+                        <input type="hidden" name="countBy" class="_countBy" value="1">
+                        <select class="${periodOption} _period" name="periodOption" id="periodOption">
+                        <option value="0" selected="">전체기간</option>
+                        <option value="1">최근1개월</option>
+                        </select>
+                        <span class="txt txt2 _txtPeriod">동안</span>
+                        <label for="_commentCountInput">댓글수</label>
+                        <input type="text" name="commentCountInput" class="text _commentCount _count" id="_commentCountInput" maxlength="5" value="0"> <span class="txt">개</span>
+                        <select class="${aboveOption} _above" name="aboveOption" id="aboveOption">
+                        <option value="1" selected="">이상</option>
+                        <option value="0">이하</option>
+                        </select>
+                        <span class="txt">인 멤버</span>
+                        <button type="submit" class="btn_type2_gn _submitComment _submitDetail" searchtype="commentspace">검색</button>
+                      </form>
                     </div>
                     <!-- 방문수 검색  -->
                     <div class="srch_info">
