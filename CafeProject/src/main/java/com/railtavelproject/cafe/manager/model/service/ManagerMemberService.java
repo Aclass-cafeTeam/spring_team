@@ -13,4 +13,9 @@ public interface ManagerMemberService {
 
 	Map<String, Object> selectSortLevelMemberList(int memberLevelNoResult,int limit, int cp);
 
+	Map<String, Object> selectInputMember(int srchOption, String inputMember, int limit, int cp);
+
+	Map<String, Object> selectDetailBoard(int periodOption, int articleCountInput, int aboveOption,
+			int memberLevelNoResult, int limit, int cp);
+
 }

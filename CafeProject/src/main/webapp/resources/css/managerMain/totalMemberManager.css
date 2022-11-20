@@ -130,7 +130,7 @@ body{
   font-size: 12px;
 }
 
-.srch_in .text2{
+.srch_in .inputMember{
   width:248px;
   padding-left:7px;
 }
@@ -145,14 +145,17 @@ body{
   padding: 17px 19px 15px;
   
 }
+.totalfrmSearch{
+  display: inline-block;
+}
 
 .btn_type2_gn strong, .btn_type2_gn span {
   font-size: 12px;
   display: inline-block;
-  height: 23px;
+  height: 6px;
   padding: 0 8px;
   background-color: #73358C;
-  line-height: 25px;
+  line-height: 23px;
   border-radius: 10%;
 }
 
@@ -167,6 +170,27 @@ body{
   cursor: pointer;
   border-radius: 10%;
   vertical-align: middle;
+  padding: 0 9px;
+  font-size: 12px;
+  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid #B7B7B8;
+}
+
+._submitDetail {
+  display: inline-block;
+  height: 23px;
+  padding-left: 1px;
+
+  background-color: #73358C;
+  color: #fff;
+  text-decoration: none !important;
+  cursor: pointer;
+  border-radius: 10%;
+  vertical-align: middle;
+  padding: 0 17px;
+  font-size: 12px;
+  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid #B7B7B8;
 }
 
 .btn_type2 > span {
@@ -176,7 +200,6 @@ body{
   align-content: center;
   text-align: center;
   padding: 0 7px;
-  font-size: 12px;
   font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
   
 }

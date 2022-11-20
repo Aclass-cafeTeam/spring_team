@@ -53,13 +53,13 @@
                               <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
                           </li>
                           <li>
-                              <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
+                              <a href="/manager/basicInfoManager"><img src="../../resources/images/settings.png">카페운영</a>
                           </li>
                           <li>
                               <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                           </li>
                           <li>
-                              <a href="../managerMain/joinMemberManager.html"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                              <a href="/manager/joinMemberManager"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                           </li>
                           <li>
                               <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
@@ -109,30 +109,33 @@
         <div class="totalMemFromtitle">
             <P>전체 멤버 관리</P>
         </div>
-        <form class="_submit()" method="get" name="totalfrmSearch" id="totalfrmSearch">
-            <fieldset class="totalSearchfieldset">
+            <div class="totalSearchfieldset">
               <div class="bx_srch">
                 <div class="bx_srch_inner">
-                  <div class="srch_in">
-                    <label for="mem_srch" class="lb_srch">
-                      멤버 검색
-                    </label> 
-                    <select class="srchOption">
-                      <option value="0">아이디</option>
-                      <option value="1">별명</option>
-                    </select>
-                    <input type="text" id="mem_srch" class="text2"  autocomplete="off">
-                    <input type="hidden" name="where">
-                    <a class="btn_type2_gn" href="#">
-                      <span>검색</span>
-                    </a>
-                    <a class="btn_type2 _showDetailSearch" href="#">
-                      <span>
-                        상세 검색
-                        <span class="bu">▼</span>
-                      </span>
-                    </a>
-                  </div>
+                  
+                    <div class="srch_in">
+                      <form action ="/manager/selectInputMember" class="totalfrmSearch" method="get" name="totalfrmSearch" id="totalfrmSearch">
+                        <label for="mem_srch" class="lb_srch">
+                          멤버 검색
+                        </label> 
+                        <select  id = "srchOption" class="${srchOption}" name="srchOption" >
+                          <option value="0" selected="">아이디</option>
+                          <option value="1">별명</option>
+                        </select>
+                        <input type="text" name="inputMember" id="inputMember" class="inputMember">
+                        <!-- <input type="hidden" name="where"> -->
+                        <button type="submit" id="selectInputMember1" class="btn_type2_gn" >
+                          검색
+                        </button>
+                      </form> 
+                      <a class="btn_type2 _showDetailSearch" href="#">
+                        <span>
+                          상세 검색
+                          <span class="bu">▼</span>
+                        </span>
+                      </a>
+                    </div>
+                  
                   <!-- 멤버상세검색 -->
 						      <div class="srch_detail">
                     <ul>
@@ -155,20 +158,22 @@
                     </ul>
                     <!-- 게시글 수 체크 하면 나오는 화면 -->
                     <div class="srch_info">
+                      <form action ="/manager/selectDetailBoard" class="BoardfrmSearch" method="get" name="BoardrmSearch" id="BoardfrmSearch">
                       <input type="hidden" name="countBy" class="_countBy" value="0">
-                      <select class="_period">
-                      <option value="0">전체기간</option>
+                      <select class="${periodOption} _period" name="periodOption" id="periodOption">
+                      <option value="0" selected="">전체기간</option>
                       <option value="1">최근1개월</option>
                       </select>
                       <span class="txt txt2 _txtPeriod"> 동안</span>
                       <label for="_articleCountInput">게시글수</label>
-                      <input type="text"class="text _articleCount _count" id="_articleCountInput" maxlength="4" value="0"> <span class="txt">개</span>
-                      <select class="_above">
-                      <option value="1">이상</option>
+                      <input type="number"class="text _articleCount _count" id="_articleCountInput" name="articleCountInput" maxlength="4" value="0"> <span class="txt">개</span>
+                      <select class="${aboveOption} _above" name="aboveOption" id="aboveOption">
+                      <option value="1" selected="">이상</option>
                       <option value="0">이하</option>
                       </select>
                       <span class="txt">인 멤버</span>
-                      <a href="#" class="btn_type2_gn _submitPost _submitDetail" searchtype="postspace"><span class="_submitPost _submitDetail" searchtype="postspace">검색</span></a>
+                      <button type="submit" class="btn_type2_gn _submitPost _submitDetail" searchtype="postspace">검색</button>
+                    </form>
                     </div>
                     <!-- 댓글 수 -->
                     <div class="srch_info">
@@ -225,13 +230,12 @@
                   <!-- 멤버 상세 검색 -->
                 </div>
               </div>
-            </fieldset>
-        </form>
+            </div>
         <div>
           <div>
             <p class="board_tit">
               <strong>카페 멤버 수</strong>
-              <em class="_memberCount">5</em>
+              <em class="_memberCount">${memberCount}</em>
             </p>
           </div>
           <!----------------------- 데이터 출력 -------------------------------------------------------------->
@@ -253,8 +257,8 @@
                   <select  id="_sortMemberLevel" class="${memberLevelNoResult}" name="memberLevelNo">
                   <option value="0" selected="">전체 멤버</option>
                   <option value="2">새내기</option><option value="3">일반여행자</option><option value="4">성실여행자</option><option value="5">우수여행자</option><option value="6">감사멤버</option></select>
-                </form>
-                <form name = "limitFrm" action="/manager/totalMemberManager" method="get">
+                <!-- </form>
+                <form name = "limitFrm" action="/manager/totalMemberManager" method="get"> -->
                   <select id="limit" name="limit" class="${pagination.limit}" value="${pagination.limit}">
                   <option id="limit15" value="15" selected="">15명 정렬</option>
                   <option id="limit30" value="30">30명 정렬</option>

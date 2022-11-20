@@ -66,5 +66,120 @@ public class ManagerMemberDAO {
          return sqlsession.selectList("managerMapper.sortLevelMemberList",memberLevelNo, rowBounds);
       }
    }
+
+   public List<Member> selectInputMember(int srchOption, String inputMember, Pagination pagination) {
+	   //srchOption 0이면 아이디(Email) 1이면 별명(Nick)
+	 
+	      if(srchOption == 0) {
+	    	  System.out.println(inputMember);
+	         return sqlsession.selectList("managerMapper.selectInputMemberEmail",inputMember);
+	      }else {
+	         return sqlsession.selectList("managerMapper.selectInputMemberNick",inputMember);
+	      }
+   }
+
+    public int getselectDetailBoardCount(int memberLevelNoResult, int periodOption, int articleCountInput,
+		int aboveOption) {
+    	Member memberTemp = new Member();
+    	memberTemp.setMemberLevelNo(memberLevelNoResult);
+    	memberTemp.setBoardCount(articleCountInput);
+    	
+    	if(memberLevelNoResult==0) {
+    		if(periodOption == 0) {
+        		if(aboveOption == 1) {
+        			//작성한 게시글 수 이상 일때 전체 멤버
+        			System.out.println(memberTemp.getMemberLevelNo()+"엥?");
+        	    	System.out.println(memberTemp.getBoardCount());
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCount0",memberTemp);
+        		}else {
+        			//작성한 게시글 수 이하 일때 전체 멤버
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCountDown0",memberTemp);
+        		}
+    	         
+    	    }else {
+    	    	if(aboveOption == 1) {
+    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
+    	    		return sqlsession.selectOne("managerMapper.getselectDetailBoardCount0",memberTemp);
+        		}else {
+        			//작성한 게시글 수 이하 일때 기간 한달 멤버
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardCountDown0",memberTemp);
+        		}
+    	         
+    	    }
+    	}else {
+    		if(periodOption == 0) {
+        		if(aboveOption == 1) {
+        			//작성한 게시글 수 이상 일때 전체 멤버
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCount",memberTemp);
+        		}else {
+        			//작성한 게시글 수 이하 일때 전체 멤버
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCountDown",memberTemp);
+        		}
+    	         
+    	    }else {
+    	    	if(aboveOption == 1) {
+    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
+    	    		return sqlsession.selectOne("managerMapper.getselectDetailBoardCount",memberTemp);
+        		}else {
+        			//작성한 게시글 수 이하 일때 기간 한달 멤버
+        			return sqlsession.selectOne("managerMapper.getselectDetailBoardCountDown",memberTemp);
+        		}
+    	         
+    	    }
+    	}
+    	
+ 	}
+
+	public List<Member> getselectDetailBoard(int memberLevelNoResult, int periodOption, int articleCountInput,
+			int aboveOption, Pagination pagination) {
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	    Member memberTemp = new Member();
+    	memberTemp.setMemberLevelNo(memberLevelNoResult);
+    	memberTemp.setBoardCount(articleCountInput);
+    	if(memberLevelNoResult==0) {
+    		if(periodOption == 0) {
+        		if(aboveOption == 1) {
+        			//작성한 게시글 수 이상 일때 전체 멤버
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotal0",memberTemp,rowBounds);
+        		}else {
+        			//작성한 게시글 수 이하 일때 전체 멤버
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotalDown0",memberTemp,rowBounds);
+        		}
+    	         
+    	    }else {
+    	    	if(aboveOption == 1) {
+    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
+    	    		return sqlsession.selectList("managerMapper.getselectDetailBoard0",memberTemp,rowBounds);
+        		}else {
+        			//작성한 게시글 수 이하 일때 기간 한달 멤
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardDown0",memberTemp,rowBounds);
+        		}
+    	         
+    	    }
+    	}else {
+    		if(periodOption == 0) {
+        		if(aboveOption == 1) {
+        			//작성한 게시글 수 이상 일때 멤버---등급레벨도
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotal",memberTemp,rowBounds);
+        		}else {
+        			//작성한 게시글 수 이하 일때 멤버---등급레벨도
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotalDown",memberTemp,rowBounds);
+        		}
+    	         
+    	    }else {
+    	    	if(aboveOption == 1) {
+    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버---등급레벨도
+    	    		return sqlsession.selectList("managerMapper.getselectDetailBoard",memberTemp,rowBounds);
+        		}else {
+        			//작성한 게시글 수 이하 일때 기간 한달 멤버---등급레벨도
+        			return sqlsession.selectList("managerMapper.getselectDetailBoardDown",memberTemp,rowBounds);
+        		}
+    	         
+    	    }
+    	}
+		
+	}
    
 }

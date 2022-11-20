@@ -52,6 +52,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 				return map;
 	}
 
+	/**
+	 * 등급별 멤버 상세 조회
+	 */
 	@Override
 	public Map<String, Object> selectSortLevelMemberList(int memberLevelNoResult, int limit, int cp) {
 		int listCount = dao.getSortLevelMemberListCount(memberLevelNoResult);
@@ -74,4 +77,60 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		
 		return map;
 	}
+
+	@Override
+	public Map<String, Object> selectInputMember(int srchOption,String inputMember, int limit, int cp) {
+		int listCount =1;
+		
+		// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
+		// 페이징 처리 객체 생성
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		if(pagination.getMaxPage() < 5) {
+			pagination.setPageSize(pagination.getMaxPage());
+		}
+		
+		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
+		List<Member> memberList = dao.selectInputMember(srchOption,inputMember,pagination); 
+		System.out.println(memberList+"값이 뭐야");
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+
+	/**
+	 * 작성한 게시글 수에 따른 멤버 상세 조회
+	 */
+	@Override
+	public Map<String, Object> selectDetailBoard(int periodOption, int articleCountInput, int aboveOption,
+			int memberLevelNoResult, int limit, int cp) {
+		
+		int listCount = dao.getselectDetailBoardCount(memberLevelNoResult,periodOption,articleCountInput,aboveOption);
+
+		
+		// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
+		// 페이징 처리 객체 생성
+		System.out.println(listCount);
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		if(pagination.getMaxPage() < 5) {
+			pagination.setPageSize(pagination.getMaxPage());
+		}
+		
+		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
+		List<Member> memberList; 
+		
+		memberList = dao.getselectDetailBoard(memberLevelNoResult,periodOption,articleCountInput,aboveOption,pagination);
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+	
 }

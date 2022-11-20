@@ -93,17 +93,16 @@ document.getElementById("_startDateInput").setAttribute("max", today);
 document.getElementById("_endDateInput").setAttribute("max", today);
 
 
-/* 멤버 정렬 limit */
+/* 멤버 정렬 limit 및 등급별  */
 const selectLimit = document.getElementById("limit");
 selectLimit.addEventListener("change",function(){
   console.log(document.getElementById("limitFrm"));
+  document.forms["sortMemberLevelFrm"].submit();
   /* document.getElementById("limitFrm").submit(); */
-  document.forms["limitFrm"].submit();
+  /* document.forms["limitFrm"].submit(); */
   /* selectLimit.form.submit(); */
 });
 
-/* 멤버 정렬 limit */
-/* 멤버 정렬 limit */
 const selecsortMemberLevel = document.getElementById("_sortMemberLevel");
 selecsortMemberLevel.addEventListener("change",function(){
  /*  document.getElementById("sortMemberLevelFrm").submit(); */
@@ -119,8 +118,13 @@ window.onload = function(){
   console.log(document.getElementById("limit").className);
   var limitresult = document.getElementById("limit").className;
   $("#limit").val(limitresult).prop('selected', true);
+
+  console.log(document.getElementById("srchOption").className);
+  var srchOption = document.getElementById("srchOption").className;
+  $("#srchOption").val(srchOption).prop('selected', true);
 };
-/* 멤버 정렬 limit */
+/* 멤버 정렬 limit 및 등급별  */
+
 function getQueryString(key) {
   // 전체 Url을 가져온다.
   var str = location.href;
