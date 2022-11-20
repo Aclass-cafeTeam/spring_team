@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+<%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
+<c:set var="memberList" value="${map.memberList}"/>
+<c:set var="pagination" value="${map.pagination}"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -245,15 +249,19 @@
             </div>
             <div class="action_arr">
               <p>
-                <select  id="_sortMemberLevel" class="_noLevelCafe">
-                <option value="0">전체 멤버</option>
-                <option value="1">새내기</option><option value="110">일반여행자</option><option value="120">성실여행자</option><option value="140">우수여행자</option><option value="150">감사멤버</option></select>
-                <select id="_sortPerPage">
-                <option value="15">15명 정렬</option>
-                <option value="30" selected="">30명 정렬</option>
-                <option value="50">50명 정렬</option>
-                <option value="100">100명 정렬</option>
-                </select>
+                <form name = "sortMemberLevelFrm" action="/manager/sortMemberLevel" method="get">
+                  <select  id="_sortMemberLevel" class="${memberLevelNoResult}" name="memberLevelNo">
+                  <option value="0" selected="">전체 멤버</option>
+                  <option value="2">새내기</option><option value="3">일반여행자</option><option value="4">성실여행자</option><option value="5">우수여행자</option><option value="6">감사멤버</option></select>
+                </form>
+                <form name = "limitFrm" action="/manager/totalMemberManager" method="get">
+                  <select id="limit" name="limit" class="${pagination.limit}" value="${pagination.limit}">
+                  <option id="limit15" value="15" selected="">15명 정렬</option>
+                  <option id="limit30" value="30">30명 정렬</option>
+                  <option id="limit50" value="50">50명 정렬</option>
+                  <option id="limit100" value="100">100명 정렬</option>
+                  </select>
+                </form>
               </p>
             
             </div>
@@ -300,9 +308,9 @@
               <tr>
             <th scope="col" class="frst"><input name="c1" id="c1" title="선택" class="check _checkAll" type="checkbox"></th>
             
-            <th scope="col"><strong>별명(아이디)</strong></th>
+            <th scope="col"><strong class="line_n">별명(아이디)</strong></th>
              
-            <th scope="col"><strong class="line_r">멤버 등급</strong></th>
+            <th scope="col"><strong class="line_n">멤버 등급</strong></th>
             
             <th scope="col" class="selected "><strong class="line_r"><a href="#" class="_sortType" code="0">가입일<span class="bu _sortType" code="0">▼</span></a></strong></th>
             
@@ -316,236 +324,101 @@
             
           </tr>
             </thead>
-            <tbody>
-              <tr class="_checkable " memberid="shuxi91">
-            <td class="tc">
-              <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="shuxi91" manager="false" staff="false">
-            </td>
-            <td>
-              <div class="pers_nick_area">
-                <span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_40x40.gif" width="20" height="20" alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'"></span><a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|shuxi91) _stopDefault" memberid="shuxi91">김서희 (shuxi91)</a>
-              </div>
-            </td>
-               
-            <td>
-              <span class="txt c_gy2"><img width="11" height="11" alt="" src="https://cafe.pstatic.net/levelicon/1/1_1.gif" class="ico_level">새내기</span>
-            </td>
-            
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.03.</span>
-              
-            </td>
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.11.</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">16</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">22</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">2</span>
-              
-            </td>
-            
-          </tr><tr class="_checkable " memberid="rkdalsrb65">
-            <td class="tc">
-              <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="rkdalsrb65" manager="false" staff="false">
-            </td>
-            <td>
-              <div class="pers_nick_area">
-                <span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_40x40.gif" width="20" height="20" alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'"></span><a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|rkdalsrb65) _stopDefault" memberid="rkdalsrb65">상남자 (rkdalsrb65)</a>
-              </div>
-            </td>
+            <tbody id = "selecttbody">
 
-            <td>
-              <span class="txt c_gy2"><img width="11" height="11" alt="" src="https://cafe.pstatic.net/levelicon/1/1_1.gif" class="ico_level">새내기</span>
-            </td>
-            
-            
-            <td class="tc">
-              
-              <span class="num">2022.10.24.</span>
-              
-            </td>
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.11.</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">11</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">3</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">3</span>
-              
-            </td>
-            
-          </tr><tr class="_checkable " memberid="wldbs4166">
-            <td class="tc">
-              <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="wldbs4166" manager="false" staff="true">
-            </td>
-            <td>
-              <div class="pers_nick_area">
-                <span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_40x40.gif" width="20" height="20" alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'"></span><a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|wldbs4166) _stopDefault" memberid="wldbs4166">김지윤1010 (wldbs4166)</a>
-              </div>
-            </td>
+              <c:choose>
 
-            <td>
-              <span class="txt c_gy2"><img width="11" height="11" alt="" src="https://cafe.pstatic.net/levelicon/1/1_888.gif" class="ico_level">부 매니저</span>
-            </td>
-            
-            
-            <td class="tc">
-              
-              <span class="num">2022.10.24.</span>
-              
-            </td>
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.13.</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">46</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">2</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">0</span>
-              
-            </td>
-            
-          </tr><tr class="_checkable " memberid="o_oyoon97">
-            <td class="tc">
-              <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="o_oyoon97" manager="false" staff="false">
-            </td>
-            <td>
-              <div class="pers_nick_area">
-                <span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_40x40.gif" width="20" height="20" alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'"></span><a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|o_oyoon97) _stopDefault" memberid="o_oyoon97">이빨다뽑힘 (o_oyoon97)</a>
-              </div>
-            </td>
+                <c:when test="${empty memberList}">
+                <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                  <tr>
+                  </tr>
+                </c:when>
 
-            <td>
-              <span class="txt c_gy2"><img width="11" height="11" alt="" src="https://cafe.pstatic.net/levelicon/1/1_150.gif" class="ico_level">감사멤버</span>
-            </td>
-            
-            
-            <td class="tc">
-              
-              <span class="num">2022.10.17.</span>
-              
-            </td>
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.11.</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">29</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">3</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">5</span>
-              
-            </td>
-            
-          </tr><tr class="_checkable  line_b" memberid="wish0827">
-            <td class="tc">
-              <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="wish0827" manager="true" staff="false">
-            </td>
-            <td>
-              <div class="pers_nick_area">
-                <span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_40x40.gif" width="20" height="20" alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'"></span><a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|wish0827) _stopDefault" memberid="wish0827">JH (wish0827)</a>
-              </div>
-            </td>
+                <c:otherwise>
+                  <!-- 게시글 목록 조회 결과가 있다면 -->
+                  <c:forEach var="member" items="${memberList}">
+                    <tr class="_checkable " memberid="${member.memberEmail}">
+                      <td class="tc">
+                        <input type="checkbox" name="c1" id="c1" title="선택" class="check _checkMember" value="${member.memberEmail}" manager="false" staff="false">
+                      </td>
+                      <td>
+                        <div class="pers_nick_area">
+                          <span class="img">
+                            <img src="${member.profileImage}"  alt="">
+                          </span>
+                          <a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault" memberid="${member.memberEmail}">${member.memberNickname} (${member.memberEmail})</a>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="txt c_gy2">
+                          <c:choose>
+                            <c:when test="${(member.authorityName eq '카페매니저') or (member.authorityName eq '부매니저')}">
+                              <img alt="" src="${member.authorityImg}" class="ico_level">
+                              ${member.authorityName}
+                            </c:when>
+                            <c:otherwise>
+                              <img alt="" src="${member.memberLevelImg}" class="ico_level">
+                              ${member.memberLevelName}
+                            </c:otherwise>
+                          </c:choose>
+                        </span>
+                      </td>
+                      <td class="tc">                  
+                        <span class="num">${member.enrollDate}.</span>
+                      </td>
+                      <td class="tc">
+                        <span class="num">${member.loginDate}.</span>
+                      </td>
+                      <td class="tr">
+                        <span class="num">${member.logHistoryCount}</span>
+                      </td>
+                      <td class="tr">
+                        <span class="num">${member.commentCount}</span>
+                      </td>
+                      <td class="tr">
+                        <span class="num">${member.boardCount}</span>
+                      </td>                
+                    </tr>
+                  </c:forEach>
+                </c:otherwise>
+              </c:choose>
 
-            <td>
-              <span class="txt c_gy2"><img width="11" height="11" alt="" src="https://cafe.pstatic.net/levelicon/1/1_999.gif" class="ico_level">카페매니저</span>
-            </td>
-            
-            
-            <td class="tc">
-              
-              <span class="num">2022.10.14.</span>
-              
-            </td>
-            
-            <td class="tc">
-              
-              <span class="num">2022.11.11.</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">70</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">22</span>
-              
-            </td>
-            
-            <td class="tr">
-              
-              <span class="num">20</span>
-              
-            </td>
-            
-          </tr>
             </tbody>
           </table></div>
         </div>
+        <div class="pagination-area">
+
+
+          <ul class="pagination">
+          
+              <!-- 첫 페이지로 이동 -->
+              <li><a href="/manager/totalMemberManager">&lt;&lt;</a></li>
+
+              <!-- 이전 목록 마지막 번호로 이동 -->
+              <li><a href="/manager/totalMemberManager?cp=${pagination.prevPage}">&lt;</a></li>
+
+    
+              <!-- 특정 페이지로 이동 -->
+              <c:forEach var="i" begin="${pagination.startPage}" end="${pagination.endPage}" step="1">
+                <c:choose>
+                  <c:when test="${i== pagination.currentPage}">
+                    <!-- 현재 페이지인 경우 -->
+                    <li><a class="current">${i}</a></li>
+                  </c:when>
+                  <c:otherwise>
+                    <!-- 현재 페이지를 제외한 나머지 -->
+                    <li><a href="/manager/totalMemberManager?cp=${i}">${i}</a></li>
+                  </c:otherwise>
+                </c:choose>
+              </c:forEach>
+              <!-- 다음 목록 시작 번호로 이동 -->
+              <li><a href="/manager/totalMemberManager?cp=${pagination.nextPage}">&gt;</a></li>
+
+              <!-- 끝 페이지로 이동 -->
+              <li><a href="/manager/totalMemberManager?cp=${pagination.maxPage}">&gt;&gt;</a></li>
+
+          </ul>
+      </div>
 
       </div>
 

@@ -1,9 +1,15 @@
 package com.railtavelproject.cafe.manager.model.service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.railtavelproject.cafe.manager.model.dao.ManagerMemberDAO;
+import com.railtavelproject.cafe.manager.model.vo.Member;
+import com.railtavelproject.cafe.manager.model.vo.Pagination;
 
 @Service
 public class ManagerMemberServiceImpl implements ManagerMemberService{
@@ -20,5 +26,52 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public int boardCount() {
 		int mainBoardCount = dao.boardCount();
 		return mainBoardCount;
+	}
+
+	@Override
+	public Map<String, Object> selectMemberList(int limit, int cp) {
+		// 1.특정 게시판의 전체 게시글 수 조회(단, 삭제 제외)
+				int listCount = dao.getListCount();
+				
+				// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
+				// 페이징 처리 객체 생성
+				Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+				
+				if(pagination.getMaxPage() < 5) {
+					pagination.setPageSize(pagination.getMaxPage());
+				}
+				
+				// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
+				List<Member> memberList = dao.selectMemberList(pagination); 
+				
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map.put("pagination", pagination);
+				map.put("memberList",memberList);
+				
+				return map;
+	}
+
+	@Override
+	public Map<String, Object> selectSortLevelMemberList(int memberLevelNoResult, int limit, int cp) {
+		int listCount = dao.getSortLevelMemberListCount(memberLevelNoResult);
+		// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
+		// 페이징 처리 객체 생성
+		System.out.println(listCount);
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		if(pagination.getMaxPage() < 5) {
+			pagination.setPageSize(pagination.getMaxPage());
+		}
+		
+		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
+		List<Member> memberList = dao.selectSortLevelMemberList(memberLevelNoResult,pagination); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
 	}
 }

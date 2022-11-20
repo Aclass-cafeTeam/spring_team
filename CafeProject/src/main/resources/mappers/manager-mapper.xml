@@ -22,7 +22,7 @@
     	
     	-->
     	<!-- <resultMap type="edu.kh.project.member.model.vo.Member" id="member_rm"> -->
-    	<resultMap type="Member" id="member_rm">
+    	<resultMap type="managerMember" id="member_rm">
     	
     		<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
     		<id property="memberNo" column="MEMBER_NO"/>
@@ -36,7 +36,17 @@
 	      <result property="enrollDate" column="ENROLL_DATE" />
 	      <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
 	      <result property="authorityNo" column="AUTHORITY_NO" />
+	      <result property="authorityName" column="AUTHORITY_NAME" />
 	      <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+	      
+	      <result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
+	      <result property="memberLevelImg" column="MEMBER_LEVEL_IMG" />
+	      <result property="authorityImg" column="AUTHORITY_IMG" />
+	      <result property="logHistoryNo" column="LOG_HISTORY_NO" />
+	      <result property="loginDate" column="LOGIN_DATE" />
+	      <result property="logHistoryCount" column="LOGHISTORY_COUNT" />
+	      <result property="commentCount" column="BOARD_COUNT" />
+	      <result property="boardCount" column="COMMENT_COUNT" />
     	</resultMap>
  <!--  private int memberNo;
 	private String memberEmail;
@@ -63,10 +73,84 @@
   <!-- 메인화면에서 멤버 수 불러오기 -->
   <select id="mainMemberCount" resultType="_int">
   	SELECT COUNT(*) TOTALMEMBER FROM "MEMBER"
-		WHERE MEMBER_DEL_FL = 'N'
+		WHERE MEMBER_DEL_FL IN ('N','S')
   </select>
   <select id="mainBoardCount" resultType="_int">
   	SELECT COUNT(*) FROM "BOARD" 
   	WHERE BOARD_DEL_FL ='N'
+  </select>
+  
+  <select id="selectMemberList" resultMap="member_rm">
+  	SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.DD.MM') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME 
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,TO_CHAR(LOGIN_DATE ,'YYYY.DD.MM') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N','S')
+	ORDER BY MEMBER_NICKNAME
+  </select>
+  
+  <select id="memberListCount" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('N','S')
+  </select>
+  
+  <select id="sortLevelMemberListCount" parameterType="_int" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('N','S')
+	AND MEMBER_LEVEL_NO = #{memberLevelNoResult}
+  </select>
+  <select id="sortLevelMemberList" parameterType="_int" resultMap="member_rm">
+  	SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.DD.MM') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+	,MEMBER_LEVEL_NO
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,TO_CHAR(LOGIN_DATE ,'YYYY.DD.MM') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N','S')
+	AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	ORDER BY MEMBER_NICKNAME
   </select>
 </mapper>
