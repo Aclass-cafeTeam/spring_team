@@ -19,60 +19,7 @@
 
     <main>
         <!-- **************************************헤더************************************** -->
-        <header>
-            <!-- 헤더 왼쪽 상단 로고 -->
-            <div id="header-top">
-                <div id="never-gnb" class="__web-inspector-hide-shortcut__">
-                    <a href="/" class="link_never">
-                        <img src="/resources/images/NEVER_logo.png" width="52" height="10"
-                            alt="NEVER">
-                    </a>
-                </div>
-                <div id="header-top-menu">
-                    
-                    <c:choose>
-                        <c:when test="${empty sessionScope.loginMember}">
-                            <a href="/member/signUp"> 회원가입 </a>
-                            <span>|</span>
-                            <a href="/member/login"> 로그인 </a>
-                        </c:when>
-                        
-                        <c:otherwise>
-                            <a href="/"> 카페홈 </a>
-                            <span>|</span>
-                            <a href="/member/myPage/info">${loginMember.memberNickname}</a>
-                        </c:otherwise>
-                    </c:choose>
-                    
-                </div>
-            </div>
-            <!-- 헤더 오른쪽 상단 메뉴 -->
-
-            <section id="pic">
-
-                <img src="../resources/images/mainIMG.png">
-                <section class="cafe_project_size">
-                    <div class="cafe_project">
-                        <div id="cafe_project_name">Train_Koraila</div>
-                        <div id="cafe_project_names">Team_project Cafe</idv>
-                        </div>
-                </section>
-
-            </section>
-
-        </header>
-        <!-- **************************************헤더************************************** -->
-
-        <!-- **************************************네비************************************** -->
-        <nav>
-            <ul class="special-menu">
-                <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
-                <li id="special-menu-1"><a class="link_special" href="#">📣 카페 이용..</a></li>
-                <li id="special-menu-2"><a class="link_special" href="#">👩 생활 이야..</a></li>
-            </ul>
-        </nav>
-
-        <!-- **************************************네비************************************** -->
+        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
         <!-- **************************************카페 사이드!!!!!!!!!!!!!!!!!!!!!!!!************************************** -->
@@ -607,29 +554,7 @@
     </main>
 
     <!-- **************************************푸터************************************** -->
-    <footer class="footer">
-
-        <h2 class="cafe_name">내일로,기차여행 커뮤니티 - 바이트레인 (게스트하우스, 게하)</h2>
-        <span class="cafe_nbsp">|</span>
-        <a href="#" class="cafe_link">https://cafe.never.com/hkct
-        </a>
-        <h2>
-            <a href="#" class="never_cafe">
-                <span class="blind">NEVER 카페</span>
-            </a>
-        </h2>
-
-    </footer>
-
-    <%-- session scope 내에 message속성이 존재하는 경우
-    alert(JS)기능을 이용해서 내용 출력 --%>
-    <c:if test="${!empty message}">
-        <script> 
-            alert("${message}");
-        </script> 
-        <c:remove var="message" />
-    </c:if>
-     <!-- **************************************푸터************************************** -->
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 
     <script src="/resources/js/main/main.js"></script>
 </body>
