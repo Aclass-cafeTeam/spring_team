@@ -46,7 +46,7 @@
                             <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                             <div class="managerLink">
                                 <div class="managerLinkBox">
-                                    <a href="../manager/managerMain.jsp"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                    <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
                                 </div>
                             </div>
                             </c:when>
@@ -162,7 +162,7 @@
                                         </div>
                                     </li>
                                     <li id="signUp-date">가입 <em>2022.10.17.</em></li>
-                                    <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
+                                    <li id="profile-grade"><em>${loginMember.memberLevelName}</em> <a href="">멤버등급 안내</a></li>
                                 </ul>
                             </div>
                             <div id="side-profile2">
@@ -527,9 +527,11 @@
 
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
 
-            <section id="delete">
-                <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
-            </section>
+            <c:if test="${!empty sessionScope.loginMember}">
+                <section id="delete">
+                    <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
+                </section>
+            </c:if>
 
 
         </section>
