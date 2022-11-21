@@ -234,8 +234,8 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 			int aboveOption) {
 
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("memberNo", memberLevelNoResult);
-		map.put("commentCount", commentCountInput);
+		map.put("memberLevelNo", memberLevelNoResult);
+		map.put("commentCountInput", commentCountInput);
 		map.put("periodOption", periodOption);
 		map.put("aboveOption", aboveOption);
 		
