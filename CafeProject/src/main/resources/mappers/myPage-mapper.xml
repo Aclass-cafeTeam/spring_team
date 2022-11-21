@@ -27,6 +27,7 @@
  </select>
 
  <!-- 회원 탈퇴 -->
+ <!-- 탈퇴 테이블 update 추가 해야함  -->
  <update id="secession">
  UPDATE "MEMBER" SET
  MEMBER_DEL_FL = 'Y'
