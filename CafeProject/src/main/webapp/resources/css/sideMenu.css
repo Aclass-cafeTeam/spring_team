@@ -112,6 +112,12 @@ div#cafe {
     font-size: 10.6px;
 }
 
+/* 멤버닉네임 */
+#memberNickname{
+    text-decoration: none;
+    color: #000;
+}
+
 /* 지윤 매니저링크 작성 */
 .manageLink{
     display: inline-flex;
