@@ -124,7 +124,7 @@ window.onload = function(){
   console.log(document.getElementById("srchOption").className);
   var srchOption = document.getElementById("srchOption").className;
   $("#srchOption").val(srchOption).prop('selected', true);
-
+  
   //countBy=0&periodOption=1&articleCountInput=6&aboveOption=1#
   const QueryString = new URLSearchParams(location.search);
   const countBy = QueryString.get('countBy'); //조건 체크박스 
@@ -139,6 +139,27 @@ window.onload = function(){
     detailbutton.style.backgroundColor = "#8994a0";
     detailbutton.style.color="white";
   }
+  if(countBy != null){
+    switch (countBy) {
+      case "0":
+        $('input:radio[name =srch_detail]:input[value="postspace"]').attr("checked",true);
+        document.getElementById("srch_write").prop('display',"block");
+        break;
+      case "1":
+        $('input:radio[name =srch_detail]:input[value="commentspace"]').attr("checked",true);
+        document.getElementById("srch_comment").prop('display',"block");
+        break;
+      case "2":
+        $('input:radio[name =srch_detail]:input[value="visitspace"]').attr("checked",true);
+        document.getElementById("srch_visit").prop('display',"block");
+        break;
+      case "3":
+        $('input:radio[name =srch_detail]:input[value="datespace"]').attr("checked",true);
+        document.getElementById("srch_date").prop('display',"block");
+        break;
+    }
+  }
+  
   if(articleCountInput != null && countBy == "0"){
     document.getElementById("_articleCountInput").value = articleCountInput;
   }

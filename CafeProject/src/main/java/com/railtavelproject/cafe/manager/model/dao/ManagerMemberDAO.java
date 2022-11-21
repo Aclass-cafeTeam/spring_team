@@ -238,7 +238,7 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 		map.put("commentCountInput", commentCountInput);
 		map.put("periodOption", periodOption);
 		map.put("aboveOption", aboveOption);
-		
+		System.out.println();
 		return sqlsession.selectOne("managerMapper.getselectDetailCommentCount",map);
 	}
 
@@ -250,8 +250,8 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 	    
 	    Map<String, Object> map = new HashMap<String, Object>();
-	    map.put("memberNo", memberLevelNoResult);
-		map.put("commentCount", commentCountInput);
+	    map.put("memberLevelNo", memberLevelNoResult);
+		map.put("commentCountInput", commentCountInput);
 		map.put("periodOption", periodOption);
 		map.put("aboveOption", aboveOption);
 		

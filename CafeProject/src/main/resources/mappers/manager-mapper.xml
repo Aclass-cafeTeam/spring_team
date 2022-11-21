@@ -593,10 +593,11 @@
 		<if test ="aboveOption == 0">
 			COMMENT_COUNT <![CDATA[<=]]> #{commentCountInput}
 		</if>
-		<if test ="memberLevelNo != null">
-			AND MEMBER_LEVEL_NO = #{memberLevelNo})
+		<if test ="memberLevelNo != 0">
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
 		</if>
 	</where>
+	)
   </select>
   
   <select id="getselectDetailComment" parameterType="java.util.HashMap" resultMap="member_rm">
@@ -642,8 +643,8 @@
 			COMMENT_COUNT <![CDATA[<=]]> #{commentCountInput}
 		</if>
 		
-		<if test ="memberLevelNo != null">
-			AND MEMBER_LEVEL_NO = #{memberLevelNo})
+		<if test ="memberLevelNo != 0">
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
 		</if>
 	</where>
   </select>
