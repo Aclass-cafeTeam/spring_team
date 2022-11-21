@@ -161,8 +161,8 @@
                                             <a href="/member/myPage/info" id="memberNickname">${loginMember.memberNickname}</a>
                                         </div>
                                     </li>
-                                    <li id="signUp-date">가입 <em>2022.10.17.</em></li>
-                                    <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
+                                    <li id="signUp-date">가입일 <em>${loginMember.enrollDate}</em></li>
+                                    <li id="profile-grade"><!-- 회원 등급명 --> <a href="/cafe/memberLevel" target="_blank">멤버등급 안내</a></li>
                                 </ul>
                             </div>
                             <div id="side-profile2">

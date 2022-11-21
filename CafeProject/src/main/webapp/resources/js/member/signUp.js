@@ -200,7 +200,7 @@ memberNickname.addEventListener("input", function(){
     }
 
     // 정규표현식으로 닉네임 확인
-    const regEx = /^[가-힣\w]{2,10}$/;
+    const regEx = /^[ㄱ-힣\w]{2,10}$/;
 
     if(regEx.test(this.value)){ // 닉네임이 유효한 경우
 
@@ -233,18 +233,19 @@ memberNickname.addEventListener("input", function(){
         });
 
     } else { // 유효하지 않을 경우
-        nickMessage.innerText ="특수기호, 공백 사용은 불가합니다."
+        nickMessage.innerText ="닉네임은 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
         nickMessage.classList.add("error");
         nickMessage.classList.remove("confirm");
         checkObj.memberNickname = false;
-
     }
+
+    
 });
 
 
 // 인증번호 받기 
 const verifyBtn = document.querySelector(".verify-btn");
-
+const verifyFrm = document.querySelector(".verify-frm");
 verifyBtn.addEventListener("click", function(){
-    verifyBtn.style.display = "block";
+    verifyFrm.style.display = "flex";
 });
