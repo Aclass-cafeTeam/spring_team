@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -73,12 +74,13 @@ public class ManagerMemberController {
 			return "manager/totalMemberManager";
 		}
 		
-		//게시글 상세조회 검색
+		//게시글 상세조회 검색 //countBy=0&periodOption=1&articleCountInput=6&aboveOption=1#
 		@GetMapping("/manager/selectDetailBoard")
 		public String selectDetailBoard(Member member,
-				//@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
-				//@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
+				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
+				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
 				@RequestParam(value="srchOption" , required = false, defaultValue = "0") int srchOption,   //아이디,별명 조회
+				
 				@RequestParam(value="periodOption" , required = false, defaultValue = "0") int periodOption, //0이면 전체 조회 1이면 최근 한달
 				@RequestParam(value="articleCountInput" , required = false, defaultValue = "0") int articleCountInput, //멤버별 게시글 수 
 				@RequestParam(value="aboveOption" , required = false, defaultValue = "1") int aboveOption, //멤버별 게시글 수 이상 or 이하
@@ -89,8 +91,18 @@ public class ManagerMemberController {
 			System.out.println(periodOption);
 			System.out.println(articleCountInput);
 			System.out.println(aboveOption);
-			int memberLevelNoResult = (int) session.getAttribute("memberLevelNoResult");
-			int limit = (int) session.getAttribute("limit");
+
+			if(session.getAttribute("memberLevelNoResult") == null) {
+				memberLevelNoResult = 0;
+			}else {
+				memberLevelNoResult = (int) session.getAttribute("memberLevelNoResult");
+			}
+			if(session.getAttribute("limit") == null) {
+				limit = 15;
+			}else {
+				limit = (int) session.getAttribute("limit");
+			}
+			
 			Map<String, Object> map = service.selectDetailBoard(periodOption,articleCountInput,aboveOption,memberLevelNoResult,limit, cp);
 			
 			

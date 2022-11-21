@@ -116,9 +116,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		System.out.println(listCount);
 		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
 		
-		if(pagination.getMaxPage() < 5) {
-			pagination.setPageSize(pagination.getMaxPage());
-		}
+//		if(pagination.getMaxPage() < 5) {
+//			pagination.setPageSize(pagination.getMaxPage());
+//		}
 		
 		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
 		List<Member> memberList; 

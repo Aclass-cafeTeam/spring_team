@@ -166,7 +166,7 @@
                       </select>
                       <span class="txt txt2 _txtPeriod"> 동안</span>
                       <label for="_articleCountInput">게시글수</label>
-                      <input type="number"class="text _articleCount _count" id="_articleCountInput" name="articleCountInput" maxlength="4" value="0"> <span class="txt">개</span>
+                      <input type="number" min="0" class="text _articleCount _count" id="_articleCountInput" name="articleCountInput" maxlength="4" value="0"> <span class="txt">개</span>
                       <select class="${aboveOption} _above" name="aboveOption" id="aboveOption">
                       <option value="1" selected="">이상</option>
                       <option value="0">이하</option>

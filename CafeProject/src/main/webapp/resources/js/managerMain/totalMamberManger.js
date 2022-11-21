@@ -8,10 +8,12 @@ detailbutton.addEventListener("click",function(){
     srch_detailBox.style.display = "none";
     this.style.backgroundColor = "transparent";
     this.style.color="#404040";
+    detailbutton.classList.remove("on2");
   }else{
     srch_detailBox.style.display = "block";
     this.style.backgroundColor = "#8994a0";
     this.style.color="white";
+    detailbutton.classList.add("on2");
   }
 
 });
@@ -122,6 +124,33 @@ window.onload = function(){
   console.log(document.getElementById("srchOption").className);
   var srchOption = document.getElementById("srchOption").className;
   $("#srchOption").val(srchOption).prop('selected', true);
+
+  //countBy=0&periodOption=1&articleCountInput=6&aboveOption=1#
+  const QueryString = new URLSearchParams(location.search);
+  const countBy = QueryString.get('countBy'); //조건 체크박스 
+  const periodOption = QueryString.get('periodOption'); //기간 옵션 0전체기간/1최근 한달
+  const articleCountInput = QueryString.get('articleCountInput');//게시글 수
+  const aboveOption = QueryString.get('aboveOption');//이상 1 이하 0
+  if(countBy == "0" ||countBy == "1" ||countBy == "2"||countBy == "3"){
+    const detailbutton = document.getElementsByClassName("_showDetailSearch")[0];
+    const srch_detailBox = document.getElementsByClassName("srch_detail")[0];
+    srch_detailBox.style.display = "block";
+    detailbutton.style.backgroundColor = "#8994a0";
+    detailbutton.style.color="white";
+  }
+  if(articleCountInput != null && countBy == "0"){
+    document.getElementById("_articleCountInput").value = articleCountInput;
+  }
+
+  if((countBy == "0" ||countBy == "1" ||countBy == "2")&&periodOption != null){
+    $("#periodOption").val(periodOption).prop('selected', true);
+  }
+
+  if((countBy == "0" ||countBy == "1" ||countBy == "2")&&aboveOption != null){
+    $("#aboveOption").val(aboveOption).prop('selected', true);
+  }
+
+
 };
 /* 멤버 정렬 limit 및 등급별  */
 
