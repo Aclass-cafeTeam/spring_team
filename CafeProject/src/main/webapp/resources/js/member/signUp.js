@@ -121,15 +121,15 @@ memberPw.addEventListener("input", function(){
         } else { // 유효한 비밀번호 + 확인 작성 O
             // 비밀번호가 입력될 때 비밀번호 확인에 작성된 값과 일치하는 경우
             if( memberPw.value == memberPwConfirm.value ) {
-                pwMessage.innerText = "입력하신 비밀번호가 일치합니다.";
-                pwMessage.classList.add("confirm");
-                pwMessage.classList.remove("error");
+                pwConfirm.innerText = "입력하신 비밀번호가 일치합니다.";
+                pwConfirm.classList.add("confirm");
+                pwConfirm.classList.remove("error");
                 checkObj.memberPwConfirm = true;
 
             } else {
-                pwMessage.innerText = "입력하신 비밀번호가 일치하지 않습니다.";
-                pwMessage.classList.add("error");
-                pwMessage.classList.remove("confirm");
+                pwConfirm.innerText = "입력하신 비밀번호가 일치하지 않습니다.";
+                pwConfirm.classList.add("error");
+                pwConfirm.classList.remove("confirm");
                 checkObj.memberPwConfirm = false;
             }
         }
@@ -148,21 +148,30 @@ memberPw.addEventListener("input", function(){
 // 비밀번호 확인하기 입력 유효성 검사 == 앞의 비밀번호와 일치하는지 검사
 memberPwConfirm.addEventListener("input", function(){
     
+    if(memberPw.value.trim().length == 0) {
+        pwMessage.innerText = "비밀번호를 입력하세요.";
+        this.value="";
+        pwMessage.classList.add("error");
+        pwMessage.classList.remove("confirm");
+
+        checkObj.memberPw = false;
+    }
+
     // 비밀번호가 유효한 경우에만 비밀번호와 비밀번호 확인이 같은지 비교
     if(checkObj.memberPw==true){
         
         // 비밀번호와 비밀번호 확인이 같은지 검사
         if( memberPwConfirm.value == memberPw.value ) {
-            pwMessage.innerText = "입력하신 비밀번호가 일치합니다."
-            pwMessage.classList.add("confirm");
-            pwMessage.classList.remove("error");
+            pwConfirm.innerText = "입력하신 비밀번호가 일치합니다."
+            pwConfirm.classList.add("confirm");
+            pwConfirm.classList.remove("error");
             checkObj.memberPwConfirm = true;
     
     
         } else {
-            pwMessage.innerText = "입력하신 비밀번호가 일치하지 않습니다."
-            pwMessage.classList.add("error");
-            pwMessage.classList.remove("confirm");
+            pwConfirm.innerText = "입력하신 비밀번호가 일치하지 않습니다."
+            pwConfirm.classList.add("error");
+            pwConfirm.classList.remove("confirm");
             checkObj.memberPwConfirm = false;
     
         }
@@ -233,5 +242,9 @@ memberNickname.addEventListener("input", function(){
 });
 
 
-///////////////////////////////////////////////////////////////////////////////
+// 인증번호 받기 
+const verifyBtn = document.querySelector(".verify-btn");
 
+verifyBtn.addEventListener("click", function(){
+    verifyBtn.style.display = "block";
+});

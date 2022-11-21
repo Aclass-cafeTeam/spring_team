@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
-@WebFilter(filterName="loginFilter", urlPatterns={"/member/logout", "/member/myPage/*"})
+@WebFilter(filterName="loginFilter", urlPatterns={"/member/logout", "/member/myPage/*", "/manager/*"})
 public class LoginFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException {
