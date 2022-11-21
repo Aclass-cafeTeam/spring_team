@@ -158,7 +158,7 @@
                     </ul>
                     <!-- 게시글 수 체크 하면 나오는 화면 -->
                     <div class="srch_info">
-                      <form action ="/manager/selectDetailBoard" class="BoardfrmSearch" method="get" name="BoardrmSearch" id="BoardfrmSearch">
+                      <form action ="/manager/selectDetailBoard" class="BoardfrmSearch" method="get" name="BoardfrmSearch" id="BoardfrmSearch">
                       <input type="hidden" name="countBy" class="_countBy" value="0">
                       <select class="${periodOption} _period" name="periodOption" id="periodOption">
                       <option value="0" selected="">전체기간</option>
@@ -177,7 +177,7 @@
                     </div>
                     <!-- 댓글 수 -->
                     <div class="srch_info">
-                      <form action ="/manager/selectDetailComment" class="CommentfrmSearch" method="get" name="CommentrmSearch" id="CommentfrmSearch">
+                      <form action ="/manager/selectDetailComment" class="CommentfrmSearch" method="get" name="CommentfrmSearch" id="CommentfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="1">
                         <select class="${periodOption} _period" name="periodOption" id="periodOption">
                         <option value="0" selected="">전체기간</option>
@@ -196,20 +196,22 @@
                     </div>
                     <!-- 방문수 검색  -->
                     <div class="srch_info">
-                      <input type="hidden" name="countBy" class="_countBy" value="2">
-                      <select class="_period">
-                      <option value="0">전체기간</option>
-                      <option value="1">최근1개월</option>
-                      </select>
-                      <span class="txt txt2 _txtPeriod">동안</span>
-                      <label for="_visitCountInput">방문수</label>
-                      <input type="text" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
-                      <select  class="_above">
-                      <option value="1">이상</option>
-                      <option value="0">이하</option>
-                      </select>
-                      <span class="txt">인 멤버</span>
-                      <a href="#" class="btn_type2_gn _submitVisit _submitDetail" searchtype="visitspace"><span class="_submitVisit _submitDetail" searchtype="visitspace">검색</span></a>
+                      <form action ="/manager/selectDetailVisitCount" class="VisitCountfrmSearch" method="get" name="VisitCountfrmSearch" id="VisitCountfrmSearch">
+                        <input type="hidden" name="countBy" class="_countBy" value="2">
+                        <select class="_period">
+                        <option value="0">전체기간</option>
+                        <option value="1">최근1개월</option>
+                        </select>
+                        <span class="txt txt2 _txtPeriod">동안</span>
+                        <label for="_visitCountInput">방문수</label>
+                        <input type="text" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
+                        <select  class="_above">
+                        <option value="1">이상</option>
+                        <option value="0">이하</option>
+                        </select>
+                        <span class="txt">인 멤버</span>
+                        <button type="submit" class="btn_type2_gn _submitVisit _submitDetail" searchtype="visitspace">검색</button>
+                      </form>
                     </div>
                     <!-- 가입/최종방문일 -->
                     <div class="srch_info">

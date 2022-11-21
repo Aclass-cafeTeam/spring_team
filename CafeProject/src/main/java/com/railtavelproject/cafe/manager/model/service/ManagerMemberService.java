@@ -18,4 +18,7 @@ public interface ManagerMemberService {
 	Map<String, Object> selectDetailBoard(int periodOption, int articleCountInput, int aboveOption,
 			int memberLevelNoResult, int limit, int cp);
 
+	Map<String, Object> selectDetailComment(int periodOption, int commentCountInput, int aboveOption,
+			int memberLevelNoResult, int limit, int cp);
+
 }

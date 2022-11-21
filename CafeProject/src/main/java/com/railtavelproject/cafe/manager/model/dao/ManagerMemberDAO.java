@@ -1,6 +1,8 @@
 package com.railtavelproject.cafe.manager.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,11 +18,17 @@ public class ManagerMemberDAO {
    @Autowired //같은 자료형
    private SqlSessionTemplate sqlsession;
 
+   /** 관리자 페이지에서 멤버 카운팅
+ * @return
+ */
    public int memberCount() {
       int mainMemberCount = sqlsession.selectOne("managerMapper.mainMemberCount");
       return mainMemberCount;
    }
 
+   /** 관리자 페이지에서 전체 게시글 수 카운틴 
+ * @return
+ */
    public int boardCount() {
       // TODO Auto-generated method stub
       int mainBoardCount = sqlsession.selectOne("managerMapper.mainBoardCount");
@@ -41,11 +49,18 @@ public class ManagerMemberDAO {
                                  //                          , 파라미터 없을 때 NULL 대입
    }
 
-   public int getListCount() {
+   /** 조회하기 전 페이징
+ * @return
+ */
+public int getListCount() {
       return sqlsession.selectOne("managerMapper.memberListCount");
    }
 
-   public int getSortLevelMemberListCount(int memberLevelNoResult) {
+   /** 등급별 멤버조회
+ * @param memberLevelNoResult
+ * @return
+ */
+public int getSortLevelMemberListCount(int memberLevelNoResult) {
       if(memberLevelNoResult == 0) {
          System.out.println(memberLevelNoResult+"0이다");
          return sqlsession.selectOne("managerMapper.memberListCount");
@@ -56,7 +71,12 @@ public class ManagerMemberDAO {
       
    }
 
-   public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagination) {
+   /** 멤버 조회에서 멤버 한 페이지에 몇명 정렬
+ * @param memberLevelNo
+ * @param pagination
+ * @return
+ */
+public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagination) {
       int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
       
       RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
@@ -67,6 +87,12 @@ public class ManagerMemberDAO {
       }
    }
 
+   /** 아이디 별명으로 멤버 검색
+ * @param srchOption
+ * @param inputMember
+ * @param pagination
+ * @return
+ */
    public List<Member> selectInputMember(int srchOption, String inputMember, Pagination pagination) {
 	   //srchOption 0이면 아이디(Email) 1이면 별명(Nick)
 	 
@@ -78,6 +104,13 @@ public class ManagerMemberDAO {
 	      }
    }
 
+    /**게시글 수에 따라 멤버 상세조회 전 페이징 
+     * @param memberLevelNoResult
+     * @param periodOption
+     * @param articleCountInput
+     * @param aboveOption
+     * @return
+     */
     public int getselectDetailBoardCount(int memberLevelNoResult, int periodOption, int articleCountInput,
 		int aboveOption) {
     	Member memberTemp = new Member();
@@ -130,6 +163,14 @@ public class ManagerMemberDAO {
     	
  	}
 
+	/** 게시글 수에 따라 멤버 상세조회
+	 * @param memberLevelNoResult
+	 * @param periodOption
+	 * @param articleCountInput
+	 * @param aboveOption
+	 * @param pagination
+	 * @return
+	 */
 	public List<Member> getselectDetailBoard(int memberLevelNoResult, int periodOption, int articleCountInput,
 			int aboveOption, Pagination pagination) {
 		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
@@ -180,6 +221,41 @@ public class ManagerMemberDAO {
     	    }
     	}
 		
+	}
+
+	/**댓글 상세 조회 전 페이지
+	 * @param memberLevelNoResult
+	 * @param periodOption
+	 * @param commentCountInput
+	 * @param aboveOption
+	 * @return
+	 */
+	public int getselectDetailCommentCount(int memberLevelNoResult, int periodOption, int commentCountInput,
+			int aboveOption) {
+
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberNo", memberLevelNoResult);
+		map.put("commentCount", commentCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
+		
+		return sqlsession.selectOne("managerMapper.getselectDetailCommentCount",map);
+	}
+
+	public List<Member> getselectDetailComment(int memberLevelNoResult, int periodOption, int commentCountInput,
+			int aboveOption, Pagination pagination) {
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("memberNo", memberLevelNoResult);
+		map.put("commentCount", commentCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
+		
+	    return sqlsession.selectList("managerMapper.getselectDetailComment",map,rowBounds);
 	}
    
 }

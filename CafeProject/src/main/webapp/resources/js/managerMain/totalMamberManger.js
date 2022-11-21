@@ -130,6 +130,7 @@ window.onload = function(){
   const countBy = QueryString.get('countBy'); //조건 체크박스 
   const periodOption = QueryString.get('periodOption'); //기간 옵션 0전체기간/1최근 한달
   const articleCountInput = QueryString.get('articleCountInput');//게시글 수
+  const commentCountInput = QueryString.get('commentCountInput');//댓글 수
   const aboveOption = QueryString.get('aboveOption');//이상 1 이하 0
   if(countBy == "0" ||countBy == "1" ||countBy == "2"||countBy == "3"){
     const detailbutton = document.getElementsByClassName("_showDetailSearch")[0];
@@ -140,6 +141,9 @@ window.onload = function(){
   }
   if(articleCountInput != null && countBy == "0"){
     document.getElementById("_articleCountInput").value = articleCountInput;
+  }
+  if(commentCountInput != null && countBy == "1"){
+    document.getElementById("_commentCountInput").value = commentCountInput;
   }
 
   if((countBy == "0" ||countBy == "1" ||countBy == "2")&&periodOption != null){
