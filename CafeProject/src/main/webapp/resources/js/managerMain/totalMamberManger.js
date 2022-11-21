@@ -140,22 +140,35 @@ window.onload = function(){
     detailbutton.style.color="white";
   }
   if(countBy != null){
+    const srch_infoDisplay = document.querySelectorAll(".srch_info");
     switch (countBy) {
       case "0":
         $('input:radio[name =srch_detail]:input[value="postspace"]').attr("checked",true);
-        document.getElementById("srch_write").prop('display',"block");
+        srch_infoDisplay[0].style.display ="block";
+        srch_infoDisplay[1].style.display = "none";
+        srch_infoDisplay[2].style.display = "none";
+        srch_infoDisplay[3].style.display = "none";
         break;
       case "1":
         $('input:radio[name =srch_detail]:input[value="commentspace"]').attr("checked",true);
-        document.getElementById("srch_comment").prop('display',"block");
+        srch_infoDisplay[0].style.display ="none";
+        srch_infoDisplay[1].style.display = "block";
+        srch_infoDisplay[2].style.display = "none";
+        srch_infoDisplay[3].style.display = "none";
         break;
       case "2":
         $('input:radio[name =srch_detail]:input[value="visitspace"]').attr("checked",true);
-        document.getElementById("srch_visit").prop('display',"block");
+        srch_infoDisplay[0].style.display ="none";
+        srch_infoDisplay[1].style.display = "none";
+        srch_infoDisplay[2].style.display = "block";
+        srch_infoDisplay[3].style.display = "none";
         break;
       case "3":
         $('input:radio[name =srch_detail]:input[value="datespace"]').attr("checked",true);
-        document.getElementById("srch_date").prop('display',"block");
+        srch_infoDisplay[0].style.display ="none";
+        srch_infoDisplay[1].style.display = "none";
+        srch_infoDisplay[2].style.display = "none";
+        srch_infoDisplay[3].style.display = "block";
         break;
     }
   }
@@ -168,11 +181,31 @@ window.onload = function(){
   }
 
   if((countBy == "0" ||countBy == "1" ||countBy == "2")&&periodOption != null){
-    $("#periodOption").val(periodOption).prop('selected', true);
+    switch (countBy) {
+      case "0":
+        $(".periodBoard").val(periodOption).prop('selected', true);
+        break;
+      case "1":
+        $(".periodComment").val(periodOption).prop('selected', true);
+        break;
+      case "2":
+        $(".periodVisit").val(periodOption).prop('selected', true);
+        break;
+    }
   }
 
   if((countBy == "0" ||countBy == "1" ||countBy == "2")&&aboveOption != null){
-    $("#aboveOption").val(aboveOption).prop('selected', true);
+    switch (countBy) {
+      case "0":
+        $(".aboveBoard").val(aboveOption).prop('selected', true);
+        break;
+      case "1":
+        $(".aboveComment").val(aboveOption).prop('selected', true);
+        break;
+      case "2":
+        $(".aboveVisit").val(aboveOption).prop('selected', true);
+        break;
+    }
   }
 
 

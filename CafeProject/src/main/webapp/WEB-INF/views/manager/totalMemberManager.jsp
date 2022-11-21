@@ -160,14 +160,15 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailBoard" class="BoardfrmSearch" method="get" name="BoardfrmSearch" id="BoardfrmSearch">
                       <input type="hidden" name="countBy" class="_countBy" value="0">
-                      <select class="${periodOption} _period" name="periodOption" id="periodOption">
+                      <select class="${periodOption} _period periodBoard" name="periodOption" id="periodOption">
                       <option value="0" selected="">전체기간</option>
                       <option value="1">최근1개월</option>
                       </select>
                       <span class="txt txt2 _txtPeriod"> 동안</span>
                       <label for="_articleCountInput">게시글수</label>
                       <input type="number" min="0" class="text _articleCount _count" id="_articleCountInput" name="articleCountInput" maxlength="4" value="0"> <span class="txt">개</span>
-                      <select class="${aboveOption} _above" name="aboveOption" id="aboveOption">
+                      <select class="${aboveOption} _above 
+                      aboveBoard" name="aboveOption" id="aboveOption">
                       <option value="1" selected="">이상</option>
                       <option value="0">이하</option>
                       </select>
@@ -179,14 +180,14 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailComment" class="CommentfrmSearch" method="get" name="CommentfrmSearch" id="CommentfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="1">
-                        <select class="${periodOption} _period" name="periodOption" id="periodOption">
+                        <select class="${periodOption} _period  periodComment" name="periodOption" id="periodOption">
                         <option value="0" selected="">전체기간</option>
                         <option value="1">최근1개월</option>
                         </select>
                         <span class="txt txt2 _txtPeriod">동안</span>
                         <label for="_commentCountInput">댓글수</label>
                         <input type="text" name="commentCountInput" class="text _commentCount _count" id="_commentCountInput" maxlength="5" value="0"> <span class="txt">개</span>
-                        <select class="${aboveOption} _above" name="aboveOption" id="aboveOption">
+                        <select class="${aboveOption} _above aboveComment" name="aboveOption" id="aboveOption">
                         <option value="1" selected="">이상</option>
                         <option value="0">이하</option>
                         </select>
@@ -198,14 +199,14 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailVisitCount" class="VisitCountfrmSearch" method="get" name="VisitCountfrmSearch" id="VisitCountfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="2">
-                        <select class="_period">
+                        <select class="_period periodVisit">
                         <option value="0">전체기간</option>
                         <option value="1">최근1개월</option>
                         </select>
                         <span class="txt txt2 _txtPeriod">동안</span>
                         <label for="_visitCountInput">방문수</label>
                         <input type="text" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
-                        <select  class="_above">
+                        <select  class="_above aboveVisit">
                         <option value="1">이상</option>
                         <option value="0">이하</option>
                         </select>
