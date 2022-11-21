@@ -263,6 +263,36 @@ tr{
     color: #4e4e4e;
 }
 
+/* pagination */
+.myPage-pagination{
+    padding: 0;
+    list-style: none;
+
+    display: flex;
+    justify-content: center;
+}
+
+.myPage-pagination > li{
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.myPage-pagination a{
+    width: 100%;
+    height: 100%;
+    display: block;
+    letter-spacing: -2px;
+    text-decoration: none;
+    color: black;
+}
+
+/* 현재 페이지 번호 */
+.myPage-pagination .myPage-current{
+    color: #73358C;
+    font-weight: bold;
+}
+
 /* 회원 탈퇴 */
 #secessionArea{
     display: flex;

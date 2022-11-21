@@ -1,11 +1,15 @@
 package com.railtavelproject.cafe.member.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -26,19 +30,34 @@ public class MyPageController {
 	//마이 페이지 메인(내정보)
 	@GetMapping("/info")
 	public String myPage() {
-		return "member/myPage-main";
+		return "member/myPageMain";
 	}
 	
 	// 마이페이지 프로필 이미지
 	@GetMapping("/profile")
 	public String myPageProfile() {
-		return "member/myPage-profile";
+		return "member/myPageProfile";
+	}
+		
+	// 마이페이지 내가 쓴 글
+	@GetMapping("/myBoard")
+	public String selectMyPageBoard(
+			@ModelAttribute("loginMember") Member loginMember,
+			Model model,
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+		
+		Map<String, Object> map = service.selectMyPageBoard
+						(loginMember, cp);
+		
+		model.addAttribute("map", map);
+		
+		return "member/myPageBoard";
 	}
 	
 	//회원 탈퇴
 	@GetMapping("/secession")
 	public String secession() {
-		return "member/myPage-secession";
+		return "member/myPageSecession";
 	}
 	
 	//회원 탈퇴 
@@ -85,8 +104,5 @@ public class MyPageController {
 		//	status.complate(); //"loginMember" 무효화
 
 	}
-	
-	
-	
 	
 }

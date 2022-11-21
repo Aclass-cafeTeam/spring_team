@@ -20,7 +20,7 @@
         <div id="mainArea">
 
             <!-- myPage-header -->
-            <jsp:include page="/WEB-INF/views/member/myPage-header.jsp"/>
+            <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
             
             <!-- 프로필 이미지 수정 -->
             <section class="myPage-main">

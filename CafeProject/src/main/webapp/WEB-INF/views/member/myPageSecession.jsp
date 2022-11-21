@@ -21,7 +21,7 @@
         <div id="mainArea">
 
             <!-- myPage-header -->
-            <jsp:include page="/WEB-INF/views/member/myPage-header.jsp"/>
+            <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
 
             <!-- 회원 탈퇴 -->
             <section class="myPage-main">

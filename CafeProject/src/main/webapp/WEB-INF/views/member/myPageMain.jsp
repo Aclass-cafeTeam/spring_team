@@ -20,7 +20,7 @@
         <div id="mainArea">
 
             <!-- myPage-header -->
-            <jsp:include page="/WEB-INF/views/member/myPage-header.jsp"/>
+            <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
 
             
             <!-- 마이페이지 내정보 -->
@@ -43,8 +43,6 @@
                         <div class="myPage-subTitle"><label>내 정보</label></div>
                         
                         <span class="myPage-script">정보 변경 후 수정 버튼을 누르세요.</span>
-
-                        <!-- 프로필 이미지 변경 추가해야함 -->
 
                         <div class="myPage-subTitle">
                             <label>아이디(이메일)</label>
