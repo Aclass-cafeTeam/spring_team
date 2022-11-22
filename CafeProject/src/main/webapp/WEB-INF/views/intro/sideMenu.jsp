@@ -90,7 +90,7 @@
                 <c:when test="${!empty sessionScope.loginMember}">
                     
     
-                    <div  class="cafe-info" id="cafe-info">
+                    <div  class="basicCafe-info cafe-info" id="cafe-info"><%-- tyrtyrtyrttyyyytttttttttttttttttttttttttttttttttttttttttttttttttttt --%>
                         <span>
                             <div id="cafe">
                                 <ul>
@@ -145,7 +145,7 @@
                     
                 <!------------------------- 나의활동 ------------------------->
                 
-                <div class="my-active" id="my-active">
+                <div class="basicMy-active my-active" id="my-active">
                     <span>
                         <div id="side-profile-main">
                             <div id="side-profile1">

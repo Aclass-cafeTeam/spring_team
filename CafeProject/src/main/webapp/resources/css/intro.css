@@ -101,6 +101,7 @@ a{
     width: 340px;
     display: flex;
     border-bottom: 1px solid #f2f2f2;
+    align-content: space-between;
 }
 
 /* 공지제목 */
