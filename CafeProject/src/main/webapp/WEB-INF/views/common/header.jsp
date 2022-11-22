@@ -33,7 +33,7 @@
 
             <section id="pic">
 
-                <img src="../resources/images/mainIMG.png">
+                <img src="/resources/images/mainIMG.png">
                 <section class="cafe_project_size">
                     <div class="cafe_project">
                         <div id="cafe_project_name">Train_Koraila</div>
