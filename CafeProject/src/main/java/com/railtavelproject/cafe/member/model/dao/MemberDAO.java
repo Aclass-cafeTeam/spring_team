@@ -6,10 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.member.model.vo.Member;
 
-/**
- * @author shuxi
- *
- */
+
 @Repository
 public class MemberDAO {
 
@@ -28,9 +25,9 @@ public class MemberDAO {
 
   
 	/** 회원가입 DAO
-		 * @param member
-		 * @return result
-		 */
+	 * @param member
+	 * @return result
+	 */
 	public int signUp(Member member) {
 		return sqlSession.insert("memberMapper.signUp", member);
 	}

@@ -31,9 +31,4 @@ public class Member {
 	   private int logHistoryNo; // 로그인 이력 번호
 	   private String loginDate; // 로그인 시간 
 
-	      
-	   private int boardCount; // 게시글수
-	   private int commentCount; // 댓글수
-	   private int visitCount; // 방문수
-
 }

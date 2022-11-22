@@ -38,7 +38,7 @@
 
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-lock"></i></div>
-                            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호"  maxlength="20" >
+                            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" maxlength="20" onKeyPress="return checkCapsLock(event)" >
                         </div>
                         
                     </div>

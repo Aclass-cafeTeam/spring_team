@@ -101,6 +101,7 @@ select {
     outline: 0;
     box-shadow: none;
     border: 0!important;
+    border-radius: 5px;
     background-color: #f5f6f8;
     /* background-image: none; */
 

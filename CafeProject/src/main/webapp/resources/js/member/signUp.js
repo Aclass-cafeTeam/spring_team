@@ -10,21 +10,13 @@ const checkObj = {
 // 회원 가입 양식이 제출되었을 때
 function signUpValidate() {
     for(let key in checkObj){
-        let str;
         // checkObj 속성 하나를 꺼내 값을 검사했는데 false인 경우 
         if(!checkObj[key]) {
-            switch(key){
-                case "memberEmail" : str = "중복확인필요."; break;
-                case "memberPw" : str = "비밀번호가 유효하지 않습니다."; break;
-                case "memberPwConfirm" : str = "비밀번호가 유효하지 않습니다."; break;
-                case "memberNickname" : str = "닉네임이 유효하지 않습니다."; break;
-                case "authKey": str = "인증이 완료되지 않았습니다."; break;
-            }
             document.getElementById(key).focus(); // 유효하지 않은 입력포커스로 이동
             return false;
         }
     }
-    return true;    
+    return true; 
 }
 
 
@@ -135,6 +127,7 @@ memberPw.addEventListener("input", function(){
         }
 
     } else { 
+
         pwMessage.innerText = "입력하신 비밀번호가 유효하지 않습니다.";
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
@@ -151,6 +144,7 @@ memberPwConfirm.addEventListener("input", function(){
     if(memberPw.value.trim().length == 0) {
         pwMessage.innerText = "비밀번호를 입력하세요.";
         this.value="";
+        memberPw.focus();
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
 
@@ -163,6 +157,7 @@ memberPwConfirm.addEventListener("input", function(){
         // 비밀번호와 비밀번호 확인이 같은지 검사
         if( memberPwConfirm.value == memberPw.value ) {
             pwConfirm.innerText = "입력하신 비밀번호가 일치합니다."
+            pwMessage.innerHTML = "";
             pwConfirm.classList.add("confirm");
             pwConfirm.classList.remove("error");
             checkObj.memberPwConfirm = true;
@@ -177,11 +172,11 @@ memberPwConfirm.addEventListener("input", function(){
         }
 
     } else { // 비밀번호가 유효하지 않은 경우
+        
         checkObj.memberPwConfirm = false;
     }
 
 });
-
 
 
 
@@ -239,7 +234,7 @@ memberNickname.addEventListener("input", function(){
         checkObj.memberNickname = false;
     }
 
-    
+
 });
 
 
@@ -249,3 +244,11 @@ const verifyFrm = document.querySelector(".verify-frm");
 verifyBtn.addEventListener("click", function(){
     verifyFrm.style.display = "flex";
 });
+
+
+// google captcha
+var onloadCallback = function() {
+    grecaptcha.render('reCAPTCHA', 
+    {'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'});
+};
+
