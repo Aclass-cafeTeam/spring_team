@@ -46,3 +46,29 @@ btn2.addEventListener("click", function(){
 
 });
 
+<<<<<<< Updated upstream
+=======
+
+btn1.addEventListener("click", function(){
+    
+    
+ 
+    const info = document.querySelectorAll("#content > .cafe-info")[0];
+    const info1 = Array.from(info);
+   
+
+    const active = document.querySelectorAll("#content > .my-active")[0];
+    const active1 = Array.from(active);
+    
+    
+
+    if(active.className == "my-active"){
+        active.classList.remove("my-active");
+        active.classList.remove("my-active2");
+        
+        info.classList.add("cafe-info");
+        info.classList.add("cafe-info2");
+    }
+
+});
+>>>>>>> Stashed changes
