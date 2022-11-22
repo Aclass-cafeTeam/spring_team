@@ -174,12 +174,26 @@ FROM (SELECT NVL(COMMENT_COUNT,0) COMMENT_COUNT, MEMBER_NO ,MEMBER_LEVEL_NO
 FROM "MEMBER" m
 LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 FROM "COMMENT" c 
+<if test ="periodOption == 1">
+	WHERE to_char(C_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+</if>
 GROUP BY MEMBER_NO  
 ORDER BY 2)
 USING(MEMBER_NO)
 WHERE MEMBER_DEL_FL IN ('N','S'))
-WHERE COMMENT_COUNT >= 0
-AND MEMBER_LEVEL_NO = 2);
+<where>
+	<if test ="aboveOption == 1">
+		COMMENT_COUNT <![CDATA[>=]]> 0
+	</if>
+	<if test ="aboveOption == 0">
+		COMMENT_COUNT <![CDATA[<=]]> 0
+	</if>
+	
+	<if test ="memberLevelNo != null">
+		AND MEMBER_LEVEL_NO = 2)
+	</if>
+</where>
+
 --------------------------------------------------
 ---------------------------------------------------------------
 --댓글 수에 따라 멤버
@@ -196,9 +210,14 @@ USING(MEMBER_NO)
 WHERE MEMBER_DEL_FL IN ('N','S'))
 WHERE COMMENT_COUNT >=0
 );
---
+--memberLevelNo(234)     0이면 등급 따지지 않고 전체 멤버 조회!!!!!
+--periodOption(0 전체 1 최신)
+--articleCountInput (댓글수)    aboveOption(1 이상 0 이하 )
 --AND MEMBER_LEVEL_NO = 2
 --------------------------------------------------
+----------------------------------------------------------------------------
+
+--------------------------------------------------------------------------
 ---------------------------------------------------------------------------
 SELECT *
 FROM 
@@ -226,13 +245,56 @@ ORDER BY 2)
 USING(MEMBER_NO)
 LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 FROM "COMMENT" c 
+<if test ="periodOption == 1">
+	WHERE to_char(C_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+</if>
 GROUP BY MEMBER_NO  
 ORDER BY 2)
 USING(MEMBER_NO)
 WHERE  MEMBER_DEL_FL IN ('N','Y')
 ORDER BY MEMBER_NICKNAME)
-WHERE COMMENT_COUNT >= 0
-AND MEMBER_LEVEL_NO = 2;
+<where>
+	<if test ="aboveOption == 1">
+		COMMENT_COUNT <![CDATA[>=]]> 0
+	</if>
+	<if test ="aboveOption == 0">
+		COMMENT_COUNT <![CDATA[<=]]> 0
+	</if>
+	
+	<if test ="memberLevelNo != null">
+		AND MEMBER_LEVEL_NO = 2)
+	</if>
+</where>
+
+--memberLevelNo(234)     0이면 등급 따지지 않고 전체 멤버 조회!!!!!
+--periodOption(0 전체 1 최신)
+--articleCountInput (댓글수)    aboveOption(1 이상 0 이하 )
+--AND MEMBER_LEVEL_NO = 2
+SELECT COUNT(*) 
+FROM (SELECT COMMENT_COUNT, MEMBER_NO ,MEMBER_LEVEL_NO
+FROM (SELECT NVL(COMMENT_COUNT,0) COMMENT_COUNT, MEMBER_NO ,MEMBER_LEVEL_NO
+FROM "MEMBER" m
+LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+FROM "COMMENT" c 
+<if test ="periodOption == 1">
+	WHERE to_char(C_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+</if>
+GROUP BY MEMBER_NO  
+ORDER BY 2)
+USING(MEMBER_NO)
+WHERE MEMBER_DEL_FL IN ('N','S'))
+<where>
+	<if test ="aboveOption == 1">
+		COMMENT_COUNT <![CDATA[>=]]> 0
+	</if>
+	<if test ="aboveOption == 0">
+		COMMENT_COUNT <![CDATA[<=]]> 0
+	</if>
+	
+	<if test ="memberLevelNo != null">
+		AND MEMBER_LEVEL_NO = 2)
+	</if>
+</where>
 -----------------------------------------------------
 ---------------------------------------------------------
 ---최근 한달
