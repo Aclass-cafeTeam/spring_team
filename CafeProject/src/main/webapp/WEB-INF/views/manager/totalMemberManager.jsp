@@ -199,14 +199,14 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailVisitCount" class="VisitCountfrmSearch" method="get" name="VisitCountfrmSearch" id="VisitCountfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="2">
-                        <select class="_period periodVisit">
+                        <select class="_period periodVisit" name="periodOption" id="periodOption">
                         <option value="0">전체기간</option>
                         <option value="1">최근1개월</option>
                         </select>
                         <span class="txt txt2 _txtPeriod">동안</span>
                         <label for="_visitCountInput">방문수</label>
-                        <input type="text" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
-                        <select  class="_above aboveVisit">
+                        <input type="text" name="visitCountInput" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
+                        <select  class="_above aboveVisit" name="aboveOption" id="aboveOption">
                         <option value="1">이상</option>
                         <option value="0">이하</option>
                         </select>
