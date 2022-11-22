@@ -38,16 +38,16 @@ public class MyPageDAO {
 	 * @param myBoardCode
 	 * @return
 	 */
-	public int getListCount(Member loginMember) {
-		return sqlSession.selectOne("myPageMapper.getListCount", loginMember);
+	public int getListCount(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.getListCount", memberNo);
 	}
 
-	public List<MyPageBoard> selectMyPageBoard(MyPagePagination pagination, Member loginMember) {
+	public List<MyPageBoard> selectMyPageBoard(MyPagePagination pagination, int memberNo) {
 		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		
-		return sqlSession.selectList("myPageMapper.selectMyPageBoard", loginMember, rowBounds);
+		return sqlSession.selectList("myPageMapper.selectMyPageBoard", memberNo, rowBounds);
 	}
 
 }

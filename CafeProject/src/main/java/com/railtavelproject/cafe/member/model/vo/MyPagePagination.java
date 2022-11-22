@@ -161,7 +161,7 @@ public class MyPagePagination {
       // prevPage : 이전 페이지네이션 목록의 끝 번호
       // nextPage : 다음 페이지네이션 목록의 시작 번호
       
-      if(currentPage <= 10)   prevPage = 1;
+      if(currentPage <= 5)   prevPage = 1;
       else
          //prevPage = (currentPage - 1) / pageSize * pageSize;
          prevPage = startPage - 1;

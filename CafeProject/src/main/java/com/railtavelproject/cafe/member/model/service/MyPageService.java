@@ -18,6 +18,6 @@ public interface MyPageService {
 	 * @param cp
 	 * @return map
 	 */
-	Map<String, Object> selectMyPageBoard(Member loginMember, int cp);
+	Map<String, Object> selectMyPageBoard(int memberNo, int cp);
 
 }

@@ -20,7 +20,7 @@ import com.railtavelproject.cafe.member.model.vo.Member;
 
 
 @RequestMapping("/member/myPage")
-@SessionAttributes("loginMember") // 탈퇴 성공 시 로그아웃에 사용
+@SessionAttributes({"loginMember"}) // 로그인 멤버 정보를 얻어오는 어노테이션
 @Controller
 public class MyPageController {
 	
@@ -46,8 +46,8 @@ public class MyPageController {
 			Model model,
 			@RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
 		
-		Map<String, Object> map = service.selectMyPageBoard
-						(loginMember, cp);
+		Map<String, Object> map = null;
+		map = service.selectMyPageBoard(loginMember.getMemberNo(), cp);
 		
 		model.addAttribute("map", map);
 		

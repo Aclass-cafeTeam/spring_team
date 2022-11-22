@@ -61,17 +61,28 @@
                 </table>
             </div>
             <div class="pagination-area">
+
                 <ul class="myPage-pagination">
                 
-                    <li><a href="#">&lt;</a></li>
-                    
-                    <li><a class="myPage-current">1</a></li>
-
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>
-                    <li><a href="#">5</a></li>
-                    <li><a href="#">&gt;</a></li>
+                    <!-- 이전 목록 마지막 번호로 이동 --> 
+                    <li><a href="?cp=${pagination.prevPage}">&laquo;</a></li>
+                    <%-- /member/myPage/myBoard --%>
+                    <!-- 특정 페이지로 이동 -->
+					<c:forEach var="i" begin="${pagination.startPage}" 
+                        end="${pagination.endPage}" step="1">
+                        <c:choose>
+                            <c:when test="${i==pagination.currentPage}">
+                                <%-- 현재 보고있는 페이지 --%>
+                                <li><a class="myPage-current">${i}</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <!-- 현재 페이지를 제외한 나머지 -->
+                                <li><a href="?cp=${i}">${i}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <!-- 다음 목록 시작 번호로 이동 -->
+                    <li><a href="?cp=${pagination.nextPage}">&raquo;</a></li>
                     
                 </ul>
             </div>
