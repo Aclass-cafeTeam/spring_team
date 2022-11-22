@@ -15,7 +15,7 @@
             <div id="content">
                 <ul id="ul-1">
                     <li>
-                        <a href="#"><img src="../resources/images/즐찾.PNG" width="26px" height="26px"></a>
+                        <a href="#"><img src="/resources/images/즐찾.PNG" width="26px" height="26px"></a>
                     </li>
                     <li><a href="#" id="btn1">
                             <p>카페정보</p>
@@ -32,7 +32,7 @@
                     <span>
                         <div id="cafe">
                             <ul>
-                                <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
+                                <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
                                             height="58px" /></a></li>
                                 <li id="name">
                                     <div id="inline">
@@ -46,7 +46,7 @@
                             <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                             <div class="managerLink">
                                 <div class="managerLinkBox">
-                                    <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                    <a href="/manager/managerMain.jsp"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
                                 </div>
                             </div>
                             </c:when>
@@ -55,12 +55,12 @@
 
                         <div id="cafe-member">
                             <div id="cafe-grade">
-                                <img src="../resources/images/카페등급.PNG" width="17px">
+                                <img src="/resources/images/카페등급.PNG" width="17px">
                                 <a><a href="#">나무3단계
                             </div>
 
                             <div id="member-count">
-                                <img src="../resources/images/회원수.PNG" height="16px">
+                                <img src="/resources/images/회원수.PNG" height="16px">
                                 <a href="#" id="count">657,879</a>
                                 <a href="#" id="count1">초대하기</a>
                             </div>
@@ -68,7 +68,7 @@
 
                         <div id="count-3">
                             <div id="star">
-                                <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                                <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
                                 <div id="star1">즐겨찾는 멤버</div>
                                 <div id="star-count">76,289명</div>
                             </div>
@@ -94,7 +94,7 @@
                         <span>
                             <div id="cafe">
                                 <ul>
-                                    <li id="logo"><a href="#"><img src="../resources/images/고양아.jpg" width="58px"
+                                    <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
                                                 height="58px" /></a></li>
                                     <li id="name">
                                         <div id="inline">
@@ -108,7 +108,7 @@
                                 <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                                 <div class="managerLink">
                                     <div class="managerLinkBox">
-                                        <a href="/manager/managerMain"><img src="../../../resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                        <a href="/manager/managerMain"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
                                     </div>
                                 </div>
                                 </c:when>
@@ -117,12 +117,12 @@
             
                             <div id="cafe-member">
                                 <div id="cafe-grade">
-                                    <img src="../resources/images/카페등급.PNG" width="17px">
+                                    <img src="/resources/images/카페등급.PNG" width="17px">
                                     <a><a href="#">나무3단계
                                 </div>
             
                                 <div id="member-count">
-                                    <img src="../resources/images/회원수.PNG" height="16px">
+                                    <img src="/resources/images/회원수.PNG" height="16px">
                                     <a href="#" id="count">657,879</a>
                                     <a href="#" id="count1">초대하기</a>
                                 </div>
@@ -130,7 +130,7 @@
             
                             <div id="count-3">
                                 <div id="star">
-                                    <div id="star-img"><img src="../resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                                    <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
                                     <div id="star1">즐겨찾는 멤버</div>
                                     <div id="star-count">76,289명</div>
                                 </div>
@@ -152,9 +152,9 @@
                                 <ul>
                                     <li>
                                         <div id="side-profile">
-                                            <a href="/member/myPage/profile"><img src="../../../resources/images/settings.png"
+                                            <a href="/member/myPage/profile"><img src="/resources/images/settings.png"
                                                     id="setting-icon"></a>
-                                            <div id="profile-box"><img src="../../../resources/images/고양아.jpg"
+                                            <div id="profile-box"><img src="/resources/images/고양아.jpg"
                                                     id="profile-img"></div>
                                         </div>
                                         <div id="profile-name">
@@ -168,16 +168,16 @@
                             <div id="side-profile2">
                                 <ul>
                                     <li>
-                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">방문</span>
+                                        <span id="info-data"><img src="/resources/images/게시판.PNG">방문</span>
                                         <em>14<span>회</span></em>
                                     </li>
                                     <li>
-                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴 글
+                                        <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴 글
                                             보기</span>
                                         <em>0<span>개</span></em>
                                     </li>
                                     <li>
-                                        <span id="info-data"><img src="../../../resources/images/게시판.PNG">내가 쓴
+                                        <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴
                                             댓글보기</span>
                                         <em>0<span>개</span></em>
                                     </li>
@@ -222,9 +222,9 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-top">
-                        <li id="total-post"><img src="../resources/images/게시판.PNG" id="border-img"><a href="#">전체글보기</a>
+                        <li id="total-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">전체글보기</a>
                         </li>
-                        <li id="best-post"><img src="../resources/images/게시판.PNG" id="border-img"><a href="#">베스트게시글</a>
+                        <li id="best-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">베스트게시글</a>
                         </li>
                     </ul>
                 </div>
@@ -241,10 +241,10 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-basic">
-                        <li id="notice"><img src="../resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a></li>
-                        <li id="board-any"><img src="../resources/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
+                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a></li>
+                        <li id="board-any"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
                         </li>
-                        <li id="board-gradeup"><img src="../resources/images/게시판.PNG" id="border-img"><a
+                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a
                                 href="#">등업게시판</a></li>
                     </ul>
                 </div>
@@ -256,27 +256,27 @@
                     <div>
                         <ul id="board-menu">
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">제주 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">충청권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">강원권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">전라권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">경상권 여행지</a>
                             </li>
                             <li class="board">
-                                <img src="../resources/images/게시판.PNG" id="border-img">
+                                <img src="/resources/images/게시판.PNG" id="border-img">
                                 <a href="#">서울/수도권 나들이</a>
                             </li>
                         </ul>
@@ -288,11 +288,11 @@
 
                     <ul id="board-menu">
                         <li class="board">
-                            <img src="../resources/images/게시판.PNG" id="border-img">
+                            <img src="/resources/images/게시판.PNG" id="border-img">
                             <a href="#">국내 여행 Q/A</a>
                         </li>
                         <li class="board">
-                            <img src="../resources/images/게시판.PNG" id="border-img">
+                            <img src="/resources/images/게시판.PNG" id="border-img">
                             <a href="#">기타 Q/A</a>
                         </li>
                     </ul>
@@ -302,11 +302,11 @@
                     <div name="board-title">■ 갤러리 자료</div>
                     <ul id="board-menu">
                         <li class="board">
-                            <img src="../resources/images/앨범.PNG" id="border-img">
+                            <img src="/resources/images/앨범.PNG" id="border-img">
                             <a href="#">여행 후기</a>
                         </li>
                         <li class="board">
-                            <img src="../resources/images/앨범.PNG" id="border-img">
+                            <img src="/resources/images/앨범.PNG" id="border-img">
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
