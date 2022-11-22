@@ -52,6 +52,13 @@
 			AND MEMBER_EMAIL = #{memberEmail}
   </select>
   
+  <!-- 회원가입 -->
+  <insert id="signUp" parameterType="Member">
+  		INSERT INTO MEMBER 
+  		VALUES(SEQ_MEMBER_NO.NEXTVAL, #{memberEmail}, #{memberPw}, #{memberNickname}, 
+  		#{memberResidence}, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT)
+  </insert>
+  
 
   
 </mapper>
