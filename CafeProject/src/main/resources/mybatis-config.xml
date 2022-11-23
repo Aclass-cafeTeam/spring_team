@@ -21,6 +21,7 @@
 		<!-- <typeAlias type="edu.kh.project.member.model.vo.Member" alias="Member"/> -->
 		<!-- /CafeProject/src/main/java/com/railtavelproject/cafe/member/model/vo/Member.java -->
 		<typeAlias type="com.railtavelproject.cafe.member.model.vo.Member" alias="Member"/>
+		<typeAlias type="com.railtavelproject.cafe.member.model.vo.MyPageBoard" alias="MyPageBoard"/>
 	</typeAliases>
 	
 	<!-- mapper 파일(SQL 작성되는파일) 위치 등록 부분 -->
