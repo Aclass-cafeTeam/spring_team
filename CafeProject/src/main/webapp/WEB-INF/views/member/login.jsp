@@ -50,7 +50,7 @@
                     
                     <div class="saveId-area">
                         <label for="saveId">
-                            <input type="checkbox" name="saveId" id="saveId" ${temp} }>
+                            <input type="checkbox" name="saveId" id="saveId" ${temp}>
                             <label for="saveId"> <i class="fas fa-check"></i>로그인 상태 유지</label>
                         </label>
                     </div>

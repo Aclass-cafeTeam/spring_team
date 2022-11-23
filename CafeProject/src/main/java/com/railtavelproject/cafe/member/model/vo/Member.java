@@ -28,7 +28,11 @@ public class Member {
 	   private String memberLevelName; // 등급명   
 	   private String memberLevelImage; // 회원 등급 이미지
 	   
+	   private int logHistoryCount; // 회원 방문수
+	   private int memberBoardCount; // 회원 게시글수
+	   private int memberCommentCount; // 회원 댓글수
+	   
 	   private int logHistoryNo; // 로그인 이력 번호
-	   private String loginDate; // 로그인 시간 
-
+	   private String loginDate; // 로그인 시간
+	   
 }

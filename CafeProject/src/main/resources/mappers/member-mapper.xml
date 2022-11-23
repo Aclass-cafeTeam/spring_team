@@ -2,39 +2,83 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="memberMapper">
 
-<resultMap type="Member" id="member_rm">
-<!-- resultMap의 type="Member" -> mybatis.config에서 지정 -->
-
-	<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
-	<id property="memberNo" column="MEMBER_NO"/>
+	<resultMap type="Member" id="member_rm">
+	<!-- resultMap의 type="Member" -> mybatis.config에서 지정 -->
 	
-	<!-- 나머지 일반 컬럼 -->
-	 <result property="memberEmail" column="MEMBER_EMAIL" />
-	 <result property="memberPw" column="MEMBER_PW" />
-	 <result property="memberNickname" column="MEMBER_NICKNAME" />
-	 <result property="memberResidence" column="MEMBER_RESIDENCE" />
-	 <result property="profileImage" column="PROFILE_IMG" />
-	 <result property="enrollDate" column="ENROLL_DATE" />
-	 <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
-	 <result property="authorityNo" column="AUTHORITY_NO" />
-	 <result property="authorityName" column="AUTHORITY_NAME" />
-	 <result property="authorityImage" column="AUTHORITY_IMG" />
-	 <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
-	 <result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
-	 <result property="memberLevelImage" column="MEMBER_LEVEL_IMG" />
-	 <result property="boardCount" column="BOARD_COUNT" />
-	 <result property="commentCount" column="COMMENT_COUNT" />
-	 <result property="visitCount" column="VISIT_COUNT" />
-</resultMap>
+		<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
+		<id property="memberNo" column="MEMBER_NO"/>
+		
+		<!-- 나머지 일반 컬럼 -->
+		 <result property="memberEmail" column="MEMBER_EMAIL" />
+		 <result property="memberPw" column="MEMBER_PW" />
+		 <result property="memberNickname" column="MEMBER_NICKNAME" />
+		 <result property="memberResidence" column="MEMBER_RESIDENCE" />
+		 <result property="profileImage" column="PROFILE_IMG" />
+		 <result property="enrollDate" column="ENROLL_DATE" />
+		 <result property="memberDeleteFlag" column="MEMBER_DEL_FL" />
+		 <result property="authorityNo" column="AUTHORITY_NO" />
+		 <result property="authorityName" column="AUTHORITY_NAME" />
+		 <result property="authorityImage" column="AUTHORITY_IMG" />
+		 <result property="memberLevelNo" column="MEMBER_LEVEL_NO" />
+		 <result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
+		 <result property="memberLevelImage" column="MEMBER_LEVEL_IMG" />
+		 <result property="logHistoryCount" column="LOGHISTORY_COUNT" />
+		 <result property="memberBoardCount" column="MEMBER_BOARD_COUNT" />
+		 <result property="memberCommentCount" column="MEMBER_COMMENT_COUNT" />
+	</resultMap>
+	
+	
+	
+	<!-- MemberLevel resultMap -->
+	<resultMap type="MemberLevel" id="memberLevel_rm">
+		<id property="memberLevelNo" column="MEMBER_LEVEL_NO"/>
+		
+		<result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
+		<result property="memberLevelImage" column="MEMBER_LEVEL_IMG" />
+		<result property="boardCount" column="BOARD_COUNT" />
+		<result property="commentCount" column="COMMENT_COUNT" />
+		<result property="visitCount" column="VISIT_COUNT" />
+	</resultMap>
+
+
 
   <!-- 로그인 -->
   <select id="login" parameterType="string" resultMap="member_rm">
-		  SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_PW, MEMBER_NICKNAME, MEMBER_RESIDENCE, PROFILE_IMG, AUTHORITY_NO,
-		  TO_CHAR(ENROLL_DATE, 'YYYY"년" MM"월" DD"일"') AS ENROLL_DATE,MEMBER_LEVEL_NO
-			FROM "MEMBER"
-			WHERE MEMBER_DEL_FL = 'N'
+		  SELECT MEMBER_NO, MEMBER_EMAIL, MEMBER_PW, MEMBER_NICKNAME, MEMBER_RESIDENCE, PROFILE_IMG, MEMBER_DEL_FL
+			,TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD.') ENROLL_DATE 
+			,MEMBER_LEVEL_NO
+			,(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL L WHERE L.MEMBER_LEVEL_NO = M.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+			,(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL L WHERE L.MEMBER_LEVEL_NO = M.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG
+			,AUTHORITY_NO
+			,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+			,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+			,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+			,NVL(BOARD_COUNT,0) MEMBER_BOARD_COUNT
+			,NVL(COMMENT_COUNT,0) MEMBER_COMMENT_COUNT
+			FROM "MEMBER" M
+			LEFT JOIN (SELECT MEMBER_NO, COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+			FROM LOGIN_HISTORY 
+			GROUP BY MEMBER_NO
+			ORDER BY 1) USING(MEMBER_NO)
+			LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+			FROM BOARD 
+			GROUP BY MEMBER_NO
+			ORDER BY 2)
+			USING(MEMBER_NO)
+			LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT, MEMBER_NO 
+			FROM "COMMENT" 
+			GROUP BY MEMBER_NO  
+			ORDER BY 2)
+			USING(MEMBER_NO)
+			WHERE  MEMBER_DEL_FL = 'N'
 			AND MEMBER_EMAIL = #{memberEmail}
   </select>
+  
+  <!-- 로그인 이력 추가 -->
+  <insert id="insertLogHistory">
+  	INSERT INTO LOGIN_HISTORY VALUES(SEQ_LOG_HISTORY_NO.NEXTVAL,DEFAULT,#{memberNo})
+  </insert>
+  
   
   <!-- 회원가입 -->
   <insert id="signUp" parameterType="Member">
@@ -59,6 +103,12 @@
 		FROM MEMBER
 		WHERE MEMBER_NICKNAME = #{memberNickname}
 		AND MEMBER_DEL_FL = 'N'
+	</select>
+	
+	<!-- 멤버등급 안내 보기 -->
+	<select id="viewMemberLevel" resultType="map">
+		SELECT * FROM MEMBER_LEVEL
+		ORDER BY MEMBER_LEVEL_NO
 	</select>
   
 

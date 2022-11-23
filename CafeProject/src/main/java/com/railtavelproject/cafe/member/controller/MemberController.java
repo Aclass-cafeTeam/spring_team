@@ -1,4 +1,7 @@
 package com.railtavelproject.cafe.member.controller;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -58,29 +61,38 @@ public class MemberController {
 		// 로그인 성공과 실패에 따른 결과 -> 세션이 필요
 		// 로그인 실패시 "아이디 또는 비밀번호가 일치하지 않습니다" 세션에 추가
 		if(loginMember != null) { 
-			path = "/"; // 메인페이지
 			
-			model.addAttribute("loginMember", loginMember);
+			// 로그인 이력 추가(INSERT)
+			int memberNo = loginMember.getMemberNo();
+			int result = service.insertLogHistory(memberNo);
 			
-			
-			// 쿠키 생성
-			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
-			
-			// 쿠키 유지 시간 지정
-			if(saveId != null) { 
-				cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+			if (result > 0 ) {
 				
-			} else {
-				cookie.setMaxAge(0);
-			}
-			
-			cookie.setPath("/"); 
-			resp.addCookie(cookie);
-			
+				path = "/"; // 메인페이지로 이동
+
+				loginMember.setLogHistoryCount(loginMember.getLogHistoryCount() +1); // 로그인 이력 수 +1
+				model.addAttribute("loginMember", loginMember);
+				
+				// 쿠키 생성
+				Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+				
+				// 쿠키 유지 시간 지정
+				if(saveId != null) { 
+					cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+					
+				} else {
+					cookie.setMaxAge(0);
+				}
+				
+				cookie.setPath("/"); 
+				resp.addCookie(cookie);
+				
+			} 
 			
 		} else {
 			path = referer; // 로그인 요청 전 페이지 주소(referer)
 			ra.addFlashAttribute( "message", "아이디 또는 비밀번호가 일치하지 않습니다");
+			
 		}
 		
 		return "redirect:" + path;
@@ -157,5 +169,17 @@ public class MemberController {
 		
 		return "common/error";
 	}
+	
+	
+	// 멤버등급 안내보기
+	@GetMapping("/cafe/memberLevel")
+	public String viewMemberLevel(Model model) {
+		
+		List<Map<String, Object>> memberLevel = service.viewMemberLevel();
+		model.addAttribute("memberLevel",memberLevel);
+		
+		return "member/viewMemberLevel";
+	}
+
 	
 }
