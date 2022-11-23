@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <table id="intro-board-list">
-                                    <tbody>
+                                    <tbody id="tbody">
                                         <!-- 공지글 -->
                                         <tr id="intro-notice-list">
                                             <td id="board-content">
@@ -81,222 +81,26 @@
                                             </td>
                                         </tr>
                                         <!-- 게시글 -->
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">3게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">4게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">5게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">6게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">7게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">8게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">9게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">10게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">11게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">12게시글게시글게시글게시글게시글게시글게시글게시글게시글게시글게시글게시글게시글게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">13게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">14게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">15게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">16게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">17게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">18게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">19게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">20게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">21게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">22게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">23게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">24게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">25게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td id="board-content">
-                                                <div id="board-dot">ㆍ</div>
-                                                <a href="#"><div id="board-name">26게시글</div></a>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
+                                        <c:choose>
+                                            <c:when test="${empty map.introBoardList}">
+                                                <div>안돼</div>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forEach var="introBoard" items="${map.introBoardList}">
+                                                    <tr id="boardTitle">
+                                                        <td id="board-content">
+                                                            <div id="board-dot">ㆍ</div>
+                                                            <a href="#"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                        </td>
+                                                        <td id="board-view">
+                                                            ${introBoard.readCount}
+                                                        </td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </c:otherwise>
+                                            
+                                        </c:choose>
+                                        
                                     </tbody>
                                 </table>
                             </div>

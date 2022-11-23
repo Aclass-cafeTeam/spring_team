@@ -90,7 +90,7 @@
                 <c:when test="${!empty sessionScope.loginMember}">
                     
     
-                    <div  class="cafe-info" id="cafe-info">
+                    <div  class="basicCafe-info cafe-info" id="cafe-info"><%-- tyrtyrtyrttyyyytttttttttttttttttttttttttttttttttttttttttttttttttttt --%>
                         <span>
                             <div id="cafe">
                                 <ul>
@@ -145,7 +145,7 @@
                     
                 <!------------------------- 나의활동 ------------------------->
                 
-                <div class="my-active" id="my-active">
+                <div class="basicMy-active my-active" id="my-active">
                     <span>
                         <div id="side-profile-main">
                             <div id="side-profile1">
@@ -161,8 +161,8 @@
                                             <a href="/member/myPage/info" id="memberNickname">${loginMember.memberNickname}</a>
                                         </div>
                                     </li>
-                                    <li id="signUp-date">가입일 <em>${loginMember.enrollDate}</em></li>
-                                    <li id="profile-grade"><!-- 회원 등급명 --> <a href="/cafe/memberLevel" target="_blank">멤버등급 안내</a></li>
+                                    <li id="signUp-date">가입 <em>2022.10.17.</em></li>
+                                    <li id="profile-grade"><em>${loginMember.memberLevelName}</em> <a href="">멤버등급 안내</a></li>
                                 </ul>
                             </div>
                             <div id="side-profile2">
@@ -527,9 +527,11 @@
 
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
 
-            <section id="delete">
-                <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
-            </section>
+            <c:if test="${!empty sessionScope.loginMember}">
+                <section id="delete">
+                    <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
+                </section>
+            </c:if>
 
 
         </section>
