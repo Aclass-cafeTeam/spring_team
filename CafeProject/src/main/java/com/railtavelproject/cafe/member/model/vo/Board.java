@@ -25,7 +25,7 @@ public class Board {
 	   private String memberName; // 게시글 작성자 이름 
 	   private int memberLevelNo;   // 등급번호   MEMBER_LEVEL_NO
 	   
-	   private List<Comment> commentList; // 댓글과 관련된 List
+	   private List<MyPageComment> myPageCommentList; // 댓글과 관련된 List
 
 	   private String boardLike; // 좋아요기능여부   BOARD_LIKE_YN
 	   

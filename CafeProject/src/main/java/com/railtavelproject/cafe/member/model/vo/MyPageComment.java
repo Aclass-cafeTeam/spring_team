@@ -1,6 +1,13 @@
 package com.railtavelproject.cafe.member.model.vo;
 
-public class Comment {
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class MyPageComment {
 	   private int commentNo; // 댓글 번호   COMMENT_NO
 	   private String commentContent; // 댓글 내용   COMMENT_CONTENT
 	   private int memberNo; // 댓글 작성자 번호
