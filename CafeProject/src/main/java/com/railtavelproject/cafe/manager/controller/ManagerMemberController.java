@@ -119,6 +119,7 @@ public class ManagerMemberController {
 			return "manager/totalMemberManager";
 		}
 		
+		//visitCountInput
 		//댓글 상세조회 검색 //countBy=1&periodOption=1&commentCountInput=6&aboveOption=1#
 		@GetMapping("/manager/selectDetailComment")
 		public String selectDetailComment(
@@ -146,6 +147,43 @@ public class ManagerMemberController {
 			
 			Map<String, Object> map = service.selectDetailComment(periodOption,commentCountInput,aboveOption,memberLevelNoResult,limit, cp);
 			
+			model.addAttribute("memberCount",session.getAttribute("memberCount"));
+			model.addAttribute("map",map);  //request scope 세팅
+			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
+			model.addAttribute("srchOption", srchOption);
+			model.addAttribute("periodOption", periodOption);
+			model.addAttribute("aboveOption", aboveOption);
+			return "manager/totalMemberManager";
+		}
+		
+
+		//방문수 상세조회 검색 //countBy=1&periodOption=1&visitCountInput=6&aboveOption=1#
+		@GetMapping("/manager/selectDetailVisitCount")
+		public String selectDetailVisitCount(
+			@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
+			@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
+
+			@RequestParam(value="srchOption" , required = false, defaultValue = "0") int srchOption,   //아이디,별명 조회
+			@RequestParam(value="periodOption" , required = false, defaultValue = "0") int periodOption, //0이면 전체 조회 1이면 최근 한달
+			@RequestParam(value="visitCountInput" , required = false, defaultValue = "0") int visitCountInput, //멤버별 게시글 수 
+			@RequestParam(value="aboveOption" , required = false, defaultValue = "1") int aboveOption, //멤버별 게시글 수 이상 or 이하
+			Model model,
+			HttpSession session, 
+			@RequestParam(value="cp" , required = false, defaultValue = "1") int cp) {
+					
+			if(session.getAttribute("memberLevelNoResult") == null) {
+				memberLevelNoResult = 0;
+			}else {
+				memberLevelNoResult = (int) session.getAttribute("memberLevelNoResult");
+				}
+			if(session.getAttribute("limit") == null) {
+				limit = 15;
+			}else {
+				limit = (int) session.getAttribute("limit");
+			}
+					
+			Map<String, Object> map = service.selectDetailVisitCount(periodOption,visitCountInput,aboveOption,memberLevelNoResult,limit, cp);
+					
 			model.addAttribute("memberCount",session.getAttribute("memberCount"));
 			model.addAttribute("map",map);  //request scope 세팅
 			model.addAttribute("memberLevelNoResult", memberLevelNoResult);

@@ -52,7 +52,7 @@ public class ManagerMemberDAO {
    /** 조회하기 전 페이징
  * @return
  */
-public int getListCount() {
+   public int getListCount() {
       return sqlsession.selectOne("managerMapper.memberListCount");
    }
 
@@ -60,23 +60,21 @@ public int getListCount() {
  * @param memberLevelNoResult
  * @return
  */
-public int getSortLevelMemberListCount(int memberLevelNoResult) {
+   public int getSortLevelMemberListCount(int memberLevelNoResult) {
       if(memberLevelNoResult == 0) {
-         System.out.println(memberLevelNoResult+"0이다");
          return sqlsession.selectOne("managerMapper.memberListCount");
       }else {
-    	  System.out.println(memberLevelNoResult+"0이 아니다");
          return sqlsession.selectOne("managerMapper.sortLevelMemberListCount",memberLevelNoResult);
       }
       
    }
 
-   /** 멤버 조회에서 멤버 한 페이지에 몇명 정렬
- * @param memberLevelNo
- * @param pagination
- * @return
- */
-public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagination) {
+	   /** 멤버 조회에서 멤버 한 페이지에 몇명 정렬
+	 * @param memberLevelNo
+	 * @param pagination
+	 * @return
+	 */
+   public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagination) {
       int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
       
       RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
@@ -95,13 +93,16 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
  */
    public List<Member> selectInputMember(int srchOption, String inputMember, Pagination pagination) {
 	   //srchOption 0이면 아이디(Email) 1이면 별명(Nick)
-	 
-	      if(srchOption == 0) {
-	    	  System.out.println(inputMember);
-	         return sqlsession.selectList("managerMapper.selectInputMemberEmail",inputMember);
-	      }else {
-	         return sqlsession.selectList("managerMapper.selectInputMemberNick",inputMember);
-	      }
+	   	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inputMember", inputMember);
+		map.put("srchOption", srchOption);
+		return sqlsession.selectList("managerMapper.selectInputMember",map);
+		/*
+		 * if(srchOption == 0) { return
+		 * sqlsession.selectList("managerMapper.selectInputMemberEmail",inputMember);
+		 * }else { return
+		 * sqlsession.selectList("managerMapper.selectInputMemberNick",inputMember); }
+		 */
    }
 
     /**게시글 수에 따라 멤버 상세조회 전 페이징 
@@ -113,53 +114,14 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
      */
     public int getselectDetailBoardCount(int memberLevelNoResult, int periodOption, int articleCountInput,
 		int aboveOption) {
-    	Member memberTemp = new Member();
-    	memberTemp.setMemberLevelNo(memberLevelNoResult);
-    	memberTemp.setBoardCount(articleCountInput);
     	
-    	if(memberLevelNoResult==0) {
-    		if(periodOption == 0) {
-        		if(aboveOption == 1) {
-        			//작성한 게시글 수 이상 일때 전체 멤버
-        			System.out.println(memberTemp.getMemberLevelNo()+"엥?");
-        	    	System.out.println(memberTemp.getBoardCount());
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCount0",memberTemp);
-        		}else {
-        			//작성한 게시글 수 이하 일때 전체 멤버
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCountDown0",memberTemp);
-        		}
-    	         
-    	    }else {
-    	    	if(aboveOption == 1) {
-    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
-    	    		return sqlsession.selectOne("managerMapper.getselectDetailBoardCount0",memberTemp);
-        		}else {
-        			//작성한 게시글 수 이하 일때 기간 한달 멤버
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardCountDown0",memberTemp);
-        		}
-    	         
-    	    }
-    	}else {
-    		if(periodOption == 0) {
-        		if(aboveOption == 1) {
-        			//작성한 게시글 수 이상 일때 전체 멤버
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCount",memberTemp);
-        		}else {
-        			//작성한 게시글 수 이하 일때 전체 멤버
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardTotalCountDown",memberTemp);
-        		}
-    	         
-    	    }else {
-    	    	if(aboveOption == 1) {
-    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
-    	    		return sqlsession.selectOne("managerMapper.getselectDetailBoardCount",memberTemp);
-        		}else {
-        			//작성한 게시글 수 이하 일때 기간 한달 멤버
-        			return sqlsession.selectOne("managerMapper.getselectDetailBoardCountDown",memberTemp);
-        		}
-    	         
-    	    }
-    	}
+    	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberLevelNo", memberLevelNoResult);
+		map.put("articleCountInput", articleCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
+		return sqlsession.selectOne("managerMapper.getselectDetailBoardCount",map);
+		
     	
  	}
 
@@ -176,50 +138,15 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
 	      
 	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
-	    Member memberTemp = new Member();
-    	memberTemp.setMemberLevelNo(memberLevelNoResult);
-    	memberTemp.setBoardCount(articleCountInput);
-    	if(memberLevelNoResult==0) {
-    		if(periodOption == 0) {
-        		if(aboveOption == 1) {
-        			//작성한 게시글 수 이상 일때 전체 멤버
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotal0",memberTemp,rowBounds);
-        		}else {
-        			//작성한 게시글 수 이하 일때 전체 멤버
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotalDown0",memberTemp,rowBounds);
-        		}
-    	         
-    	    }else {
-    	    	if(aboveOption == 1) {
-    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버
-    	    		return sqlsession.selectList("managerMapper.getselectDetailBoard0",memberTemp,rowBounds);
-        		}else {
-        			//작성한 게시글 수 이하 일때 기간 한달 멤
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardDown0",memberTemp,rowBounds);
-        		}
-    	         
-    	    }
-    	}else {
-    		if(periodOption == 0) {
-        		if(aboveOption == 1) {
-        			//작성한 게시글 수 이상 일때 멤버---등급레벨도
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotal",memberTemp,rowBounds);
-        		}else {
-        			//작성한 게시글 수 이하 일때 멤버---등급레벨도
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardTotalDown",memberTemp,rowBounds);
-        		}
-    	         
-    	    }else {
-    	    	if(aboveOption == 1) {
-    	    		//작성한 게시글 수 이상 일때 기간 한달 멤버---등급레벨도
-    	    		return sqlsession.selectList("managerMapper.getselectDetailBoard",memberTemp,rowBounds);
-        		}else {
-        			//작성한 게시글 수 이하 일때 기간 한달 멤버---등급레벨도
-        			return sqlsession.selectList("managerMapper.getselectDetailBoardDown",memberTemp,rowBounds);
-        		}
-    	         
-    	    }
-    	}
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("memberLevelNo", memberLevelNoResult);
+		map.put("articleCountInput", articleCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
+		
+	    return sqlsession.selectList("managerMapper.getselectDetailBoard",map,rowBounds);
+	    
 		
 	}
 
@@ -238,10 +165,17 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 		map.put("commentCountInput", commentCountInput);
 		map.put("periodOption", periodOption);
 		map.put("aboveOption", aboveOption);
-		System.out.println();
 		return sqlsession.selectOne("managerMapper.getselectDetailCommentCount",map);
 	}
 
+	/**댓글 수에 따른 멤버 상세 조회
+	 * @param memberLevelNoResult
+	 * @param periodOption
+	 * @param commentCountInput
+	 * @param aboveOption
+	 * @param pagination
+	 * @return
+	 */
 	public List<Member> getselectDetailComment(int memberLevelNoResult, int periodOption, int commentCountInput,
 			int aboveOption, Pagination pagination) {
 		
@@ -256,6 +190,25 @@ public List<Member> selectSortLevelMemberList(int memberLevelNo, Pagination pagi
 		map.put("aboveOption", aboveOption);
 		
 	    return sqlsession.selectList("managerMapper.getselectDetailComment",map,rowBounds);
+	}
+
+	public int getselectDetailVisitCount(int memberLevelNoResult, int periodOption, int visitCountInput,
+			int aboveOption) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberLevelNo", memberLevelNoResult);
+		map.put("visitCountInput", visitCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
+		return sqlsession.selectOne("managerMapper.getselectDetailVisitCount",map);
+	}
+
+	public List<Member> getselectDetailVisit(int memberLevelNoResult, int periodOption, int visitCountInput,
+			int aboveOption, Pagination pagination) {
+		
+		
+		
+		return null;
 	}
    
 }

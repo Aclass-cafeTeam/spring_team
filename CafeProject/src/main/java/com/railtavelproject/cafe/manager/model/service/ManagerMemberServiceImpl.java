@@ -137,5 +137,23 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		
 		return map;
 	}
+
+	@Override
+	public Map<String, Object> selectDetailVisitCount(int periodOption, int visitCountInput, int aboveOption,
+			int memberLevelNoResult, int limit, int cp) {
+
+		int listCount = dao.getselectDetailVisitCount(memberLevelNoResult,periodOption,visitCountInput,aboveOption);
+		
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		List<Member> memberList; 
+		
+		memberList = dao.getselectDetailVisit(memberLevelNoResult,periodOption,visitCountInput,aboveOption,pagination);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
 	
 }

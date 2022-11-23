@@ -89,6 +89,26 @@ WHERE MEMBER_DEL_FL IN ('N','S')
 AND BOARD_COUNT >= 30
 AND MEMBER_LEVEL_NO = 2;
 -----------------------------
+SELECT COUNT(*) FROM "MEMBER" m
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	<if test ="periodOption == 1">
+	WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+	</if>
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('N','S')
+	<if test ="aboveOption == 1">
+		<![CDATA[AND BOARD_COUNT >=]]> #{boardCount}
+	</if>
+	<if test ="aboveOption == 0">
+		<![CDATA[AND BOARD_COUNT <=]]> #{boardCount}
+	</if>
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	</if>
+-----------------------------------
 --게시글 수에 따라 
 SELECT PROFILE_IMG, MEMBER_NICKNAME,
 SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
@@ -141,8 +161,10 @@ FROM LOGIN_HISTORY lh
 GROUP BY MEMBER_NO
 ORDER BY 2) USING(MEMBER_NO)
 LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
-FROM BOARD b 
+FROM BOARD b
+<if test ="periodOption == 1">
 WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+</if>
 GROUP BY MEMBER_NO
 ORDER BY 2)
 USING(MEMBER_NO)
@@ -152,10 +174,22 @@ GROUP BY MEMBER_NO
 ORDER BY 2)
 USING(MEMBER_NO)
 WHERE  MEMBER_DEL_FL IN ('N','Y')
-AND BOARD_COUNT >= 30
-AND MEMBER_LEVEL_NO = 2
+<where>
+	<if test ="aboveOption == 1">
+		BOARD_COUNT <![CDATA[>=]]> 0
+	</if>
+	<if test ="aboveOption == 0">
+		BOARD_COUNT <![CDATA[<=]]> 0
+	</if>
+	
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = 2
+	</if>
+</where>
 ORDER BY MEMBER_NICKNAME;
 
+--AND BOARD_COUNT >= 30  --조건
+--AND MEMBER_LEVEL_NO = 2   ---조건
 ---------------------------------
 (SELECT BOARD_COUNT FROM "MEMBER" m
 LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
