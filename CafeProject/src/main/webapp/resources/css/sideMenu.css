@@ -786,3 +786,8 @@ section #border-img {
     float: right;
     color: #666666;
 }
+
+#levelImage{
+    width: 10px;
+    height: 10px; 
+}

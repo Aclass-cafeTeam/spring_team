@@ -18,7 +18,7 @@
             <div class="header-inner">
                 
                 <a href="/">
-                     <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
+                    <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
                 </a>
                 
             </div>
@@ -38,19 +38,19 @@
 
                         <div class="id-pw-row">
                             <div class="icon"><i class="fa-solid fa-lock"></i></div>
-                            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호"  maxlength="20" >
+                            <input type="password" id="memberPw" name="memberPw" placeholder="비밀번호" maxlength="20" onKeyPress="return checkCapsLock(event)" >
                         </div>
                         
                     </div>
                     
-                    <%-- 쿠키에 saveId가 있는 경우 변수 생성--%>
+                    <!-- 쿠키에 saveId가 있는 경우 변수 생성-->
                     <c:if test="${!empty cookie.saveId.value}">
                         <c:set var="temp" value="checked"/>
                     </c:if>
                     
                     <div class="saveId-area">
                         <label for="saveId">
-                            <input type="checkbox" name="saveId" id="saveId" ${temp} }>
+                            <input type="checkbox" name="saveId" id="saveId" ${temp}>
                             <label for="saveId"> <i class="fas fa-check"></i>로그인 상태 유지</label>
                         </label>
                     </div>
@@ -87,7 +87,7 @@
             alert("${message}")
         </script>
 
-        <%-- message 1회 출력 후 session scope에서 삭제 --%>
+        <!-- message 1회 출력 후 session scope에서 삭제 -->
         <c:remove var="message" ></c:remove>
     </c:if>
     

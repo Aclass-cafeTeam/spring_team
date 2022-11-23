@@ -2,6 +2,9 @@
 package com.railtavelproject.cafe.member.model.service;
 
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -65,5 +68,37 @@ public class MemberServiceImpl implements MemberService{
 		
 		return dao.signUp(member);
 	}
+
+
+	// 이메일 중복 검사
+	@Override
+	public int emailDupCheck(String memberEmail) {
+		return dao.emailDupCheck(memberEmail);
+	}
+
+
+	// 닉네임 중복 검사
+	@Override
+	public int nickDupCheck(String memberNickname) {
+		return dao.nickDupCheck(memberNickname);
+	}
+
+	
+	// 멤버등급 안내 보기
+	@Override
+	public List<Map<String, Object>> viewMemberLevel() {
+		return dao.viewMemberLevel();
+	}
+
+
+	// 로그인 이력 
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public int insertLogHistory(int memberNo) {
+		return dao.insertLogHistory(memberNo);
+	}
+
+
+	
 
 }
