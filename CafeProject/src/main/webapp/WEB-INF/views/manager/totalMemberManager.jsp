@@ -140,19 +140,19 @@
 						      <div class="srch_detail">
                     <ul>
                       <li>
-                        <input type="radio" class="check _searchDetailItem" checked="" name="srch_detail" id="srch_write" value="postspace">
+                        <input type="radio" class="check _searchDetailItem" checked="" name="srch_detail" id="srch_write" value="0"><%-- postspace --%>
                         <label for="srch_write">게시글 수</label>
                       </li>
                       <li>
-                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_comment" value="commentspace">
+                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_comment" value="1"><%-- commentspace --%>
                         <label for="srch_comment">댓글 수</label>
                       </li>
                       <li>
-                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_visit" value="visitspace">
+                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_visit" value="2"><%-- visitspace --%>
                         <label for="srch_visit">방문 수</label>
                       </li>
                       <li>
-                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_date" value="datespace">
+                        <input type="radio" class="check _searchDetailItem" name="srch_detail" id="srch_date" value="3"><%-- datespace --%>
                         <label for="srch_date">가입/최종방문일</label>
                       </li>
                     </ul>
@@ -180,7 +180,7 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailComment" class="CommentfrmSearch" method="get" name="CommentfrmSearch" id="CommentfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="1">
-                        <select class="${periodOption} _period  periodComment" name="periodOption" id="periodOption">
+                        <select class="${periodOption} _period periodComment" name="periodOption" id="periodOption">
                         <option value="0" selected="">전체기간</option>
                         <option value="1">최근1개월</option>
                         </select>
@@ -199,14 +199,14 @@
                     <div class="srch_info">
                       <form action ="/manager/selectDetailVisitCount" class="VisitCountfrmSearch" method="get" name="VisitCountfrmSearch" id="VisitCountfrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="2">
-                        <select class="_period periodVisit" name="periodOption" id="periodOption">
+                        <select class="${periodOption} _period periodVisit" name="periodOption" id="periodOption">
                         <option value="0">전체기간</option>
                         <option value="1">최근1개월</option>
                         </select>
                         <span class="txt txt2 _txtPeriod">동안</span>
                         <label for="_visitCountInput">방문수</label>
                         <input type="text" name="visitCountInput" class="text _visitCount _count" id="_visitCountInput" maxlength="5" value="0"> <span class="txt">회</span>
-                        <select  class="_above aboveVisit" name="aboveOption" id="aboveOption">
+                        <select  class="${aboveOption} _above aboveVisit" name="aboveOption" id="aboveOption">
                         <option value="1">이상</option>
                         <option value="0">이하</option>
                         </select>
