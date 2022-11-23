@@ -244,11 +244,12 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-basic">
-                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a></li>
+                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a>
+                        </li>
                         <li id="board-any"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
                         </li>
-                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a
-                                href="#">등업게시판</a></li>
+                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">등업게시판</a>
+                        </li>
                     </ul>
                 </div>
 

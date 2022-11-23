@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="/resources/css/member/signUp.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 
-    <!-- 보안절차 reCaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
+    <!-- 보안절차 reCaptcha --> <%-- ?onload=onloadCallback&render=explicit --%>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <!-- site key : 6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz -->
     <!-- secret key : 6LcVIgIjAAAAAByntQQHon2PJS2e0cYnBzm6rc7F -->
 
@@ -160,7 +160,8 @@
                     <!-- 보안절차 -->
                     <div class="signUpRow">
                         <label>보안절차</label>
-                        <div id="reCAPTCHA" data-callback="successCaptcha"></div>
+                        <div class="g-recaptcha" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz"></div>
+                        <%-- <div id="reCAPTCHA"></div> --%>
                     </div>
                 
                     <!-- 가입 관련 안내 문구 -->

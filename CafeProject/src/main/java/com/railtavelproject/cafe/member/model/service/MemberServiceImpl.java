@@ -92,6 +92,7 @@ public class MemberServiceImpl implements MemberService{
 
 
 	// 로그인 이력 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public int insertLogHistory(int memberNo) {
 		return dao.insertLogHistory(memberNo);
