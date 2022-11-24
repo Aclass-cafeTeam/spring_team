@@ -14,7 +14,16 @@
 <body>
     <section class="pop-staff-role">
         <div class="user-level">
-            <p class="user-level-txt"> <strong>${loginMember.memberNickname}</strong>님은 <span class="g">${loginMember.memberLevelName}</span>입니다.</p>
+            <p class="user-level-txt"> <strong>${loginMember.memberNickname}</strong>님은 <span class="g">
+            <c:choose>
+                <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1)}">
+                ${loginMember.authorityName}
+                </c:when>
+                <c:otherwise>
+                ${loginMember.memberLevelName}
+                </c:otherwise>
+            </c:choose>
+            </span>입니다.</p>
 
             <ul class="info-list">
                 <li class="info">총 게시글 <strong>${loginMember.memberBoardCount}</strong>개</li>

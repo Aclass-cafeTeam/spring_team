@@ -154,8 +154,7 @@
                                         <div id="side-profile">
                                             <a href="/member/myPage/profile"><img src="/resources/images/settings.png"
                                                     id="setting-icon"></a>
-                                            <div id="profile-box"><img src="/resources/images/고양아.jpg"
-                                                    id="profile-img"></div>
+                                            <div id="profile-box"><img src="${loginMember.profileImage}"id="profile-img"></div>
                                         </div>
                                         <div id="profile-name">
                                             <a href="/member/myPage/info" id="memberNickname">${loginMember.memberNickname}</a>
@@ -163,7 +162,16 @@
                                     </li>
 
                                     <li id="signUp-date">가입일 <em>${loginMember.enrollDate}</em></li>
-                                    <li id="profile-grade">${loginMember.memberLevelName} <img id="levelImage" src="${loginMember.memberLevelImage}" alt="memberLevelImage">
+
+                                    <li id="profile-grade">
+                                    <c:choose>
+                                        <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1)}">
+                                        ${loginMember.authorityName}   <img id="levelImage" src="${loginMember.authorityImage}" alt="authorityImage" > 
+                                        </c:when>
+                                        <c:otherwise>
+                                        ${loginMember.memberLevelName} <img id="levelImage" src="${loginMember.memberLevelImage}" alt="memberLevelImage">
+                                        </c:otherwise>
+                                    </c:choose>
                                     <a href="/cafe/memberLevel" onclick="window.open(this.href, '_blank', 'width=800, height=500 top=300, left=600'); return false;">멤버등급 안내</a></li>
 
                                 </ul>
