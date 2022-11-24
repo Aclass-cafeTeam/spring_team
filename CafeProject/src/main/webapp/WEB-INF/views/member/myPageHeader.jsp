@@ -18,11 +18,11 @@
                 <div class="profileInfo">
                     <div class="nickArea">${loginMember.memberNickname}</div>
                     <div class="infoArea">
-                        <span class="cafeGrade">새내기여행자</span>
+                        <span class="cafeGrade">${loginMember.memberLevelName}<img id="levelImage" src="${loginMember.memberLevelImage}" alt="memberLevelImage"></span>
                         <div id="countArea">
-                            <span class="count">방문 <Strong class="num">100</Strong></span>
-                            <span class="count">작성글 <Strong class="num">100</Strong></span>
-                            <span class="count">작성 댓글 <Strong class="num">100</Strong></span>
+                            <span class="count">방문 <Strong class="num">${loginMember.logHistoryCount}</Strong></span>
+                            <span class="count">작성글 <Strong class="num">${loginMember.memberBoardCount}</Strong></span>
+                            <span class="count">작성 댓글 <Strong class="num">${loginMember.memberCommentCount}</Strong></span>
                         </div>
                     </div>
                 </div>
