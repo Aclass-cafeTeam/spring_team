@@ -19,6 +19,8 @@ public class IntroBoard {
 	private int commentCount;
 	private String commentDelFl;
 	
+	private String memberNickname;
+	
 	
 
 	
