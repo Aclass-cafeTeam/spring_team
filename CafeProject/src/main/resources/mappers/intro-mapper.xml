@@ -11,16 +11,38 @@
 	      <result property="noticeFl" column="NOTICE_FL"/>
 	      <result property="commentNo" column="COMMENT_NO"/>
 	      <result property="commentDelFl" column="COMMENT_DEL_FL"/>
+	      <result property="memberNickname" column="MEMBER_NICKNAME"/>
 		</resultMap>
 		
 		<!-- 전체글조회 -->
 		<select id="selectBoardList" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_TITLE, READ_COUNT, NOTICE_FL,
+			SELECT BOARD_TITLE, READ_COUNT,
 			(SELECT COUNT(*) FROM "COMMENT" C
 			WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
 			FROM "BOARD" B
-			WHERE NOT NOTICE_FL = 1
-			AND BOARD_DEL_FL = 'N'
+			WHERE BOARD_DEL_FL = 'N'
+			ORDER BY BOARD_NO DESC
+		</select>
+		
+		<!-- 전체공지만 조회 -->
+		<select id="selectNoticeList" parameterType="_int" resultMap="introBoard_rm">
+			SELECT BOARD_TITLE, READ_COUNT,
+				(SELECT COUNT(*) FROM "COMMENT" C
+				WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
+			FROM "BOARD" B
+			WHERE NOTICE_FL = 2
+			ORDER BY BOARD_NO DESC
+		</select>
+		
+		<!-- 여행후기 게시판 글 조회 -->
+		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
+			SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+							(SELECT COUNT(*) FROM "COMMENT" C
+							WHERE C.BOARD_NO =B.BOARD_NO) COMMENT_COUNT
+			FROM BOARD B
+			JOIN MEMBER USING(MEMBER_NO)
+			WHERE BOARD_DEL_FL = 'N'
+			AND BOARD_CODE = 12
 			ORDER BY BOARD_NO DESC
 		</select>
 
