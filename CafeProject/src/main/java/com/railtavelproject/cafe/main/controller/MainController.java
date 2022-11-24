@@ -24,10 +24,25 @@ public class MainController{
 		public String mainPage(Model model){
 			// 메인 페이지 요청 시 필요한 코드 작성 ....
 			
-			Map<String, Object> map = null;
-			map = service.introBoardList();
+			// 게시글 전체 불러오기
+			Map<String, Object> boardList = null;
+			boardList = service.introBoardList();
 			
-			model.addAttribute("map", map);
+			model.addAttribute("boardList", boardList);
+			
+			// 공지만 불러오기
+			Map<String, Object> noticeList = null;
+			noticeList = service.noticeList();
+			
+			model.addAttribute("noticeList", noticeList);
+			
+			// 여행후기 게시판 게시글 불러오기
+			Map<String, Object> travelReviewList = null;
+			travelReviewList = service.travelReview();
+			
+			model.addAttribute("travelReviewList", travelReviewList);
+			
+			
 			
 			
 			// * forward 방법 *
@@ -38,4 +53,6 @@ public class MainController{
 			// prefix : /WEB-INF/views/
 			// suffix : .jsp
 		}
+
+		
 }     

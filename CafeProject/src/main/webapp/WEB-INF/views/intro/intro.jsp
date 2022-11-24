@@ -49,48 +49,47 @@
                                 <table id="intro-board-list">
                                     <tbody id="tbody">
                                         <!-- 공지글 -->
-                                        <tr id="intro-notice-list">
-                                            <td id="board-content">
-                                                <div id="notice-tag-block">
-                                                    <div id="notice-tag">
-                                                        <strong>공지</strong>
-                                                    </div>
-                                                </div>
-                                                <div id="notice-board">
-                                                    <a href="#"><span id="notice">1얍얍</span></a>
-                                                </div>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
-                                        <tr id="intro-notice-list">
-                                            <td id="board-content">
-                                                <div id="notice-tag-block">
-                                                    <div id="notice-tag">
-                                                        <!-- 글씨 길어지면 짤리는부분, 자바스크립트로 고정하기 -->
-                                                        <strong>공지</strong>
-                                                    </div>
-                                                </div>
-                                                <div id="notice-board">
-                                                    <a href="#"><span id="notice">2얍얍얍얍얍얍얍얍얍얍얍얍얍얍깔깔깔깔깔깔깔깔깔</span></a>
-                                                </div>
-                                            </td>
-                                            <td id="board-view">
-                                                조회수
-                                            </td>
-                                        </tr>
+                                        <c:choose>
+                                            <c:when test="${empty noticeList.introNoticeList}">
+                                                안돼
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:forEach var="introNotice" items="${noticeList.introNoticeList}">
+                                                    <tr id="intro-notice-list">
+                                                    <td id="board-content">
+                                                        <div id="notice-tag-block">
+                                                            <div id="notice-tag">
+                                                                <strong>공지</strong>
+                                                            </div>
+                                                        </div>
+                                                        <div id="notice-board">
+                                                            <a href="#"><span id="notice">${introNotice.boardTitle}</span></a>
+                                                            <c:if test="${0 != introNotice.commentCount}">
+                                                                <a href="#"><span id="commentCount1">[${introNotice.commentCount}]</span></a>
+                                                            </c:if>
+                                                        </div>
+                                                    </td>
+                                                    <td id="board-view">
+                                                        ${introNotice.readCount}
+                                                    </td>
+                                                </tr>
+                                                </c:forEach>
+                                            </c:otherwise>
+                                        </c:choose>
                                         <!-- 게시글 -->
                                         <c:choose>
-                                            <c:when test="${empty map.introBoardList}">
+                                            <c:when test="${empty boardList.introBoardList}">
                                                 <div>안돼</div>
                                             </c:when>
                                             <c:otherwise>
-                                                <c:forEach var="introBoard" items="${map.introBoardList}">
+                                                <c:forEach var="introBoard" items="${boardList.introBoardList}">
                                                     <tr id="boardTitle">
                                                         <td id="board-content">
                                                             <div id="board-dot">ㆍ</div>
                                                             <a href="#"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                            <c:if test="${0 != introBoard.commentCount}">
+                                                                <a href="#"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                            </c:if>
                                                         </td>
                                                         <td id="board-view">
                                                             ${introBoard.readCount}
@@ -98,9 +97,7 @@
                                                     </tr>
                                                 </c:forEach>
                                             </c:otherwise>
-                                            
                                         </c:choose>
-                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -112,354 +109,44 @@
                                     </div>
                                 </div>
                                 <ul id="album-content">
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/철수1.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        철수임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        정지윤개임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 486
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/철수2.jpg" width="132px" height="132px"></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        앉아있는 철수임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        귀엽슴다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
-                                    <li>
-                                        <dl>
-                                            <dt id="photo-img">
-                                               <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                            </dt>
-                                            <dd id="photo-title">
-                                                <div>
-                                                    <a href="#">
-                                                        제목임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-nick">
-                                                <div>
-                                                    <a href="#">
-                                                        닉네임임다
-                                                    </a>
-                                                </div>
-                                            </dd>
-                                            <dd id="photo-date">
-                                                <span>
-                                                    22.01.10
-                                                </span>
-                                                <span>
-                                                    ㆍ조회 2
-                                                </span>
-                                            </dd>
-                                        </dl>
-                                    </li>
+                                    <c:choose>
+                                        <c:when test="${empty travelReviewList.introTravelReviewList}">
+                                            안된단다
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:forEach var="travelReview" items="${travelReviewList.introTravelReviewList}">
+                                                <li>
+                                                    <dl>
+                                                        <dt id="photo-img">
+                                                        <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
+                                                        </dt>
+                                                        <dd id="photo-title">
+                                                            <div>
+                                                                <a href="#">
+                                                                    ${travelReview.boardTitle}
+                                                                </a>
+                                                            </div>
+                                                        </dd>
+                                                        <dd id="photo-nick">
+                                                            <div>
+                                                                <a href="#">
+                                                                    ${travelReview.memberNickname}
+                                                                </a>
+                                                            </div>
+                                                        </dd>
+                                                        <dd id="photo-date">
+                                                            <span>
+                                                                22.01.10
+                                                            </span>
+                                                            <span>
+                                                                ㆍ조회 ${travelReview.readCount}
+                                                            </span>
+                                                        </dd>
+                                                    </dl>
+                                                </li>
+                                            </c:forEach>
+                                        </c:otherwise>
+                                    </c:choose>
                                 </ul>
                             </div>
                     </div>
