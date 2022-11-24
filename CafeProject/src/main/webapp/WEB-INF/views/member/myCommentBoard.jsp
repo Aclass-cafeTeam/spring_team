@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
-<c:set var="myPageBoardList" value="${map.myPageBoardList}"/>
+<c:set var="myCommentBoardList" value="${map.myCommentBoardList}"/>
 <c:set var="pagination" value="${map.pagination}"/>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내가 쓴 글</title>
+    <title>내가 쓴 댓글</title>
     <link rel="stylesheet" href="/resources/css/member/myPage.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 </head>
@@ -25,40 +25,40 @@
         <div id="mainArea">
             <!-- myPage-header -->
             <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
-            <!-- 내가 쓴 글 -->
+            <!-- 댓글단 글 -->
             <div id="myBoardArea">
                 <table class="myBoardTb">
                     <thead>
                         <tr>
                             <th class="myBoard-th">글번호</th>
                             <th class="myBoard-th">제목</th>
+                            <th class="myBoard-th">작성자</th>
                             <th class="myBoard-th">작성일</th>
                             <th class="myBoard-th">조회</th>
                         </tr>
                     </thead>
                     <tbody>
                     <c:choose>
-                        <c:when test="${empty myPageBoardList}">
+                        <c:when test="${empty myCommentBoardList}">
                    		        <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
-                                    <th colspan="4">작성한 게시글이 존재하지 않습니다.</th>
+                                    <th colspan="5"> 댓글을 등록한 게시글이 존재하지 않습니다.</th>
                                 </tr>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="myPageBoard" items="${myPageBoardList}">
+                            <c:forEach var="myCommentBoard" items="${myCommentBoardList}">
                                 <tr>
-                                    <td class="boardNo">${myPageBoard.boardNo}</td>
+                                    <td class="boardNo">${myCommentBoard.boardNo}</td>
                                     <td><a href="#" class="title">
-                                        <c:if test="${not empty myPageBoard.titleTagName}">
-                                        <span>[${myPageBoard.titleTagName}]</span>
+                                        <c:if test="${not empty myCommentBoard.titleTagName}">
+                                        <span>[${myCommentBoard.titleTagName}] </span>
                                         </c:if>
-                                    ${myPageBoard.boardTitle}</a>
-                                        <c:if test="${myPageBoard.commentCount!=0}">
-                                        <a href="#" class="comment">[${myPageBoard.commentCount}]</a>
-                                        </c:if>
+                                    ${myCommentBoard.boardTitle}</a>
+                                        <a href="#" class="comment">[${myCommentBoard.commentCount}]</a>
                                     </td>
-                                    <td class="reporting-date">${myPageBoard.boardCreateDate}</td>
-                                    <td class="hits">${myPageBoard.readCount}</td>
+                                    <td class="writer">${myCommentBoard.memberNickname}</td>
+                                    <td class="reporting-date">${myCommentBoard.boardCreateDate}</td>
+                                    <td class="hits">${myCommentBoard.readCount}</td>
                                 </tr>
                             </c:forEach>
                         </c:otherwise>
@@ -67,7 +67,6 @@
                 </table>
             </div>
             <div class="pagination-area">
-
                 <ul class="myPage-pagination">
                 
                     <!-- 이전 목록 마지막 번호로 이동 --> 
