@@ -17,6 +17,15 @@ public class MyPageDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	/** 프로필 이미지 수정
+	 * @param loginMember
+	 * @return result
+	 */
+	public int updateProfile(Member loginMember) {
+
+		return sqlSession.update("myPageMapper.updateProfile", loginMember);
+	}
+	
 	/** 암호화된 현재 비밀번호 조회
 	 * @param memberNo
 	 * @return
@@ -117,5 +126,7 @@ int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		
 		return sqlSession.selectList("myPageMapper.selectMyDeleteBoard", memberNo, rowBounds);
 	}
+
+
 
 }

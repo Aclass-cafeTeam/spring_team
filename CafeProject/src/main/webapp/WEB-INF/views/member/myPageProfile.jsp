@@ -29,7 +29,7 @@
                     <span class="myPage-script">이미지 선택 후 변경하기 버튼을 누르세요.</span>
                         <form action="#" method="POST" name="myPage-form">
                             <div class="profile-image-area">
-                                <img src="../../resources/images/프로필.PNG" id="profile-image">   
+                                <img src="/resources/images/프로필.PNG" id="profile-image">   
                                 <span id="delete-image">&times;</span>
                             </div>
 
