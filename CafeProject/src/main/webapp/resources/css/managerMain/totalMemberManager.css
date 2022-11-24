@@ -130,7 +130,7 @@ body{
   font-size: 12px;
 }
 
-.srch_in .text2{
+.srch_in .inputMember{
   width:248px;
   padding-left:7px;
 }
@@ -145,14 +145,17 @@ body{
   padding: 17px 19px 15px;
   
 }
+.totalfrmSearch{
+  display: inline-block;
+}
 
 .btn_type2_gn strong, .btn_type2_gn span {
   font-size: 12px;
   display: inline-block;
-  height: 23px;
+  height: 6px;
   padding: 0 8px;
   background-color: #73358C;
-  line-height: 25px;
+  line-height: 23px;
   border-radius: 10%;
 }
 
@@ -167,6 +170,27 @@ body{
   cursor: pointer;
   border-radius: 10%;
   vertical-align: middle;
+  padding: 0 9px;
+  font-size: 12px;
+  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid #B7B7B8;
+}
+
+._submitDetail {
+  display: inline-block;
+  height: 23px;
+  padding-left: 1px;
+
+  background-color: #73358C;
+  color: #fff;
+  text-decoration: none !important;
+  cursor: pointer;
+  border-radius: 10%;
+  vertical-align: middle;
+  padding: 0 17px;
+  font-size: 12px;
+  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
+  border: 1px solid #B7B7B8;
 }
 
 .btn_type2 > span {
@@ -176,7 +200,6 @@ body{
   align-content: center;
   text-align: center;
   padding: 0 7px;
-  font-size: 12px;
   font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
   
 }
@@ -338,13 +361,15 @@ vertical-align: middle;
   position: relative;
   padding-top: 1px;
   text-align: right;
+  display: flex;
 }
 .action_arr p {
   float: left;
 }
-.action_arr > select{
+.action_arr select{
   width: 86px;
   height: 19px;
+  margin-left: 2px;
 }
 
 /* .action_arr select:nth-of-type(2){
@@ -387,9 +412,11 @@ vertical-align: middle;
 /* 데이터 출력 테이블 */
 .tbl_lst_type {
   width: 920px;
+  height: 147px;
   font-size: 12px;
   line-height: 16px;
   table-layout: fixed;
+  border-bottom: 1px solid #C9C9C9
 }
 
 caption {
@@ -397,9 +424,16 @@ caption {
 }
 
 table {
-  border-collapse: separate;
+  border-style: none;
   text-indent: initial;
-  border-spacing: 2px;
+  border-collapse:collapse; 
+  width:100%;
+}
+
+
+.tbl_lst_type th{
+  background-color: #F1F6FA;
+  border: 1px solid #C8CFD4;
 }
 
 .img > img{
@@ -411,4 +445,166 @@ table {
   width:11px;
   height:11px; 
 } 
+._sortType{
+  display: inline-block;
+  color: #666;
+  text-decoration: none;
+  font-weight: normal;
+  font-size: 12px;
+  cursor: pointer;
+  height: 27px;
+  line-height: 29px;
+}
+
+tbody{
+  
+  border: 0px;
+  display: inline-block;
+  vertical-align: middle;
+  border-bottom: 1px solid #C9C9C9 !important;
+  overflow-y:auto;
+  max-height: 120px;
+  width:920px;
+  overflow-x:hidden;
+  
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background: #ffffff;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 3.5px;
+  background-color: #ced4da;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: #adb5bd;
+}
+
+::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+tbody tr{
+  display: table;
+  width:920px;
+}
+tbody td:nth-of-type(1){
+  width: 23px;
+}
+tbody td:nth-of-type(3){
+  width: 142px;
+}
+tbody td:nth-of-type(4){
+  width: 81px;
+}
+tbody td:nth-of-type(5){
+  width: 81px;
+}
+tbody td:nth-of-type(6){
+  width: 86px;
+}
+tbody td:nth-of-type(7){
+  width: 86px;
+}
+tbody td:nth-of-type(8){
+  padding-right: 5px;
+  width: 85px;
+}
+
+.line_n , .line_r{
+  display: inline-block;
+  color: #666;
+  font-weight: normal;
+  font-size: 12px;
+  height: 27px;
+  line-height: 29px;
+}
+
+.tbl_lst_type td {
+  color: #949494;
+}
+
+._checkable td{
+  border: none;
+  border-bottom: 1px solid #ECECEC;
+}
+
+.tc {
+  text-align: center;
+}
+
+.tr {
+  text-align: right;
+}
+
+.tbl_lst_type td.tr .num {
+  padding-right: 9px;
+}
+
+.pers_nick_area{
+  padding-left: 2px;
+  display: inline-block;
+  line-height: 21px;
+}
+.pers_nick_area img{
+  display: inline-block;
+  width: 20px;
+  aspect-ratio: auto 20 / 20;
+  height: 20px;
+  vertical-align: middle;
+}
+
+._userInfo {
+  text-decoration: none;
+  overflow: hidden;
+  line-height: 21px;
+  cursor: pointer;
+  display: inline-block;
+  padding-top: 2px;
+  color: #272727;
+  vertical-align: middle;
+}
+
+.c_gy2 {
+  color: #666 !important;
+  padding-left: 2px;
+}
+
+
 /* 데이터 출력 테이블 */
+
+/* 화살표 */
+
+.pagination{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 9px;
+  padding: 0;
+}
+
+.pagination li{
+  width: 20px;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pagination a{
+  display: block;
+  font-weight: bold;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+}
+
+.current{
+  font-weight: bold;
+  border:1px solid #73358C;
+  border-radius: 10%;
+  color: #73358C !important;
+  letter-spacing: 0 !important;
+}

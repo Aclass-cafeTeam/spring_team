@@ -20,12 +20,19 @@ public class Member {
 	   private String enrollDate; //가입일
 	   private String memberDeleteFlag; //탈퇴여부
 	   private String authorityNo; //권한 분류 (2:일반회원, 0:관리자, 1:부관리자)
+	   private String authorityName; //권한 분류 (2:일반회원, 0:관리자, 1:부관리자)
 	   
 	   private int memberLevelNo; // 회원 등급
-	   private String memberLevelName; // 등급명   
+	   private String memberLevelName; // 등급명 
+	   private String memberLevelImg; //등급이미지
+	   private String authorityImg; //매니저 부매니저 이미지
 	   
 	   private int logHistoryNo; // 로그인 이력 번호
 	   private String loginDate; // 로그인 시간 
+	   
+	   private int logHistoryCount; // 방문수
+	   private int commentCount; // 댓글수
+	   private int boardCount; // 게시글수
 
 	
 //	"MEMBER_NO"   NUMBER      NOT NULL,
