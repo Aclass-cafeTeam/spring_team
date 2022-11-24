@@ -8,13 +8,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카페 가입하기</title>
+
     <link rel="stylesheet" href="/resources/css/member/signUp.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 
     <!-- 보안절차 reCaptcha --> <%-- ?onload=onloadCallback&render=explicit --%>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     <!-- site key : 6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz -->
     <!-- secret key : 6LcVIgIjAAAAAByntQQHon2PJS2e0cYnBzm6rc7F -->
+
+    
 
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
@@ -39,8 +42,8 @@
                 <p class="signUpSubject">카페 가입을 위한 정보를 입력해주세요.</p>
             </div>
             
-        
-            <form action="/member/signUp" method="POST" name="signUp-frm" id="signUp-frm" onsubmit="return signUpValidate()">
+        <%-- onsubmit="signUpValidate(event)" --%>
+            <form action="/member/signUp" method="POST" name="signUp-frm" id="signUp-frm" >
 
                 <div class="signUpArea">
 
@@ -160,7 +163,7 @@
                     <!-- 보안절차 -->
                     <div class="signUpRow">
                         <label>보안절차</label>
-                        <div class="g-recaptcha" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz"></div>
+                        <div class="g-recaptcha" id="reCAPTCHA" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz" data-callback ="successCaptcha"></div>
                         <%-- <div id="reCAPTCHA"></div> --%>
                     </div>
                 
@@ -177,7 +180,7 @@
         
 
                 <div class="btn">
-                    <button type="submit" id="signUp-btn">동의 후 가입하기</button>
+                    <button type="submit" id="signUp-btn" onclick="return writeOK()" >동의 후 가입하기</button>
                 </div>
             
             </form>
@@ -189,8 +192,7 @@
 
     <!-- jQueryCDN -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-
-    <script src="/resources/js/member/signUp.js"></script> 
-
+    
+    <script src="/resources/js/member/signUp.js"></script>  
 </body>
 </html>

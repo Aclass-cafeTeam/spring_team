@@ -192,6 +192,13 @@ public class ManagerMemberDAO {
 	    return sqlsession.selectList("managerMapper.getselectDetailComment",map,rowBounds);
 	}
 
+	/**방문 수에 따른 멤버 상세 조회 페이징
+	 * @param memberLevelNoResult
+	 * @param periodOption
+	 * @param visitCountInput
+	 * @param aboveOption
+	 * @return
+	 */
 	public int getselectDetailVisitCount(int memberLevelNoResult, int periodOption, int visitCountInput,
 			int aboveOption) {
 		
@@ -203,12 +210,28 @@ public class ManagerMemberDAO {
 		return sqlsession.selectOne("managerMapper.getselectDetailVisitCount",map);
 	}
 
+	/**방문 수에 따른 멤버 상세 조회
+	 * @param memberLevelNoResult
+	 * @param periodOption
+	 * @param visitCountInput
+	 * @param aboveOption
+	 * @param pagination
+	 * @return
+	 */
 	public List<Member> getselectDetailVisit(int memberLevelNoResult, int periodOption, int visitCountInput,
 			int aboveOption, Pagination pagination) {
 		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("memberLevelNo", memberLevelNoResult);
+		map.put("visitCountInput", visitCountInput);
+		map.put("periodOption", periodOption);
+		map.put("aboveOption", aboveOption);
 		
-		
-		return null;
+	    return sqlsession.selectList("managerMapper.getselectDetailVisit",map,rowBounds);
 	}
    
 }

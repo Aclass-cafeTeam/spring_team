@@ -1,8 +1,8 @@
-// google captcha
-// var onloadCallback = function() {
-//     grecaptcha.render('reCAPTCHA', 
-//     {'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'});
-// };
+var onloadCallback = function() {
+    grecaptcha.render('reCAPTCHA', {
+      'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'
+    });
+};
 
 // 제출form 전체 유효성 검사 
 const checkObj = {
@@ -10,17 +10,21 @@ const checkObj = {
     "memberPw"        :false,
     "memberPwConfirm" :false,
     "memberNickname"  :false,
-    "authKey"         :false
+    //"authKey"         :false
 };
-
 // 회원 가입 양식이 제출되었을 때
-function signUpValidate() {
+/* function signUpValidate(e) {
+    e.stopPropagation();
+    e.preventDefault();
+} 
+ */
+var isCapchaSuccess = false;
 
-    if(grecaptcha.getRessponce.length == 0 ) {
-        alert("Please check the reCAPTCHA");
-        return false;
-    }
+function successCaptcha(){
+    isCapchaSuccess =true;
+}
 
+function writeOK() {
     for(let key in checkObj){
         // checkObj 속성 하나를 꺼내 값을 검사했는데 false인 경우 
         if(!checkObj[key]) {
@@ -28,8 +32,16 @@ function signUpValidate() {
             return false;
         }
     }
-    return true; 
+    
+    if(!isCapchaSuccess) {
+        alert("Please check the reCAPTCHA");
+        return false;
+    }
+    return true;
+    /* document.getElementById("signUp-frm").submit(); */
+
 }
+
 
 
 // 이메일 유효성 검사 
