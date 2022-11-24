@@ -353,13 +353,13 @@
 	ORDER BY 2)
 	<where>
 		<if test ="aboveOption == 1">
-			WHERE LOGHISTORY_COUNT <![CDATA[>=]]> #{visitCountInput}
+			LOGHISTORY_COUNT <![CDATA[>=]]> #{visitCountInput}
 		</if>
 		<if test ="aboveOption == 0">
-			WHERE LOGHISTORY_COUNT <![CDATA[<=]]> #{visitCountInput}
+			LOGHISTORY_COUNT <![CDATA[<=]]> #{visitCountInput}
 		</if>
 		<if test ="memberLevelNo != 0">
-				AND MEMBER_LEVEL_NO = #{memberLevelNo}
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
 		</if>
 	</where>
 	)

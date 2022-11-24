@@ -116,7 +116,7 @@ window.onload = function(){
       $("._count")[countBy].value = commentCountInput;
       break;
     case "2":
-      //$("._count")[countBy].value = commentCountInput;
+      $("._count")[countBy].value = visitCountInput;
       break;
   }
   
