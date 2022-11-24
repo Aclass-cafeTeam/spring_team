@@ -1,4 +1,7 @@
 package com.railtavelproject.cafe.member.controller;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
@@ -7,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -56,29 +61,38 @@ public class MemberController {
 		// 로그인 성공과 실패에 따른 결과 -> 세션이 필요
 		// 로그인 실패시 "아이디 또는 비밀번호가 일치하지 않습니다" 세션에 추가
 		if(loginMember != null) { 
-			path = "/"; // 메인페이지
 			
-			model.addAttribute("loginMember", loginMember);
+			// 로그인 이력 추가(INSERT)
+			int memberNo = loginMember.getMemberNo();
+			int result = service.insertLogHistory(memberNo);
 			
-			
-			// 쿠키 생성
-			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
-			
-			// 쿠키 유지 시간 지정
-			if(saveId != null) { 
-				cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+			if (result > 0 ) {
 				
-			} else {
-				cookie.setMaxAge(0);
-			}
-			
-			cookie.setPath("/"); 
-			resp.addCookie(cookie);
-			
+				path = "/"; // 메인페이지로 이동
+
+				loginMember.setLogHistoryCount(loginMember.getLogHistoryCount() +1); // 로그인 이력 수 +1
+				model.addAttribute("loginMember", loginMember);
+				
+				// 쿠키 생성
+				Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+				
+				// 쿠키 유지 시간 지정
+				if(saveId != null) { 
+					cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+					
+				} else {
+					cookie.setMaxAge(0);
+				}
+				
+				cookie.setPath("/"); 
+				resp.addCookie(cookie);
+				
+			} 
 			
 		} else {
 			path = referer; // 로그인 요청 전 페이지 주소(referer)
 			ra.addFlashAttribute( "message", "아이디 또는 비밀번호가 일치하지 않습니다");
+			
 		}
 		
 		return "redirect:" + path;
@@ -126,6 +140,23 @@ public class MemberController {
 	}
 	
 	
+	
+	// 이메일 중복검사
+	@GetMapping("/emailDupCheck")
+	@ResponseBody // 반환되는 값을 jsp경로가 아닌 값 자체로 인식하여 호출한 ajax로 반환
+	public int emailDupCheck(String memberEmail) {
+		return service.emailDupCheck(memberEmail);
+	}
+	
+	
+	// 닉네임 중복검사
+	@GetMapping("/nickDupCheck")
+	@ResponseBody
+	public int nickDupCheck(String memberNickname) {	
+		return service.nickDupCheck(memberNickname);
+	}
+	
+	
 	// MemberController에서 발생하는 모든 예외를 하나의 메서드에 모아서 처리
 	// @ExceptionHandler(Exception.class)
 	public String exceptionHandler(Exception e, Model model) {
@@ -138,5 +169,17 @@ public class MemberController {
 		
 		return "common/error";
 	}
+	
+	
+	// 멤버등급 안내보기
+	@GetMapping("/cafe/memberLevel")
+	public String viewMemberLevel(Model model) {
+		
+		List<Map<String, Object>> memberLevel = service.viewMemberLevel();
+		model.addAttribute("memberLevel",memberLevel);
+		
+		return "member/viewMemberLevel";
+	}
+
 	
 }
