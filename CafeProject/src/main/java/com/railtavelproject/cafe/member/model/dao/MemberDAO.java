@@ -1,10 +1,15 @@
 package com.railtavelproject.cafe.member.model.dao;
 
+import java.util.List;
+
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.member.model.vo.Member;
+
 
 @Repository
 public class MemberDAO {
@@ -24,11 +29,48 @@ public class MemberDAO {
 
   
 	/** 회원가입 DAO
-		 * @param member
-		 * @return result
-		 */
+	 * @param member
+	 * @return result
+	 */
 	public int signUp(Member member) {
 		return sqlSession.insert("memberMapper.signUp", member);
+	}
+
+
+	
+	/** 이메일 중복 검사
+	 * @param memberEmail
+	 * @return result
+	 */
+	public int emailDupCheck(String memberEmail) {
+		return sqlSession.selectOne("memberMapper.emailDupCheck", memberEmail);
+	}
+
+
+	
+	/** 닉네임 중복 검사
+	 * @param memberNickname
+	 * @return result
+	 */
+	public int nickDupCheck(String memberNickname) {
+		return sqlSession.selectOne("memberMapper.nickDupCheck", memberNickname);
+	}
+
+	
+	/** 멤버등급 안내보기
+	 * @return memberLevel
+	 */
+	public List<Map<String, Object>> viewMemberLevel() {
+		return sqlSession.selectList("memberMapper.viewMemberLevel");
+	}
+
+
+	/** 로그인 시 로그인 이력 추가
+	 * @param memberNo
+	 * @return result
+	 */
+	public int insertLogHistory(int memberNo) {
+		return sqlSession.insert("memberMapper.insertLogHistory", memberNo);
 	}
 
 }

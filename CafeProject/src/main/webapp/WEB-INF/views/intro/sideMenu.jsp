@@ -90,7 +90,7 @@
                 <c:when test="${!empty sessionScope.loginMember}">
                     
     
-                    <div  class="cafe-info" id="cafe-info">
+                    <div  class="basicCafe-info cafe-info" id="cafe-info"><%-- tyrtyrtyrttyyyytttttttttttttttttttttttttttttttttttttttttttttttttttt --%>
                         <span>
                             <div id="cafe">
                                 <ul>
@@ -145,7 +145,7 @@
                     
                 <!------------------------- 나의활동 ------------------------->
                 
-                <div class="my-active" id="my-active">
+                <div class="basicMy-active my-active" id="my-active">
                     <span>
                         <div id="side-profile-main">
                             <div id="side-profile1">
@@ -161,25 +161,28 @@
                                             <a href="/member/myPage/info" id="memberNickname">${loginMember.memberNickname}</a>
                                         </div>
                                     </li>
-                                    <li id="signUp-date">가입 <em>2022.10.17.</em></li>
-                                    <li id="profile-grade">감사멤버 <a href="">멤버등급 안내</a></li>
+
+                                    <li id="signUp-date">가입일 <em>${loginMember.enrollDate}</em></li>
+                                    <li id="profile-grade">${loginMember.memberLevelName} <img id="levelImage" src="${loginMember.memberLevelImage}" alt="memberLevelImage">
+                                    <a href="/cafe/memberLevel" onclick="window.open(this.href, '_blank', 'width=800, height=500 top=300, left=600'); return false;">멤버등급 안내</a></li>
+
                                 </ul>
-                            </div>
+                            </div> 
                             <div id="side-profile2">
                                 <ul>
                                     <li>
                                         <span id="info-data"><img src="/resources/images/게시판.PNG">방문</span>
-                                        <em>14<span>회</span></em>
+                                        <em>${loginMember.logHistoryCount}<span>회</span></em>
                                     </li>
                                     <li>
                                         <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴 글
                                             보기</span>
-                                        <em>0<span>개</span></em>
+                                        <em>${loginMember.memberBoardCount}<span>개</span></em>
                                     </li>
                                     <li>
                                         <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴
                                             댓글보기</span>
-                                        <em>0<span>개</span></em>
+                                        <em>${loginMember.memberCommentCount}<span>개</span></em>
                                     </li>
                                 </ul>
                             </div>
@@ -241,11 +244,12 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-basic">
-                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a></li>
+                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a>
+                        </li>
                         <li id="board-any"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
                         </li>
-                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a
-                                href="#">등업게시판</a></li>
+                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">등업게시판</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -527,9 +531,11 @@
 
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
 
-            <section id="delete">
-                <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
-            </section>
+            <c:if test="${!empty sessionScope.loginMember}">
+                <section id="delete">
+                    <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
+                </section>
+            </c:if>
 
 
         </section>
