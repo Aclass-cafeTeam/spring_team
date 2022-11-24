@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내가 쓴 글</title>
+    <title>내가 쓴 댓글</title>
     <link rel="stylesheet" href="/resources/css/member/myPage.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 </head>
@@ -25,47 +25,32 @@
         <div id="mainArea">
             <!-- myPage-header -->
             <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
-            <!-- 내가 쓴 글 -->
+            <!-- 댓글단 글 -->
             <div id="myBoardArea">
                 <table class="myBoardTb">
                     <thead>
                         <tr>
                             <th class="myBoard-th">글번호</th>
                             <th class="myBoard-th">제목</th>
+                            <th class="myBoard-th">작성자</th>
                             <th class="myBoard-th">작성일</th>
                             <th class="myBoard-th">조회</th>
                         </tr>
                     </thead>
                     <tbody>
-                    <c:choose>
-                        <c:when test="${empty myPageBoardList}">
-                   		        <!-- 게시글 목록 조회 결과가 비어있다면 -->
-                                <tr>
-                                    <th colspan="4">작성한 게시글이 존재하지 않습니다.</th>
-                                </tr>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="myPageBoard" items="${myPageBoardList}">
-                                <tr>
-                                    <td class="boardNo">${myPageBoard.boardNo}</td>
-                                    <td><a href="#" class="title">
-                                        <c:if test="${not empty myPageBoard.titleTagName}">
-                                        <span>[${myPageBoard.titleTagName}] </span>
-                                        </c:if>
-                                    ${myPageBoard.boardTitle}</a>
-                                        <a href="#" class="comment">[${myPageBoard.commentCount}]</a>
-                                    </td>
-                                    <td class="reporting-date">${myPageBoard.boardCreateDate}</td>
-                                    <td class="hits">${myPageBoard.readCount}</td>
-                                </tr>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
+                        <tr>
+                            <td class="boardNo">1000015</td>
+                            <td><a href="#" class="title">제목제목제목</a>
+                                <a href="#" class="comment">[1]</a>
+                            </td>
+                            <td class="writer">작성자닉네임</td>
+                            <td class="reporting-date">2022.10.01.</td>
+                            <td class="hits">123</td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
             <div class="pagination-area">
-
                 <ul class="myPage-pagination">
                 
                     <!-- 이전 목록 마지막 번호로 이동 --> 

@@ -20,4 +20,11 @@ public interface MyPageService {
 	 */
 	Map<String, Object> selectMyPageBoard(int memberNo, int cp);
 
+	/** 내가 댓글 단 글 목록 조회 + 페이징
+	 * @param memberNo
+	 * @param cp
+	 * @return map
+	 */
+	Map<String, Object> selectMyCommentBoard(int memberNo, int cp);
+
 }

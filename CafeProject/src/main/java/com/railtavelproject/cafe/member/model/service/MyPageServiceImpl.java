@@ -61,6 +61,14 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	// 내가 댓글 단 글 목록 조회 + 페이징
+	@Override
+	public Map<String, Object> selectMyCommentBoard(int memberNo, int cp) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 }

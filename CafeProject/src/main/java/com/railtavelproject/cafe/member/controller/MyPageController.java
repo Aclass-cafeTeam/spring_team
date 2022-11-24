@@ -39,7 +39,7 @@ public class MyPageController {
 		return "member/myPageProfile";
 	}
 		
-	// 마이페이지 내가 쓴 글
+	// 마이페이지 내가 쓴 글 목록
 	@GetMapping("/myBoard")
 	public String selectMyPageBoard(
 			@ModelAttribute("loginMember") Member loginMember,
@@ -52,6 +52,21 @@ public class MyPageController {
 		model.addAttribute("map", map);
 		
 		return "member/myPageBoard";
+	}
+	
+	// 마이페이지 내가 댓글 단 글 목록
+	@GetMapping("/myCommentBoard")
+	public String selectMyCommentBoard(
+			@ModelAttribute("loginMember") Member loginMember,
+			Model model,
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+		
+		Map<String, Object> map = null;
+		map = service.selectMyCommentBoard(loginMember.getMemberNo(), cp);
+		
+		model.addAttribute("map", map);
+		
+		return "member/myCommentBoard";
 	}
 	
 	//회원 탈퇴
