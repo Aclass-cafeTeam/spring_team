@@ -25,8 +25,9 @@
 		<typeAlias type="com.railtavelproject.cafe.manager.model.vo.Member" alias="managerMember"/>
 		<typeAlias type="com.railtavelproject.cafe.member.model.vo.MyPageBoard" alias="MyPageBoard"/>
 		<typeAlias type="com.railtavelproject.cafe.board.model.vo.Board" alias="Board"/>
-
 		<typeAlias type="com.railtavelproject.cafe.main.model.vo.IntroBoard" alias="IntroBoard"/>
+		<typeAlias type="com.railtavelproject.cafe.board.model.vo.Comment" alias="Comment"/>
+		<typeAlias type="com.railtavelproject.cafe.board.model.vo.BoardImage" alias="BoardImage"/>
 	</typeAliases>
 	
 	<!-- mapper 파일(SQL 작성되는파일) 위치 등록 부분 -->
@@ -37,6 +38,8 @@
 		<mapper resource="/mappers/myPage-mapper.xml"/>
 		<mapper resource="/mappers/board-mapper.xml"/>
 		<mapper resource="/mappers/intro-mapper.xml"/>
+		<mapper resource="/mappers/boardDetail-mapper.xml"/>
+		<mapper resource="/mappers/boardCrud-mapper.xml"/>
 	</mappers>
 	
 	
