@@ -20,7 +20,6 @@
 
 
 
-
 <!-- 게시판 이름 목록 조회 -->
 <select id="selectBoardType" resultType="map">
 SELECT * FROM BOARD_TYPE
