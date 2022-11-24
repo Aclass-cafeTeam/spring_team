@@ -58,14 +58,14 @@ PROFILE_IMG = #{profileImage}
 WHERE MEMBER_NO = #{memberNo}
 </update>
 
-<!-- 로그인한 회원이 쓴 게시글 수 조회 -->
-<select id="getListCount" parameterType="_int" resultType="_int">
+<!-- 로그인한 회원이 작성한 게시글 수 조회 -->
+<select id="getMyListCount" parameterType="_int" resultType="_int">
 SELECT COUNT(*) FROM "BOARD"
 WHERE MEMBER_NO =#{memberNo}
+AND BOARD_DEL_FL = 'N'
 </select>
 
-<!-- 내가 쓴 글 목록 조회 -->
-<!-- 말머리 추가해야함 -->
+<!-- 로그인한 회원이 작성한 글 목록 조회 -->
 <select id="selectMyPageBoard" parameterType="_int" resultMap="myPageBoard_rm">
 SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 	<![CDATA[
@@ -78,9 +78,9 @@ SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
       THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24) || '시간 전'
       ELSE TO_CHAR(B_CREATE_DATE, 'YYYY-MM-DD')
    END B_CREATE_DATE,
-	]]>
+ 	]]>
 	(SELECT COUNT(*) FROM "COMMENT" C
-	WHERE C.BOARD_NO =B.BOARD_NO) COMMENT_COUNT
+	WHERE C.BOARD_NO =B.BOARD_NO AND COMMENT_DEL_FL = 'N') COMMENT_COUNT
 FROM BOARD B
 JOIN MEMBER USING(MEMBER_NO)
 LEFT JOIN TITLE_TAG T ON(T.TITLE_TAG_NO=B.TITLE_TAG_NO)
@@ -89,9 +89,16 @@ AND BOARD_DEL_FL = 'N'
 ORDER BY BOARD_NO DESC
 </select>
 
-<!-- 내가 댓글 단 글 목록 조회 -->
+<!-- 로그인한 회원이 댓글 단 게시글 수 조회 -->
+<select id="getCommentListCount" parameterType="_int" resultType="_int">
+SELECT COUNT(DISTINCT BOARD_NO) FROM "COMMENT"
+WHERE MEMBER_NO =#{memberNo}
+AND COMMENT_DEL_FL= 'N'
+</select>
+
+<!-- 로그인한 회원이 댓글 단 글 목록 조회 -->
 <select id="selectMyCommentBoard" parameterType="_int" resultMap="myPageBoard_rm">
-SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
 	<![CDATA[
 	CASE  
       WHEN SYSDATE - B_CREATE_DATE < 1/24/60
@@ -102,16 +109,53 @@ SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
       THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24) || '시간 전'
       ELSE TO_CHAR(B_CREATE_DATE, 'YYYY-MM-DD')
    END B_CREATE_DATE,
-   	]]>
+ 	]]>
 	(SELECT COUNT(*) FROM "COMMENT" C
-	WHERE C.BOARD_NO =B.BOARD_NO) COMMENT_COUNT
+	WHERE C.BOARD_NO =B.BOARD_NO AND COMMENT_DEL_FL = 'N') COMMENT_COUNT
 FROM BOARD B
 JOIN MEMBER USING(MEMBER_NO)
 LEFT JOIN TITLE_TAG T ON(T.TITLE_TAG_NO=B.TITLE_TAG_NO)
 WHERE BOARD_NO IN (
 	SELECT DISTINCT BOARD_NO 
 	FROM "COMMENT"
-	WHERE MEMBER_NO = 3)
-ORDER BY 1 DESC
+	WHERE MEMBER_NO = #{memberNo}
+	AND COMMENT_DEL_FL = 'N')
+AND BOARD_DEL_FL = 'N'
+ORDER BY B.BOARD_NO DESC
 </select>
+
+<!-- 로그인한 회원이 좋아요 누른 게시글 수 조회 -->
+<select id="getLikeListCount" parameterType="_int" resultType="_int">
+SELECT COUNT(DISTINCT L.BOARD_NO) FROM "BOARD_LIKE" L
+LEFT JOIN "BOARD" B ON(L.BOARD_NO=B.BOARD_NO)
+WHERE L.MEMBER_NO = #{memberNo}
+AND BOARD_DEL_FL='N'
+</select>
+
+<!-- 로그인한 회원이 좋아요 누른 게시글 목록 조회 -->
+<select id="selectMyLikeBoard" parameterType="_int" resultMap="myPageBoard_rm">
+SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
+	<![CDATA[
+	CASE  
+      WHEN SYSDATE - B_CREATE_DATE < 1/24/60
+      THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24 * 60 * 60 ) || '초 전'
+      WHEN SYSDATE - B_CREATE_DATE < 1/24
+      THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24 * 60) || '분 전'
+      WHEN SYSDATE - B_CREATE_DATE < 1
+      THEN FLOOR( (SYSDATE - B_CREATE_DATE) * 24) || '시간 전'
+      ELSE TO_CHAR(B_CREATE_DATE, 'YYYY-MM-DD')
+   END B_CREATE_DATE,
+ 	]]>
+	(SELECT COUNT(*) FROM "COMMENT" C
+	WHERE C.BOARD_NO =B.BOARD_NO AND COMMENT_DEL_FL = 'N') COMMENT_COUNT
+FROM BOARD B
+JOIN MEMBER USING(MEMBER_NO)
+LEFT JOIN TITLE_TAG T ON(T.TITLE_TAG_NO=B.TITLE_TAG_NO)
+WHERE BOARD_NO IN (
+	SELECT BOARD_NO FROM BOARD_LIKE
+	WHERE MEMBER_NO = #{memberNo})
+AND BOARD_DEL_FL = 'N'
+ORDER BY B.BOARD_NO DESC
+</select>
+
 </mapper>

@@ -38,16 +38,63 @@ public class MyPageDAO {
 	 * @param myBoardCode
 	 * @return
 	 */
-	public int getListCount(int memberNo) {
-		return sqlSession.selectOne("myPageMapper.getListCount", memberNo);
+	public int getMyListCount(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.getMyListCount", memberNo);
 	}
 
+	/** 로그인한 회원이 작성한 게시글 목록 조회
+	 * @param pagination
+	 * @param memberNo
+	 * @return
+	 */
 	public List<MyPageBoard> selectMyPageBoard(MyPagePagination pagination, int memberNo) {
 		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		
 		return sqlSession.selectList("myPageMapper.selectMyPageBoard", memberNo, rowBounds);
+	}
+
+	/** 로그인한 회원이 댓글을 작성한 게시글 수 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public int getCommentListCount(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.getCommentListCount", memberNo);
+	}
+
+	/** 로그인한 회원이 댓글을 작성한 게시글 목록 조회
+	 * @param pagination
+	 * @param memberNo
+	 * @return
+	 */
+	public List<MyPageBoard> selectMyCommentBoard(MyPagePagination pagination, int memberNo) {
+		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("myPageMapper.selectMyCommentBoard", memberNo, rowBounds);
+	}
+
+	/** 로그인한 회원이 좋아요를 누른 게시글 수 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public int getLikeListCount(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.getLikeListCount", memberNo);
+	}
+
+	/** 로그인한 회원이 좋아요를 누른 게시글 목록 조회
+	 * @param pagination
+	 * @param memberNo
+	 * @return
+	 */
+	public List<MyPageBoard> selectMyLikeBoard(MyPagePagination pagination, int memberNo) {
+		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("myPageMapper.selectMyLikeBoard", memberNo, rowBounds);
 	}
 
 }

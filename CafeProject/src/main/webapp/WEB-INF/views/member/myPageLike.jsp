@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
-<c:set var="myCommentBoardList" value="${map.myCommentBoardList}"/>
+<c:set var="myLikeBoardList" value="${map.myLikeBoardList}"/>
 <c:set var="pagination" value="${map.pagination}"/>
 
 <!DOCTYPE html>
@@ -11,7 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내가 쓴 댓글</title>
+    <title>좋아요한 글</title>
     <link rel="stylesheet" href="/resources/css/member/myPage.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 </head>
@@ -25,7 +25,7 @@
         <div id="mainArea">
             <!-- myPage-header -->
             <jsp:include page="/WEB-INF/views/member/myPageHeader.jsp"/>
-            <!-- 댓글단 글 -->
+            <!-- 좋아요한 글 -->
             <div id="myBoardArea">
                 <table class="myBoardTb">
                     <thead>
@@ -39,26 +39,26 @@
                     </thead>
                     <tbody>
                     <c:choose>
-                        <c:when test="${empty myCommentBoardList}">
+                        <c:when test="${empty myLikeBoardList}">
                    		        <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
-                                    <th colspan="5"> 댓글을 등록한 게시글이 존재하지 않습니다.</th>
+                                    <th colspan="5">좋아요를 누른 게시글이 존재하지 않습니다.</th>
                                 </tr>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="myCommentBoard" items="${myCommentBoardList}">
+                            <c:forEach var="myLikeBoard" items="${myLikeBoardList}">
                                 <tr>
-                                    <td class="boardNo">${myCommentBoard.boardNo}</td>
+                                    <td class="boardNo">${myLikeBoard.boardNo}</td>
                                     <td><a href="#" class="title">
-                                        <c:if test="${not empty myCommentBoard.titleTagName}">
-                                        <span>[${myCommentBoard.titleTagName}] </span>
+                                        <c:if test="${not empty myLikeBoard.titleTagName}">
+                                        <span>[${myLikeBoard.titleTagName}] </span>
                                         </c:if>
-                                    ${myCommentBoard.boardTitle}</a>
-                                        <a href="#" class="comment">[${myCommentBoard.commentCount}]</a>
+                                    ${myLikeBoard.boardTitle}</a>
+                                        <a href="#" class="comment">[${myLikeBoard.commentCount}]</a>
                                     </td>
-                                    <td class="writer">${myCommentBoard.memberNickname}</td>
-                                    <td class="reporting-date">${myCommentBoard.boardCreateDate}</td>
-                                    <td class="hits">${myCommentBoard.readCount}</td>
+                                    <td class="writer">${myLikeBoard.memberNickname}</td>
+                                    <td class="reporting-date">${myLikeBoard.boardCreateDate}</td>
+                                    <td class="hits">${myLikeBoard.readCount}</td>
                                 </tr>
                             </c:forEach>
                         </c:otherwise>
@@ -67,6 +67,7 @@
                 </table>
             </div>
             <div class="pagination-area">
+
                 <ul class="myPage-pagination">
                 
                     <!-- 이전 목록 마지막 번호로 이동 --> 

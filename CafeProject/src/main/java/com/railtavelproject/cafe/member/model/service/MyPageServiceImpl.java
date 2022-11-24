@@ -39,16 +39,16 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
-	// 내가 쓴 글 목록 조회 + 페이징 처리 계산
+	// 로그인한 회원이 작성한 글 목록 조회 + 페이징 처리 계산
 	@Override
 	public Map<String, Object> selectMyPageBoard(int memberNo, int cp) {
 		
 		// 1. 로그인한 회원이 작성한 전체 게시글 수 조회(단, 삭제 제외)
-		int listCount = dao.getListCount(memberNo);
+		int myListCount = dao.getMyListCount(memberNo);
 		
 		// 2. 전체 게시글 수 + cp(현재 페이지) 이용해서
 		//		페이징 처리 객체 생성
-		MyPagePagination pagination = new MyPagePagination(listCount, cp);
+		MyPagePagination pagination = new MyPagePagination(myListCount, cp);
 		
 		// 3. 페이징 처리 객체를 이용해서 게시글 목록 조회
 		List<MyPageBoard> myPageBoardList = dao.selectMyPageBoard(pagination, memberNo);
@@ -61,11 +61,46 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
-	// 내가 댓글 단 글 목록 조회 + 페이징
+	// 로그인한 회원이 댓글 단 글 목록 조회 + 페이징
 	@Override
 	public Map<String, Object> selectMyCommentBoard(int memberNo, int cp) {
-		// TODO Auto-generated method stub
-		return null;
+		// 1. 로그인한 회원이 댓글을 작성한 전체 게시글 수 조회(단, 댓글을 삭제한 게시글 제외)
+		int commentListCount = dao.getCommentListCount(memberNo);
+		
+		// 2. 전체 게시글 수 + cp(현재 페이지) 이용해서
+		//		페이징 처리 객체 생성
+		MyPagePagination pagination = new MyPagePagination(commentListCount, cp);
+		
+		// 3. 페이징 처리 객체를 이용해서 게시글 목록 조회
+		List<MyPageBoard> myCommentBoardList = dao.selectMyCommentBoard(pagination, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("myCommentBoardList", myCommentBoardList);
+		
+		return map;
+	}
+
+
+	// 로그인한 회원이 좋아요 한 글 목록 조회 + 페이징
+	@Override
+	public Map<String, Object> selectMyLikeBoard(int memberNo, int cp) {
+		
+		// 1. 로그인한 회원이 좋아요를 누른 전체 게시글 수 조회(단, 삭제된 게시글 제외)
+		int likeListCount = dao.getLikeListCount(memberNo);
+		
+		// 2. 전체 게시글 수 + cp(현재 페이지) 이용해서
+		//		페이징 처리 객체 생성
+		MyPagePagination pagination = new MyPagePagination(likeListCount, cp);
+		
+		// 3. 페이징 처리 객체를 이용해서 게시글 목록 조회
+		List<MyPageBoard> myLikeBoardList = dao.selectMyLikeBoard(pagination, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("myLikeBoardList", myLikeBoardList);
+		
+		return map;
 	}
 
 

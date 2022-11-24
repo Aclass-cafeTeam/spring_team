@@ -34,8 +34,8 @@
                     <a href="/member/myPage/info">회원 정보</a>
                     <a href="/member/myPage/myBoard">작성글</a>
                     <a href="/member/myPage/myCommentBoard">댓글단 글</a>
-                    <a href="#">좋아요한 글</a>
-                    <a href="#">삭제한 글</a>
+                    <a href="/member/myPage/myLikeBoard">좋아요한 글</a>
+                    <a href="/member/myPage/myDeleteBoard">삭제한 글</a>
                     <a href="/member/myPage/secession" id="secessionMenu">회원 탈퇴</a>
                 </div>
             </div> 

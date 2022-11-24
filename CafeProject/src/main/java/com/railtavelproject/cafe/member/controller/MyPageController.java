@@ -39,7 +39,7 @@ public class MyPageController {
 		return "member/myPageProfile";
 	}
 		
-	// 마이페이지 내가 쓴 글 목록
+	// 마이페이지 로그인한 회원이 작성한 글 목록
 	@GetMapping("/myBoard")
 	public String selectMyPageBoard(
 			@ModelAttribute("loginMember") Member loginMember,
@@ -54,7 +54,7 @@ public class MyPageController {
 		return "member/myPageBoard";
 	}
 	
-	// 마이페이지 내가 댓글 단 글 목록
+	// 마이페이지 로그인한 회원이 댓글 단 글 목록
 	@GetMapping("/myCommentBoard")
 	public String selectMyCommentBoard(
 			@ModelAttribute("loginMember") Member loginMember,
@@ -67,6 +67,27 @@ public class MyPageController {
 		model.addAttribute("map", map);
 		
 		return "member/myCommentBoard";
+	}
+	
+	// 마이페이지 로그인한 회원이 좋아요 한 글 목록
+	@GetMapping("/myLikeBoard")
+	public String selectMyLikeBoard(
+			@ModelAttribute("loginMember") Member loginMember,
+			Model model,
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+		
+		Map<String, Object> map = null;
+		map = service.selectMyLikeBoard(loginMember.getMemberNo(), cp);
+		
+		model.addAttribute("map", map);
+		
+		return "member/myPageLike";
+	}
+	
+	// 마이페이지 로그인한 회원이 삭제한 글 목록
+	@GetMapping("/myDeleteBoard")
+	public String selectMyDeleteBoard() {
+		return "member/myPageDelete";
 	}
 	
 	//회원 탈퇴
