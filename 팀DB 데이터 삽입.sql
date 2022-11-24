@@ -142,7 +142,7 @@ VALUES(SEQ_BOARD_CODE.NEXTVAL, '여행 후기', 1, 4, 'Y', DEFAULT, DEFAULT, 3, 
 INSERT INTO "BOARD_TYPE"
 VALUES(SEQ_BOARD_CODE.NEXTVAL, '맛집 사진 공유', 2, 4, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
 
-
+ALTER TABLE "MEMBER" MODIFY PROFILE_IMG VARCHAR2(300) DEFAULT '/resources/images/main/프로필.PNG';
 ------------------------------------------------------------------------
 -- 공지게시판에 메인매니저가 공지 100개
 BEGIN
