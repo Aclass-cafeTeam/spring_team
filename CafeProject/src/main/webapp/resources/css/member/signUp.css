@@ -98,13 +98,12 @@ select {
     -moz-appearance: none;
     -ms-appearance: none;
     appearance: none;
-    outline: 0;
+    cursor: pointer;
     box-shadow: none;
     border: 0!important;
     border-radius: 5px;
     background-color: #f5f6f8;
     /* background-image: none; */
-
     flex:1;
     padding: 0 1em;
     color :  #676767;
