@@ -24,4 +24,22 @@ public class IntroDAO {
 		return sqlSession.selectList("introMapper.selectBoardList", null ,rowBounds);
 	}
 
+	/**
+	 * 공지만 불러오기
+	 * @return result
+	 */
+	public List<IntroBoard> noticeList() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.selectNoticeList", null ,rowBounds);
+	}
+
+	/**
+	 * 여행후기 게시판
+	 * @return
+	 */
+	public List<IntroBoard> travelReview() {
+		RowBounds rowBounds = new RowBounds(0, 12);
+		return sqlSession.selectList("introMapper.selectTravelReview", null ,rowBounds);
+	}
+
 }
