@@ -129,7 +129,7 @@ public class MemberController {
 		String message = null;		
 		if (result > 0) {
 			path = "/";
-			message = member.getMemberNickname() + "님, 환영합니다.";
+			message = member.getMemberNickname() + "님, 회원가입이 정상적으로 처리되었습니다.";
 		} else {
 			path = referer;
 			message = "회원가입을 다시 시도해주세요.";
