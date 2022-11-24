@@ -86,7 +86,15 @@ public class MyPageController {
 	
 	// 마이페이지 로그인한 회원이 삭제한 글 목록
 	@GetMapping("/myDeleteBoard")
-	public String selectMyDeleteBoard() {
+	public String selectMyDeleteBoard(
+			@ModelAttribute("loginMember") Member loginMember,
+			Model model,
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp) {
+		
+		Map<String, Object> map = null;
+		map = service.selectMyDeleteBoard(loginMember.getMemberNo(), cp);
+		
+		model.addAttribute("map", map);
 		return "member/myPageDelete";
 	}
 	

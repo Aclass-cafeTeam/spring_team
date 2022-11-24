@@ -97,4 +97,25 @@ public class MyPageDAO {
 		return sqlSession.selectList("myPageMapper.selectMyLikeBoard", memberNo, rowBounds);
 	}
 
+	/** 로그인한 회원이 삭제한 게시글 수 조회
+	 * @param memberNo
+	 * @return
+	 */
+	public int getDeleteListCount(int memberNo) {
+		return sqlSession.selectOne("myPageMapper.getDeleteListCount", memberNo);
+	}
+
+	/** 로그인한 회원이 삭제한 게시글 목록 조회
+	 * @param pagination
+	 * @param memberNo
+	 * @return
+	 */
+	public List<MyPageBoard> selectMyDeleteBoard(MyPagePagination pagination, int memberNo) {
+int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("myPageMapper.selectMyDeleteBoard", memberNo, rowBounds);
+	}
+
 }

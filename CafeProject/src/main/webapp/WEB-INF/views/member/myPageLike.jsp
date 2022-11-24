@@ -54,7 +54,9 @@
                                         <span>[${myLikeBoard.titleTagName}] </span>
                                         </c:if>
                                     ${myLikeBoard.boardTitle}</a>
+                                        <c:if test="${myLikeBoard.commentCount!=0}">
                                         <a href="#" class="comment">[${myLikeBoard.commentCount}]</a>
+                                        </c:if>
                                     </td>
                                     <td class="writer">${myLikeBoard.memberNickname}</td>
                                     <td class="reporting-date">${myLikeBoard.boardCreateDate}</td>

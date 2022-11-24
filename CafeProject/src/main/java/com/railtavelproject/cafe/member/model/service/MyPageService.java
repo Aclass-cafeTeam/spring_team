@@ -27,11 +27,18 @@ public interface MyPageService {
 	 */
 	Map<String, Object> selectMyCommentBoard(int memberNo, int cp);
 
-	/**
+	/** 로그인한 회원이 좋아요 한 글 목록 조회 + 페이징
 	 * @param memberNo
 	 * @param cp
 	 * @return
 	 */
 	Map<String, Object> selectMyLikeBoard(int memberNo, int cp);
+
+	/** 로그인한 회원이 삭제한 글 목록 조회 + 페이징
+	 * @param memberNo
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> selectMyDeleteBoard(int memberNo, int cp);
 
 }

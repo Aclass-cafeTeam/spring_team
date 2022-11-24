@@ -104,6 +104,28 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 
+	// 로그인한 회원이 삭제한 글 목록 조회 + 페이징
+	@Override
+	public Map<String, Object> selectMyDeleteBoard(int memberNo, int cp) {
+		
+		// 1. 로그인한 회원이 삭제한 전체 게시글 수 조회
+		int deleteListCount = dao.getDeleteListCount(memberNo);
+		
+		// 2. 전체 게시글 수 + cp(현재 페이지) 이용해서
+		//		페이징 처리 객체 생성
+		MyPagePagination pagination = new MyPagePagination(deleteListCount, cp);
+		
+		// 3. 페이징 처리 객체를 이용해서 게시글 목록 조회
+		List<MyPageBoard> myDeleteBoardList = dao.selectMyDeleteBoard(pagination, memberNo);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("myDeleteBoardList", myDeleteBoardList);
+		
+		return map;
+	}
+
+
 
 
 }
