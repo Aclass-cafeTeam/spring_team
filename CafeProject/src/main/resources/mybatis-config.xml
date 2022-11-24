@@ -25,6 +25,7 @@
 		<typeAlias type="com.railtavelproject.cafe.manager.model.vo.Member" alias="managerMember"/>
 		<typeAlias type="com.railtavelproject.cafe.member.model.vo.MyPageBoard" alias="MyPageBoard"/>
 		<typeAlias type="com.railtavelproject.cafe.board.model.vo.Board" alias="Board"/>
+
 		<typeAlias type="com.railtavelproject.cafe.main.model.vo.IntroBoard" alias="IntroBoard"/>
 	</typeAliases>
 	

@@ -54,13 +54,13 @@
                                 <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
                             </li>
                             <li>
-                                <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
+                                <a href="/manager/basicInfoManager"><img src="../../resources/images/settings.png">카페운영</a>
                             </li>
                             <li>
                                 <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                             </li>
                             <li>
-                                <a href="../managerMain/joinMemberManager.html"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                                <a href="/manager/joinMemberManager"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                             </li>
                             <li>
                                 <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
@@ -133,7 +133,7 @@
                             <strong class="tit">카페 운영</strong>
                             <ul>
                                 <li class="_manageAuth">
-                                    <a id="menu1" href="../managerMain/basicInfoManager.html" class="N=a:LNB*a.list">기본 정보</a>
+                                    <a id="menu1" href="/manager/basicInfoManager" class="N=a:LNB*a.list">기본 정보</a>
                                 </li>
                             </ul>
                         </div>
@@ -141,7 +141,7 @@
                             <strong class="tit2">가입 · 등급</strong>
                             <ul>
                                 <li class="_manageAuth(WelcomeStaff)">
-                                    <a id="menu2" href="../managerMain/joinMemberManager.html" class="N=a:LNB*a.list">가입 정보 관리</a>
+                                    <a id="menu2" href="/manager/joinMemberManager" class="N=a:LNB*a.list">가입 정보 관리</a>
                                 </li>
                                 <li class="_manageAuth(MemberStaff)">
                                     <a id="menu3" href="" class="N=a:LNB*a.list">멤버 등급 관리</a>
