@@ -49,9 +49,21 @@
         <!-- **************************************네비************************************** -->
         <nav>
             <ul class="special-menu">
-                <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
+                <c:forEach var="boardType" items="${boardTypeList}">
+                    <%--
+                        EL을 이용해서 Map 데이터를 다루는 방법
+                        key   ==> ${변수명.key}
+                        value ==> ${변수명.value}
+                    --%>
+                
+                    <li>
+                        <a href="/board/${boardType.BOARD_CODE}"><span id="special-menu">•</span>${boardType.BOARD_NAME}</a>
+                    </li>
+
+                </c:forEach>
+                <%-- <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
                 <li id="special-menu-1"><a class="link_special" href="#">📣 카페 이용..</a></li>
-                <li id="special-menu-2"><a class="link_special" href="#">👩 생활 이야..</a></li>
+                <li id="special-menu-2"><a class="link_special" href="#">👩 생활 이야..</a></li> --%>
             </ul>
         </nav>
 
