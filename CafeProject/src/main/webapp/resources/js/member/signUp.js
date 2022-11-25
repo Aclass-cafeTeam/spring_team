@@ -1,8 +1,8 @@
-// google captcha
-// var onloadCallback = function() {
-//     grecaptcha.render('reCAPTCHA', 
-//     {'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'});
-// };
+var onloadCallback = function() {
+    grecaptcha.render('reCAPTCHA', {
+    'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'
+    });
+};
 
 // 제출form 전체 유효성 검사 
 const checkObj = {
@@ -10,17 +10,15 @@ const checkObj = {
     "memberPw"        :false,
     "memberPwConfirm" :false,
     "memberNickname"  :false,
-    "authKey"         :false
+    //"authKey"         :false
 };
 
-// 회원 가입 양식이 제출되었을 때
-function signUpValidate() {
+var isCapchaSuccess = false;
+function successCaptcha(){
+    isCapchaSuccess =true;
+}
 
-    if(grecaptcha.getRessponce.length == 0 ) {
-        alert("Please check the reCAPTCHA");
-        return false;
-    }
-
+function writeOK() {
     for(let key in checkObj){
         // checkObj 속성 하나를 꺼내 값을 검사했는데 false인 경우 
         if(!checkObj[key]) {
@@ -28,7 +26,13 @@ function signUpValidate() {
             return false;
         }
     }
-    return true; 
+    
+    if(!isCapchaSuccess) {
+        alert("Please check the reCAPTCHA");
+        return false;
+    }
+    return true;
+
 }
 
 
@@ -108,8 +112,7 @@ memberPw.addEventListener("input", function(){
         pwMessage.classList.remove("confirm", "error");
         checkObj.memberPw = false;
         return;
-    }
-
+    } 
     // 정규표현식을 통한 비밀번호 유효성 검사
     const regEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
 
@@ -123,22 +126,31 @@ memberPw.addEventListener("input", function(){
             pwMessage.classList.remove("error");
 
         } else { // 유효한 비밀번호 + 확인 작성 O
+            pwConfirm.innerHTML = "";
+
             // 비밀번호가 입력될 때 비밀번호 확인에 작성된 값과 일치하는 경우
             if( memberPw.value == memberPwConfirm.value ) {
-                pwConfirm.innerText = "입력하신 비밀번호가 일치합니다.";
-                pwConfirm.classList.add("confirm");
-                pwConfirm.classList.remove("error");
+                pwMessage.innerText = "입력하신 비밀번호가 일치합니다.";
+                pwMessage.classList.add("confirm");
+                pwMessage.classList.remove("error");
+                pwConfirm.innerText="";
                 checkObj.memberPwConfirm = true;
 
             } else {
-                pwConfirm.innerText = "입력하신 비밀번호가 일치하지 않습니다.";
-                pwConfirm.classList.add("error");
-                pwConfirm.classList.remove("confirm");
+                pwMessage.innerText = "입력하신 비밀번호가 일치하지 않습니다.";
+                pwMessage.classList.add("error");
+                pwMessage.classList.remove("confirm");
+                pwConfirm.innerText="";
                 checkObj.memberPwConfirm = false;
             }
         }
 
+
+
+
     } else { 
+
+        
 
         pwMessage.innerText = "입력하신 비밀번호가 유효하지 않습니다.";
         pwMessage.classList.add("error");
@@ -155,11 +167,10 @@ memberPwConfirm.addEventListener("input", function(){
     
     if(memberPw.value.trim().length == 0) {
         pwMessage.innerText = "비밀번호를 입력하세요.";
-        this.value="";
-        memberPw.focus();
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
-
+        memberPw.focus();
+        memberPwConfirm.value="";
         checkObj.memberPw = false;
     }
 
@@ -168,12 +179,11 @@ memberPwConfirm.addEventListener("input", function(){
         
         // 비밀번호와 비밀번호 확인이 같은지 검사
         if( memberPwConfirm.value == memberPw.value ) {
-            pwConfirm.innerText = "입력하신 비밀번호가 일치합니다."
-            pwMessage.innerHTML = "";
+            pwConfirm.innerText = "입력하신 비밀번호가 일치합니다.";
             pwConfirm.classList.add("confirm");
             pwConfirm.classList.remove("error");
+            pwMessage.innerHTML = "";
             checkObj.memberPwConfirm = true;
-    
     
         } else {
             pwConfirm.innerText = "입력하신 비밀번호가 일치하지 않습니다."
@@ -184,7 +194,6 @@ memberPwConfirm.addEventListener("input", function(){
         }
 
     } else { // 비밀번호가 유효하지 않은 경우
-        
         checkObj.memberPwConfirm = false;
     }
 
