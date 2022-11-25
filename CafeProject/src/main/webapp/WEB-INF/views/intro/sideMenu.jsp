@@ -152,9 +152,17 @@
                                 <ul>
                                     <li>
                                         <div id="side-profile">
-                                            <a href="/member/myPage/profile"><img src="/resources/images/settings.png"
+                                            <a href="/member/myPage/profile"><img src="/resources/images/프로필 변경.PNG"
                                                     id="setting-icon"></a>
-                                            <div id="profile-box"><img src="${loginMember.profileImage}"id="profile-img"></div>
+                                            <div id="profile-box">
+                                                <c:if test="${empty loginMember.profileImage}">    
+                                                    <img id="profile-img" src="/resources/images/member/프로필.PNG">
+                                                </c:if> 
+
+                                                <c:if test="${not empty loginMember.profileImage}">    
+                                                    <img id="profile-img" src="${loginMember.profileImage}">
+                                                </c:if>
+                                            </div>
                                         </div>
                                         <div id="profile-name">
                                             <a href="/member/myPage/info" id="memberNickname">${loginMember.memberNickname}</a>
