@@ -92,9 +92,7 @@ public class ManagerMemberController {
 			System.out.println(articleCountInput);
 			System.out.println(aboveOption);
 
-			if(session.getAttribute("memberLevelNoResult") == null) {
-				memberLevelNoResult = 0;
-			}else {
+			if(session.getAttribute("memberLevelNoResult") != null) {
 				memberLevelNoResult = (int) session.getAttribute("memberLevelNoResult");
 			}
 			if(session.getAttribute("limit") == null) {
