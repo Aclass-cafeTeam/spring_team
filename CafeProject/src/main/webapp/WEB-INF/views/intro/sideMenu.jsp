@@ -216,6 +216,9 @@
                 <div id="signOutbtn">
                     <a href="/member/logout" id="signOut">로그아웃</a>
                 </div>
+                <div id="signOutbtn">
+                    <a href="#" id="signOut">카페 글쓰기</a>
+                </div>
             </c:otherwise>
             </c:choose>
 
