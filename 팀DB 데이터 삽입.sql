@@ -229,3 +229,39 @@ USING(MEMBER_NO)
 WHERE  MEMBER_DEL_FL = 'N'
 AND MEMBER_EMAIL = 'user10@never.com'
 
+----------------------------------------------------------------------
+--insert 데이터 삽입 
+--댓글 테이블------------------------------------------
+
+BEGIN
+   FOR I IN 1..200 LOOP
+      INSERT INTO "COMMENT" 
+      VALUES(SEQ_COMMENT_NO.NEXTVAL, 
+            SEQ_COMMENT_NO.CURRVAL || '번째 댓글',
+            DEFAULT, NULL, DEFAULT,
+             CEIL(DBMS_RANDOM.VALUE(0,600)),
+             FLOOR(DBMS_RANDOM.VALUE(6, 19)), NULL);
+   END LOOP;
+END;
+
+----------------------------------------------------------------------
+--insert 데이터 삽입 
+--좋아요 테이블------------------------------------------
+BEGIN
+   FOR I IN 1..100 LOOP
+      INSERT INTO "BOARD_LIKE" 
+      VALUES(CEIL(DBMS_RANDOM.VALUE(0,600)),
+             FLOOR(DBMS_RANDOM.VALUE(6, 19)));
+   END LOOP;
+END;
+
+----------------------------------------------------------------------
+--insert 데이터 삽입 
+--게시판이미지테이블------------------------------------------
+INSERT INTO BOARD_IMG 
+VALUES(SEQ_IMG_NO.NEXTVAL, '/resources/images/board/',
+   '20221116105843_00001.jpg', '1.jpg', 0, 714);
+-- 동일한 패턴으로 12번까지 삽입함
+  
+  
+  

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="/resources/css/member/signUp.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 
-    <!-- 보안절차 reCaptcha --> <%-- ?onload=onloadCallback&render=explicit --%>
+
+    <!-- 보안절차 reCaptcha -->
+
     <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer></script>
     <!-- site key : 6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz -->
     <!-- secret key : 6LcVIgIjAAAAAByntQQHon2PJS2e0cYnBzm6rc7F -->
@@ -42,7 +44,8 @@
                 <p class="signUpSubject">카페 가입을 위한 정보를 입력해주세요.</p>
             </div>
             
-        <%-- onsubmit="signUpValidate(event)" --%>
+
+
             <form action="/member/signUp" method="POST" name="signUp-frm" id="signUp-frm" >
 
                 <div class="signUpArea">
@@ -163,8 +166,9 @@
                     <!-- 보안절차 -->
                     <div class="signUpRow">
                         <label>보안절차</label>
-                        <div class="g-recaptcha" id="reCAPTCHA" data-sitekey="6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz" data-callback ="successCaptcha"></div>
-                        <%-- <div id="reCAPTCHA"></div> --%>
+
+                        <div class="g-recaptcha" id="reCAPTCHA" data-callback ="successCaptcha"></div>
+
                     </div>
                 
                     <!-- 가입 관련 안내 문구 -->
@@ -194,5 +198,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     
     <script src="/resources/js/member/signUp.js"></script>  
+
+    <script src="/resources/js/main/main.js"></script>  
+
 </body>
 </html>
