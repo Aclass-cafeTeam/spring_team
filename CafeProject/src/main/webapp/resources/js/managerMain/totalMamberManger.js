@@ -81,6 +81,7 @@ window.onload = function(){
   const periodOption = QueryString.get('periodOption'); //기간 옵션 0전체기간/1최근 한달
   const articleCountInput = QueryString.get('articleCountInput');//게시글 수
   const commentCountInput = QueryString.get('commentCountInput');//댓글 수
+  const visitCountInput = QueryString.get('visitCountInput');//댓글 수
   const aboveOption = QueryString.get('aboveOption');//이상 1 이하 0
 
   /* 상세검색 후 제출하면 계속 상세검색 창이 보여야함 */
@@ -100,11 +101,14 @@ window.onload = function(){
     // $("._searchDetailItem").eq(countBy).prop("checked", true)
     document.querySelectorAll("._searchDetailItem")[countBy].checked = true;
 
-    /* 상세조회 기간옵션 전체,최신 1개월 */
-    $("._period").val(periodOption).prop('selected', true);
+    /* 상세조회 기간옵션 전체,최신 1개월 *$("._count:nth-last-of-type()")*/
+    if(periodOption != null){
+      $("._period")[countBy].value =periodOption;
+    }
+    
     /* 상세조회 이상,이하 */
     if(aboveOption != null){
-    $("._above").val(aboveOption).prop('selected', true);
+      $("._above").val(aboveOption).prop('selected', true);
     }
   }
 

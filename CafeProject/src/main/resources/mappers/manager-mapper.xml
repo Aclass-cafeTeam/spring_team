@@ -194,25 +194,28 @@
   
   <!-- 게시글 수에 따라 멤버 상세조회 페이징처리 -->
   <select id="getselectDetailBoardCount" parameterType="java.util.HashMap" resultType="_int">
-  	SELECT COUNT(*) FROM "MEMBER" m
+  	SELECT COUNT(*)
+	FROM (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
 	<if test ="periodOption == 1">
-	WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE MEMBER_DEL_FL IN ('N','S')
-	<if test ="aboveOption == 1">
-		<![CDATA[AND BOARD_COUNT >=]]> #{boardCount}
-	</if>
-	<if test ="aboveOption == 0">
-		<![CDATA[AND BOARD_COUNT <=]]> #{boardCount}
-	</if>
-	<if test ="memberLevelNo != 0">
-		AND MEMBER_LEVEL_NO = #{memberLevelNo}
-	</if>
+	WHERE MEMBER_DEL_FL IN ('N','S'))
+	<where>
+		<if test ="aboveOption == 1">
+			<![CDATA[AND BOARD_COUNT >=]]> #{articleCountInput}
+		</if>
+		<if test ="aboveOption == 0">
+			<![CDATA[AND BOARD_COUNT <=]]> #{articleCountInput}
+		</if>
+		<if test ="memberLevelNo != 0">
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
+		</if>
+	</where>
   </select>
   <!-- 게시글 수에 따라 멤버 상세조회 -->
   <select id="getselectDetailBoard" parameterType="java.util.HashMap" resultMap="member_rm">
@@ -233,13 +236,15 @@
 	FROM LOGIN_HISTORY lh
 	GROUP BY MEMBER_NO
 	ORDER BY 2) USING(MEMBER_NO)
+		LEFT JOIN (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
-	FROM BOARD b
+	FROM BOARD b 
 	<if test ="periodOption == 1">
-	WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
+	USING(MEMBER_NO))
 	USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 	FROM "COMMENT" c 
