@@ -28,7 +28,7 @@ public class BoardController {
 		
 		model.addAttribute("map", map);
 		
-		return "board/board";
+		return "board/boardList";
 	}	
 
 	
