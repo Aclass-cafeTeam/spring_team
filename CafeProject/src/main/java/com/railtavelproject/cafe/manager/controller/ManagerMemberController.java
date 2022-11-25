@@ -23,7 +23,7 @@ public class ManagerMemberController {
 	private ManagerMemberService service;
 	
 	//정렬
-		@GetMapping("/manager/sortMemberLevel")
+		@GetMapping("/manager/totalMemberManager/sortMemberLevel")
 		public String totalMemberManagerPage(Member member,
 				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
 				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit,
@@ -44,10 +44,11 @@ public class ManagerMemberController {
 			System.out.println(map.get("memberList"));
 			System.out.println(map.get("pagination"));
 			System.out.println(memberLevelNoResult);
+			model.addAttribute("requestURL", "/sortMemberLevel");
 			return "manager/totalMemberManager";
 		}
 		// 멤버 아이디 및 별명 검색
-		@GetMapping("/manager/selectInputMember")
+		@GetMapping("/manager/totalMemberManager/selectInputMember")
 		public String selectInputMember(Member member,
 				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
 				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit,
@@ -70,12 +71,14 @@ public class ManagerMemberController {
 			
 			System.out.println(map.get("memberList"));
 			System.out.println(map.get("pagination"));
+			
+			model.addAttribute("requestURL", "/selectInputMember");
 
 			return "manager/totalMemberManager";
 		}
 		
 		//게시글 상세조회 검색 //countBy=0&periodOption=1&articleCountInput=6&aboveOption=1#
-		@GetMapping("/manager/selectDetailBoard")
+		@GetMapping("/manager/totalMemberManager/selectDetailBoard")
 		public String selectDetailBoard(Member member,
 				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
 				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
@@ -92,9 +95,7 @@ public class ManagerMemberController {
 			System.out.println(articleCountInput);
 			System.out.println(aboveOption);
 
-			if(session.getAttribute("memberLevelNoResult") == null) {
-				memberLevelNoResult = 0;
-			}else {
+			if(session.getAttribute("memberLevelNoResult") != null) {
 				memberLevelNoResult = (int) session.getAttribute("memberLevelNoResult");
 			}
 			if(session.getAttribute("limit") == null) {
@@ -115,13 +116,14 @@ public class ManagerMemberController {
 			
 			System.out.println(map.get("memberList"));
 			System.out.println(map.get("pagination"));
+			model.addAttribute("requestURL", "/selectDetailBoard");
 
 			return "manager/totalMemberManager";
 		}
 		
 		//visitCountInput
 		//댓글 상세조회 검색 //countBy=1&periodOption=1&commentCountInput=6&aboveOption=1#
-		@GetMapping("/manager/selectDetailComment")
+		@GetMapping("/manager/totalMemberManager/selectDetailComment")
 		public String selectDetailComment(
 				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
 				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
@@ -153,12 +155,13 @@ public class ManagerMemberController {
 			model.addAttribute("srchOption", srchOption);
 			model.addAttribute("periodOption", periodOption);
 			model.addAttribute("aboveOption", aboveOption);
+			model.addAttribute("requestURL", "/selectDetailComment");
 			return "manager/totalMemberManager";
 		}
 		
 
 		//방문수 상세조회 검색 //countBy=1&periodOption=1&visitCountInput=6&aboveOption=1#
-		@GetMapping("/manager/selectDetailVisitCount")
+		@GetMapping("/manager/totalMemberManager/selectDetailVisitCount")
 		public String selectDetailVisitCount(
 			@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,//등급별 정렬
 			@RequestParam(value="limit" , required = false, defaultValue = "15")int limit, //보여지는 멤버 수 정렬
@@ -190,6 +193,7 @@ public class ManagerMemberController {
 			model.addAttribute("srchOption", srchOption);
 			model.addAttribute("periodOption", periodOption);
 			model.addAttribute("aboveOption", aboveOption);
+			model.addAttribute("requestURL", "/selectDetailVisitCount");
 			return "manager/totalMemberManager";
 		}
 }
