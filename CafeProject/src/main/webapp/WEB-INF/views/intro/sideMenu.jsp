@@ -161,7 +161,7 @@
                                         </div>
                                     </li>
 
-                                    <li id="signUp-date">가입일 <em>${loginMember.enrollDate}</em></li>
+                                    <li id="signUp-date">가입 <em>${loginMember.enrollDate}</em></li>
 
                                     <li id="profile-grade">
                                     <c:choose>
@@ -215,6 +215,9 @@
             <c:otherwise>
                 <div id="signOutbtn">
                     <a href="/member/logout" id="signOut">로그아웃</a>
+                </div>
+                <div id="signOutbtn">
+                    <a href="#" id="signOut">카페 글쓰기</a>
                 </div>
             </c:otherwise>
             </c:choose>
