@@ -29,15 +29,14 @@
                     <span class="myPage-script">이미지 선택 후 변경하기 버튼을 누르세요.</span>
                         <form action="updateProfile" method="POST" name="myPage-form"
                         enctype="multipart/form-data" onsubmit = "return profileValidate()">
-                            <div class="profile-image-area">
-                            
-                            <c:if test="${empty loginMember.profileImage}">    
-                            <img id="profile-image" src="/resources/images/main/프로필.PNG">
-                            </c:if> 
+                            <div class="profile-image-area">                            
+                                <c:if test="${empty loginMember.profileImage}">    
+                                    <img id="profile-image" class="profileImg" src="/resources/images/member/프로필.PNG">
+                                </c:if> 
 
-                            <c:if test="${not empty loginMember.profileImage}">    
-                                <img id="profile-image" src="${loginMember.profileImage}">
-                            </c:if> 
+                                <c:if test="${not empty loginMember.profileImage}">    
+                                    <img id="profile-image" class="profileImg" src="${loginMember.profileImage}">
+                                </c:if> 
                                 <span id="delete-image">&times;</span>
                             </div>
 

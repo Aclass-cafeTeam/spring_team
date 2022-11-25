@@ -13,7 +13,14 @@
 <body>
             <!-- 마이페이지 상단 기본정보-->
             <div id="subProfile">
-                <div id="profileImgBox"><img id="profileImg" src="/resources/images/프로필.PNG" alt="Progile Image">
+                <div id="profileImgBox">
+                    <c:if test="${empty loginMember.profileImage}">    
+                        <img id="profileImg" src="/resources/images/member/프로필.PNG">
+                    </c:if> 
+
+                    <c:if test="${not empty loginMember.profileImage}">    
+                        <img id="profileImg" src="${loginMember.profileImage}">
+                    </c:if> 
                     <a href="/member/myPage/profile"><img id="setting-icon" src="/resources/images/프로필 변경.PNG"></a></div>
                 <div class="profileInfo">
                     <div class="nickArea">${loginMember.memberNickname}</div>
