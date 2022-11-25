@@ -27,15 +27,23 @@
                     <div class="myPage-subTitle"><label>프로필 변경</label></div>
                         
                     <span class="myPage-script">이미지 선택 후 변경하기 버튼을 누르세요.</span>
-                        <form action="#" method="POST" name="myPage-form">
+                        <form action="updateProfile" method="POST" name="myPage-form"
+                        enctype="multipart/form-data" onsubmit = "return profileValidate()">
                             <div class="profile-image-area">
-                                <img src="/resources/images/프로필.PNG" id="profile-image">   
+                            
+                            <c:if test="${empty loginMember.profileImage}">    
+                            <img id="profile-image" src="/resources/images/main/프로필.PNG">
+                            </c:if> 
+
+                            <c:if test="${not empty loginMember.profileImage}">    
+                                <img id="profile-image" src="${loginMember.profileImage}">
+                            </c:if> 
                                 <span id="delete-image">&times;</span>
                             </div>
 
                             <div class="profile-btn-area">
                                 <label for="input-image">이미지 선택</label>
-                                <input type="file" name="profileImage" id="input-image">
+                                <input type="file" name="profileImage" id="input-image" accept="image/*">
                                 <button class="myPage-update-btn" type="submit">변경하기</button>
                             </div>
                         </form>
@@ -44,7 +52,7 @@
     </section>
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-    <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/member/myPage.js"></script>
 </body>
 </html>

@@ -28,9 +28,10 @@ public class MyPageServiceImpl implements MyPageService{
 	
 
 	// 프로필 이미지 변경
-	@Transactional(rollbackFor=Exception.class) // 예외가 발생하면 롤백
+	@Transactional (rollbackFor=Exception.class) // 예외가 발생하면 롤백
 	@Override
-	public int updateProfile(String webPath, String filePath, MultipartFile profileImage, Member loginMember) throws Exception{
+	public int updateProfile(String webPath, String filePath, MultipartFile profileImage, Member loginMember)
+			throws Exception{
 
 		// 실패를 대비해서 이전 이미지 경로 저장
 		String temp = loginMember.getProfileImage();
