@@ -33,7 +33,6 @@ function writeOK() {
         return false;
     }
     return true;
-    /* document.getElementById("signUp-frm").submit(); */
 
 
 
@@ -117,8 +116,6 @@ memberPw.addEventListener("input", function(){
         pwMessage.classList.remove("confirm", "error");
         checkObj.memberPw = false;
         return;
-    }
-
     } 
     // 정규표현식을 통한 비밀번호 유효성 검사
     const regEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
