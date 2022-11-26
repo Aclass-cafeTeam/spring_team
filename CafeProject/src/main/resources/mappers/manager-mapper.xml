@@ -351,9 +351,11 @@
 	FROM "MEMBER"
 	LEFT JOIN LOGIN_HISTORY
 	USING(MEMBER_NO))
+	WHERE MEMBER_DEL_FL IN ('N','S')
 	<if test ="periodOption == 1">
-		WHERE to_char(LOGIN_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		AND to_char(LOGIN_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
+	
 	GROUP BY MEMBER_NO,MEMBER_LEVEL_NO 
 	ORDER BY 2)
 	<where>
@@ -416,4 +418,69 @@
 	</where>
   </select>
   <!-- 방문수 상세조회111111111111111111111111111111-->
+  <!-- 가입일 방문일로 상세조회111111111111111111111111111111111111111111111111111111111111111 -->
+  			<!-- 가입일 방문일로 상세조회페이징 -->
+  <select id="selectDetailDateCount" parameterType="java.util.HashMap" resultType="_int">
+  SELECT COUNT(*) 
+	FROM "MEMBER"
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO) USING(MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('N','S')
+	<if test ="entryType == 1">
+	AND to_char(LOGIN_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="entryType == 0">
+	AND to_char(ENROLL_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	</if>
+	ORDER BY 1
+  </select>
+  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm">
+  SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+	,MEMBER_LEVEL_NO
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	<if test ="entryType == 1">
+	AND to_char(LOGIN_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="entryType == 0">
+	AND to_char(ENROLL_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	</if>
+	ORDER BY 2
+  </select>
+  <!-- 가입일 방문일로 상세조회11111111111111111111111111111111111111111111111111 -->
 </mapper>

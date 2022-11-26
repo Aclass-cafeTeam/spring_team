@@ -545,6 +545,15 @@ WHERE  MEMBER_DEL_FL IN ('N','Y')
 ORDER BY MEMBER_NICKNAME)
 WHERE LOGHISTORY_COUNT >= 1
 AND MEMBER_LEVEL_NO = 2;
+------------------------------------------------------------------------
+--가입일이나 최종 방문일에 따른 상세조회
+SELECT * 
+FROM "MEMBER"
+LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+FROM LOGIN_HISTORY lh
+WHERE to_char(LOGIN_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+GROUP BY MEMBER_NO
+ORDER BY 2) USING(MEMBER_NO)
 --------------------------------------------------------------------------------------------------------
 --마이바티스 조건문
 SELECT *

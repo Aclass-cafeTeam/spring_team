@@ -70,6 +70,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return map;
 	}
 
+	/**멤버 아이디랑 별명에 따른 상세검색
+	 *
+	 */
 	@Override
 	public Map<String, Object> selectInputMember(int srchOption,String inputMember, int limit, int cp) {
 		int listCount =1;
@@ -80,7 +83,7 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 				
 		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
 		List<Member> memberList = dao.selectInputMember(srchOption,inputMember,pagination); 
-		System.out.println(memberList+"값이 뭐야");
+		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("pagination", pagination);
@@ -101,7 +104,6 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		
 		// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
 		// 페이징 처리 객체 생성
-		System.out.println(listCount);
 		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
 			
 		// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
@@ -138,6 +140,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return map;
 	}
 
+	/** 방문수에 따른 상세조회
+	 *
+	 */
 	@Override
 	public Map<String, Object> selectDetailVisitCount(int periodOption, int visitCountInput, int aboveOption,
 			int memberLevelNoResult, int limit, int cp) {
@@ -148,6 +153,27 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		List<Member> memberList; 
 		
 		memberList = dao.getselectDetailVisit(memberLevelNoResult,periodOption,visitCountInput,aboveOption,pagination);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+
+	/**가입일이랑 최종방문일에 따른 상세조회
+	 *
+	 */
+	@Override
+	public Map<String, Object> selectDetailDate(int entryType, String startDateInput, String endDateInput,
+			int memberLevelNoResult, int limit, int cp) {
+		
+		int listCount = dao.selectDetailDateCount(memberLevelNoResult,entryType,startDateInput,endDateInput);
+		
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		List<Member> memberList; 
+		
+		memberList = dao.selectDetailDate(memberLevelNoResult,entryType,startDateInput,endDateInput,pagination);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("pagination", pagination);

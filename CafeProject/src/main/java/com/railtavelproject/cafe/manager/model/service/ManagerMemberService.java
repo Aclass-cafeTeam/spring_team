@@ -24,4 +24,7 @@ public interface ManagerMemberService {
 	Map<String, Object> selectDetailVisitCount(int periodOption, int visitCountInput, int aboveOption,
 			int memberLevelNoResult, int limit, int cp);
 
+	Map<String, Object> selectDetailDate(int entryType, String startDateInput, String endDateInput,
+			int memberLevelNoResult, int limit, int cp);
+
 }

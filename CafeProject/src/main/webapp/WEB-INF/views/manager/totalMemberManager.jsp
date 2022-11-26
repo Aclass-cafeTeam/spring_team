@@ -38,7 +38,7 @@
                   <div class="tit_area">
                       <h1><a href="#" class="go_nvr">NEVER</a>
                           <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
-                      <p><a href="../main.html" class="title">내일로, 기차로! 카페</a></p>
+                      <p><a href="/" class="title">내일로, 기차로! 카페</a></p>
                   </div>
 
                   <div class="tit_menu">
@@ -227,20 +227,23 @@
                     </div>
                     <!-- 가입/최종방문일 -->
                     <div class="srch_info">
-                      <span class="date _startDate" id="_startDateButton">
-                        <input type="date" class="text cal _startDate" id="_startDateInput" max="2022-11-10">
-                      </span>
-									    <span class="txt">부터</span>
-									    <span class="date _endDate" id="_endDateButton">
-                        <input type="date" class="text cal _endDate" id="_endDateInput" >
-                      </span>
-									    <span class="txt">까지</span>
-                      <select  class="_entryType">
-                        <option value="0">가입</option>
-                        <option value="1">최종방문</option>
-                      </select>
-                      <span class="txt">한 멤버</span>
-                      <a href="#" class="btn_type2_gn _submitDate" searchtype="datespace"><span class="_submitDate" searchtype="datespace">검색</span></a>
+                      <form action ="/manager/totalMemberManager/selectDetailDate" class="DatefrmSearch" method="get" name="DatefrmSearch" id="DatefrmSearch">
+                        <input type="hidden" name="countBy" class="_countBy" value="3">
+                        <span class="date _startDate" id="_startDateButton">
+                          <input type="date" class="text cal _startDate" name="startDateInput" id="_startDateInput" max="2022-11-10">
+                        </span>
+                        <span class="txt">부터</span>
+                        <span class="date _endDate" id="_endDateButton">
+                          <input type="date" class="text cal _endDate" id="_endDateInput" name="endDateInput">
+                        </span>
+                        <span class="txt">까지</span>
+                        <select  class="_entryType ${entryType}" name="entryType" id="_entryType">
+                          <option value="0" selected="">가입</option>
+                          <option value="1">최종방문</option>
+                        </select>
+                        <span class="txt">한 멤버</span>
+                        <button type="submit" class="btn_type2_gn _submitDate _submitDetail" searchtype="datespace">검색</button>
+                      </form>
                     </div>
                   </div>
                   <!-- 멤버 상세 검색 -->
