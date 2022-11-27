@@ -47,7 +47,20 @@
 	      <result property="logHistoryCount" column="LOGHISTORY_COUNT" />
 	      <result property="commentCount" column="BOARD_COUNT" />
 	      <result property="boardCount" column="COMMENT_COUNT" />
+	      
+	      <result property="holdNo" column="HOLD_NO" />
+	      <result property="holdDate" column="HOLD_DATE" />
+	      <result property="holdReason" column="HOLD_REASON" />
+	      <result property="HManagerEmail" column="H_MEMBER_EMAIL" />
+	      <result property="HManagerNickname" column="H_MEMBER_NICKNAME" />
     	</resultMap>
+    	
+    	
+<!--     	private int holdNo; // 활동정지 번호
+	   private String holdDate; // 활동정지일
+	   private String holdReason; // 활동정지 사유
+	   private String HManagerEmail; // 활동정지 시킨 매니저아이디 //H_MEMBER_EMAIL
+	   private String HManagerNickname; // 활동정지 시킨 매니저아이디 //H_MEMBER_NICKNAME -->
     	
  <!--  private int memberNo;
 	private String memberEmail;
@@ -483,4 +496,33 @@
 	ORDER BY 2
   </select>
   <!-- 가입일 방문일로 상세조회11111111111111111111111111111111111111111111111111 -->
+  <!-- 활동정지한 멤버  -->
+  <select id="stopMemberCount" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('S')
+  </select>
+  <select id="selectStopMemberListCount" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('S')
+	<if test ="memberEmail != null">
+		AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+	</if>
+  </select>
+  <select id="selectStopMemberList" resultMap="member_rm">
+  	SELECT HOLD_NO, MEMBER_NO,PROFILE_IMG, 
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,MEMBER_NICKNAME ,TO_CHAR(HOLD_DATE ,'YYYY.MM.DD') HOLD_DATE 
+	,HOLD_REASON
+	,(SELECT SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) FROM MEMBER_HOLD JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO)) H_MEMBER_EMAIL 
+	,(SELECT MEMBER_NICKNAME FROM MEMBER_HOLD JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO)) H_MEMBER_NICKNAME 
+	FROM "MEMBER" 
+	JOIN MEMBER_HOLD ON (MEMBER_NO = H_MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('S')
+	AND HOLD_FL IN ('Y')
+	<if test ="memberEmail != null">
+		AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+	</if>
+  </select>
+  
+  <!-- 활동정지한 멤버  -->
+
 </mapper>

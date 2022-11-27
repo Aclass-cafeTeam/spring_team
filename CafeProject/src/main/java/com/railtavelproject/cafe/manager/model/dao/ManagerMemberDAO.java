@@ -274,5 +274,35 @@ public class ManagerMemberDAO {
 		
 	    return sqlsession.selectList("managerMapper.selectDetailDate",map,rowBounds);
 	}
+	
+	/** 활동 정지된 멤버 전체 조회
+	 * @return
+	 */
+	public int stopMemberCount() {
+		return sqlsession.selectOne("managerMapper.stopMemberCount");
+	}
+
+	/** 활동 정지된 멤버 전체조회 및 회원 아이디로 상세조회 페이지
+	 * @param memberEmail
+	 * @return
+	 */
+	public int selectStopMemberListCount(String memberEmail) {
+		
+		return sqlsession.selectOne("managerMapper.selectStopMemberListCount",memberEmail);
+	}
+
+	/**활동 정지된 멤버 전체조회 및 회원 아이디로 상세조회
+	 * @param pagination
+	 * @param memberEmail 
+	 * @return
+	 */
+	public List<Member> selectStopMemberList(Pagination pagination, String memberEmail) {
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	
+	    return sqlsession.selectList("managerMapper.selectStopMemberList",memberEmail,rowBounds);
+	}
    
 }

@@ -143,30 +143,33 @@ btn_type_ny.ny_v1 span, .btn_type_ny.ny_v1 strong {
   border-radius: 6%;
 }
 
-/* .ActivityStopMember .StopSearchfieldset{
-  border-top: 3px solid #565b62;
-  border-left: 1px solid #c6c7ca;
-  border-right: 1px solid #c6c7ca;
-  border-bottom: 1px solid #a6a6a9;
-} */
 
 /* 메인 안 쪽  */
-.srch_in .srchOption{
-  width:86px;
-  height:19px;
-}
 
 .srch_in .lb_srch{
   color: #272727;
   font-size: 12px;
 }
 
-.srch_in .inputMember{
+.srch_in .searchMember{
   width:248px;
   padding-left:7px;
 }
 
-.totalSearchfieldset .srch_in{
+input.text2 {
+  height: 21px;
+  line-height: 21px;
+  border: 1px solid;
+  border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
+  color: #404040;
+  vertical-align: middle;
+}
+
+input.off {
+  color: #959699;
+}
+
+.StopSearchfieldset .srch_in{
   margin-bottom: 2px;
 }
 
@@ -174,13 +177,13 @@ btn_type_ny.ny_v1 span, .btn_type_ny.ny_v1 strong {
   position: relative;
   zoom: 1;
   padding: 17px 19px 15px;
-  
-}
-.totalfrmSearch{
-  display: inline-block;
+  border-top:  1px solid #a6a6a9;  
+  border-left: 1px solid #c6c7ca;
+  border-right: 1px solid #c6c7ca;
+  border-bottom: 1px solid #a6a6a9;  
 }
 
-.btn_type2_gn strong, .btn_type2_gn span {
+.btn_type2_gn span {
   font-size: 12px;
   display: inline-block;
   height: 6px;
@@ -207,22 +210,6 @@ btn_type_ny.ny_v1 span, .btn_type_ny.ny_v1 strong {
   border: 1px solid #B7B7B8;
 }
 
-._submitDetail {
-  display: inline-block;
-  height: 23px;
-  padding-left: 1px;
-
-  background-color: #73358C;
-  color: #fff;
-  text-decoration: none !important;
-  cursor: pointer;
-  border-radius: 10%;
-  vertical-align: middle;
-  padding: 0 17px;
-  font-size: 12px;
-  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
-  border: 1px solid #B7B7B8;
-}
 
 .btn_type2 > span {
   font-size: 12px;
@@ -256,88 +243,9 @@ btn_type_ny.ny_v1 span, .btn_type_ny.ny_v1 strong {
   padding-left: 2px;
 }
 
-/*  */
-/* 멤버 상세 검색 */
-.srch_detail{
-  display: none;
-}
-.srch_detail ul {
-  overflow: hidden;
-  zoom: 1;
-  padding-top: 20px;
-  list-style: none;
-  font-size: 12px;
-  display: inline-flex;
-  color: #272727;
-}
-
-.srch_detail li{
-  padding-right: 17px;
-  display: inline-flex;
-  align-content: center;
-}
-
-.srch_detail li > label{
-  padding-left: 5px;
-}
-
-/* 멤버 상세 검색 ********************************/
 
 
 /*  */
-.srch_info {
-  margin-top: 8px;
-  padding-top: 7px;
-  border-top: 1px solid #ececec;
-  line-height: 19px;
-  color: #404040;
-  font-size: 12px;
-}
-._period{
-  width:86px;
-  height:19px;
-}
-.text{
-  width:38px;
-  padding-left:3px;
-}
-._above{
-  width:56px;
-  height:19px;
-  margin-left:4px;
-}
-.srch_info:nth-of-type(2), .srch_info:nth-of-type(3),
-.srch_info:nth-of-type(4){
-  display: none;
-}
-
-.srch_info select {
-  vertical-align: middle;
-}
-
-.srch_info .txt2 {
-  margin-right: 8px;
-}
-.srch_info .txt, .srch_info label {
-vertical-align: -1px;
-}
-
-input.text {
-height: 19px;
-line-height: 19px;
-border: 1px solid;
-border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
-vertical-align: middle;
-}
-
-._entryType{
-  width:73px;
-  height:19px;
-  margin-left:4px
-}
-.date, .cal {
-  width:100px;
-}
 
 /*  */
 
@@ -381,10 +289,6 @@ vertical-align: middle;
 /*몇명 정렬*/
 .board_action{
   z-index: 10;
-}
-.action_in > ._selectMemberLevel{
-  width:100px;
-  height:19px;
 }
 
 .action_arr {
@@ -525,24 +429,15 @@ tbody td:nth-of-type(1){
   width: 23px;
 }
 tbody td:nth-of-type(3){
-  width: 142px;
+  width: 285px;
 }
 tbody td:nth-of-type(4){
   width: 81px;
 }
 tbody td:nth-of-type(5){
-  width: 81px;
+  width: 163px;
 }
-tbody td:nth-of-type(6){
-  width: 86px;
-}
-tbody td:nth-of-type(7){
-  width: 86px;
-}
-tbody td:nth-of-type(8){
-  padding-right: 5px;
-  width: 85px;
-}
+
 
 .line_n , .line_r{
   display: inline-block;
@@ -587,16 +482,25 @@ tbody td:nth-of-type(8){
   vertical-align: middle;
 }
 
-._userInfo {
-  text-decoration: none;
+.ellipsis ._stopDefault {
   overflow: hidden;
   line-height: 21px;
-  cursor: pointer;
   display: inline-block;
   padding-top: 2px;
   color: #272727;
   vertical-align: middle;
 }
+.pers_nick_area a{
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 21px;
+  display: inline-block;
+  padding-top: 2px;
+  color: #272727;
+  vertical-align: middle;
+} 
+
 
 .c_gy2 {
   color: #666 !important;
@@ -642,3 +546,16 @@ tbody td:nth-of-type(8){
   color: #73358C !important;
   letter-spacing: 0 !important;
 }
+
+
+.tbl_lst_type .none td {
+  padding: 53px 0 46px;
+  text-align: center;
+  border: none;
+  border-bottom-color: #c6c6c6;
+  color: #949494;
+}
+.tbl_lst_type .none p{
+  justify-content: center;
+}
+

@@ -28,16 +28,16 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return mainBoardCount;
 	}
 
+	/** 탈퇴를 제외한 모든 회원들 조회한 화면
+	 *
+	 */
 	@Override
 	public Map<String, Object> selectMemberList(int limit, int cp) {
-		// 1.특정 게시판의 전체 게시글 수 조회(단, 삭제 제외)
+
 				int listCount = dao.getListCount();
-				
-				// 2. 전체 게시글 수 + cp(현재 페이지)이용해서 
-				// 페이징 처리 객체 생성
+			
 				Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
 				
-				// 3. 페이징 처리객체를 이용해서 게시글 목록 조회
 				List<Member> memberList = dao.selectMemberList(pagination); 
 				
 				Map<String, Object> map = new HashMap<String, Object>();
@@ -180,6 +180,28 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		map.put("memberList",memberList);
 		
 		return map;
+	}
+
+	@Override
+	public Map<String, Object> selectStopMemberList(int limit, int cp, String memberEmail) {
+		
+		int listCount = dao.selectStopMemberListCount(memberEmail);
+		
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		List<Member> memberList = dao.selectStopMemberList(pagination,memberEmail); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+
+	@Override
+	public int stopMemberCount() {
+		return dao.stopMemberCount();
 	}
 	
 }

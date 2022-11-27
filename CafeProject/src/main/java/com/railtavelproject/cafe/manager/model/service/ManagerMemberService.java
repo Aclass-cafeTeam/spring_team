@@ -27,4 +27,8 @@ public interface ManagerMemberService {
 	Map<String, Object> selectDetailDate(int entryType, String startDateInput, String endDateInput,
 			int memberLevelNoResult, int limit, int cp);
 
+	Map<String, Object> selectStopMemberList(int limit, int cp, String memberEmail);
+
+	int stopMemberCount();
+
 }

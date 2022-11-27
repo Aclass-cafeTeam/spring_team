@@ -126,20 +126,22 @@
               </ul>
               
               <div class="btn">
-                <a class="btn_type_ny ny_v1" href="/ManageWholeMember.nhn?clubid=30828148"><strong>활동정지 하러가기<span class="bu"></span></strong></a>
+                <a class="btn_type_ny ny_v1" href="/manager/totalMemberManager"><strong>활동정지 하러가기<span class="bu"></span></strong></a>
               </div>
               
             </div>
           
-            <form name="findActivityStopForm" action="/ManageActivityStopMemberView.nhn?search.clubid=30828148" method="post">
+            <form name="findActivityStopForm" action="/manager/ActivityStopMemberManager" method="get">
               <div class="bx_srch bx_v1">
                 <div class="bx_srch_inner">
                   <div class="srch_in">
                     <label for="searchMember">멤버 검색</label>
                     
                     
-                    <input type="text" name="search.memberId" id="searchMember" value="아이디 검색" class="text2 off _focus(ManageActivityStopMemberView|SearchActivityStopMember) _keydown(ManageActivityStopMemberView|SearchActivityStopMember)" style="width:248px;padding-left:7px">
-                    <a class="btn_type2_gn _click(ManageActivityStopMemberView|SearchActivityStopMember) _stopDefault" href="#"><span>검색</span></a>
+                    <input type="text" name="search.memberId" id="searchMember" value="아이디 검색" class="searchMember text2 off _focus(ManageActivityStopMemberView|SearchActivityStopMember) _keydown(ManageActivityStopMemberView|SearchActivityStopMember)">
+                    <button type="submit" id="selectInputMember1" class="btn_type2_gn" >
+                      검색
+                    </button>
                   </div>
                 </div>
               </div>
@@ -151,7 +153,7 @@
         <div>
           <p class="board_tit">
             <strong>활동정지 멤버</strong>
-            <em class="_memberCount">0</em><!-- ${memberStopCount} -->
+            <em class="_memberCount">${stopMemberCount}</em><!-- ${memberStopCount} -->
             </p>
         </div>
         <!----------------------- 데이터 출력 -------------------------------------------------------------->
@@ -164,7 +166,7 @@
 
           <div class="action_arr">
               <p>
-                <form name = "sortMemberLevelFrm" action="/manager/totalMemberManager/sortMemberLevel" method="get">
+                <form name = "sortActivityStopMemberFrm" action="/manager/ActivityStopMemberManager" method="get">
                   <select id="limit" name="limit" class="${pagination.limit}" value="${pagination.limit}">
                   <option id="limit15" value="15" selected="">15명 정렬</option>
                   <option id="limit30" value="30">30명 정렬</option>
@@ -191,28 +193,56 @@
               <col width="*">
               <col width="285">
               <col width="81">
-              <col width="81">
               <col width="163">
               </colgroup>
               <thead>
               <tr id="listHeader">
               <th scope="col" class="frst"><input type="checkbox" name="checkAllMember" id="checkAllMember" title="선택" class="check _click(ManageActivityStopMemberView|CheckAllMember)"></th>
-              <th scope="col"><strong>별명(아이디)</strong></th>
+              <th scope="col"><strong class="line_r">별명(아이디)</strong></th>
 
               <th scope="col"><strong class="line_r">사유</strong></th>
               <th scope="col"><strong class="line_r">처리일</strong></th>
-              <th scope="col"><strong class="line_r">종료일</strong></th>
-              <th scope="col" class="last"><strong>처리자</strong></th>
+              <th scope="col" class="last"><strong class="line_r">처리자</strong></th>
               </tr>
               </thead>
               <tbody>
-              
-                <tr class="line_b none">
-                <td colspan="6">
-                  <p>등록된 활동정지 멤버가 없습니다.</p>
-                </td>
-                </tr>
-              
+
+                <c:choose>
+                  <c:when test="${empty memberList}">
+                    <tr class="line_b none">
+                      <td colspan="6">
+                        <p>등록된 활동정지 멤버가 없습니다.</p>
+                      </td>
+                    </tr>
+                  </c:when>
+                  <c:otherwise>
+                    <c:forEach var="member" items="${memberList}">
+                      <tr id="${member.memberEmail}">
+                        <td class="tc">
+ 
+                          <input type="checkbox" name="memberids" value="${member.memberEmail}" id="memberids" title="선택" class="check _click(ManageActivityStopMemberView|CheckMember)">
+                          
+                        </td>
+                        <td>
+                          <div class="pers_nick_area">
+                            <span class="img"><img src="${member.profileImage}" width="20" height="20" alt=""></span><a href="#" class="nick ellipsis _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault">${member.memberNickname} (${member.memberEmail})</a>
+                          </div>
+                        </td>
+                        <td class="tl">
+                          <div class="ellipsis"><span class="txt5 c_gy2">
+                            ${member.holdReason}</span></div>
+                        </td>
+                        <td class="tc">
+                          <span class="num">${member.holdDate}.</span>
+                        </td>
+                        <td class="tl">
+                          
+                          <div class="ellipsis"><span class="txt5 _click(NicknameUI|OpenUI|${member.HManagerEmail}) _stopDefault">${member.HManagerNickname} (${member.HManagerEmail}))</span></div>
+                        </td>
+                      </tr>
+                    </c:forEach>
+                  </c:otherwise>
+                </c:choose>
               </tbody>
             </table>
           </form> 
@@ -266,7 +296,6 @@
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   
-  <script src="../../resources/js/managerMain/ActivityStop
-  MamberManger.js"></script>
+  <script src="../../resources/js/managerMain/ActivityStopMamberManger.js"></script>
 </body>
 </html>

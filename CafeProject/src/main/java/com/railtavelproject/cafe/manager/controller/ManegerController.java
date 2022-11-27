@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -44,7 +45,16 @@ public class ManegerController {
 	
 	//manager활동정지 이동
 	@GetMapping("/manager/ActivityStopMemberManager")
-	public String ActivityStopMemberManager() {
+	public String ActivityStopMemberManager(Member member,
+			@RequestParam(value="limit" , required = false, defaultValue = "15")int limit
+			,Model model,
+			@RequestParam(value="cp" , required = false, defaultValue = "1") int cp,
+			@RequestParam(value="search.memberId" , required = false) String memberEmail
+			) {
+		Map<String, Object> map = service.selectStopMemberList(limit, cp,memberEmail);
+		int stopMemberCount = service.stopMemberCount();
+		model.addAttribute("map",map);
+		model.addAttribute("stopMemberCount",stopMemberCount);
 		return "manager/ActivityStopMemberManager";
 	}
 	
