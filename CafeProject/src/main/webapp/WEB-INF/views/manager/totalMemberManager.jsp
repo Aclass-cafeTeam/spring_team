@@ -20,9 +20,6 @@
   <main>    
         <!-- ************************************* managerHeader ************************************************** -->
         <%-- 검색을 진행한 경우 --%>
-        <%-- <c:forEach var="i" begin="0" end="${fn:length(param)-1}" >
-          <c:out value="${param['i']}"/>
-        </c:forEach> --%>
         <c:if test="${not empty param}">
           <c:forEach var="pageParameter" items="${param}">
             <c:if test="${pageParameter.key != 'cp'}">
@@ -93,13 +90,13 @@
       <div class="lnb_sub" id="menuSub3">
         <ul>
             <li class="manager_totalMem">
-                <a href="#" class="totalMem">전체 멤버 관리</a>
+                <a href="/manager/totalMemberManager" class="totalMem">전체 멤버 관리</a>
             </li> 
             <li class="manager_totalMem">
               <p>|</p>
             </li>
             <li class="manager_totalMem">
-              <a href="#" class="totalMem">활동정지 멤버 관리</a>
+              <a href="/manager/ActivityStopMemberManager" class="totalMem">활동정지 멤버 관리</a>
             </li> 
             <li class="manager_totalMem">
               <p>|</p>
@@ -262,7 +259,15 @@
             <div class="action_in">
               선택 멤버를&nbsp;
               <span class="_noLevelCafe">
-              <select class="_selectMemberLevel"><option value="1">새내기</option><option value="110">일반여행자</option><option value="120">성실여행자</option><option value="140">우수여행자</option><option value="150">감사멤버</option></select>
+              <select class="_selectMemberLevel">
+                <c:if test="${not empty memberLevel}">
+                  <c:forEach var="memberLevels" items="${memberLevel}">
+                    <c:if test="${memberLevels.MEMBER_LEVEL_NO ge 2}">
+                      <option value="${memberLevels.MEMBER_LEVEL_NO}">${memberLevels.MEMBER_LEVEL_NAME}</option>
+                    </c:if>
+                  </c:forEach>
+                </c:if>
+              </select>
               (으)로&nbsp;
               <a class="btn_type _changeLevel" href="#"><span class="_changeLevel">변경</span></a>
               <span class="bar"></span>
@@ -275,7 +280,7 @@
                 <form name = "sortMemberLevelFrm" action="/manager/totalMemberManager/sortMemberLevel" method="get">
                   <select  id="_sortMemberLevel" class="${memberLevelNoResult}" name="memberLevelNo">
                   <option value="0" selected="">전체 멤버</option>
-                  <option value="2">새내기</option><option value="3">일반여행자</option><option value="4">성실여행자</option><option value="5">우수여행자</option><option value="6">감사멤버</option></select>
+                  <option value="${memberLevel[2].MEMBER_LEVEL_NO}">${memberLevel[2].MEMBER_LEVEL_NAME}</option><option value="${memberLevel[3].MEMBER_LEVEL_NO}">${memberLevel[3].MEMBER_LEVEL_NAME}</option><option value="${memberLevel[4].MEMBER_LEVEL_NO}">${memberLevel[4].MEMBER_LEVEL_NAME}</option><option value="${memberLevel[5].MEMBER_LEVEL_NO}">${memberLevel[5].MEMBER_LEVEL_NAME}</option><option value="${memberLevel[6].MEMBER_LEVEL_NO}">${memberLevel[6].MEMBER_LEVEL_NAME}</option></select>
                 <!-- </form>
                 <form name = "limitFrm" action="/manager/totalMemberManager" method="get"> -->
                   <select id="limit" name="limit" class="${pagination.limit}" value="${pagination.limit}">
@@ -339,7 +344,8 @@
             
             <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="1">최종방문일<span class="bu _sortType" code="1">▼</span></a></strong></th>
             
-            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType" code="2">▼</span></a></strong></th>
+            <th scope="col" class=""><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType" code="2">▼</span></a></
+              strong></th>
             
             <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="3">게시글수<span class="bu _sortType" code="3">▼</span></a></strong></th>
             
@@ -353,7 +359,8 @@
 
                 <c:when test="${empty memberList}">
                 <!-- 게시글 목록 조회 결과가 비어있다면 -->
-                  <tr>
+                  <tr class="line_b noneSelect">
+                    <td class="tc" colspan="8">검색 조건에 해당하는 멤버가 없습니다.</td>
                   </tr>
                 </c:when>
 

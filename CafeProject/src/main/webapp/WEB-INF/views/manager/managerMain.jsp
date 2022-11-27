@@ -155,7 +155,7 @@
                                     <a id="menu4" href="/manager/totalMemberManager" class="N=a:LNB*a.list">전체 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(BoardStaff|OptionalBoardStaff)">
-                                    <a id="menu5" href="" class="N=a:LNB*a.list">활동정지 멤버 관리</a>
+                                    <a id="menu5" href="/manager/ActivityStopMemberManager" class="N=a:LNB*a.list">활동정지 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(MemberStaff)">
                                     <a id="menu6" href="" class="N=a:LNB*a.list">강제탈퇴 멤버 관리</a>

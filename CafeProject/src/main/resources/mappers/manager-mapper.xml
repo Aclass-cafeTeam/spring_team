@@ -195,7 +195,7 @@
   <!-- 게시글 수에 따라 멤버 상세조회 페이징처리 -->
   <select id="getselectDetailBoardCount" parameterType="java.util.HashMap" resultType="_int">
   	SELECT COUNT(*)
-	FROM (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO FROM "MEMBER" m
+	FROM (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO,MEMBER_LEVEL_NO FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
 	<if test ="periodOption == 1">

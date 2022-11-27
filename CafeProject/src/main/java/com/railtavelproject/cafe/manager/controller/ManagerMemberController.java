@@ -17,7 +17,7 @@ import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
 import com.railtavelproject.cafe.manager.model.vo.Member;
 
 @Controller
-@SessionAttributes({"memberCount","memberLevelNoResult","limit"})
+@SessionAttributes({"memberCount","memberLevelNoResult","limit","memberLevel"})
 public class ManagerMemberController {
 	@Autowired
 	private ManagerMemberService service;
@@ -31,19 +31,17 @@ public class ManagerMemberController {
 				,Model model,
 				HttpSession session,
 				@RequestParam(value="cp" , required = false, defaultValue = "1") int cp) {
-			System.out.println(limit);
-			System.out.println(memberLevelNoResult);
+		
 			Map<String, Object> map = service.selectSortLevelMemberList(memberLevelNoResult,limit, cp);
 			
-			System.out.println(limit);
+	
 			model.addAttribute("memberCount",session.getAttribute("memberCount"));
 			model.addAttribute("map",map);  //request scope 세팅
 			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
 			model.addAttribute("limit", limit);
 			model.addAttribute("srchOption", srchOption);
-			System.out.println(map.get("memberList"));
-			System.out.println(map.get("pagination"));
-			System.out.println(memberLevelNoResult);
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
+		
 			model.addAttribute("requestURL", "/sortMemberLevel");
 			return "manager/totalMemberManager";
 		}
@@ -57,20 +55,17 @@ public class ManagerMemberController {
 				,Model model,
 				HttpSession session,
 				@RequestParam(value="cp" , required = false, defaultValue = "1") int cp) {
-			System.out.println(inputMember);
-			System.out.println(memberLevelNoResult);
+	
 			
 			Map<String, Object> map = service.selectInputMember(srchOption,inputMember,limit, cp);
 			
-			System.out.println(limit);
+			
 			model.addAttribute("memberCount",session.getAttribute("memberCount"));
 			model.addAttribute("map",map);  //request scope 세팅
 			model.addAttribute("inputMember",inputMember); 
 			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
 			model.addAttribute("srchOption", srchOption);
-			
-			System.out.println(map.get("memberList"));
-			System.out.println(map.get("pagination"));
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 			
 			model.addAttribute("requestURL", "/selectInputMember");
 
@@ -113,9 +108,8 @@ public class ManagerMemberController {
 			model.addAttribute("srchOption", srchOption);
 			model.addAttribute("periodOption", periodOption);
 			model.addAttribute("aboveOption", aboveOption);
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 			
-			System.out.println(map.get("memberList"));
-			System.out.println(map.get("pagination"));
 			model.addAttribute("requestURL", "/selectDetailBoard");
 
 			return "manager/totalMemberManager";
@@ -148,7 +142,7 @@ public class ManagerMemberController {
 			}
 			
 			Map<String, Object> map = service.selectDetailComment(periodOption,commentCountInput,aboveOption,memberLevelNoResult,limit, cp);
-			
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 			model.addAttribute("memberCount",session.getAttribute("memberCount"));
 			model.addAttribute("map",map);  //request scope 세팅
 			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
@@ -186,7 +180,7 @@ public class ManagerMemberController {
 			}
 					
 			Map<String, Object> map = service.selectDetailVisitCount(periodOption,visitCountInput,aboveOption,memberLevelNoResult,limit, cp);
-					
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));		
 			model.addAttribute("memberCount",session.getAttribute("memberCount"));
 			model.addAttribute("map",map);  //request scope 세팅
 			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
@@ -224,7 +218,7 @@ public class ManagerMemberController {
 					}
 							
 					Map<String, Object> map = service.selectDetailDate(entryType,startDateInput,endDateInput,memberLevelNoResult,limit, cp);
-							
+					model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 					model.addAttribute("memberCount",session.getAttribute("memberCount"));
 					model.addAttribute("map",map);  //request scope 세팅
 					model.addAttribute("memberLevelNoResult", memberLevelNoResult);
