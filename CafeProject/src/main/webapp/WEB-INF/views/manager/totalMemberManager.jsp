@@ -102,7 +102,7 @@
               <p>|</p>
             </li>
             <li class="manager_totalMem">
-              <a href="#" class="totalMem">강제탈퇴 멤버 관리</a>
+              <a href="/manager/ForcedSecessionMemberManager" class="totalMem">강제탈퇴 멤버 관리</a>
             </li>
             <li class="manager_totalMem">
               <p>|</p>

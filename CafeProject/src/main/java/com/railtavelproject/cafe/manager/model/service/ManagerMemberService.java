@@ -31,4 +31,8 @@ public interface ManagerMemberService {
 
 	int stopMemberCount();
 
+	Map<String, Object> forcedSecessionMemberList(int limit, int cp, String memberEmail);
+
+	int forcedSecessionMemberCount();
+
 }

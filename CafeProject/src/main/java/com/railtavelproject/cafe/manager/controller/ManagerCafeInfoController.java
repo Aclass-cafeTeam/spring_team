@@ -71,15 +71,15 @@ public class ManagerCafeInfoController {
 			}
 			
 			
-			String messages = null;
+			String message = null;
 			if(result > 0){
-				messages = "성공적으로 반영되었습니다.";
+				message = "성공적으로 반영되었습니다.";
 				cafeInfo.setCafeJoinFL(join_get);
 			}else{
-				messages = "반영에 실패하셨습니다.";
+				message = "반영에 실패하셨습니다.";
 			}
 			
-			ra.addFlashAttribute("messages", messages);
+			ra.addFlashAttribute("message", message);
 			return "redirect:/manager/joinMemberManager";
 		}
 }

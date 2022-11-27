@@ -175,8 +175,17 @@
         <em>Since 2022.10.14. © </em> 
         <span> 내일로, 기차로! 카페</span>
     </p>
+    <c:if test="${not empty message}">
+      <script>
+          alert("${message}");
+      </script>
+
+      <%-- message 1회 출력 후 모든 scope 삭제 --%>
+      <c:remove var="message" />
+    </c:if>
   </footer>
   <!-- 푸터 -->
+
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   
   <script src="/resources/js/managerMain/joinMemberManager.js"></script>

@@ -203,5 +203,26 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public int stopMemberCount() {
 		return dao.stopMemberCount();
 	}
+
+	@Override
+	public Map<String, Object> forcedSecessionMemberList(int limit, int cp, String memberEmail) {
+		int listCount = dao.selectforcedSecessionMemberListCount(memberEmail);
+		
+		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		List<Member> memberList = dao.forcedSecessionMemberList(pagination,memberEmail); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+
+	@Override
+	public int forcedSecessionMemberCount() {
+		return dao.forcedSecessionMemberCount();
+	}
 	
 }

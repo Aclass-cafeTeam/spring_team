@@ -304,5 +304,36 @@ public class ManagerMemberDAO {
 	
 	    return sqlsession.selectList("managerMapper.selectStopMemberList",memberEmail,rowBounds);
 	}
+
+	/** 강제 탈퇴 멤버 조회 페이징
+	 * @param memberEmail
+	 * @return
+	 */
+	public int selectforcedSecessionMemberListCount(String memberEmail) {
+		
+		return sqlsession.selectOne("managerMapper.selectforcedSecessionMemberListCount",memberEmail);
+	}
+
+	/** 강제 탈퇴 멤버 조회 페이징
+	 * @param pagination
+	 * @param memberEmail
+	 * @return
+	 */
+	public List<Member> forcedSecessionMemberList(Pagination pagination, String memberEmail) {
+	
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	
+	    return sqlsession.selectList("managerMapper.forcedSecessionMemberList",memberEmail,rowBounds);
+	}
+
+	/** 강제탈퇴 멤버 수
+	 * @return
+	 */
+	public int forcedSecessionMemberCount() {
+		
+		return sqlsession.selectOne("managerMapper.forcedSecessionMemberCount");
+	}
    
 }

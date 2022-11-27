@@ -72,6 +72,21 @@ public class ManegerController {
 		return "manager/ActivityStopMemberManager";
 	}
 	
+	//manager강제 탈퇴 이동
+	@GetMapping("/manager/ForcedSecessionMemberManager")
+	public String ForcedSecessionMemberManager(Member member,
+				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit
+				,Model model,
+				@RequestParam(value="cp" , required = false, defaultValue = "1") int cp,
+				@RequestParam(value="search.memberId" , required = false) String memberEmail
+				) {
+		Map<String, Object> map = service.forcedSecessionMemberList(limit, cp,memberEmail);
+		int forcedSecessionMemberCount = service.forcedSecessionMemberCount();
+		model.addAttribute("map",map);
+		model.addAttribute("forcedSecessionMemberCount",forcedSecessionMemberCount);
+		return "manager/ForcedSecessionMemberManager";
+	}
+	
 	//managerMain 이동
 	@GetMapping("/manager/managerMain")
 	public String managerMainPage(HttpServletRequest req,
