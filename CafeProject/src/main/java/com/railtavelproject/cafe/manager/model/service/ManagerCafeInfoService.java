@@ -10,4 +10,6 @@ public interface ManagerCafeInfoService {
 
 	CafeInfo searchCafeInfo();
 
+	int updateJoin(String join_get);
+
 }

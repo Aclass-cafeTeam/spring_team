@@ -1,9 +1,11 @@
 package com.railtavelproject.cafe.manager.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,8 +17,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
 
-@SessionAttributes("cafeInfo") // 탈퇴 성공 시 로그아웃에 사용
-@RequestMapping("/manager/basicInfoManager")
+@SessionAttributes("mainCafeInfo") // 
+@RequestMapping("/manager")
 @Controller
 public class ManagerCafeInfoController {
 	
@@ -24,10 +26,10 @@ public class ManagerCafeInfoController {
 	private ManagerCafeInfoService service;
 	
 	// 프로필 이미지 수정
-		@PostMapping("/updateCafeProfile")
+		@PostMapping("/basicInfoManager/updateCafeProfile")
 		public String updateCafeProfile(
 				@RequestParam(value="profileImage") MultipartFile profileImage, /*업로드된 파일*/
-				@SessionAttribute("cafeInfo") CafeInfo cafeInfo, /* 로그인 회원 정보 */
+				@SessionAttribute("mainCafeInfo") CafeInfo cafeInfo, /* 카페 정보 */
 				RedirectAttributes ra, /* 메세지 전달용 */
 				HttpServletRequest req /* 저장할 서버 경로 */
 				) throws Exception{
@@ -53,5 +55,31 @@ public class ManagerCafeInfoController {
 			ra.addFlashAttribute("message", message);
 			
 			return "redirect:/manager/basicInfoManager";
+		}
+		
+		@PostMapping("/joinMemberManager/updateJoin")
+		public String updateJoin(RedirectAttributes ra, /* 메세지 전달용 */
+				Model model,
+				@SessionAttribute("mainCafeInfo") CafeInfo cafeInfo,
+				@RequestParam(value="join_get" , required = false) String join_get) {
+			
+			int result;
+			if(join_get != null) {
+				result = service.updateJoin(join_get);
+			}else {
+				result =0;
+			}
+			
+			
+			String messages = null;
+			if(result > 0){
+				messages = "성공적으로 반영되었습니다.";
+				cafeInfo.setCafeJoinFL(join_get);
+			}else{
+				messages = "반영에 실패하셨습니다.";
+			}
+			
+			ra.addFlashAttribute("messages", messages);
+			return "redirect:/manager/joinMemberManager";
 		}
 }

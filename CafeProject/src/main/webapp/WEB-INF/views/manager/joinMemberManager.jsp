@@ -93,7 +93,9 @@
         <div class="joinMemMainFromtitle">
             <P>가입 정보 관리</P>
         </div>
-        <form>
+        <form action="joinMemberManager/updateJoin" method="POST" 
+                    name="cafeJoin-frm"
+                    onsubmit="return JoinSubmit()">
             <fieldset class="joinfieldset">
 
                 <div class="joinTablecol">
@@ -103,11 +105,10 @@
                     <div class="joinTablerow2">
                         <div class="joinTablerow2Box">
                           <div>
-                            <textarea cols="30" rows="10" class="input_information"></textarea>
+                            <textarea cols="30" rows="10" class="input_information" disabled>여행하는 사람과 사람이 만나고, 인연을 함께 만드는 공간. 내일로, 기차로입니다. 내일로, 기차로의 회원이기만 해도 받을 수 있는 혜택도 마련되어 있어요!</textarea>
                           </div>
                           <div class="input_informationExplan">
-                            <p class="">· 입력한 내용은 멤버의 카페 가입 시 안내 문구로 활용됩니다.</p>
-                            <p class="">· HTML 태그는 사용하실 수 없습니다.</p>
+                            <p class="">· 멤버의 카페 가입 시 안내 문구로 수정 불가능합니다.</p>
                           </div>
                             
                         </div>
@@ -121,11 +122,11 @@
                         <div class="joinTablerow2Box">
                               <div class="totalaccept">
                                 <div class="accept_y">
-                                  <input data-v-855ef4ee="" id="join_get01" type="radio" name="join_get" class="use_check" value="true" checked>
+                                  <input id="join_get01" type="radio" name="join_get" class="use_check ${cafeInfo.cafeJoinFL}" value="Y">
                                 <label for="join_get01">가입신청을 받습니다.</label>
                                 </div>
                                 <div class="accept_n">
-                                  <input id="join_get02" type="radio" name="join_get" class="use_check" value="false">
+                                  <input id="join_get02" type="radio" name="join_get" class="use_check ${cafeInfo.cafeJoinFL}" value="N">
                                   <label  for="join_get02">당분간 가입신청을 받지 않습니다.</label>
                                 </div>
                               </div>                            
@@ -159,8 +160,8 @@
               
                 <div class="joinButton">
                   <div class="joinbuttonBox">
-                    <button class="joincancel">취소</button>
-                    <button class="joinSave">저장하기</button>
+                    <button type="reset" class="joincancel">취소</button>
+                    <button type="submit" class="joinSave">저장하기</button>
                   </div>
                 </div>
             </fieldset>
@@ -176,5 +177,8 @@
     </p>
   </footer>
   <!-- 푸터 -->
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  
+  <script src="/resources/js/managerMain/joinMemberManager.js"></script>
 </body>
 </html>
