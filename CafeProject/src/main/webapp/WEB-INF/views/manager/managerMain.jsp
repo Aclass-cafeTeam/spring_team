@@ -83,10 +83,15 @@
         <section id="container">
             <div id="content">
                 <div class="cafe_info_area">
-
                     <div class="cafe_thumb_wrap">
 						<div class="cafe_thumb_img">
-							<img src="../../resources/images/고양아.jpg" alt="카페아이콘">
+                            <c:if test="${empty mainCafeInfo.profileImg}">    
+                                <img id="profile-image" src="\resources\images\프로필.PNG">
+                            </c:if> 
+
+                            <c:if test="${not empty mainCafeInfo.profileImg}">    
+                                <img id="profile-image" src="${mainCafeInfo.profileImg}">
+                            </c:if> 
 						</div>
 					</div>
 
@@ -155,7 +160,7 @@
                                     <a id="menu4" href="/manager/totalMemberManager" class="N=a:LNB*a.list">전체 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(BoardStaff|OptionalBoardStaff)">
-                                    <a id="menu5" href="" class="N=a:LNB*a.list">활동정지 멤버 관리</a>
+                                    <a id="menu5" href="/manager/ActivityStopMemberManager" class="N=a:LNB*a.list">활동정지 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(MemberStaff)">
                                     <a id="menu6" href="" class="N=a:LNB*a.list">강제탈퇴 멤버 관리</a>
