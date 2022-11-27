@@ -83,10 +83,15 @@
         <section id="container">
             <div id="content">
                 <div class="cafe_info_area">
-
                     <div class="cafe_thumb_wrap">
 						<div class="cafe_thumb_img">
-							<img src="../../resources/images/고양아.jpg" alt="카페아이콘">
+                            <c:if test="${empty mainCafeInfo.profileImg}">    
+                                <img id="profile-image" src="\resources\images\프로필.PNG">
+                            </c:if> 
+
+                            <c:if test="${not empty mainCafeInfo.profileImg}">    
+                                <img id="profile-image" src="${mainCafeInfo.profileImg}">
+                            </c:if> 
 						</div>
 					</div>
 

@@ -16,13 +16,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
+import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
 import com.railtavelproject.cafe.manager.model.vo.Member;
 import com.railtavelproject.cafe.member.model.service.MemberService;
 import com.railtavelproject.cafe.member.model.vo.MemberLevel;
 
 @Controller
-@SessionAttributes({"memberCount","memberLevel"})
+@SessionAttributes({"memberCount","memberLevel", "cafeInfo"})
 public class ManegerController {
 	
 	@Autowired
@@ -30,6 +32,9 @@ public class ManegerController {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
+	private ManagerCafeInfoService cafeInfoService;
 	
 	//managerjoin 이동
 	@GetMapping("/manager/joinMemberManager")
@@ -39,7 +44,12 @@ public class ManegerController {
 	
 	//카페정보 이동
 	@GetMapping("/manager/basicInfoManager")
-	public String basicInfoManager() {
+	public String basicInfoManager(Model model) {
+		
+		CafeInfo cafeInfo = cafeInfoService.searchCafeInfo();
+		
+		model.addAttribute("cafeInfo",cafeInfo);
+		
 		return "manager/basicInfoManager";
 	}
 	
@@ -62,8 +72,12 @@ public class ManegerController {
 	@GetMapping("/manager/managerMain")
 	public String managerMainPage(HttpServletRequest req,
 			Model model) {
+		CafeInfo mainCafeInfo = cafeInfoService.searchCafeInfo();
+	
 		int mainMemberCount = service.memberCount();
 		int mainBoardCount = service.boardCount();
+		
+		model.addAttribute("mainCafeInfo",mainCafeInfo);
 		req.setAttribute("memberCount", mainMemberCount);
 		model.addAttribute("memberCount", mainMemberCount);
 		req.setAttribute("boardCount", mainBoardCount);

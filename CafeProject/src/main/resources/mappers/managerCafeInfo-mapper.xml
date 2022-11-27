@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="managerCafeMapper">
+
+    	<resultMap type="ManagerCafeInfo" id="cafeInfo_rm">
+    	
+    		<!-- DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그  -->
+    		<id property="cafeNo" column="CAFE_NO"/>
+    		
+    		<!-- 나머지 일반 컬럼 -->
+	      <result property="profileImg" column="PROFILE_IMG" />
+	      <result property="mainHeaderImg" column="CAFE_MAIN_HEADER_IMG" />
+	      <result property="topFrontImg" column="CAFE_MAIN_HEADER_IMG" />
+	      <result property="bottomFrontImg" column="CAFE_BOTTOM_FRONT_IMG" />
+	      <result property="cafeJoinFL" column="CAFE_JOIN_FL" />
+
+
+    	</resultMap>
+    	
+		<!--  private int cafeNo; //CAFE_NO
+			private String profileImg;  // PROFILE_IMG;
+			private String mainHeaderImg;  // CAFE_MAIN_HEADER_IMG;
+			private String topFrontImg;  // CAFE_TOP_FRONT_IMG;
+			private String bottomFrontImg;  // CAFE_BOTTOM_FRONT_IMG;
+			private String cafeJoinFL;  // CAFE_JOIN_FL; -->
+		<!-- 프로필 이미지 수정 -->
+   	<update id="updateCafeProfile">
+   		UPDATE "CAFE_INFO" SET
+   		PROFILE_IMG = #{profileImg}
+   		WHERE CAFE_NO = #{cafeNo}
+   	</update>
+   	<select id="searchCafeInfo" resultMap="cafeInfo_rm">
+   	SELECT * FROM "CAFE_INFO"
+   	</select>
+</mapper>

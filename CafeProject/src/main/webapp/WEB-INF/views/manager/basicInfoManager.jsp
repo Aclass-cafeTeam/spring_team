@@ -88,7 +88,9 @@
             <div class="infoMainFromtitle">
                 <P>기본정보</P>
             </div>
-            <form>
+            <form action="basicInfoManager/updateCafeProfile" method="POST" 
+                    name="cafeInfo-frm" enctype="multipart/form-data" 
+                    onsubmit="return profileValidate()">
                 <fieldset class="infofieldset">
                     <div class="infoTablecol">
                         <div class="infoTablerow1">
@@ -122,7 +124,18 @@
                             <div class="infoTablerow2Box">
                                 <div class ="infoCafeProfileBox" id="infoCafeProfileBox">
                                     <div class="infoCafeProfil" id="infoCafeProfil">
-                                        <img src="../../resources/images/고양아.jpg" alt="카페아이콘">
+                                        <span id="delete-image">&times;</span>
+                                        <c:if test="${empty cafeInfo.profileImg}">    
+                                            <img id="profile-image" src="/resources/images/프로필.PNG">
+                                        </c:if> 
+
+                                        <c:if test="${not empty cafeInfo.profileImg}">    
+                                            <img id="profile-image" src="${cafeInfo.profileImg}">
+                                        </c:if> 
+
+                                        <label for="input-image"><img id="setting-icon" class="setting-icon" src="/resources/images/프로필 변경.PNG"></label>
+                                        <input type="file" name="profileImage" id="input-image" class="input-image" accept="image/*">
+                                        
                                     </div>
                                     <div class="infoCafeProfilContent" id="infoCafeProfilContent">
                                         <P>· 카페 프로필에서 우리 카페를 표현할 카페 아이콘을 등록해주세요.</P>
@@ -191,5 +204,8 @@
         </p>
     </footer>
     <!-- 푸터 -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  
+    <script src="/resources/js/managerMain/basicInfoManager.js"></script>
 </body>
 </html>
