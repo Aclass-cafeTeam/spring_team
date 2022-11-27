@@ -178,9 +178,34 @@ body{
 }
 
 .basicInfoMain .infoTablerow2Box .infoCafeProfil{
+    position: relative;
     padding-right: 10px;
 }
 
+.basicInfoMain .infoTablerow2Box .infoCafeProfil .setting-icon{
+    position: absolute;
+    right: 5px;
+    bottom: 4px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+}
+
+#delete-image{
+    position: absolute;
+    right: 9px;
+    bottom: 50px;
+    display: inline-block;
+    cursor: pointer;
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.input-image {
+    display: none;
+}
 
 .basicInfoMain .infoTablerow2Box .infoCafeProfilContent{
     text-align: center;

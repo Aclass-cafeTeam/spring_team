@@ -83,6 +83,9 @@ window.onload = function(){
   const commentCountInput = QueryString.get('commentCountInput');//댓글 수
   const visitCountInput = QueryString.get('visitCountInput');//방문 수
   const aboveOption = QueryString.get('aboveOption');//이상 1 이하 0
+  const entryType = QueryString.get('entryType');//최종방문1 가입 0
+  const endDateInput = QueryString.get('endDateInput');//최종방문1 가입 0
+  const startDateInput = QueryString.get('startDateInput');//최종방문1 가입 0
 
   /* 상세검색 후 제출하면 계속 상세검색 창이 보여야함 */
   if(countBy != null){ //countBy == "0" ||countBy == "1" ||countBy == "2"||countBy == "3"
@@ -110,6 +113,7 @@ window.onload = function(){
     //$("_above").val(aboveOption).prop('selected', true);
     /* 상세조회 기간옵션 전체,최신 1개월 *$("._count:nth-last-of-type()")*/
 
+    /* 상세조회 기간옵션 전체,최신 1개월 */
     if(periodOption != null){
       $("._period")[countBy].value =periodOption;
     }
@@ -117,6 +121,13 @@ window.onload = function(){
     /* 상세조회 이상,이하 */
     if(aboveOption != null){
       $("._above")[countBy].value =aboveOption;
+    }
+
+    /* 상세조회 가입/최종방문 */
+    if(entryType != null){
+      $("#_entryType").val(entryType).prop('selected', true);
+      document.getElementById("_startDateInput").value =startDateInput;
+      document.getElementById("_endDateInput").value =endDateInput;
     }
   }
 
