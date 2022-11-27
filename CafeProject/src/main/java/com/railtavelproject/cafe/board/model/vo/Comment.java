@@ -6,9 +6,6 @@ public class Comment {
 	   private String commentCreateDate; // 댓글 작성일 C_CREATE_DATE
 	   private String commentDeleteDate; // 댓글 삭제일   C_DELETE_DATE
 	   private String commentDeleteFlag; // 삭제여부   COMMENT_DEL_FL
-	   
-	   private int commentCount; // 댓글 조회수
-
 	   private int boardNo; // 댓글 등록, 수정, 삭제 시 이용
 	   private int parentNo; // 댓글 번호(부모댓글번호) PARENT_NO
 	   private int memberNo; // 댓글 작성자 번호
@@ -16,9 +13,5 @@ public class Comment {
 	   private String profileImage; // 댓글 작성자 프로필
 	   private String memberLevelImage; // 등급 레벨 이미지
 
-	   
-	   
-
-	    
 	    
 }

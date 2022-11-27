@@ -1,3 +1,4 @@
+// recapcha v2
 var onloadCallback = function() {
     grecaptcha.render('reCAPTCHA', {
     'sitekey' : '6LcVIgIjAAAAAOvAFGvFi5i7GQhZdoo7LIJZI9gz'
@@ -29,15 +30,11 @@ function writeOK() {
     }
     
     if(!isCapchaSuccess) {
-        alert("Please check the reCAPTCHA");
+        alert("<로봇이 아닙니다>를 체크해주세요.");
         return false;
     }
     return true;
-
-
-
 }
-
 
 
 // 이메일 유효성 검사 
@@ -112,13 +109,15 @@ memberPw.addEventListener("input", function(){
     // 비밀번호가 하나도 입력되지 않은 경우
     if( memberPw.value.trim().length == 0 ) {
         pwMessage.innerText = "8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요.";
-        memberPw.value="";
         pwMessage.classList.remove("confirm", "error");
+        pwConfirm.innerText="";
         checkObj.memberPw = false;
         return;
     } 
+
     // 정규표현식을 통한 비밀번호 유효성 검사
-    const regEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
+    const regEx = /^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,16}$/;
+                // 비밀번호 : 8~16자 영문, 숫자, 특수문자
 
     if(regEx.test(memberPw.value)){
         checkObj.memberPw = true;
@@ -129,19 +128,19 @@ memberPw.addEventListener("input", function(){
             pwMessage.classList.add("confirm");
             pwMessage.classList.remove("error");
 
+            
         } else { // 유효한 비밀번호 + 확인 작성 O
-            pwConfirm.innerHTML = "";
 
             // 비밀번호가 입력될 때 비밀번호 확인에 작성된 값과 일치하는 경우
             if( memberPw.value == memberPwConfirm.value ) {
-                pwMessage.innerText = "입력하신 비밀번호가 일치합니다.";
+                pwMessage.innerText = "비밀번호가 일치합니다.";
                 pwMessage.classList.add("confirm");
                 pwMessage.classList.remove("error");
-                pwConfirm.innerText="";
+                pwConfirm.innerText = "";
                 checkObj.memberPwConfirm = true;
 
             } else {
-                pwMessage.innerText = "입력하신 비밀번호가 일치하지 않습니다.";
+                pwMessage.innerText = "비밀번호가 일치하지 않습니다.";
                 pwMessage.classList.add("error");
                 pwMessage.classList.remove("confirm");
                 pwConfirm.innerText="";
@@ -149,17 +148,11 @@ memberPw.addEventListener("input", function(){
             }
         }
 
-
-
-
-    } else { 
-
-        
-
-        pwMessage.innerText = "입력하신 비밀번호가 유효하지 않습니다.";
+    } else {  // 비밀번호가 유효하지 않은 경우
+        pwMessage.innerText = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
         pwMessage.classList.add("error");
         pwMessage.classList.remove("confirm");
-
+        pwConfirm.innerText="";
         checkObj.memberPw = false;
     }
 });
@@ -176,23 +169,24 @@ memberPwConfirm.addEventListener("input", function(){
         memberPw.focus();
         memberPwConfirm.value="";
         checkObj.memberPw = false;
-    }
+    } 
 
     // 비밀번호가 유효한 경우에만 비밀번호와 비밀번호 확인이 같은지 비교
     if(checkObj.memberPw==true){
         
         // 비밀번호와 비밀번호 확인이 같은지 검사
         if( memberPwConfirm.value == memberPw.value ) {
-            pwConfirm.innerText = "입력하신 비밀번호가 일치합니다.";
+            pwConfirm.innerText = "비밀번호가 일치합니다.";
             pwConfirm.classList.add("confirm");
             pwConfirm.classList.remove("error");
-            pwMessage.innerHTML = "";
+            pwMessage.innerText = "";
             checkObj.memberPwConfirm = true;
     
         } else {
-            pwConfirm.innerText = "입력하신 비밀번호가 일치하지 않습니다."
+            pwConfirm.innerText = "비밀번호가 일치하지 않습니다."
             pwConfirm.classList.add("error");
             pwConfirm.classList.remove("confirm");
+            pwMessage.innerText="";
             checkObj.memberPwConfirm = false;
     
         }
@@ -203,6 +197,42 @@ memberPwConfirm.addEventListener("input", function(){
 
 });
 
+
+
+// 비밀번호 CapsLock알람
+function checkCapsLock( e ) {
+
+    var myKeyCode=0;
+    var myShiftKey=false;
+    var myMsg='<Caps Lock>이 켜져있습니다.\n\nCaps Lock이 켜져있으면 암호를 올바르게 입력하지 못할 수 있습니다.\n암호를 입력하기 전 확인해주세요.';
+
+    // Internet Explorer 4+
+    if ( document ) {
+        myKeyCode=e.keyCode;
+        myShiftKey=e.shiftKey;
+
+    // Netscape 4
+    } else if ( document.layers ) {
+        myKeyCode=e.which;
+        myShiftKey=( myKeyCode == 16 ) ? true : false;
+
+    // Netscape 6
+    } else if ( document.getElementById ) {
+        myKeyCode=e.which;
+        myShiftKey=( myKeyCode == 16 ) ? true : false;
+    }
+
+    
+    if ( ( myKeyCode >= 65 && myKeyCode <= 90 ) && !myShiftKey ) {
+        alert( myMsg );
+        return false;
+
+    
+    } else if ( ( myKeyCode >= 97 && myKeyCode <= 122 ) && myShiftKey ) {
+        alert( myMsg );
+        return false;
+    }
+}
 
 
 // 닉네임 유효성 검사
