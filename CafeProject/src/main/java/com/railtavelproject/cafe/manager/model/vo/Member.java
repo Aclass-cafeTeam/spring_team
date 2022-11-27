@@ -33,6 +33,13 @@ public class Member {
 	   private int logHistoryCount; // 방문수
 	   private int commentCount; // 댓글수
 	   private int boardCount; // 게시글수
+	   
+	   
+	   private int holdNo; // 활동정지 번호
+	   private String holdDate; // 활동정지일
+	   private String holdReason; // 활동정지 사유
+	   private String HManagerEmail; // 활동정지 시킨 매니저아이디 //H_MEMBER_EMAIL
+	   private String HManagerNickname; // 활동정지 시킨 매니저아이디 //H_MEMBER_NICKNAME
 
 	
 //	"MEMBER_NO"   NUMBER      NOT NULL,

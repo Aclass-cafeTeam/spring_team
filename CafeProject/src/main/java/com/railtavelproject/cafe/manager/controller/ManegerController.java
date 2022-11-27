@@ -1,9 +1,11 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,15 +16,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
+import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
 import com.railtavelproject.cafe.manager.model.vo.Member;
+import com.railtavelproject.cafe.member.model.service.MemberService;
+import com.railtavelproject.cafe.member.model.vo.MemberLevel;
 
 @Controller
-@SessionAttributes({"memberCount"})
+@SessionAttributes({"memberCount","memberLevel", "cafeInfo"})
 public class ManegerController {
 	
 	@Autowired
 	private ManagerMemberService service;
+	
+	@Autowired
+	private MemberService memberService;
+	
+	@Autowired
+	private ManagerCafeInfoService cafeInfoService;
 	
 	//managerjoin 이동
 	@GetMapping("/manager/joinMemberManager")
@@ -30,18 +42,42 @@ public class ManegerController {
 		return "manager/joinMemberManager";
 	}
 	
-	//managerjoin 이동
+	//카페정보 이동
 	@GetMapping("/manager/basicInfoManager")
-	public String basicInfoManager() {
+	public String basicInfoManager(Model model) {
+		
+		CafeInfo cafeInfo = cafeInfoService.searchCafeInfo();
+		
+		model.addAttribute("cafeInfo",cafeInfo);
+		
 		return "manager/basicInfoManager";
+	}
+	
+	//manager활동정지 이동
+	@GetMapping("/manager/ActivityStopMemberManager")
+	public String ActivityStopMemberManager(Member member,
+			@RequestParam(value="limit" , required = false, defaultValue = "15")int limit
+			,Model model,
+			@RequestParam(value="cp" , required = false, defaultValue = "1") int cp,
+			@RequestParam(value="search.memberId" , required = false) String memberEmail
+			) {
+		Map<String, Object> map = service.selectStopMemberList(limit, cp,memberEmail);
+		int stopMemberCount = service.stopMemberCount();
+		model.addAttribute("map",map);
+		model.addAttribute("stopMemberCount",stopMemberCount);
+		return "manager/ActivityStopMemberManager";
 	}
 	
 	//managerMain 이동
 	@GetMapping("/manager/managerMain")
 	public String managerMainPage(HttpServletRequest req,
 			Model model) {
+		CafeInfo mainCafeInfo = cafeInfoService.searchCafeInfo();
+	
 		int mainMemberCount = service.memberCount();
 		int mainBoardCount = service.boardCount();
+		
+		model.addAttribute("mainCafeInfo",mainCafeInfo);
 		req.setAttribute("memberCount", mainMemberCount);
 		model.addAttribute("memberCount", mainMemberCount);
 		req.setAttribute("boardCount", mainBoardCount);
@@ -59,11 +95,12 @@ public class ManegerController {
 			@RequestParam(value="cp" , required = false, defaultValue = "1") int cp) {
 		
 		Map<String, Object> map = service.selectMemberList(limit, cp);
-		System.out.println(limit);
+		List<Map<String, Object>> memberLevel = memberService.viewMemberLevel();
 		model.addAttribute("map",map);
 		model.addAttribute("memberCount",session.getAttribute("memberCount"));  //request scope 세팅
 		model.addAttribute("memberLevelNoResult", memberLevelNoResult);
 		model.addAttribute("srchOption", srchOption);
+		model.addAttribute("memberLevel", memberLevel);
 		System.out.println(map.get("memberList"));
 		System.out.println(map.get("pagination"));
 		return "manager/totalMemberManager";

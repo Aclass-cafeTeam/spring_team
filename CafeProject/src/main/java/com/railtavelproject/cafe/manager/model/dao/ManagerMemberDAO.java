@@ -233,5 +233,76 @@ public class ManagerMemberDAO {
 		
 	    return sqlsession.selectList("managerMapper.getselectDetailVisit",map,rowBounds);
 	}
+	
+	/** 가입일 방문일로 상세조회페이징
+	 * @param memberLevelNoResult
+	 * @param entryType
+	 * @param startDateInput
+	 * @param endDateInput
+	 * @return
+	 */
+	public int selectDetailDateCount(int memberLevelNoResult, int entryType, String startDateInput,
+			String endDateInput) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberLevelNo", memberLevelNoResult); //멤버등급
+		map.put("startDateInput", startDateInput); // 시작기간 
+		map.put("endDateInput", endDateInput); //마지막기간
+		map.put("entryType", entryType); //가입 0 최종방문 1 
+		return sqlsession.selectOne("managerMapper.selectDetailDateCount",map);
+	}
+
+	/** 가입일 방문일로 상세조회
+	 * @param memberLevelNoResult
+	 * @param entryType
+	 * @param startDateInput
+	 * @param endDateInput
+	 * @param pagination
+	 * @return
+	 */
+	public List<Member> selectDetailDate(int memberLevelNoResult, int entryType, String startDateInput,
+			String endDateInput, Pagination pagination) {
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	    
+	    Map<String, Object> map = new HashMap<String, Object>();
+	    map.put("memberLevelNo", memberLevelNoResult);
+	    map.put("startDateInput", startDateInput); // 시작기간 
+		map.put("endDateInput", endDateInput); //마지막기간
+		map.put("entryType", entryType); //가입 0 최종방문 1 
+		
+	    return sqlsession.selectList("managerMapper.selectDetailDate",map,rowBounds);
+	}
+	
+	/** 활동 정지된 멤버 전체 조회
+	 * @return
+	 */
+	public int stopMemberCount() {
+		return sqlsession.selectOne("managerMapper.stopMemberCount");
+	}
+
+	/** 활동 정지된 멤버 전체조회 및 회원 아이디로 상세조회 페이지
+	 * @param memberEmail
+	 * @return
+	 */
+	public int selectStopMemberListCount(String memberEmail) {
+		
+		return sqlsession.selectOne("managerMapper.selectStopMemberListCount",memberEmail);
+	}
+
+	/**활동 정지된 멤버 전체조회 및 회원 아이디로 상세조회
+	 * @param pagination
+	 * @param memberEmail 
+	 * @return
+	 */
+	public List<Member> selectStopMemberList(Pagination pagination, String memberEmail) {
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	
+	    return sqlsession.selectList("managerMapper.selectStopMemberList",memberEmail,rowBounds);
+	}
    
 }
