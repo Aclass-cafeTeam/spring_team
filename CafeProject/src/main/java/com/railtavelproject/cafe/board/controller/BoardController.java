@@ -30,7 +30,20 @@ public class BoardController {
 		
 		return "board/boardList";
 	}
+	
+	// 특정 게시판 목록 조회 (일반)
+	@GetMapping("/board/{boardCode}")
+	public String selecNomalBoardList(@PathVariable("boardCode") int boardCode,
+	Model model,
+	@RequestParam(value="cp", required = false, defaultValue="1") int cp
+	) {
 
+Map<String, Object> map = service.selectBoardList(boardCode, cp);
+
+model.addAttribute("map", map);
+
+return "board/boardList";
+}
 	
 	
 	

@@ -29,7 +29,7 @@
             <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
 
     <article class="article">
-        <div class="board-name">게시판명(메뉴명)</div>
+        <div class="board-name">${board.boardName}</div> <%-- 확인 후 수정 --%>
         <p class="board-start">게시판 설명(메뉴 설명)</p>
 
             <div class="hidden">
