@@ -47,6 +47,14 @@ public class MemberDAO {
 	}
 
 
+	/** 강제 탈퇴 조회(회원가입 이메일 유효성 체크)
+	 * @param memberEmail
+	 * @return secession
+	 */
+	public int secessionCheck(String memberEmail) {
+		return sqlSession.selectOne("memberMapper.secessionCheck", memberEmail);
+	}
+	
 	
 	/** 닉네임 중복 검사
 	 * @param memberNickname

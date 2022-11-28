@@ -58,20 +58,29 @@ memberEmail.addEventListener("input", function(){
             url : "/emailDupCheck", // 비동기 통신을 진행할 서버 요청 주소
             data: { "memberEmail" : memberEmail.value }, // JS객체에서 서버로 전달할 값(여러 개 가능)
             type: "GET", // 데이터 전달 방식(GET/POST)-> ajax는 보통 GET방식
-            success: (result) => { // 비동기 통신에 성공해서 응답 받았을 때
-                // result : 서버로부터 받은 응답 데이터 
-                if(result==0) { // 이메일 중복이 아닌 경우
+            success: (map) => { // 비동기 통신에 성공해서 응답 받았을 때
+            
+                if(map.dup == 0 &&  map.secession == 0 ) {
                     emailMessage.innerText = "사용가능한 이메일입니다.";
                     emailMessage.classList.add("confirm");
                     emailMessage.classList.remove("error");
                     checkObj.memberEmail = true;
+                }
 
-                } else {
+                if(map.dup > 0) {
                     emailMessage.innerText = "이미 사용중인 이메일입니다.";
                     emailMessage.classList.add("error");
                     emailMessage.classList.remove("confirm");
                     checkObj.memberEmail = false;
-                }
+                } 
+                
+                if(map.secession > 0) {
+                    emailMessage.innerText = "가입 불가능합니다.";
+                    emailMessage.classList.add("error");
+                    emailMessage.classList.remove("confirm" );
+                    checkObj.memberEmail = false;
+                } 
+                    
             },
             error: () => { // 비동기 통신이 실패했을 때 수행
                 console.log("ajax통신 실패");
@@ -88,9 +97,7 @@ memberEmail.addEventListener("input", function(){
         emailMessage.classList.remove("confirm");
 
         checkObj.memberEmail = false;
-
     }
-
 });
 
 

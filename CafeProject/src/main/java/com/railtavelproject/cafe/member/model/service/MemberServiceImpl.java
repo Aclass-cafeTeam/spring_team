@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.railtavelproject.cafe.member.model.vo.Member;
 import com.railtavelproject.cafe.member.model.dao.MemberDAO;
 
-
 @Service // Service 레이어 == 비즈니스 로직을 가진 클래스, bean 생성
 public class MemberServiceImpl implements MemberService{
 	
@@ -76,6 +75,11 @@ public class MemberServiceImpl implements MemberService{
 		return dao.emailDupCheck(memberEmail);
 	}
 
+	// 강제 탈퇴 회원 검사 (가입불가)
+	@Override
+	public int secessionCheck(String memberEmail) {
+		return dao.secessionCheck(memberEmail);
+	}
 
 	// 닉네임 중복 검사
 	@Override

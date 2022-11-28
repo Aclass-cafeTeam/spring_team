@@ -1,15 +1,26 @@
 // select 토글 버튼 (∧ ∨)
-const select =document.querySelector(".select")
-const wrapper = document.querySelector(".wrapper");
+const select =document.querySelectorAll(".select")
+const wrapper = document.querySelectorAll(".wrapper");
 
 /* boardType */
-select.addEventListener("click", ()=>{
-    wrapper.classList.toggle("open")
+select[0].addEventListener("click", ()=>{
+    wrapper[0].classList.toggle("open")
 });
 
 function selectType(type) {
-    wrapper.classList.remove("open");
-    select.firstElementChild.innerText = type.innerText;
+    wrapper[0].classList.remove("open");
+    select[0].firstElementChild.innerText = type.innerText;
+    select[0].firstElementChild.style.margin = "auto 0px";
+}    
+
+
+select[1].addEventListener("click", ()=>{
+    wrapper[1].classList.toggle("open")
+});
+
+function selectTag(type) {
+    wrapper[1].classList.remove("open");
+    select[1].firstElementChild.innerText = type.innerText;
     // select.firstElementChild.style.alignSelf = "center";
 }    
 

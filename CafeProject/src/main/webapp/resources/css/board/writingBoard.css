@@ -123,7 +123,6 @@ a{
     font-size : 17px;
     font-weight: 400;
     color: #333;
-    align-items: center;
 }
 
 .wrapper.open .arrow-dwn {
@@ -139,12 +138,13 @@ a{
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     display: none;
     max-height: 250px;
-    overflow-y: auto;
-    text-align: center;
+    overflow-y: auto;    
 }
 
 .wrapper.open .option-items {
     display: block;
+    justify-content: center;
+    align-items: center;
 }
 
 .option{
@@ -157,7 +157,6 @@ a{
     align-items: center;
     border-radius: 5px;
     background-color: #fff;
-
 }
 
 .option > * {
