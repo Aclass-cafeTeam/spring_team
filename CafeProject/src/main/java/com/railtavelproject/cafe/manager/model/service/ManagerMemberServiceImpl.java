@@ -224,5 +224,13 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public int forcedSecessionMemberCount() {
 		return dao.forcedSecessionMemberCount();
 	}
+
+	@Override
+	public int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo) {
+		
+		return dao.updateMemberLevelNo(memberEmail, memberLevelNo);
+	}
+
+
 	
 }

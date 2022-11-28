@@ -568,4 +568,26 @@
 	</if>
   </select>
   <!-- 강제탈퇴 멤버 -->
+  <!-- 멤버 등급 변경 -->
+  <!-- 
+		동적 SQL <foreach>
+		- 특정 SQL 구문을 반복할 때 사용
+		- collection : 반복할 객체의 타입(list, set, map, array....) 
+		- item : collection 객체에서 하나씩 순서대로 꺼낸 요소
+		- index : 현재 인덱스를 나타내는 변수
+		- open : 반복 전 출력할 구문
+		- close : 반복이 끝난 후 출력할 구문 
+		- separator : 분리 기호(반복 사이 구분자)
+	 -->
+  <update id="updateMemberLevelNo" parameterType="java.util.HashMap">
+      <foreach collection="memberEmail" item="memberEmail">
+        UPDATE "MEMBER" SET 
+				MEMBER_LEVEL_NO = #{memberLevelNo} 
+				WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+				AND AUTHORITY_NO NOT IN (0,1)
+      </foreach>
+
+  </update>
+  <!-- 멤버 등급 변경 -->
+  
 </mapper>

@@ -85,7 +85,7 @@
 	
 	
 	<div id="pop_footer">
-		<a href="#" class="btn_type _click(ManageLevelUpView|Submit|false) _stopDefault"><strong>확인</strong></a>
+		<a href="#" class="btn_type _click(ManageLevelUpView|Submit|false) _stopDefault" id="Submit"><strong>확인</strong></a>
 		<a href="#" class="btn_type _click(ManageLevelUpView|Close) _stopDefault" id="_click(Close)"><span>취소</span></a>
 	</div>
 	</form>

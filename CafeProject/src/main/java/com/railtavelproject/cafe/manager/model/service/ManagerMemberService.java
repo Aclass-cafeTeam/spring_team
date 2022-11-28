@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.manager.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 //설계, 유지보수성 향상, AOP 때문에
@@ -34,5 +35,9 @@ public interface ManagerMemberService {
 	Map<String, Object> forcedSecessionMemberList(int limit, int cp, String memberEmail);
 
 	int forcedSecessionMemberCount();
+
+	int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo);
+
+
 
 }

@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
@@ -231,11 +234,44 @@ public class ManagerMemberController {
 					return "manager/totalMemberManager";
 		}
 		
-		//팝업창(멤버등급 변경)
+		//팝업창(멤버등급 변경)으로 가기
 		@RequestMapping("/manager/ManageLevelUpPopup")
 		public String manageLevelUpPopup(Model model,
 				HttpSession session) {
 			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 			return "manager/ManageLevelUpPopup";
 		}
+		
+		//팝업창(멤버등급 변경하기)
+		@PostMapping("/updateMemberLevelNo")
+		@ResponseBody
+		public String selectEmail(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+	            @RequestParam(value="comment") String comment,
+	            @RequestParam(value="memberCount") int memberCount,
+	            @RequestParam(value="memberLevelNo") int memberLevelNo) {
+			
+	
+			System.out.println(memberEmail); //[wldfbs3234, wldbs00, wldfbs]
+			System.out.println(comment);
+			System.out.println(memberCount); //3
+			System.out.println(memberLevelNo); //4
+			
+			int result = service.updateMemberLevelNo(memberEmail,memberLevelNo);
+			// JSON 형식으로 Member 객체 작성
+//			{"memberEmail" : "user01@kh.or.kr", "memberNickname" : "유저일"}
+//			String result = "{\"memberEmail\" : \"user01@kh.or.kr\", \"memberNickname\" : \"123\"}";
+//			return result;
+			/*
+			 * "memberLevelNo": memberLevelNo,
+                "memberEmail"  : memberEmail,
+                "memberCount"  : memberCount,
+                "comment"      : comment
+			 * */
+			System.out.println(result);
+			// GSON 라이브러리를 이용해서 Member 객체 -> JSON 변환(String)
+			return "fdf";
+		}
+		
+		
 }

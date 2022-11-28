@@ -47,5 +47,30 @@ document.getElementById("_click(Close)").addEventListener("click", function () {
 
 
 
+const Submit = document.getElementById("Submit");
 
+Submit.addEventListener("click", (e) => {
+    let memberLevelNo = document.getElementById("memberLevelSelect").value;
+    let memberEmail = checkObj["chk_val"];
+    let memberCount = checkObj["checkNum"]; 
+    let comment = document.getElementById("comment").innerText;
+    $.ajax({
 
+        url: "/updateMemberLevelNo",
+        data: { "memberLevelNo": memberLevelNo,
+                "memberEmail"  : memberEmail,
+                "memberCount"  : memberCount,
+                "comment"      : comment
+        },
+        type: "POST",
+        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+        success: (result) => {
+            /* if(){
+
+            } */
+        },
+        error: () => {
+            console.log("등급 변경 실패")
+        }
+    });
+});
