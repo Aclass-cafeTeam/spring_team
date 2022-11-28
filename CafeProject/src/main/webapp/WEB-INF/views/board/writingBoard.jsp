@@ -8,13 +8,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>카페 글쓰기</title>
-
-    <link rel="stylesheet" href="/resources/css/main.css">
-    <link rel="stylesheet" href="/resources/css/board/writingBoard.css">
+    
+    <!-- summernote include libraries(jQuery, bootstrap)-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+    <script src="/resources/js/summernote/summernote-lite.js"></script>
+	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
+	<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
+    
+        <link rel="stylesheet" href="/resources/css/main.css">
+        <link rel="stylesheet" href="/resources/css/board/writingBoard.css">
     
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
-
+		
+		
 </head>
 <body>
     <!-- main header -->
@@ -87,24 +98,15 @@
                     </div>
                     
                     <!-- 게시글 제목 -->
-                    <div class="writeContent">
+                    <div class="writeTitle">
                         <input type="text" name="title" autocompleate="off" placeholder="제목을 입력하세요." >
                     </div>
 
-                    <!-- 사진 삽입-->
-                    <div class="img-box">
-                        <div class="boardImg">
-                            <label for="img1">
-                                <img class="preview" src=""><i class="fa-regular fa-image"></i>
-                            </label>
-                            <input type="file" name="images" class="inputImage" id="img1" accept="image/*">
-                            <!-- <span class="delete-image">&times;</span> -->
-                        </div>
-                    </div>
                     <!-- 게시글 내용 -->
-                    <div class="writingRow">
-                        <textarea name="boardContent"></textarea>    
+                    <div class="test">
+                        <textarea id="summernote" name="boardContent" resize="none"></textarea>    
                     </div>
+                    
             </div>
 
             <!-- writingContent 우 (세팅 영역) -->
@@ -141,9 +143,10 @@
     // const boardTypeList = "${boardTypeList}";
     // const boardType = [];
     // <c:forEach var="boardType" items="${boardTypeList}">
-    //     boardType.push('${boardType.BOARD_NAME}')
+    //     boardType.push('${boardType.BOARD_CODE}')
     // </c:forEach>
-    // // console.log(boardType);
+    // console.log(boardType);
+    
     </script>
 
     <script src="/resources/js/main/main.js"></script>
