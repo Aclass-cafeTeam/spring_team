@@ -309,6 +309,16 @@ WHERE MEMBER_DEL_FL IN ('N','S'))
 	</if>
 </where>
 
+------------------------------------------------------
+UPDATE "MEMBER" SET 
+MEMBER_LEVEL_NO =  
+WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = ''
+AND AUTHORITY_NO NOT IN (0,1);
+
+SELECT *
+FROM "MEMBER" m 
+;
+
 --------------------------------------------------
 ---------------------------------------------------------------
 --댓글 수에 따라 멤버
