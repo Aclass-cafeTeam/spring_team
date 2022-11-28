@@ -47,6 +47,7 @@
                 <div class="navMenu">
                     <a href="/member/myPage/profile">프로필</a>
                     <a href="/member/myPage/info">회원 정보</a>
+                    <a href="/member/myPage/ChangePw">비밀번호 변경</a>
                     <a href="/member/myPage/myBoard">작성글</a>
                     <a href="/member/myPage/myCommentBoard">댓글단 글</a>
                     <a href="/member/myPage/myLikeBoard">좋아요한 글</a>

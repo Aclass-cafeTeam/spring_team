@@ -37,15 +37,20 @@ public class MyPageController {
 		return "member/myPageMain";
 	}
 	
+	// 마이페이지 비밀번호 변경
+	@GetMapping("/ChangePw")
+	public String MyPageChangePw() {
+		return "member/myPageChangePw";
+	}
+	
 	// 마이 페이지 내정보 수정
 //	@PostMapping("/info")
 //	public String updateInfo(Member InputMember, 
-//			String[] memberAddress,
 //			@SessionAttribute("loginMember") Member loginMember,
 //			RedirectAttributes ra
 //			){
 //		
-//		// inputMember : 입력받은 memberNickname / memberPw / memberResidence
+//		// inputMember : 입력받은 memberNickname / memberResidence
 //		
 //		// 1. 로그인된 회원 정보에서 회원 번호를 얻어와 inputMember에 저장
 //		InputMember.setMemberNo(loginMember.getMemberNo());
@@ -60,7 +65,6 @@ public class MyPageController {
 //			
 //			// DB - session 동기화 작업
 //			loginMember.setMemberNickname(InputMember.getMemberNickname());
-//			loginMember.setMemberPw(InputMember.getMemberPw());
 //			loginMember.setMemberResidence(InputMember.getMemberResidence());
 //		
 //		} else	{

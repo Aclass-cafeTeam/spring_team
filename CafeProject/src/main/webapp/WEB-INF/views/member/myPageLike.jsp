@@ -69,7 +69,7 @@
                 </table>
             </div>
             <div class="pagination-area">
-
+                <c:if test="${not empty myPageBoardList}">
                 <ul class="myPage-pagination">
                 
                     <!-- 이전 목록 마지막 번호로 이동 --> 
@@ -92,8 +92,8 @@
                     <!-- 다음 목록 시작 번호로 이동 -->
                     <li><a href="?cp=${pagination.nextPage}">&raquo;</a></li>
                 </ul>
+                </c:if>
             </div>
-        </div>
     </section>
         
     <%-- footer.jsp --%>
