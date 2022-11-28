@@ -208,7 +208,7 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public Map<String, Object> forcedSecessionMemberList(int limit, int cp, String memberEmail) {
 		int listCount = dao.selectforcedSecessionMemberListCount(memberEmail);
 		
-		Pagination pagination = new Pagination(listCount,cp,limit,5); //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		Pagination pagination = new Pagination(listCount,cp,limit,5);  //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
 		
 		List<Member> memberList = dao.forcedSecessionMemberList(pagination,memberEmail); 
 		
