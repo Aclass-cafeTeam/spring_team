@@ -580,7 +580,8 @@
 		- separator : 분리 기호(반복 사이 구분자)
 	 -->
   <update id="updateMemberLevelNo" parameterType="java.util.HashMap">
-      <foreach collection="memberEmail" item="memberEmail">
+      <foreach collection="memberEmail" item="memberEmail"
+      open="DECLARE BEGIN" separator=";" close="; END;">
         UPDATE "MEMBER" SET 
 				MEMBER_LEVEL_NO = #{memberLevelNo} 
 				WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
