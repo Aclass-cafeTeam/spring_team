@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.main.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,9 @@ public class MainController{
 			
 			model.addAttribute("travelReviewList", travelReviewList);
 			
+			// 사이드메뉴(카테고리명+게시판명) 조회
+			List<Map<String, Object>> mainList = service.selectMainList();
+			model.addAttribute("mainList", mainList);
 			
 			
 			
