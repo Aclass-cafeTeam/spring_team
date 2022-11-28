@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -228,5 +229,13 @@ public class ManagerMemberController {
 					model.addAttribute("endDateInput", endDateInput);
 					model.addAttribute("requestURL", "/selectDetailDate");
 					return "manager/totalMemberManager";
+		}
+		
+		//팝업창(멤버등급 변경)
+		@RequestMapping("/manager/ManageLevelUpPopup")
+		public String manageLevelUpPopup(Model model,
+				HttpSession session) {
+			model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
+			return "manager/ManageLevelUpPopup";
 		}
 }

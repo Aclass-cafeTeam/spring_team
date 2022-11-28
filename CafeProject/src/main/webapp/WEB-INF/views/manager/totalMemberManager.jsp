@@ -74,7 +74,7 @@
                               <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
                           </li>
                           <li>
-                              <a href="#"><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
+                              <a href=""><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
                           </li>
                           <li>
                               <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
@@ -259,7 +259,7 @@
             <div class="action_in">
               선택 멤버를&nbsp;
               <span class="_noLevelCafe">
-              <select class="_selectMemberLevel">
+              <select class="_selectMemberLevel" id="_selectMemberLevel">
                 <c:if test="${not empty memberLevel}">
                   <c:forEach var="memberLevels" items="${memberLevel}">
                     <c:if test="${memberLevels.MEMBER_LEVEL_NO ge 2}">
@@ -269,7 +269,7 @@
                 </c:if>
               </select>
               (으)로&nbsp;
-              <a class="btn_type _changeLevel" href="#"><span class="_changeLevel">변경</span></a>
+              <a class="btn_type _changeLevel" id="_changeLevel" href="#"><span class="_changeLevel">변경</span></a>
               <span class="bar"></span>
               </span>
               <a class="btn_type _stopActivity" href="#"><span class="_stopActivity">활동 정지</span></a>
@@ -294,7 +294,7 @@
             
             </div>
             <!-- ******************수정요망*********************** -->
-            <div class="ly_type _layerChangeLevel" style="display:none;left:209px;top:33px;z-index:100;">
+            <div class="ly_type _layerChangeLevel" id="_layerChangeLevel" style="display:none;left:209px;top:33px;z-index:100;">
               <div class="ly_cont ly_cont_v2 w250">
                 <p>
                   스탭등급 변경은 <em class="c_gn">멤버·스탭&gt;스탭관리</em>에서<br>
@@ -374,21 +374,23 @@
                       <td>
                         <div class="pers_nick_area">
                           <span class="img">
-                            <img src="${member.profileImage}"  alt="">
+                            <img id="checkImg${member.memberEmail}" src="${member.profileImage}"  alt="">
                           </span>
-                          <a href="#" class="nick _userInfo _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault" memberid="${member.memberEmail}">${member.memberNickname} (${member.memberEmail})</a>
+                          <a href="#" id="checkMember${member.memberEmail}" class="nick _userInfo _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault" memberid="${member.memberEmail}">${member.memberNickname} (${member.memberEmail})</a>
                         </div>
                       </td>
                       <td>
                         <span class="txt c_gy2">
                           <c:choose>
                             <c:when test="${(member.authorityName eq '카페매니저') or (member.authorityName eq '부매니저')}">
-                              <img alt="" src="${member.authorityImg}" class="ico_level">
+                              <img alt="" src="${member.authorityImg}" class="ico_level" >
                               ${member.authorityName}
+                              <div id="ico_level${member.memberEmail}" style="display: none;">${member.authorityName}</div>
                             </c:when>
                             <c:otherwise>
-                              <img alt="" src="${member.memberLevelImg}" class="ico_level">
+                              <img alt="" src="${member.memberLevelImg}" class="ico_level" id="ico_level${member.memberEmail}">
                               ${member.memberLevelName}
+                              <div id="ico_level${member.memberEmail}" style="display: none;">${member.memberLevelName}</div>
                             </c:otherwise>
                           </c:choose>
                         </span>

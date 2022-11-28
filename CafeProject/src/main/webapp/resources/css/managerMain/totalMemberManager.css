@@ -621,3 +621,95 @@ tbody td:nth-of-type(8){
   border-bottom-color: #c6c6c6;
   color: #949494;
 }
+
+/* 등급변경했을 때 매니저인 경우 */
+.ly_type {
+  display: none;
+  position: absolute;
+  z-index: 100;
+  padding: 18px 19px 16px;
+  border: 1px solid #888;
+  background-color: #fff;
+}
+
+.ly_type .ly_cont_v2 {
+  letter-spacing: 0;
+}
+
+.ly_type .ly_cont {
+  width: 100%;
+  overflow: hidden;
+  line-height: 18px;
+  letter-spacing: -1px;
+  color: #404040;
+}
+
+.ly_type em {
+  text-decoration: underline;
+}
+
+.c_gn {
+  color: #2e9901 !important;
+}
+
+em{
+  font-style: normal;
+}
+
+.c_og {
+  color: #ff7200 !important;
+}
+
+.ly_type .ly_cont_v2 strong {
+  letter-spacing: -1px;
+}
+
+strong {
+  font-weight: bold;
+}
+
+.ly_type .ly_cont_v2 p {
+  display: block;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.btn_type3 {
+  display: inline-block;
+  height: 25px;
+  padding-left: 2px;
+  color: #404040;
+  text-decoration: none !important;
+  cursor: pointer;
+}
+
+.btn_type3 strong, .btn_type3 span {
+  display: inline-block;
+  height: 24px;
+  padding: 0 10px 0 8px;
+  line-height: 27px;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+  border: 1px solid #B7B7B8;
+  border-radius: 7%;
+}
+
+.ly_type .clse {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  color: #404040;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  text-decoration: none;
+}
+
+.ly_type .ly_cont .btn {
+  display: block;
+  padding-top: 38px;
+  text-align: center;
+
+}

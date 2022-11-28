@@ -145,8 +145,50 @@ window.onload = function(){
   
 };
 
+/* 테이블 체크박스 */
+$("._checkAll").click(function() {
+  if($("._checkAll").is(":checked")) $("input[name=c1]").prop("checked", true);
+  else $("input[name=c1]").prop("checked", false);
+});
 
 
+function CheckValue(){
+  let checkNum = $('._checkMember:checkbox:checked').length;
+  let chk_val = [];
+  let chk_level =[];
+  $('._checkMember:checkbox:checked').each(function(){
+    chk_val.push($(this).val());
+    chk_level.push(document.getElementById("ico_level"+$(this).val()).innerText);
+  });
+  const checkObj = {
+    "checkNum": checkNum,
+    "chk_val": chk_val,
+    "chk_level" : chk_level
+  };
+  return checkObj;
+}
 
 
+const changeLevel = document.getElementById("_changeLevel");
 
+
+changeLevel.addEventListener("click", function () {
+  // 옵션이 지정된 팝업창
+
+  // 옵션 작성 방법 : "K=V,K=V,K=V" , 크기 단위 작성 X(px 고정)
+  const checkObj = CheckValue();
+  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')){
+    document.getElementById("_layerChangeLevel").style.display = "block";
+    document.getElementById("_layerChangeLevel").style.overflow = "visible";
+    document.getElementById("_layerChangeLevel").style.zoom = "1";
+
+  }else{
+    const options = "width=400, height=520";
+    window.open("/manager/ManageLevelUpPopup", "popupWindow", options)
+  }
+  
+});
+
+$("._hideLayer").click(function() {
+  document.getElementById("_layerChangeLevel").style.display = "none";
+});
