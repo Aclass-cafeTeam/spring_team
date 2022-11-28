@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
@@ -34,6 +35,56 @@ public class MyPageController {
 	@GetMapping("/info")
 	public String myPage() {
 		return "member/myPageMain";
+	}
+	
+	// 마이 페이지 내정보 수정
+//	@PostMapping("/info")
+//	public String updateInfo(Member InputMember, 
+//			String[] memberAddress,
+//			@SessionAttribute("loginMember") Member loginMember,
+//			RedirectAttributes ra
+//			){
+//		
+//		// inputMember : 입력받은 memberNickname / memberPw / memberResidence
+//		
+//		// 1. 로그인된 회원 정보에서 회원 번호를 얻어와 inputMember에 저장
+//		InputMember.setMemberNo(loginMember.getMemberNo());
+//		
+//		// 회원 정보 수정 서비스 호출 후 결과 반환 받기
+//		int result=service.updateInfo(InputMember);
+//
+//		String message=null;
+//		
+//		if(result>0) {
+//			message = "회원 정보가 수정되었습니다.";
+//			
+//			// DB - session 동기화 작업
+//			loginMember.setMemberNickname(InputMember.getMemberNickname());
+//			loginMember.setMemberPw(InputMember.getMemberPw());
+//			loginMember.setMemberResidence(InputMember.getMemberResidence());
+//		
+//		} else	{
+//				message = "회원 정보 수정 실패...";
+//		}
+//		
+//		ra.addFlashAttribute("message", message);
+//		
+//		return "redirect:info"; // 내 정보 재요청
+//	}
+	
+	// 닉네임 중복 검사
+	@GetMapping("/nicknameDupCheck")
+	@ResponseBody // 반환된 값을 jsp 경로가 아닌 값 자체로 인식
+	public int nicknameDupCheck(String memberNickname) {
+				// data: { "memberNickname": memberNickname.value }
+
+		// 닉네임 중복검사 서비스 호출
+		int result = service.nicknameDupCheck(memberNickname);
+
+		// @ResponseBody 어노테이션 덕분에
+		// result가 View Resolver로 전달되지 않고
+		// 호출했던 ajax 함수로 반환됨
+		return result;
 	}
 	
 	// 마이페이지 프로필 이미지
