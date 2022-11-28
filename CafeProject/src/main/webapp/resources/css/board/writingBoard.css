@@ -17,9 +17,15 @@ body{
     padding: 10px 0px;
     border-bottom: 1px solid black ;
     display: flex;
+    align-items: center;
     justify-content: space-between;
 }
 
+#HeaderTitle{
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: -1px;
+}
 
 /* ::after | 사용 */
 .tempSave > button:first-child::after{
@@ -31,6 +37,9 @@ body{
 /* 임시등록 + 등록 버튼 */
 .toolArea{
     display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 38px;
 }
 
 
@@ -38,10 +47,9 @@ body{
 .tempSave {
     border: 1px solid #ddd;
     border-radius: 5px;
-    display: flex;
-    justify-content: space-around;
-    padding: auto 0px;
-    
+    height: 38px;
+    margin: 0px;
+    padding: 5px 0;
 }
 
 
