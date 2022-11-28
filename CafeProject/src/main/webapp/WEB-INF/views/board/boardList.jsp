@@ -3,6 +3,7 @@
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="boardList" value="${map.boardList}" />
+<c:set var="noticeList" value="${notice.noticeList}" />
 <c:set var="pagination" value="${map.pagination}" />
 
 <!DOCTYPE html>
@@ -66,6 +67,31 @@
                 <tbody>
 
                     <%-- if-else문 --%>
+                    <c:choose>
+                        <c:when test="${empty noticeList}">
+                        <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                            <tr>
+                                <th colspan="7">게시글이 존재하지 않습니다.</th>
+                            </tr>
+                        </c:when>
+
+                        <c:otherwise>
+                            <c:forEach var="board" items="${noticeList}">
+                                <tr>
+                                    <td class="strong">${board.boardNo}</td>
+                                    <td>
+                                        <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">${board.boardTitle}</a>                        
+                                    </td>
+                                    <td class="comment">[${board.commentCount}]</td>
+                                    <td class="writer">${board.memberNickname}</td>
+                                    <td class="reporting-date">${board.boardCreateDate}</td>
+                                    <td class="hits">${board.readCount}</td>
+                                    <td class="like">${board.likeCount}</td>
+                                </tr>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+
                     <c:choose>
                         <c:when test="${empty boardList}">
                         <!-- 게시글 목록 조회 결과가 비어있다면 -->

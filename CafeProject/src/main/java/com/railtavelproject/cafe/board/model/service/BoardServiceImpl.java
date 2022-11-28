@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.railtavelproject.cafe.board.model.dao.BoardDAO;
 import com.railtavelproject.cafe.board.model.vo.Board;
 import com.railtavelproject.cafe.board.model.vo.Pagination;
+import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
 @Service
 public class BoardServiceImpl implements BoardService{
@@ -39,4 +40,20 @@ public class BoardServiceImpl implements BoardService{
 		
 		return map;
 	}
+
+	@Override
+	public Map<String, Object> selectBoardNoticeList() {
+		
+		List<Board> noticeList = dao.selectBoardNoticeList();
+		
+		Map<String, Object> notice = new HashMap<String, Object>();
+		
+		notice.put("noticeList", noticeList);
+		
+		return notice;
+	}
+
+
+
+	
 }
