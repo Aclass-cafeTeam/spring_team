@@ -166,7 +166,13 @@ public class MyPageServiceImpl implements MyPageService{
 		String nowPw = dao.selectCurrentPw(memberNo);
 		
 		// 암호화된 비밀번호와 현재 비밀번호 일치하는지 확인
-		if (bcrypt.matches(memberPw, nowPw)) return dao.secession(memberNo);
+		if(bcrypt.matches(memberPw, nowPw)) {
+			
+			// 탈퇴 이력 추가
+			int dLog = dao.insertSecessionLog(memberNo);
+			
+			return dao.secession(memberNo);
+		}
 		
 		return 0;
 	}

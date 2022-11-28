@@ -44,12 +44,17 @@
  </select>
 
  <!-- 회원 탈퇴 -->
- <!-- 탈퇴 테이블 insert 추가 해야함  -->
  <update id="secession">
  UPDATE "MEMBER" SET
  MEMBER_DEL_FL = 'Y'
  WHERE MEMBER_NO=#{memberNo}
  </update>
+ 
+ <!-- 회원 탈퇴 이력 추가 -->
+ <insert id="insertSecessionLog">
+INSERT INTO MEMBER_SECESSION
+VALUES(SEQ_SECESSION_NO.NEXTVAL, DEFAULT, DEFAULT, #{memberNo}, NULL)
+</insert>
 
 <!-- 프로필 이미지 수정 -->
 <update id="updateProfile">
