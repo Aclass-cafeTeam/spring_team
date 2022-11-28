@@ -27,7 +27,7 @@ import com.railtavelproject.cafe.member.model.service.MemberService;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
-@SessionAttributes({"loginMember","message"})
+@SessionAttributes({"loginMember","message","memberLevel"})
 public class MemberController {
 		
 	// Service 객체 생성

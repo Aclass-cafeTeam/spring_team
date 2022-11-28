@@ -2,6 +2,8 @@ package com.railtavelproject.cafe.member.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.railtavelproject.cafe.member.model.service.MyPageService;
@@ -37,6 +40,32 @@ public class MyPageController {
 	@GetMapping("/profile")
 	public String myPageProfile() {
 		return "member/myPageProfile";
+	}
+	
+	// 마이페이지 프로필 이미지 변경
+	@PostMapping("/updateProfile")
+	public String updateProfile(
+			@RequestParam(value="profileImage") MultipartFile profileImage, /*업로드된 파일*/
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra,
+			HttpServletRequest req /*저장할 서버 경로*/
+			) throws Exception {
+		
+		// 인터넷 주소로 접근할 수 있는 경로
+		String webPath="/resources/images/member/";
+		
+		// 실제 파일이 저장된 컴퓨터 상의 절대 경로
+		String filePath = req.getSession().getServletContext().getRealPath(webPath);
+		
+		int result = service.updateProfile(webPath, filePath, profileImage, loginMember);
+		
+		String message = null;
+		if(result>0) message = "프로필 이미지가 변경되었습니다.";
+		else		message = "프로필 이미지 변경 실패";
+		
+		ra.addFlashAttribute("message", message);
+		return "redirect:profile";
+		
 	}
 		
 	// 마이페이지 로그인한 회원이 작성한 글 목록

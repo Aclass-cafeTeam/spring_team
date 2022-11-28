@@ -47,7 +47,20 @@
 	      <result property="logHistoryCount" column="LOGHISTORY_COUNT" />
 	      <result property="commentCount" column="BOARD_COUNT" />
 	      <result property="boardCount" column="COMMENT_COUNT" />
+	      
+	      <result property="holdNo" column="HOLD_NO" />
+	      <result property="holdDate" column="HOLD_DATE" />
+	      <result property="holdReason" column="HOLD_REASON" />
+	      <result property="HManagerEmail" column="H_MEMBER_EMAIL" />
+	      <result property="HManagerNickname" column="H_MEMBER_NICKNAME" />
     	</resultMap>
+    	
+    	
+<!--     	private int holdNo; // 활동정지 번호
+	   private String holdDate; // 활동정지일
+	   private String holdReason; // 활동정지 사유
+	   private String HManagerEmail; // 활동정지 시킨 매니저아이디 //H_MEMBER_EMAIL
+	   private String HManagerNickname; // 활동정지 시킨 매니저아이디 //H_MEMBER_NICKNAME -->
     	
  <!--  private int memberNo;
 	private String memberEmail;
@@ -194,25 +207,28 @@
   
   <!-- 게시글 수에 따라 멤버 상세조회 페이징처리 -->
   <select id="getselectDetailBoardCount" parameterType="java.util.HashMap" resultType="_int">
-  	SELECT COUNT(*) FROM "MEMBER" m
+  	SELECT COUNT(*)
+	FROM (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO,MEMBER_LEVEL_NO FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
 	<if test ="periodOption == 1">
-	WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE MEMBER_DEL_FL IN ('N','S')
-	<if test ="aboveOption == 1">
-		<![CDATA[AND BOARD_COUNT >=]]> #{boardCount}
-	</if>
-	<if test ="aboveOption == 0">
-		<![CDATA[AND BOARD_COUNT <=]]> #{boardCount}
-	</if>
-	<if test ="memberLevelNo != 0">
-		AND MEMBER_LEVEL_NO = #{memberLevelNo}
-	</if>
+	WHERE MEMBER_DEL_FL IN ('N','S'))
+	<where>
+		<if test ="aboveOption == 1">
+			<![CDATA[AND BOARD_COUNT >=]]> #{articleCountInput}
+		</if>
+		<if test ="aboveOption == 0">
+			<![CDATA[AND BOARD_COUNT <=]]> #{articleCountInput}
+		</if>
+		<if test ="memberLevelNo != 0">
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
+		</if>
+	</where>
   </select>
   <!-- 게시글 수에 따라 멤버 상세조회 -->
   <select id="getselectDetailBoard" parameterType="java.util.HashMap" resultMap="member_rm">
@@ -233,13 +249,15 @@
 	FROM LOGIN_HISTORY lh
 	GROUP BY MEMBER_NO
 	ORDER BY 2) USING(MEMBER_NO)
+		LEFT JOIN (SELECT NVL(BOARD_COUNT,0) BOARD_COUNT,MEMBER_NO FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
-	FROM BOARD b
+	FROM BOARD b 
 	<if test ="periodOption == 1">
-	WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
+	USING(MEMBER_NO))
 	USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 	FROM "COMMENT" c 
@@ -331,7 +349,6 @@
 		<if test ="aboveOption == 0">
 			COMMENT_COUNT <![CDATA[<=]]> #{commentCountInput}
 		</if>
-		
 		<if test ="memberLevelNo != 0">
 			AND MEMBER_LEVEL_NO = #{memberLevelNo}
 		</if>
@@ -339,5 +356,173 @@
   </select>
   <!-- 댓글 수로 상세조회111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111-->
   <!-- 방문수 상세조회111111111111111111111111111111-->
+  <select id="getselectDetailVisitCount" parameterType="java.util.HashMap" resultType="_int">
+  SELECT COUNT(*) 
+	FROM (SELECT *
+	FROM (SELECT MAX(LOGIN_DATE) LOGIN_DATE ,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT,MEMBER_LEVEL_NO 
+	FROM (SELECT *
+	FROM "MEMBER"
+	LEFT JOIN LOGIN_HISTORY
+	USING(MEMBER_NO))
+	WHERE MEMBER_DEL_FL IN ('N','S')
+	<if test ="periodOption == 1">
+		AND to_char(LOGIN_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+	</if>
+	
+	GROUP BY MEMBER_NO,MEMBER_LEVEL_NO 
+	ORDER BY 2)
+	<where>
+		<if test ="aboveOption == 1">
+			LOGHISTORY_COUNT <![CDATA[>=]]> #{visitCountInput}
+		</if>
+		<if test ="aboveOption == 0">
+			LOGHISTORY_COUNT <![CDATA[<=]]> #{visitCountInput}
+		</if>
+		<if test ="memberLevelNo != 0">
+			AND MEMBER_LEVEL_NO = #{memberLevelNo}
+		</if>
+	</where>
+	)
+  </select>
+  <select id="getselectDetailVisit" parameterType="java.util.HashMap" resultMap="member_rm">
+  SELECT *
+	FROM (SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+	,MEMBER_LEVEL_NO
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	<if test ="periodOption == 1">
+		WHERE to_char(LOGIN_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+	</if>
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	ORDER BY MEMBER_NICKNAME)
+	<where>
+		<if test ="aboveOption == 1">
+			LOGHISTORY_COUNT <![CDATA[>=]]> #{visitCountInput}
+		</if>
+		<if test ="aboveOption == 0">
+			LOGHISTORY_COUNT <![CDATA[<=]]> #{visitCountInput}
+		</if>
+		<if test ="memberLevelNo != 0">
+				AND MEMBER_LEVEL_NO = #{memberLevelNo}
+		</if>
+	</where>
+  </select>
   <!-- 방문수 상세조회111111111111111111111111111111-->
+  <!-- 가입일 방문일로 상세조회111111111111111111111111111111111111111111111111111111111111111 -->
+  			<!-- 가입일 방문일로 상세조회페이징 -->
+  <select id="selectDetailDateCount" parameterType="java.util.HashMap" resultType="_int">
+  SELECT COUNT(*) 
+	FROM "MEMBER"
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO) USING(MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('N','S')
+	<if test ="entryType == 1">
+	AND to_char(LOGIN_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="entryType == 0">
+	AND to_char(ENROLL_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	</if>
+	ORDER BY 1
+  </select>
+  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm">
+  SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+	,MEMBER_LEVEL_NO
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	<if test ="entryType == 1">
+	AND to_char(LOGIN_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="entryType == 0">
+	AND to_char(ENROLL_DATE,'yyyy-mm-dd') 
+	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
+	</if>
+	<if test ="memberLevelNo != 0">
+		AND MEMBER_LEVEL_NO = #{memberLevelNo}
+	</if>
+	ORDER BY 2
+  </select>
+  <!-- 가입일 방문일로 상세조회11111111111111111111111111111111111111111111111111 -->
+  <!-- 활동정지한 멤버  -->
+  <select id="stopMemberCount" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('S')
+  </select>
+  <select id="selectStopMemberListCount" resultType="_int">
+  	SELECT COUNT(*) FROM "MEMBER" m
+	WHERE MEMBER_DEL_FL IN ('S')
+	<if test ="memberEmail != null">
+		AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+	</if>
+  </select>
+  <select id="selectStopMemberList" resultMap="member_rm">
+  	SELECT HOLD_NO, MEMBER_NO,PROFILE_IMG, 
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,MEMBER_NICKNAME ,TO_CHAR(HOLD_DATE ,'YYYY.MM.DD') HOLD_DATE 
+	,HOLD_REASON
+	,(SELECT SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) FROM MEMBER_HOLD JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO)) H_MEMBER_EMAIL 
+	,(SELECT MEMBER_NICKNAME FROM MEMBER_HOLD JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO)) H_MEMBER_NICKNAME 
+	FROM "MEMBER" 
+	JOIN MEMBER_HOLD ON (MEMBER_NO = H_MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('S')
+	AND HOLD_FL IN ('Y')
+	<if test ="memberEmail != null">
+		AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+	</if>
+  </select>
+  
+  <!-- 활동정지한 멤버  -->
+
 </mapper>

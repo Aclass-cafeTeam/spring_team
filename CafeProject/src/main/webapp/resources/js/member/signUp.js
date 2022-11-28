@@ -14,6 +14,7 @@ const checkObj = {
 };
 
 var isCapchaSuccess = false;
+
 function successCaptcha(){
     isCapchaSuccess =true;
 }
@@ -33,7 +34,10 @@ function writeOK() {
     }
     return true;
 
+
+
 }
+
 
 
 // 이메일 유효성 검사 
