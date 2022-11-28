@@ -791,3 +791,12 @@ section #border-img {
     width: 10px;
     height: 10px; 
 }
+
+/* 나의 활동 - 내가 쓴 글 보기, 내가 댓글 단 글 보기 */
+#info-data > a{
+    color: black;
+    text-decoration: none;
+}
+#info-data>a:hover{
+    text-decoration: underline;
+}
