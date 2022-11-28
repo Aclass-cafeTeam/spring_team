@@ -41,6 +41,14 @@ public class MyPageDAO {
 	public int secession(int memberNo) {
 		return sqlSession.update("myPageMapper.secession", memberNo);
 	}
+	
+	/** 탈퇴 이력 추가
+	 * @param memberNo
+	 * @return result
+	 */
+	public int insertSecessionLog(int memberNo) {
+		return sqlSession.insert("myPageMapper.insertSecessionLog", memberNo);
+	}
 
 	/** 로그인한 회원이 작성한 게시글 수 조회
 	 * @param memberNo
@@ -126,7 +134,5 @@ int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		
 		return sqlSession.selectList("myPageMapper.selectMyDeleteBoard", memberNo, rowBounds);
 	}
-
-
 
 }
