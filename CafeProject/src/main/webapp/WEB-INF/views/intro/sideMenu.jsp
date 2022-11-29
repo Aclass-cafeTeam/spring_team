@@ -191,13 +191,12 @@
                                         <em>${loginMember.logHistoryCount}<span>회</span></em>
                                     </li>
                                     <li>
-                                        <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴 글
-                                            보기</span>
+                                        <span id="info-data"><img src="/resources/images/게시판.PNG"><a href="/member/myPage/myBoard">내가 쓴 글
+                                            보기</a></span>
                                         <em>${loginMember.memberBoardCount}<span>개</span></em>
                                     </li>
                                     <li>
-                                        <span id="info-data"><img src="/resources/images/게시판.PNG">내가 쓴
-                                            댓글보기</span>
+                                        <span id="info-data"><img src="/resources/images/게시판.PNG"><a href="/member/myPage/myCommentBoard">내가 댓글 단 글 보기</a></span>
                                         <em>${loginMember.memberCommentCount}<span>개</span></em>
                                     </li>
                                 </ul>
@@ -225,7 +224,7 @@
                     <a href="/member/logout" id="signOut">로그아웃</a>
                 </div>
                 <div id="signOutbtn">
-                    <a href="#" id="signOut">카페 글쓰기</a>
+                    <a href="/board/write" id="signOut">카페 글쓰기</a>
                 </div>
             </c:otherwise>
             </c:choose>
