@@ -49,10 +49,12 @@
                                 <tr>
                                     <td class="boardNo">${myPageBoard.boardNo}</td>
                                     <td><a href="#" class="title">
+                                        <%-- 말머리가 있을 경우 --%>
                                         <c:if test="${not empty myPageBoard.titleTagName}">
                                         <span>[${myPageBoard.titleTagName}]</span>
                                         </c:if>
                                     ${myPageBoard.boardTitle}</a>
+                                        <%-- 댓글이 있을 경우 --%>
                                         <c:if test="${myPageBoard.commentCount!=0}">
                                         <a href="#" class="comment">[${myPageBoard.commentCount}]</a>
                                         </c:if>
