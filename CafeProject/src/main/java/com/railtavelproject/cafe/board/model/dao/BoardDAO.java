@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
 import com.railtavelproject.cafe.board.model.vo.Pagination;
+import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
 @Repository
 public class BoardDAO {
@@ -45,4 +46,16 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardList", boardCode, rowBounds);
 	}
 
+	public List<Board> selectBoardNoticeList(int boardCode) {
+		
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return sqlSession.selectList("boardMapper.selectBoardNoticeList", boardCode ,rowBounds);
+	}
+
+
+	
+
+	
+	
 }

@@ -3,6 +3,8 @@ package com.railtavelproject.cafe.main.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,7 +24,7 @@ public class MainController{
 		// GET 방식 "/" 로 요청이 오면 해당 메서드에서 처리
 		// == Handler Mapping
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String mainPage(Model model){
+		public String mainPage(Model model, HttpSession session){
 			// 메인 페이지 요청 시 필요한 코드 작성 ....
 			
 			// 게시글 전체 불러오기
@@ -43,9 +45,11 @@ public class MainController{
 			
 			model.addAttribute("travelReviewList", travelReviewList);
 			
+			
+			
 			// 사이드메뉴(카테고리명+게시판명) 조회
 			List<Map<String, Object>> mainList = service.selectMainList();
-			model.addAttribute("mainList", mainList);
+			session.getServletContext().setAttribute("mainList", mainList);
 			
 			
 			

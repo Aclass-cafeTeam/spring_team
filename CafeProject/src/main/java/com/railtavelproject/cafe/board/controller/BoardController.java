@@ -25,11 +25,14 @@ public class BoardController {
 			) {
 		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
-		
 		model.addAttribute("map", map);
+		
+		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
+		model.addAttribute("notice", notice);
 		
 		return "board/boardList";
 	}
+	
 
 	
 	

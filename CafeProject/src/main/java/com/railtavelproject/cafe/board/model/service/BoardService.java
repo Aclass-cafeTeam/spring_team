@@ -17,7 +17,10 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardList(int boardCode, int cp);
 
-	
-	
-	
+	/** 공지 게시판 목록 조회
+	 * @return notice
+	 */
+	Map<String, Object> selectBoardNoticeList(int boardCode);
+
+
 }
