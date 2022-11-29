@@ -15,7 +15,7 @@
             <div id="subProfile">
                 <div id="profileImgBox">
                     <c:if test="${empty loginMember.profileImage}">    
-                        <img id="profileImg" src="/resources/images/member/프로필.PNG">
+                        <img id="profileImg" src="/resources/images/main/프로필.PNG">
                     </c:if> 
 
                     <c:if test="${not empty loginMember.profileImage}">    

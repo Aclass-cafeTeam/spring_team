@@ -53,7 +53,7 @@
                         <div class="profile">
                             <!-- 프로필 이미지가 없을 경우 -->
                             <c:if test="${empty board.profileImage}">
-                                <img width="36" height="36" src="/resources/images/member/프로필.PNG">
+                                <img width="36" height="36" src="/resources/images/main/프로필.PNG">
                             </c:if>
                             <!-- 프로필 이미지가 있을 경우 -->
                             <c:if test="${not empty board.profileImage}">
