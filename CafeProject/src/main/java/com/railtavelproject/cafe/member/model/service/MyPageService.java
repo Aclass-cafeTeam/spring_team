@@ -52,4 +52,10 @@ public interface MyPageService {
 	 */
 	int secession(int memberNo, String memberPw);
 
+	/** 닉네임 중복 검사 서비스
+	 * @param memberNickname
+	 * @return result
+	 */
+	int nicknameDupCheck(String memberNickname);
+
 }

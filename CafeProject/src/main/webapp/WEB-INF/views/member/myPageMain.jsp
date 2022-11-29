@@ -25,16 +25,9 @@
             
             <!-- 마이페이지 내정보 -->
             <!-- 
-            변경가능 - 닉네임 , 비밀번호, 지역, 프로필 이미지
+            변경가능 - 닉네임 , 비밀번호, 지역
             변경 불가 - 아이디(이메일)
             -->
-
-                <!-- 프로필 이미지
-                아이디(이메일)
-                비밀번호
-                비밀번호 변경
-                닉네임 변경
-                지역 -->
             <section class="myPage-main">
 
                 <form action="#" method="POST" name="myPage-form">
@@ -46,26 +39,26 @@
 
                         <div class="myPage-subTitle">
                             <label>아이디(이메일)</label>
-                            <span>sample@cafe.team</span>
+                            <span>${loginMember.memberEmail}</span>
                         </div>
                         <div class="myPage-subTitle">
                             <label>닉네임</label>
                             <!-- maxlength 확인할 것 -->
-                            <input type="text" name="memberNickname" id="memberNickname" maxlength="10" placeholder="지금닉네임">
+                            <input type="text" name="memberNickname" id="memberNickname" maxlength="10" placeholder="${loginMember.memberNickname}">
                             <button class="myPage-check-btn">중복 확인</button>  
                         </div>
                         <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
                         <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span>
 
-                        <div class="myPage-subTitle">
+                        <%-- <div class="myPage-subTitle">
                             <label>현재 비밀번호</label>
                             <input type="password" name="memberPw" id="memberPw" maxlength="30">
                             <button class="myPage-check-btn">확인</button>  
                         </div>
-                        <span class="myPage-script">현재 비밀번호를 입력해주세요.</span>
+                        <span class="myPage-script">현재 비밀번호를 입력해주세요.</span> --%>
 
                         <!-- 각 비밀번호 id DB확인 후 수정 -->
-                        <div class="myPage-subTitle">
+                        <%-- <div class="myPage-subTitle">
                             <label>새 비밀번호</label>
                             <input type="password" name="memberPw" id="#" maxlength="30">  
                         </div>
@@ -73,31 +66,47 @@
                             <label>새 비밀번호 확인</label>
                             <input type="password" name="memberPw" id="#" maxlength="30">
                             <button class="myPage-check-btn">확인</button>
-                        </div>
+                        </div> --%>
                         <div class="myPage-subTitle">
-                            <label>거주 지역</label>
-                            <!-- 회원가입 페이지와 비교후 수정/추가 예정 -->
-                            <select name="address" id="address">
-                                <option value="">거주 지역을 선택하세요</option>
-                                <option value="seoul">서울</option>
-                            </select>  
+                            <label for="residence">지역(선택사항)</label>
+                            <div class="select">
+                                <select name="memberResidence" id="residence">
+                                    <option selected disabled>시/도 선택</option>
+                                    <option value="서울">서울</option>
+                                    <option value="경기">경기</option>
+                                    <option value="인천">인천</option>
+                                    <option value="부산">부산</option>
+                                    <option value="대구">대구</option>
+                                    <option value="대전">대전</option>
+                                    <option value="광주">광주</option>
+                                    <option value="울산">울산</option>
+                                    <option value="세종">세종</option>
+                                    <option value="강원">강원</option>
+                                    <option value="충북">충북</option>
+                                    <option value="전북">전북</option>
+                                    <option value="전남">전남</option>
+                                    <option value="경북">경북</option>
+                                    <option value="경남">경남</option>
+                                    <option value="제주">제주</option>
+                                    <option value="기타(해외)">기타(해외)</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
                             <button class="myPage-update-btn">수정</button>
                         </div>
-
                     </div> 
-
                 </form>
-
             </section>
-
         </div>
     </section>
         
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
+
+    <%-- jQuery 라이브러리 추가 --%>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
