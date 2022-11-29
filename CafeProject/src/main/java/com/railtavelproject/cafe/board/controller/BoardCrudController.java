@@ -36,15 +36,6 @@ public class BoardCrudController {
 		
 		return "board/writingBoard";
 	}	
-	
-	
-	// 게시글 작성
-//	@PostMapping("/board/write/{boardCode}")
-//	public int writeBoard(
-//			@PathVariable("boardCode") int boardCode,
-//			int titleTag
-//			) {
-//		return 
-//	}
+		
 
 }

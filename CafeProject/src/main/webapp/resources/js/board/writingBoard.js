@@ -1,6 +1,8 @@
 // select 토글 버튼 (∧ ∨)
 const select =document.querySelectorAll(".select")
 const wrapper = document.querySelectorAll(".wrapper");
+const boardCode = document.querySelector("#boardCode");
+
 
 // 게시판 선택 
 select[0].addEventListener("click", ()=>{
@@ -8,9 +10,12 @@ select[0].addEventListener("click", ()=>{
 });
 
 function selectType(type) {
+    console.log("되냐");
     wrapper[0].classList.remove("open");
     select[0].firstElementChild.innerText = type.innerText;
+    boardCode.value = type.getAttribute("id");
     select[0].firstElementChild.style.lineHeight= "1px";
+    console.log(boardCode);
 }    
 
 // 태그 선택
