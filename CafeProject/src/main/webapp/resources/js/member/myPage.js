@@ -56,7 +56,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     if(inputImage !=null){
     
         // 해당 화면 진입 시 프로필 이미지 상태를 저장(initCheck)
-        if(profileImage.getAttribute("src") == "/resources/images/member/프로필.PNG"){
+        if(profileImage.getAttribute("src") == "/resources/images/main/프로필.PNG"){
             // 기본이미지인 경우
             initCheck = false;
         } else {
@@ -116,7 +116,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
         // x버튼이 클릭됐을 경우 -> 기본 이미지로 변경
         deleteImage.addEventListener("click", ()=>{
     
-            profileImage.setAttribute("src","/resources/images/member/프로필.PNG")
+            profileImage.setAttribute("src","/resources/images/main/프로필.PNG")
             inputImage.value="";
             deleteCheck = 0;
         });
