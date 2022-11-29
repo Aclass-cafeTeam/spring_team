@@ -53,6 +53,15 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardNoticeList", boardCode ,rowBounds);
 	}
 
+	/** 검색 조건이 일치하는 게시글 수 조회
+	 * @param pm
+	 * @return listCount
+	 */
+//	public int getListCount(Map<String, Object> pm) {
+//		
+//		return sqlSession.selectOne("boardMapper.getListCount_search", pm);
+//	}
+
 
 	
 

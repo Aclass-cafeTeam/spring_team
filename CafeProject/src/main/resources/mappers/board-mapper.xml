@@ -96,8 +96,20 @@ AND NOTICE_FL = 1
 ORDER BY BOARD_NO DESC
 </select>   
    
-   
-   
+<!-- 검색 조건 일치 게시글 수 조회 -->   
+<!-- <select id="getListCount_search" resultType="_int">
+SELECT COUNT(*)
+FROM "BOARD"
+JOIN "MEMBER" USING(MEMBER_NO)
+WHERE BOARD_CODE = #{boardCode}
+AND BOARD_DEL_FL = 'N'
+
+검색어가 있을 경우
+<if test='query != null and query != ""'>
+
+
+</if>
+</select> -->
    
    
    

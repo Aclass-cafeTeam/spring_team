@@ -53,6 +53,22 @@ public class BoardServiceImpl implements BoardService{
 		return notice;
 	}
 
+//	@Override
+//	public Map<String, Object> selectBoardList(Map<String, Object> pm, int cp) {
+//		
+//		int listCount = dao.getListCount(pm);
+//		
+//		Pagination pagination = new Pagination(listCount, cp);
+//		
+//		List<Board> boardList = dao.selectBoardList(pagination, boardCode);
+//		
+//		Map<String, Object> map = new HashMap<String, Object>();
+//		map.put("pagination", pagination);
+//		map.put("boardList", boardList);
+//		
+//		return map;
+//	}
+
 
 
 	
