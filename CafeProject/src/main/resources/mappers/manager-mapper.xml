@@ -583,11 +583,10 @@
       <foreach collection="memberEmail" item="memberEmail"
       open="DECLARE BEGIN" separator=";" close="; END;">
         UPDATE "MEMBER" SET 
-				MEMBER_LEVEL_NO = #{memberLevelNo} 
-				WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
-				AND AUTHORITY_NO NOT IN (0,1)
+			MEMBER_LEVEL_NO = #{memberLevelNo} 
+			WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+			AND AUTHORITY_NO NOT IN (0,1)
       </foreach>
-
   </update>
   <!-- 멤버 등급 변경 -->
   
