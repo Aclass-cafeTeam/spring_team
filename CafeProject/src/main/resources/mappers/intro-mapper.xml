@@ -46,11 +46,9 @@
 			ORDER BY BOARD_NO DESC
 		</select>
 		
-		<!-- 메인 화면(카테고리/게시판이름) -->
+		<!-- 대분류(카테고리 리스트) -->
 		<select id="selectMainList" resultType="map">
-			SELECT MAIN_CATEGORY_NO, MAIN_CATEGORY_NAME, BOARD_CODE, BOARD_NAME
-			FROM BOARD_TYPE 
-			JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO)
+			SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL='N'
 		</select>
 	
 
