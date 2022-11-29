@@ -100,7 +100,7 @@
                         <label for="memberPw">비밀번호</label>
                         <div class="inputArea">
                             <input type="password" name="memberPw" id="memberPw" maxlength="20"
-                                placeholder="비밀번호" autocomplete="off" >
+                                placeholder="비밀번호" autocomplete="off" onKeyPress="return checkCapsLock(event)">
                             <div class="signUp-message" >
                                 <span id="pwMessage"></span>
                             </div>

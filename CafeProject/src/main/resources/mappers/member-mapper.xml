@@ -92,10 +92,19 @@
 	<select id="emailDupCheck" parameterType="string" resultType="_int">
 		SELECT COUNT(*) 
 		FROM MEMBER
-		WHERE MEMBER_EMAIL = #{memberEmail}
+		WHERE MEMBER_EMAIL = #{memberEmail} 
 		AND MEMBER_DEL_FL = 'N'
 	</select>
-	
+
+	<!-- 강제 탈퇴 회원 검사 -->
+	<select id="secessionCheck" parameterType="string" resultType="_int">
+		SELECT COUNT(*)
+		FROM MEMBER_SECESSION 
+		LEFT JOIN "MEMBER" ON(MEMBER_NO = S_MEMBER_NO)
+		WHERE S_MANAGER_NO IS NOT NULL
+		AND SECESSION_REASON = 'F'
+		AND MEMBER_EMAIL =#{memberEmail} 
+	</select>	
 	
 	<!-- 닉네임 중복검사 -->
 	<select id="nickDupCheck" parameterType="string" resultType="_int">

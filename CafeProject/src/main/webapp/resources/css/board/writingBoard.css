@@ -1,0 +1,261 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 1080px;
+    min-height: 100vh;
+    margin: auto !important; 
+}
+
+
+/* 카페 글쓰기 */
+.writingHeader {
+    width: 100%;
+    padding: 10px 0px;
+    border-bottom: 1px solid black ;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* ::after | 사용 */
+.tempSave > button:first-child::after{
+    content: "|";
+    color: #ddd;
+    padding-left: 10px;
+}
+
+/* 임시등록 + 등록 버튼 */
+.toolArea{
+    display: flex;
+}
+
+
+/* 임시등록 버튼 */
+.tempSave {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-around;
+    padding: auto 0px;
+    
+}
+
+
+.tempSave button {
+    border:none;
+    outline: none;
+    background-color: white;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+
+#btn-tempCount{
+    padding-left: 0;
+}
+
+
+/* 등록(게시글 저장)버튼 */
+
+
+#btn-submit{
+    background-color: #73358C;
+    color: white;
+    border-radius: 5px;
+    height: 39px;
+    font-size: 13px;
+    font-weight: bold;
+    margin-left: 10px;
+    
+}
+
+#btn-submit > span {
+    
+    height: 38px;
+    width : 50px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    
+}
+
+a{ text-decoration: none; }
+
+
+/* 커서 포인트 조절 필요!!!*/
+#btn-submit, .tempSave * {
+    cursor: pointer;
+}
+
+
+
+/*********** 글쓰기 영역 **************/
+.writingContent {
+    display: flex;
+    justify-content: space-between;
+    height: 742.5px;
+    margin: 10px 0;
+}
+
+.writingRow {
+    width: 860px;
+    height: 40px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+/* select boardType */
+.board-type {
+    position: relative;
+    width: 630px;
+}
+
+.select{
+    position: relative;
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 16px;
+    cursor: pointer;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+}
+
+.btn-text .select .arrow-dwn{
+    font-size : 17px;
+    font-weight: 400;
+    color: #333;
+    
+}
+
+.wrapper.open .arrow-dwn {
+    transform: rotate(-180deg);
+}
+
+.option-items{
+    position: relative;
+    z-index: 2;
+    margin-top: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+    background-image: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    display: none;
+    /* max-height: 250px;
+    overflow-y: auto;     */
+}
+
+.wrapper.open .option-items {   
+    display: block;
+    align-items: center;
+}
+
+.option{
+    list-style: none;
+    height: 36px;
+    padding: 0px 15px;
+    cursor: pointer;
+    transition: 0.2s;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #fff;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.option > * {
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+}
+
+.option-text {
+    display: flex;
+    align-items: center;
+}
+
+/* 마우스 올리면 밑줄이랑 배경색  */
+.option:hover {
+    text-decoration: underline;
+    background-color: #f2f2f2;
+}
+
+
+
+
+/* 말머리 */
+.title-tag{
+    position: relative;
+    width: 217px;
+    margin-left: 15px;
+
+}
+
+
+/* 글 양식  */
+.writingForm{
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+
+/* 게시글 제목 */
+.writeTitle {
+    display: block;
+    width: 100%;
+    min-height: 40px;
+    padding: 11px 12px 10px;
+    border: 1px solid #ddd;
+    resize: none;
+    line-height: 17px;
+    margin-bottom: 10px;
+}
+
+.writeTitle input{
+    outline: none;
+    border :none;
+    width: 100%;
+    line-height: 17px;
+    font-size: 16px;
+}
+
+
+/* 공지로 등록, 댓글 허용 세팅 */
+.settingArea {
+    width: 200px;
+    height: 100px;
+    background-color: #eee;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+}
+
+.settingArea > p {
+    margin-bottom: 5px;
+}
+
+
+/* 임시저장- modal */
+.modal{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+    z-index: 500;
+
+    background-color: rgba(0, 0, 0, 0.4);
+}
+

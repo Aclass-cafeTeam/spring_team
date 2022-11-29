@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.main.model.service;
 
+import java.util.List;
 import java.util.Map;
 
 public interface IntroService {
@@ -21,6 +22,11 @@ public interface IntroService {
 	 * @return
 	 */
 	Map<String, Object> travelReview();
+
+	/** 사이드메뉴(카테고리명+게시판명) 조회
+	 * @return mainList
+	 */
+	List<Map<String, Object>> selectMainList();
 	
 	
 

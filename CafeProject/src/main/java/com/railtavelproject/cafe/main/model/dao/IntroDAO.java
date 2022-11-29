@@ -1,6 +1,7 @@
 package com.railtavelproject.cafe.main.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -40,6 +41,14 @@ public class IntroDAO {
 	public List<IntroBoard> travelReview() {
 		RowBounds rowBounds = new RowBounds(0, 12);
 		return sqlSession.selectList("introMapper.selectTravelReview", null ,rowBounds);
+	}
+
+	
+	/** 사이드메뉴(카테고리명+게시판명) 조회
+	 * @return mainList
+	 */
+	public List<Map<String, Object>> selectMainList() {
+		return sqlSession.selectList("introMapper.selectMainList");
 	}
 
 }
