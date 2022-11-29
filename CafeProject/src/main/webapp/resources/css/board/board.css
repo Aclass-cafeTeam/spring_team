@@ -297,11 +297,43 @@ a {
 }
 
 /* 검색 버튼 */
-.search{
+.search-btn{
     background-color: #03c75a;
     border: 0;
     color: #fff;
     display: inline-block;
     width: 56px;
     height: 32px;
+}
+
+/* 페이지 */
+.pagination{
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+}
+
+.pagination li{
+    width: 20px;
+    margin: 0 5px;
+    text-align: center;
+}
+
+.pagination a{
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: #333;
+}
+.pagination a:hover{
+    text-decoration: underline;
+}
+
+.current{
+    font-weight: bold;
+    background-color: #455ba8;
+    border-radius: 50%;
+    color: white !important;
+    letter-spacing: 0 !important;
 }
