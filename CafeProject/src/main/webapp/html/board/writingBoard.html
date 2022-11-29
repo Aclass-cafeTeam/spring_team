@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카페 글쓰기</title>
+    <link rel="stylesheet" href="/resources/css/writingBoard.css">
+    
+</head>
+<body>
+
+<div class="writing-board">
+    <form action="#" method="post">
+        <div class="writingHeader">
+            <h1 id="HeaderTitle">카페 글쓰기</h1>
+            
+            <div class="btnArea">
+                <p class="tempSave">
+                    <button type="button" class="btn-tempSave">임시등록</button>
+                    <!-- 임시등록 버튼 누르면 임시저장 -->
+                    <span>|</span>
+                    <button type="button" class="btn-tempCount">0</button>
+                    <!-- 수를 누르면 임시등록 모달창으로 이동 -->
+                </p>
+                <button type="submit" class="btn-submit">등록</button>
+            </div>
+        </div>
+        
+
+
+        <div class="writingContent">
+
+            <div class="writingArea">
+                <div class="writingArticle">
+                    <div class="writingRow">
+                        <div class="board-category">
+                            
+                        </div>
+                        
+                        <div class="title-tag">
+                            <select >
+                                <option value="말머리 선택">말머리 선택 안함</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+                        <div class="writingRow">
+                            <input type="text" name="title" autocompleate="off" placeholder="제목을 입력해 주세요." >
+                        </div>
+                    </div>
+
+                    <div class="writingRow">
+                        <textarea class="summernote" name="editordata"></textarea>    
+                    </div>
+
+                </div>
+
+                <div class="settingArea">
+                    <!-- 관리자일때 -->
+                    <div class="formInputCheck">
+                        <input type="checkbox" id="notice"> <label for="notice">공지로 등록</label>
+                    </div>
+                    <p class="check_text"></p>
+                    
+
+                    <p><input type="checkbox" name="agree"> 댓글 허용</p>
+                </div>
+            </div>
+        </form>
+
+        <!-- 임시 저장 모달 !! -->
+
+</body>
+</html>

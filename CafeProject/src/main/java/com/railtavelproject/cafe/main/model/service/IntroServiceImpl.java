@@ -51,6 +51,13 @@ public class IntroServiceImpl implements IntroService{
 		
 		return travelReviewList;
 	}
+
+	
+	// 사이드메뉴(카테고리명+게시판명) 조회
+	@Override
+	public List<Map<String, Object>> selectMainList() {
+		return dao.selectMainList();
+	}
 	
 	
 	

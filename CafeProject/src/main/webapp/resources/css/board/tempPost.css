@@ -1,0 +1,167 @@
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 임시저장 모달 전체 */
+.modal-wrapper {
+    width: 558px;
+    height: 543px;
+    background-color:  #fff;
+    box-shadow: 0 2px 14px 0 rgb(0 0 0 / 10%);
+    border-radius: 12px;
+
+    position: relative;
+}
+
+
+/* 모달 헤더 */
+.modal-header{
+    height: 66px;
+    padding:24px 32px 0px;
+    
+    text-align: center;
+    
+    border-bottom: 1px solid rgba(0,0,0,.06);
+    box-shadow: 0 1px 4px 0 rgb(0 0 0 / 4%);
+    box-sizing: border-box;
+}
+
+.modal-title{
+    width: 494px;
+    height: 22px;
+    font-size: 18px;
+}
+
+
+/* 종료 X버튼*/
+.btn-close {
+    width: 10px;
+    height: 10px;
+    position:absolute;
+    top: 0;
+    right : 0;
+    padding: 20px;
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+/* i태그 */
+.btn-close i {
+    font-size: 20px;
+    pointer-events: none;
+    margin-right: 10px;
+}
+
+
+/* 임시저장 영역 */
+.temp-content {
+    width: 558px;
+    height: 477px;
+    padding: 28px 32px 0px;
+}
+
+.temp-content-area{
+    width: 494px;
+    height: 450px;
+}
+
+/* 임시저장 안내 */
+.temp-content-top{
+    position: relative;
+    margin-bottom: 17px;
+    padding-right: 90px;
+}
+
+.temp-notice{
+    width: 404px;
+    height: 19px;
+    font-size: 14px;
+    color: #676767;
+}
+
+.all-del-btn span{
+    width: 52px;
+    height: 18px;
+    font-size: 13px;
+    color: #000000;
+}
+
+/* 전체삭제 버튼 */
+.all-del-btn{
+    width: 76px;
+    height: 32px;
+    margin: -18px 0px 0px 10px;
+    padding: 0 12px;
+    font-weight: bold;
+    border: none;
+    background-color: #eff0f2;
+    border-radius: 5px;
+    cursor: pointer;
+
+    position: absolute;
+    top: 50%;
+    right: 0;
+}
+
+
+/* 임시저장 목록 전체*/
+.temp-list li{
+    padding-bottom: 20px;
+    list-style: none;
+}
+
+
+/* 임시저장 */
+.temp-item {
+    width: 494px;
+    height: 47px;
+    padding-right: 124px;
+    
+    border-bottom: 1px solid #f2f2f2; 
+    position: relative;
+}
+
+.temp-link{
+    display: inline-block;
+    width: 351px;
+    padding: 14px 0px;
+    vertical-align: middle;
+    color: #000;
+    font-weight: 400;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+
+/* 시간과 휴지통아이콘 */
+.temp-item-tool {
+    position: absolute;
+    top: 50%;
+    right: -3px;
+    transform: translateY(-50%);
+}
+
+.temp-time{
+    font-size: 12px;
+    text-align: center;
+    vertical-align: center;
+    color: #979797;
+}
+
+.btn-temp-del {
+    width: 24px;
+    height: 36px;
+    border: none;
+    background-color:transparent; /* 버튼 배경색 색상없애기 */
+
+    padding:18px 12px;
+    cursor: pointer;
+
+}
+

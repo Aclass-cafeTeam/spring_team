@@ -32,6 +32,9 @@ public class Board {
     private String writingFormName; // 글양식 제목 WRITING_FORM_NAME
     private String writingFormContent; // 글양식 내용 WRITING_FORM_CONTENT
     
+    private int mainCategoryNo; //MAIN_CATEGORY_NO
+    private String mainCategoryName; // MAIN_CATEGORY_NAME
+    
     // 이미지 목록
     private List<BoardImage> imageList;
     // 댓글 목록

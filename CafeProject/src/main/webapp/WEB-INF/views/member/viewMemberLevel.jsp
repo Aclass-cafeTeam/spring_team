@@ -36,7 +36,7 @@
             <tbody>
 
                 <tr>
-                    <th><strong class="level-icon"><img src="${memberLevel[0].MEMBER_LEVEL_IMG}" alt="plant"></strong>${memberLevel[0].MEMBER_LEVEL_NAME}</th>
+                    <th><strong class="level-icon"><img src="${memberLevel[2].MEMBER_LEVEL_IMG}" alt="plant"></strong>${memberLevel[2].MEMBER_LEVEL_NAME}</th>
                     <td>
                         <div class="txt-cont">
                             <p>가입후, 별다른 승인을 받지 않은 초기회원, 또는 활동이 없는 유령회원</p>
@@ -45,14 +45,14 @@
                 </tr>
                 
                 <tr>
-                    <th><strong class="level-icon"><img src="${memberLevel[1].MEMBER_LEVEL_IMG}" alt="tropy1"></strong>${memberLevel[1].MEMBER_LEVEL_NAME}</th>
+                    <th><strong class="level-icon"><img src="${memberLevel[3].MEMBER_LEVEL_IMG}" alt="tropy1"></strong>${memberLevel[3].MEMBER_LEVEL_NAME}</th>
                     <td>
                         <div class="txt-cont">
                             <p>내일로, 기차로 기본 등급</p>
                             <ul>
                                 <li>
                                     <span class="g">자동등업 : </span> 
-                                    게시글수 <strong>${memberLevel[1].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[1].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[1].VISIT_COUNT}</strong>회 만족 시 자동 등업
+                                    게시글수 <strong>${memberLevel[3].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[3].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[3].VISIT_COUNT}</strong>회 만족 시 자동 등업
                                 </li> 
                             </ul>
                         </div>
@@ -60,14 +60,14 @@
                 </tr>
                 
                 <tr>
-                    <th><strong class="level-icon"><img src="${memberLevel[2].MEMBER_LEVEL_IMG}" alt="tropy2"></strong>${memberLevel[2].MEMBER_LEVEL_NAME}</th>
+                    <th><strong class="level-icon"><img src="${memberLevel[4].MEMBER_LEVEL_IMG}" alt="tropy2"></strong>${memberLevel[4].MEMBER_LEVEL_NAME}</th>
                     <td>
                         <div class="txt-cont">
                             <p>내일로, 기차로에서 5주 이상 회원들과 많은 이야기를 나누고 있는 회원</p>
                             <ul>
                                 <li>
                                     <span class="g">자동등업 : </span> 
-                                    게시글수 <strong>${memberLevel[2].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[2].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[2].VISIT_COUNT}</strong>회 만족 시 자동 등업
+                                    게시글수 <strong>${memberLevel[4].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[4].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[4].VISIT_COUNT}</strong>회 만족 시 자동 등업
                                 </li> 
                             </ul>
                         </div>
@@ -75,14 +75,14 @@
                 </tr>
                 
                 <tr>
-                    <th><strong class="level-icon"><img src="${memberLevel[3].MEMBER_LEVEL_IMG}" alt="tropy3"></strong>${memberLevel[3].MEMBER_LEVEL_NAME}</th>
+                    <th><strong class="level-icon"><img src="${memberLevel[5].MEMBER_LEVEL_IMG}" alt="tropy3"></strong>${memberLevel[5].MEMBER_LEVEL_NAME}</th>
                     <td>
                         <div class="txt-cont">
                             <p>오랜 기간, 활발하게 소통하시고 활동하는 회원</p>
                             <ul>
                                 <li>
                                     <span class="g">자동등업 : </span> 
-                                    게시글수 <strong>${memberLevel[3].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[3].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[3].VISIT_COUNT}</strong> 회 만족 시 자동 등업
+                                    게시글수 <strong>${memberLevel[5].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[5].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[5].VISIT_COUNT}</strong>회 만족 시 자동 등업
                                 </li> 
                             </ul>
                         </div>
@@ -90,14 +90,14 @@
                 </tr>
             
                 <tr>
-                    <th><strong class="level-icon" ><img src="${memberLevel[4].MEMBER_LEVEL_IMG}" alt="diamond"></strong>${memberLevel[4].MEMBER_LEVEL_NAME}</th>
+                    <th><strong class="level-icon" ><img src="${memberLevel[6].MEMBER_LEVEL_IMG}" alt="diamond"></strong>${memberLevel[6].MEMBER_LEVEL_NAME}</th>
                     <td>
                         <div class="txt-cont">
                             <p>내일로, 기차로에서 사는 회원</p>
                             <ul>
                                 <li>
                                     <span class="g">자동등업 : </span> 
-                                    게시글수 <strong>${memberLevel[4].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[4].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[4].VISIT_COUNT}</strong> 회 만족 시 자동 등업
+                                    게시글수 <strong>${memberLevel[6].BOARD_COUNT}</strong>개, 댓글수 <strong>${memberLevel[6].COMMENT_COUNT}</strong>개, 방문수 <strong>${memberLevel[6].VISIT_COUNT}</strong>회 만족 시 자동 등업
                                 </li> 
                             </ul>
                         </div>
