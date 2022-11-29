@@ -68,7 +68,7 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" value="${boardType.BOARD_CODE}">
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
                             </div>
                         
                             
@@ -85,7 +85,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul>
+                                </ul> <input type="hidden" id="titleTag" name="titleTag" value="$titleTag.TITLE_TAG_NO}">
                             </div> 
                         </div>
                         
