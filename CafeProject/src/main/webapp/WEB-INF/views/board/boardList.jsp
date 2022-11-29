@@ -78,7 +78,7 @@
                         <c:otherwise>
                             <c:forEach var="board" items="${noticeList}">
                                 <tr>
-                                    <td class="strong">${board.boardNo}</td>
+                                    <td class="strong">공지</td>
                                     <td>
                                         <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">${board.boardTitle}</a>                        
                                     </td>
@@ -103,9 +103,9 @@
                         <c:otherwise>
                             <c:forEach var="board" items="${boardList}">
                                 <tr>
-                                    <td class="strong">${board.boardNo}</td>
+                                    <td class="board-number">${board.boardNo}</td>
                                     <td>
-                                        <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">${board.boardTitle}</a>                        
+                                        <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">${board.boardTitle}</a>                        
                                     </td>
                                     <td class="comment">[${board.commentCount}]</td>
                                     <td class="writer">${board.memberNickname}</td>

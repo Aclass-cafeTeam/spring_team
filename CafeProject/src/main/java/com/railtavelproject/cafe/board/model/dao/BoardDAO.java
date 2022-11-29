@@ -46,12 +46,14 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardList", boardCode, rowBounds);
 	}
 
-	public List<Board> selectBoardNoticeList() {
+	public List<Board> selectBoardNoticeList(int boardCode) {
 		
 		RowBounds rowBounds = new RowBounds(0, 5);
 		
-		return sqlSession.selectList("boardMapper.selectBoardNoticeList", null ,rowBounds);
+		return sqlSession.selectList("boardMapper.selectBoardNoticeList", boardCode ,rowBounds);
 	}
+
+
 	
 
 	

@@ -42,9 +42,9 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Map<String, Object> selectBoardNoticeList() {
+	public Map<String, Object> selectBoardNoticeList(int boardCode) {
 		
-		List<Board> noticeList = dao.selectBoardNoticeList();
+		List<Board> noticeList = dao.selectBoardNoticeList(boardCode);
 		
 		Map<String, Object> notice = new HashMap<String, Object>();
 		
