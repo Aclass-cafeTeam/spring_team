@@ -64,11 +64,11 @@
                                 
                                 <ul class="option-items"> 
                                     <c:forEach var="boardType" items="${boardTypeList}">
-                                        <li class="option option-text" value="/board/${boardType.BOARD_CODE}" onclick="selectType(this)">
+                                        <li class="option option-text" id="${boardType.BOARD_CODE}" onclick="selectType(this)">
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul>
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
                             </div>
                         
                             
@@ -85,7 +85,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul>
+                                </ul> <input type="hidden" id="titleTag" name="titleTag" value="$titleTag.TITLE_TAG_NO}">
                             </div> 
                         </div>
                         

@@ -66,5 +66,33 @@
 		SELECT * FROM WRITING_FORM_TYPE
 	</select>
 	
+	
+ 		<!-- 게시글 작성 
+ 			게시글 작성의 성공/실패 result를 반환하는 것이 아닌, 새로 삽입된 boardNo 반환 -->
+ 		
+ 		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
+ 				useGeneratedKeys="true" : JDBC getGeneratedKeys()메서드 사용 허용 ** 필수 사용
+	
+				* 마이바티스의 동적 SQL *
+				- SQL구문에 작성되는 태그로 프로그램 수행 중 추가적인 SQL 수행 및 SQL 형태 변형 가능 		
+					(마이바티스 기능 중 가장 강력한 기능)
+					
+				* 동적 SQL의 <selectKey>
+				<selectKey> : INSERT/UPDATE에 사용된 키를 원하는 변수/필드에 담아서 반환하는 태그
+				
+				keyProperty : key를 담을 변수를 지정하는 속성
+				
+				order	: 메인 SQL이 수행되기 전(BEFOR) 또는 후(AFTER)에 <selectKey>의 SQL이 수행되도록 순서를 지정
+ 		-->
+ 		<insert id="boardWrite" parameterType="Board" useGeneratedKeys="true">
+ 			<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+ 				SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
+ 			</selectKey>
+ 			INSERT INTO BOARD 
+			VALUES (SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent}, DEFAULT, DEFAULT, DEFAULT,
+							DEFAULT, DEFAULT, DEFAULT, #{MEMBER_NO}, #{BOARD_CODE}, #{TITLE_TAG_NO})
+ 		</insert>
+ 		
+	
 
 </mapper>

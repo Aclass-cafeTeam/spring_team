@@ -2542,10 +2542,6 @@ external_root_jQuery_commonjs2_jquery_commonjs_jquery_amd_jquery_default.a.fn.ex
       }
     }
 
-    $('.note-view').remove();
-    $('.note-color-all').remove();
-    // $('.note-btn').remove();
-
     return this;
   }
 });
