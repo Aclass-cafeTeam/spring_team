@@ -1,4 +1,5 @@
 package com.railtavelproject.cafe.member.controller;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -144,8 +145,16 @@ public class MemberController {
 	// 이메일 중복검사
 	@GetMapping("/emailDupCheck")
 	@ResponseBody // 반환되는 값을 jsp경로가 아닌 값 자체로 인식하여 호출한 ajax로 반환
-	public int emailDupCheck(String memberEmail) {
-		return service.emailDupCheck(memberEmail);
+	public Map<String, Object> emailDupCheck(String memberEmail) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		// 이메일 중복 검사
+		int dup = service.emailDupCheck(memberEmail);
+		// 강제 탈퇴 회원 검사 (가입불가)
+		int secession = service.secessionCheck(memberEmail);
+		map.put("dup", dup);
+		map.put("secession", secession);
+		return map;
 	}
 	
 	

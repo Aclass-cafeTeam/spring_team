@@ -45,6 +45,12 @@
 			AND BOARD_CODE = 12
 			ORDER BY BOARD_NO DESC
 		</select>
+		
+		<!-- 대분류(카테고리 리스트) -->
+		<select id="selectMainList" resultType="map">
+			SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL='N'
+		</select>
+	
 
       
  

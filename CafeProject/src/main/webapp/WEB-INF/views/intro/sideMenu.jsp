@@ -224,7 +224,7 @@
                     <a href="/member/logout" id="signOut">로그아웃</a>
                 </div>
                 <div id="signOutbtn">
-                    <a href="#" id="signOut">카페 글쓰기</a>
+                    <a href="/board/write" id="signOut">카페 글쓰기</a>
                 </div>
             </c:otherwise>
             </c:choose>
@@ -255,7 +255,7 @@
                     </ul>
                 </div> -->
 
-                <section id="board-basic">
+                <%-- <section id="board-basic">
                     <div name="board-title">■ 기본 게시판</div>
                 </section>
 
@@ -332,8 +332,25 @@
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
-                </section>
+                </section> --%>
 
+                <c:forEach var="category" items="${mainList}">
+                    <section id="board-basic">
+                    <div name="board-title">■ ${category.MAIN_CATEGORY_NAME}</div>
+                        <c:forEach var="board" items="${boardTypeList}">
+                            <c:choose>
+                                <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}">
+                                <ul id="board-menu">
+                                    <li class="board">
+                                    <img src="/resources/images/게시판.PNG" id="border-img">
+                                    <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
+                                    </li>
+                                </ul>
+                                </c:when>
+                            </c:choose>
+                        </c:forEach>
+                    </section>
+                </c:forEach>        
             </div>
 
 

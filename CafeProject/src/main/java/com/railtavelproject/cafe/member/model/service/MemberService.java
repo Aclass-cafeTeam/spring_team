@@ -27,6 +27,11 @@ public interface MemberService {
 	 */
 	int emailDupCheck(String memberEmail);
 	
+	/** 강제 탈퇴 회원 검사 (가입불가)
+	 * @param memberEmail
+	 * @return secession
+	 */
+	int secessionCheck(String memberEmail);
 	
 	/** 닉네임 중복 검사
 	 * @param memberNickname
@@ -46,10 +51,5 @@ public interface MemberService {
 	 * @return result
 	 */
 	int insertLogHistory(int memberNo);
-
-
-	
-
-
 
 }
