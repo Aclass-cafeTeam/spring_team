@@ -48,17 +48,17 @@
 	      <result property="commentCount" column="BOARD_COUNT" />
 	      <result property="boardCount" column="COMMENT_COUNT" />
 	      
-	      <result property="holdNo" column="HOLD_NO" />
+	      <result property="holdNo" column="HOLD_NO" /> <!-- 활동정지 -->
 	      <result property="holdDate" column="HOLD_DATE" />
 	      <result property="holdReason" column="HOLD_REASON" />
 	      <result property="HManagerEmail" column="H_MEMBER_EMAIL" />
 	      <result property="HManagerNickname" column="H_MEMBER_NICKNAME" />
 	      
-	      <result property="secessionReasonInFo" column="SECESSION_REASON_INFO" />
+	      <result property="secessionReasonInFo" column="SECESSION_REASON_INFO" /> <!-- 강제탈퇴 -->
 	      <result property="secessionDate" column="SECESSION_DATE" />
 	      <result property="SManagerEmail" column="S_MEMBER_EMAIL" />
 	      <result property="SManagerNickname" column="S_MEMBER_NICKNAME" />
-	      <result property="secessionFL" column="SECESSION_FL" />
+	      <result property="secessionFL" column="SECESSION_FL" />  <!-- 다시 가입 여부 -->
     	</resultMap>
     	
     	
@@ -590,7 +590,7 @@
 			AND AUTHORITY_NO NOT IN (0,1)
 		</selectKey>
      <foreach collection="memberEmail" item="memberEmail"
-      open="BEGIN" separator=";" close="; END;">
+      open="DECLARE BEGIN" separator=";" close="; END;">
         UPDATE "MEMBER" SET 
 			MEMBER_LEVEL_NO = #{memberLevelNo} 
 			WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}

@@ -1,7 +1,10 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import com.google.gson.Gson;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -252,20 +255,24 @@ public class ManagerMemberController {
 	            @RequestParam(value="memberLevelNo") int memberLevelNo) throws Exception {
 						
 			String message = service.updateMemberLevelNo(memberEmail,memberLevelNo,memberCount);
-			// JSON 형식으로 Member 객체 작성
-//			{"memberEmail" : "user01@kh.or.kr", "memberNickname" : "유저일"}
-//			String result = "{\"memberEmail\" : \"user01@kh.or.kr\", \"memberNickname\" : \"123\"}";
-//			return result;
-			/*
-			 * "memberLevelNo": memberLevelNo,
-                "memberEmail"  : memberEmail,
-                "memberCount"  : memberCount,
-                "comment"      : comment
-			 * */
-			
+
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("message",message);
+			map.put("memberLevelNo",memberLevelNo);	
+			map.put("memberCount",memberCount);	
+			map.put("memberEmail",memberEmail);	
 			// GSON 라이브러리를 이용해서 Member 객체 -> JSON 변환(String)
-			return message;
+			return new Gson().toJson(map);
 		}
+		
+		//팝업창(활동 정지)으로 가기
+		@RequestMapping("/manager/ManageActivityStopPopup")
+		public String ManageActivityStopPopup(Model model,
+				HttpSession session) {
+			//model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
+			return "manager/ManageActivityStopPopup";
+		}
+				
 		
 		
 }

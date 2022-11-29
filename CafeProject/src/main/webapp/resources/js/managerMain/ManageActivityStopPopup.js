@@ -3,14 +3,10 @@ const memberCount = document.getElementById("memberCount");
 const lst_member = document.getElementById("lst_member");
 
 memberCount.innerText = checkObj["checkNum"];
+console.log(checkObj["checkNum"]);
+console.log(checkObj);
 
 
-const memberLevelNoresult = window.opener.document.getElementById("_selectMemberLevel").value;
-document.getElementById("memberLevelSelect").value =memberLevelNoresult;
-
-// $(document).ready(function(){
-
-// });
 $(document).ready(function(){
     for (let item of checkObj["chk_val"]) {
         const li = document.createElement("li"); //부모
@@ -36,10 +32,15 @@ $(document).ready(function(){
     }
 });
 
+document.getElementById("rejectreason").addEventListener("click", function () {
+    this.value = "";
+    $('input[id=reason4]').prop("checked", true);
+});
+
 document.getElementById("_click(Close)").addEventListener("click", function () {
     // 현재 창 닫기
 
-    if(confirm("변경을 취소하시겠습니까?")){
+    if(confirm("활동 정지 창을 나가겠습니까?")){
         window.close();
     }
 })
@@ -47,24 +48,31 @@ document.getElementById("_click(Close)").addEventListener("click", function () {
 
 
 const Submit = document.getElementById("Submit");
-
 Submit.addEventListener("click", (e) => {
-    let memberLevelNo1 = document.getElementById("memberLevelSelect").value;
-    const optionArr = $("option");
-    let idx;
-    for(let i = 0; i<optionArr.length ; i++ ){ 
-        if(optionArr[i].value == memberLevelNo1){
-            idx = i;
-        }
-    }
-    let memberLevelName =$("option")[idx].innerText;
+
     let memberEmail1 = checkObj["chk_val"];
     let memberCount1 = checkObj["checkNum"]; 
-    let comment1 = document.getElementById("comment").innerText;
+    let comment1 = "";
+
+    let radio= $('input[type=radio]:checked').val();
+    switch (radio) {
+        case "3":
+            comment1 ="성인/도박 등 불법광고 및 스팸 활동";
+            break;
+        case "4":
+            comment1 ="바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)";
+            break;
+        case "1":
+            comment1 ="우리 카페 내 자체 운영 원칙에 위배되는 활동";
+            break;
+        case "2":
+            comment1 = $('#rejectreason').val();
+            break;
+    }
     $.ajax({
 
-        url: "/updateMemberLevelNo",
-        data: { "memberLevelNo": memberLevelNo1,
+        url: "/updateActivityStopMember",
+        data: { "radioNum"     : radio,
                 "memberEmail"  : memberEmail1,
                 "memberCount"  : memberCount1,
                 "comment"      : comment1,
@@ -73,18 +81,12 @@ Submit.addEventListener("click", (e) => {
         type: "POST",
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
-            if(result.message === "등급 변경에 실패하셨습니다."){
+            if(result.message === "멤버 활동 정지 반영에 실패하셨습니다."){
                 
                 alert(result.message);
                 window.close();
 
             }else{
-
-                for(let key of result.memberEmail){
-                    
-                    opener.document.getElementById("ico_level"+key).innerText = memberLevelName;
-                    opener.document.getElementById("ico_img"+key).setAttribute("src", $("input[name="+result.memberLevelNo+"]").val());
-                }
 
                 alert(result.message);
                 
@@ -93,10 +95,11 @@ Submit.addEventListener("click", (e) => {
             }
         },
         error: () => {
-            console.log("등급 변경 실패")
+            console.log("멤버 활동 정지 반영 실패")
         }
+
+
     });
+
 });
-
-
 

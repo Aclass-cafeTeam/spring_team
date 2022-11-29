@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내일로, 기차로! 카페 전체 멤버 관리</title>
+  <title>내일로, 기차로! 카페 전체 멤버 관리 등급 변경</title>
   <link rel="stylesheet" href="/resources/css/managerMain/ManageLevelUpPopup.css">
   
 </head>
@@ -17,14 +17,21 @@
 
 <div id="pop_wrap" class="pop_refuse">
 	<form name="levelupfrm" method="post" action="/ManageLevelUp.nhn">
-		<input type="hidden" name="m" value="update">
+		<%-- <input type="hidden" name="m" value="update">
 		<input type="hidden" name="model.clubid" value="30828148">
 		<input type="hidden" name="model.acceptType" value="1">
 		<input type="hidden" name="fromUpService" value="member">
 		<input type="hidden" id="defaultComment" value="">
 		<input type="hidden" name="model.memberid" value="shuxi91">
         <input type="hidden" name="model.memberLevelName" value="">
-        <input type="hidden" name="callback" value="nhn.cafemanage.member.refreshMemberList">
+        <input type="hidden" name="callback" value="nhn.cafemanage.member.refreshMemberList"> --%>
+		<c:if test="${not empty memberLevel}">
+			<c:forEach var="memberLevels" items="${memberLevel}">
+				<c:if test="${memberLevels.MEMBER_LEVEL_NO ge 2}">
+					<input type="hidden" name="${memberLevels.MEMBER_LEVEL_NO}" value="${memberLevels.MEMBER_LEVEL_IMG}">
+				</c:if>
+			</c:forEach>
+        </c:if>
 		
 
 	<div id="pop_header" class="blind">

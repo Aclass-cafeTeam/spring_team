@@ -272,7 +272,7 @@
               <a class="btn_type _changeLevel" id="_changeLevel" href="#"><span class="_changeLevel">변경</span></a>
               <span class="bar"></span>
               </span>
-              <a class="btn_type _stopActivity" href="#"><span class="_stopActivity">활동 정지</span></a>
+              <a class="btn_type _stopActivity" id="_stopActivity"  href="#"><span class="_stopActivity">활동 정지</span></a>
               <a class="btn_type _forceWithdrawal" href="#"><span class="_forceWithdrawal">강제 탈퇴</span></a>
             </div>
             <div class="action_arr">
@@ -309,7 +309,7 @@
               <a href="#" class="clse _hideLayer"><span class="blind">닫기</span></a>
             </div>
   
-            <div class="ly_type _layerStopActivity" style="display:none;left:261px;top:33px;z-index:100;">
+            <div class="ly_type _layerStopActivity" id="_layerStopActivity" style="display:none;left:261px;top:33px;z-index:100;">
               <div class="ly_cont ly_cont_v2 w250">
                 <p>
                   카페스탭은 활동정지 할 수 없습니다.<br>
@@ -317,9 +317,9 @@
                   가능합니다.<br>
                   <strong><span class="c_og">스탭 권한을 변경</span> 하시겠습니까?</strong>
                 </p>
-                <div class="btn">
-                  <a href="/ManageCafeStaffView.nhn?clubid=30828148" class="btn_type3 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
-                  <a href="#" class="btn_type3 _hideLayer"><span class="_hideLayer">취소</span></a>
+                <div class="btn btn2">
+                  <a href="/ManageCafeStaffView.nhn?clubid=30828148" class="btn_type4 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
+                  <a href="#" class="btn_type4 _hideLayer"><span class="_hideLayer">취소</span></a>
                 </div>
               </div>
               <a href="#" class="clse _hideLayer"><span class="blind">닫기</span></a>
@@ -384,13 +384,13 @@
                           <c:choose>
                             <c:when test="${(member.authorityName eq '카페매니저') or (member.authorityName eq '부매니저')}">
                               <img alt="" src="${member.authorityImg}" class="ico_level" >
-                              ${member.authorityName}
-                              <div id="ico_level${member.memberEmail}" style="display: none;">${member.authorityName}</div>
+                              <%-- ${member.authorityName} --%>
+                              <div id="ico_level${member.memberEmail}" class ="ico_level_div">${member.authorityName}</div>
                             </c:when>
                             <c:otherwise>
-                              <img alt="" src="${member.memberLevelImg}" class="ico_level" id="ico_level${member.memberEmail}">
-                              ${member.memberLevelName}
-                              <div id="ico_level${member.memberEmail}" style="display: none;">${member.memberLevelName}</div>
+                              <img alt="" src="${member.memberLevelImg}" class="ico_level" id="ico_img${member.memberEmail}">
+                              <%-- ${member.memberLevelName} --%>
+                              <div id="ico_level${member.memberEmail}" class ="ico_level_div">${member.memberLevelName}</div>
                             </c:otherwise>
                           </c:choose>
                         </span>

@@ -169,18 +169,27 @@ function CheckValue(){
 }
 
 
-const changeLevel = document.getElementById("_changeLevel");
+const changeLevel = document.getElementById("_changeLevel"); //등급 변경
+const stopActivity = document.getElementById("_stopActivity"); //활동정지
 
-
+//등급 변경
 changeLevel.addEventListener("click", function () {
   // 옵션이 지정된 팝업창
 
   // 옵션 작성 방법 : "K=V,K=V,K=V" , 크기 단위 작성 X(px 고정)
   const checkObj = CheckValue();
-  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')){
-    document.getElementById("_layerChangeLevel").style.display = "block";
-    document.getElementById("_layerChangeLevel").style.overflow = "visible";
-    document.getElementById("_layerChangeLevel").style.zoom = "1";
+
+  
+  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저') || checkObj["checkNum"] <= 0){
+
+    if(checkObj["checkNum"] <= 0){
+      alert("멤버를 선택해주세요");
+    }else{
+
+      document.getElementById("_layerChangeLevel").style.display = "block";
+      document.getElementById("_layerChangeLevel").style.overflow = "visible";
+      document.getElementById("_layerChangeLevel").style.zoom = "1";
+    }
 
   }else{
     const options = "width=400, height=520";
@@ -189,6 +198,32 @@ changeLevel.addEventListener("click", function () {
   
 });
 
+
+//활동정지
+stopActivity.addEventListener("click", function () {
+
+  const checkObj = CheckValue();
+  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')|| checkObj["checkNum"] <= 0){
+
+    if(checkObj["checkNum"] <= 0){
+      alert("멤버를 선택해주세요");
+    }else{
+
+    document.getElementById("_layerStopActivity").style.display = "block";
+    document.getElementById("_layerStopActivity").style.overflow = "visible";
+    document.getElementById("_layerStopActivity").style.zoom = "1";
+    }
+
+  }else{
+    const options = "width=508, height=494";
+    window.open("/manager/ManageActivityStopPopup", "popupWindow", options) 
+
+  }
+  
+});
+
+
 $("._hideLayer").click(function() {
   document.getElementById("_layerChangeLevel").style.display = "none";
+  document.getElementById("_layerStopActivity").style.display = "none";
 });
