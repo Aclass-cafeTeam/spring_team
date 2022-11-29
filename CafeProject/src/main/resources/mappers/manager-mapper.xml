@@ -580,13 +580,21 @@
 		- separator : 분리 기호(반복 사이 구분자)
 	 -->
   <update id="updateMemberLevelNo" parameterType="java.util.HashMap">
-      <foreach collection="memberEmail" item="memberEmail"
-      open="DECLARE BEGIN" separator=";" close="; END;">
+  	<selectKey keyProperty="memberCount" resultType="_int" order="AFTER">
+			SELECT COUNT(*)
+			FROM "MEMBER" 
+			WHERE MEMBER_LEVEL_NO =  #{memberLevelNo} 
+			AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+			<foreach collection="memberEmail" item="memberEmail"
+      open="(" separator="," close=")">#{memberEmail}</foreach>
+			AND AUTHORITY_NO NOT IN (0,1)
+		</selectKey>
+     <foreach collection="memberEmail" item="memberEmail"
+      open="BEGIN" separator=";" close="; END;">
         UPDATE "MEMBER" SET 
 			MEMBER_LEVEL_NO = #{memberLevelNo} 
 			WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
-			AND AUTHORITY_NO NOT IN (0,1)
-      </foreach>
+			AND AUTHORITY_NO NOT IN (0,1)</foreach>
   </update>
   <!-- 멤버 등급 변경 -->
   

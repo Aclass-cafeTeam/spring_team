@@ -36,7 +36,7 @@ public interface ManagerMemberService {
 
 	int forcedSecessionMemberCount();
 
-	int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo);
+	String updateMemberLevelNo(List<String> memberEmail, int memberLevelNo,int memberCount) throws Exception;
 
 
 

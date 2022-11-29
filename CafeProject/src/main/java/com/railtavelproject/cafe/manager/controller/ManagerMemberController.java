@@ -249,15 +249,9 @@ public class ManagerMemberController {
 				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
 	            @RequestParam(value="comment") String comment,
 	            @RequestParam(value="memberCount") int memberCount,
-	            @RequestParam(value="memberLevelNo") int memberLevelNo) {
-			
-	
-			System.out.println(memberEmail); //[wldfbs3234, wldbs00, wldfbs]
-			System.out.println(comment);
-			System.out.println(memberCount); //3
-			System.out.println(memberLevelNo); //4
-			
-			int result = service.updateMemberLevelNo(memberEmail,memberLevelNo);
+	            @RequestParam(value="memberLevelNo") int memberLevelNo) throws Exception {
+						
+			String message = service.updateMemberLevelNo(memberEmail,memberLevelNo,memberCount);
 			// JSON 형식으로 Member 객체 작성
 //			{"memberEmail" : "user01@kh.or.kr", "memberNickname" : "유저일"}
 //			String result = "{\"memberEmail\" : \"user01@kh.or.kr\", \"memberNickname\" : \"123\"}";
@@ -268,9 +262,9 @@ public class ManagerMemberController {
                 "memberCount"  : memberCount,
                 "comment"      : comment
 			 * */
-			System.out.println(result);
+			
 			// GSON 라이브러리를 이용해서 Member 객체 -> JSON 변환(String)
-			return "fdf";
+			return message;
 		}
 		
 		

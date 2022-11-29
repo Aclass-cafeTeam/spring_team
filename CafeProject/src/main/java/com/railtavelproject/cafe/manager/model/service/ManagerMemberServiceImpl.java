@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.railtavelproject.cafe.manager.model.dao.ManagerMemberDAO;
 import com.railtavelproject.cafe.manager.model.vo.Member;
@@ -225,10 +226,21 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return dao.forcedSecessionMemberCount();
 	}
 
+	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo) {
+	public String updateMemberLevelNo(List<String> memberEmail, int memberLevelNo,int memberCount) throws Exception{
 		
-		return dao.updateMemberLevelNo(memberEmail, memberLevelNo);
+		String message = "";
+		int result = dao.updateMemberLevelNo(memberEmail, memberLevelNo);;
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명 등급 변경에 성공하셨습니다!";
+		}else {
+			message = "등급 변경에 실패하셨습니다.";
+			throw new Exception("등급 변경에 실패");
+		}
+		
+		return message;
 	}
 
 

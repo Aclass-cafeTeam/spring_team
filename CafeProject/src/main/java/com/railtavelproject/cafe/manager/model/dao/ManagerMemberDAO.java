@@ -336,11 +336,18 @@ public class ManagerMemberDAO {
 		return sqlsession.selectOne("managerMapper.forcedSecessionMemberCount");
 	}
 
+	/** 멤버 등급 변경
+	 * @param memberEmail
+	 * @param memberLevelNo
+	 * @return
+	 */
 	public int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberEmail",memberEmail);
-		map.put("memberLevelNo",memberLevelNo);
-		return sqlsession.update("managerMapper.updateMemberLevelNo", map);
+		map.put("memberLevelNo",memberLevelNo);		
+		sqlsession.update("managerMapper.updateMemberLevelNo", map);
+		int result = (int)map.get("memberCount");
+		return result;
 	}
    
 }
