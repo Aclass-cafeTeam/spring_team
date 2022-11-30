@@ -289,9 +289,19 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public String updateReleaseStopMember(List<String> memberEmail, int memberCount, int memberNo) throws Exception{
+	public String updateReleaseStopMember(List<String> memberEmail, int memberCount) throws Exception{
 		
-		return null;
+		String message = "";
+		int result = dao.updateReleaseStopMember(memberEmail);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 활동이 가능한 멤버로 변경하였습니다.";
+		}else {
+			message = "활동이 가능한 멤버로 변경 실패하셨습니다.";
+			throw new Exception("활동이 가능한 멤버로 변경 실패");
+		}
+		
+		return message;
 	}
 
 

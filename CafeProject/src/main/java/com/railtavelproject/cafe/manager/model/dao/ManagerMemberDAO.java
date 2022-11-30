@@ -364,8 +364,7 @@ public class ManagerMemberDAO {
 		
 		int insertresult = sqlsession.insert("managerMapper.insertActivityStopMember", map);  //활동 정지 테이블에 삽입
 		int updateresult = sqlsession.update("managerMapper.updateActivityStopMember", memberEmail); //회원(멤버) 테이블에서 회원 활동여부를 활동 정지로 변경해줘야함
-		System.out.println(insertresult);
-		System.out.println(updateresult);
+	
 		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
 		int result;
 		if(insertresult == updateresult) {
@@ -393,12 +392,35 @@ public class ManagerMemberDAO {
 		
 		int insertresult = sqlsession.insert("managerMapper.insertManageSecedePopup", map);  //강제 탈퇴 테이블에 삽입
 		int updateresult = sqlsession.update("managerMapper.updateManageSecedePopup", memberEmail); //회원(멤버) 테이블에서 회원 탈퇴여부를 'Y' 변경해줘야함
-		System.out.println(insertresult);
-		System.out.println(updateresult);
+
 		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
 		int result;
 		if(insertresult == updateresult) {
 			result = insertresult;
+		}else {
+			result = 0;
+		}
+		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
+		return result;
+	}
+
+	/** 활동정지 해제 기능 
+	 * @param memberEmail
+	 * @return
+	 */
+	public int updateReleaseStopMember(List<String> memberEmail) {
+		// 디비에서 활동정지 테이블에서 컬럼 삭제 DELETE 
+        // 멤버 테이블에서 활동 여부 'N'
+		
+		// 삭제랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
+		
+		int deleteresult = sqlsession.delete("managerMapper.deleteReleaseStopMember", memberEmail);  //활동 정지 해제 멤버 활동 정지 테이블에서 삭제
+		int updateresult = sqlsession.update("managerMapper.updateReleaseStopMember", memberEmail); //회원(멤버) 테이블에서 회원 탈퇴여부를 'N' 변경해줘야함
+
+
+		int result;
+		if(deleteresult == updateresult) {
+			result = deleteresult;
 		}else {
 			result = 0;
 		}

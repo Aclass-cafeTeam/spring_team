@@ -91,7 +91,7 @@ releaseButtonAjax.addEventListener("click", function () {
         type: "POST",
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
-            if(result.message === "활동이 가능한 멤버로 변경하였습니다."){
+            if(result.message === "활동이 가능한 멤버로 변경 실패하셨습니다."){
                 
                 alert(result.message);
                 window.close();

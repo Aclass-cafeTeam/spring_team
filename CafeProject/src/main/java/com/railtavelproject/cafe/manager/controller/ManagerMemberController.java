@@ -346,7 +346,7 @@ public class ManagerMemberController {
 				@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
 				HttpSession session) throws Exception {
 												
-					String message = service.updateReleaseStopMember(memberEmail,memberCount,loginMember.getMemberNo());
+					String message = service.updateReleaseStopMember(memberEmail,memberCount);
 
 							
 					Map<String, Object> map = new HashMap<String, Object>();
