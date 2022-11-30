@@ -58,6 +58,42 @@ public class IntroServiceImpl implements IntroService{
 	public List<Map<String, Object>> selectMainList() {
 		return dao.selectMainList();
 	}
+
+	// 당일 방문 수 조회
+	@Override
+	public int todayVisitCount() {
+		
+		int todayVisitCount = dao.todayVisitCount();
+		
+		return todayVisitCount;
+	}
+
+	// 전체 방문수 조회
+	@Override
+	public int AllVisitCount() {
+		
+		int allVisitCount = dao.allVisitCount();
+		
+		return allVisitCount;
+	}
+
+	// 댓글 랭킹
+	@Override
+	public Map<String, Object> commentRank() {
+		
+		List<IntroBoard> commentRankList = dao.commentRank();
+		
+		Map<String, Object> commentRank = new HashMap<String, Object>();
+		commentRank.put("commentRank", commentRank);
+		
+		return commentRank;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
