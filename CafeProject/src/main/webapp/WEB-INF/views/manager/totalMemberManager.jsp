@@ -273,7 +273,7 @@
               <span class="bar"></span>
               </span>
               <a class="btn_type _stopActivity" id="_stopActivity"  href="#"><span class="_stopActivity">활동 정지</span></a>
-              <a class="btn_type _forceWithdrawal" href="#"><span class="_forceWithdrawal">강제 탈퇴</span></a>
+              <a class="btn_type _forceWithdrawal" id="_forceWithdrawal"  href="#"><span class="_forceWithdrawal">강제 탈퇴</span></a>
             </div>
             <div class="action_arr">
               <p>
@@ -455,8 +455,6 @@
       </div>
 
 
-
-  </main>
   <!-- 푸터 -->
   <footer>
     <p class="cr">
@@ -464,6 +462,8 @@
         <span> 내일로, 기차로! 카페</span>
     </p>
   </footer>
+  </main>
+  
   <!-- 푸터 -->
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>

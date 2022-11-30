@@ -171,6 +171,7 @@ function CheckValue(){
 
 const changeLevel = document.getElementById("_changeLevel"); //등급 변경
 const stopActivity = document.getElementById("_stopActivity"); //활동정지
+const secedeButton = document.getElementById("_forceWithdrawal"); //강제탈퇴
 
 //등급 변경
 changeLevel.addEventListener("click", function () {
@@ -226,4 +227,26 @@ stopActivity.addEventListener("click", function () {
 $("._hideLayer").click(function() {
   document.getElementById("_layerChangeLevel").style.display = "none";
   document.getElementById("_layerStopActivity").style.display = "none";
+});
+
+
+
+//강제탈퇴
+secedeButton.addEventListener("click", function () {
+
+  const checkObj = CheckValue();
+  if(checkObj["chk_level"].includes('카페매니저') || checkObj["checkNum"] <= 0){
+
+    if(checkObj["checkNum"] <= 0){
+      alert("멤버를 선택해주세요");
+    }else{
+      alert("카페매니저는 탈퇴시킬 수 없습니다.");
+    }
+
+  }else{
+    const options = "width=508, height=494";
+    window.open("/manager/ManageSecedePopup", "popupWindow", options) 
+
+  }
+  
 });

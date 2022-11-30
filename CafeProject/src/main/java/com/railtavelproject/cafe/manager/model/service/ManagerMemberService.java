@@ -38,7 +38,7 @@ public interface ManagerMemberService {
 
 	String updateMemberLevelNo(List<String> memberEmail, int memberLevelNo,int memberCount) throws Exception;
 
-	String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount) throws Exception;
+	String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount, int HmemberNo) throws Exception;
 
 
 

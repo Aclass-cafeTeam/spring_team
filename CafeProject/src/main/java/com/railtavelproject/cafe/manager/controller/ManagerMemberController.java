@@ -18,13 +18,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
+import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
 import com.railtavelproject.cafe.manager.model.vo.Member;
 
 @Controller
-@SessionAttributes({"memberCount","memberLevelNoResult","limit","memberLevel"})
+@SessionAttributes({"memberCount","memberLevelNoResult","limit","memberLevel","loginMember"})
 public class ManagerMemberController {
 	@Autowired
 	private ManagerMemberService service;
@@ -269,7 +271,7 @@ public class ManagerMemberController {
 		@RequestMapping("/manager/ManageActivityStopPopup")
 		public String ManageActivityStopPopup(Model model,
 				HttpSession session) {
-			//model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
+			model.addAttribute("loginMember", session.getAttribute("loginMember"));
 			return "manager/ManageActivityStopPopup";
 		}
 		
@@ -280,17 +282,33 @@ public class ManagerMemberController {
 				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
 			    @RequestParam(value="comment") String comment,
 			    @RequestParam(value="memberCount") int memberCount,
-			    @RequestParam(value="radioNum") int radioNum) throws Exception {
+			    @RequestParam(value="radioNum") int radioNum,
+			    @SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+			    HttpSession session) throws Exception {
 								
-					String message = service.updateActivityStopMember(memberEmail,comment,memberCount);
+					String message = service.updateActivityStopMember(memberEmail,comment,memberCount,loginMember.getMemberNo());
 
+					//System.out.println(loginMember);
+					//System.out.println(loginMember.getMemberNo());
+					//System.out.println(loginMember.getMemberEmail());
+					//System.out.println(loginMember.getAuthorityName());
+					//System.out.println(loginMember.getAuthorityNo());
 					Map<String, Object> map = new HashMap<String, Object>();
 					map.put("message",message);
 					map.put("radioNum",radioNum);	
 					map.put("memberCount",memberCount);	
 					map.put("memberEmail",memberEmail);	
 					// GSON 라이브러리를 이용해서 Member 객체 -> JSON 변환(String)
+	
 					return new Gson().toJson(map);
+		}
+		
+		//팝업창(활동 정지)으로 가기
+		@RequestMapping("/manager/ManageSecedePopup")
+		public String ManageSecedePopup(Model model,
+				HttpSession session) {
+				model.addAttribute("loginMember", session.getAttribute("loginMember"));
+				return "manager/ManageSecedePopup";
 		}
 				
 		

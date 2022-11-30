@@ -832,6 +832,19 @@ AND MEMBER_LEVEL_NO = 2;
 
 
 
+-----------------------------------------------------------------------
+--INSERT 회원 활동정지하는 데 MEMBER_HOLD 테이블 삽입하고 
+--"MEMBER" MEMBER_DEL_FL을 'S'로 변경 시켜줘야함 --- S가 활동정지 여부를 알려주는 코드
+------------------------------------------------------------------------
+--활동정지 해제 할때는 어떻게 할건지 삭제를 해버릴건지 아니면 
+--??
+INSERT INTO MEMBER_HOLD
+VALUES(SEQ_HOLD_NO.NEXTVAL, (SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일 ),
+   로그인한 매니저 회원 번호,SYSDATE ,DEFAULT , 들고온 메세지);
+  
+UPDATE "MEMBER" SET 
+MEMBER_DEL_FL = 'S'
+WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일;
 
 
 

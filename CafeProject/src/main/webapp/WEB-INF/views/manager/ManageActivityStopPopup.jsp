@@ -38,19 +38,6 @@
 					</div>
 				</div>
 				
-				
-	               <!-- [D]tooltip 영역을 따로 분리/hidden 클래스 사용하여 화면 표시 유무 처리 -->
-	               <div class="ui_tooltip shuxi91 hidden" style="position:absolute">
-	                   <span class="ico_sdk ico_arrow"><span class="blind">레이어박스화살표</span></span>
-	                   <div class="box_help">
-	                       <div class="tooltip_help">
-	                           <div class="inner_help">
-	                           
-	                           </div>
-	                       </div>
-	                   </div>
-	               </div>
-				
                 
 				<div class="desc">
 					<p class="tip_dsc">스탭과 이미 활동 정지 상태인 멤버는 제외되었습니다.</p>

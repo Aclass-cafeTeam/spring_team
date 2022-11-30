@@ -38,14 +38,14 @@ document.getElementById("rejectreason").addEventListener("click", function () {
 });
 
 document.getElementById("reason4").addEventListener("click", function () {
-    document.getElementById("rejectreason").value = "";
-    document.getElementById("rejectreason").focus();
+  document.getElementById("rejectreason").value = "";
+  document.getElementById("rejectreason").focus();
 });
 
 document.getElementById("_click(Close)").addEventListener("click", function () {
     // 현재 창 닫기
 
-    if(confirm("활동 정지 창을 나가겠습니까?")){
+    if(confirm("강제 탈퇴 창을 나가겠습니까?")){
         window.close();
     }
 })
@@ -61,16 +61,19 @@ Submit.addEventListener("click", (e) => {
 
     let radio= $('input[type=radio]:checked').val();
     switch (radio) {
-        case "3":
+        case "0":
             comment1 ="성인/도박 등 불법광고 및 스팸 활동";
             break;
-        case "4":
+        case "1":
             comment1 ="바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)";
             break;
-        case "1":
+        case "2":
             comment1 ="우리 카페 내 자체 운영 원칙에 위배되는 활동";
             break;
-        case "2":
+        case "3":
+            comment1 ="카페폐쇄를 위한 탈퇴 진행";
+        break;
+        case "4":
             comment1 = $('#rejectreason').val();
             break;
     }

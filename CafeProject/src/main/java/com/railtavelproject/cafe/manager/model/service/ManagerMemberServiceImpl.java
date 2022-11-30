@@ -245,10 +245,10 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	
 	@Transactional(rollbackFor = Exception.class)
 	@Override
-	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount) throws Exception{
+	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount,int HmemberNo) throws Exception{
 		
 		String message = "";
-		int result = dao.updateActivityStopMember(memberEmail, comment);
+		int result = dao.updateActivityStopMember(memberEmail, comment,HmemberNo);
 		
 		if(memberCount == result) {
 			message = "회원 " + result + "명을 활동 정지시켰습니다!";
