@@ -1,20 +1,3 @@
-const goToListBtn = document.getElementById("goToListBtn");
-
-// 목록 버튼 클릭시 조회중이던 목록으로 이동
-goToListBtn.addEventListener("click", ()=>{
-
-    const pathname = location.pathname; // /board/1/1500
-
-    const queryString = location.search; // ?cp=7
-
-    // board/1?cp=7
-    const url = pathname.substring(0, pathname.lastIndexOf("/"))
-                +queryString;
-
-    location.href = url;
-
-});
-
 // 좋아요 버튼 클릭 시 동작
 // (전역변수 memberNo, boardNo 사용(boardDetail.jsp))
 const boardLike = document.getElementById("boardLike");

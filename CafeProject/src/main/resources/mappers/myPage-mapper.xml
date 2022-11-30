@@ -21,7 +21,7 @@
  
  <resultMap type="MyPageBoard" id="myPageBoard_rm">
       <id property="boardNo" column="BOARD_NO"/>
-      <id property="boardCode" column="BOARD_CODE"/>
+      <result property="boardCode" column="BOARD_CODE"/>
       <result property="boardTitle" column="BOARD_TITLE"/>
       <result property="boardCreateDate" column="B_CREATE_DATE"/>
       <result property="readCount" column="READ_COUNT"/>
