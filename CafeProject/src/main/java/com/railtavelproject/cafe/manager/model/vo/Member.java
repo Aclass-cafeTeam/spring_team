@@ -38,10 +38,18 @@ public class Member {
 	   private int holdNo; // 활동정지 번호
 	   private String holdDate; // 활동정지일
 	   private String holdReason; // 활동정지 사유
-	   private String HManagerEmail; // 활동정지 시킨 매니저아이디 //H_MEMBER_EMAIL
+	   private String HManagerEmail; // 활동정지 시킨 매니저아이디 //H_MEMBER_EMAIL //
 	   private String HManagerNickname; // 활동정지 시킨 매니저아이디 //H_MEMBER_NICKNAME
-
-	
+	   
+	   private String secessionReasonInFo; //SECESSION_REASON_INFO
+	   private String secessionDate;//SECESSION_DATE
+	   private String SManagerEmail;//S_MEMBER_EMAIL
+	   private String SManagerNickname;//S_MEMBER_NICKNAME
+	   private String secessionFL;//SECESSION_FL
+	   
+	   
+	   
+	   
 //	"MEMBER_NO"   NUMBER      NOT NULL,
 //	   "MEMBER_EMAIL"   VARCHAR2(50)      NOT NULL,
 //	   "MEMBER_PW"   VARCHAR2(100)      NOT NULL,

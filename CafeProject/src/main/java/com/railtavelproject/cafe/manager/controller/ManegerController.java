@@ -24,7 +24,7 @@ import com.railtavelproject.cafe.member.model.service.MemberService;
 import com.railtavelproject.cafe.member.model.vo.MemberLevel;
 
 @Controller
-@SessionAttributes({"memberCount","memberLevel", "cafeInfo"})
+@SessionAttributes({"memberCount","memberLevel", "mainCafeInfo"})
 public class ManegerController {
 	
 	@Autowired
@@ -38,15 +38,19 @@ public class ManegerController {
 	
 	//managerjoin 이동
 	@GetMapping("/manager/joinMemberManager")
-	public String joinMemberManager() {
+	public String joinMemberManager(@SessionAttribute("mainCafeInfo") CafeInfo cafeInfo, /* 카페 정보 */
+			Model model) {
+		
+		model.addAttribute("cafeInfo",cafeInfo);
 		return "manager/joinMemberManager";
 	}
 	
 	//카페정보 이동
 	@GetMapping("/manager/basicInfoManager")
-	public String basicInfoManager(Model model) {
+	public String basicInfoManager(@SessionAttribute("mainCafeInfo") CafeInfo cafeInfo, 
+			Model model) {
 		
-		CafeInfo cafeInfo = cafeInfoService.searchCafeInfo();
+		/* CafeInfo cafeInfo = cafeInfoService.searchCafeInfo(); */
 		
 		model.addAttribute("cafeInfo",cafeInfo);
 		
@@ -66,6 +70,21 @@ public class ManegerController {
 		model.addAttribute("map",map);
 		model.addAttribute("stopMemberCount",stopMemberCount);
 		return "manager/ActivityStopMemberManager";
+	}
+	
+	//manager강제 탈퇴 이동
+	@GetMapping("/manager/ForcedSecessionMemberManager")
+	public String ForcedSecessionMemberManager(Member member,
+				@RequestParam(value="limit" , required = false, defaultValue = "15")int limit
+				,Model model,
+				@RequestParam(value="cp" , required = false, defaultValue = "1") int cp,
+				@RequestParam(value="search.memberId" , required = false) String memberEmail
+				) {
+		Map<String, Object> map = service.forcedSecessionMemberList(limit, cp,memberEmail);
+		int forcedSecessionMemberCount = service.forcedSecessionMemberCount();
+		model.addAttribute("map",map);
+		model.addAttribute("forcedSecessionMemberCount",forcedSecessionMemberCount);
+		return "manager/ForcedSecessionMemberManager";
 	}
 	
 	//managerMain 이동

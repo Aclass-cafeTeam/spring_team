@@ -43,7 +43,7 @@ body{
   margin: 0 auto;
   display: inline-flex;
   align-items: center;
-  justify-content: start;
+  justify-content: spointart;
   list-style: none;
 }
 
@@ -163,6 +163,7 @@ body{
   border: 1px solid #c5c5c5;
   border-color: #c5c5c5 #d9d9d9 #d9d9d9 #c5c5c5;
   resize: none;
+  
 }
 
 .joinTablerow2Box div:nth-of-type(2){

@@ -163,7 +163,7 @@
                                     <a id="menu5" href="/manager/ActivityStopMemberManager" class="N=a:LNB*a.list">활동정지 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(MemberStaff)">
-                                    <a id="menu6" href="" class="N=a:LNB*a.list">강제탈퇴 멤버 관리</a>
+                                    <a id="menu6" href="/manager/ForcedSecessionMemberManager" class="N=a:LNB*a.list">강제탈퇴 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(OptionalBoardStaff)">
                                     <a id="menu7" href="" class="N=a:LNB*a.list">스탭 관리</a>

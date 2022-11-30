@@ -8,6 +8,7 @@ body{
     display: flex;
     position: absolute;
     flex-direction: column;
+    font-family: '돋움', Dotum, Helvetica, sans-serif;
 }
 
 body{
@@ -56,9 +57,9 @@ body{
   margin: 0px 5px 0px 225px;
 }
 
-.lnb_sub li:nth-of-type(1) a{
+.lnb_sub li:nth-of-type(5) a{
   font-weight: bold;
-  color: #73358C;
+  color: #73358C!important;
   text-decoration: none;
   font-size: 12px;
 }
@@ -81,14 +82,14 @@ body{
 
 /* menuSub 서브 네비 */
 
-.totalMemberMain{
+.ActivityStopMember{
   box-sizing: content-box;
   /* display: inline-flex;
   flex-direction: column; */
   z-index: 20;
   width: 920px;
   height: 100%;
-  padding: 0 0 195px;
+  padding: 0 0 123px;
   margin: 0px auto;  
 }
 
@@ -96,7 +97,7 @@ body{
   border: none;
 } */
 
-.totalMemFromtitle{
+.StopMemFromtitle{
   width: 920;
   /* margin-top: 28px; */
   height: 31px;
@@ -110,32 +111,65 @@ body{
 }
 
 
-.totalMemberMain .totalSearchfieldset{
+.ActivityStopMember .StopSearchfieldset{
   border-top: 3px solid #565b62;
-  border-left: 1px solid #c6c7ca;
-  border-right: 1px solid #c6c7ca;
-  border-bottom: 1px solid #a6a6a9;
-
-
 }
+
+.section_top .noti_area {
+  position: relative;
+  padding: 20px 0 14px;
+}
+
+.lst_type li {
+  color: #666;
+  line-height: 18px;
+  list-style: none;
+}
+
+btn_type_ny.ny_v1 span, .btn_type_ny.ny_v1 strong {
+  position: absolute;
+  right: 5px;
+  top: 27px;
+  padding: 0 13px 0 14px;
+  letter-spacing: -1px;
+  display: inline-block;
+  height: 32px;
+  font-size: 12px;
+  line-height: 32px;
+  color: #fff;
+  text-align: center;
+  cursor: pointer;
+  background-color: #73358C;
+  border-radius: 6%;
+}
+
 
 /* 메인 안 쪽  */
-.srch_in .srchOption{
-  width:86px;
-  height:19px;
-}
 
 .srch_in .lb_srch{
   color: #272727;
   font-size: 12px;
 }
 
-.srch_in .inputMember{
+.srch_in .searchMember{
   width:248px;
   padding-left:7px;
 }
 
-.totalSearchfieldset .srch_in{
+input.text2 {
+  height: 21px;
+  line-height: 21px;
+  border: 1px solid;
+  border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
+  color: #404040;
+  vertical-align: middle;
+}
+
+input.off {
+  color: #959699;
+}
+
+.StopSearchfieldset .srch_in{
   margin-bottom: 2px;
 }
 
@@ -143,13 +177,13 @@ body{
   position: relative;
   zoom: 1;
   padding: 17px 19px 15px;
-  
-}
-.totalfrmSearch{
-  display: inline-block;
+  border-top:  1px solid #a6a6a9;  
+  border-left: 1px solid #c6c7ca;
+  border-right: 1px solid #c6c7ca;
+  border-bottom: 1px solid #a6a6a9;  
 }
 
-.btn_type2_gn strong, .btn_type2_gn span {
+.btn_type2_gn span {
   font-size: 12px;
   display: inline-block;
   height: 6px;
@@ -176,22 +210,6 @@ body{
   border: 1px solid #B7B7B8;
 }
 
-._submitDetail {
-  display: inline-block;
-  height: 23px;
-  padding-left: 1px;
-
-  background-color: #73358C;
-  color: #fff;
-  text-decoration: none !important;
-  cursor: pointer;
-  border-radius: 10%;
-  vertical-align: middle;
-  padding: 0 17px;
-  font-size: 12px;
-  font-family:'돋움',Verdana, Geneva, Tahoma, sans-serif;
-  border: 1px solid #B7B7B8;
-}
 
 .btn_type2 > span {
   font-size: 12px;
@@ -225,88 +243,9 @@ body{
   padding-left: 2px;
 }
 
-/*  */
-/* 멤버 상세 검색 */
-.srch_detail{
-  display: none;
-}
-.srch_detail ul {
-  overflow: hidden;
-  zoom: 1;
-  padding-top: 20px;
-  list-style: none;
-  font-size: 12px;
-  display: inline-flex;
-  color: #272727;
-}
-
-.srch_detail li{
-  padding-right: 17px;
-  display: inline-flex;
-  align-content: center;
-}
-
-.srch_detail li > label{
-  padding-left: 5px;
-}
-
-/* 멤버 상세 검색 ********************************/
 
 
 /*  */
-.srch_info {
-  margin-top: 8px;
-  padding-top: 7px;
-  border-top: 1px solid #ececec;
-  line-height: 19px;
-  color: #404040;
-  font-size: 12px;
-}
-._period{
-  width:86px;
-  height:19px;
-}
-.text{
-  width:38px;
-  padding-left:3px;
-}
-._above{
-  width:56px;
-  height:19px;
-  margin-left:4px;
-}
-.srch_info:nth-of-type(2), .srch_info:nth-of-type(3),
-.srch_info:nth-of-type(4){
-  display: none;
-}
-
-.srch_info select {
-  vertical-align: middle;
-}
-
-.srch_info .txt2 {
-  margin-right: 8px;
-}
-.srch_info .txt, .srch_info label {
-vertical-align: -1px;
-}
-
-input.text {
-height: 19px;
-line-height: 19px;
-border: 1px solid;
-border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
-vertical-align: middle;
-}
-
-._entryType{
-  width:73px;
-  height:19px;
-  margin-left:4px
-}
-.date, .cal {
-  width:100px;
-}
 
 /*  */
 
@@ -350,10 +289,6 @@ vertical-align: middle;
 /*몇명 정렬*/
 .board_action{
   z-index: 10;
-}
-.action_in > ._selectMemberLevel{
-  width:100px;
-  height:19px;
 }
 
 .action_arr {
@@ -436,15 +371,6 @@ table {
   border: 1px solid #C8CFD4;
 }
 
-.img > img{
-  width:20px;
-  height:20px;
-}
-
-.c_gy2 > img{
-  width:11px;
-  height:11px; 
-} 
 ._sortType{
   display: inline-block;
   color: #666;
@@ -494,24 +420,19 @@ tbody td:nth-of-type(1){
   width: 23px;
 }
 tbody td:nth-of-type(3){
-  width: 142px;
+  width: 304px;
 }
 tbody td:nth-of-type(4){
-  width: 81px;
+  width: 118px;
 }
 tbody td:nth-of-type(5){
-  width: 81px;
+  width: 207px;
 }
+
 tbody td:nth-of-type(6){
-  width: 86px;
+  width: 113px;
 }
-tbody td:nth-of-type(7){
-  width: 86px;
-}
-tbody td:nth-of-type(8){
-  padding-right: 5px;
-  width: 85px;
-}
+
 
 .line_n , .line_r{
   display: inline-block;
@@ -548,30 +469,49 @@ tbody td:nth-of-type(8){
   display: inline-block;
   line-height: 21px;
 }
-.pers_nick_area img{
-  display: inline-block;
-  width: 20px;
-  aspect-ratio: auto 20 / 20;
-  height: 20px;
-  vertical-align: middle;
-}
 
-._userInfo {
-  text-decoration: none;
+
+.ellipsis ._stopDefault {
   overflow: hidden;
   line-height: 21px;
-  cursor: pointer;
   display: inline-block;
   padding-top: 2px;
   color: #272727;
   vertical-align: middle;
 }
+.pers_nick_area a{
+  text-decoration: none;
+  cursor: pointer;
+  overflow: hidden;
+  line-height: 21px;
+  display: inline-block;
+  padding-top: 2px;
+  color: #272727;
+  vertical-align: middle;
+} 
+
 
 .c_gy2 {
   color: #666 !important;
   padding-left: 2px;
 }
 
+.tbl_lst_type td .nick {
+  display: inline-block;
+  padding-top: 2px;
+  color: #272727;
+  vertical-align: middle;
+  text-decoration: none;
+}
+
+.tbl_lst_type td .tit, .tbl_lst_type td .tit2 {
+  display: inline-block;
+  overflow: hidden;
+  width: 97%;
+  margin: 0 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* 데이터 출력 테이블 */
 
@@ -613,125 +553,14 @@ tbody td:nth-of-type(8){
 }
 
 
-/* 상세조건 없을 경우 */
-.noneSelect td {
-  padding: 53px 0 47px;
+.tbl_lst_type .none td {
+  padding: 53px 0 46px;
   text-align: center;
   border: none;
   border-bottom-color: #c6c6c6;
   color: #949494;
 }
-
-/* 등급변경했을 때 매니저인 경우 */
-.ly_type {
-  display: none;
-  position: absolute;
-  z-index: 100;
-  padding: 18px 19px 16px;
-  border: 1px solid #888;
-  background-color: #fff;
+.tbl_lst_type .none p{
+  justify-content: center;
 }
 
-.ly_type .ly_cont_v2 {
-  letter-spacing: 0;
-}
-
-.ly_type .ly_cont {
-  width: 100%;
-  overflow: hidden;
-  line-height: 18px;
-  letter-spacing: -1px;
-  color: #404040;
-}
-
-.ly_type em {
-  text-decoration: underline;
-}
-
-.c_gn {
-  color: #2e9901 !important;
-}
-
-em{
-  font-style: normal;
-}
-
-.c_og {
-  color: #ff7200 !important;
-}
-
-.ly_type .ly_cont_v2 strong {
-  letter-spacing: -1px;
-}
-
-strong {
-  font-weight: bold;
-}
-
-.ly_type .ly_cont_v2 p {
-  display: block;
-  font-family: '돋움', Dotum, Helvetica, sans-serif;
-  font-size: 12px;
-}
-
-.btn_type3 , .btn_type4{
-  display: inline-block;
-  height: 25px;
-  padding-left: 2px;
-  color: #404040;
-  text-decoration: none !important;
-  cursor: pointer;
-}
-
-.btn_type3 strong, .btn_type3 span {
-  display: inline-block;
-  height: 24px;
-  padding: 0 10px 0 8px;
-  line-height: 27px;
-  font-family: '돋움', Dotum, Helvetica, sans-serif;
-  font-size: 12px;
-  border: 1px solid #B7B7B8;
-  border-radius: 7%;
-}
-
-.ly_type .clse {
-  display: inline-block;
-  position: absolute;
-  right: 0;
-  top: 4px;
-  width: 34px;
-  height: 34px;
-  font-size: 12px;
-  color: #404040;
-  font-family: '돋움', Dotum, Helvetica, sans-serif;
-  text-decoration: none;
-}
-
-.ly_type .ly_cont .btn {
-  display: block;
-  padding-top: 38px;
-  text-align: center;
-
-}
-
-.ico_level_div{
-  display: inline-block;
-}
-
-.btn_type4 strong, .btn_type4 span {
-  display: inline-block;
-  height: 24px;
-  padding: 0 10px 0 8px;
-  line-height: 27px;
-  font-family: '돋움', Dotum, Helvetica, sans-serif;
-  font-size: 12px;
-  border: 1px solid #B7B7B8;
-  border-radius: 7%;
-}
-
-.ly_type .ly_cont .btn2 {
-  display: block;
-  padding-top: 55px;
-  text-align: center;
-
-}

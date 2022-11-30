@@ -67,5 +67,10 @@ public class ManagerCafeInfoServiceImpl implements ManagerCafeInfoService{
 				return result; // 결과 반환
 	}
 
+	@Override
+	public int updateJoin(String join_get) {
+		return dao.updateJoin(join_get);
+	}
+
 	
 }

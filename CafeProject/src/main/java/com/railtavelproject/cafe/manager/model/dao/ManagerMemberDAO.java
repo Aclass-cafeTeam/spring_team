@@ -304,5 +304,77 @@ public class ManagerMemberDAO {
 	
 	    return sqlsession.selectList("managerMapper.selectStopMemberList",memberEmail,rowBounds);
 	}
+
+	/** 강제 탈퇴 멤버 조회 페이징
+	 * @param memberEmail
+	 * @return
+	 */
+	public int selectforcedSecessionMemberListCount(String memberEmail) {
+		
+		return sqlsession.selectOne("managerMapper.selectforcedSecessionMemberListCount",memberEmail);
+	}
+
+	/** 강제 탈퇴 멤버 조회 페이징
+	 * @param pagination
+	 * @param memberEmail
+	 * @return
+	 */
+	public List<Member> forcedSecessionMemberList(Pagination pagination, String memberEmail) {
+	
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	
+	    return sqlsession.selectList("managerMapper.forcedSecessionMemberList",memberEmail,rowBounds);
+	}
+
+	/** 강제탈퇴 멤버 수
+	 * @return
+	 */
+	public int forcedSecessionMemberCount() {
+		
+		return sqlsession.selectOne("managerMapper.forcedSecessionMemberCount");
+	}
+
+	/** 멤버 등급 변경
+	 * @param memberEmail
+	 * @param memberLevelNo
+	 * @return
+	 */
+	public int updateMemberLevelNo(List<String> memberEmail, int memberLevelNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberEmail",memberEmail);
+		map.put("memberLevelNo",memberLevelNo);		
+		sqlsession.update("managerMapper.updateMemberLevelNo", map);
+		int result = (int)map.get("memberCount");
+		return result;
+	}
+
+	/** 회원 활동정지
+	 * @param memberEmail
+	 * @param comment
+	 * @param HmemberNo 
+	 * @return
+	 */
+	public int updateActivityStopMember(List<String> memberEmail, String comment, int HmemberNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberEmail",memberEmail); //활동정지 당한 회원 이메일들 (회원 다수일수도 있음)
+		map.put("comment",comment);	 //활동 정지 사유 
+		map.put("HmemberNo",HmemberNo);	//활동정지 시킨 매니저 번호 
+		
+		int insertresult = sqlsession.insert("managerMapper.insertActivityStopMember", map);  //활동 정지 테이블에 삽입
+		int updateresult = sqlsession.update("managerMapper.updateActivityStopMember", memberEmail); //회원(멤버) 테이블에서 회원 활동여부를 활동 정지로 변경해줘야함
+		System.out.println(insertresult);
+		System.out.println(updateresult);
+		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
+		int result;
+		if(insertresult == updateresult) {
+			result = insertresult;
+		}else {
+			result = 0;
+		}
+		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
+		return result;
+	}
    
 }
