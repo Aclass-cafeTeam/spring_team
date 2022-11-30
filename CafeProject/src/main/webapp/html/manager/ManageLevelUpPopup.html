@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내일로, 기차로! 카페 전체 멤버 관리</title>
+  <link rel="stylesheet" href="../../resources/css/managerMain/ManageLevelUpPopup.css">
+  
+</head>
+<body>
+
+
+<div id="pop_wrap" class="pop_refuse">
+	<form name="levelupfrm" method="post" action="/ManageLevelUp.nhn">
+		<input type="hidden" name="m" value="update">
+		<input type="hidden" name="model.clubid" value="30828148">
+		<input type="hidden" name="model.acceptType" value="1">
+		<input type="hidden" name="fromUpService" value="member">
+		<input type="hidden" id="defaultComment" value="">
+		<input type="hidden" name="model.memberid" value="shuxi91">
+        <input type="hidden" name="model.memberLevelName" value="">
+        <input type="hidden" name="callback" value="nhn.cafemanage.member.refreshMemberList">
+		
+
+	<div id="pop_header" class="blind">
+		<h1>멤버 등급변경</h1>
+	</div>
+	<div id="pop_container">
+		<div class="pop_content">
+
+	
+		<dl class="lst_type">
+			<dt>변경대상<em>1</em></dt>
+			<dd class="txt_cont mr_b30">
+				<div class="bx_area">
+					<div class="bx_inner">
+						<ul class="lst_member">
+							<li>
+								<div class="pers_nick_area">
+									<span class="img"><img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_80x80.gif" width="20" height="20" alt=""></span><span class="nick">김서희(shuxi91)</span>
+								</div>
+							</li>
+							
+						</ul>
+					</div>
+				</div>
+			</dd>
+			<dt class="fl">등급 변경</dt>
+			<dd class="sel">
+				<select name="model.memberLevel" style="width:145px;height:21px" id="memberLevelSelect">
+					
+					<option value="1">새내기</option>
+					
+					<option value="110">일반여행자</option>
+					
+					<option value="120" selected="selected">성실여행자</option>
+					
+					<option value="140">우수여행자</option>
+					
+					<option value="150">감사멤버</option>
+					
+				</select>
+			</dd>
+
+			<dd class="hr2"></dd>
+			<dt>변경 이유</dt>
+            <dd class="txt_cont mr_b">
+				<textarea id="comment" class="text _focus(ManageLevelUpView|Comment) _keyup(ManageLevelUpView|Comment)" cols="30" rows="5" name="model.comment"></textarea>
+				<p class="t_byte"><strong id="txtLen">0</strong> / 100 byte</p>
+			</dd>
+			</dl>
+			<div class="dsc">
+				스탭 등급 변경은 <a href="#" class="_click(ManageLevelUpView|GoManageStaff)"><em class="t_und c_gn">멤버·스탭&gt;스탭관리</em></a>에서 스탭권한<br>
+				해지 후 가능합니다. 등급을 조정하는 경우에는,<br>
+				등급 변경 후 자동등업제외 멤버로 등록할 수 있습니다.
+			</div>
+	
+	
+
+		</div>
+	</div>
+	
+	
+	<div id="pop_footer">
+		<a href="#" class="btn_type _click(ManageLevelUpView|Submit|false) _stopDefault"><strong>확인</strong></a>
+		<a href="#" class="btn_type _click(ManageLevelUpView|Close) _stopDefault"><span>취소</span></a>
+	</div>
+	<div class="dimmed" style="display:none" id="levelDownDimmLayer"></div>
+	<div class="ly_pop" style="display:none" id="levelDownHelpLayer">
+		<div class="ly_cont w270">
+			<p>
+				조정 멤버가 <span class="c_gn" id="downLevelCount">명</span> 포함되어 있습니다.<br>
+				<strong>모두 <span class="c_og" id="downLevelName">''</span> 등급 으로 변경하시겠습니까?</strong>
+			</p>
+			<div class="btn">
+				<a href="#" class="btn_type2 _click(ManageLevelUpView|Submit|false) _stopDefault"><strong>확인</strong></a>
+				<a href="#" class="btn_type2 _click(ManageLevelUpView|Close) _stopDefault"><span>취소</span></a>
+			</div>
+		</div>
+		<a href="#" class="clse _click(ManageLevelUpView|Close) _stopDefault"><span class="blind">닫기</span></a>
+	</div>
+
+	</form>
+</div>
+
+</body>
+</html>

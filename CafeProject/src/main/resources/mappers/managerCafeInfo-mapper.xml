@@ -32,4 +32,9 @@
    	<select id="searchCafeInfo" resultMap="cafeInfo_rm">
    	SELECT * FROM "CAFE_INFO"
    	</select>
+   	<update id="updateJoin">
+   		UPDATE "CAFE_INFO" SET
+   		CAFE_JOIN_FL = #{join_get}
+   		WHERE CAFE_NO = 1
+   	</update>
 </mapper>

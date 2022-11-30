@@ -13,7 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>내일로, 기차로! 카페 전체 멤버 관리</title>
-    <link rel="stylesheet" href="/resources/css/managerMain/ActivityStopMemberManager.css">
+    <link rel="stylesheet" href="/resources/css/managerMain/ForcedSecessionMemberManager.css">
   
 </head>
 <body>
@@ -116,22 +116,23 @@
       <div class="ActivityStopMember">
         <div class="section_top">
           <div class="StopMemFromtitle">
-            <P>활동정지 멤버 관리</P>
+            <P>강제탈퇴 멤버 관리</P>
           </div>
           <div class="StopSearchfieldset">
             <div class="noti_area">
               <ul class="lst_type">
-              <li>운영자가 활동 정지한 멤버를 보여주며, 활동정지 해제 또는 강제탈퇴 시킬 수 있습니다.</li>
-              <li>활동정지는 전체 멤버 관리에서 하실 수 있습니다.</li>
+              <li>운영자가 강제 탈퇴시킨 멤버로 3개월간만 보관되며, 멤버 스스로 탈퇴한 기록은 남지 않습니다.</li>
+              <li>카페 멤버를 가입 불가처리하면 자동으로 탈퇴 처리됩니다.</li>
+              <li> 멤버에 대한 강제탈퇴는 전체 멤버 관리에서 하실 수 있습니다.</li>
               </ul>
               
               <div class="btn">
-                <a class="btn_type_ny ny_v1" href="/manager/totalMemberManager"><strong>활동정지 하러가기<span class="bu"></span></strong></a>
+                <a class="btn_type_ny ny_v1" href="/manager/totalMemberManager"><strong>강제탈퇴 하러가기<span class="bu"></span></strong></a>
               </div>
               
             </div>
           
-            <form name="findActivityStopForm" action="/manager/ActivityStopMemberManager" method="get">
+            <form name="findActivityStopForm" action="/manager/ForcedSecessionMemberManager" method="get">
               <div class="bx_srch bx_v1">
                 <div class="bx_srch_inner">
                   <div class="srch_in">
@@ -152,21 +153,21 @@
 
         <div>
           <p class="board_tit">
-            <strong>활동정지 멤버</strong>
-            <em class="_memberCount">${stopMemberCount}</em><!-- ${memberStopCount} -->
+            <strong>강제탈퇴 멤버</strong>
+            <em class="_memberCount">${forcedSecessionMemberCount}</em><!-- ${memberStopCount} -->
             </p>
         </div>
         <!----------------------- 데이터 출력 -------------------------------------------------------------->
         <div class="board_action">
           <div class="action_in">
               선택 멤버를&nbsp;														
-              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#"><span>활동 정지 해제</span></a>
+              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#"><span>가입불가 해제</span></a>
               <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault" href="#"><span>강제 탈퇴</span></a>
           </div>
 
           <div class="action_arr">
               <p>
-                <form name = "sortActivityStopMemberFrm" action="/manager/ActivityStopMemberManager" method="get">
+                <form name = "sortForcedSecessionMemberFrm" action="/manager/ForcedSecessionMemberManager" method="get">
                   <select id="limit" name="limit" class="${pagination.limit}" value="${pagination.limit}">
                   <option id="limit15" value="15" selected="">15명 정렬</option>
                   <option id="limit30" value="30">30명 정렬</option>
@@ -187,23 +188,26 @@
             <input type="hidden" name="page" value="1">
             
             <table border="1" cellspacing="0" class="tbl_lst_type">	
-              <caption><span class="blind">활동정지 멤버 목록</span></caption>				
+              <caption><span class="blind">강제탈퇴 멤버 목록</span></caption>				
               <colgroup>
-              <col width="23">
-              <col width="*">
-              <col width="285">
-              <col width="81">
-              <col width="163">
+                <col width="23">
+                <col width="*">
+                <col width="304">
+                <col width="118">
+                <col width="207">
+                <col width="113">
               </colgroup>
               <thead>
-              <tr id="listHeader">
-              <th scope="col" class="frst"><input type="checkbox" name="checkAllMember" id="checkAllMember" title="선택" class="check _click(ManageActivityStopMemberView|CheckAllMember)"></th>
-              <th scope="col"><strong class="line_r">별명(아이디)</strong></th>
-
-              <th scope="col"><strong class="line_r">사유</strong></th>
-              <th scope="col"><strong class="line_r">처리일</strong></th>
-              <th scope="col" class="last"><strong class="line_r">처리자</strong></th>
-              </tr>
+                <tr id="listHeader">
+					
+                  <th scope="col" class="frst"><input type="checkbox" name="c1" id="chkalltop" title="선택" class="check _click(ManageForcedSecession|AllMember)"></th>
+                  <th scope="col"><strong class="line_r">아이디</strong></th>
+                  <th scope="col"><strong class="line_r">사유</strong></th>
+                  <th scope="col"><strong class="line_r">처리일</strong></th>
+                  <th scope="col"><strong class="line_r">처리자</strong></th>
+                  <th scope="col" class="last"><strong>가입불가 여부</strong></th>
+                  
+                </tr>
               </thead>
               <tbody>
 
@@ -211,7 +215,7 @@
                   <c:when test="${empty memberList}">
                     <tr class="line_b none">
                       <td colspan="6">
-                        <p>등록된 활동정지 멤버가 없습니다.</p>
+                        <p>등록된 강제 탈퇴 멤버가 없습니다.</p>
                       </td>
                     </tr>
                   </c:when>
@@ -219,25 +223,23 @@
                     <c:forEach var="member" items="${memberList}">
                       <tr id="${member.memberEmail}" class="_checkable">
                         <td class="tc">
- 
-                          <input type="checkbox" name="memberids" value="${member.memberEmail}" id="memberids" title="선택" class="check _click(ManageActivityStopMemberView|CheckMember)">
-                          
+                          <input type="checkbox" name="secedeIds" value="${member.memberEmail}" id="c1" title="선택" class="check _click(ManageForcedSecession|Member|member1)">
                         </td>
-                        <td>
-                          <div class="pers_nick_area">
-                            <span class="img"><img src="${member.profileImage}" width="20" height="20" alt=""></span><a href="#" class="nick ellipsis _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault">${member.memberNickname} (${member.memberEmail})</a>
-                          </div>
+              
+                        <td class="tl">
+                          <span class="tit"><a href="#" class="nick _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault">${member.memberEmail}</a></span>
                         </td>
                         <td class="tl">
-                          <div class="ellipsis"><span class="txt5 c_gy2">
-                            ${member.holdReason}</span></div>
+                          <span class="tit c_gy2">${member.secessionReasonInFo}</span>
                         </td>
                         <td class="tc">
-                          <span class="num">${member.holdDate}.</span>
+                          <span class="num">${member.secessionDate}</span>
                         </td>
                         <td class="tl">
-                          
-                          <div class="ellipsis"><span class="txt5 _click(NicknameUI|OpenUI|${member.HManagerEmail}) _stopDefault">${member.HManagerNickname} (${member.HManagerEmail})</span></div>
+                          <span class="tit">${member.SManagerNickname} (${member.SManagerEmail})</span>
+                        </td>
+                        <td class="tc">
+                          <span class="txt">${member.secessionFL}</span>
                         </td>
                       </tr>
                     </c:forEach>
@@ -252,10 +254,10 @@
           <ul class="pagination">
           
               <!-- 첫 페이지로 이동 -->
-              <li><a href="/manager/ActivityStopMemberManager?cp=1">&lt;&lt;</a></li>
+              <li><a href="/manager/ForcedSecessionMemberManager?cp=1">&lt;&lt;</a></li>
 
               <!-- 이전 목록 마지막 번호로 이동 -->
-              <li><a href="/manager/ActivityStopMemberManager?cp=${pagination.prevPage}">&lt;</a></li>
+              <li><a href="/manager/ForcedSecessionMemberManager?cp=${pagination.prevPage}">&lt;</a></li>
 
     
               <!-- 특정 페이지로 이동 -->
@@ -267,15 +269,15 @@
                   </c:when>
                   <c:otherwise>
                     <!-- 현재 페이지를 제외한 나머지 -->
-                    <li><a href="/manager/ActivityStopMemberManager?cp=${i}">${i}</a></li>
+                    <li><a href="/manager/ForcedSecessionMemberManager?cp=${i}">${i}</a></li>
                   </c:otherwise>
                 </c:choose>
               </c:forEach>
               <!-- 다음 목록 시작 번호로 이동 -->
-              <li><a href="/manager/ActivityStopMemberManager?cp=${pagination.nextPage}">&gt;</a></li>
+              <li><a href="/manager/ForcedSecessionMemberManager?cp=${pagination.nextPage}">&gt;</a></li>
 
               <!-- 끝 페이지로 이동 -->
-              <li><a href="/manager/ActivityStopMemberManager?cp=${pagination.maxPage}">&gt;&gt;</a></li>
+              <li><a href="/manager/ForcedSecessionMemberManager?cp=${pagination.maxPage}">&gt;&gt;</a></li>
 
           </ul>
         </div>
@@ -296,6 +298,6 @@
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   
-  <script src="../../resources/js/managerMain/ActivityStopMamberManger.js"></script>
+  <script src="/resources/js/managerMain/ForcedSecessionMemberManager.js"></script>
 </body>
 </html>
