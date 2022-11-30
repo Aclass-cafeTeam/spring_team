@@ -339,6 +339,5 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return message;
 	}
 
-
 	
 }

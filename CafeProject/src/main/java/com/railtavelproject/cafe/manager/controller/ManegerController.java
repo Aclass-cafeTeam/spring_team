@@ -24,7 +24,7 @@ import com.railtavelproject.cafe.member.model.service.MemberService;
 import com.railtavelproject.cafe.member.model.vo.MemberLevel;
 
 @Controller
-@SessionAttributes({"memberCount","memberLevel", "mainCafeInfo"})
+@SessionAttributes({"memberCount","memberLevel", "mainCafeInfo","loginMember"})
 public class ManegerController {
 	
 	@Autowired
@@ -123,6 +123,36 @@ public class ManegerController {
 		System.out.println(map.get("memberList"));
 		System.out.println(map.get("pagination"));
 		return "manager/totalMemberManager";
+	}
+	//스탭 관리 페이지로 이동
+	@GetMapping("manager/ManageCafeStaffView")
+	public String manageCafeStaffView(Member member,
+			@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
+			@RequestParam(value="srchOption" , required = false, defaultValue = "0") int srchOption
+			,Model model,
+			HttpSession session){ //세션으로 로그인 멤버들고 와서 카페 관리자만 삭제 버튼 보여줘고 부관리자는 스탭관리창에서 할수 있는 게 없움
+			// 별명 아이디로 검색 할 수 있게 해야하고 체크박스 값 들고 와야하고 
+			// input 값 들고 와야함 //로그인 세션이랑 //검색했을 때 권한이나 멤버 등급도 무조건 같이 들고 와야함
+			// 전체 매니저는 무조건 조건할 거고 부 매니저가 있는 지 없는 지 판단 해서 들고 있어야함
+		
+			// 검색한 값 부 관리자가 없으면 부매니저로 추가 가능 
+			// 부 매니저는 1명만 가능하기 때문에 카페 매니저만 부 매니저를 삭제하고 추가할 수 있음
+			
+			// 1. 로그인 세션을 들고 가서 부매니저 추가 삭제 할때 할 수 있는 지 조건 
+			// 2. 부매니저랑 전체 매니저 처음에 검색 해서 가고 전체 매니저는 삭제버튼 존재X 부 매니저는 로그인 화면이 전체 매니저일때 삭제버튼 O
+			// 3. 부 매니저가 있을 시 스텝 추가 기능에 부 매니저는 한명만 가능 alert창 
+			// 4. 
+
+			//List<Map<String, Object>> stepMember = memberService.manageCafeStaffView();
+			
+		
+			
+			model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
+			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
+			model.addAttribute("srchOption", srchOption);
+			//model.addAttribute("stepMember", stepMember);
+			
+			return "manager/ManageCafeStaffView";
 	}
 	
 }
