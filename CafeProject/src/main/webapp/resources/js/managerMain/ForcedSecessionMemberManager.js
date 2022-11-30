@@ -70,7 +70,7 @@ releaseStopButton.addEventListener("click", function () {
 
                 for(let key of result.memberEmail){
                       
-                  $('.secessionFL'+key).innerText = 'N';
+                  document.getElementById('secessionFL'+key).innerText = 'N';
                   
                 }
 

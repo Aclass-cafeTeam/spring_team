@@ -427,5 +427,10 @@ public class ManagerMemberDAO {
 		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
 		return result;
 	}
+
+	public int updateReleaseSecedeMember(List<String> memberEmail) {
+		
+		return sqlsession.update("managerMapper.updateReleaseSecedeMember", memberEmail);
+	}
    
 }

@@ -672,7 +672,7 @@
   	</update>
   <!-- 회원 활동 정지 해제 -->
   <!-- 강제 탈퇴에서 재가입 가능하도록 변경  -->
-  <update id="">
+  <update id="updateReleaseSecedeMember">
   UPDATE "MEMBER_SECESSION" SET 
 	SECESSION_REASON = 'I'
 	WHERE S_MEMBER_NO IN 
@@ -684,6 +684,6 @@
 	)
 	AND S_MANAGER_NO IS NOT NULL
   </update>
-  <!--  -->
+  <!-- 강제 탈퇴에서 재가입 불가능하도록 변경 -->
   
 </mapper>

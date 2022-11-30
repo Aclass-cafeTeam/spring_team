@@ -75,6 +75,8 @@ public interface ManagerMemberService {
 	 */
 	String updateReleaseStopMember(List<String> memberEmail, int memberCount) throws Exception;
 
+	String updateReleaseSecedeMember(List<String> memberEmail, int memberCount) throws Exception;
+
 
 
 }
