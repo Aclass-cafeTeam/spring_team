@@ -21,6 +21,7 @@
  
  <resultMap type="MyPageBoard" id="myPageBoard_rm">
       <id property="boardNo" column="BOARD_NO"/>
+      <id property="boardCode" column="BOARD_CODE"/>
       <result property="boardTitle" column="BOARD_TITLE"/>
       <result property="boardCreateDate" column="B_CREATE_DATE"/>
       <result property="readCount" column="READ_COUNT"/>
@@ -80,7 +81,7 @@ AND BOARD_DEL_FL = 'N'
 
 <!-- 로그인한 회원이 작성한 글 목록 조회 -->
 <select id="selectMyPageBoard" parameterType="_int" resultMap="myPageBoard_rm">
-SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+SELECT BOARD_NO, BOARD_CODE, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 	<![CDATA[
 	CASE  
       WHEN SYSDATE - B_CREATE_DATE < 1/24/60
@@ -111,7 +112,7 @@ AND COMMENT_DEL_FL= 'N'
 
 <!-- 로그인한 회원이 댓글 단 글 목록 조회 -->
 <select id="selectMyCommentBoard" parameterType="_int" resultMap="myPageBoard_rm">
-SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
+SELECT BOARD_NO, BOARD_CODE, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
 	<![CDATA[
 	CASE  
       WHEN SYSDATE - B_CREATE_DATE < 1/24/60
@@ -147,7 +148,7 @@ AND BOARD_DEL_FL='N'
 
 <!-- 로그인한 회원이 좋아요 누른 게시글 목록 조회 -->
 <select id="selectMyLikeBoard" parameterType="_int" resultMap="myPageBoard_rm">
-SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
+SELECT BOARD_NO, BOARD_CODE, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT,
 	<![CDATA[
 	CASE  
       WHEN SYSDATE - B_CREATE_DATE < 1/24/60
