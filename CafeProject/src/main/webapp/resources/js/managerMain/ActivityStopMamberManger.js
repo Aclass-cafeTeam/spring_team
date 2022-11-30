@@ -94,19 +94,19 @@ releaseButtonAjax.addEventListener("click", function () {
             if(result.message === "활동이 가능한 멤버로 변경 실패하셨습니다."){
                 
                 alert(result.message);
-                window.close();
+        
 
             }else{
 
                 for(let key of result.memberEmail){
                       
-                  opener.$('tr[memberid='+key+']').remove();
+                  $('tr[memberid='+key+']').remove();
                   
                 }
 
                 alert(result.message);
-                
-                window.close();
+                document.getElementById("ReleaseMemberLayer").style.display = "none";
+              
 
             }
         },
