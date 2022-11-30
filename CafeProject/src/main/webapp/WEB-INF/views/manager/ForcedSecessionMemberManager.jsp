@@ -161,7 +161,7 @@
         <div class="board_action">
           <div class="action_in">
               선택 멤버를&nbsp;														
-              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#"><span>가입불가 해제</span></a>
+              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#" id="ReleaseSecedeMember"><span>가입불가 해제</span></a>
               <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault" href="#"><span>가입 불가</span></a>
           </div>
 
@@ -200,7 +200,7 @@
               <thead>
                 <tr id="listHeader">
 					
-                  <th scope="col" class="frst"><input type="checkbox" name="c1" id="chkalltop" title="선택" class="check _click(ManageForcedSecession|AllMember)"></th>
+                  <th scope="col" class="frst"><input type="checkbox" name="c1" id="_checkAll" title="선택" class="check _click(ManageForcedSecession|AllMember) _checkAll"></th>
                   <th scope="col"><strong class="line_r">아이디</strong></th>
                   <th scope="col"><strong class="line_r">사유</strong></th>
                   <th scope="col"><strong class="line_r">처리일</strong></th>
@@ -223,7 +223,7 @@
                     <c:forEach var="member" items="${memberList}">
                       <tr id="${member.memberEmail}" class="_checkable">
                         <td class="tc">
-                          <input type="checkbox" name="secedeIds" value="${member.memberEmail}" id="c1" title="선택" class="check _click(ManageForcedSecession|Member|member1)">
+                          <input type="checkbox" name="secedeIds" value="${member.memberEmail}" id="c1" title="선택" class="check _checkMember _click(ManageForcedSecession|Member|member1)">
                         </td>
               
                         <td class="tl">
@@ -239,7 +239,7 @@
                           <span class="tit">${member.SManagerNickname} (${member.SManagerEmail})</span>
                         </td>
                         <td class="tc">
-                          <span class="txt">${member.secessionFL}</span>
+                          <span class="txt secessionFL${member.memberEmail}" id="secessionFL${member.memberEmail}">${member.secessionFL}</span>
                         </td>
                       </tr>
                     </c:forEach>

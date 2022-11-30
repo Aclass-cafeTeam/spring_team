@@ -671,7 +671,19 @@
      AND MEMBER_DEL_FL = 'S'
   	</update>
   <!-- 회원 활동 정지 해제 -->
-  
-  
+  <!-- 강제 탈퇴에서 재가입 가능하도록 변경  -->
+  <update id="">
+  UPDATE "MEMBER_SECESSION" SET 
+	SECESSION_REASON = 'I'
+	WHERE S_MEMBER_NO IN 
+	(SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+	<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+  </foreach>
+	)
+	AND S_MANAGER_NO IS NOT NULL
+  </update>
+  <!--  -->
   
 </mapper>

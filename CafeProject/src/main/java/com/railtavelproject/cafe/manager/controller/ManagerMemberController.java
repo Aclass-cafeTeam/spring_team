@@ -337,7 +337,7 @@ public class ManagerMemberController {
 						return new Gson().toJson(map);
 			}
 		
-		//활동정지 관리창에서 활동 정지해제 기능
+		//활동정지 관리창에서 활동 정지해제 기능updateReleaseSecedeMember
 		@PostMapping("/updateReleaseStopMember")
 		@ResponseBody
 		public String updateReleaseStopMember(
@@ -355,7 +355,27 @@ public class ManagerMemberController {
 					map.put("memberEmail",memberEmail);	
 					
 					return new Gson().toJson(map);
-				}
+		}
+		
+		//강제 탈퇴에서 재가입 가능하도록 변경 기능
+		@PostMapping("/updateReleaseSecedeMember")
+		@ResponseBody
+		public String updateReleaseSecedeMember(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+				@RequestParam(value="memberCount") int memberCount,
+				@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+				HttpSession session) throws Exception {
+														
+				String message = service.updateReleaseStopMember(memberEmail,memberCount);
+
+									
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("message",message);
+				map.put("memberCount",memberCount);	
+				map.put("memberEmail",memberEmail);	
+							
+				return new Gson().toJson(map);
+		}
 				
 		
 		
