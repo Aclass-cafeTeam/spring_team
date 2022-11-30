@@ -1,0 +1,224 @@
+.blind {
+    visibility: hidden;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+
+body, input, textarea, select, button, table {
+    font-family: '돋움',Dotum,Helvetica,sans-serif;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    display: block;
+}
+
+.pop_stop {
+    width: 460px;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+}
+
+dd {
+    display: block;
+    margin: 0px;
+    padding: 0px;
+}
+
+.lst_type dt {
+    margin: 0 9px 7px 0;
+    font-weight: bold;
+    color: #272727;
+    clear: both;
+    display: block;
+}
+
+.lst_type dt em {
+    margin-left: 3px;
+    color: #319f03;
+    font-family: tahoma;
+    font-size: 11px;
+}
+
+.bx_area {
+    overflow: hidden;
+    zoom: 1;
+    border: 1px solid #e2e2e2;
+}
+
+.pop_stop .lst_type dd.txt_cont {
+    margin-bottom: 25px;
+}
+
+.pop_stop .bx_area .bx_inner {
+    display: block;
+    height: 99px;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+
+li{
+    list-style: none;
+    padding: 0;
+}
+
+ul{
+    margin: 0px;
+    padding: 0px;
+}
+
+.lst_member li .pers_nick_area {
+    display: inline-block;
+    overflow: hidden;
+    max-width: 95%;
+    height: 19px;
+    padding: 2px 5px 5px;
+    white-space: nowrap;
+}
+.pers_nick_area{
+    line-height: 21px;
+}
+
+
+.pers_nick_area .img {
+    float: left;
+    width: 20px;
+    height: 20px;
+    padding-right: 5px;
+    vertical-align: top;
+}
+.pers_nick_area .img > img{
+    width: 100%;
+    height: 100%;
+}
+
+.pers_nick_area .nick {
+    display: block;
+    overflow: hidden;
+    color: #272727;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desc {
+    padding: 10px 0 2px;
+    color: #959699;
+}
+
+.pop_stop .lst_reason {
+    padding-bottom: 24px;
+}
+
+.lst_reason {
+    overflow: hidden;
+    padding: 1px 0 20px 1px;
+}
+
+.lst_reason li {
+    padding-bottom: 7px;
+    color: #404040;
+    vertical-align: middle;
+}
+
+.lst_reason li {
+    padding-bottom: 7px;
+    color: #404040;
+    vertical-align: middle;
+}
+
+.lst_reason li input.check {
+    margin-right: 3px;
+}
+
+input.check {
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin: -1px 0 1px;
+    vertical-align: middle;
+}
+
+
+.c_gy {
+    color: #959699 !important;
+}
+
+.pop_stop .lst_reason li.etc textarea {
+    width: 400px;
+    height: 18px;
+}
+
+.lst_reason li.etc textarea {
+    overflow: hidden;
+    width: 272px;
+    height: 36px;
+    margin: 0 0 0 -3px;
+    padding: 0 4px;
+    border: 1px solid;
+    border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
+    color: #404040;
+    line-height: 19px;
+    display: inline-block;
+}
+
+.lst_reason li.etc {
+    margin-top: -3px;
+    padding-bottom: 0;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.lst_reason li.etc input.check {
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+
+.btn_type {
+    display: inline-block;
+    padding-left: 1px;
+    color: #444;
+    text-decoration: none;
+    border: 1px solid  #c5c5c5;
+    height: 22px;
+    width: 49px;
+    border-radius: 8%;
+}
+.Submitbtn{
+    width: 70px;
+}
+.ly_pop .ly_cont .btn {
+    padding-top: 10px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.btn_type span, 
+.btn_type strong{
+    text-decoration: none;
+    color: #404040;   
+    display: inline-block;
+    height: 21px;
+    padding: 0 7px;
+    line-height: 23px;
+}
+
+
+#pop_footer {
+    padding-top: 10px;
+    border-top: 1px solid #eeeeec;
+    text-align: center;
+}
+
+.pop_stop .dsc {
+    border-top: 1px solid #eeeeec;
+    color: #272727;
+    font-weight: bold;
+}

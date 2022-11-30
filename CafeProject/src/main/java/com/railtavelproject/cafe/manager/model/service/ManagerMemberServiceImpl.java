@@ -6,6 +6,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.railtavelproject.cafe.manager.model.dao.ManagerMemberDAO;
 import com.railtavelproject.cafe.manager.model.vo.Member;
@@ -203,5 +204,62 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public int stopMemberCount() {
 		return dao.stopMemberCount();
 	}
+
+	@Override
+	public Map<String, Object> forcedSecessionMemberList(int limit, int cp, String memberEmail) {
+		int listCount = dao.selectforcedSecessionMemberListCount(memberEmail);
+		
+		Pagination pagination = new Pagination(listCount,cp,limit,5);  //게시판 게시글 몇개 정렬인지도 매개변수 정해줌
+		
+		List<Member> memberList = dao.forcedSecessionMemberList(pagination,memberEmail); 
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("pagination", pagination);
+		map.put("memberList",memberList);
+		
+		return map;
+	}
+
+	@Override
+	public int forcedSecessionMemberCount() {
+		return dao.forcedSecessionMemberCount();
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateMemberLevelNo(List<String> memberEmail, int memberLevelNo,int memberCount) throws Exception{
+		
+		String message = "";
+		int result = dao.updateMemberLevelNo(memberEmail, memberLevelNo);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명 등급 변경에 성공하셨습니다!";
+		}else {
+			message = "등급 변경에 실패하셨습니다.";
+			throw new Exception("등급 변경에 실패");
+		}
+		
+		return message;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount,int HmemberNo) throws Exception{
+		
+		String message = "";
+		int result = dao.updateActivityStopMember(memberEmail, comment,HmemberNo);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 활동 정지시켰습니다!";
+		}else {
+			message = "활동 정지 등록에 실패하셨습니다.";
+			throw new Exception("활동 정지 등록에 실패");
+		}
+		
+		return message;
+	}
+
+
 	
 }

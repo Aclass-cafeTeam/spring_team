@@ -263,5 +263,7 @@ VALUES(SEQ_IMG_NO.NEXTVAL, '/resources/images/board/',
    '20221116105843_00001.jpg', '1.jpg', 0, 714);
 -- 동일한 패턴으로 12번까지 삽입함
   
+
   
+
   

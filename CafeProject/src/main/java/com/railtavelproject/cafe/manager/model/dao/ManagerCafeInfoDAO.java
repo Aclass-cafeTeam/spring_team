@@ -19,5 +19,9 @@ public class ManagerCafeInfoDAO {
 		
 		return sqlSession.selectOne("managerCafeMapper.searchCafeInfo");
 	}
+
+	public int updateJoin(String join_get) {
+		return sqlSession.update("managerCafeMapper.updateJoin", join_get);
+	}
 		
 }
