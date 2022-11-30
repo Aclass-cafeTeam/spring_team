@@ -27,6 +27,24 @@ public interface IntroService {
 	 * @return mainList
 	 */
 	List<Map<String, Object>> selectMainList();
+
+	/**
+	 * 당일 방문 수 조회
+	 * @return
+	 */
+	int todayVisitCount();
+
+	/**
+	 * 전체 방문 수 조회
+	 * @return
+	 */
+	int AllVisitCount();
+
+	/**
+	 * 댓글 랭킹
+	 * @return
+	 */
+	Map<String, Object> commentRank();
 	
 	
 

@@ -14,6 +14,8 @@
 	      <result property="memberNickname" column="MEMBER_NICKNAME"/>
 		</resultMap>
 		
+
+		
 		<!-- 전체글조회 -->
 		<select id="selectBoardList" parameterType="_int" resultMap="introBoard_rm">
 			SELECT BOARD_TITLE, READ_COUNT,
@@ -51,6 +53,25 @@
 			SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL='N'
 		</select>
 	
+		<!-- 당일 방문자수 조회 -->
+		<select id="selectTodayVisit" resultType="_int">
+				SELECT COUNT(*)
+				FROM LOGIN_HISTORY
+				WHERE TO_CHAR(LOGIN_DATE , 'YYYYMMDD' ) = TO_CHAR( SYSDATE, 'YYYYMMDD')
+		</select>
+		
+		<!-- 전체 방문자수 조회 -->
+		<select id="selectAllVisit" resultType="_int">
+			SELECT COUNT(*) FROM LOGIN_HISTORY
+		</select>
+		
+		<!-- 댓글 랭킹 -->
+		<select id="commentRank" parameterType="_int" resultMap="introBoard_rm">
+				SELECT MEMBER_NICKNAME, MEMBER_NO, (SELECT COUNT(COMMENT_NO)
+				FROM "COMMENT"C WHERE M.MEMBER_NO=C.MEMBER_NO)COMMENT_COUNT
+				FROM "MEMBER" M
+				ORDER BY COMMENT_COUNT DESC
+		</select>
 
       
  
