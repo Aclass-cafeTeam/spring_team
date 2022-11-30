@@ -49,10 +49,12 @@
                                 <tr>
                                     <td class="boardNo">${myPageBoard.boardNo}</td>
                                     <td><a href="#" class="title">
+                                        <%-- 말머리가 있을 경우 --%>
                                         <c:if test="${not empty myPageBoard.titleTagName}">
                                         <span>[${myPageBoard.titleTagName}]</span>
                                         </c:if>
                                     ${myPageBoard.boardTitle}</a>
+                                        <%-- 댓글이 있을 경우 --%>
                                         <c:if test="${myPageBoard.commentCount!=0}">
                                         <a href="#" class="comment">[${myPageBoard.commentCount}]</a>
                                         </c:if>
@@ -67,7 +69,7 @@
                 </table>
             </div>
             <div class="pagination-area">
-
+                <c:if test="${not empty myPageBoardList}">
                 <ul class="myPage-pagination">
                 
                     <!-- 이전 목록 마지막 번호로 이동 --> 
@@ -90,6 +92,7 @@
                     <!-- 다음 목록 시작 번호로 이동 -->
                     <li><a href="?cp=${pagination.nextPage}">&raquo;</a></li>
                 </ul>
+                </c:if>
             </div>
         </div>
     </section>
