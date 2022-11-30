@@ -77,7 +77,7 @@ Submit.addEventListener("click", (e) => {
             comment1 = $('#rejectreason').val();
             break;
     }
-    $.ajax({
+/*     $.ajax({
 
         url: "/updateActivityStopMember",
         data: { "radioNum"     : radio,
@@ -107,7 +107,7 @@ Submit.addEventListener("click", (e) => {
         }
 
 
-    });
+    }); */
 
 });
 
