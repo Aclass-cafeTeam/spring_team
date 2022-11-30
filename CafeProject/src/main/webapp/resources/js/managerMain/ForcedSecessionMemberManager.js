@@ -88,3 +88,60 @@ releaseStopButton.addEventListener("click", function () {
     }
   }
 });
+
+// 재가입 불가능하게 해주는 버튼
+
+const NoTReleaseSecede = document.getElementById("NoTReleaseSecede");
+NoTReleaseSecede.addEventListener("click", function () {
+  const checkObj = CheckValue();
+
+  let memberEmail1 = checkObj["chk_val"];
+  let memberCount1 = checkObj["checkNum"]; 
+
+  if(checkObj["checkNum"] <= 0){
+
+    alert("선택된 강제 탈퇴 멤버가 없습니다.");
+  
+  }else{
+    if(confirm("가입 불가 처리하시겠습니까?")){
+
+      $.ajax({
+        // 디비에서 강제 탈퇴에서 컬럼 탈퇴 사유 'I'로 수정 
+        //('F': 재가입 불가) 
+        
+        url: "/updateNoTReleaseSecede",
+        data: { 
+                "memberEmail"  : memberEmail1,
+                "memberCount"  : memberCount1,
+                "message"      : ""
+        },
+        type: "POST",
+        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+        success: (result) => {
+            if(result.message === "가입 불가 처리에 실패하셨습니다."){
+                
+                alert(result.message);
+        
+
+            }else{
+
+                for(let key of result.memberEmail){
+                      
+                  document.getElementById('secessionFL'+key).innerText = 'Y';
+                  
+                }
+
+                alert(result.message);
+            
+            }
+        },
+        error: () => {
+            console.log("가입 불가 변경 실패");
+        }
+
+
+      });
+
+    }
+  }
+});
