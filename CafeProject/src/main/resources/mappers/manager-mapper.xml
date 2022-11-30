@@ -685,5 +685,16 @@
 	AND S_MANAGER_NO IS NOT NULL
   </update>
   <!-- 강제 탈퇴에서 재가입 불가능하도록 변경 -->
-  
+  <update id="updateNotReleaseSecede">
+  UPDATE "MEMBER_SECESSION" SET 
+	SECESSION_REASON = 'F'
+	WHERE S_MEMBER_NO IN 
+	(SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+	<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+  </foreach>
+	)
+	AND S_MANAGER_NO IS NOT NULL
+  </update>
 </mapper>

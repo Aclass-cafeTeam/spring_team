@@ -75,7 +75,20 @@ public interface ManagerMemberService {
 	 */
 	String updateReleaseStopMember(List<String> memberEmail, int memberCount) throws Exception;
 
+	/** 재 가입 가능하게 변경 기능
+	 * @param memberEmail
+	 * @param memberCount
+	 * @return
+	 * @throws Exception
+	 */
 	String updateReleaseSecedeMember(List<String> memberEmail, int memberCount) throws Exception;
+
+	/** 재 가입 불가 기능
+	 * @param memberEmail
+	 * @param memberCount
+	 * @return
+	 */
+	String updateNotReleaseSecede(List<String> memberEmail, int memberCount) throws Exception;
 
 
 

@@ -428,9 +428,22 @@ public class ManagerMemberDAO {
 		return result;
 	}
 
+	/** 강제 탈퇴 관리자 페이지에서 재 가입 신청 불가능하도록 
+	 * @param memberEmail
+	 * @return
+	 */
 	public int updateReleaseSecedeMember(List<String> memberEmail) {
 		
 		return sqlsession.update("managerMapper.updateReleaseSecedeMember", memberEmail);
+	}
+
+	/**강제 탈퇴 관리자 페이지에서 재 가입 신청 가능 
+	 * @param memberEmail
+	 * @return
+	 */
+	public int updateNotReleaseSecede(List<String> memberEmail) {
+	
+		return sqlsession.update("managerMapper.updateNotReleaseSecede", memberEmail);
 	}
    
 }

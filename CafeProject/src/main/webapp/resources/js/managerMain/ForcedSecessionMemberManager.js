@@ -109,7 +109,7 @@ NoTReleaseSecede.addEventListener("click", function () {
         // 디비에서 강제 탈퇴에서 컬럼 탈퇴 사유 'I'로 수정 
         //('F': 재가입 불가) 
         
-        url: "/updateNoTReleaseSecede",
+        url: "/updateNotReleaseSecede",
         data: { 
                 "memberEmail"  : memberEmail1,
                 "memberCount"  : memberCount1,

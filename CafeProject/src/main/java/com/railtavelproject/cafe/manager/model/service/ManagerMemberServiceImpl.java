@@ -307,6 +307,7 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	/**강제 탈퇴에서 재가입 가능하도록 변경 기능
 	 *
 	 */
+	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public String updateReleaseSecedeMember(List<String> memberEmail, int memberCount) throws Exception {
 		String message = "";
@@ -317,6 +318,22 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		}else {
 			message = "재가입 가능 변경에 실패하셨습니다.";
 			throw new Exception("재가입 가능 변경 실패");
+		}
+		
+		return message;
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateNotReleaseSecede(List<String> memberEmail, int memberCount) throws Exception {
+		String message = "";
+		int result = dao.updateNotReleaseSecede(memberEmail);
+		
+		if(memberCount == result) {
+			message = result + "명을 가입 불가 이메일로 변경하였습니다.";
+		}else {
+			message = "가입 불가 처리에 실패하셨습니다.";
+			throw new Exception("가입 불가 처리 변경 실패");
 		}
 		
 		return message;
