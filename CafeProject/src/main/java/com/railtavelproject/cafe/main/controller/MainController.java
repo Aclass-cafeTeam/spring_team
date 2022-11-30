@@ -52,6 +52,20 @@ public class MainController{
 			session.getServletContext().setAttribute("mainList", mainList);
 			
 			
+			// 오늘 방문수 조회
+			int todayVisitCount = service.todayVisitCount();
+			model.addAttribute("todayVisitCount", todayVisitCount);
+			
+			// 전체 방문수 조회
+			int allVisitCount = service.AllVisitCount();
+			model.addAttribute("allVisitCount", allVisitCount);
+			
+			// 지난주 멤버 랭킹 - 댓글
+			Map<String, Object> commentRank = null;
+			commentRank = service.commentRank();
+			
+			model.addAttribute("commentRank", commentRank);
+			
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성

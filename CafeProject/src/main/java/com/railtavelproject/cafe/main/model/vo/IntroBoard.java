@@ -21,6 +21,8 @@ public class IntroBoard {
 	
 	private String memberNickname;
 	
+	private int todayVisitCount;
+	
 	
 
 	
