@@ -409,6 +409,7 @@
                       </td>
                       <td class="tr">
                         <span class="num">${member.boardCount}</span>
+                        <input type="hidden" id="memberDeleteFlag${member.memberEmail}" name="memberDeleteFlag" value="${member.memberDeleteFlag}">
                       </td>                
                     </tr>
                   </c:forEach>

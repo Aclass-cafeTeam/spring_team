@@ -282,6 +282,17 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		
 		return message;
 	}
+	
+	
+	/** 활동 정지 해제 기능 
+	 * 활동 정지 관리 창 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateReleaseStopMember(List<String> memberEmail, int memberCount, int memberNo) throws Exception{
+		
+		return null;
+	}
 
 
 	

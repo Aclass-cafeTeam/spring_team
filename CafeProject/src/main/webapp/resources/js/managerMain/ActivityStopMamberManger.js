@@ -80,8 +80,9 @@ releaseButtonAjax.addEventListener("click", function () {
     let memberCount1 = checkObj["checkNum"]; 
 
     $.ajax({
-        // 디비에서 활동정지 해
-        url: "/updateActivityStopMember",
+        // 디비에서 활동정지 테이블에서 컬럼 삭제 DELETE 
+        // 멤버 테이블에서 활동 여부 'N'
+        url: "/updateReleaseStopMember",
         data: { 
                 "memberEmail"  : memberEmail1,
                 "memberCount"  : memberCount1,
@@ -90,12 +91,18 @@ releaseButtonAjax.addEventListener("click", function () {
         type: "POST",
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
-            if(result.message === "활동 정지 등록에 실패하셨습니다."){
+            if(result.message === "활동이 가능한 멤버로 변경하였습니다."){
                 
                 alert(result.message);
                 window.close();
 
             }else{
+
+                for(let key of result.memberEmail){
+                      
+                  opener.$('tr[memberid='+key+']').remove();
+                  
+                }
 
                 alert(result.message);
                 
@@ -104,7 +111,7 @@ releaseButtonAjax.addEventListener("click", function () {
             }
         },
         error: () => {
-            console.log("멤버 활동 정지 반영 실패")
+            console.log("멤버 활동 정지 해제 반영 실패")
         }
 
 
