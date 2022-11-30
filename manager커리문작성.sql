@@ -311,13 +311,24 @@ WHERE MEMBER_DEL_FL IN ('N','S'))
 
 ------------------------------------------------------
 UPDATE "MEMBER" SET 
-MEMBER_LEVEL_NO =  
-WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = ''
-AND AUTHORITY_NO NOT IN (0,1);
+MEMBER_NICKNAME = '유저98님'
+WHERE MEMBER_NO = 98;
 
+
+UPDATE "MEMBER" SET 
+MEMBER_LEVEL_NO = 2 
+WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 'wldfbs7999'
+AND AUTHORITY_NO NOT IN (0,1);
+ROLLBACK;
 SELECT *
 FROM "MEMBER" m 
 ;
+SELECT *
+			FROM "MEMBER" 
+			WHERE MEMBER_LEVEL_NO =  2 
+			AND SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+			 (  'wldfbs3234' , 'wldbs00' , 'wldfbs' ) 
+			AND AUTHORITY_NO NOT IN (0,1);
 
 --------------------------------------------------
 ---------------------------------------------------------------
