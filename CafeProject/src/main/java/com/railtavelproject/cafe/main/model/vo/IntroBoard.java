@@ -10,6 +10,7 @@ import lombok.ToString;
 public class IntroBoard {
 	
 	private int boardNo;
+    private int boardCode;
 	private String boardTitle;
 	private int readCount;
 	private String boardDelFl;

@@ -49,7 +49,7 @@
                             <c:forEach var="myCommentBoard" items="${myCommentBoardList}">
                                 <tr>
                                     <td class="boardNo">${myCommentBoard.boardNo}</td>
-                                    <td><a href="#" class="title">
+                                    <td><a href="/board/${myCommentBoard.boardCode}/${myCommentBoard.boardNo}" class="title">
                                         <c:if test="${not empty myCommentBoard.titleTagName}">
                                         <span>[${myCommentBoard.titleTagName}] </span>
                                         </c:if>

@@ -48,7 +48,7 @@
                             <c:forEach var="myPageBoard" items="${myPageBoardList}">
                                 <tr>
                                     <td class="boardNo">${myPageBoard.boardNo}</td>
-                                    <td><a href="#" class="title">
+                                    <td><a href="/board/${myPageBoard.boardCode}/${myPageBoard.boardNo}" class="title">
                                         <%-- 말머리가 있을 경우 --%>
                                         <c:if test="${not empty myPageBoard.titleTagName}">
                                         <span>[${myPageBoard.titleTagName}]</span>
