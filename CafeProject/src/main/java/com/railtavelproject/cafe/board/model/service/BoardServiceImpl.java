@@ -60,7 +60,7 @@ public class BoardServiceImpl implements BoardService{
 //		
 //		Pagination pagination = new Pagination(listCount, cp);
 //		
-//		List<Board> boardList = dao.selectBoardList(pagination, boardCode);
+//		List<Board> boardList = dao.selectBoardList(pagination, pm);
 //		
 //		Map<String, Object> map = new HashMap<String, Object>();
 //		map.put("pagination", pagination);

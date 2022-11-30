@@ -183,7 +183,7 @@
                                 <option value="cc">1주</option>
                                 <option value="dd">1개월</option>
                                 <option value="ee">6개월</option>
-                                <option value="cc">1년</option>
+                                <option value="ff">1년</option>
                             </select>
                         </form>
                     </div>
