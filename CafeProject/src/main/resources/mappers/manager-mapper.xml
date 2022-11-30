@@ -621,4 +621,29 @@
      AND AUTHORITY_NO NOT IN (0,1)
   	</update>
   <!-- 회원 활동 정지 -->
+  
+  <!-- 회원 강제 탈퇴 -->
+  	<!-- 강제탈퇴 테이블 삽입 -->
+  	<insert id="insertManageSecedePopup" parameterType ="java.util.HashMap">
+		INSERT INTO MEMBER_SECESSION   
+		SELECT SEQ_SECESSION_NO.NEXTVAL, 
+  	SYSDATE , #{secessionreason} ,
+ 		S.* , #{SmemberNo} , #{comment} 
+		 	FROM
+			<foreach collection="memberEmail" item="memberEmail" open="(" close=") S" separator="UNION ALL">
+					SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+			</foreach>
+		</insert>
+  	<!-- 강제탈퇴당한 회원들 멤버 테이블에 강제탈퇴 여부 변경 -->
+  	<update id="updateManageSecedePopup" parameterType="java.util.HashMap">
+  	UPDATE "MEMBER" SET 
+		MEMBER_DEL_FL = 'Y'
+		WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN
+		<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+    </foreach>
+     AND AUTHORITY_NO NOT IN (0)
+  	</update>
+  <!-- 회원 강제 탈퇴 -->
 </mapper>

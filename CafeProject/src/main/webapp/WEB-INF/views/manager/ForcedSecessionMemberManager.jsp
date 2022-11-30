@@ -162,7 +162,7 @@
           <div class="action_in">
               선택 멤버를&nbsp;														
               <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#"><span>가입불가 해제</span></a>
-              <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault" href="#"><span>강제 탈퇴</span></a>
+              <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault" href="#"><span>가입 불가</span></a>
           </div>
 
           <div class="action_arr">

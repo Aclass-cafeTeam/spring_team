@@ -40,6 +40,9 @@ public interface ManagerMemberService {
 
 	String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount, int HmemberNo) throws Exception;
 
+	String ManageSecedePopup(List<String> memberEmail, String comment, int memberCount, String secessionreason,
+			int memberNo)throws Exception;
+
 
 
 }

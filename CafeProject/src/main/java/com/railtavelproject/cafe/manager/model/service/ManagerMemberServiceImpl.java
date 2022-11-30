@@ -243,6 +243,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return message;
 	}
 	
+	/**활동정지 
+	 *활동 정지 테이블에 삽입 및 멤버 테이블에 정지 여부 변경 
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount,int HmemberNo) throws Exception{
@@ -255,6 +258,26 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		}else {
 			message = "활동 정지 등록에 실패하셨습니다.";
 			throw new Exception("활동 정지 등록에 실패");
+		}
+		
+		return message;
+	}
+
+	/** 회원 강제 탈퇴 시키기 
+	 *
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String ManageSecedePopup(List<String> memberEmail, String comment, int memberCount, String secessionreason,
+			int SmemberNo) throws Exception{
+		String message = "";
+		int result = dao.ManageSecedePopup(memberEmail, comment,secessionreason,SmemberNo);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 강제 탈퇴시켰습니다!";
+		}else {
+			message = "회원 강제 탈퇴 반영에 실패하셨습니다.";
+			throw new Exception("강제 탈퇴 등록에 실패");
 		}
 		
 		return message;

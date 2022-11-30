@@ -303,13 +303,38 @@ public class ManagerMemberController {
 					return new Gson().toJson(map);
 		}
 		
-		//팝업창(활동 정지)으로 가기
+		//팝업창(강제 탈퇴)으로 가기
 		@RequestMapping("/manager/ManageSecedePopup")
 		public String ManageSecedePopup(Model model,
 				HttpSession session) {
 				model.addAttribute("loginMember", session.getAttribute("loginMember"));
 				return "manager/ManageSecedePopup";
 		}
+		
+		//팝업창(강제 탈퇴)
+		@PostMapping("/ManageSecedePopup")
+		@ResponseBody
+		public String ManageSecedePopup(
+					@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+					@RequestParam(value="comment") String comment,
+					@RequestParam(value="memberCount") int memberCount,
+					@RequestParam(value="radioNum") int radioNum,
+					@RequestParam(value="secessionreason") String secessionreason,
+					@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+					HttpSession session) throws Exception {
+										
+							String message = service.ManageSecedePopup(memberEmail,comment,memberCount,secessionreason,loginMember.getMemberNo());
+
+					
+							Map<String, Object> map = new HashMap<String, Object>();
+							map.put("message",message);
+							map.put("radioNum",radioNum);	
+							map.put("memberCount",memberCount);	
+							map.put("memberEmail",memberEmail);	
+							map.put("secessionreason",secessionreason);	
+			
+						return new Gson().toJson(map);
+			}
 				
 		
 		

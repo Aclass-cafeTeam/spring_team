@@ -376,5 +376,34 @@ public class ManagerMemberDAO {
 		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
 		return result;
 	}
+
+	/**회원 강제 탈퇴
+	 * @param memberEmail
+	 * @param comment
+	 * @param secessionreason
+	 * @param smemberNo
+	 * @return
+	 */
+	public int ManageSecedePopup(List<String> memberEmail, String comment, String secessionreason, int SmemberNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberEmail",memberEmail); //강제 탈퇴 당한 회원 이메일들 (회원 다수일수도 있음)
+		map.put("comment",comment);	 //강제 탈퇴 사유 
+		map.put("SmemberNo",SmemberNo);	//강제 탈퇴 시킨 매니저 번호 
+		map.put("secessionreason",secessionreason);	//재 가입 여부 F면 재가입 X / I면 재가입할 수 있음 
+		
+		int insertresult = sqlsession.insert("managerMapper.insertManageSecedePopup", map);  //강제 탈퇴 테이블에 삽입
+		int updateresult = sqlsession.update("managerMapper.updateManageSecedePopup", memberEmail); //회원(멤버) 테이블에서 회원 탈퇴여부를 'Y' 변경해줘야함
+		System.out.println(insertresult);
+		System.out.println(updateresult);
+		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
+		int result;
+		if(insertresult == updateresult) {
+			result = insertresult;
+		}else {
+			result = 0;
+		}
+		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
+		return result;
+	}
    
 }

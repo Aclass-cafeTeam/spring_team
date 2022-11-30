@@ -841,14 +841,90 @@ AND MEMBER_LEVEL_NO = 2;
 INSERT INTO MEMBER_HOLD
 VALUES(SEQ_HOLD_NO.NEXTVAL, (SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일 ),
    로그인한 매니저 회원 번호,SYSDATE ,DEFAULT , 들고온 메세지);
-  
+----------------------------------------------
+INSERT INTO MEMBER_HOLD   
+	SELECT SEQ_HOLD_NO.NEXTVAL, 
+  	H.* 
+ 	, 매니저 번호 ,SYSDATE ,'Y' ,'바람직하지 않은 활동(광고, 도배, 욕설, 비방 등)' 
+ 	FROM (SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일
+ 			UNION ALL 
+ 		  SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일
+ 		) H;
+-----------------------------------------------
 UPDATE "MEMBER" SET 
 MEMBER_DEL_FL = 'S'
-WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일;
+WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 회원이메일;
 
+ALTER SEQUENCE SEQ_HOLD_NO INCREMENT BY 1;
+SELECT SEQ_HOLD_NO.CURRVAL FROM DUAL;
+SELECT SEQ_HOLD_NO.NEXTVAL FROM DUAL;
+--------------
+<insert id="insertBoardImageList" parameterType ="list">
+  INSERT INTO BOARD_IMG
+	SELECT SEQ_IMG_NO.NEXTVAL IMG_NO, A.*
+	FROM 
+	<foreach collection="list" item="img" open="(" close=") A" separator="UNION ALL">
+		SELECT 
+				#{img.imagePath} IMG_PATH,
+				#{img.imageReName} IMG_RENAME,
+				#{img.imageOriginal} IMG_ORIGINAL,
+				#{img.imageOrder} IMG_ORDER,
+				#{img.boardNo} BOARD_NO
+		FROM DUAL
+	</foreach>
+</insert>;
+----------------------------------------
+  INSERT INTO BOARD_IMG
+	SELECT SEQ_IMG_NO.NEXTVAL IMG_NO, A.*
+	FROM 
+	( 
+		SELECT 
+				#{img.imagePath} IMG_PATH,
+				#{img.imageReName} IMG_RENAME,
+				#{img.imageOriginal} IMG_ORIGINAL,
+				#{img.imageOrder} IMG_ORDER,
+				#{img.boardNo} BOARD_NO
+		FROM DUAL
+		UNION ALL
+		SELECT 
+				#{img.imagePath} IMG_PATH,
+				#{img.imageReName} IMG_RENAME,
+				#{img.imageOriginal} IMG_ORIGINAL,
+				#{img.imageOrder} IMG_ORDER,
+				#{img.boardNo} BOARD_NO
+		FROM DUAL
 
+	) A;
+---------------------------------------------------------------------
+SELECT HOLD_NO, MEMBER_NO,PROFILE_IMG, 
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,MEMBER_NICKNAME ,TO_CHAR(HOLD_DATE ,'YYYY.MM.DD') HOLD_DATE 
+	,HOLD_REASON
+	,(SELECT SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) FROM MEMBER_HOLD sub JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO) WHERE sub.H_MEMBER_NO =mh.H_MEMBER_NO) H_MEMBER_EMAIL 
+	,(SELECT MEMBER_NICKNAME FROM MEMBER_HOLD sub JOIN "MEMBER" ON(MEMBER_NO = H_MANAGER_NO) WHERE sub.H_MEMBER_NO =mh.H_MEMBER_NO) H_MEMBER_NICKNAME 
+	FROM "MEMBER" 
+	JOIN MEMBER_HOLD mh ON (MEMBER_NO = H_MEMBER_NO)
+	WHERE MEMBER_DEL_FL IN ('S')
+	AND HOLD_FL IN ('Y');
 
-
-
-
+-----------------------------------------------------------------------------
+--강제 탈퇴 멤버
+--INSERT 회원 강제 탈퇴 시 MEMBER_SECESSION 테이블 삽입하고 
+--"MEMBER" MEMBER_DEL_FL을 'Y'로 변경 시켜줘야함 --- S가 활동정지 여부를 알려주는 코드
+INSERT INTO MEMBER_HOLD
+VALUES(SEQ_HOLD_NO.NEXTVAL, (SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일 ),
+   로그인한 매니저 회원 번호,SYSDATE ,DEFAULT , 들고온 메세지);
+----------------------------------------------
+INSERT INTO MEMBER_SECESSION   
+	SELECT SEQ_SECESSION_NO.NEXTVAL, 
+  	SYSDATE , 강제탈퇴 당했을 때 재가입 I 불가 F ,
+ 	, S.* , 매니저 번호 , 이유 
+ 	FROM (SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일
+ 			UNION ALL 
+ 		  SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = 회원이메일
+ 		) S;
+-----------------------------------------------
+UPDATE "MEMBER" SET 
+MEMBER_DEL_FL = 'Y'
+WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 회원이메일
+AND AUTHORITY_NO NOT IN (0);
 
