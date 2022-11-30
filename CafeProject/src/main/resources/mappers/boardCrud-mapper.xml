@@ -30,7 +30,7 @@
 	</resultMap>
 	
 	      
-  <!-- BoardImage resultMap -->
+ 	<!-- BoardImage resultMap 
   <resultMap type="BoardImage" id="boardImage_rm">
      <id property="imageNo" column="IMG_NO"/>
      <result property="imagePath" column="IMG_PATH"/>
@@ -38,7 +38,7 @@
      <result property="imageOriginal" column="IMG_ORIGINAL"/>
      <result property="imageOrder" column="IMG_ORDER"/>
      <result property="boardNo" column="BOARD_NO"/>     
-  </resultMap>
+  </resultMap> -->
    
    
    <!-- Comment resultMap -->
@@ -84,13 +84,13 @@
 				
 				order	: 메인 SQL이 수행되기 전(BEFOR) 또는 후(AFTER)에 <selectKey>의 SQL이 수행되도록 순서를 지정
  		-->
- 		<insert id="boardWrite" parameterType="Board" useGeneratedKeys="true">
+ 		<insert id="writeBoard" parameterType="Board" useGeneratedKeys="true">
  			<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
  				SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
  			</selectKey>
  			INSERT INTO BOARD 
-			VALUES (SEQ_BOARD_NO.NEXTVAL, #{boardTitle}, #{boardContent}, DEFAULT, DEFAULT, DEFAULT,
-							DEFAULT, DEFAULT, DEFAULT, #{MEMBER_NO}, #{BOARD_CODE}, #{TITLE_TAG_NO})
+			VALUES (#{boardNo}, #{boardTitle}, #{boardContent}, DEFAULT, DEFAULT, DEFAULT,
+							DEFAULT, DEFAULT, DEFAULT, #{memberNo}, #{boardCode}, #{titleTagNo})
  		</insert>
  		
 	

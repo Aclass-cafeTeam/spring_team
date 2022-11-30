@@ -10,10 +10,9 @@
     <title>카페 글쓰기</title>
     
     <!-- summernote include libraries(jQuery, bootstrap)-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <script src="/resources/js/summernote/summernote-lite.js"></script>
 	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -33,7 +32,7 @@
     
     <div class="writing-board">
         
-        <form action="/board/write/${boardCode}" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return writeValidate()">  
+        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return writeValidate()">  
 
             <div class="writingHeader">
                 <h1 id="HeaderTitle">카페 글쓰기</h1>
@@ -68,7 +67,7 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="">${boardType.BOARD_CODE}
                             </div>
                         
                             
@@ -81,11 +80,11 @@
                                 
                                 <ul class="option-items"> 
                                     <c:forEach var="titleTag" items="${titleTagList}">
-                                        <li class="option option-text" value="${titleTag.TITLE_TAG_NO}" onclick="selectTag(this)">
+                                        <li class="option option-text" id="${titleTag.TITLE_TAG_NO}" onclick="selectTag(this)">
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTag" name="titleTag" value="$titleTag.TITLE_TAG_NO}">
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="">${titleTag.TITLE_TAG_NO}
                             </div> 
                         </div>
                         
@@ -93,13 +92,13 @@
                         <!-- 게시판 타입에 따라 글 양식 선택..ajax? -->
                         <div class="writingForm">
                             <div>
-                                <h1> 글양식</h>
+                                <h1> 글양식</h1>
                             </div>
                         </div>
                         
                         <!-- 게시글 제목 -->
                         <div class="writeTitle">
-                            <input type="text" name="boardtitle" autocompleate="off" placeholder="제목을 입력하세요." >
+                            <input type="text" name="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." >
                         </div>
 
                         <!-- 게시글 내용 -->

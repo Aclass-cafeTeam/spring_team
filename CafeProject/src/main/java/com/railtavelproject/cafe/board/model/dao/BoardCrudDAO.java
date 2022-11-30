@@ -25,7 +25,16 @@ public class BoardCrudDAO {
 		return sqlSession.selectList("boardCrudMapper.selectWritingFormType");
 	}
 
+	/** 게시글 작성
+	 * @param board
+	 * @return boardNo
+	 */
 	public int writeBoard(Board board) {
-		return sqlSession.insert("boardCrudMapper.writeBoard", board);
+		
+		int result = sqlSession.insert("boardCrudMapper.writeBoard", board);
+		
+		// 메인 쿼리(INSERT) 성공 시
+		if(result>0) result = board.getBoardNo();
+		return result; // 0 또는 삽입된 게시글 번호
 	}
 }

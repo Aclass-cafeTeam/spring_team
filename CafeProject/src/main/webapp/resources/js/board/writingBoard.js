@@ -1,42 +1,6 @@
-// select 토글 버튼 (∧ ∨)
-const select =document.querySelectorAll(".select")
-const wrapper = document.querySelectorAll(".wrapper");
-const boardCode = document.querySelector("#boardCode");
-
-console.log(document.querySelector(".btn-text"));
-// 게시판 선택 
-select[0].addEventListener("click", ()=>{
-    wrapper[0].classList.toggle("open")
-});
-
-function selectType(type) {
-    wrapper[0].classList.remove("open");
-    
-    select[0].firstElementChild.innerText = type.innerText;
-    boardCode.value = type.getAttribute("id");
-    select[0].firstElementChild.style.lineHeight= "1px";
-    console.log(boardCode);
-}    
-
-// 태그 선택
-select[1].addEventListener("click", ()=>{
-    wrapper[1].classList.toggle("open")
-});
-
-function selectTag(type) {
-    wrapper[1].classList.remove("open");
-    select[1].firstElementChild.innerText = type.innerText;
-    select[1].firstElementChild.style.lineHeight= "1px";
-}    
-
-console.log("연결");
-
-
-
-// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
-
 
 // summnernote
+
 $(function(){
     // summernote 출력 및 부가 기능 메소드
     $('#summernote').summernote({
@@ -58,13 +22,11 @@ $(function(){
             ['insert',['picture','link','video']]],
         fontNames: ['맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New'],
         fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50'],
-
         // 이미지 업로드 이벤트가 발생했을 때 
-        callbacks:{
-            onImageUpload: function(files, editor, welEditable) {
-                // 파일 업로드(다중업로드를 위해 반복문 사용)
+        callbacks : { //여기 부분이 이미지를 첨부하는 부분
+            onImageUpload : function(files, editor) {
                 for (var i = files.length - 1; i >= 0; i--) {
-                uploadSummernoteImageFile(files[i],this);
+                    uploadImageFile(files[i], this);
                 }
             }
         }
@@ -73,7 +35,7 @@ $(function(){
 
 
 // 업로드된 이미지를 ajax를 이용하여 서버로 전송하여 저장하는 함수
-function sendFile(file, editor){
+function uploadImageFile(file, editor){
     
     // 매개변수 
     // file : 업로드된 이미지 정보
@@ -82,11 +44,11 @@ function sendFile(file, editor){
     form_data = new FormData();
     // FormData : form 태그 내부 값 전송을 위한  k:v 쌍을 쉽게 생성할 수 있는 객체
     
-    form_data.append("uploadFile", file);
+    form_data.append("file", file);
     // FormData 객체에 새로운 K, V 를 추가
     
     $.ajax({
-        url : "insertImage",
+        url : "/uploadImageFile",
         type : "post",
         data : form_data,
         dataType: "json",
@@ -103,15 +65,59 @@ function sendFile(file, editor){
         //            파일 전송 시 false로 지정 해야 함.
 
         success : function(at){
-        // contextPath(최상위 주소)를 javascript로 얻어오는 방법
-        // -> js 파일에서는 EL을 사용할 수 없음 (EL은 JSP에서만 사용 가능) 
-        var contextPath = location.pathname.substring(0, window.location.pathname.indexOf("/",2));
-
-        // 저장된 이미지를 에디터에 삽입
-        $(editor).summernote('editor.insertImage', contextPath + at.filePath + "/" + at.fileName);
+            // console.log(at.url);
+            // contextPath(최상위 주소)를 javascript로 얻어오는 방법
+            // -> js 파일에서는 EL을 사용할 수 없음 (EL은 JSP에서만 사용 가능) 
+            // var contextPath = location.pathname.substring(0, window.location.pathname.indexOf("/",2));
+            
+            // 저장된 이미지를 에디터에 삽입(이미지)
+            $(editor).summernote('editor.insertImage', at.url);
+        },
+        error : function(e) {
+            console.log(e);
         }
-    });
+    })
 }
+
+// select 토글 버튼 (∧ ∨)
+const select =document.querySelectorAll(".select")
+const wrapper = document.querySelectorAll(".wrapper");
+const boardCode = document.getElementById("boardCode");
+const titleTagNo = document.getElementById("titleTagNo");
+
+// 게시판 선택 
+select[0].addEventListener("click", ()=>{
+    wrapper[0].classList.toggle("open")
+});
+
+function selectType(type) {
+    wrapper[0].classList.remove("open");
+    select[0].firstElementChild.innerText = type.innerText;
+    boardCode.value = parseInt(type.getAttribute("id"));
+    select[0].firstElementChild.style.lineHeight= "1px";
+    console.log(boardCode);
+}    
+
+// 태그 선택
+select[1].addEventListener("click", ()=>{
+    wrapper[1].classList.toggle("open")
+});
+
+function selectTag(type) {
+    wrapper[1].classList.remove("open");
+    select[1].firstElementChild.innerText = type.innerText;
+    titleTagNo.value = parseInt(type.getAttribute("id"));
+    select[1].firstElementChild.style.lineHeight= "1px";
+    console.log(titleTagNo);
+
+}    
+
+console.log("연결");
+
+
+
+// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
+
 
 
 
