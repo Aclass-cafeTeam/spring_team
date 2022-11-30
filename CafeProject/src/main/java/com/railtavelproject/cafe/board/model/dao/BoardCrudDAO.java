@@ -7,6 +7,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.railtavelproject.cafe.board.model.vo.Board;
+
 @Repository
 public class BoardCrudDAO {
 
@@ -21,5 +23,9 @@ public class BoardCrudDAO {
 	// 글양식 조회
 	public List<Map<String, Object>> selectWritingFormType() {
 		return sqlSession.selectList("boardCrudMapper.selectWritingFormType");
+	}
+
+	public int writeBoard(Board board) {
+		return sqlSession.insert("boardCrudMapper.writeBoard", board);
 	}
 }

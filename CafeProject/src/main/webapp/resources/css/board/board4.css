@@ -56,6 +56,7 @@ a {
     font-size: 13px;
     line-height: 36px;
     float: left;
+    cursor: pointer;
 }
 
 /* 삭제 */
@@ -74,6 +75,7 @@ a {
     font-size: 13px;
     line-height: 36px;
     float: left;
+    cursor: pointer;
 }
 
 /* 목록 */
@@ -93,6 +95,7 @@ a {
     font-size: 13px;
     line-height: 36px;
     float: right;
+    cursor: pointer;
 }
 
 /* 게시판 종류 */
@@ -104,7 +107,7 @@ a {
 }
 
 /* 말머리 */
-.horse-head{
+.title-tag{
     display: inline;
     font-size: 26px;
     color: black;
@@ -131,7 +134,11 @@ a {
     /* display: block; */
 }
 
-
+/* 등급 이미지 */
+#levelImage{
+    width: 10px;
+    height: 10px; 
+}
 
 /* 프로필 옆 작성자 */
 .p-writer{
@@ -161,17 +168,6 @@ a {
     font-size: 12px;
     color: #979797;
 }
-
-/* 댓글 외부 태그 */
-.board-comment{
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    width: 800px;
-    height: 36.6px;
-    font-size: 13px;
-    border-bottom: 1px solid #ebecef;
-} 
 
 /* 댓글 */
 .comment-board{

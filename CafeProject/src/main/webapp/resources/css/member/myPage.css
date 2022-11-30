@@ -58,6 +58,11 @@
     font-weight: bold;
 }
 
+#levelImage{
+    width: 10px;
+    height: 10px; 
+}
+
 /* 마이페이지 네비 메뉴 */
 #navArea{
     margin: 5px 5px 5px;

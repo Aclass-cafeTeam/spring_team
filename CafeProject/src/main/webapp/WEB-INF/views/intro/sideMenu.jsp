@@ -156,7 +156,7 @@
                                                     id="setting-icon"></a>
                                             <div id="profile-box">
                                                 <c:if test="${empty loginMember.profileImage}">    
-                                                    <img id="profile-img" src="/resources/images/member/프로필.PNG">
+                                                    <img id="profile-img" src="/resources/images/main/프로필.PNG">
                                                 </c:if> 
 
                                                 <c:if test="${not empty loginMember.profileImage}">    

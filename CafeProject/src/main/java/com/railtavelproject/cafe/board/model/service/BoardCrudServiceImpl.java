@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.railtavelproject.cafe.board.model.dao.BoardCrudDAO;
+import com.railtavelproject.cafe.board.model.vo.Board;
 
 @Service
 public class BoardCrudServiceImpl implements BoardCrudService{
@@ -24,6 +25,13 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	@Override
 	public List<Map<String, Object>> selectWritingFormType() {
 		return dao.selectWritingFormType();
+	}
+
+	
+	// 게시글 작성
+	@Override
+	public int writeBoard(Board board) {
+		return dao.writeBoard(board);
 	}
 	
 }
