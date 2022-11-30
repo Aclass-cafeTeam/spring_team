@@ -272,6 +272,26 @@ public class ManagerMemberController {
 			//model.addAttribute("memberLevel", session.getAttribute("memberLevel"));
 			return "manager/ManageActivityStopPopup";
 		}
+		
+		//팝업창(활동 정지)
+		@PostMapping("/updateActivityStopMember")
+		@ResponseBody
+		public String updateActivityStopMember(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+			    @RequestParam(value="comment") String comment,
+			    @RequestParam(value="memberCount") int memberCount,
+			    @RequestParam(value="radioNum") int radioNum) throws Exception {
+								
+					String message = service.updateActivityStopMember(memberEmail,comment,memberCount);
+
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("message",message);
+					map.put("radioNum",radioNum);	
+					map.put("memberCount",memberCount);	
+					map.put("memberEmail",memberEmail);	
+					// GSON 라이브러리를 이용해서 Member 객체 -> JSON 변환(String)
+					return new Gson().toJson(map);
+		}
 				
 		
 		

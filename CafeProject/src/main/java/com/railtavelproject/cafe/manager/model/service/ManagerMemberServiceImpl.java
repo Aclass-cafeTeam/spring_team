@@ -231,13 +231,30 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	public String updateMemberLevelNo(List<String> memberEmail, int memberLevelNo,int memberCount) throws Exception{
 		
 		String message = "";
-		int result = dao.updateMemberLevelNo(memberEmail, memberLevelNo);;
+		int result = dao.updateMemberLevelNo(memberEmail, memberLevelNo);
 		
 		if(memberCount == result) {
 			message = "회원 " + result + "명 등급 변경에 성공하셨습니다!";
 		}else {
 			message = "등급 변경에 실패하셨습니다.";
 			throw new Exception("등급 변경에 실패");
+		}
+		
+		return message;
+	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount) throws Exception{
+		
+		String message = "";
+		int result = dao.updateActivityStopMember(memberEmail, comment);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 활동 정지시켰습니다!";
+		}else {
+			message = "활동 정지 등록에 실패하셨습니다.";
+			throw new Exception("활동 정지 등록에 실패");
 		}
 		
 		return message;

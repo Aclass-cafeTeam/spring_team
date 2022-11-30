@@ -597,5 +597,7 @@
 			AND AUTHORITY_NO NOT IN (0,1)</foreach>
   </update>
   <!-- 멤버 등급 변경 -->
+  <!-- 회원 활동 정지 -->
   
+  <!-- 회원 활동 정지 -->
 </mapper>

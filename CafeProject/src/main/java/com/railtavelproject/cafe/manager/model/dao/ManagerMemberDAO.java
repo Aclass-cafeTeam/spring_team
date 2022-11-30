@@ -349,5 +349,15 @@ public class ManagerMemberDAO {
 		int result = (int)map.get("memberCount");
 		return result;
 	}
+
+	/** 회원 활동정지
+	 * @param memberEmail
+	 * @param comment
+	 * @return
+	 */
+	public int updateActivityStopMember(List<String> memberEmail, String comment) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
    
 }
