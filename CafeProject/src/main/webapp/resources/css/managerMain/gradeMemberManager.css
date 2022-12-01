@@ -1,0 +1,154 @@
+@import url('./managerHeader.css');
+@import url('./managerFooter.css');
+
+body{
+    width: 100%;
+    height: 100%; 
+    margin: auto;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+body{
+    display: block;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 메인홈이라서 메인관리 메뉴만 색깔변경 */
+.nav_menu li:nth-of-type(3) a{
+    background-color: #73358C;
+    color: white;
+    border: 1px solid #797979;
+}
+
+
+/* menuSub 서브 네비 */
+.lnb_sub{
+    width: 100%;
+    height: 39px;
+    border-bottom: 1.5px solid #898989;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.lnb_sub > ul{
+    overflow: hidden;
+    width: 920px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    list-style: none;
+}
+
+.lnb_sub li{
+    overflow: hidden;
+    margin: 0px 2px 0px 0px;
+}
+
+.lnb_sub li:nth-of-type(1){
+    margin: 0px 5px 0px 225px;
+}
+
+.lnb_sub li:nth-of-type(3) a{
+    font-weight: bold;
+    color: #73358C!important;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.lnb_sub li a{
+    font-weight: bold;
+    text-decoration: none;
+    color: #232628;
+    font-size: 12px;
+}
+
+.lnb_sub li p{
+    font-size: 10px;
+    color: #797979;
+}
+
+.lnb_sub li a:hover{
+    color: #73358C;
+}
+/* menuSub 서브 네비 */
+
+/* 내용 */
+#content {
+    padding: 138px 0 123px;
+}
+
+body, input, textarea, select, button, table {
+    font-family: 'Malgun Gothic';
+    font-size: 12px;
+}
+
+div {
+    display: block;
+}
+.ManageCafeStaffView {
+    z-index: 20;
+    width: 920px;
+    min-height: 100%;
+    margin: -138px auto -123px;
+}
+.section_top .h_cont h2 {
+    height: 18px;
+    margin: 0 0 13px 2px;
+    vertical-align: top;
+    font-weight: bolder;
+}
+
+.section_top {
+    position: relative;
+    margin-top: 28px;
+    z-index: 30;
+}
+
+.section_top .h_cont {
+    height: 31px;
+    border-bottom: 3px solid #565b62;
+}
+
+.section_top .tab_menu ul {
+    overflow: hidden;
+    height: 100%;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #bebebe;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.section_top .tab_menu {
+    overflow: hidden;
+    height: 37px;
+}
+
+.section_top .tab_menu li{
+    display: inline-block;
+    font-size: 14px;
+    padding: 11px 50px 10px 10px;
+    font-weight: bold;
+    line-height: 16px;
+    color: rgb(46, 46, 46);
+}
+
+.section_top .noti_area {
+    position: relative;
+    padding: 20px 0 14px 4px;
+}
+
+.lst_type li {
+    color: #666;
+    line-height: 18px;
+}

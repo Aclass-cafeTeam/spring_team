@@ -1,98 +1,239 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>내일로, 기차로! 카페 멤버 등급 관리</title>
-    <link rel="stylesheet" href="../../resources/css/managerMain/gradeMemberManager.css">
-  
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>내일로, 기차로! 카페 멤버 등급 관리</title>
+        <link rel="stylesheet" href="../../resources/css/managerMain/gradeMemberManager.css">
+    
 </head>
 <body>
-  <main>
+    <main>
     <!-- ************************************* managerHeader ************************************************** -->
-    
     <div class="managerHeader">
-      <header>
-          <div class="managerHeader-gnb">
+        <header>
+            <div class="managerHeader-gnb">
 
-              <div class="tit_area">
-                  <h1><a href="#" class="go_nvr">NEVER</a>
-                      <a href="#" class="go_adm">카페관리</a></h1>
-                  <p><a href="../main.html" class="title">내일로, 기차로! 카페</a></p>
-              </div>
+                <div class="tit_area">
+                    <h1><a href="#" class="go_nvr">NEVER</a>
+                        <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
+                    <p><a href="/" class="title">내일로, 기차로! 카페</a></p>
+                </div>
 
-              <div class="tit_menu">
-                  <label for="header-menu-toggle">
-                      지윤
-                      <!-- <i class="fa-solid fa-caret-down"></i> -->
-                  </label>
+                <div class="tit_menu">
+                    <label for="header-menu-toggle">
+                        지윤
+                        <!-- <i class="fa-solid fa-caret-down"></i> -->
+                    </label>
 
-                  <input class="header__menu-btn" type="checkbox" id="header-menu-toggle">
-                  <div class="header__nav">
-                      <a href="#">내정보</a>
-                      <a href="#">로그아웃</a>
-                  </div>
-              </div>
+                    <input class="header__menu-btn" type="checkbox" id="header-menu-toggle">
+                    <div class="header__nav">
+                        <a href="#">내정보</a>
+                        <a href="#">로그아웃</a>
+                    </div>
+                </div>
 
-          </div>
-      </header>
+            </div>
+        </header>
 
-      <nav>
-          <div class="nav_menu_back">
-              <div class="nav_menu">
-                  <ul>
-                      <li clss="managerHome">
-                          <a href="../managerMain/managerMain.html"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
-                      </li>
-                      <li>
-                          <a href="../managerMain/basicInfoManager.html"><img src="../../resources/images/settings.png">카페운영</a>
-                      </li>
-                      <li>
-                          <a href="../managerMain/totalMemberManager.html"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
-                      </li>
-                      <li>
-                          <a href="../managerMain/joinMemberManager.html"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
-                      </li>
-                      <li>
-                          <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
-                      </li>
-                      <li>
-                          <a href="#"><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
-                      </li>
-                      <li>
-                          <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
-                      </li>
-                  </ul>
-              </div>
-          </div>
-      </nav>
+        <nav>
+            <div class="nav_menu_back">
+                <div class="nav_menu">
+                    <ul>
+                        <li clss="managerHome">
+                            <a href="/manager/managerMain"><img src="/resources/images/free-icon-house-1835281.png">관리홈</a>
+                        </li>
+                        <li>
+                            <a href="/manager/basicInfoManager"><img src="/resources/images/settings.png">카페운영</a>
+                        </li>
+                        <li>
+                            <a href="/manager/totalMemberManager"><img src="/resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                        </li>
+                        <li>
+                            <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                        </li>
+                        <li>
+                            <a href="../managerMain/menuManager.html"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
+                        </li>
+                        <li>
+                            <a href="#"><img src="/resources/images/free-icon-edit-4386594.png">글•글양식</a>
+                        </li>
+                        <li>
+                            <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </div>
 
     <!-- ************************************* managerHeader ************************************************** -->
     <!-- menuSub 서브 네비-->
     <div class="lnb_sub" id="menuSub4">
-      <ul>
-          <li class="manager_joinMem">
-              <a href="#" class="joinMem">가입 정보 관리</a>
-          </li> 
-          <li class="manager_joinMem">
-            <p>|</p>
-          </li>
-          <li class="manager_joinMem">
-            <a href="#" class="joinMem">멤버 등급 관리</a>
-          </li>  
-      </ul>
+        <ul>
+            <li class="manager_joinMem">
+                <a href="/manager/joinMemberManager" class="joinMem">가입 정보 관리</a>
+            </li> 
+            <li class="manager_joinMem">
+                <p>|</p>
+            </li>
+            <li class="manager_joinMem">
+                <a href="#" class="joinMem">멤버 등급 관리</a>
+            </li>  
+        </ul>
     </div>
     <!-- menuSub 서브 네비-->
-  </main>
-  <!-- 푸터 -->
-  <footer>
-    <p class="cr">
-        <em>Since 2022.10.14. © </em> 
-        <span> 내일로, 기차로! 카페</span>
-    </p>
-  </footer>
-  <!-- 푸터 -->
+    <div class="ManageCafeStaffView">
+        <div id="content">
+            <div class="section_top">
+                <div class="h_cont">
+                    <h2 class="menu2_sub4">멤버 등급 관리</h2>
+                </div>
+            <div class="tab_menu">
+                <ul>
+                    <li class="_manageAuth">등급 조건 관리</li>
+                </ul>
+            </div>
+            <div class="noti_area">
+                <ul class="lst_type">
+                    <strong>자동등업</strong>
+                    <li>카페 멤버별 등급 조건을 관리합니다.</li>
+                    <li>멤버등급관리에서 자동등업조건을 설정합니다.</li>
+                    <li>조건을 만족하는 멤버는 만족과 동시에 신청/수락 없이 등업이 됩니다.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section_cont">
+			
+
+
+            <form id="manageLevelForm" method="post" action="/ManageMemberLevelUpdate.nhn">
+            <input type="hidden" name="clubid" value="30828148">
+            <input type="hidden" name="memberLevelInfo.clubid" value="30828148">
+            <input type="hidden" name="memberLevelInfo.useautolevel" value="true">
+            <input type="hidden" name="memberLevelInfo.useboardcondition" value="false">
+            <input type="hidden" name="memberLevelInfo.includeanswer" value="true">
+            
+            <div class="level_cont">
+                <table cellspacing="0" border="1" class="tbl_level">	
+                <caption><span class="blind">등급 조건 목록</span></caption>				
+                <colgroup>
+                <col width="33">
+                <col width="135">
+                <col width="*">
+                </colgroup>
+                <thead>
+                <tr>
+                <th scope="col"><strong class="blind">등급아이콘</strong></th>
+                <th scope="col"><strong>등급명</strong></th>
+                <th scope="col"><strong>설명</strong></th>
+                </tr>
+                </thead>
+                <tbody>
+                
+                <tr>
+                <td class="ico"><img id="iconImg1" src="https://cafe.pstatic.net/levelicon/1/1_1.gif" width="11" height="11"></td>
+                <td class="level"><input id="conditionName1" type="text" name="firstLevel.memberlevelname" value="새내기" maxlength="10" class="text2"></td>
+                <td>
+                    <input id="conditionDesc1" type="text" name="firstLevel.memberleveldesc" value="가입 후, 별다른 승인을 받지 않은 초기 회원, 또는 활동이 없는 유령회원" maxlength="50" class="text2">
+                </td>
+                </tr>
+                
+                <tr>
+                    <td class="ico"><img id="iconImg2" src="https://cafe.pstatic.net/levelicon/1/1_110.gif" width="11" height="11"></td>
+                    <td class="level"><input id="conditionName2" type="text" name="secondLevel.memberlevelname" value="일반여행자" maxlength="10" class="text2"></td>
+                    <td>
+                        <input id="conditionDesc2" type="text" name="secondLevel.memberleveldesc" value="기차로 카페 기본 등급" maxlength="50" class="text2">
+                        <p id="condition2" class="detail" style="">                    
+                            <label for="sum_write">게시글</label>
+                            <input type="text" name="secondLevel.articlecount" id="sum_write" class="text4" value="5" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_reply">댓글</label>
+                            <input type="text" name="secondLevel.commentcount" id="sum_reply" class="text4" value="10" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_visit">방문</label>
+                            <input type="text" name="secondLevel.visitcount" id="sum_visit" class="text4" value="20" maxlength="5"> 회,&nbsp;&nbsp;
+                            <label for="sum_join">가입</label>
+                            <input type="text" name="secondLevel.joindtcondition" id="sum_join" class="text4" value="0" maxlength="5">
+                        </p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="ico"><img id="iconImg3" src="https://cafe.pstatic.net/levelicon/1/1_120.gif" width="11" height="11"></td>
+                    <td class="level"><input id="conditionName3" type="text" name="thirdLevel.memberlevelname" value="성실여행자" maxlength="10" class="text2"></td>
+                    <td>
+                        <input id="conditionDesc3" type="text" name="thirdLevel.memberleveldesc" value="기차로 카페에서 회원들과 많은 이야기를 나누고 있는 회원" maxlength="50" class="text2">
+                        <p id="condition3" class="detail" style="">                    
+                            <label for="sum_write">게시글</label>
+                            <input type="text" name="thirdLevel.articlecount" id="sum_write" class="text4" value="10" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_reply">댓글</label>
+                            <input type="text" name="thirdLevel.commentcount" id="sum_reply" class="text4" value="20" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_visit">방문</label>
+                            <input type="text" name="thirdLevel.visitcount" id="sum_visit" class="text4" value="30" maxlength="5"> 회,&nbsp;&nbsp;
+                            <label for="sum_join">가입</label>
+                            <input type="text" name="thirdLevel.joindtcondition" id="sum_join" class="text4" value="0" maxlength="5">
+                        </p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="ico"><img id="iconImg5" src="https://cafe.pstatic.net/levelicon/1/1_140.gif" width="11" height="11"></td>
+                    <td class="level"><input id="conditionName5" type="text" name="fifthLevel.memberlevelname" value="우수여행자" maxlength="10" class="text2"></td>
+                    <td>
+                        <input id="conditionDesc5" type="text" name="fifthLevel.memberleveldesc" value="기차로 카페에서 오랜 기간, 활발하게 소통하고 활동하는 회원" maxlength="50" class="text2">
+                        <p id="condition5" class="detail" style="">                    
+                            <label for="sum_write">게시글</label>
+                            <input type="text" name="fifthLevel.articlecount" id="sum_write" class="text4" value="20" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_reply">댓글</label>
+                            <input type="text" name="fifthLevel.commentcount" id="sum_reply" class="text4" value="30" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_visit">방문</label>
+                            <input type="text" name="fifthLevel.visitcount" id="sum_visit" class="text4" value="40" maxlength="5"> 회,&nbsp;&nbsp;
+                            <label for="sum_join">가입</label>
+                            <input type="text" name="fifthLevel.joindtcondition" id="sum_join" class="text4" value="0" maxlength="5">
+                        </p>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td class="ico"><img id="iconImg6" src="https://cafe.pstatic.net/levelicon/1/1_150.gif" width="11" height="11"></td>
+                    <td class="level"><input id="conditionName6" type="text" name="sixthLevel.memberlevelname" value="감사멤버" maxlength="10" class="text2"></td>
+                    <td>
+                        <input id="conditionDesc6" type="text" name="sixthLevel.memberleveldesc" value="기차로 카페에서 사는 회원" maxlength="50" class="text2">
+                        <p id="condition6" class="detail" style="">                    
+                            <label for="sum_write">게시글</label>
+                            <input type="text" name="sixthLevel.articlecount" id="sum_write" class="text4" value="30" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_reply">댓글</label>
+                            <input type="text" name="sixthLevel.commentcount" id="sum_reply" class="text4" value="40" maxlength="5"> 개,&nbsp;&nbsp;
+                            <label for="sum_visit">방문</label>
+                            <input type="text" name="sixthLevel.visitcount" id="sum_visit" class="text4" value="50" maxlength="5"> 회,&nbsp;&nbsp;
+                            <label for="sum_join">가입</label>
+                            <input type="text" name="sixthLevel.joindtcondition" id="sum_join" class="text4" value="0" maxlength="5">
+
+                        </p>
+                    </td>
+                </tr>
+                </tbody>
+                </table>
+            </div>
+            <div class="btn_area">
+                <a class="btn_type_edt2 _click(ManageMemberLevel|Cancel) _stopDefault" href="/ManageMemberLevel.nhn?clubid=30828148"><strong>취소</strong></a> <a class="btn_type_edt _click(ManageMemberLevel|Submit) _stopDefault" href="#"><strong>저장하기</strong></a>
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+
+
+    </main>
+    <!-- 푸터 -->
+    <footer>
+        <p class="cr">
+            <em>Since 2022.10.14. © </em> 
+            <span> 내일로, 기차로! 카페</span>
+        </p>
+    </footer>
+    <!-- 푸터 -->
 </body>
 </html>
