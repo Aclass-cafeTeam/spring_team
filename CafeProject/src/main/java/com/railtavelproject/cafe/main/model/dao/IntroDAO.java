@@ -51,4 +51,26 @@ public class IntroDAO {
 		return sqlSession.selectList("introMapper.selectMainList");
 	}
 
+	/**
+	 * 당일 방문 수 조회
+	 * @return
+	 */
+	public int todayVisitCount() {
+		return sqlSession.selectOne("introMapper.selectTodayVisit");
+	}
+
+	/**
+	 * 전체 방문수 조회
+	 * @return
+	 */
+	public int allVisitCount() {
+		
+		return sqlSession.selectOne("introMapper.selectAllVisit");
+	}
+
+	public List<IntroBoard> commentRank() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.commentRank", null ,rowBounds);
+	}
+
 }

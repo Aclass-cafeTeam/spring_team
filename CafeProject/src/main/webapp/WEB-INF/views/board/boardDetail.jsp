@@ -37,7 +37,7 @@
                     </div>
                     
                     <div>
-                        <button id="goToListBtn" class="top-list">목록</button>
+                        <button onclick="location.href='${referer}'" id="goToListBtn" class="top-list">목록</button >
                     </div>
                 </div>
                 <div class="board-all">    

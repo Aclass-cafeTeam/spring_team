@@ -63,7 +63,7 @@
                                                             </div>
                                                         </div>
                                                         <div id="notice-board">
-                                                            <a href="#"><span id="notice">${introNotice.boardTitle}</span></a>
+                                                            <a href="/board/${introNotice.boardCode}/${introNotice.boardNo}"><span id="notice">${introNotice.boardTitle}</span></a>
                                                             <c:if test="${0 != introNotice.commentCount}">
                                                                 <a href="#"><span id="commentCount1">[${introNotice.commentCount}]</span></a>
                                                             </c:if>
@@ -86,7 +86,7 @@
                                                     <tr id="boardTitle">
                                                         <td id="board-content">
                                                             <div id="board-dot">ㆍ</div>
-                                                            <a href="#"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                            <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><div id="board-name">${introBoard.boardTitle}</div></a>
                                                             <c:if test="${0 != introBoard.commentCount}">
                                                                 <a href="#"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
                                                             </c:if>
@@ -118,11 +118,11 @@
                                                 <li>
                                                     <dl>
                                                         <dt id="photo-img">
-                                                        <a href="#"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
+                                                        <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
                                                         </dt>
                                                         <dd id="photo-title">
                                                             <div>
-                                                                <a href="#">
+                                                                <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}">
                                                                     ${travelReview.boardTitle}
                                                                 </a>
                                                             </div>

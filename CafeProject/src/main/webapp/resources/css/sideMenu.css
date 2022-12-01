@@ -19,14 +19,15 @@ div#content {
     border-top: 2px solid #333;
     border-bottom: 1px solid rgb(229, 229, 229);
     align-items: center;
-    padding: 5px 10px;
+    justify-content: space-between;
+    padding: 5px 20px;
 }
-
+/* 
 #ul-1>li:first-child {
     margin-right: 10px;
     position: relative;
     padding-top: 5px;
-}
+} */
 
 #content li>a>p {
     width: 72px;
@@ -37,11 +38,11 @@ div#content {
 }
 
 #ul-1>li>a {
-    justify-content: start;
+    /* justify-content: start; */
     font-size: 13px;
     color: black;
     text-decoration: none;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 
