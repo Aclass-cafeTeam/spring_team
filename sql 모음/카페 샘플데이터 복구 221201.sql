@@ -144,4 +144,96 @@ INSERT INTO "MEMBER"
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user100@never.com', 'cafe!', '유저백',
 	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
 
+-- 비번 암호화 cafe!
+UPDATE MEMBER SET MEMBER_PW ='$2a$10$5QmOwkVwr3Ck87jdsIkdse00zhjAqfnApu7ogmEOP1boSa9e2Yvoe';
+
+
 SELECT * FROM "MEMBER";
+
+COMMIT;
+
+
+-- 공지게시판에 카페매니저가 전체공지 100개
+BEGIN
+   FOR I IN 1..100 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 공지입니다.<br>안녕하세요.',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 1, 1, DEFAULT);
+   END LOOP;
+END;
+
+-- 자유게시판에 카페/부매니저가 게시판별 공지 10개 
+BEGIN
+   FOR I IN 1..10 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 자유게시판 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 자유게시판 공지입니다.<br>매너있는 자유게시판 사용 부탁드립니다.',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 1, 
+            FLOOR(DBMS_RANDOM.VALUE(1, 3)), 2, DEFAULT);
+   END LOOP;
+END;
+/
+
+-- 각 게시판별로 카페/부매니저가 공지 10개씩 (등급게시판 제외)
+BEGIN
+   FOR I IN 1..90 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시판 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시판 공지입니다.<br> 게시판 공지 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 1, 
+            FLOOR(DBMS_RANDOM.VALUE(1,3)), FLOOR(DBMS_RANDOM.VALUE(4,12)), DEFAULT);
+   END LOOP;
+END;
+
+-- 자유게시판에 일반 회원, 일반 게시글 샘플 100개
+BEGIN
+   FOR I IN 1..100 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글입니다.<br> 게시글 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 
+            FLOOR(DBMS_RANDOM.VALUE(3,16)), 2, DEFAULT);
+   END LOOP;
+END;
+
+-- 각 게시판별로 일반 회원, 일반 게시글 샘플 500개 (등급게시판 제외)
+BEGIN
+   FOR I IN 1..500 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글입니다.<br> 게시글 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+            FLOOR(DBMS_RANDOM.VALUE(3,16)), FLOOR(DBMS_RANDOM.VALUE(4,14)), DEFAULT);
+   END LOOP;
+END;
+
+-- 댓글 샘플데이터 삽입(부모댓글)
+-- ALTER TABLE CAFE."COMMENT" MODIFY PARENT_NO NUMBER NULL; -- 부모댓글번호 컬럼 null로 변경
+BEGIN
+   FOR I IN 1..300 LOOP
+      INSERT INTO "COMMENT" 
+      VALUES(SEQ_COMMENT_NO.NEXTVAL, 
+            SEQ_COMMENT_NO.CURRVAL || '번째 댓글',
+            DEFAULT, NULL, DEFAULT,
+             CEIL(DBMS_RANDOM.VALUE(0,800)),
+             FLOOR(DBMS_RANDOM.VALUE(1, 16)), NULL);
+   END LOOP;
+END;
+
+-- 좋아요 샘플 데이터 200개 (랜덤회원, 랜덤게시글)
+-- 같은 회원이 같은 게시글에 좋아요를 누를 수 없어서 에러 날 수 있음 -> 될 때 까지 실행
+BEGIN
+   FOR I IN 1..200 LOOP
+      INSERT INTO "BOARD_LIKE" 
+      VALUES(CEIL(DBMS_RANDOM.VALUE(0,800)),
+             FLOOR(DBMS_RANDOM.VALUE(1, 16)));
+   END LOOP;
+END;
+
+COMMIT;
