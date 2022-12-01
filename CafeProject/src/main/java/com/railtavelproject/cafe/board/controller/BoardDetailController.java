@@ -44,6 +44,10 @@ public class BoardDetailController {
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);
 		
+		String referer = req.getHeader("referer");
+
+//		System.out.println(" 게시판 글보기 ======> "+referer);
+		
 		// 좋아요 기능
 		if(board !=null) { // 게시글 상세조회 성공 시
 
@@ -152,6 +156,7 @@ public class BoardDetailController {
 		}
 		
 		model.addAttribute("board", board);
+		model.addAttribute("referer", referer);
 		
 		return "board/boardDetail";
 	}

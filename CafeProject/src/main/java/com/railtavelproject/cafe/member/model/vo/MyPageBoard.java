@@ -10,6 +10,7 @@ import java.util.List;
 @ToString
 public class MyPageBoard {
 	   private int boardNo; // 게시글 번호   BOARD_NO
+	   private int boardCode; // 게시판 번호   BOARD_CODE
 	   private String boardTitle; // 게시글 제목   BOARD_TITLE
 	   
 	   private String boardCreateDate; // 게시글 작성일   B_CREATE_DATE
