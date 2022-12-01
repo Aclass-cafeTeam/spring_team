@@ -53,6 +53,18 @@ public class BoardServiceImpl implements BoardService{
 		return notice;
 	}
 
+	@Override
+	public Map<String, Object> selectBoardAllList(int cp) {
+		
+		List<Board> allList = dao.selectBoardAllList(cp);
+		
+		Map<String, Object> all = new HashMap<String, Object>();
+		
+		all.put("noticeList", allList);
+		
+		return all;
+	}
+
 //	@Override
 //	public Map<String, Object> selectBoardList(Map<String, Object> pm, int cp) {
 //		

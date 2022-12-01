@@ -63,7 +63,7 @@
                     </li>
 
                 </c:forEach> -->
-                <li id="special-menu-0"><a class="link_special" href="#">전체글보기</a></li>
+                <li id="special-menu-0"><a class="link_special" href="/board/selectAll">전체글보기</a></li>
                 <li id="special-menu-1"><a class="link_special" href="#">베스트게시글</a></li>
                 <!-- <li id="special-menu-2"><a class="link_special" href="#">이미지모아보기</a></li> -->
                 <li id="special-menu-1">⛅<a class="link_special" href="https://www.weather.go.kr/w/index.do" target="_blank">오늘의 날씨</a></li>

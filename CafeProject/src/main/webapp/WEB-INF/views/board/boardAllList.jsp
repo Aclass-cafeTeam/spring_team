@@ -5,6 +5,7 @@
 <c:set var="boardList" value="${map.boardList}" />
 <c:set var="noticeList" value="${notice.noticeList}" />
 <c:set var="pagination" value="${map.pagination}" />
+<c:set var="allList" value="${all.allList}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -120,7 +121,7 @@
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
-                                            <a href="#" class="comment">[${board.commentCount}]</a>
+                                            <a h                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ref="#" class="comment">[${board.commentCount}]</a>
                                             </c:if>                   
                                         </td>
                                         <td></td>

@@ -57,12 +57,19 @@ public class BoardDAO {
 	 * @param pm
 	 * @return listCount
 	 */
-	/** 검색 조건이 일치하는 게시글 수 조회
-	 * @param pm
-	 * @return listCount
-	 */
 	public int getListCount(Map<String, Object> pm) {
+		
 		return sqlSession.selectOne("boardMapper.getListCount_search", pm);
+	}
+
+	
+	/** 전체 게시글 조회
+	 * @param boardNo
+	 * @param cp
+	 * @return all
+	 */
+	public List<Board> selectBoardAllList(int cp) {
+		return sqlSession.selectOne("boardMapper.selectBoardAllList");
 	}
 
 	/** 검색 조건 일치 게시글 목록 조회
