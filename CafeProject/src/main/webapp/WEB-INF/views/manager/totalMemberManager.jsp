@@ -13,7 +13,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>내일로, 기차로! 카페 전체 멤버 관리</title>
-    <link rel="stylesheet" href="../../resources/css/managerMain/totalMemberManager.css">
+    <link rel="stylesheet" href="/resources/css/managerMain/totalMemberManager.css">
   
 </head>
 <body>
@@ -108,7 +108,7 @@
               <p>|</p>
             </li>
             <li class="manager_totalMem">
-              <a href="#" class="totalMem">스탭 관리</a>
+              <a href="/manager/ManageCafeStaffView" class="totalMem">스탭 관리</a>
             </li>  
         </ul>
       </div>
@@ -302,7 +302,7 @@
                   <strong><span class="c_og">스탭 권한을 변경</span> 하시겠습니까?</strong>
                 </p>
                 <div class="btn">
-                  <a href="/ManageCafeStaffView.nhn?clubid=30828148" class="btn_type3 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
+                  <a href="/manager/ManageCafeStaffView" class="btn_type3 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
                   <a href="#" class="btn_type3 _hideLayer"><span class="_hideLayer">취소</span></a>
                 </div>
               </div>
@@ -318,7 +318,7 @@
                   <strong><span class="c_og">스탭 권한을 변경</span> 하시겠습니까?</strong>
                 </p>
                 <div class="btn btn2">
-                  <a href="/ManageCafeStaffView.nhn?clubid=30828148" class="btn_type4 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
+                  <a href="/manager/ManageCafeStaffView" class="btn_type4 _changeCafeStaff" manager="true"><strong class="_changeCafeStaff" manager="true">스탭 권한 변경하러 가기</strong></a>
                   <a href="#" class="btn_type4 _hideLayer"><span class="_hideLayer">취소</span></a>
                 </div>
               </div>

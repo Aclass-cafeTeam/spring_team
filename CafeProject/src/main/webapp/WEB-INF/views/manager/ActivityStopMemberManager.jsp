@@ -108,7 +108,7 @@
               <p>|</p>
             </li>
             <li class="manager_totalMem">
-              <a href="#" class="totalMem">스탭 관리</a>
+              <a href="/manager/ManageCafeStaffView" class="totalMem">스탭 관리</a>
             </li>  
         </ul>
       </div>

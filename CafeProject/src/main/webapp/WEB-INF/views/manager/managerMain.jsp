@@ -10,7 +10,7 @@
     <!-- <meta property="og:title" content="내일로 기차 여행 카페">
     <meta property="og:description" content="내일로 여행 가고 싶은 사람들 모여라!"> -->
     <title>내일로, 기차로! 카페 관리자 메인화면</title>
-    <link rel="stylesheet" href="../../resources/css/managerMain/managerMain.css">
+    <link rel="stylesheet" href="/resources/css/managerMain/managerMain.css">
     
 
 </head>
@@ -166,7 +166,7 @@
                                     <a id="menu6" href="/manager/ForcedSecessionMemberManager" class="N=a:LNB*a.list">강제탈퇴 멤버 관리</a>
                                 </li>
                                 <li class="_manageAuth(OptionalBoardStaff)">
-                                    <a id="menu7" href="" class="N=a:LNB*a.list">스탭 관리</a>
+                                    <a id="menu7" href="/manager/ManageCafeStaffView" class="N=a:LNB*a.list">스탭 관리</a>
                                 </li>
                             </ul>
                         </div>
