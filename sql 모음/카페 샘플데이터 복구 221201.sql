@@ -1,0 +1,239 @@
+-- 멤버 레벨 테이블
+SELECT * FROM MEMBER_LEVEL;
+INSERT INTO MEMBER_LEVEL VALUES(0, '카페매니저', 0, 0, 0, '/resources/images/manager/카페매니저.png');
+INSERT INTO MEMBER_LEVEL VALUES(1, '부매니저', 0, 0, 0, '/resources/images/manager/부매니저.png');
+INSERT INTO MEMBER_LEVEL VALUES(2, '새내기', 0, 0, 0, '/resources/images/manager/새내기.png');
+INSERT INTO MEMBER_LEVEL VALUES(3, '일반여행자', 5, 10, 20, '/resources/images/manager/일반여행자.png' );
+INSERT INTO MEMBER_LEVEL VALUES(4, '성실여행자', 10, 20, 30, '/resources/images/manager/성실여행자.png');
+INSERT INTO MEMBER_LEVEL VALUES(5, '우수여행자', 20, 30, 40,  '/resources/images/manager/우수여행자.png');
+INSERT INTO MEMBER_LEVEL VALUES(6, '감사멤버', 30, 40, 50, '/resources/images/manager/감사멤버.png');
+
+--권한테이블------------------------------------------
+INSERT INTO AUTHORITY VALUES(0,'카페매니저','/resources/images/manager/카페매니저.png');
+INSERT INTO AUTHORITY VALUES(1,'부매니저','/resources/images/manager/부매니저.png');
+INSERT INTO AUTHORITY VALUES(2,'일반회원',NULL);
+
+-- 말머리 샘플 데이터
+INSERT INTO "TITLE_TAG"
+VALUES(SEQ_TITLE_TAG_NO.NEXTVAL, '정보');
+INSERT INTO "TITLE_TAG"
+VALUES(SEQ_TITLE_TAG_NO.NEXTVAL, '질문');
+INSERT INTO "TITLE_TAG"
+VALUES(SEQ_TITLE_TAG_NO.NEXTVAL, '잡담');
+
+-- 게시판 대분류 샘플 데이터
+INSERT INTO "MAIN_CATEGORY"
+VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL, '기본 게시판', DEFAULT);
+INSERT INTO "MAIN_CATEGORY"
+VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL, '여행 정보', DEFAULT);
+INSERT INTO "MAIN_CATEGORY"
+VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL, '질문 코너', DEFAULT);
+INSERT INTO "MAIN_CATEGORY"
+VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL, '갤러리 자료', DEFAULT);
+
+-- 게시판 종류 샘플 데이터 
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '공지사항', 1, 1, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT); -- 말머리 사용X(디폴트)
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '자유게시판', 2, 1, 'Y', DEFAULT, DEFAULT, 2, DEFAULT); -- 말머리 사용O
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '등업게시판', 3, 1, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT); -- 말머리 사용X
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '서울/수도권 나들이', 1, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT); -- 일반멤버
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '제주 여행지', 2, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '충청권 여행지', 3, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '강원권 여행지', 4, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '전라권 여행지', 5, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '경상권 여행지', 6, 2, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '국내 여행 Q/A', 1, 3, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '기타 Q/A', 2, 3, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '여행 후기', 1, 4, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+INSERT INTO "BOARD_TYPE"
+VALUES(SEQ_BOARD_CODE.NEXTVAL, '맛집 사진 공유', 2, 4, 'Y', DEFAULT, DEFAULT, 3, DEFAULT);
+
+
+-- 여행후기, 맛집사진 공유 게시판 앨범형으로 변경
+UPDATE "BOARD_TYPE" SET BOARD_FORM = 'A' WHERE BOARD_CODE =12;
+
+UPDATE "BOARD_TYPE" SET BOARD_FORM = 'A' WHERE BOARD_CODE =13;
+
+-- WRITING_FORM_TYPE 글쓰기 양식 데이터 삽입---------------------
+INSERT INTO WRITING_FORM_TYPE 
+VALUES(SEQ_WRITING_FORM_NO.NEXTVAL, '가입인사', '가입인사를 자유롭게 남겨주세요.');
+
+INSERT INTO WRITING_FORM_TYPE 
+VALUES(SEQ_WRITING_FORM_NO.NEXTVAL, '생활이야기', '생활이야기를 자유롭게 남겨주세요.');
+
+INSERT INTO WRITING_FORM_TYPE 
+VALUES(SEQ_WRITING_FORM_NO.NEXTVAL, '여행사진', '여행 사진을 공유해주세요.');
+
+INSERT INTO WRITING_FORM_TYPE 
+VALUES(SEQ_WRITING_FORM_NO.NEXTVAL, '맛집', '맛있는 맛집을 공유해주세요.');
+
+-- CAFEINFO 샘플데이터 삽입
+INSERT INTO CAFE_INFO VALUES(SEQ_CAFE_NO.NEXTVAL,'/resources/images/manager/trainImage.jpg',
+'/resources/images/member/mainIMG.png','/resources/images/member/banner1.png','/resources/images/member/배너2.png',DEFAULT);
+
+
+-- 관리자, 샘플회원 총 15명
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'manager01@never.com', 'cafe!', '카페매니저',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 0, 0);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'manager02@never.com', 'cafe!', '부매니저',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 1, 1);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'guest01@never.com', 'cafe!', '게스트일',
+	'서울', DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'guest02@never.com', 'cafe!', '게스트이',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user01@never.com', 'cafe!', '유저일',
+	'서울', DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user02@never.com', 'cafe!', '유저이',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user03@never.com', 'cafe!', '유저삼',
+	'부산', DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user04@never.com', 'cafe!', '유저사',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user05@never.com', 'cafe!', '유저오',
+	'제주', DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user06@never.com', 'cafe!', '유저육',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user07@never.com', 'cafe!', '유저칠',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user08@never.com', 'cafe!', '유저팔',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user09@never.com', 'cafe!', '유저구',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user10@never.com', 'cafe!', '유저십',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+INSERT INTO "MEMBER"
+VALUES(SEQ_MEMBER_NO.NEXTVAL, 'user100@never.com', 'cafe!', '유저백',
+	NULL, DEFAULT, DEFAULT, DEFAULT, 2, DEFAULT);
+
+-- 비번 암호화 cafe!
+UPDATE MEMBER SET MEMBER_PW ='$2a$10$5QmOwkVwr3Ck87jdsIkdse00zhjAqfnApu7ogmEOP1boSa9e2Yvoe';
+
+
+SELECT * FROM "MEMBER";
+
+COMMIT;
+
+
+-- 공지게시판에 카페매니저가 전체공지 100개
+BEGIN
+   FOR I IN 1..100 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 공지입니다.<br>안녕하세요.',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 2, 1, 1, DEFAULT);
+   END LOOP;
+END;
+
+-- 자유게시판에 카페/부매니저가 게시판별 공지 10개 
+BEGIN
+   FOR I IN 1..10 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 자유게시판 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 자유게시판 공지입니다.<br>매너있는 자유게시판 사용 부탁드립니다.',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 1, 
+            FLOOR(DBMS_RANDOM.VALUE(1, 3)), 2, DEFAULT);
+   END LOOP;
+END;
+/
+
+-- 각 게시판별로 카페/부매니저가 공지 10개씩 (등급게시판 제외)
+BEGIN
+   FOR I IN 1..90 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시판 공지',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시판 공지입니다.<br> 게시판 공지 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 1, 
+            FLOOR(DBMS_RANDOM.VALUE(1,3)), FLOOR(DBMS_RANDOM.VALUE(4,12)), DEFAULT);
+   END LOOP;
+END;
+
+-- 자유게시판에 일반 회원, 일반 게시글 샘플 100개
+BEGIN
+   FOR I IN 1..100 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글입니다.<br> 게시글 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, 
+            FLOOR(DBMS_RANDOM.VALUE(3,16)), 2, DEFAULT);
+   END LOOP;
+END;
+
+-- 각 게시판별로 일반 회원, 일반 게시글 샘플 500개 (등급게시판 제외)
+BEGIN
+   FOR I IN 1..500 LOOP
+      INSERT INTO BOARD 
+      VALUES(SEQ_BOARD_NO.NEXTVAL,
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글',
+            SEQ_BOARD_NO.CURRVAL || '번째 게시글입니다.<br> 게시글 샘플입니다',
+            DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT, DEFAULT,
+            FLOOR(DBMS_RANDOM.VALUE(3,16)), FLOOR(DBMS_RANDOM.VALUE(4,14)), DEFAULT);
+   END LOOP;
+END;
+
+-- 댓글 샘플데이터 삽입(부모댓글)
+-- ALTER TABLE CAFE."COMMENT" MODIFY PARENT_NO NUMBER NULL; -- 부모댓글번호 컬럼 null로 변경
+BEGIN
+   FOR I IN 1..300 LOOP
+      INSERT INTO "COMMENT" 
+      VALUES(SEQ_COMMENT_NO.NEXTVAL, 
+            SEQ_COMMENT_NO.CURRVAL || '번째 댓글',
+            DEFAULT, NULL, DEFAULT,
+             CEIL(DBMS_RANDOM.VALUE(0,800)),
+             FLOOR(DBMS_RANDOM.VALUE(1, 16)), NULL);
+   END LOOP;
+END;
+
+-- 좋아요 샘플 데이터 200개 (랜덤회원, 랜덤게시글)
+-- 같은 회원이 같은 게시글에 좋아요를 누를 수 없어서 에러 날 수 있음 -> 될 때 까지 실행
+BEGIN
+   FOR I IN 1..200 LOOP
+      INSERT INTO "BOARD_LIKE" 
+      VALUES(CEIL(DBMS_RANDOM.VALUE(0,800)),
+             FLOOR(DBMS_RANDOM.VALUE(1, 16)));
+   END LOOP;
+END;
+
+COMMIT;
