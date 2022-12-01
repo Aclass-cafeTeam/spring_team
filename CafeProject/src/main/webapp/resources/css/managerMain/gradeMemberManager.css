@@ -81,6 +81,14 @@ body{
 /* menuSub 서브 네비 */
 
 /* 내용 */
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
 #content {
     padding: 138px 0 123px;
 }
@@ -151,4 +159,172 @@ ul, ol {
 .lst_type li {
     color: #666;
     line-height: 18px;
+}
+div {
+    display: block;
+}
+form {
+    display: block;
+}
+/* 레벨 테이블 */
+.level_cont {
+    position: relative;
+    z-index: 10;
+    margin-top: 28px;
+    border-bottom: 1px solid #565b62;
+}
+
+.tbl_level {
+    width: 920px;
+    font-size: 12px;
+    line-height: 18px;
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 0 none;
+}
+
+hr, legend, caption {
+    display: none;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.tbl_level th {
+    height: 31px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tbl_level th strong {
+    display: inline-block;
+    margin-left: 6px;
+}
+/* 등급 아이콘 테이블 컬럼명 */
+.blind {
+    visibility: hidden;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+/* 등급 아이콘 테이블 컬럼명 */
+
+.tbl_level td {
+    height: 43px;
+    vertical-align: top;
+}
+
+/* 등급명 -테두리 없애고 못 적게 텍스트 아닌것처럼 만들자*/
+.tbl_level td.level .text2 {
+    width: 126px;
+    padding: 0 0 0 4px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #404040;
+    border: none;
+    outline: none;
+}
+
+
+.tbl_level td {
+    height: 43px;
+    vertical-align: top;
+}
+
+/* 텍스트 전체 */
+.tbl_level td .text2 {
+    width: 579px;
+    padding: 0 4px;
+    color: #666;
+}
+
+/* 등급 설명 -테두리 없애고 못 적게 텍스트 아닌것처럼 만들자*/
+input.text2 {
+    height: 21px;
+    line-height: 21px;
+    border: 1px solid;
+    border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
+    color: #404040;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+}
+
+/* 등급 설명 밑에 조건들 */
+.tbl_level td .detail {
+    padding: 8px 0 19px 7px;
+    color: #46a0c4;
+}
+
+/* 조건 input 타입 */
+input.text4 {
+    height: 17px;
+    line-height: 17px;
+    padding: 0 4px;
+    border: 1px solid;
+    border-color: #c5c5c5 #d9d9d9 #d9d9d9 #c5c5c5;
+}
+
+.tbl_level td .detail .text4 {
+    width: 26px;
+    text-align: right;
+}
+
+.ico{
+    padding-left: 10px;
+    padding-top: 3px;
+}
+
+
+/* 저장 취소 버튼 */
+.section_cont .btn_area {
+    clear: both;
+    height: 80px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn_type_edt2 span, .btn_type_edt2 strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    border-radius: 6%;
+}
+
+.btn_type_edt strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    background-color: #73358C;
+    border-radius: 6%;
 }
