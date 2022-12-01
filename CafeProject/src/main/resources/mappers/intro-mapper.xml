@@ -4,6 +4,7 @@
 	
 		<resultMap type="IntroBoard" id="introBoard_rm">
 			  <id property="boardNo" column="BOARD_NO"/>
+        <result property="boardCode" column="BOARD_CODE"/>
 				<result property="boardTitle" column="BOARD_TITLE"/>
 	      <result property="readCount" column="READ_COUNT"/>
 	      <result property="boardDeleteFlag" column="BOARD_DEL_FL"/>
@@ -14,9 +15,11 @@
 	      <result property="memberNickname" column="MEMBER_NICKNAME"/>
 		</resultMap>
 		
+
+		
 		<!-- 전체글조회 -->
 		<select id="selectBoardList" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_TITLE, READ_COUNT,
+			SELECT BOARD_NO, BOARD_TITLE, BOARD_CODE, READ_COUNT,
 			(SELECT COUNT(*) FROM "COMMENT" C
 			WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
 			FROM "BOARD" B
@@ -26,7 +29,7 @@
 		
 		<!-- 전체공지만 조회 -->
 		<select id="selectNoticeList" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_TITLE, READ_COUNT,
+			SELECT BOARD_NO, BOARD_TITLE, BOARD_CODE, READ_COUNT,
 				(SELECT COUNT(*) FROM "COMMENT" C
 				WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
 			FROM "BOARD" B
@@ -36,7 +39,7 @@
 		
 		<!-- 여행후기 게시판 글 조회 -->
 		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 							(SELECT COUNT(*) FROM "COMMENT" C
 							WHERE C.BOARD_NO =B.BOARD_NO) COMMENT_COUNT
 			FROM BOARD B
@@ -51,6 +54,25 @@
 			SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL='N'
 		</select>
 	
+		<!-- 당일 방문자수 조회 -->
+		<select id="selectTodayVisit" resultType="_int">
+				SELECT COUNT(*)
+				FROM LOGIN_HISTORY
+				WHERE TO_CHAR(LOGIN_DATE , 'YYYYMMDD' ) = TO_CHAR( SYSDATE, 'YYYYMMDD')
+		</select>
+		
+		<!-- 전체 방문자수 조회 -->
+		<select id="selectAllVisit" resultType="_int">
+			SELECT COUNT(*) FROM LOGIN_HISTORY
+		</select>
+		
+		<!-- 댓글 랭킹 -->
+		<select id="commentRank" parameterType="_int" resultMap="introBoard_rm">
+				SELECT MEMBER_NICKNAME, MEMBER_NO, (SELECT COUNT(COMMENT_NO)
+				FROM "COMMENT"C WHERE M.MEMBER_NO=C.MEMBER_NO)COMMENT_COUNT
+				FROM "MEMBER" M
+				ORDER BY COMMENT_COUNT DESC
+		</select>
 
       
  

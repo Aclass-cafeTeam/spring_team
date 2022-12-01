@@ -14,9 +14,6 @@
         <section id="sideMenu">
             <div id="content">
                 <ul id="ul-1">
-                    <li>
-                        <a href="#"><img src="/resources/images/즐찾.PNG" width="26px" height="26px"></a>
-                    </li>
                     <li><a href="#" id="btn1">
                             <p>카페정보</p>
                         </a></li>
@@ -361,11 +358,11 @@
                 <div>
                     <div id="invite_today">
                         <span>오늘</span>
-                        <div>3</div>
+                        <div>${todayVisitCount}</div>
                     </div>
                     <div id="invite_total">
                         <span>전체</span>
-                        <div>40</div>
+                        <div>${allVisitCount}</div>
                     </div>
                 </div>
             </div>
