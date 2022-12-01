@@ -144,3 +144,60 @@ function profileValidate() {
     alert("이미지 변경 후 클릭하세요")
     return false;
 }
+
+// 닉네임 유효성 검사
+const memberNickname = document.getElementById("memberNickname");
+const nickMessage = document.getElementById("nickMessage");
+
+memberNickname.addEventListener("input", function(){
+    
+    // 닉네임에 문자가 입력되지 않은 경우
+    if(this.value.trim().length == 0 ){
+        nickMessage.innerText = "닉네임은 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
+        nickMessage.classList.remove("confirm","error");
+        checkObj.memberNickname = false;
+        return; 
+    }
+
+    // 정규표현식으로 닉네임 확인
+    const regEx = /^[ㄱ-힣\w]{2,10}$/;
+
+    if(regEx.test(this.value)){ // 닉네임이 유효한 경우
+
+        $.ajax({
+            url : "/nickDupCheck", // 비동기 통신을 진행할 서버 요청 주소
+            data: { "memberNickname" : memberNickname.value }, // JS객체에서 서버로 전달할 값(여러 개 가능)
+            type: "GET", // 데이터 전달 방식(GET/POST)-> ajax는 보통 GET방식
+            success: (result) => { // 비동기 통신에 성공해서 응답 받았을 때
+                if(result==0) { // 닉네임 중복이 아닌 경우 
+                    nickMessage.innerText = "사용가능한 닉네임입니다.";
+                    nickMessage.classList.add("confirm");
+                    nickMessage.classList.remove("error");
+                    checkObj.memberNickname = true;
+
+                } else {
+                    nickMessage.innerText = "이미 사용중인 닉네임입니다.";
+                    nickMessage.classList.add("error");
+                    nickMessage.classList.remove("confirm");
+
+                    checkObj.memberNickname = false;
+                }
+
+            },
+            error: () => { // 비동기 통신이 실패했을 때 수행
+                console.log("ajax통신 실패");
+            },
+            complete : ()=> {// success, error 수행여부 관계없이 무조건 수행
+                console.log("중복 검사 수행 완료")
+            }
+        });
+
+    } else { // 유효하지 않을 경우
+        nickMessage.innerText ="닉네임은 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
+        nickMessage.classList.add("error");
+        nickMessage.classList.remove("confirm");
+        checkObj.memberNickname = false;
+    }
+
+
+});

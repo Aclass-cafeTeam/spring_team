@@ -177,11 +177,21 @@ public class MyPageServiceImpl implements MyPageService{
 		return 0;
 	}
 
+	// 마이 페이지 내정보 수정(닉네임, 지역)
+	@Transactional
+	@Override
+	public int updateInfo(Member inputMember) {
+		int result = dao.updateInfo(inputMember);
+		
+		return result;
+	}
 
 	// 닉네임 중복 검사
 	@Override
 	public int nicknameDupCheck(String memberNickname) {
 		return dao.nicknameDupCheck(memberNickname);
 	}
+
+
 
 }
