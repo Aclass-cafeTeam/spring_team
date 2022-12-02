@@ -76,9 +76,23 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardAllList", null, rowBounds);
 	}
 
+	/** 전체 게시글 수
+	 * @return
+	 */
 	public int getAllListCount() {
 		
 		return sqlSession.selectOne("boardMapper.getAllListCount_search");
+	}
+
+	/** 베스트 게시글 조회 (좋아요 높은 순)
+	 * @param pagination
+	 * @return
+	 */
+	public List<Board> selectBoardBestList(Pagination pagination) {
+		
+		RowBounds rowBounds = new RowBounds(0, 10);
+		
+		return sqlSession.selectList("boardMapper.selectBoardBestList", null ,rowBounds);
 	}
 
 
