@@ -116,21 +116,28 @@ function selectTag(type) {
 }    
 
 
-// noticeFlag 선택
-// const boardNotice = document.getElementById("boardNotice");
-// const setting = document.getElementById("setting");
+// 공지 여부 선택
+const boardNotice = document.getElementById("boardNotice");
+const setting = document.getElementById("setting");
 
-// // 공지로 등록을 선택하면
-// boardNotice.addEventListener("change", ()=>{
-    
-//     if(this.checked){
-//         // noticeFlag 선택
-//         setting.style.display="block";
-//     } else{
-//         this.checked = false;
-//         setting.style.display="none";
-//     }
-// });
+if(boardNotice != null) {
+    // (관리자들) 공지로 등록이 체크되었을 때
+    boardNotice.addEventListener("change", (e)=>{
+        
+        if(boardNotice.checked) {
+            console.log(e);
+            setting.style.display='block';
+        } else {
+            setting.style.display='none';
+        }
+
+        // if(!boardNotice.checked) {
+        //         setting.style.display='none';
+        //     }
+        
+                
+    });
+}
 
 
 // function noticeFlag(type) {
@@ -142,9 +149,8 @@ function selectTag(type) {
 
 // }    
 
-
-// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
-
+// 공지로 등록
+$('input:checkbox[name="boardNotice"]:checked').val();
 
 
 

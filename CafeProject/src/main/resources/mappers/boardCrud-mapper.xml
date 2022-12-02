@@ -90,7 +90,7 @@
  			</selectKey>
  			INSERT INTO BOARD 
 			VALUES (#{boardNo}, #{boardTitle}, #{boardContent}, DEFAULT, DEFAULT, DEFAULT,
-							DEFAULT, DEFAULT, DEFAULT, #{memberNo}, #{boardCode}, #{titleTagNo})
+							DEFAULT, DEFAULT, #{noticeFlag}, #{memberNo}, #{boardCode}, #{titleTagNo})
  		</insert>
  		
  		
