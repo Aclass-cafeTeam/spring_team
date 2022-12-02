@@ -87,12 +87,15 @@ Submit.addEventListener("click", (e) => {
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
             if(result.message === "활동 정지 등록에 실패하셨습니다."){
-                
                 alert(result.message);
                 window.close();
 
             }else{
-
+                
+                for(let key of result.memberEmail){
+                    opener.document.getElementById('memberDeleteFlag'+key).value = 'S';
+                }
+                
                 alert(result.message);
                 
                 window.close();

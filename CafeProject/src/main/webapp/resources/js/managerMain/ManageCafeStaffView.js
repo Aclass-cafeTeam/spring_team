@@ -1,11 +1,14 @@
 const searchmemberBtn = document.getElementById("searchmemberBtn");
 const search_result = document.getElementById("search_result");
+
+
+/* 스탭 지정할 멤버 검색해보기 */
 searchmemberBtn.addEventListener("click", function () {
 
 
   let mem_srch = document.getElementById("mem_srch").value;
   let searchType = document.getElementById("searchType").value;
-  
+  $("#search_result").empty(); // id가 "search_result"인 요소의 자식 요소를 모두 삭제함.
   if(mem_srch == ''){
     alert("검색어를 입력하세요.")
   }else{
@@ -41,7 +44,9 @@ searchmemberBtn.addEventListener("click", function () {
 
             }else{
                 
-
+              document.getElementById("electedStaffId").value = result.searchMemberResult.memberEmail;
+              document.getElementById("electedStaffStopFL").value = result.searchMemberResult.memberDeleteFlag;
+              document.getElementById("electedStaffauthorityNo").value = result.searchMemberResult.authorityNo;
                 const li = document.createElement("li"); //부모
                 li.id = "memberInfo_"+result.searchMemberResult.memberEmail;
                 li.setAttribute("name", "memberInfo");
@@ -95,6 +100,37 @@ searchmemberBtn.addEventListener("click", function () {
   }
 
 
+});
 
+const smt_btn = document.getElementById("smt_btn");
+
+smt_btn.addEventListener("click", function () {
+  if($('input:radio[name=이름]').is(':checked')){
+    if($('input[name =memberDeleteFlag]').val()=='S'){
+      alert("활동 정지된 멤버를 매니저로 임명 할 수 없습니다. 활동 정지 해제 후 임명해주세요.")
+    }
+  
+    if($('input[name =authorityNo]').val() == 0 ||$('input[name =authorityNo]').val() == 1||$('input[name =loginMemberauthorityNo]').val() != 0){
+      
+      if($('input[name =loginMemberauthorityNo]').val() != 0){
+        alert("권한 카페매니저가 아니면 매니저 임명이 불가능합니다.")
+      }else{
+        if($('input[name =subManagerFL]').val() == 'true'){
+          alert("부 매니저는 1명만 임명할 수 있습니다. 부 매니저 삭제 후 임명해주세요.")
+        }else{
+          alert("매니저로 임명된 멤버는 매니저로 임명할 수 없습니다.")
+        }
+      }
+  
+    }
+  }else{
+    alert("멤버를 선택해주세요.")
+  }
+  
+
+ 
+
+  
+  
 
 });
