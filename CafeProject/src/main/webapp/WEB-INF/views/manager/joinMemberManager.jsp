@@ -83,7 +83,7 @@
             <p>|</p>
           </li>
           <li class="manager_joinMem">
-            <a href="#" class="joinMem">멤버 등급 관리</a>
+            <a href="/manager/gradeMemberManager" class="joinMem">멤버 등급 관리</a>
           </li>  
       </ul>
     </div>
