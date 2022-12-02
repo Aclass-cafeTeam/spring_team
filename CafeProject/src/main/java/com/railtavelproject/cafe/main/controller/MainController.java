@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.railtavelproject.cafe.main.model.service.IntroService;
+import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
 @Controller
 public class MainController{
@@ -63,8 +64,12 @@ public class MainController{
 			// 지난주 멤버 랭킹 - 댓글
 			Map<String, Object> commentRank = null;
 			commentRank = service.commentRank();
-			
 			model.addAttribute("commentRank", commentRank);
+			
+			// 지난주 멤버 랭킹 - 게시글
+			Map<String, Object> boardRank = null;
+			boardRank = service.boardRank();
+			model.addAttribute("boardRank", boardRank);
 			
 			
 			// * forward 방법 *
