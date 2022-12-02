@@ -27,7 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.JsonObject;
 import com.railtavelproject.cafe.board.model.service.BoardCrudService;
-import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.vo.Board;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
@@ -38,10 +37,7 @@ public class BoardCrudController {
 	@Autowired
 	private BoardCrudService service;
 	
-	@Autowired
-	private BoardDetailService detailService;
-	
-	
+
 	// 게시글 작성 화면
 	@GetMapping("/board/write")
 	public String writeBoard(Model model) {
@@ -174,15 +170,14 @@ public class BoardCrudController {
 	}
 		
 		
-	
-	// 게시글 수정 화면으로 전환
-	@GetMapping("/board/{boardCode}/{boardNo}/update")
-	public String boardUpdate(
-			@PathVariable("boardCode") int boardCode,
-			@PathVariable("boardNo") int boardNo,
-			Model model) {
 
-		Board board = detailService.selectBoardDetail(boardNo);
+	// 게시글 상세 조회(게시글 수정 화면으로 전환)
+	@GetMapping("/board/{boardCode}/{boardNo}/update")
+	public String boardUpdate(	@PathVariable("boardCode") int boardCode,
+								@PathVariable("boardNo") int boardNo,
+								Model model) {
+
+		Board board = service.boardDetail(boardNo);
 		model.addAttribute("board", board);
 	
 		return "board/updateBoard";
@@ -233,4 +228,14 @@ public class BoardCrudController {
 //		return "redirect:" + path;
 //	}
 
+	
+	// 임시저장
+	@PostMapping("/board/write/tempPost")
+	@ResponseBody
+	public int tempPost(Board board, @SessionAttribute("loginMember") Member loginMember) {
+		// 임시저장한 로그인한 회원 번호를 게시글에 담기
+		board.setMemberNo(loginMember.getMemberNo());
+		return service.tempPost(board);
+	}
+	
 }

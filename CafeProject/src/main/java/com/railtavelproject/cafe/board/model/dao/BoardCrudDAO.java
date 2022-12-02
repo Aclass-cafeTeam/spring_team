@@ -47,4 +47,24 @@ public class BoardCrudDAO {
 	public int deleteBoard(int boardNo) {
 		return sqlSession.update("boardCrudMapper.deleteBoard", boardNo);
 	}
+
+	
+	
+	/** 임시 저장
+	 * @param board
+	 * @return result
+	 */
+	public int tempPost(Board board) {
+
+		return sqlSession.insert("boardCrudMapper.tempPost", board);
+
+	}
+
+	/** 게시글 상세조회
+	 * @param boardNo
+	 * @return board
+	 */
+	public Board boardDetail(int boardNo) {
+		return sqlSession.selectOne("boardCrudMapper.boardDetail", boardNo);
+	}
 }

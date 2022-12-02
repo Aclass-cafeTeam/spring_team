@@ -115,7 +115,11 @@
                                     <td>
                                         <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                         <c:if test="${not empty board.titleTagName}">
-                                        <span>[${board.titleTagName}]</span>
+                                            <c:choose>
+                                                <c:when test="board.titleTagNo ne 0">
+                                                    <span>[${board.titleTagName}]</span>
+                                                </c:when>
+                                            </c:choose> 
                                         </c:if>
                                         ${board.boardTitle}</a>
                                         <c:if test="${board.commentCount!=0}">

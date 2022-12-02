@@ -58,7 +58,7 @@
                             <!-- 게시판 타입 -->
                             <div class="board-type wrapper"> 
                                 <div class="select"> 
-                                    <span class="btn-text"> 게시판을 선택하세요.</span>
+                                    <span class="btn-text">${board.boardName}</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
@@ -68,14 +68,14 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_NAME}">
                             </div>
                         
                             
                             <!-- 말머리 -->    
                             <div class="title-tag wrapper"> 
                                 <div class="select"> 
-                                    <span class="btn-text"> 말머리 선택</span>
+                                    <span class="btn-text"> ${board.titleTagName}</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
@@ -85,7 +85,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagNo}">
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagName}">
                             </div> 
                         </div>
                         
@@ -103,8 +103,8 @@
                         </div>
 
                         <!-- 게시글 내용 -->
-                        <div class="test">
-                            <textarea id="summernote" name="boardContent" id="boardContent" value="${board.boardContent}"></textarea>    
+                        <div class="writeC">
+                            <textarea id="summernote" name="boardContent" id="boardContent">${board.boardContent}</textarea>    
                         </div>
                         
                 </div>

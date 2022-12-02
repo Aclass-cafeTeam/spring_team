@@ -103,6 +103,12 @@ function selectType(type) {
 
 
 // 태그 선택
+
+if(boardCode.value != '') {
+    console.log("버튼 활성화");
+    document.querySelector(".tagBtn").classList.add("title-tag", "open");
+}
+
 select[1].addEventListener("click", ()=>{
     wrapper[1].classList.toggle("open")
 });
@@ -112,7 +118,7 @@ function selectTag(type) {
     select[1].firstElementChild.innerText = type.innerText;
     titleTagNo.value = parseInt(type.getAttribute("id"));
     select[1].firstElementChild.style.lineHeight= "1px";
-    // console.log(titleTagNo);
+    console.log(titleTagNo);
 }    
 
 
@@ -123,38 +129,39 @@ function selectTag(type) {
 // // 공지로 등록을 선택하면
 // boardNotice.addEventListener("change", ()=>{
     
-    //     if(this.checked){
-        //         // noticeFlag 선택
-        //         setting.style.display="block";
-        //     } else{
-            //         this.checked = false;
-            //         setting.style.display="none";
-            //     }
-            // });
-            
-            
-            // function noticeFlag(type) {
-                //     wrapper[2].classList.remove("open");
-                //     select[2].firstElementChild.innerText = type.innerText;
-                //     noticeFlag.value = parseInt(type.getAttribute("id"));
-                //     select[2].firstElementChild.style.lineHeight= "1px";
-                //     console.log(noticeFlag);
-                
-                // }    
-                
-                
-                // 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
-                
-                
+//     if(this.checked){
+//         // noticeFlag 선택
+//         setting.style.display="block";
+//     } else{
+//         this.checked = false;
+//         setting.style.display="none";
+//     }
+// });
+
+
+// function noticeFlag(type) {
+//     wrapper[2].classList.remove("open");
+//     select[2].firstElementChild.innerText = type.innerText;
+//     noticeFlag.value = parseInt(type.getAttribute("id"));
+//     select[2].firstElementChild.style.lineHeight= "1px";
+//     console.log(noticeFlag);
+
+// }    
+
+
+// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
+
+
 
 
 // 글쓰기 작성 기본 유효성 검사
+const boardTitle = document.querySelector("[name='boardTitle']");
+const boardContent = document.querySelector("[name='boardContent']");
+
 function writeValidate() {
     console.log("글 작성 유효성 검사");
     
-    const boardTitle = document.querySelector("[name='boardTitle']");
-    const boardContent = document.querySelector("[name='boardContent']");
-    
+
     if(boardCode.value=='') {
         alert("게시판을 선택하세요.");
         return false;
@@ -175,6 +182,10 @@ function writeValidate() {
     }
     return true;
 }
+
+
+
+
 // 임시등록(modal사용)
 const tempSave = document.getElementById("btn-tempSave"); // 임시등록
 const modalBtn = document.getElementById("modalBtn"); // 모달창으로 이동
@@ -184,32 +195,37 @@ const btnClose = document.getElementById("btn-close"); // 닫기버튼
 
 // 임시등록 버튼 누르면 임시저장
 tempSave.addEventListener("click", (e)=>{
+    // const boardTitle = document.querySelector("[name='boardTitle']");
+    // const boardContent = document.querySelector("[name='boardContent']");
 
     // 제목이나 내용이 없을 때
-    if($('#boardTitle').val() == undefined || $('#boardContent').val() == undefined) {
+    if(boardTitle.value.trim().length==0 || boardContent.value.trim(). length==0) {
         alert("제목이나 내용을 입력해주세요.");
         e.preventDefault();
     }
+        
+    // 임시등록 테이블에 저장
+    // var formValues = new FormData($("form[name='boardWriteForm']")[0]);
+    // alert(formValues.boardTitle);
+    const fm = document.getElementById("boardWriteForm");
 
-    // 임시등록 테이블에 저장하고
-    
-    // $.ajax({
-    //     url: "/board/write/tempPost",
-    //     type: "post",
-    //     data: "post",
+    $.ajax({
+        url: "/board/write/tempPost",
+        type: "post",
+        data: $(fm).serialize(),
 
-    //     success: ()=>{
-    //         // 저장 성공 시 알럿창 띄우기
+        success: (result)=>{
+            // 저장 성공 시 알럿창 띄우기
+            if(result > 0) {
+                alert("임시등록이 완료되었습니다.");
+            }
+        },
+        error:()=>{
+            alert("임시등록 실패");
+        }
 
 
-    //     },
-    //     error:()=>{
-
-    //     }
-
-
-    // })
-
+    })
 })
 
 

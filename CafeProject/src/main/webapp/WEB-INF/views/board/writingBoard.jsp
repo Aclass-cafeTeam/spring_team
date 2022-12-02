@@ -33,7 +33,7 @@
     
     <div class="writing-board">
         
-        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return writeValidate()">  
+        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" name="boardWriteForm" onsubmit ="return writeValidate()">  
 
             <div class="writingHeader">
                 <h1 id="HeaderTitle">카페 글쓰기</h1>
@@ -75,7 +75,7 @@
                             <!-- 말머리 -->    
                             <div class="title-tag wrapper"> 
                                 <div class="select"> 
-                                    <span class="btn-text"> 말머리 선택</span>
+                                    <span class="tagBtn btn-text"> 말머리 선택</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
@@ -104,7 +104,7 @@
 
                         <!-- 게시글 내용 -->
                         <div class="test">
-                            <textarea id="summernote" name="boardContent" id="boardContent"></textarea>    
+                            <textarea id="summernote" name="boardContent"></textarea>    
                         </div>
                         
                 </div>
@@ -131,7 +131,7 @@
                     
                     <!-- 댓글 허용 -->
                     <!-- <div class="settingArea">
-                        <p><input type="checkbox" id="comment" name="comment">  <label for="comment">댓글 허용</label></p>
+                        <p><input type="checkbox" id="comment" name="comment"> <label for="comment">댓글 허용</label></p>
                     </div>  -->
                 </div>
             </div>
