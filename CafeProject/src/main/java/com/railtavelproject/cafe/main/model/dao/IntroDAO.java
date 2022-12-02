@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.main.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -68,9 +69,18 @@ public class IntroDAO {
 		return sqlSession.selectOne("introMapper.selectAllVisit");
 	}
 
+	/**
+	 * 댓글 랭킹
+	 * @return
+	 */
 	public List<IntroBoard> commentRank() {
 		RowBounds rowBounds = new RowBounds(0, 5);
 		return sqlSession.selectList("introMapper.commentRank", null ,rowBounds);
+	}
+
+	public List<IntroBoard> boardRank() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.boardRank", null ,rowBounds);
 	}
 
 }
