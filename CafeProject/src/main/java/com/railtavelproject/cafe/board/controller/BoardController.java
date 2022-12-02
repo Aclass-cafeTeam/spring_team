@@ -45,7 +45,7 @@ public class BoardController {
 		Map<String, Object> all = service.selectBoardAllList(cp);
 		model.addAttribute("all", all);
 		
-		return "board/boadAllList";
+		return "board/boardAllList";
 	}	
 	
 	

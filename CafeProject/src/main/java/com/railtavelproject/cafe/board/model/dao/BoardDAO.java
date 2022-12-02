@@ -68,9 +68,20 @@ public class BoardDAO {
 	 * @param cp
 	 * @return all
 	 */
-	public List<Board> selectBoardAllList(int cp) {
-		return sqlSession.selectOne("boardMapper.selectBoardAllList");
+	public List<Board> selectBoardAllList(Pagination pagination) {
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("boardMapper.selectBoardAllList", null, rowBounds);
 	}
+
+	public int getAllListCount() {
+		
+		return sqlSession.selectOne("boardMapper.getAllListCount_search");
+	}
+
+
 
 	/** 검색 조건 일치 게시글 목록 조회
 	 * @param pagination

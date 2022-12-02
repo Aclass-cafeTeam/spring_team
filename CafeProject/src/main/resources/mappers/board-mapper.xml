@@ -36,6 +36,12 @@ WHERE BOARD_CODE = #{boardCode}
 AND BOARD_DEL_FL = 'N'
 </select>
 
+<!-- 전체 게시글 수 조회 -->
+<select id="getAllListCount_search" resultType="_int">
+SELECT COUNT(*) FROM BOARD
+WHERE BOARD_DEL_FL = 'N'
+</select>
+
 <!-- <![CDATA[ sql ]]> -->
 
 <!-- 특정 게시판 목록 조회 -->
@@ -98,7 +104,7 @@ ORDER BY BOARD_NO DESC
       
 <!-- 전체 게시판 목록 조회 -->
 <select id="selectBoardAllList" resultMap="board_rm">
-SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, MEMBER_LEVEL_IMG, BOARD_NAME,
+SELECT BOARD_NO, TITLE_TAG_NAME, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, MEMBER_LEVEL_IMG,
 <![CDATA[
 CASE  
       WHEN SYSDATE - B_CREATE_DATE < 1/24/60
@@ -120,7 +126,7 @@ LEFT JOIN TITLE_TAG USING(TITLE_TAG_NO)
 LEFT JOIN MEMBER_LEVEL USING(MEMBER_LEVEL_NO)
 WHERE BOARD_DEL_FL = 'N'
 ORDER BY BOARD_NO DESC
-</select>   
+</select>
    
    
 <!-- 검색 조건 일치 게시글 수 조회 -->   

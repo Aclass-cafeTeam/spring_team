@@ -36,7 +36,7 @@
 
             <article class="article">
                     <div class="board-name">${boardList[0].boardName}</div>
-                    <p class="board-start">게시판 설명(메뉴 설명)</p>
+                    <p class="board-start"></p>
 
                     <div class="hidden">
                         <input type="checkbox" name="hidden" id="#">
