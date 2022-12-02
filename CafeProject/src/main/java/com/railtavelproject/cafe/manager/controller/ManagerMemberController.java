@@ -238,6 +238,7 @@ public class ManagerMemberController {
 					model.addAttribute("requestURL", "/selectDetailDate");
 					return "manager/totalMemberManager";
 		}
+		/////////////////////////////////////////////
 		
 		//팝업창(멤버등급 변경)으로 가기
 		@RequestMapping("/manager/ManageLevelUpPopup")
@@ -303,12 +304,97 @@ public class ManagerMemberController {
 					return new Gson().toJson(map);
 		}
 		
-		//팝업창(활동 정지)으로 가기
+		//팝업창(강제 탈퇴)으로 가기
 		@RequestMapping("/manager/ManageSecedePopup")
 		public String ManageSecedePopup(Model model,
 				HttpSession session) {
 				model.addAttribute("loginMember", session.getAttribute("loginMember"));
 				return "manager/ManageSecedePopup";
+		}
+		
+		//팝업창(강제 탈퇴)
+		@PostMapping("/ManageSecedePopup")
+		@ResponseBody
+		public String ManageSecedePopup(
+					@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+					@RequestParam(value="comment") String comment,
+					@RequestParam(value="memberCount") int memberCount,
+					@RequestParam(value="radioNum") int radioNum,
+					@RequestParam(value="secessionreason") String secessionreason,
+					@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+					HttpSession session) throws Exception {
+										
+							String message = service.ManageSecedePopup(memberEmail,comment,memberCount,secessionreason,loginMember.getMemberNo());
+
+					
+							Map<String, Object> map = new HashMap<String, Object>();
+							map.put("message",message);
+							map.put("radioNum",radioNum);	
+							map.put("memberCount",memberCount);	
+							map.put("memberEmail",memberEmail);	
+							map.put("secessionreason",secessionreason);	
+			
+						return new Gson().toJson(map);
+			}
+		
+		//활동정지 관리창에서 활동 정지해제 기능updateReleaseSecedeMember
+		@PostMapping("/updateReleaseStopMember")
+		@ResponseBody
+		public String updateReleaseStopMember(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+				@RequestParam(value="memberCount") int memberCount,
+				@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+				HttpSession session) throws Exception {
+												
+					String message = service.updateReleaseStopMember(memberEmail,memberCount);
+
+							
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("message",message);
+					map.put("memberCount",memberCount);	
+					map.put("memberEmail",memberEmail);	
+					
+					return new Gson().toJson(map);
+		}
+		
+		//강제 탈퇴에서 재가입 가능하도록 변경 기능
+		@PostMapping("/updateReleaseSecedeMember")
+		@ResponseBody
+		public String updateReleaseSecedeMember(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+				@RequestParam(value="memberCount") int memberCount,
+				@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+				HttpSession session) throws Exception {
+														
+				String message = service.updateReleaseSecedeMember(memberEmail,memberCount);
+
+									
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("message",message);
+				map.put("memberCount",memberCount);	
+				map.put("memberEmail",memberEmail);	
+							
+				return new Gson().toJson(map);
+		}
+		
+		//강제 탈퇴에서 재가입 가능하도록 변경 기능
+		@PostMapping("/updateNotReleaseSecede")
+		@ResponseBody
+		public String updateNotReleaseSecede(
+				@RequestParam(value="memberEmail[]") List<String> memberEmail, 
+				@RequestParam(value="memberCount") int memberCount,
+				@SessionAttribute("loginMember") com.railtavelproject.cafe.member.model.vo.Member loginMember,
+				HttpSession session) throws Exception {
+																
+				String message = service.updateNotReleaseSecede(memberEmail,memberCount);
+
+											
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("message",message);
+				map.put("memberCount",memberCount);	
+				map.put("memberEmail",memberEmail);	
+									
+				return new Gson().toJson(map);
 		}
 				
 		

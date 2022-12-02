@@ -17,6 +17,8 @@ UPDATE  "MEMBER" SET AUTHORITY_NO = 1 , MEMBER_EMAIL = 'manager02@never.com' WHE
 UPDATE  "MEMBER" SET PROFILE_IMG = '/resources/images/main/프로필.png';
 
 
+INSERT INTO "MEMBER" VALUES(SEQ_MEMBER_NO.NEXTVAL,'manager01@never.com','cafe!');
+INSERT INTO "MEMBER" VALUES(SEQ_MEMBER_NO.NEXTVAL,'manager02@never.com','cafe!');
 ----------------------------------------------------------------------
 --insert 데이터 삽입 
 --등급테이블------------------------------------------
@@ -263,7 +265,7 @@ VALUES(SEQ_IMG_NO.NEXTVAL, '/resources/images/board/',
    '20221116105843_00001.jpg', '1.jpg', 0, 714);
 -- 동일한 패턴으로 12번까지 삽입함
   
-
-  
-
+---------------------------------------------------
+INSERT INTO CAFE_INFO VALUES(SEQ_CAFE_NO.NEXTVAL,'/resources/images/manager/trainImage.jpg',
+'/resources/images/member/mainIMG.png','/resources/images/member/banner1.png','/resources/images/member/배너2.png',DEFAULT);
   

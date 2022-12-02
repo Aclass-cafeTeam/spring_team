@@ -364,8 +364,7 @@ public class ManagerMemberDAO {
 		
 		int insertresult = sqlsession.insert("managerMapper.insertActivityStopMember", map);  //활동 정지 테이블에 삽입
 		int updateresult = sqlsession.update("managerMapper.updateActivityStopMember", memberEmail); //회원(멤버) 테이블에서 회원 활동여부를 활동 정지로 변경해줘야함
-		System.out.println(insertresult);
-		System.out.println(updateresult);
+	
 		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
 		int result;
 		if(insertresult == updateresult) {
@@ -375,6 +374,104 @@ public class ManagerMemberDAO {
 		}
 		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
 		return result;
+	}
+
+	/**회원 강제 탈퇴
+	 * @param memberEmail
+	 * @param comment
+	 * @param secessionreason
+	 * @param smemberNo
+	 * @return
+	 */
+	public int ManageSecedePopup(List<String> memberEmail, String comment, String secessionreason, int SmemberNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberEmail",memberEmail); //강제 탈퇴 당한 회원 이메일들 (회원 다수일수도 있음)
+		map.put("comment",comment);	 //강제 탈퇴 사유 
+		map.put("SmemberNo",SmemberNo);	//강제 탈퇴 시킨 매니저 번호 
+		map.put("secessionreason",secessionreason);	//재 가입 여부 F면 재가입 X / I면 재가입할 수 있음 
+		
+		int insertresult = sqlsession.insert("managerMapper.insertManageSecedePopup", map);  //강제 탈퇴 테이블에 삽입
+		int updateresult = sqlsession.update("managerMapper.updateManageSecedePopup", memberEmail); //회원(멤버) 테이블에서 회원 탈퇴여부를 'Y' 변경해줘야함
+
+		// 삽입이랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
+		int result;
+		if(insertresult == updateresult) {
+			result = insertresult;
+		}else {
+			result = 0;
+		}
+		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
+		return result;
+	}
+
+	/** 활동정지 해제 기능 
+	 * @param memberEmail
+	 * @return
+	 */
+	public int updateReleaseStopMember(List<String> memberEmail) {
+		// 디비에서 활동정지 테이블에서 컬럼 삭제 DELETE 
+        // 멤버 테이블에서 활동 여부 'N'
+		
+		// 삭제랑 업테이트 결과 수가 맞는 지 1차 확인을 dao에서 해주고 아니면 result 0  맞으면 result 원래 수
+		
+		int deleteresult = sqlsession.delete("managerMapper.deleteReleaseStopMember", memberEmail);  //활동 정지 해제 멤버 활동 정지 테이블에서 삭제
+		int updateresult = sqlsession.update("managerMapper.updateReleaseStopMember", memberEmail); //회원(멤버) 테이블에서 회원 탈퇴여부를 'N' 변경해줘야함
+
+
+		int result;
+		if(deleteresult == updateresult) {
+			result = deleteresult;
+		}else {
+			result = 0;
+		}
+		// service에서 활동정지 시킨 수랑 result 값이 같으면 최종 commit 아니면 rollback 
+		return result;
+	}
+
+	/** 강제 탈퇴 관리자 페이지에서 재 가입 신청 불가능하도록 
+	 * @param memberEmail
+	 * @return
+	 */
+	public int updateReleaseSecedeMember(List<String> memberEmail) {
+		
+		return sqlsession.update("managerMapper.updateReleaseSecedeMember", memberEmail);
+	}
+
+	/**강제 탈퇴 관리자 페이지에서 재 가입 신청 가능 
+	 * @param memberEmail
+	 * @return
+	 */
+	public int updateNotReleaseSecede(List<String> memberEmail) {
+	
+		return sqlsession.update("managerMapper.updateNotReleaseSecede", memberEmail);
+	}
+	
+	/**
+	 *스탭 멤버 검색해오기
+	 */
+	public List<Map<String, Object>> manageCafeStaffView() {
+		
+		return sqlsession.selectList("managerMapper.manageCafeStaffView");
+	}
+	
+	/**부매니저 시킬 사람 검색해오기
+	 * 검색은 다 해오는 데 나중에 선택하면 활동정지 멤버는 alert창으로 선택할 수 없는 걸로 띄우기
+	 */
+	public Member manageSearchCafeMember(int searchType, String searchMember) {
+		//srchOption 0이면 아이디(Email) 1이면 별명(Nick)
+	   	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inputMember", searchMember);
+		map.put("srchOption", searchType);
+		return sqlsession.selectOne("managerMapper.selectInputMember",map);
+
+		
+	}
+
+	/**스탭 카운트
+	 * @return
+	 */
+	public int manageCafeStaffViewCount() {
+		return sqlsession.selectOne("managerMapper.manageCafeStaffViewCount");
 	}
    
 }
