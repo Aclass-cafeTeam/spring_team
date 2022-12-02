@@ -58,4 +58,9 @@ public interface MyPageService {
 	 */
 	int updateInfo(Member inputMember);
 
+	/** 마이페이지 비밀번호 변경 서비스
+	 * @param paramMap
+	 * @return result
+	 */
+	int changePw(Map<String, Object> paramMap);
 }

@@ -24,7 +24,7 @@
 
             <section class="myPage-main">
 
-                <form action="#" method="POST" name="myPage-form">
+                <form action="changePw" method="POST" name="changePwForm">
 
                     <div class="myInfoArea">
                         <div class="myPage-subTitle"><label>비밀번호 확인</label></div>
@@ -33,20 +33,22 @@
 
                         <div class="myPage-subTitle">
                             <label>현재 비밀번호</label>
-                            <input type="password" name="memberPw" id="memberPw" maxlength="20"  autocomplete="off">
-                            <button class="myPage-check-btn">확인</button>  
+                            <input type="password" name="currentPw" id="currentPw" maxlength="20"  autocomplete="off">
                         </div>
-                        <span class="myPage-script">비밀번호를 입력해주세요.</span>
+                        <span class="myPage-script" id="nowPwMessage">비밀번호를 입력해주세요.</span>
 
                         <div class="myPage-subTitle">
                             <label>새 비밀번호</label>
-                            <input type="password" name="memberPw" id="#" maxlength="20" autocomplete="off">  
+                            <input type="password" name="newPw" id="newPw" maxlength="20" autocomplete="off">
                         </div>
+                        <span id="pwMessage"></span>
+
                         <div class="myPage-subTitle">
                             <label>새 비밀번호 확인</label>
-                            <input type="password" name="memberPw" id="#" maxlength="20" autocomplete="off">
-                            <button class="myPage-check-btn">확인</button>
+                            <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="20" autocomplete="off">
                         </div>
+                        <span id="pwConfirm"></span>
+
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
                             <button class="myPage-update-btn">수정</button>
@@ -60,7 +62,7 @@
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
-    <script src="/resources/js/member/myPage.js"></script>
+    <script src="/resources/js/member/myPagePw.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
 </html>

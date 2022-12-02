@@ -169,7 +169,7 @@ public class MyPageServiceImpl implements MyPageService{
 		if(bcrypt.matches(memberPw, nowPw)) {
 			
 			// 탈퇴 이력 추가
-			int dLog = dao.insertSecessionLog(memberNo);
+			dao.insertSecessionLog(memberNo);
 			
 			return dao.secession(memberNo);
 		}
@@ -184,6 +184,34 @@ public class MyPageServiceImpl implements MyPageService{
 		int result = dao.updateInfo(inputMember);
 		
 		return result;
+	}
+
+
+	// 마이페이지 비밀번호 변경
+	@Override
+	public int changePw(Map<String, Object> paramMap) {
+		// 현재 비밀번호 일치 시 새 비밀번호로 변경
+		
+		// 1. 회원 번호를 이용해서 DB에서 암호화된 비밀번호를 조회
+		String nowPw = dao.selectCurrentPw((int)paramMap.get("memberNo"));
+		
+		// 2. matches(입력PW, 암호화PW) 결과가 true인 경우
+		// 새 비밀번호로 UPDATE하는 DAO 코드를 호출
+
+		if(bcrypt.matches((String)paramMap.get("currentPw"), nowPw)) {
+			// 새 비밀번호 암호화
+			String newPw = bcrypt.encode((String)paramMap.get("newPw"));
+			
+			paramMap.put("newPw", newPw);
+			// paramMap에 존재하는 기존 "newPw"를 덮어쓰기
+			
+			// DAO 호출
+			int result = dao.changePw(paramMap);
+			
+			return result;
+		}
+		
+		return 0; // 비밀번호 불일치시 0 반환 
 	}
 
 

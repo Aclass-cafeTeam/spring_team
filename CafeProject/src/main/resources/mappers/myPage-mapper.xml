@@ -51,6 +51,13 @@
  	FROM "MEMBER"
  	WHERE MEMBER_NO = #{memberNo}
  </select>
+ 
+  <!-- 비밀번호 변경 (parameterType="map")-->
+ <update id="changePw">
+ 	UPDATE "MEMBER" SET
+ 	MEMBER_PW = #{newPw}
+ 	WHERE MEMBER_NO = #{memberNo}
+ </update>
 
  <!-- 회원 탈퇴 -->
  <update id="secession">

@@ -37,11 +37,6 @@ public class MyPageController {
 		return "member/myPageMain";
 	}
 	
-	// 마이페이지 비밀번호 변경
-	@GetMapping("/ChangePw")
-	public String MyPageChangePw() {
-		return "member/myPageChangePw";
-	}
 	
 	// 마이 페이지 내정보 수정(닉네임, 지역)
 	@PostMapping("/info")
@@ -76,6 +71,41 @@ public class MyPageController {
 		return "redirect:info"; // 내 정보 재요청
 	}
 	
+	// 마이페이지 비밀번호 변경
+	@GetMapping("/changePw")
+	public String MyPageChangePw() {
+		return "member/myPageChangePw";
+	}
+	
+	// 마이페이지 비밀번호 변경
+	@PostMapping("/changePw")
+	public String changePw(@SessionAttribute("loginMember") Member loginMember,
+			//String cuttentPw, String newPw //파라미터 각각 전달 받기
+			@RequestParam Map<String, Object> paramMap,
+			RedirectAttributes ra
+			) {
+		
+		// @RequestParam Map<String, Object> paramMap,
+		// - 모든 파라미터를 맵 형식으로 얻어와 저장
+		
+		// 1. loginMember에서 회원 번호를 얻어와 paramMap에 추가
+		 paramMap.put("memberNo", loginMember.getMemberNo());
+		 
+		 // 2. 서비스 호출 후 결과 반환 받기
+		 int result = service.changePw(paramMap);
+
+		 String message = null;
+		 
+		 if(result >0) { //성공
+			message = "비밀번호가 변경되었습니다.";
+			 
+		 } else { // 실패
+			message = "현재 비밀번호가 일치하지 않습니다.";
+		 }
+		 ra.addFlashAttribute("message", message);
+		
+		return "redirect:changePw";
+	}
 	
 	// 마이페이지 프로필 이미지
 	@GetMapping("/profile")
@@ -199,6 +229,7 @@ public class MyPageController {
 			path = "/"; // 메인페이지로 이동
 			
 			// 로그아웃 코드
+			//"loginMember" 무효화
 			status.setComplete();
 			
 		} else { // 탈퇴 실패
@@ -211,17 +242,6 @@ public class MyPageController {
 		
 		
 		return "redirect:"+path;
-		
-		// status.setComplete();// 세션 무효화
-		// -> 클래스 레벨에 작성된
-		// @SessionAttributes("key")에 작성된
-		// key가 일치하는 값만 무효화
-		
-		// ex) session에서 "loginMember"를 없애야 한다
-		// == @SessionAttributes("loginMember")
-		//	...
-		//	status.complate(); //"loginMember" 무효화
-
 	}
 	
 }
