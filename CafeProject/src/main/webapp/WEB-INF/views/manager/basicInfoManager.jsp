@@ -47,25 +47,25 @@
                     <div class="nav_menu">
                         <ul>
                             <li clss="managerHome">
-                                <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                                <a href="/manager/managerMain"><img src="/resources/images/free-icon-house-1835281.png">관리홈</a>
                             </li>
                             <li>
-                                <a href="/manager/basicInfoManager"><img src="../../resources/images/settings.png">카페운영</a>
+                                <a href="/manager/basicInfoManager"><img src="/resources/images/settings.png">카페운영</a>
                             </li>
                             <li>
-                                <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                                <a href="/manager/totalMemberManager"><img src="/resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                             </li>
                             <li>
-                                <a href="/manager/joinMemberManager"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                                <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                             </li>
                             <li>
-                                <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
+                                <a href="../managerMain/menuManager.html"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                             </li>
                             <li>
-                                <a href="#"><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
+                                <a href="#"><img src="/resources/images/free-icon-edit-4386594.png">글•글양식</a>
                             </li>
                             <li>
-                                <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                                <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                             </li>
                         </ul>
                     </div>
@@ -179,7 +179,7 @@
                         </div>
                         <div class="infoTablerow2">
                             <div class="infoTablerow2Box">
-                                <P>별명 사용</P>
+                                <P>닉네임 사용</P>
                             </div>
                         </div>
                     </div>
