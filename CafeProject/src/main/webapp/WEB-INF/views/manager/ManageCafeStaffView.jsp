@@ -190,10 +190,18 @@
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
             <%-- 위에 저장 폼인데 사용할지 안할지 미정 --%>
             <form name="staffFrm" action="/ManageCafeStaffAdd.nhn" method="post">
-            <input type="hidden" name="clubid" value="30828148">
-            <input type="hidden" name="managetype" value="7">
-            <input type="hidden" name="selectMenuidList" value="">
-            <input type="hidden" name="electedStaffId" value="">
+            <input type="hidden" name="loginMember" value="${loginMember.memberEmail}">
+            <input type="hidden" name="loginMemberauthorityNo" value="${loginMember.authorityNo}"><%-- 카페매니저만 매니저 임명 권한 --%>
+            <input type="hidden" id="electedStaffId" name="electedStaffId" value="">
+            <input type="hidden" id="electedStaffStopFL" name="memberDeleteFlag" value=""><%-- 활동정지 멤버 --%>
+            <input type="hidden" id="electedStaffauthorityNo" name="authorityNo" value=""><%-- 매니저면 안됨 --%>
+            <c:if test="${!empty stepMember}">
+              <c:forEach var="member" items="${stepMember}">
+                <c:if test="${member.authorityNo == 1}">
+                  <input type="hidden" id="subManagerFL" name="subManagerFL" value="true"><%-- 부매니저가 있으면 안됨 --%>
+                </c:if>
+              </c:forEach>
+            </c:if>
             <input type="hidden" id="wholeMessageSendAuth" name="cafeStaff.wholeMessageSendAuth" value="false">
             </form>
 

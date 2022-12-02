@@ -1,11 +1,14 @@
 const searchmemberBtn = document.getElementById("searchmemberBtn");
 const search_result = document.getElementById("search_result");
+
+
+/* 스탭 지정할 멤버 검색해보기 */
 searchmemberBtn.addEventListener("click", function () {
 
 
   let mem_srch = document.getElementById("mem_srch").value;
   let searchType = document.getElementById("searchType").value;
-  
+  $("#search_result").empty(); // id가 "search_result"인 요소의 자식 요소를 모두 삭제함.
   if(mem_srch == ''){
     alert("검색어를 입력하세요.")
   }else{
@@ -41,7 +44,9 @@ searchmemberBtn.addEventListener("click", function () {
 
             }else{
                 
-
+              document.getElementById("electedStaffId").value = result.searchMemberResult.memberEmail;
+              document.getElementById("electedStaffStopFL").value = result.searchMemberResult.memberDeleteFlag;
+              document.getElementById("electedStaffauthorityNo").value = result.searchMemberResult.authorityNo;
                 const li = document.createElement("li"); //부모
                 li.id = "memberInfo_"+result.searchMemberResult.memberEmail;
                 li.setAttribute("name", "memberInfo");
@@ -93,8 +98,6 @@ searchmemberBtn.addEventListener("click", function () {
 
       });
   }
-
-
 
 
 });
