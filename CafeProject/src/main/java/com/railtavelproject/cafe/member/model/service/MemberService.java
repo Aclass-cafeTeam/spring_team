@@ -52,6 +52,4 @@ public interface MemberService {
 	 */
 	int insertLogHistory(int memberNo);
 
-
-
 }
