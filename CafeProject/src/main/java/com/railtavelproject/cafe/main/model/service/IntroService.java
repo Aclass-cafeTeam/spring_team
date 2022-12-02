@@ -41,10 +41,16 @@ public interface IntroService {
 	int AllVisitCount();
 
 	/**
-	 * 댓글 랭킹
+	 * 멤버 랭킹-댓글
 	 * @return
 	 */
 	Map<String, Object> commentRank();
+
+	/**
+	 * 멤버 랭킹-게시글
+	 * @return
+	 */
+	Map<String, Object> boardRank();
 	
 	
 

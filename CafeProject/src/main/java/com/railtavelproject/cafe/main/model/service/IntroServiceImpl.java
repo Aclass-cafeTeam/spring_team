@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.main.model.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -84,10 +85,23 @@ public class IntroServiceImpl implements IntroService{
 		List<IntroBoard> commentRankList = dao.commentRank();
 		
 		Map<String, Object> commentRank = new HashMap<String, Object>();
-		commentRank.put("commentRank", commentRank);
-		
+		commentRank.put("commentRankList", commentRankList);
+				
 		return commentRank;
 	}
+
+	// 멤버 랭킹-게시글
+	@Override
+	public Map<String, Object> boardRank() {
+		List<IntroBoard> boardRankList = dao.boardRank();
+		
+		Map<String, Object> boardRank = new HashMap<String, Object>();
+		boardRank.put("boardRankList", boardRankList);
+				
+		return boardRank;
+	}
+	
+	
 	
 	
 	

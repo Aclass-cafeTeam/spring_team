@@ -14,10 +14,10 @@
         <section id="sideMenu">
             <div id="content">
                 <ul id="ul-1">
-                    <li><a href="#" id="btn1">
+                    <li><a href="#" id="btn1" onclick="return false;">
                             <p>카페정보</p>
                         </a></li>
-                    <li><a href="#" id="btn2">
+                    <li><a href="#" id="btn2" onclick="return false;">
                             <p>나의활동</p>
                         </a></li>
                 </ul>
@@ -66,8 +66,8 @@
                         <div id="count-3">
                             <div id="star">
                                 <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                                <div id="star1">즐겨찾는 멤버</div>
-                                <div id="star-count">76,289명</div>
+                                <div id="star1">밤하늘에</div>
+                                <div id="star-count">퍼어얼~</div>
                             </div>
                         </div>
 
@@ -315,7 +315,7 @@
                             <a href="#">기타 Q/A</a>
                         </li>
                     </ul>
-                </section>
+                </section> --%>
 
                 <section id="board-basic">
                     <div name="board-title">■ 갤러리 자료</div>
@@ -329,7 +329,7 @@
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
-                </section> --%>
+                </section>
 
                 <c:forEach var="category" items="${mainList}">
                     <section id="board-basic">
@@ -371,52 +371,58 @@
                 <div id="ranking_title">
                     지난주 멤버 랭킹
                 </div>
-
                 <div id="ranking_category">
                     <ul>
-                        <li><a href="#">댓글</a></li>
+                        <li><a href="#" onclick="return false;" id="member_comment">댓글</a></li>
                         <div id="ranking_line"></div>
-                        <li><a href="#">게시글</a></li>
+                        <li><a href="#" onclick="return false;" id="member_board">게시글</a></li>
                         <div id="ranking_line"></div>
-                        <li><a href="#">방문</a></li>
+                        <li><a href="#" onclick="return false;" id="member_visit">방문</a></li>
                     </ul>
                 </div>
 
-                <div id="member_ranking">
-                    <ul>
-                        <li id="ranking-member">
-                            <span>1.</span>
-                            <div>
-                                <span id="member_id"><a href="#">김서희</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>2.</span>
-                            <div>
-                                <span id="member_id"><a href="#">김지윤</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>3.</span>
-                            <div>
-                                <span id="member_id"><a href="#">강민규</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>4.</span>
-                            <div>
-                                <span id="member_id"><a href="#">한지훈</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>5.</span>
-                            <div>
-                                <span id="member_id"><a href="#">정지윤</a></span>
-                            </div>
-                        </li>
-                    </ul>
+                <%-- 지난주 댓글 랭킹 --%>
+                <c:choose>
+                    <c:when test="${empty commentRank.commentRankList}">
+                        <div>랭킹업슴</div>
+                    </c:when>
+                    <c:otherwise>
+                            <div id="member_ranking" class="memberCommentRank">
+                        <c:forEach var="commentRank" items="${commentRank.commentRankList}" varStatus="status">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <span>${status.count}. </span>
+                                        <div>
+                                            <span id="member_id"><a href="#">${commentRank.memberNickname}</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
 
-                </div>
+                <%-- 지난주 게시글 랭킹 --%>
+                <c:choose>
+                    <c:when test="${empty boardRank.boardRankList}">
+                        <div>랭킹업슴</div>
+                    </c:when>
+                    <c:otherwise>
+                            <div id="member_ranking" class="memberBoardRank">
+                        <c:forEach var="boardRank" items="${boardRank.boardRankList}" varStatus="status">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <span>${status.count}. </span>
+                                        <div>
+                                            <span id="member_id"><a href="#">${boardRank.memberNickname}</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+                
             </div>
 
 
@@ -427,9 +433,9 @@
 
                 <div id="ranking_category">
                     <ul>
-                        <li><a href="#">좋아요 횟수</a></li>
+                        <li><a href="#" onclick="return false;">좋아요 횟수</a></li>
                         <div id="ranking_line"></div>
-                        <li><a href="#">댓글수</a></li>
+                        <li><a href="#" onclick="return false;">댓글수</a></li>
                     </ul>
                 </div>
 
@@ -479,9 +485,9 @@
 
                 <div id="ranking_category">
                     <ul>
-                        <li><a href="#">방문</a></li>
+                        <li><a href="#" onclick="return false;">방문</a></li>
                         <div id="ranking_line"></div>
-                        <li><a href="#">신입</a></li>
+                        <li><a href="#" onclick="return false;">신입</a></li>
                     </ul>
                 </div>
 
@@ -571,6 +577,7 @@
 
 
         </section>
+        <script src="/resources/js/main/sideMenu.js"></script>
 </body>
 </html>
 
