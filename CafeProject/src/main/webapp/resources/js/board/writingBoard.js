@@ -103,21 +103,15 @@ function selectType(type) {
 
 
 // 태그 선택
-
-if(boardCode.value != '') {
-    console.log("버튼 활성화");
-    document.querySelector(".tagBtn").classList.add("title-tag", "open");
-}
-
 select[1].addEventListener("click", ()=>{
     wrapper[1].classList.toggle("open")
 });
 
 function selectTag(type) {
     wrapper[1].classList.remove("open");
-    select[1].firstElementChild.innerText = type.innerText;
     titleTagNo.value = parseInt(type.getAttribute("id"));
     select[1].firstElementChild.style.lineHeight= "1px";
+    select[1].firstElementChild.innerText = type.innerText;
     console.log(titleTagNo);
 }    
 
@@ -164,6 +158,11 @@ function writeValidate() {
 
     if(boardCode.value=='') {
         alert("게시판을 선택하세요.");
+        return false;
+    }
+
+    if(titleTagNo.value=='') {
+        alert("태그여부를 선택하세요.");
         return false;
     }
     
