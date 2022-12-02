@@ -33,18 +33,18 @@
 
                         <div class="myPage-subTitle">
                             <label>현재 비밀번호</label>
-                            <input type="password" name="memberPw" id="memberPw" maxlength="30">
+                            <input type="password" name="memberPw" id="memberPw" maxlength="20"  autocomplete="off">
                             <button class="myPage-check-btn">확인</button>  
                         </div>
                         <span class="myPage-script">비밀번호를 입력해주세요.</span>
 
                         <div class="myPage-subTitle">
                             <label>새 비밀번호</label>
-                            <input type="password" name="memberPw" id="#" maxlength="30">  
+                            <input type="password" name="memberPw" id="#" maxlength="20" autocomplete="off">  
                         </div>
                         <div class="myPage-subTitle">
                             <label>새 비밀번호 확인</label>
-                            <input type="password" name="memberPw" id="#" maxlength="30">
+                            <input type="password" name="memberPw" id="#" maxlength="20" autocomplete="off">
                             <button class="myPage-check-btn">확인</button>
                         </div>
                         <div class="myPage-btn-area">

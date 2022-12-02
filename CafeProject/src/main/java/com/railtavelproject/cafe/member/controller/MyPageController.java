@@ -43,38 +43,38 @@ public class MyPageController {
 		return "member/myPageChangePw";
 	}
 	
-	// 마이 페이지 내정보 수정
-//	@PostMapping("/info")
-//	public String updateInfo(Member InputMember, 
-//			@SessionAttribute("loginMember") Member loginMember,
-//			RedirectAttributes ra
-//			){
-//		
-//		// inputMember : 입력받은 memberNickname / memberResidence
-//		
-//		// 1. 로그인된 회원 정보에서 회원 번호를 얻어와 inputMember에 저장
-//		InputMember.setMemberNo(loginMember.getMemberNo());
-//		
-//		// 회원 정보 수정 서비스 호출 후 결과 반환 받기
-//		int result=service.updateInfo(InputMember);
-//
-//		String message=null;
-//		
-//		if(result>0) {
-//			message = "회원 정보가 수정되었습니다.";
-//			
-//			// DB - session 동기화 작업
-//			loginMember.setMemberNickname(InputMember.getMemberNickname());
-//			loginMember.setMemberResidence(InputMember.getMemberResidence());
-//		
-//		} else	{
-//				message = "회원 정보 수정 실패...";
-//		}
-//		
-//		ra.addFlashAttribute("message", message);
-//		
-//		return "redirect:info"; // 내 정보 재요청
-//	}
+	// 마이 페이지 내정보 수정(닉네임, 지역)
+	@PostMapping("/info")
+	public String updateInfo(Member InputMember, 
+			@SessionAttribute("loginMember") Member loginMember,
+			RedirectAttributes ra
+			){
+		
+		// inputMember : 입력받은 memberNickname / memberResidence
+		
+		// 1. 로그인된 회원 정보에서 회원 번호를 얻어와 inputMember에 저장
+		InputMember.setMemberNo(loginMember.getMemberNo());
+		
+		// 회원 정보 수정 서비스 호출 후 결과 반환 받기
+		int result=service.updateInfo(InputMember);
+
+		String message=null;
+		
+		if(result>0) {
+			message = "회원 정보가 수정되었습니다.";
+			
+			// DB - session 동기화 작업
+			loginMember.setMemberNickname(InputMember.getMemberNickname());
+			loginMember.setMemberResidence(InputMember.getMemberResidence());
+		
+		} else	{
+				message = "회원 정보 수정 실패...";
+		}
+		
+		ra.addFlashAttribute("message", message);
+		
+		return "redirect:info"; // 내 정보 재요청
+	}
 	
 	// 닉네임 중복 검사
 	@GetMapping("/nicknameDupCheck")
