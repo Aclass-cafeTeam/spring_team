@@ -101,6 +101,26 @@ public class IntroServiceImpl implements IntroService{
 		return boardRank;
 	}
 	
+	// 멤버 랭킹-로그인
+	@Override
+	public Map<String, Object> loginRank() {
+		List<IntroBoard> loginRankList = dao.loginRank();
+		
+		Map<String, Object> loginRank = new HashMap<String, Object>();
+		loginRank.put("loginRankList", loginRankList);
+				
+		return loginRank;
+	}
+
+	// 회원 수 조회
+	@Override
+	public int memberCount() {
+		
+		int memberCount = dao.memberCount();
+		return memberCount;
+	}
+	
+	
 	
 	
 	

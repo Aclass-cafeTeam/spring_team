@@ -47,6 +47,9 @@ public class MainController{
 			model.addAttribute("travelReviewList", travelReviewList);
 			
 			
+			// 회원수 조회
+			int memberCount = service.memberCount();
+			model.addAttribute("memberCount", memberCount);
 			
 			// 사이드메뉴(카테고리명+게시판명) 조회
 			List<Map<String, Object>> mainList = service.selectMainList();
@@ -70,6 +73,11 @@ public class MainController{
 			Map<String, Object> boardRank = null;
 			boardRank = service.boardRank();
 			model.addAttribute("boardRank", boardRank);
+			
+			// 지난주 멤버 랭킹 - 로그인
+			Map<String, Object> loginRank = null;
+			loginRank = service.loginRank();
+			model.addAttribute("loginRank", loginRank);
 			
 			
 			// * forward 방법 *

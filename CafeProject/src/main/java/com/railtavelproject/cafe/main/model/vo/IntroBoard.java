@@ -19,10 +19,12 @@ public class IntroBoard {
 	private int commentNo;
 	private int commentCount;
 	private int boardCount;
+	private int loginCount;
 	private String commentDelFl;
 	
 	private String memberNickname;
 	
+	private String memberNo;
 	private int todayVisitCount;
 	
 	
