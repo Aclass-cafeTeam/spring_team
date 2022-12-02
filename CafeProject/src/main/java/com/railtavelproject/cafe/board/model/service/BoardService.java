@@ -22,5 +22,19 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardNoticeList(int boardCode);
 
+	/** 전체 게시글 조회
+	 * @param boardNo
+	 * @param cp
+	 * @return all
+	 */
+	Map<String, Object> selectBoardAllList(int cp);
+
+	/** 검색 목록 조회
+	 * @param pm
+	 * @param cp
+	 * @return boardList
+	 */
+//	Map<String, Object> selectBoardList(Map<String, Object> pm, int cp);
+
 
 }
