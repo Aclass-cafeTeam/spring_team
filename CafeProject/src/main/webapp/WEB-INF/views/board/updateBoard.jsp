@@ -33,7 +33,7 @@
     
     <div class="writing-board">
         
-        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" name="boardWriteForm" onsubmit ="return writeValidate()">  
+        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return writeValidate()">  
 
             <div class="writingHeader">
                 <h1 id="HeaderTitle">카페 글쓰기</h1>
@@ -58,7 +58,7 @@
                             <!-- 게시판 타입 -->
                             <div class="board-type wrapper"> 
                                 <div class="select"> 
-                                    <span class="btn-text"> 게시판을 선택하세요.</span>
+                                    <span class="btn-text">${board.boardName}</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
@@ -68,14 +68,14 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="">${boardType.BOARD_CODE}
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_NAME}">
                             </div>
                         
                             
                             <!-- 말머리 -->    
                             <div class="title-tag wrapper"> 
                                 <div class="select"> 
-                                    <span class="tagBtn btn-text"> 말머리 선택</span>
+                                    <span class="btn-text"> ${board.titleTagName}</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
@@ -85,7 +85,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="">${titleTag.TITLE_TAG_NO}
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagName}">
                             </div> 
                         </div>
                         
@@ -99,12 +99,12 @@
                         
                         <!-- 게시글 제목 -->
                         <div class="writeTitle">
-                            <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." >
+                            <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." value="${board.boardTitle}" >
                         </div>
 
                         <!-- 게시글 내용 -->
-                        <div class="test">
-                            <textarea id="summernote" name="boardContent"></textarea>    
+                        <div class="writeC">
+                            <textarea id="summernote" name="boardContent" id="boardContent">${board.boardContent}</textarea>    
                         </div>
                         
                 </div>
@@ -131,7 +131,7 @@
                     
                     <!-- 댓글 허용 -->
                     <!-- <div class="settingArea">
-                        <p><input type="checkbox" id="comment" name="comment"> <label for="comment">댓글 허용</label></p>
+                        <p><input type="checkbox" id="comment" name="comment">  <label for="comment">댓글 허용</label></p>
                     </div>  -->
                 </div>
             </div>
@@ -146,5 +146,6 @@
 
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
+    <script src="/resources/js/board/boardUpdate.js"></script>
 </body>
 </html>

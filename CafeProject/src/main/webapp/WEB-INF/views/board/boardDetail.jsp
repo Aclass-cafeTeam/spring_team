@@ -47,7 +47,11 @@
 
                             <%-- 말머리가 있을 경우 --%>
                             <c:if test="${not empty board.titleTagName}">
-                                <div class="title-tag">[${board.titleTagName}]</div>
+                                <c:choose>
+                                    <c:when test="board.titleTagNo ne 0">
+                                        <div class="title-tag">[${board.titleTagName}]</div>
+                                    </c:when>
+                                </c:choose> 
                             </c:if>
                         <div class="board-title">${board.boardTitle}</div>
 
@@ -71,7 +75,7 @@
                                 </div>
                                 
                                 <div class="date-area">
-                                    <div class="p-date">작성일 ${board.boardCreateDate}</div>
+                                    <div class="p-date"> ${board.boardCreateDate}</div>
                                     <!-- 수정한 게시글인 경우 -->
                                     <c:if test="${not empty board.boardUpdateDate}">
                                         <div class="p-date">수정일 ${board.boardUpdateDate}</div>
@@ -137,5 +141,6 @@
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/boardDetail.js"></script>
     <script src="/resources/js/board/comment.js"></script>
+    <script src="/resources/js/board/boardUpdate.js"></script><!-- 게시글 수정/삭제 -->
 </body>
 </html>
