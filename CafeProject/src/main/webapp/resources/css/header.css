@@ -5,7 +5,7 @@
     margin: 0;
     z-index: 10;
     cursor: pointer;
-  }
+}
 
 .link_never{
     float: left;
@@ -39,6 +39,9 @@
     height: 17px;
 }
 
+/* ////////////////////////////////////////////////////////////// */
+/* header 오른쪽 상단 메뉴 */
+
 #header-top{
     display: flex;
     justify-content: space-between;
@@ -49,6 +52,7 @@
     color : black; /* 글자 검정색 */
     font-size: 12px;
     padding: 9px;
+    position: relative;
 }
 
 #header-top-menu a:hover{
@@ -61,10 +65,54 @@
     font-size: 12px;
 }
 
-#header-top-menu{
-    display: flex;
-    align-items: center;
+/* 메뉴 on/off를 위한 체크박스 */
+#header-menu-toggle{
+    display : none;
 }
+
+/* 오른쪽 상단 닉네임 */
+label[for="header-menu-toggle"] { 
+    cursor: pointer; 
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+label[for="header-menu-toggle"]:hover { text-decoration: underline; }
+
+
+/* 체크박스의 다음 div */
+#header-menu-toggle + div { display: none; }
+
+/* 체크박스가 체크된 경우 다음 div */
+#header-menu-toggle:checked + div { display: block; }
+
+
+/* 닉네임 클릭시 보이는 메뉴 */
+#header-menu {
+    width: 100px;
+    height: 80px;
+    margin-top: 5px;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    position: absolute ;
+    z-index: 10;
+    background-color: white;
+
+}
+
+#header-menu > a {
+    display: flex;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+}
+
+#header-menu > a:hover {
+    background-color: #e3e3e3;
+}
+
+/* ////////////////////////////////////////////////////////////// */
 
 nav {
     height: 47px;
@@ -123,8 +171,8 @@ nav li>a {
     white-space: nowrap; */
 }
 
-nav li>a:hover{
-    color: #000;
+#special-menu > a:hover{
+    color: black;
     text-decoration: underline;
     cursor: pointer;
     font-weight: bold;
@@ -168,4 +216,6 @@ nav li>a:hover{
     content: "";
     padding: 0px;
 }
+
+
 
