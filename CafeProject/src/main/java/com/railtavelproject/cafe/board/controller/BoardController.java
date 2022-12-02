@@ -46,7 +46,20 @@ public class BoardController {
 		model.addAttribute("all", all);
 		
 		return "board/boardAllList";
-	}	
+	}
+	
+	// 베스트 게시글 (좋아요 높은 순)
+	@GetMapping("/board/bestBoard")
+	public String selectBoardBestList(
+			Model model,
+			@RequestParam(value="cp", required=false, defaultValue = "1") int cp
+			) {
+		
+		Map<String, Object> best = service.selectBoardBestList(cp);
+		model.addAttribute("best", best);
+		
+		return "board/boardBestList";
+	}
 	
 	
 //	@GetMapping("/board/{boardCode}")

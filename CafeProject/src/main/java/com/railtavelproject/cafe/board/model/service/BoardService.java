@@ -29,6 +29,12 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardAllList(int cp);
 
+	/** 베스트 게시글 조회 (좋아요 높은 순)
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> selectBoardBestList(int cp);
+
 	/** 검색 목록 조회
 	 * @param pm
 	 * @param cp

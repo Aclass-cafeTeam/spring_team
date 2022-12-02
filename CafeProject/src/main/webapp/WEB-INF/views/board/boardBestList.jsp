@@ -3,8 +3,8 @@
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="noticeList" value="${notice.noticeList}" />
-<c:set var="pagination" value="${all.pagination}" />
-<c:set var="allList" value="${all.allList}" />
+<c:set var="pagination" value="${best.pagination}" />
+<c:set var="bestList" value="${best.bestList}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,8 +35,8 @@
             </c:if>
 
             <article class="article">
-                    <div class="board-name">전체글보기</div>
-                    <p class="board-start"></p>
+                    <div class="board-bestname">베스트 게시글</div>
+                    <p class="board-start">좋아요 수가 가장 많은 게시글 TOP 10 입니다.</p>
 
                     <div class="hidden">
                         <input type="checkbox" name="hidden" id="#">
@@ -102,7 +102,7 @@
                         </c:choose>
 
                         <c:choose>
-                            <c:when test="${empty allList}">
+                            <c:when test="${empty bestList}">
                             <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
                                     <th colspan="7"></th>
@@ -110,17 +110,17 @@
                             </c:when>
 
                             <c:otherwise>
-                                <c:forEach var="board" items="${allList}">
+                                <c:forEach var="board" items="${bestList}">
                                     <tr>
-                                        <td class="board-number">${board.boardNo}</td>
+                                        <td class="bestNo">Best</td>
                                         <td>
-                                            <a class="normal-title" href="/board/selectAll/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="best-title" href="/board/selectAll/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                             <c:if test="${not empty board.titleTagName}">
                                             <span>[${board.titleTagName}]</span>
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
-                                            <a href="#" class="comment">[${board.commentCount}]</a>
+                                            <a href="#" class="best-comment">[${board.commentCount}]</a>
                                             </c:if>                   
                                         </td>
                                         <td></td>

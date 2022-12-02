@@ -41,6 +41,7 @@ public class BoardServiceImpl implements BoardService{
 		return map;
 	}
 
+	// 게시판 별 공지 게시글 조회
 	@Override
 	public Map<String, Object> selectBoardNoticeList(int boardCode) {
 		
@@ -53,6 +54,7 @@ public class BoardServiceImpl implements BoardService{
 		return notice;
 	}
 
+	// 전체 게시글 조회
 	@Override
 	public Map<String, Object> selectBoardAllList(int cp) {
 		
@@ -67,6 +69,23 @@ public class BoardServiceImpl implements BoardService{
 		all.put("allList", allList);
 		
 		return all;
+	}
+
+	// 베스트 게시글 조회 (좋아요 높은 순)
+	@Override
+	public Map<String, Object> selectBoardBestList(int cp) {
+		
+		int allListCount = dao.getAllListCount();
+		
+		Pagination pagination = new Pagination(allListCount, cp);
+		
+		List<Board> bestList = dao.selectBoardBestList(pagination);
+		
+		Map<String, Object> best = new HashMap<String, Object>();
+		best.put("pagination", pagination);
+		best.put("bestList", bestList);
+		
+		return best;
 	}
 
 //	@Override
