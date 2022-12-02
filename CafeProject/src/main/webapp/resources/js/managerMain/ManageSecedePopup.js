@@ -58,7 +58,16 @@ Submit.addEventListener("click", (e) => {
     let memberEmail1 = checkObj["chk_val"];
     let memberCount1 = checkObj["checkNum"]; 
     let comment1 = "";
+    let rejectchk;
+    if($('input[name=rejectchk]').prop("checked")){
+      rejectchk = 'F'
+    }else{
+      rejectchk = 'I'
+    }
+    
+  /*   if($('input[type=radio]:checked').val() ){
 
+    } */
     let radio= $('input[type=radio]:checked').val();
     switch (radio) {
         case "0":
@@ -74,28 +83,46 @@ Submit.addEventListener("click", (e) => {
             comment1 ="카페폐쇄를 위한 탈퇴 진행";
         break;
         case "4":
+            if($('#rejectreason').val() ==''){
+              alert('사유를 적어주세요');
+              return false;
+            }
             comment1 = $('#rejectreason').val();
             break;
     }
-/*     $.ajax({
 
-        url: "/updateActivityStopMember",
+    console.log(radio);
+    console.log(comment1);
+    console.log(memberEmail1);
+    console.log(memberCount1);
+    console.log(rejectchk);
+    $.ajax({
+
+        url: "/ManageSecedePopup",
         data: { "radioNum"     : radio,
                 "memberEmail"  : memberEmail1,
                 "memberCount"  : memberCount1,
                 "comment"      : comment1,
+                "secessionreason"      : rejectchk,
                 "message"      : ""
         },
         type: "POST",
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
-            if(result.message === "활동 정지 등록에 실패하셨습니다."){
+            if(result.message === "회원 강제 탈퇴 반영에 실패하셨습니다."){
                 
                 alert(result.message);
                 window.close();
 
             }else{
 
+              for(let key of result.memberEmail){
+                    
+                opener.$('tr[memberid='+key+']').remove();
+                
+              }
+
+              
                 alert(result.message);
                 
                 window.close();
@@ -103,11 +130,11 @@ Submit.addEventListener("click", (e) => {
             }
         },
         error: () => {
-            console.log("멤버 활동 정지 반영 실패")
+            console.log("멤버 강제 탈퇴 반영 실패")
         }
 
 
-    }); */
+    }); 
 
 });
 

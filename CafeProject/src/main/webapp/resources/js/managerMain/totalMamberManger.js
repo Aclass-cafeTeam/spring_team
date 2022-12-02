@@ -156,14 +156,17 @@ function CheckValue(){
   let checkNum = $('._checkMember:checkbox:checked').length;
   let chk_val = [];
   let chk_level =[];
+  let memberDeleteFlag =[];
   $('._checkMember:checkbox:checked').each(function(){
     chk_val.push($(this).val());
     chk_level.push(document.getElementById("ico_level"+$(this).val()).innerText);
+    memberDeleteFlag.push(document.getElementById("memberDeleteFlag"+$(this).val()).value);
   });
   const checkObj = {
     "checkNum": checkNum,
     "chk_val": chk_val,
-    "chk_level" : chk_level
+    "chk_level" : chk_level,
+    "memberDeleteFlag" : memberDeleteFlag
   };
   return checkObj;
 }
@@ -204,15 +207,22 @@ changeLevel.addEventListener("click", function () {
 stopActivity.addEventListener("click", function () {
 
   const checkObj = CheckValue();
-  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')|| checkObj["checkNum"] <= 0){
+  if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')|| checkObj["checkNum"] <= 0
+  ||checkObj["memberDeleteFlag"].includes('S') ){
+
+    if(checkObj["memberDeleteFlag"].includes('S')){
+      alert("활동 정지 당한 멤버가 포함되어 있습니다.");
+    }
 
     if(checkObj["checkNum"] <= 0){
       alert("멤버를 선택해주세요");
-    }else{
+    }
+    
+    if(checkObj["chk_level"].includes('카페매니저') || checkObj["chk_level"].includes('부매니저')){
 
-    document.getElementById("_layerStopActivity").style.display = "block";
-    document.getElementById("_layerStopActivity").style.overflow = "visible";
-    document.getElementById("_layerStopActivity").style.zoom = "1";
+      document.getElementById("_layerStopActivity").style.display = "block";
+      document.getElementById("_layerStopActivity").style.overflow = "visible";
+      document.getElementById("_layerStopActivity").style.zoom = "1";
     }
 
   }else{

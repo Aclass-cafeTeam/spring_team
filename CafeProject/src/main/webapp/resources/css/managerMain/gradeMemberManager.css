@@ -1,0 +1,330 @@
+@import url('./managerHeader.css');
+@import url('./managerFooter.css');
+
+body{
+    width: 100%;
+    height: 100%; 
+    margin: auto;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+body{
+    display: block;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 메인홈이라서 메인관리 메뉴만 색깔변경 */
+.nav_menu li:nth-of-type(4) a{
+    background-color: #73358C;
+    color: white;
+    border: 1px solid #797979;
+}
+
+
+/* menuSub 서브 네비 */
+.lnb_sub{
+    width: 100%;
+    height: 39px;
+    border-bottom: 1.5px solid #898989;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.lnb_sub > ul{
+    overflow: hidden;
+    width: 920px;
+    margin: 0 auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: start;
+    list-style: none;
+}
+
+.lnb_sub li{
+    overflow: hidden;
+    margin: 0px 2px 0px 0px;
+}
+
+.lnb_sub li:nth-of-type(1){
+    margin: 0px 5px 0px 225px;
+}
+
+.lnb_sub li:nth-of-type(3) a{
+    font-weight: bold;
+    color: #73358C!important;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.lnb_sub li a{
+    font-weight: bold;
+    text-decoration: none;
+    color: #232628;
+    font-size: 12px;
+}
+
+.lnb_sub li p{
+    font-size: 10px;
+    color: #797979;
+}
+
+.lnb_sub li a:hover{
+    color: #73358C;
+}
+/* menuSub 서브 네비 */
+
+/* 내용 */
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+
+#content {
+    padding: 138px 0 123px;
+}
+
+body, input, textarea, select, button, table {
+    font-family: 'Malgun Gothic';
+    font-size: 12px;
+}
+
+div {
+    display: block;
+}
+.ManageCafeStaffView {
+    z-index: 20;
+    width: 920px;
+    min-height: 100%;
+    margin: -138px auto -123px;
+}
+.section_top .h_cont h2 {
+    height: 18px;
+    margin: 0 0 13px 2px;
+    vertical-align: top;
+    font-weight: bolder;
+}
+
+.section_top {
+    position: relative;
+    margin-top: 28px;
+    z-index: 30;
+}
+
+.section_top .h_cont {
+    height: 31px;
+    border-bottom: 3px solid #565b62;
+}
+
+.section_top .tab_menu ul {
+    overflow: hidden;
+    height: 100%;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color: #bebebe;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+.section_top .tab_menu {
+    overflow: hidden;
+    height: 37px;
+}
+
+.section_top .tab_menu li{
+    display: inline-block;
+    font-size: 14px;
+    padding: 11px 50px 10px 10px;
+    font-weight: bold;
+    line-height: 16px;
+    color: rgb(46, 46, 46);
+}
+
+.section_top .noti_area {
+    position: relative;
+    padding: 20px 0 14px 4px;
+}
+
+.lst_type li {
+    color: #666;
+    line-height: 18px;
+}
+div {
+    display: block;
+}
+form {
+    display: block;
+}
+/* 레벨 테이블 */
+.level_cont {
+    position: relative;
+    z-index: 10;
+    margin-top: 28px;
+    border-bottom: 1px solid #565b62;
+}
+
+.tbl_level {
+    width: 920px;
+    font-size: 12px;
+    line-height: 18px;
+    table-layout: fixed;
+}
+
+table, th, td {
+    border: 0 none;
+}
+
+hr, legend, caption {
+    display: none;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.tbl_level th {
+    height: 31px;
+    text-align: left;
+    vertical-align: top;
+}
+
+.tbl_level th strong {
+    display: inline-block;
+    margin-left: 6px;
+}
+/* 등급 아이콘 테이블 컬럼명 */
+.blind {
+    visibility: hidden;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 1px;
+    font-size: 0;
+    line-height: 0;
+}
+/* 등급 아이콘 테이블 컬럼명 */
+
+.tbl_level td {
+    height: 43px;
+    vertical-align: top;
+}
+
+/* 등급명 -테두리 없애고 못 적게 텍스트 아닌것처럼 만들자*/
+.tbl_level td.level .text2 {
+    width: 126px;
+    padding: 0 0 0 4px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #404040;
+    border: none;
+    outline: none;
+}
+
+
+.tbl_level td {
+    height: 43px;
+    vertical-align: top;
+}
+
+/* 텍스트 전체 */
+.tbl_level td .text2 {
+    width: 579px;
+    padding: 0 4px;
+    color: #666;
+}
+
+/* 등급 설명 -테두리 없애고 못 적게 텍스트 아닌것처럼 만들자*/
+input.text2 {
+    height: 21px;
+    line-height: 21px;
+    border: 1px solid;
+    border-color: #b6b6b6 #d7d7d7 #d7d7d7 #b6b6b6;
+    color: #404040;
+    vertical-align: middle;
+    border: none;
+    outline: none;
+}
+
+/* 등급 설명 밑에 조건들 */
+.tbl_level td .detail {
+    padding: 8px 0 19px 7px;
+    color: #46a0c4;
+}
+
+/* 조건 input 타입 */
+input.text4 {
+    height: 17px;
+    line-height: 17px;
+    padding: 0 4px;
+    border: 1px solid;
+    border-color: #c5c5c5 #d9d9d9 #d9d9d9 #c5c5c5;
+}
+
+.tbl_level td .detail .text4 {
+    width: 26px;
+    text-align: right;
+}
+
+.ico{
+    padding-left: 10px;
+    padding-top: 3px;
+}
+
+
+/* 저장 취소 버튼 */
+.section_cont .btn_area {
+    clear: both;
+    height: 80px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn_type_edt2 span, .btn_type_edt2 strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    border-radius: 6%;
+}
+
+.btn_type_edt strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    background-color: #73358C;
+    border-radius: 6%;
+}

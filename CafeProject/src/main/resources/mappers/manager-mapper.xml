@@ -100,7 +100,7 @@
   	WHERE BOARD_DEL_FL ='N'
   </select>
   
-  <select id="selectMemberList" resultMap="member_rm">
+  <select id="selectMemberList" resultMap="member_rm"><!-- 수정 중 -->
   	SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -111,7 +111,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -119,6 +119,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -141,7 +142,7 @@
 	WHERE MEMBER_DEL_FL IN ('N','S')
 	AND MEMBER_LEVEL_NO = #{memberLevelNoResult}
   </select>
-  <select id="sortLevelMemberList" parameterType="_int" resultMap="member_rm">
+  <select id="sortLevelMemberList" parameterType="_int" resultMap="member_rm"><!-- 수정중 -->
   	SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -153,7 +154,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -161,6 +162,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -174,7 +176,7 @@
 	ORDER BY MEMBER_NICKNAME
   </select>
   <!-- 아이디 /별명으로 멤버 검색 -->
-  <select id="selectInputMember" parameterType="java.util.HashMap" resultMap="member_rm">
+  <select id="selectInputMember" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정중 -->
   SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -186,7 +188,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -194,6 +196,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -237,7 +240,7 @@
 	</where>
   </select>
   <!-- 게시글 수에 따라 멤버 상세조회 -->
-  <select id="getselectDetailBoard" parameterType="java.util.HashMap" resultMap="member_rm">
+  <select id="getselectDetailBoard" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정중!!!!!!!!!! -->
   SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -249,7 +252,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -261,6 +264,7 @@
 	<if test ="periodOption == 1">
 		WHERE to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
+	AND BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO))
@@ -270,7 +274,7 @@
 	GROUP BY MEMBER_NO  
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	WHERE  MEMBER_DEL_FL IN ('N','S')
 	<if test ="aboveOption == 1">
 		AND BOARD_COUNT <![CDATA[>=]]> #{articleCountInput}
 	</if>
@@ -313,7 +317,7 @@
 	)
   </select>
   
-  <select id="getselectDetailComment" parameterType="java.util.HashMap" resultMap="member_rm">
+  <select id="getselectDetailComment" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정 중 -->
   SELECT *
 	FROM 
 	(SELECT PROFILE_IMG, MEMBER_NICKNAME,
@@ -327,7 +331,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -335,6 +339,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -346,7 +351,7 @@
 	GROUP BY MEMBER_NO  
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	WHERE  MEMBER_DEL_FL IN ('N','S')
 	ORDER BY MEMBER_NICKNAME)
 	<where>
 		<if test ="aboveOption == 1">
@@ -390,7 +395,7 @@
 	</where>
 	)
   </select>
-  <select id="getselectDetailVisit" parameterType="java.util.HashMap" resultMap="member_rm">
+  <select id="getselectDetailVisit" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정중 -->
   SELECT *
 	FROM (SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
@@ -403,7 +408,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -422,7 +427,7 @@
 	GROUP BY MEMBER_NO  
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	WHERE  MEMBER_DEL_FL IN ('N','S')
 	ORDER BY MEMBER_NICKNAME)
 	<where>
 		<if test ="aboveOption == 1">
@@ -459,7 +464,7 @@
 	</if>
 	ORDER BY 1
   </select>
-  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm">
+  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정 중 -->
   SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -471,7 +476,7 @@
 	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
 	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
 	,NVL(BOARD_COUNT,0) BOARD_COUNT
-	,NVL(COMMENT_COUNT,0) COMMENT_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
 	FROM "MEMBER" m 
 	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
 	FROM LOGIN_HISTORY lh
@@ -487,7 +492,7 @@
 	GROUP BY MEMBER_NO  
 	ORDER BY 2)
 	USING(MEMBER_NO)
-	WHERE  MEMBER_DEL_FL IN ('N','Y')
+	WHERE  MEMBER_DEL_FL IN ('N','S')
 	<if test ="entryType == 1">
 	AND to_char(LOGIN_DATE,'yyyy-mm-dd') 
 	BETWEEN to_char(TO_DATE(#{startDateInput}),'yyyy-mm-dd') AND to_char(TO_DATE(#{endDateInput}),'yyyy-mm-dd')
@@ -621,4 +626,120 @@
      AND AUTHORITY_NO NOT IN (0,1)
   	</update>
   <!-- 회원 활동 정지 -->
+  
+  <!-- 회원 강제 탈퇴 -->
+  	<!-- 강제탈퇴 테이블 삽입 -->
+  	<insert id="insertManageSecedePopup" parameterType ="java.util.HashMap">
+		INSERT INTO MEMBER_SECESSION   
+		SELECT SEQ_SECESSION_NO.NEXTVAL, 
+  	SYSDATE , #{secessionreason} ,
+ 		S.* , #{SmemberNo} , #{comment} 
+		 	FROM
+			<foreach collection="memberEmail" item="memberEmail" open="(" close=") S" separator="UNION ALL">
+					SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{memberEmail}
+			</foreach>
+		</insert>
+  	<!-- 강제탈퇴당한 회원들 멤버 테이블에 강제탈퇴 여부 변경 -->
+  	<update id="updateManageSecedePopup" parameterType="java.util.HashMap">
+  	UPDATE "MEMBER" SET 
+		MEMBER_DEL_FL = 'Y'
+		WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN
+		<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+    </foreach>
+     AND AUTHORITY_NO NOT IN (0)
+  	</update>
+  <!-- 회원 강제 탈퇴 -->
+  
+  <!-- 회원 활동 정지 해제 -->
+  <!-- 활동 정지 해제 가능으로 활동 정지 테이블에서 삭제 -->
+  <delete id="deleteReleaseStopMember">
+  DELETE FROM MEMBER_HOLD 
+	WHERE H_MEMBER_NO IN
+	(SELECT MEMBER_NO FROM "MEMBER" WHERE
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN
+	<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") )">
+        #{memberEmail}
+   </foreach>
+  </delete>
+  <!-- 회원 활동 가능하게 변경한 멤버 테이블에서 활동 정지 여부 변경 -->
+  <update id="updateReleaseStopMember" parameterType="java.util.HashMap">
+  	UPDATE "MEMBER" SET 
+		MEMBER_DEL_FL = 'N'
+		WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN
+		<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+    </foreach>
+     AND MEMBER_DEL_FL = 'S'
+  	</update>
+  <!-- 회원 활동 정지 해제 -->
+  <!-- 강제 탈퇴에서 재가입 가능하도록 변경  -->
+  <update id="updateReleaseSecedeMember">
+  UPDATE "MEMBER_SECESSION" SET 
+	SECESSION_REASON = 'I'
+	WHERE S_MEMBER_NO IN 
+	(SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+	<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+  </foreach>
+	)
+	AND S_MANAGER_NO IS NOT NULL
+  </update>
+  <!-- 강제 탈퇴에서 재가입 불가능하도록 변경 -->
+  <update id="updateNotReleaseSecede">
+  UPDATE "MEMBER_SECESSION" SET 
+	SECESSION_REASON = 'F'
+	WHERE S_MEMBER_NO IN 
+	(SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 
+	<foreach collection="list" item="memberEmail"
+      open=" (" separator="," close=") ">
+        #{memberEmail}
+  </foreach>
+	)
+	AND S_MANAGER_NO IS NOT NULL
+  </update>
+  <!-- 스탭 멤버 검색해오기 -->
+  <select id="manageCafeStaffView" resultMap="member_rm">
+  SELECT PROFILE_IMG, MEMBER_NICKNAME,
+	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
+	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
+	(SELECT MEMBER_LEVEL_IMG FROM MEMBER_LEVEL ml WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_IMG,
+	(SELECT MEMBER_LEVEL_NAME FROM MEMBER_LEVEL ml  WHERE ml.MEMBER_LEVEL_NO = m.MEMBER_LEVEL_NO) MEMBER_LEVEL_NAME
+	,MEMBER_LEVEL_NO
+	,(SELECT AUTHORITY_IMG FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_IMG
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NAME
+	,(SELECT AUTHORITY_NAME FROM AUTHORITY a  WHERE a.AUTHORITY_NO = m.AUTHORITY_NO) AUTHORITY_NO
+	,TO_CHAR(LOGIN_DATE ,'YYYY.MM.DD') LOGIN_DATE
+	,NVL(LOGHISTORY_COUNT,0) LOGHISTORY_COUNT
+	,NVL(BOARD_COUNT,0) BOARD_COUNT
+	,NVL(COMMENT_COUNT,0) COMMENT_COUNT,MEMBER_DEL_FL
+	FROM "MEMBER" m 
+	LEFT JOIN (SELECT MAX(LOGIN_DATE) LOGIN_DATE,MEMBER_NO ,COUNT(LOGIN_DATE) LOGHISTORY_COUNT 
+	FROM LOGIN_HISTORY lh
+	GROUP BY MEMBER_NO
+	ORDER BY 2) USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
+	FROM BOARD b 
+	GROUP BY MEMBER_NO
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
+	FROM "COMMENT" c 
+	GROUP BY MEMBER_NO  
+	ORDER BY 2)
+	USING(MEMBER_NO)
+	WHERE  MEMBER_DEL_FL IN ('N')
+	AND AUTHORITY_NO IN (0,1)
+	ORDER BY AUTHORITY_NO DESC
+  </select>
+  <!-- 부매니저 시킬 사람 검색해오기 아이디(이메일) / 별명 -->
+ <!--  <select id="manageSearchCafeMember" parameterType="java.util.HashMap">
+  </select> -->
+  <select id="manageCafeStaffViewCount" resultType="_int">
+  SELECT COUNT(*) FROM "MEMBER" WHERE AUTHORITY_NO IN (0,1)
+  </select>
 </mapper>
