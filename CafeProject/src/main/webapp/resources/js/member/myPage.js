@@ -1,6 +1,6 @@
 // 회원탈퇴 유효성 검사
 function secessionValidate(){
-  
+
     const memberPw = document.getElementById("memberPw");
     const agree = document.getElementById("agree");
 
@@ -38,24 +38,25 @@ function secessionValidate(){
     const memberNickname = document.getElementById("myPageNickname");
     const nickMsg = document.getElementById("nickMsg");
 
+                
+    // 초기 닉네임 상태를 저장하는 변수
+    // (true : 닉네임 바뀜,    false : 기존 닉네임)
+    let nickCheck = false;
     
     if(memberNickname!=null){
         
         
         memberNickname.addEventListener("input", function(){
-            
-            // 초기 닉네임 상태를 저장하는 변수
-            // (true : 닉네임 바뀜,    false : 기존 닉네임)
-            // let nickCheck = false;
+
             
             // 해당 화면 진입 시 닉네임 상태를 저장(nickCheck)
-            if(memberNickname.getAttribute("value") == NowNickname){
+            if(memberNickname.value == NowNickname){
                 // 기존 닉네임인 경우
                 nickCheck = false;
             } else {
                 nickCheck = true;
             }
-
+            
             // 닉네임에 문자가 입력되지 않은 경우
             if(this.value.trim().length == 0 ){
                 nickMsg.innerText = "닉네임은 2글자 이상의 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
@@ -79,7 +80,12 @@ function secessionValidate(){
                             nickMsg.classList.remove("error");
 
                         } else {
-                            nickMsg.innerText = "이미 사용중인 닉네임입니다.";
+
+                            if(memberNickname.value == NowNickname){
+                                nickMsg.innerText = "회원님이 사용중인 닉네임입니다.";
+                            } else{
+                                nickMsg.innerText = "이미 사용중인 닉네임입니다.";
+                            }
                             nickMsg.classList.add("error");
                             nickMsg.classList.remove("confirm");
 
@@ -104,14 +110,32 @@ function secessionValidate(){
         });
     }
 
+    // 지역정보 변경
+    const memberResidence = document.getElementById("myPageResidence");
+
+    // 초기 지역 정보 상태를 저장하는 변수
+    // (true : 지역 정보 바뀜,    false : 기존 지역)
+    let residenceCheck = false;
+    memberResidence.addEventListener("change", function(){
+
+        // 해당 화면 진입 시 지역 정보 상태를 저장(residenceCheck)
+        if(memberResidence.value == memberResidence){
+            // 기존 지역인 경우
+            residenceCheck = false;
+        } else {
+            residenceCheck = true;
+        }
+
+    });
+
     function myPageUpdateValidate() {
 
-        // 닉네임이 바뀐 경우
-        if (nickCheck) {
+        // 닉네임 또는 지역이 바뀐 경우
+        if (nickCheck || residenceCheck) {
             return true;
         }
 
-        // 기존 닉네임인 경우
-        alert("닉네임 변경 후 클릭하세요")
+        // 기존 정보 그대로인 경우
+        alert("정보 수정후 클릭하세요")
         return false;
     }

@@ -55,7 +55,7 @@
                         <div class="myPage-subTitle">
                             <label for="residence">지역(선택사항)</label>
                             <div class="select">
-                                <select name="memberResidence" id="residence">
+                                <select name="memberResidence" id="myPageResidence">
                                     <option <c:if test="${loginMember.memberResidence == null }">selected</c:if> disabled>시/도 선택</option>
                                     <option value="서울" <c:if test="${loginMember.memberResidence eq '서울' }">selected</c:if>>서울</option>
                                     <option value="경기" <c:if test="${loginMember.memberResidence eq '경기' }">selected</c:if>>경기</option>
@@ -94,6 +94,8 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
      <script>
         const NowNickname = "${loginMember.memberNickname}";
+        const NowResidence = "${loginMember.memberResidence}";
+
     </script>
     <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
