@@ -315,7 +315,7 @@
                             <a href="#">기타 Q/A</a>
                         </li>
                     </ul>
-                </section> --%>
+                </section> 
 
                 <section id="board-basic">
                     <div name="board-title">■ 갤러리 자료</div>
@@ -329,7 +329,7 @@
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
-                </section>
+                </section> --%>
 
                 <c:forEach var="category" items="${mainList}">
                     <section id="board-basic">
