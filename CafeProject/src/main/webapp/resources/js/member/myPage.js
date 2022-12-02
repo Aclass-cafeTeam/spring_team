@@ -1,39 +1,3 @@
-// 회원탈퇴 유효성 검사
-function secessionValidate(){
-
-    const memberPw = document.getElementById("memberPw");
-    const agree = document.getElementById("agree");
-
-    // 비밀번호 미작성 
-    if(memberPw.value.trim().length==0){
-        alert("비밀번호를 입력해주세요.");
-        
-        memberPw.focus();
-        return false;  
-    }
-
-    // 약관 동의 체크 여부
-    // -체크박스요소.checked : 체크시 true  , 해제시 false 반환 
-    if(!agree.checked){ // 체크 안했을때 
-        alert("유의사항 확인 후 탈퇴 신청 버튼을 눌러주세요.");
-        
-        agree.focus();
-        return false   
-    }
-
-    // 정말 탈퇴할지 확인 
-    // - window.confirm("내용") : 대화 상자에 확인/취소 생성
-    //          확인 클릭 시 true / 취소 클릭 시 false
-    //          window는 생략 가능 
-
-    if(!confirm("정말 탈퇴 신청을 하시겠습니까?")){ // 취소를 누른 경우
-        
-        return false;
-    }
-
-    return true;
-}
-
 // 닉네임 유효성 검사
     const memberNickname = document.getElementById("myPageNickname");
     const nickMsg = document.getElementById("nickMsg");
@@ -45,9 +9,7 @@ function secessionValidate(){
     
     if(memberNickname!=null){
         
-        
-        memberNickname.addEventListener("input", function(){
-
+        memberNickname.addEventListener("input", ()=>{
             
             // 해당 화면 진입 시 닉네임 상태를 저장(nickCheck)
             if(memberNickname.value == NowNickname){
@@ -58,17 +20,17 @@ function secessionValidate(){
             }
             
             // 닉네임에 문자가 입력되지 않은 경우
-            if(this.value.trim().length == 0 ){
+            if(memberNickname.value.trim().length == 0 ){
                 nickMsg.innerText = "닉네임은 2글자 이상의 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
                 nickMsg.classList.remove("confirm","error");
                 return false; 
             }
-
+    
             // 정규표현식으로 닉네임 확인
             const regEx = /^[ㄱ-힣\w]{2,10}$/;
-
-            if(regEx.test(this.value)){ // 닉네임이 유효한 경우
-
+    
+            if(regEx.test(memberNickname.value)){ // 닉네임이 유효한 경우
+    
                 $.ajax({
                     url : "/nickDupCheck", // 비동기 통신을 진행할 서버 요청 주소
                     data: { "memberNickname" : memberNickname.value }, // JS객체에서 서버로 전달할 값(여러 개 가능)
@@ -78,9 +40,9 @@ function secessionValidate(){
                             nickMsg.innerText = "사용가능한 닉네임입니다.";
                             nickMsg.classList.add("confirm");
                             nickMsg.classList.remove("error");
-
+    
                         } else {
-
+    
                             if(memberNickname.value == NowNickname){
                                 nickMsg.innerText = "회원님이 사용중인 닉네임입니다.";
                             } else{
@@ -88,9 +50,10 @@ function secessionValidate(){
                             }
                             nickMsg.classList.add("error");
                             nickMsg.classList.remove("confirm");
-
+                            nickCheck = false;
+    
                         }
-
+    
                     },
                     error: () => { // 비동기 통신이 실패했을 때 수행
                         console.log("ajax통신 실패");
@@ -99,13 +62,12 @@ function secessionValidate(){
                         console.log("중복 검사 수행 완료")
                     }
                 });
-
+    
             } else { // 유효하지 않을 경우
                 nickMsg.innerText ="닉네임은 2글자 이상의 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
                 nickMsg.classList.add("error");
                 nickMsg.classList.remove("confirm");
             }
-
 
         });
     }
@@ -116,7 +78,7 @@ function secessionValidate(){
     // 초기 지역 정보 상태를 저장하는 변수
     // (true : 지역 정보 바뀜,    false : 기존 지역)
     let residenceCheck = false;
-    memberResidence.addEventListener("change", function(){
+    memberResidence.addEventListener("change", ()=>{
 
         // 해당 화면 진입 시 지역 정보 상태를 저장(residenceCheck)
         if(memberResidence.value == memberResidence){
@@ -127,7 +89,7 @@ function secessionValidate(){
         }
 
     });
-
+    
     function myPageUpdateValidate() {
 
         // 닉네임 또는 지역이 바뀐 경우
