@@ -103,6 +103,16 @@ public class MemberServiceImpl implements MemberService{
 	}
 
 
+	/**
+	 * 스탭 수 들고 오고 스탭 검색해오기
+	 */
+	@Override
+	public List<Map<String, Object>> manageCafeStaffView() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 	
 
 }

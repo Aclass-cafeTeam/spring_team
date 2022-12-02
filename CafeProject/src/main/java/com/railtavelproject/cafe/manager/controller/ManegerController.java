@@ -128,7 +128,8 @@ public class ManegerController {
 	@GetMapping("manager/ManageCafeStaffView")
 	public String manageCafeStaffView(Member member,
 			@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
-			@RequestParam(value="srchOption" , required = false, defaultValue = "0") int srchOption
+			@RequestParam(value="searchType" , required = false) String searchType,
+			@RequestParam(value="SearchMember" , required = false) String SearchMember
 			,Model model,
 			HttpSession session){ //세션으로 로그인 멤버들고 와서 카페 관리자만 삭제 버튼 보여줘고 부관리자는 스탭관리창에서 할수 있는 게 없움
 			// 별명 아이디로 검색 할 수 있게 해야하고 체크박스 값 들고 와야하고 
@@ -143,16 +144,20 @@ public class ManegerController {
 			// 3. 부 매니저가 있을 시 스텝 추가 기능에 부 매니저는 한명만 가능 alert창 
 			// 4. 
 
-			//List<Map<String, Object>> stepMember = memberService.manageCafeStaffView();
+			List<Map<String, Object>> stepMember = memberService.manageCafeStaffView();
 			
-		
+			//int stepMemberCount = memberService.manageCafeSaffCount();
+			if(searchType != null ) {
+				Member searchMember = memberService.manageSearchCafeMember(searchType,SearchMember);
+			}
 			
 			model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
-			model.addAttribute("memberLevelNoResult", memberLevelNoResult);
-			model.addAttribute("srchOption", srchOption);
+			model.addAttribute("stepMember", stepMember);
+			//model.addAttribute("stepMemberCount", stepMemberCount);
+			model.addAttribute("searchType", searchType);
 			//model.addAttribute("stepMember", stepMember);
 			
 			return "manager/ManageCafeStaffView";
 	}
-	
+
 }

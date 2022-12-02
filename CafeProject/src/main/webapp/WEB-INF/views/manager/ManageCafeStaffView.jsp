@@ -153,11 +153,11 @@
                     <td>
                       <div class="group_input_frm">
                         <div class="srch_in">
-                          <select id="searchType" style="width: 86px; height: 19px">
+                          <select id="searchType" name="searchType" style="width: 86px; height: 19px">
                             <option value="memberEmail">아이디</option>
                             <option value="memberNickname">별명</option>
                           </select> 
-                          <input type="text" id="mem_srch" class="text _keydown(ManageCafeStaff|SearchMember)" style="width: 248px; padding-left: 7px"> 
+                          <input type="text" id="mem_srch" name="SearchMember" class="text _keydown(ManageCafeStaff|SearchMember)" style="width: 248px; padding-left: 7px"> 
                           <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="#">
                           <span>검색</span>
                           </a>
