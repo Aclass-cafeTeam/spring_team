@@ -101,3 +101,36 @@ searchmemberBtn.addEventListener("click", function () {
 
 
 });
+
+const smt_btn = document.getElementById("smt_btn");
+
+smt_btn.addEventListener("click", function () {
+  if($('input:radio[name=이름]').is(':checked')){
+    if($('input[name =memberDeleteFlag]').val()=='S'){
+      alert("활동 정지된 멤버를 매니저로 임명 할 수 없습니다. 활동 정지 해제 후 임명해주세요.")
+    }
+  
+    if($('input[name =authorityNo]').val() == 0 ||$('input[name =authorityNo]').val() == 1||$('input[name =loginMemberauthorityNo]').val() != 0){
+      
+      if($('input[name =loginMemberauthorityNo]').val() != 0){
+        alert("권한 카페매니저가 아니면 매니저 임명이 불가능합니다.")
+      }else{
+        if($('input[name =subManagerFL]').val() == 'true'){
+          alert("부 매니저는 1명만 임명할 수 있습니다. 부 매니저 삭제 후 임명해주세요.")
+        }else{
+          alert("매니저로 임명된 멤버는 매니저로 임명할 수 없습니다.")
+        }
+      }
+  
+    }
+  }else{
+    alert("멤버를 선택해주세요.")
+  }
+  
+
+ 
+
+  
+  
+
+});

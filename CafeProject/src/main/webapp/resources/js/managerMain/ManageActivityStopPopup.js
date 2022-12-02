@@ -86,18 +86,18 @@ Submit.addEventListener("click", (e) => {
         type: "POST",
         dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
         success: (result) => {
+            opener.console.log(result);
             if(result.message === "활동 정지 등록에 실패하셨습니다."){
-                window.opener.console.log(result.memberEmail);
-                window.opener.console.log("????");
                 alert(result.message);
                 window.close();
 
             }else{
-                window.opener.console.log(result.memberEmail);
+                
+                opener.console.log(result.memberEmail);
                 for(let key of result.memberEmail){
-                    window.opener.console.log(key);
-                    window.opener.console.log('memberDeleteFlag'+key);
-                    window.opener.$('#memberDeleteFlag'+key).attr('value','S');
+                    console.log(key);
+                    opener.console.log('memberDeleteFlag'+key);
+                    opener.document.getElementById('memberDeleteFlag'+key).value = 'S';
                 }
                 
                 alert(result.message);

@@ -189,7 +189,7 @@
               </div>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
             <%-- 위에 저장 폼인데 사용할지 안할지 미정 --%>
-            <form name="staffFrm" action="/ManageCafeStaffAdd.nhn" method="post">
+            <form name="staffFrm" action="/updateSubManagerSelect" method="post">
             <input type="hidden" name="loginMember" value="${loginMember.memberEmail}">
             <input type="hidden" name="loginMemberauthorityNo" value="${loginMember.authorityNo}"><%-- 카페매니저만 매니저 임명 권한 --%>
             <input type="hidden" id="electedStaffId" name="electedStaffId" value="">
