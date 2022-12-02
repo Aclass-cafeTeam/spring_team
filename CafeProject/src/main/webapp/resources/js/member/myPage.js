@@ -1,11 +1,14 @@
 // 닉네임 유효성 검사
-    const memberNickname = document.getElementById("myPageNickname");
-    const nickMsg = document.getElementById("nickMsg");
+const memberNickname = document.getElementById("myPageNickname");
+const nickMsg = document.getElementById("nickMsg");
 
-                
-    // 초기 닉네임 상태를 저장하는 변수
-    // (true : 닉네임 바뀜,    false : 기존 닉네임)
-    let nickCheck = false;
+// 유효성검사
+// (true : 변경 가능한 닉네임, false : 유효하지 않은 닉네임)
+let updateCheck;
+
+// 초기 닉네임 상태를 저장하는 변수
+// (true : 닉네임 바뀜, false : 기존 닉네임)
+let nickCheck;
     
     if(memberNickname!=null){
         
@@ -23,7 +26,7 @@
             if(memberNickname.value.trim().length == 0 ){
                 nickMsg.innerText = "닉네임은 2글자 이상의 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
                 nickMsg.classList.remove("confirm","error");
-                return false; 
+                updateCheck = false;
             }
     
             // 정규표현식으로 닉네임 확인
@@ -40,18 +43,17 @@
                             nickMsg.innerText = "사용가능한 닉네임입니다.";
                             nickMsg.classList.add("confirm");
                             nickMsg.classList.remove("error");
-    
+                            updateCheck = true;
                         } else {
     
                             if(memberNickname.value == NowNickname){
-                                nickMsg.innerText = "회원님이 사용중인 닉네임입니다.";
+                                nickMsg.innerText = "회원님이 현재 사용중인 닉네임입니다.";
                             } else{
                                 nickMsg.innerText = "이미 사용중인 닉네임입니다.";
+                                updateCheck = false;
                             }
                             nickMsg.classList.add("error");
                             nickMsg.classList.remove("confirm");
-                            nickCheck = false;
-    
                         }
     
                     },
@@ -67,6 +69,7 @@
                 nickMsg.innerText ="닉네임은 2글자 이상의 한글, 영문, 숫자를 사용하세요. (특수기호, 공백 사용 불가)";
                 nickMsg.classList.add("error");
                 nickMsg.classList.remove("confirm");
+                updateCheck = false;
             }
 
         });
@@ -76,28 +79,43 @@
     const memberResidence = document.getElementById("myPageResidence");
 
     // 초기 지역 정보 상태를 저장하는 변수
-    // (true : 지역 정보 바뀜,    false : 기존 지역)
+    // (true : 지역 정보 바뀜, false : 기존 지역)
     let residenceCheck = false;
     memberResidence.addEventListener("change", ()=>{
 
         // 해당 화면 진입 시 지역 정보 상태를 저장(residenceCheck)
         if(memberResidence.value == memberResidence){
-            // 기존 지역인 경우
+            // 기존 지역 정보인 경우
             residenceCheck = false;
         } else {
             residenceCheck = true;
         }
 
     });
+
+// 수정 버튼 클릭시 유효성검사
     
     function myPageUpdateValidate() {
-
-        // 닉네임 또는 지역이 바뀐 경우
-        if (nickCheck || residenceCheck) {
+        // 지역변경O 기존닉네임O
+        if(residenceCheck && !nickCheck){
+            return true;
+        }
+        // 지역변경 X 기존닉네임 O
+        if(!residenceCheck && !nickCheck){
+            alert("정보 수정후 클릭하세요.")
+            return false;
+        }
+        
+        // 변경 가능한 닉네임일 경우
+        if(updateCheck){
             return true;
         }
 
-        // 기존 정보 그대로인 경우
-        alert("정보 수정후 클릭하세요")
-        return false;
+        // 변경 불가능한 닉네임일 경우
+        if(!updateCheck){
+            alert("변경 가능한 닉네임을 입력해주세요.");
+            return false;
+        }
+
+
     }
