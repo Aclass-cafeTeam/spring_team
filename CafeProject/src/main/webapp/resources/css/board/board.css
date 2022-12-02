@@ -339,3 +339,44 @@ a {
     color: white !important;
     letter-spacing: 0 !important;
 }
+
+
+/* 베스트 게시글 전용 css */
+
+/* 베스트 게시글 */
+.board-bestname{
+    font-size: 22px;
+    width: 549.99px;
+    height: 26.01px;
+    color: #73358C;
+}
+
+/* Best */
+.bestNo{
+
+    background-color: #ffe3e4;
+    color: #73358C;
+    border-radius: 15%;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 19px;
+    border-bottom: 1px solid #f2f2f2;
+
+}
+
+/* 베스트 게시글 제목 */
+.best-title{
+    color: #73358C;
+    font-size: 13px;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* 베스트 게시글 댓글  */
+.best-comment{
+    color: #73358C;
+    font-size: 13px;
+    text-align: center;
+}
+/* 베스트 게시글 css 끝*/

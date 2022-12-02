@@ -51,6 +51,18 @@ public interface IntroService {
 	 * @return
 	 */
 	Map<String, Object> boardRank();
+
+	/**
+	 * 회원수 조회
+	 * @return
+	 */
+	int memberCount();
+
+	/**
+	 * 멤버 랭킹-로그인
+	 * @return
+	 */
+	Map<String, Object> loginRank();
 	
 	
 

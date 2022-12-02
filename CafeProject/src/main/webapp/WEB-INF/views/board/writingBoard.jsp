@@ -10,10 +10,9 @@
     <title>카페 글쓰기</title>
     
     <!-- summernote include libraries(jQuery, bootstrap)-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     
     <script src="/resources/js/summernote/summernote-lite.js"></script>
 	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -21,6 +20,7 @@
     
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/board/writingBoard.css">
+    <link rel="stylesheet" href="/resources/css/board/tempPost.css">
     
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
@@ -33,7 +33,7 @@
     
     <div class="writing-board">
         
-        <form action="/board/write/${boardCode}" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return writeValidate()">  
+        <form action="/board/write" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" name="boardWriteForm" onsubmit ="return writeValidate()">  
 
             <div class="writingHeader">
                 <h1 id="HeaderTitle">카페 글쓰기</h1>
@@ -42,7 +42,7 @@
                     <p class="tempSave">
                         <button type="button" id="btn-tempSave">임시등록</button>
                         <!-- 임시등록 버튼 누르면 임시저장 -->
-                        <button type="button" id="btn-tempCount">0</button>
+                        <button type="button" id="modalBtn">0</button>
                         <!-- 수를 누르면 임시등록 모달창으로 이동 -->
                     </p>
                     <button type="submit" id="btn-submit">등록</button>
@@ -68,24 +68,24 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="">${boardType.BOARD_CODE}
                             </div>
                         
                             
                             <!-- 말머리 -->    
                             <div class="title-tag wrapper"> 
                                 <div class="select"> 
-                                    <span class="btn-text"> 말머리 선택</span>
+                                    <span class="tagBtn btn-text"> 말머리 선택</span>
                                     <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
                                 </div>
                                 
                                 <ul class="option-items"> 
                                     <c:forEach var="titleTag" items="${titleTagList}">
-                                        <li class="option option-text" value="${titleTag.TITLE_TAG_NO}" onclick="selectTag(this)">
+                                        <li class="option option-text" id="${titleTag.TITLE_TAG_NO}" onclick="selectTag(this)">
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTag" name="titleTag" value="$titleTag.TITLE_TAG_NO}">
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="">${titleTag.TITLE_TAG_NO}
                             </div> 
                         </div>
                         
@@ -93,13 +93,13 @@
                         <!-- 게시판 타입에 따라 글 양식 선택..ajax? -->
                         <div class="writingForm">
                             <div>
-                                <h1> 글양식</h>
+                                <h1> 글양식</h1>
                             </div>
                         </div>
                         
                         <!-- 게시글 제목 -->
                         <div class="writeTitle">
-                            <input type="text" name="boardtitle" autocompleate="off" placeholder="제목을 입력하세요." >
+                            <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." >
                         </div>
 
                         <!-- 게시글 내용 -->
@@ -108,46 +108,41 @@
                         </div>
                         
                 </div>
-
+                
                 <!-- writingContent 우 (세팅 영역) -->
-                <div class="settingArea">
-                    <!-- 관리자일때 -->
-                    <div class="noticeCheck">
-                        <input type="checkbox" id="notice" class="input_check"> <label for="notice">공지로 등록</label>
-                    </div>
-                    <p>어쩌구저쩌구</p>
+                <div class="writingSide">
+                    <!-- 관리자일때만 보이는 화면 -->
+                    <!-- <c:choose>
+                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1}">
+
+                            <div class="settingArea">
+                                <p><input type="checkbox" id="boardNotice" name="boardNotice">  <label for="boardNotice">공지로 등록</label></p>
+
+                                <div id="setting"> 
+                                    <p>전체공지 또는 게시판 공지로 등록가능합니다.</p>
+                                    <select name="noticeFlag" id="noticeFlag">
+                                        <option value="2">전체공지</option>
+                                        <option value="1">게시판공지</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </c:when>
+                    </c:choose> -->
                     
-                    <div class="공지"> 
-                        <div class=""> 
-                            <ul class=""> 
-                                <li class="" value="" onclick="">
-                                    공지
-                                </li>
-                            </ul>
-                            <span class="arrow-dwn"> <i class="fa-solid fa-chevron-down"></i></span>
-                        </div>
-                        
-                        
-                    </div> 
-                    <p><input type="checkbox" name="agree"> 댓글 허용</p>
+                    <!-- 댓글 허용 -->
+                    <!-- <div class="settingArea">
+                        <p><input type="checkbox" id="comment" name="comment"> <label for="comment">댓글 허용</label></p>
+                    </div>  -->
                 </div>
-            </div>    
+            </div>
         </form>
     </div>
     
-    <div id="modal">
 
+    <!-- 임시저장 모달 -->
+    <div id="boardModal">
+        <jsp:include page="/WEB-INF/views/board/tempPost.jsp" />
     </div>
-
-    <script>
-    // const boardTypeList = "${boardTypeList}";
-    // const boardType = [];
-    // <c:forEach var="boardType" items="${boardTypeList}">
-    //     boardType.push('${boardType.BOARD_CODE}')
-    // </c:forEach>
-    // console.log(boardType);
-    
-    </script>
 
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
