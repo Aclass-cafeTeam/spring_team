@@ -108,7 +108,7 @@
               <p>|</p>
             </li>
             <li class="manager_totalMem">
-              <a href="#" class="totalMem">스탭 관리</a>
+              <a href="/manager/ManageCafeStaffView" class="totalMem">스탭 관리</a>
             </li>  
         </ul>
       </div>
@@ -160,8 +160,8 @@
         <div class="board_action">
           <div class="action_in">
               선택 멤버를&nbsp;														
-              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" href="#"><span>활동 정지 해제</span></a>
-              <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault" href="#"><span>강제 탈퇴</span></a>
+              <a class="btn_type _click(ManageActivityStopMemberView|ReleaseStopMember) _stopDefault" id ="ReleaseStopMember" href="#"><span>활동 정지 해제</span></a>
+              <a class="btn_type _click(ManageActivityStopMemberView|Secede) _stopDefault " id ="_forceWithdrawal" href="#"><span>강제 탈퇴</span></a>
           </div>
 
           <div class="action_arr">
@@ -177,6 +177,19 @@
               </p>
           </div>
           <!-- ******************수정요망*********************** -->
+          <div class="ly_type" id="ReleaseMemberLayer" style="display:none; overflow: visible; zoom: 1;">
+            <div class="ly_cont w250">
+              <p>
+                <strong><span class="c_og">활동이 가능</span>하도록 처리하시겠습니까?</strong>
+              </p>
+              <div class="btn">
+              
+                <a href="#" id="releaseButtonAjax" class="btn_type3 _click(LayerManager|ClickLayer|ReleaseMemberLayer|Confirm) _stopDefault"><strong>확인</strong></a>
+                <a href="#" class="btn_type3 _click(LayerManager|CloseLayer|ReleaseMemberLayer) _stopDefault _hideLayer"><span>취소</span></a>
+              </div>
+            </div>							
+            <a href="#" id="_hideLayer" class="_hideLayer clse _click(LayerManager|CloseLayer|ReleaseMemberLayer) _stopDefault"><span class="blind">닫기</span></a>
+          </div>
           <!-- ******************수정요망*********************** -->
         </div>
           <!-- 데이터 출력--------------------------- ---------------------------------------------------------------->
@@ -197,7 +210,7 @@
               </colgroup>
               <thead>
               <tr id="listHeader">
-              <th scope="col" class="frst"><input type="checkbox" name="checkAllMember" id="checkAllMember" title="선택" class="check _click(ManageActivityStopMemberView|CheckAllMember)"></th>
+              <th scope="col" class="frst"><input type="checkbox" name="checkAllMember" id="checkAllMember" title="선택" class="check _click(ManageActivityStopMemberView|CheckAllMember) _checkAll"></th>
               <th scope="col"><strong class="line_r">별명(아이디)</strong></th>
 
               <th scope="col"><strong class="line_r">사유</strong></th>
@@ -217,15 +230,18 @@
                   </c:when>
                   <c:otherwise>
                     <c:forEach var="member" items="${memberList}">
-                      <tr id="${member.memberEmail}" class="_checkable">
+                      <tr id="${member.memberEmail}" class="_checkable" memberid="${member.memberEmail}">
                         <td class="tc">
  
-                          <input type="checkbox" name="memberids" value="${member.memberEmail}" id="memberids" title="선택" class="check _click(ManageActivityStopMemberView|CheckMember)">
+                          <input type="checkbox" name="memberids" value="${member.memberEmail}" id="memberids" title="선택" class="check _click(ManageActivityStopMemberView|CheckMember) _checkMember">
                           
                         </td>
                         <td>
                           <div class="pers_nick_area">
-                            <span class="img"><img src="${member.profileImage}" width="20" height="20" alt=""></span><a href="#" class="nick ellipsis _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault">${member.memberNickname} (${member.memberEmail})</a>
+                            <span class="img">
+                              <img id="checkImg${member.memberEmail}" src="${member.profileImage}" width="20" height="20" alt="">
+                            </span>
+                            <a href="#" id="checkMember${member.memberEmail}" class="nick ellipsis _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault">${member.memberNickname} (${member.memberEmail})</a>
                           </div>
                         </td>
                         <td class="tl">

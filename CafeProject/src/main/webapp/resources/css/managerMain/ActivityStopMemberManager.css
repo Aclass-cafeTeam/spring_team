@@ -288,6 +288,7 @@ input.off {
 
 /*몇명 정렬*/
 .board_action{
+  position: relative;
   z-index: 10;
 }
 
@@ -559,3 +560,71 @@ tbody td:nth-of-type(5){
   justify-content: center;
 }
 
+.ly_type {
+  zoom: 1;
+  display: none;
+  position: absolute;
+  z-index: 100;
+  padding: 18px 19px 16px;
+  border: 1px solid #888;
+  background-color: #fff;
+  left: 100px;
+  top: 30px;
+}
+
+
+.ly_type .ly_cont {
+  width: 100%;
+  overflow: hidden;
+  line-height: 18px;
+  letter-spacing: -1px;
+  color: #404040;
+}
+
+.ly_type .clse {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 4px;
+  width: 34px;
+  height: 34px;
+  font-size: 12px;
+  color: #404040;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  text-decoration: none;
+  
+}
+
+.ly_type .ly_cont {
+  width: 100%;
+  overflow: hidden;
+  line-height: 18px;
+  letter-spacing: -1px;
+  color: #404040;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+
+.ly_type .ly_cont .btn {
+  padding-top: 10px;
+  text-align: center;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.btn_type3 strong, .btn_type3 span {
+  display: inline-block;
+  height: 24px;
+  padding: 0 10px 0 8px;
+  line-height: 27px;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+  border: 1px solid #B7B7B8;
+  color: #404040;
+  border-radius: 7%;
+}
+
+.c_og {
+  color: #ff7200 !important;
+}

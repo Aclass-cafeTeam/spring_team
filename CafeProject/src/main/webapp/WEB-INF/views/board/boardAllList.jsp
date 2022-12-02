@@ -5,6 +5,7 @@
 <c:set var="boardList" value="${map.boardList}" />
 <c:set var="noticeList" value="${notice.noticeList}" />
 <c:set var="pagination" value="${map.pagination}" />
+<c:set var="allList" value="${all.allList}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -35,8 +36,8 @@
             </c:if>
 
             <article class="article">
-                    <div class="board-name">${boardList[0].boardName}</div>
-                    <p class="board-start"></p>
+                    <div class="board-name">전체글보기</div>
+                    <p class="board-start">게시판 설명(메뉴 설명)</p>
 
                     <div class="hidden">
                         <input type="checkbox" name="hidden" id="#">
@@ -72,9 +73,9 @@
                         <c:choose>
                             <c:when test="${empty noticeList}">
                             <!-- 게시글 목록 조회 결과가 비어있다면 -->
-                                <tr>
+                                <%-- <tr>
                                     <th colspan="7">게시글이 존재하지 않습니다.</th>
-                                </tr>
+                                </tr> --%>
                             </c:when>
 
                             <c:otherwise>
@@ -102,7 +103,7 @@
                         </c:choose>
 
                         <c:choose>
-                            <c:when test="${empty boardList}">
+                            <c:when test="${empty allList}">
                             <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
                                     <th colspan="7">게시글이 존재하지 않습니다.</th>
@@ -110,17 +111,17 @@
                             </c:when>
 
                             <c:otherwise>
-                                <c:forEach var="board" items="${boardList}">
+                                <c:forEach var="board" items="${allList}">
                                     <tr>
                                         <td class="board-number">${board.boardNo}</td>
                                         <td>
-                                            <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="normal-title" href="/board/selectAll/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                             <c:if test="${not empty board.titleTagName}">
                                             <span>[${board.titleTagName}]</span>
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
-                                            <a href="#" class="comment">[${board.commentCount}]</a>
+                                            <a h                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ref="#" class="comment">[${board.commentCount}]</a>
                                             </c:if>                   
                                         </td>
                                         <td></td>
@@ -148,10 +149,10 @@
                     <ul class="pagination">
         
                         <!-- 첫 페이지로 이동 -->
-                        <li><a href="/board/${boardCode}?cp=1${sURL}">&lt;&lt;</a></li>
+                        <li><a href="?cp=1${sURL}">&lt;&lt;</a></li>
 
                         <!-- 이전 목록 마지막 번호로 이동 -->
-                        <li><a href="/board/${boardCode}?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
+                        <li><a href="?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
 
                         <%-- 몇부터 시작(begin)해서 몇까지(end) 몇칸씩 증가(step) --%>
                         <c:forEach var="i" begin="${pagination.startPage}" 
@@ -165,16 +166,16 @@
 
                                 <c:otherwise>
                                     <!-- 현재 페이지를 제외한 나머지 -->
-                                    <li><a href="/board/${boardCode}?cp=${i}${sURL}">${i}</a></li>
+                                    <li><a href="?cp=${i}${sURL}">${i}</a></li>
                                 </c:otherwise>
                             </c:choose>
 
                         </c:forEach>
 
-                        <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
+                        <li><a href="?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
 
                         <!-- 끝 페이지로 이동 -->
-                        <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+                        <li><a href="?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
 
                     </ul>
                 </div>

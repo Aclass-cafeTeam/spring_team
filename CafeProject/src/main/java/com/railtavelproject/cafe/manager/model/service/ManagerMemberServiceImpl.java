@@ -243,6 +243,9 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return message;
 	}
 	
+	/**활동정지 
+	 *활동 정지 테이블에 삽입 및 멤버 테이블에 정지 여부 변경 
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public String updateActivityStopMember(List<String> memberEmail, String comment, int memberCount,int HmemberNo) throws Exception{
@@ -260,6 +263,108 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return message;
 	}
 
+	/** 회원 강제 탈퇴 시키기 
+	 *
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String ManageSecedePopup(List<String> memberEmail, String comment, int memberCount, String secessionreason,
+			int SmemberNo) throws Exception{
+		String message = "";
+		int result = dao.ManageSecedePopup(memberEmail, comment,secessionreason,SmemberNo);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 강제 탈퇴시켰습니다!";
+		}else {
+			message = "회원 강제 탈퇴 반영에 실패하셨습니다.";
+			throw new Exception("강제 탈퇴 등록에 실패");
+		}
+		
+		return message;
+	}
+	
+	
+	/** 활동 정지 해제 기능 
+	 * 활동 정지 관리 창 
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateReleaseStopMember(List<String> memberEmail, int memberCount) throws Exception{
+		
+		String message = "";
+		int result = dao.updateReleaseStopMember(memberEmail);
+		
+		if(memberCount == result) {
+			message = "회원 " + result + "명을 활동이 가능한 멤버로 변경하였습니다.";
+		}else {
+			message = "활동이 가능한 멤버로 변경 실패하셨습니다.";
+			throw new Exception("활동이 가능한 멤버로 변경 실패");
+		}
+		
+		return message;
+	}
+
+	/**강제 탈퇴에서 재가입 가능하도록 변경 기능
+	 *
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateReleaseSecedeMember(List<String> memberEmail, int memberCount) throws Exception {
+		String message = "";
+		int result = dao.updateReleaseSecedeMember(memberEmail);
+		
+		if(memberCount == result) {
+			message = result + "명을 재가입 가능 이메일로 변경하였습니다.";
+		}else {
+			message = "재가입 가능 변경에 실패하셨습니다.";
+			throw new Exception("재가입 가능 변경 실패");
+		}
+		
+		return message;
+	}
+
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String updateNotReleaseSecede(List<String> memberEmail, int memberCount) throws Exception {
+		String message = "";
+		int result = dao.updateNotReleaseSecede(memberEmail);
+		
+		if(memberCount == result) {
+			message = result + "명을 가입 불가 이메일로 변경하였습니다.";
+		}else {
+			message = "가입 불가 처리에 실패하셨습니다.";
+			throw new Exception("가입 불가 처리 변경 실패");
+		}
+		
+		return message;
+	}
+
+	/**
+	 *스탭 멤버 검색해오기
+	 */
+	@Override
+	public List<Map<String, Object>> manageCafeStaffView() {
+		
+		return dao.manageCafeStaffView();
+	}
+
+	/**부매니저 시킬 사람 검색해오기
+	 * 검색은 다 해오는 데 나중에 선택하면 활동정지 멤버는 alert창으로 선택할 수 없는 걸로 띄우기
+	 */
+	@Override
+	public Member manageSearchCafeMember(int searchType, String searchMember) {
+		
+		return dao.manageSearchCafeMember(searchType,searchMember);
+	}
+
+	/**
+	 * 스탭 카운트
+	 */
+	@Override
+	public int manageCafeStaffViewCount() {
+		
+		return dao.manageCafeStaffViewCount();
+	}
 
 	
 }
