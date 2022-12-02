@@ -804,17 +804,4 @@ section #border-img {
 }
 
 
-#ranking > .memberCommentRank{
-    display: block;
-}
-/* #ranking > .memberCommentRank2{
-    display: none;
-} */
 
-#ranking > .memberBoardRank{
-    display: none;
-}
-/* 
-#ranking > .memberBoardRank2{
-    display: none;
-} */
