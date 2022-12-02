@@ -9,6 +9,7 @@
 	      <result property="readCount" column="READ_COUNT"/>
 	      <result property="boardDeleteFlag" column="BOARD_DEL_FL"/>
 	      <result property="commentCount" column="COMMENT_COUNT"/>
+	      <result property="boardCount" column="BOARD_COUNT"/>
 	      <result property="noticeFl" column="NOTICE_FL"/>
 	      <result property="commentNo" column="COMMENT_NO"/>
 	      <result property="commentDelFl" column="COMMENT_DEL_FL"/>
@@ -66,12 +67,24 @@
 			SELECT COUNT(*) FROM LOGIN_HISTORY
 		</select>
 		
-		<!-- 댓글 랭킹 -->
+		<!-- 하루전 댓글 랭킹 -->
 		<select id="commentRank" parameterType="_int" resultMap="introBoard_rm">
 				SELECT MEMBER_NICKNAME, MEMBER_NO, (SELECT COUNT(COMMENT_NO)
-				FROM "COMMENT"C WHERE M.MEMBER_NO=C.MEMBER_NO)COMMENT_COUNT
+				FROM "COMMENT"C
+				WHERE M.MEMBER_NO=C.MEMBER_NO
+				AND TO_CHAR(C.C_CREATE_DATE, 'YYYYMMDD' ) = TO_CHAR( SYSDATE-1, 'YYYYMMDD'))COMMENT_COUNT
 				FROM "MEMBER" M
 				ORDER BY COMMENT_COUNT DESC
+		</select>
+		
+		<!-- 하루전 게시글 랭킹 -->
+		<select id="boardRank" parameterType="_int" resultMap="introBoard_rm">
+				SELECT MEMBER_NICKNAME, MEMBER_NO, (SELECT COUNT(BOARD_NO)
+				FROM "BOARD"B
+				WHERE M.MEMBER_NO=B.MEMBER_NO
+				AND TO_CHAR(B.B_CREATE_DATE, 'YYYYMMDD' ) = TO_CHAR( SYSDATE-1, 'YYYYMMDD'))BOARD_COUNT
+				FROM "MEMBER" M
+				ORDER BY BOARD_COUNT DESC
 		</select>
 
       

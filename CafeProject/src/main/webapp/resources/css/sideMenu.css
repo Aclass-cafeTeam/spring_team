@@ -547,6 +547,7 @@ section #border-img {
     color: #333333;
 }
 
+
 /* 지난주 멤버랭킹 */
 #ranking_title {
     height: 31px;
@@ -801,3 +802,19 @@ section #border-img {
 #info-data>a:hover{
     text-decoration: underline;
 }
+
+
+#ranking > .memberCommentRank{
+    display: block;
+}
+/* #ranking > .memberCommentRank2{
+    display: none;
+} */
+
+#ranking > .memberBoardRank{
+    display: none;
+}
+/* 
+#ranking > .memberBoardRank2{
+    display: none;
+} */
