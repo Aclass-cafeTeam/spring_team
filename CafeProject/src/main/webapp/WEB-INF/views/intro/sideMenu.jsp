@@ -128,8 +128,8 @@
                             <div id="count-3">
                                 <div id="star">
                                     <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                                    <div id="star1">즐겨찾는 멤버</div>
-                                    <div id="star-count">76,289명</div>
+                                    <div id="star1">알맹이</div>
+                                    <div id="star-count">동글동글</div>
                                 </div>
                             </div>
             
@@ -316,7 +316,7 @@
                         </li>
                     </ul>
                 </section> --%>
-
+<%-- 
                 <section id="board-basic">
                     <div name="board-title">■ 갤러리 자료</div>
                     <ul id="board-menu">
@@ -329,23 +329,23 @@
                             <a href="#">맛집 사진 공유</a>
                         </li>
                     </ul>
-                </section>
+                </section> --%>
 
                 <c:forEach var="category" items="${mainList}">
                     <section id="board-basic">
                     <div name="board-title">■ ${category.MAIN_CATEGORY_NAME}</div>
-                        <c:forEach var="board" items="${boardTypeList}">
-                            <c:choose>
-                                <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}">
-                                <ul id="board-menu">
-                                    <li class="board">
-                                    <img src="/resources/images/게시판.PNG" id="border-img">
-                                    <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
-                                    </li>
-                                </ul>
-                                </c:when>
-                            </c:choose>
-                        </c:forEach>
+                        <ul id="board-menu">
+                            <c:forEach var="board" items="${boardTypeList}">
+                                <c:choose>
+                                    <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}">
+                                            <li class="board">
+                                            <img src="/resources/images/게시판.PNG" id="border-img">
+                                            <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
+                                            </li>
+                                    </c:when>
+                                </c:choose>
+                            </c:forEach>
+                        </ul>
                     </section>
                 </c:forEach>        
             </div>
@@ -381,7 +381,7 @@
                     </ul>
                 </div>
 
-                <%-- 지난주 댓글 랭킹 --%>
+                <%---------------------------------------- 지난주 댓글 랭킹 ----------------------------------------%>
                 <c:choose>
                     <c:when test="${empty commentRank.commentRankList}">
                         <div>랭킹업슴</div>
@@ -402,7 +402,7 @@
                     </c:otherwise>
                 </c:choose>
 
-                <%-- 지난주 게시글 랭킹 --%>
+                <%---------------------------------------- 지난주 게시글 랭킹 ----------------------------------------%>
                 <c:choose>
                     <c:when test="${empty boardRank.boardRankList}">
                         <div>랭킹업슴</div>
