@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>앨범형</title>
 
-    <link rel="stylesheet" href="../../resources/css/board/board3.css">
+    <link rel="stylesheet" href="/resources/css/board/albumBoard.css">
 
 </head>
 <body>

@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>게시글</title>
 
-    <link rel="stylesheet" href="/resources/css/board/board.css">
+    <link rel="stylesheet" href="/resources/css/board/boardList.css">
     <link rel="stylesheet" href="/resources/css/main.css">
 
 </head>
@@ -83,8 +83,11 @@
                                         <td class="strong">공지</td>
                                         <td>
                                             <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <!-- 말머리가 있을 경우  -->
                                             <c:if test="${not empty board.titleTagName}">
-                                            <span>[${board.titleTagName}]</span>
+                                                <c:if test="${board.titleTagName ne '선택 안 함'}">
+                                                    <span>[${board.titleTagName}]</span>
+                                                </c:if>
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">

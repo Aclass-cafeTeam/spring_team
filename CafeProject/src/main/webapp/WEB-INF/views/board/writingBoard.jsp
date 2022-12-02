@@ -90,13 +90,6 @@
                         </div>
                         
 
-                        <!-- 게시판 타입에 따라 글 양식 선택..ajax? -->
-                        <div class="writingForm">
-                            <div>
-                                <h1> 글양식</h1>
-                            </div>
-                        </div>
-                        
                         <!-- 게시글 제목 -->
                         <div class="writeTitle">
                             <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." >

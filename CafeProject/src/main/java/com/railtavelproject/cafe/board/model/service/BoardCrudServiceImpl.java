@@ -22,11 +22,6 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		return dao.selectTitleTag();
 	}
 
-	// 글양식 조회
-	@Override
-	public List<Map<String, Object>> selectWritingFormType() {
-		return dao.selectWritingFormType();
-	}
 
 	
 	// 게시글 작성
