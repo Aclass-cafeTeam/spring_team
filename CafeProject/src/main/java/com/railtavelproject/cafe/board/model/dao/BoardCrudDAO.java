@@ -25,6 +25,7 @@ public class BoardCrudDAO {
 		return sqlSession.selectList("boardCrudMapper.selectWritingFormType");
 	}
 
+	
 	/** 게시글 작성
 	 * @param board
 	 * @return boardNo
@@ -36,5 +37,14 @@ public class BoardCrudDAO {
 		// 메인 쿼리(INSERT) 성공 시
 		if(result>0) result = board.getBoardNo();
 		return result; // 0 또는 삽입된 게시글 번호
+	}
+	
+
+	/** 게시글 삭제
+	 * @param boardNo
+	 * @return result
+	 */
+	public int deleteBoard(int boardNo) {
+		return sqlSession.update("boardCrudMapper.deleteBoard", boardNo);
 	}
 }

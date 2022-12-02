@@ -25,4 +25,15 @@ public interface BoardCrudService {
 	 */
 	int writeBoard(Board board);
 
+
+	/** 게시글 삭제
+	 * @param boardNo
+	 * @return result
+	 */
+	int deleteBoard(int boardNo);
+
+
+
+
+
 }

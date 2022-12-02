@@ -68,7 +68,7 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="">${boardType.BOARD_CODE}
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_CODE}">
                             </div>
                         
                             
@@ -85,7 +85,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="">${titleTag.TITLE_TAG_NO}
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagNo}">
                             </div> 
                         </div>
                         
@@ -99,12 +99,12 @@
                         
                         <!-- 게시글 제목 -->
                         <div class="writeTitle">
-                            <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." >
+                            <input type="text" name="boardTitle" id="boardTitle" autocompleate="off" placeholder="제목을 입력하세요." value="${board.boardTitle}" >
                         </div>
 
                         <!-- 게시글 내용 -->
                         <div class="test">
-                            <textarea id="summernote" name="boardContent" id="boardContent"></textarea>    
+                            <textarea id="summernote" name="boardContent" id="boardContent" value="${board.boardContent}"></textarea>    
                         </div>
                         
                 </div>
@@ -146,5 +146,6 @@
 
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
+    <script src="/resources/js/board/boardUpdate.js"></script>
 </body>
 </html>

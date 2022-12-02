@@ -33,5 +33,12 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	public int writeBoard(Board board) {
 		return dao.writeBoard(board);
 	}
+
 	
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(int boardNo) {
+		return dao.deleteBoard(boardNo);
+	}
+
 }

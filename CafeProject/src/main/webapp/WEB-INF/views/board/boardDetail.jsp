@@ -133,5 +133,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/boardDetail.js"></script>
+    <script src="/resources/js/board/boardUpdate.js"></script><!-- 게시글 수정/삭제 -->
 </body>
 </html>

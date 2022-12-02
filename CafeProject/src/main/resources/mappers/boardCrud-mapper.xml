@@ -14,6 +14,7 @@
       <result property="writingFormNo" column="WRITING_FORM_NO"/>
       <result property="writingFormName" column="WRITING_FORM_NAME"/>
       <result property="writingFormContent" column="WRITING_FORM_CONTENT"/>
+      <result property="noticeFlag" column="NOTICE_FL"/>
 
       <collection property="imageList" 
       						javaType="java.util.ArrayList"
@@ -67,9 +68,6 @@
 	</select>
 	
 	
- 		<!-- 게시글 작성 
- 			게시글 작성의 성공/실패 result를 반환하는 것이 아닌, 새로 삽입된 boardNo 반환 -->
- 		
  		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
  				useGeneratedKeys="true" : JDBC getGeneratedKeys()메서드 사용 허용 ** 필수 사용
 	
@@ -84,6 +82,10 @@
 				
 				order	: 메인 SQL이 수행되기 전(BEFOR) 또는 후(AFTER)에 <selectKey>의 SQL이 수행되도록 순서를 지정
  		-->
+ 		
+ 		
+ 		<!-- 게시글 작성 -->
+ 		<!-- 게시글 작성의 성공/실패 result를 반환하는 것이 아닌, 새로 삽입된 boardNo 반환 -->
  		<insert id="writeBoard" parameterType="Board" useGeneratedKeys="true">
  			<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
  				SELECT SEQ_BOARD_NO.NEXTVAL FROM DUAL
@@ -93,6 +95,13 @@
 							DEFAULT, DEFAULT, DEFAULT, #{memberNo}, #{boardCode}, #{titleTagNo})
  		</insert>
  		
-	
+ 		
+ 		
+ 		<!-- 게시글 삭제 -->
+ 		<update id="deleteBoard">
+ 			UPDATE BOARD SET BOARD_DEL_FL = 'Y' 
+			WHERE BOARD_NO = #{boardNo}
+ 		</update>
+ 			
 
 </mapper>
