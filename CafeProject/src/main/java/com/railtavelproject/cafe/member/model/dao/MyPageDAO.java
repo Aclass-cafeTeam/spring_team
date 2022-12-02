@@ -128,11 +128,20 @@ public class MyPageDAO {
 	 * @return
 	 */
 	public List<MyPageBoard> selectMyDeleteBoard(MyPagePagination pagination, int memberNo) {
-int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
+		int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
 		
 		return sqlSession.selectList("myPageMapper.selectMyDeleteBoard", memberNo, rowBounds);
+	}
+
+	/** 마이 페이지 내정보 수정(닉네임, 지역) DAO
+	 * @param inputMember
+	 * @return
+	 */
+	public int updateInfo(Member inputMember) {
+
+		return sqlSession.update("myPageMapper.updateInfo", inputMember);
 	}
 
 	/** 닉네임 중복 검사 DAO
@@ -142,5 +151,6 @@ int offset = (pagination.getCurrentPage()-1)*pagination.getLimit();
 	public int nicknameDupCheck(String memberNickname) {
 		return sqlSession.selectOne("myPageMapper.nicknameDupCheck", memberNickname);
 	}
+
 
 }
