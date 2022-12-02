@@ -53,14 +53,5 @@ public interface MemberService {
 	int insertLogHistory(int memberNo);
 
 
-	/**멤버 스탭 검색 해오는 기능 / 스텝 카운트
-	 * @return
-	 */
-	List<Map<String, Object>> manageCafeStaffView();
-
-
-	com.railtavelproject.cafe.manager.model.vo.Member manageSearchCafeMember(String searchType, String searchMember);
-
-
 
 }

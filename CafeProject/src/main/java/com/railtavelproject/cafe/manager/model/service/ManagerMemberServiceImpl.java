@@ -339,5 +339,23 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return message;
 	}
 
+	/**
+	 *스탭 멤버 검색해오기
+	 */
+	@Override
+	public List<Map<String, Object>> manageCafeStaffView() {
+		
+		return dao.manageCafeStaffView();
+	}
+
+	/**부매니저 시킬 사람 검색해오기
+	 * 검색은 다 해오는 데 나중에 선택하면 활동정지 멤버는 alert창으로 선택할 수 없는 걸로 띄우기
+	 */
+	@Override
+	public Member manageSearchCafeMember(String searchType, String searchMember) {
+		
+		return dao.manageSearchCafeMember(searchType,searchMember);
+	}
+
 	
 }

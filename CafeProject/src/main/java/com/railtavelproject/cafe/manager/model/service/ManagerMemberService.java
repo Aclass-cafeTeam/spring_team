@@ -3,6 +3,8 @@ package com.railtavelproject.cafe.manager.model.service;
 import java.util.List;
 import java.util.Map;
 
+import com.railtavelproject.cafe.manager.model.vo.Member;
+
 //설계, 유지보수성 향상, AOP 때문에
 public interface ManagerMemberService {
 
@@ -89,6 +91,18 @@ public interface ManagerMemberService {
 	 * @return
 	 */
 	String updateNotReleaseSecede(List<String> memberEmail, int memberCount) throws Exception;
+
+	/**스탭 멤버 검색해오기
+	 * @return
+	 */
+	List<Map<String, Object>> manageCafeStaffView();
+
+	/**부매니저 시킬 사람 검색해오기
+	 * @param searchType
+	 * @param searchMember
+	 * @return
+	 */
+	Member manageSearchCafeMember(String searchType, String searchMember);
 
 
 

@@ -697,4 +697,10 @@
 	)
 	AND S_MANAGER_NO IS NOT NULL
   </update>
+  <!-- 스탭 멤버 검색해오기 -->
+  <select id="manageCafeStaffView">
+  </select>
+  <!-- 부매니저 시킬 사람 검색해오기 아이디(이메일) / 별명 -->
+  <select id="manageSearchCafeMember">
+  </select>
 </mapper>

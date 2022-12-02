@@ -144,11 +144,11 @@ public class ManegerController {
 			// 3. 부 매니저가 있을 시 스텝 추가 기능에 부 매니저는 한명만 가능 alert창 
 			// 4. 
 
-			List<Map<String, Object>> stepMember = memberService.manageCafeStaffView();
+			List<Map<String, Object>> stepMember = service.manageCafeStaffView();
 			
 			//int stepMemberCount = memberService.manageCafeSaffCount();
 			if(searchType != null ) {
-				Member searchMember = memberService.manageSearchCafeMember(searchType,SearchMember);
+				Member searchMember = service.manageSearchCafeMember(searchType,SearchMember);
 			}
 			
 			model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
