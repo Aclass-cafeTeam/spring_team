@@ -125,10 +125,10 @@ public class ManegerController {
 		return "manager/totalMemberManager";
 	}
 	//스탭 관리 페이지로 이동
-	@GetMapping("manager/ManageCafeStaffView")
+	@GetMapping("/manager/ManageCafeStaffView")
 	public String manageCafeStaffView(Member member,
 			@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
-			@RequestParam(value="searchType" , required = false) String searchType,
+			@RequestParam(value="searchType" , required = false, defaultValue = "-1") int searchType,
 			@RequestParam(value="SearchMember" , required = false) String SearchMember
 			,Model model,
 			HttpSession session){ //세션으로 로그인 멤버들고 와서 카페 관리자만 삭제 버튼 보여줘고 부관리자는 스탭관리창에서 할수 있는 게 없움
@@ -147,13 +147,17 @@ public class ManegerController {
 			List<Map<String, Object>> stepMember = service.manageCafeStaffView();
 			
 			//int stepMemberCount = memberService.manageCafeSaffCount();
-			if(searchType != null ) {
-				Member searchMember = service.manageSearchCafeMember(searchType,SearchMember);
+			Member searchMemberResult = null;
+			if(searchType != -1 ) {
+				searchMemberResult = service.manageSearchCafeMember(searchType,SearchMember);
 			}
 			
-			model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
+			int stepMemberCount = service.manageCafeStaffViewCount(); 
+			// 세션에 한번 들어가면 세션에서 꺼내쓰면 된다
+			//model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
 			model.addAttribute("stepMember", stepMember);
-			//model.addAttribute("stepMemberCount", stepMemberCount);
+			model.addAttribute("searchMember", searchMemberResult);
+			model.addAttribute("stepMemberCount", stepMemberCount);
 			model.addAttribute("searchType", searchType);
 			//model.addAttribute("stepMember", stepMember);
 			

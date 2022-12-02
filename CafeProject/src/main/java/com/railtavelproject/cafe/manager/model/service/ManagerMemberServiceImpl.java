@@ -352,9 +352,18 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 	 * 검색은 다 해오는 데 나중에 선택하면 활동정지 멤버는 alert창으로 선택할 수 없는 걸로 띄우기
 	 */
 	@Override
-	public Member manageSearchCafeMember(String searchType, String searchMember) {
+	public Member manageSearchCafeMember(int searchType, String searchMember) {
 		
 		return dao.manageSearchCafeMember(searchType,searchMember);
+	}
+
+	/**
+	 * 스탭 카운트
+	 */
+	@Override
+	public int manageCafeStaffViewCount() {
+		
+		return dao.manageCafeStaffViewCount();
 	}
 
 	

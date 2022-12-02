@@ -1,119 +1,89 @@
-const selectLimit = document.getElementById("limit");
-selectLimit.addEventListener("change",function(){
-  document.forms["sortActivityStopMemberFrm"].submit();
-});
-
-window.onload = function(){
-  var limitresult = document.getElementById("limit").className;
-  $("#limit").val(limitresult).prop('selected', true);
-}
-
-const searchMember =document.getElementById("searchMember");
-searchMember.addEventListener("focus",function(){
-  this.value = "";
-  this.style.color = '#404040';
-});
+const searchmemberBtn = document.getElementById("searchmemberBtn");
+searchmemberBtn.addEventListener("click", function () {
 
 
-/* 테이블 체크박스 */
-$("._checkAll").click(function() {
-  if($("._checkAll").is(":checked")) $("input[name=memberids]").prop("checked", true);
-  else $("input[name=memberids]").prop("checked", false);
-});
-
-function CheckValue(){
-  let checkNum = $('._checkMember:checkbox:checked').length;
-  let chk_val = [];
-  let chk_level =[];
-  $('._checkMember:checkbox:checked').each(function(){
-    chk_val.push($(this).val());   //회원 이메일
-  });
-  const checkObj = {
-    "checkNum": checkNum,
-    "chk_val": chk_val,
-  };
-  return checkObj;
-}
-
-const secedeButton = document.getElementById("_forceWithdrawal"); //강제탈퇴
-
-//강제탈퇴
-secedeButton.addEventListener("click", function () {
-
-  const checkObj = CheckValue();
-  if(checkObj["checkNum"] <= 0){
-
-      alert("멤버를 선택해주세요");
-    
+  let mem_srch = document.getElementById("mem_srch").value;
+  let searchType = document.getElementById("searchType").value;
+  const search_result = document.getElementById("search_result");
+  if(mem_srch == ''){
+    alert("검색어를 입력하세요.")
   }else{
-    const options = "width=508, height=494";
-    window.open("/manager/ManageSecedePopup", "popupWindow", options) 
-
-  }
-  
-});
-
-const releaseStopButton = document.getElementById("ReleaseStopMember"); //활동정지 해체 버튼(레이어 디스플레이용)
-
-releaseStopButton.addEventListener("click", function () {
-
-  const checkObj = CheckValue();
-  if(checkObj["checkNum"] <= 0){
-
-      alert("선택된 활동정지 멤버가 없습니다.");
-    
-  }else{
-    document.getElementById("ReleaseMemberLayer").style.display = "block";
-  }
-  
-});
-
-$("._hideLayer").click(function() {
-  document.getElementById("ReleaseMemberLayer").style.display = "none";
-});
-
-const releaseButtonAjax = document.getElementById("releaseButtonAjax"); //활동정지 해제 DB 변경 및 진짜 매핑
-releaseButtonAjax.addEventListener("click", function () {
-  const checkObj = CheckValue();
-
-    let memberEmail1 = checkObj["chk_val"];
-    let memberCount1 = checkObj["checkNum"]; 
-
     $.ajax({
-        // 디비에서 활동정지 테이블에서 컬럼 삭제 DELETE 
-        // 멤버 테이블에서 활동 여부 'N'
-        url: "/updateReleaseStopMember",
-        data: { 
-                "memberEmail"  : memberEmail1,
-                "memberCount"  : memberCount1,
-                "message"      : ""
-        },
-        type: "POST",
-        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
-        success: (result) => {
-            if(result.message === "활동이 가능한 멤버로 변경 실패하셨습니다."){
-                
-                alert(result.message);
-        
+      // 디비에서 강제 탈퇴에서 컬럼 탈퇴 사유 'I'로 수정 
+      //('F': 재가입 불가) 
+      
+      url: "/manager/ManageCafeStaffView",
+      data: { 
+              "searchType"  : searchType,
+              "SearchMember"  : mem_srch,
+              "message"      : ""
+      },
+      type: "GET",
+      dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+      success: (result) => {
+        if(result.searchMember == null){
+          const li = document.createElement("li"); //부모
+          li.id = 'memberInfo_null';
+          li.setAttribute("name", "memberInfo");
+          const p = document.createElement("p"); //부모
+          p.innerText ="검색한 회원의 정보가 없습니다.";
 
-            }else{
+          search_result.append(li);
+          search_result.append(p);
 
-                for(let key of result.memberEmail){
-                      
-                  $('tr[memberid='+key+']').remove();
-                  
-                }
+        }else{
+          for (let item of result.searchMember) {
+              const li = document.createElement("li"); //부모
+              li.id = "memberInfo_"+item.memberEmail;
+              li.setAttribute("name", "memberInfo");
+              li.setAttribute("id", "memberInfo_{"+item.memberEmail+"}");
 
-                alert(result.message);
-                document.getElementById("ReleaseMemberLayer").style.display = "none";
-              
+              const div = document.createElement("div"); //li 자식
+              div.classList.add("info"); 
+          
+              const input = document.createElement("input"); //div 자식
+              input.classList.add("check");
+              input.classList.add("_click(ManageCafeStaff|MemberInfo)");
+              input.setAttribute("name", "electedStaffId");
+              input.setAttribute("id", "electedStaffId_"+item.memberEmail);
+              input.setAttribute("type", "radio");
+              input.setAttribute("value", "item.memberEmail");
+              //
+              const img = document.createElement("img"); //div 자식
+              div.classList.add("thmb");
+              img.setAttribute("src", item.profileImage);
+          
+              const label = document.createElement("label"); //div 자식
+              label.classList.add("item");
+              label.classList.add("_name");
+              label.classList.add("_click(ManageCafeStaff|MemberInfo)");
+              label.classList.add("_stopDefault");
+              img.setAttribute("for", "r1");
+              label.innerText = item.memberNickname+"("+item.memberEmail+")";
 
-            }
-        },
-        error: () => {
-            console.log("멤버 활동 정지 해제 반영 실패")
+          
+              search_result.append(li);
+              li.append(div);
+
+              div.append(input);
+              div.append(img);
+              div.append(label);
+          }
+
         }
+
+        document.getElementById("memberInfoList").style.display ="block";
+        document.getElementById("smt_btn").style.display ="block";
+      },
+      error: () => {
+          console.log("검색 실패");
+      }
 
 
     });
+  }
+
+
+
+
 });

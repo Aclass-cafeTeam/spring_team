@@ -102,7 +102,12 @@ public interface ManagerMemberService {
 	 * @param searchMember
 	 * @return
 	 */
-	Member manageSearchCafeMember(String searchType, String searchMember);
+	Member manageSearchCafeMember(int searchType, String searchMember);
+
+	/**스탭 카운트
+	 * @return
+	 */
+	int manageCafeStaffViewCount();
 
 
 

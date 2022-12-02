@@ -265,6 +265,8 @@ strong {
 .group_input_frm .mem_choice .thmb {
   margin: 0 3px 0 2px;
   vertical-align: top;
+  width: 20px;
+  height: 20px;
 }
 
 .group_input_frm .mem_choice .item {
@@ -493,4 +495,12 @@ strong {
 
 .tbl_lst_type .tc {
   text-align: center;
+}
+
+#memberInfoList{
+  display: none;
+}
+
+#smt_btn{
+  display: none;
 }

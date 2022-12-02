@@ -457,11 +457,21 @@ public class ManagerMemberDAO {
 	/**부매니저 시킬 사람 검색해오기
 	 * 검색은 다 해오는 데 나중에 선택하면 활동정지 멤버는 alert창으로 선택할 수 없는 걸로 띄우기
 	 */
-	public Member manageSearchCafeMember(String searchType, String searchMember) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("searchType",searchType); //강제 탈퇴 당한 회원 이메일들 (회원 다수일수도 있음)
-		map.put("searchMember",searchMember);	 //강제 탈퇴 사유 
-		return sqlsession.selectOne("managerMapper.manageSearchCafeMember", map);
+	public Member manageSearchCafeMember(int searchType, String searchMember) {
+		//srchOption 0이면 아이디(Email) 1이면 별명(Nick)
+	   	Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inputMember", searchMember);
+		map.put("srchOption", searchType);
+		return sqlsession.selectOne("managerMapper.selectInputMember",map);
+
+		
+	}
+
+	/**스탭 카운트
+	 * @return
+	 */
+	public int manageCafeStaffViewCount() {
+		return sqlsession.selectOne("managerMapper.manageCafeStaffViewCount");
 	}
    
 }

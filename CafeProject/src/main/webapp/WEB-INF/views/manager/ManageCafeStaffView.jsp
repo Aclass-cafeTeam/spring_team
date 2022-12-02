@@ -2,9 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
-<%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
-<c:set var="memberList" value="${map.memberList}"/>
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -19,14 +16,6 @@
   <main>    
         <!-- ************************************* managerHeader ************************************************** -->
         <%-- 검색을 진행한 경우 --%>
-        <c:if test="${not empty param}">
-          <c:forEach var="pageParameter" items="${param}">
-            <c:if test="${pageParameter.key != 'cp'}">
-              
-              <c:set var="sURL" value="${sURL}&${pageParameter.key}=${pageParameter.value}"/>
-            </c:if>
-          </c:forEach>
-        </c:if>
         <div class="managerHeader">
           <header>
               <div class="managerHeader-gnb">
@@ -154,29 +143,37 @@
                       <div class="group_input_frm">
                         <div class="srch_in">
                           <select id="searchType" name="searchType" style="width: 86px; height: 19px">
-                            <option value="memberEmail">아이디</option>
-                            <option value="memberNickname">별명</option>
+                            <option value="0">아이디</option>
+                            <option value="1">별명</option>
                           </select> 
                           <input type="text" id="mem_srch" name="SearchMember" class="text _keydown(ManageCafeStaff|SearchMember)" style="width: 248px; padding-left: 7px"> 
-                          <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="#">
+                          <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="" id="searchmemberBtn">
                           <span>검색</span>
                           </a>
                         </div>
 
                         <%-- 검색하면 보이고 아니면 보이지 않음 --%>
-                        <div id="memberInfoList" style="display: block;">
+                        <div id="memberInfoList" >
       
                           <ul id="search_result" class="mem_choice">
-                          
-                            <li id="memberInfo_shuxi91" name="memberInfo">
-                              <div class="info">
-                                <input type="radio" id="electedStaffId_shuxi91" name="electedStaffId" class="check _click(ManageCafeStaff|MemberInfo)" value="shuxi91">
-                                      <img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif" width="20" height="20" alt="" class="thmb">
-                                      <label for="r1" class="item _name _click(ManageCafeStaff|MemberInfo) _stopDefault">김서희(shuxi91)</label>
-                              </div>
-                            </li>
+                           <%--  <c:choose>
+                              <c:when test="${empty searchMember}">
+                                <li id="memberInfo_null" name="memberInfo">
+                                    <p>검색한 회원의 정보가 없습니다.</p>
+                                </li>
+                              </c:when>
+                              <c:otherwise>
+                              <li id="memberInfo_{${searchMember.memberEmail}}" name="memberInfo">
+                                <div class="info">
+                                  <input type="radio" id="electedStaffId_${searchMember.memberEmail}" name="electedStaffId" class="check _click(ManageCafeStaff|MemberInfo)" value="${searchMember.memberEmail}">
+                                        <img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif" width="20" height="20" alt="" class="thmb">
+                                        <label for="r1" class="item _name _click(ManageCafeStaff|MemberInfo) _stopDefault">${searchMember.memberNickname} (${searchMember.memberEmail})</label>
+                                </div>
+                              </li>
+                              </c:otherwise>
+                            </c:choose> --%>
                           </ul>
-                          <ul id="save_txt" class="bu_lst_type2" style="display: block;">
+                          <ul id="save_txt" class="bu_lst_type2">
                             <li>선택한 멤버를 스탭으로 선정하시려면 '저장'을 눌러주세요.</li>
                           </ul>
                         
@@ -187,7 +184,7 @@
                 </tbody>
               </table>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
-              <div id="smt_btn" class="btn_area" style="display: block;">
+              <div id="smt_btn" class="btn_area">
                 <a href="#" class="btn_type_ny _click(ManageCafeStaff|SubmitForm) _stopDefault"><strong>저장</strong></a>
               </div>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
@@ -205,7 +202,7 @@
             <div class="board_area bd_n">
               <div class="board_top">
                 <p class="board_tit">
-                  <strong>전체 스탭 </strong> <em> 1</em>
+                  <strong>전체 스탭 </strong> <em>${stepMemberCount}</em>
                 </p>
               </div>
               <div id="DeleteLayer" style="display:none;left:595px;top:109px;" class="ly_type">
@@ -243,25 +240,35 @@
                 <tbody>
                   
                   
+                  <c:choose>
+                  <c:when test="${empty stepMember}">
+                    <tr class="line_b none">
+                      <td colspan="6">
+                        <p>카페 스탭 멤버가 없습니다.</p>
+                      </td>
+                    </tr>
+                  </c:when>
+                  <c:otherwise>
+                    <c:forEach var="member" items="${stepMember}">
+                    <tr>
+                      <td class="tl"><span class="txt c_gy2">전체 스탭</span></td>
+                      <td class="pers_nick_area">
+                        <span class="thmb">
+                          <img src="${member.profileImage}"  alt="">
+                        </span>
+                        <a href="#" class="nick _click(NicknameUI|OpenUI|${member.memberEmail}) _stopDefault _userInfo">${member.memberNickname}(${member.memberEmail})</a>
+                      </td>
+                      <td class="tc"><span class="num">${member.loginDate}.</span></td>
                   
-                  
-                  <tr>
-                    <td class="tl"><span class="txt c_gy2">전체 게시판 스탭</span></td>
-                    <td class="pers_nick_area">
-                      <span class="thmb">
-                        <img src="https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif"  alt="" onerror="this.onerror=null;this.src='https://ssl.pstatic.net/static/cafe/cafe_profile3_45x45.gif'">
-                      </span>
-                      <a href="#" class="nick _click(NicknameUI|OpenUI|rkdalsrb65) _stopDefault _userInfo">상남자(rkdalsrb65)</a>
-                    </td>
-                    <td class="tc"><span class="num">2022.12.01.</span></td>
-                
-                    <td class="tc">
-                      <a href="#" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|rkdalsrb65|2) _stopDefault">
-                        <span>삭제</span>
-                      </a>
-                    </td>
-                  </tr>
-                  
+                      <td class="tc">
+                        <a href="#" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|${member.memberEmail}|${member.authorityNo}) _stopDefault">
+                          <span>삭제</span>
+                        </a>
+                      </td>
+                    </tr>
+                    </c:forEach>
+                  </c:otherwise>
+                  </c:choose>
                   
                   
                 </tbody>
