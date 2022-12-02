@@ -1,9 +1,10 @@
 package com.railtavelproject.cafe.member.model.vo;
 
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import java.util.List;
+
 
 @Getter
 @Setter
@@ -30,6 +31,4 @@ public class MyPageBoard {
 	   private int titleTagNo; // 말머리 번호 TITLE_TAG_NO
 	   private String titleTagName; // 말머리 이름 TITLE_TAG_NAME
 
-	   // 댓글 목록
-	   private List<MyPageComment> myPageCommentList;
 }

@@ -30,7 +30,7 @@
             -->
             <section class="myPage-main">
 
-                <form action="#" method="POST" name="myPage-form">
+                <form action="info" method="POST" name="myPage-form">
 
                     <div class="myInfoArea">
                         <div class="myPage-subTitle"><label>내 정보</label></div>
@@ -39,62 +39,48 @@
 
                         <div class="myPage-subTitle">
                             <label>아이디(이메일)</label>
-                            <span>${loginMember.memberEmail}</span>
+                            <input type="text" disabled value="${loginMember.memberEmail}">
                         </div>
                         <div class="myPage-subTitle">
-                            <label>닉네임</label>
-                            <!-- maxlength 확인할 것 -->
-                            <input type="text" name="memberNickname" id="memberNickname" maxlength="10" placeholder="${loginMember.memberNickname}">
-                            <button class="myPage-check-btn">중복 확인</button>  
+                            <label for="memberNickname">닉네임</label>
+                            <input type="text" name="memberNickname" id="memberNickname" maxlength="20"
+                                value="${loginMember.memberNickname}" autocomplete="off">
+                            <button class="myPage-check-btn">중복 확인</button>
                         </div>
-                        <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
-                        <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span>
+                            <div class="signUp-message">
+                                <span id="nickMessage"></span><span id="bite"></span>
 
-                        <%-- <div class="myPage-subTitle">
-                            <label>현재 비밀번호</label>
-                            <input type="password" name="memberPw" id="memberPw" maxlength="30">
-                            <button class="myPage-check-btn">확인</button>  
-                        </div>
-                        <span class="myPage-script">현재 비밀번호를 입력해주세요.</span> --%>
+<%--                         <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
+                        <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span> --%>
 
-                        <!-- 각 비밀번호 id DB확인 후 수정 -->
-                        <%-- <div class="myPage-subTitle">
-                            <label>새 비밀번호</label>
-                            <input type="password" name="memberPw" id="#" maxlength="30">  
-                        </div>
-                        <div class="myPage-subTitle">
-                            <label>새 비밀번호 확인</label>
-                            <input type="password" name="memberPw" id="#" maxlength="30">
-                            <button class="myPage-check-btn">확인</button>
-                        </div> --%>
                         <div class="myPage-subTitle">
                             <label for="residence">지역(선택사항)</label>
                             <div class="select">
                                 <select name="memberResidence" id="residence">
-                                    <option selected disabled>시/도 선택</option>
-                                    <option value="서울">서울</option>
-                                    <option value="경기">경기</option>
-                                    <option value="인천">인천</option>
-                                    <option value="부산">부산</option>
-                                    <option value="대구">대구</option>
-                                    <option value="대전">대전</option>
-                                    <option value="광주">광주</option>
-                                    <option value="울산">울산</option>
-                                    <option value="세종">세종</option>
-                                    <option value="강원">강원</option>
-                                    <option value="충북">충북</option>
-                                    <option value="전북">전북</option>
-                                    <option value="전남">전남</option>
-                                    <option value="경북">경북</option>
-                                    <option value="경남">경남</option>
-                                    <option value="제주">제주</option>
-                                    <option value="기타(해외)">기타(해외)</option>
+                                    <option <c:if test="${loginMember.memberResidence == null }">selected</c:if> disabled>시/도 선택</option>
+                                    <option value="서울" <c:if test="${loginMember.memberResidence eq '서울' }">selected</c:if>>서울</option>
+                                    <option value="경기" <c:if test="${loginMember.memberResidence eq '경기' }">selected</c:if>>경기</option>
+                                    <option value="인천" <c:if test="${loginMember.memberResidence eq '인천' }">selected</c:if>>인천</option>
+                                    <option value="부산" <c:if test="${loginMember.memberResidence eq '부산' }">selected</c:if>>부산</option>
+                                    <option value="대구" <c:if test="${loginMember.memberResidence eq '대구' }">selected</c:if>>대구</option>
+                                    <option value="대전" <c:if test="${loginMember.memberResidence eq '대전' }">selected</c:if>>대전</option>
+                                    <option value="광주" <c:if test="${loginMember.memberResidence eq '광주' }">selected</c:if>>광주</option>
+                                    <option value="울산" <c:if test="${loginMember.memberResidence eq '울산' }">selected</c:if>>울산</option>
+                                    <option value="세종" <c:if test="${loginMember.memberResidence eq '세종' }">selected</c:if>>세종</option>
+                                    <option value="강원" <c:if test="${loginMember.memberResidence eq '강원' }">selected</c:if>>강원</option>
+                                    <option value="충북" <c:if test="${loginMember.memberResidence eq '충북' }">selected</c:if>>충북</option>
+                                    <option value="전북" <c:if test="${loginMember.memberResidence eq '전북' }">selected</c:if>>전북</option>
+                                    <option value="전남" <c:if test="${loginMember.memberResidence eq '전남' }">selected</c:if>>전남</option>
+                                    <option value="경북" <c:if test="${loginMember.memberResidence eq '경북' }">selected</c:if>>경북</option>
+                                    <option value="경남" <c:if test="${loginMember.memberResidence eq '경남' }">selected</c:if>>경남</option>
+                                    <option value="제주" <c:if test="${loginMember.memberResidence eq '제주' }">selected</c:if>>제주</option>
+                                    <option value="기타(해외)" <c:if test="${loginMember.memberResidence eq '기타(해외)' }">selected</c:if>>기타(해외)</option>
                                 </select>
                             </div>
                         </div>
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
-                            <button class="myPage-update-btn">수정</button>
+                            <button class="myPage-update-btn" type="submit">수정</button>
                         </div>
                     </div> 
                 </form>
