@@ -386,12 +386,45 @@ strong {
   background-color: #F1F6FA;
   border: 1px solid #C8CFD4;
 }
-
-.thmb img{
+/* 검색 */
+.thmb{
   width:20px;
   height:20px; 
 } 
+.group_input_frm .mem_choice .info {
+  width: 616px;
+}
 
+.group_input_frm .mem_choice .item {
+  display: inline-block;
+  height: 20px;
+  line-height: 22px;
+  vertical-align: top;
+}
+.group_input_frm .mem_choice .info, .group_input_frm .mem_choice .msg {
+  float: left;
+}
+
+.group_input_frm .mem_choice li {
+  margin-bottom: 4px;
+  *margin-bottom: 2px;
+  line-height: 20px;
+  zoom: 1;
+}
+
+.group_input_frm .mem_choice input {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  vertical-align: middle;
+}
+input.check {
+  width: 13px;
+  height: 13px;
+  vertical-align: middle;
+  _margin-top: 0 !important;
+}
+/* 검색 */
 
 .tbl_lst_type th {
   height: 27px;
@@ -497,10 +530,21 @@ strong {
   text-align: center;
 }
 
-#memberInfoList{
-  display: none;
+.memberInfoList{
+  display: none; 
+ /*  display: block; */
 }
 
-#smt_btn{
-  display: none;
+.btn_area{
+  display: none; 
+  /* display: block; */
 }
+
+
+.memberInfoListdisplay{
+  display: block;
+}
+
+.btn_areadisplay{
+  display: block;
+} 

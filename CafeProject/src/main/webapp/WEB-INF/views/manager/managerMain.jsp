@@ -149,7 +149,7 @@
                                     <a id="menu2" href="/manager/joinMemberManager" class="N=a:LNB*a.list">가입 정보 관리</a>
                                 </li>
                                 <li class="_manageAuth(MemberStaff)">
-                                    <a id="menu3" href="" class="N=a:LNB*a.list">멤버 등급 관리</a>
+                                    <a id="menu3" href="/manager/gradeMemberManager" class="N=a:LNB*a.list">멤버 등급 관리</a>
                                 </li>
                             </ul>
                         </div>

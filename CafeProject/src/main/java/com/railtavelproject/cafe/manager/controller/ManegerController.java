@@ -1,5 +1,6 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -13,9 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.google.gson.Gson;
 import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
@@ -147,21 +150,53 @@ public class ManegerController {
 			List<Map<String, Object>> stepMember = service.manageCafeStaffView();
 			
 			//int stepMemberCount = memberService.manageCafeSaffCount();
-			Member searchMemberResult = null;
-			if(searchType != -1 ) {
-				searchMemberResult = service.manageSearchCafeMember(searchType,SearchMember);
-			}
+			/*
+			 * Member searchMemberResult = null; if(searchType != -1 ) { searchMemberResult
+			 * = service.manageSearchCafeMember(searchType,SearchMember); }
+			 */
 			
 			int stepMemberCount = service.manageCafeStaffViewCount(); 
 			// 세션에 한번 들어가면 세션에서 꺼내쓰면 된다
 			//model.addAttribute("loginMember",session.getAttribute("loginMember"));  //
 			model.addAttribute("stepMember", stepMember);
-			model.addAttribute("searchMember", searchMemberResult);
+			//model.addAttribute("searchMember", searchMemberResult);
 			model.addAttribute("stepMemberCount", stepMemberCount);
 			model.addAttribute("searchType", searchType);
 			//model.addAttribute("stepMember", stepMember);
 			
 			return "manager/ManageCafeStaffView";
 	}
+	
+	//스탭 관리 멤버 검색
+		@PostMapping("/SearchMemberStepView")
+		@ResponseBody
+		public String SearchMemberStepView(Member member,
+				@RequestParam(value="memberLevelNo" , required = false, defaultValue = "0") int memberLevelNoResult,
+				@RequestParam(value="searchType" , required = false, defaultValue = "-1") int searchType,
+				@RequestParam(value="SearchMember" , required = false) String SearchMember
+				,Model model,
+				HttpSession session){ 
+
+				Member searchMemberResult = null;
+				if(searchType != -1 ) {
+					searchMemberResult = service.manageSearchCafeMember(searchType,SearchMember);
+				}
+				
+				System.out.println(searchMemberResult);
+				//model.addAttribute("searchMember", searchMemberResult);
+
+				//model.addAttribute("stepMember", stepMember);
+				Map<String, Object> map = new HashMap<String, Object>();
+				map.put("searchMemberResult",searchMemberResult);
+				return new Gson().toJson(map);
+		}
+		
+		
+		//manager등급관리
+		@GetMapping("/manager/gradeMemberManager")
+		public String gradeMemberManager() {
+		
+			return "manager/gradeMemberManager";
+		}
 
 }

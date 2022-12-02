@@ -147,13 +147,13 @@
                             <option value="1">별명</option>
                           </select> 
                           <input type="text" id="mem_srch" name="SearchMember" class="text _keydown(ManageCafeStaff|SearchMember)" style="width: 248px; padding-left: 7px"> 
-                          <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="" id="searchmemberBtn">
+                          <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="#" id="searchmemberBtn">
                           <span>검색</span>
                           </a>
                         </div>
 
                         <%-- 검색하면 보이고 아니면 보이지 않음 --%>
-                        <div id="memberInfoList" >
+                        <div id="memberInfoList" class="memberInfoList memberInfoListnone">
       
                           <ul id="search_result" class="mem_choice">
                            <%--  <c:choose>
@@ -184,7 +184,7 @@
                 </tbody>
               </table>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
-              <div id="smt_btn" class="btn_area">
+              <div id="smt_btn" class="btn_area btn_areanone">
                 <a href="#" class="btn_type_ny _click(ManageCafeStaff|SubmitForm) _stopDefault"><strong>저장</strong></a>
               </div>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
