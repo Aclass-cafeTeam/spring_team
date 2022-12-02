@@ -77,10 +77,32 @@ public class IntroDAO {
 		RowBounds rowBounds = new RowBounds(0, 5);
 		return sqlSession.selectList("introMapper.commentRank", null ,rowBounds);
 	}
-
+	
+	/**
+	 * 멤버랭킹 - 게시글 수
+	 * @return
+	 */
 	public List<IntroBoard> boardRank() {
 		RowBounds rowBounds = new RowBounds(0, 5);
 		return sqlSession.selectList("introMapper.boardRank", null ,rowBounds);
 	}
+
+	/**
+	 * 멤버랭킹 - 로그인
+	 * @return
+	 */
+	public List<IntroBoard> loginRank() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.loginRank", null ,rowBounds);
+	}
+	
+	/**
+	 * 회원수 조회
+	 * @return
+	 */
+	public int memberCount() {
+		return sqlSession.selectOne("introMapper.memberCount");
+	}
+
 
 }
