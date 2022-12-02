@@ -144,13 +144,4 @@ public class MyPageDAO {
 		return sqlSession.update("myPageMapper.updateInfo", inputMember);
 	}
 
-	/** 닉네임 중복 검사 DAO
-	 * @param memberNickname
-	 * @return result
-	 */
-	public int nicknameDupCheck(String memberNickname) {
-		return sqlSession.selectOne("myPageMapper.nicknameDupCheck", memberNickname);
-	}
-
-
 }

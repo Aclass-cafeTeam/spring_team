@@ -76,20 +76,6 @@ public class MyPageController {
 		return "redirect:info"; // 내 정보 재요청
 	}
 	
-	// 닉네임 중복 검사
-	@GetMapping("/nicknameDupCheck")
-	@ResponseBody // 반환된 값을 jsp 경로가 아닌 값 자체로 인식
-	public int nicknameDupCheck(String memberNickname) {
-				// data: { "memberNickname": memberNickname.value }
-
-		// 닉네임 중복검사 서비스 호출
-		int result = service.nicknameDupCheck(memberNickname);
-
-		// @ResponseBody 어노테이션 덕분에
-		// result가 View Resolver로 전달되지 않고
-		// 호출했던 ajax 함수로 반환됨
-		return result;
-	}
 	
 	// 마이페이지 프로필 이미지
 	@GetMapping("/profile")

@@ -186,12 +186,6 @@ public class MyPageServiceImpl implements MyPageService{
 		return result;
 	}
 
-	// 닉네임 중복 검사
-	@Override
-	public int nicknameDupCheck(String memberNickname) {
-		return dao.nicknameDupCheck(memberNickname);
-	}
-
 
 
 }

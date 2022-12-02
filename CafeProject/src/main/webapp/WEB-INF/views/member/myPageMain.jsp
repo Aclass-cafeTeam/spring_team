@@ -43,12 +43,11 @@
                         </div>
                         <div class="myPage-subTitle">
                             <label for="memberNickname">닉네임</label>
-                            <input type="text" name="memberNickname" id="memberNickname" maxlength="20"
+                            <input type="text" name="memberNickname" id="myPageNickname" maxlength="20"
                                 value="${loginMember.memberNickname}" autocomplete="off">
-                            <button class="myPage-check-btn">중복 확인</button>
+                            <%-- <button class="myPage-check-btn" id="nickCheck-btn">중복 확인</button> --%>
                         </div>
-                            <div class="signUp-message">
-                                <span id="nickMessage"></span><span id="bite"></span>
+                            <div id="nickMsg"></div>
 
 <%--                         <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
                         <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span> --%>
@@ -80,7 +79,7 @@
                         </div>
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
-                            <button class="myPage-update-btn" type="submit">수정</button>
+                            <button class="myPage-update-btn" type="submit" onclick="return myPageUpdateValidate()">수정</button>
                         </div>
                     </div> 
                 </form>
@@ -93,6 +92,9 @@
 
     <%-- jQuery 라이브러리 추가 --%>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+     <script>
+        const NowNickname = "${loginMember.memberNickname}";
+    </script>
     <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>

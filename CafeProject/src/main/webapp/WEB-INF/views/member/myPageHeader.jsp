@@ -55,6 +55,5 @@
                     <a href="/member/myPage/secession" id="secessionMenu">회원 탈퇴</a>
                 </div>
             </div> 
-    <script src="/resources/js/member/myPage.js"></script>
 </body>
 </html>
