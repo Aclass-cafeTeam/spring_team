@@ -473,5 +473,7 @@ public class ManagerMemberDAO {
 	public int manageCafeStaffViewCount() {
 		return sqlsession.selectOne("managerMapper.manageCafeStaffViewCount");
 	}
+	
+	
    
 }

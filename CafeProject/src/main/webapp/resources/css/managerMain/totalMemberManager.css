@@ -456,6 +456,10 @@ table {
   line-height: 29px;
 }
 
+.buNone{
+  display: none;
+}
+
 tbody{
   
   border: 0px;

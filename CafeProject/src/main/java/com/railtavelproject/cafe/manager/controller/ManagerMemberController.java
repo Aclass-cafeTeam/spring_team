@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
@@ -396,6 +398,20 @@ public class ManagerMemberController {
 									
 				return new Gson().toJson(map);
 		}
+		
+		
+		//멤버 부매니저로 임명하기
+		@PostMapping("/ManageCafeStaffView/updateSubManagerSelect")
+		public String updateSubManagerSelect(
+		
+				RedirectAttributes ra, /* 메세지 전달용 */
+				HttpServletRequest req /* 저장할 서버 경로 */
+				) throws Exception{
+
+			
+			return "redirect:/manager/ManageCafeStaffView";
+		}
+		
 				
 		
 		

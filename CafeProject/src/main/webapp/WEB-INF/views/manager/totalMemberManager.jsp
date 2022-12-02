@@ -340,15 +340,15 @@
              
             <th scope="col"><strong class="line_n">멤버 등급</strong></th>
             
-            <th scope="col" class="selected "><strong class="line_r"><a href="#" class="_sortType" code="0">가입일<span class="bu _sortType" code="0"></span></a></strong></th>
+            <th scope="col" class="selected "><strong class="line_r"><a href="#" class="_sortType" code="0">가입일<span class="bu _sortType buNone" code="0">▼</span></a></strong></th>
             
-            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="1">최종방문일<span class="bu _sortType" code="1"></span></a></strong></th>
+            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="1">최종방문일<span class="bu _sortType buNone" code="1">▼</span></a></strong></th>
             
-            <th scope="col" class=""><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType" code="2"></span></a></strong></th>
+            <th scope="col" class=""><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType buNone" code="2">▼</span></a></strong></th>
             
-            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="3">게시글수<span class="bu _sortType" code="3"></span></a></strong></th>
+            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="3">게시글수<span class="bu _sortType buNone" code="3">▼</span></a></strong></th>
             
-            <th scope="col" class="last"><strong><a href="#" class="_sortType" code="4">댓글수<span class="bu _sortType" code="4"></span></a></strong></th>
+            <th scope="col" class="last"><strong><a href="#" class="_sortType" code="4">댓글수<span class="bu _sortType buNone" code="4">▼</span></a></strong></th>
             
           </tr>
             </thead>
