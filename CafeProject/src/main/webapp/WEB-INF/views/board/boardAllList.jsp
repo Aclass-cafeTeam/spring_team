@@ -2,9 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
-<c:set var="boardList" value="${map.boardList}" />
 <c:set var="noticeList" value="${notice.noticeList}" />
-<c:set var="pagination" value="${map.pagination}" />
+<c:set var="pagination" value="${all.pagination}" />
 <c:set var="allList" value="${all.allList}" />
 
 <!DOCTYPE html>
@@ -37,7 +36,7 @@
 
             <article class="article">
                     <div class="board-name">전체글보기</div>
-                    <p class="board-start">게시판 설명(메뉴 설명)</p>
+                    <p class="board-start"></p>
 
                     <div class="hidden">
                         <input type="checkbox" name="hidden" id="#">
@@ -106,7 +105,7 @@
                             <c:when test="${empty allList}">
                             <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
-                                    <th colspan="7">게시글이 존재하지 않습니다.</th>
+                                    <th colspan="7"></th>
                                 </tr>
                             </c:when>
 
@@ -121,7 +120,7 @@
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
-                                            <a h                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    ref="#" class="comment">[${board.commentCount}]</a>
+                                            <a href="#" class="comment">[${board.commentCount}]</a>
                                             </c:if>                   
                                         </td>
                                         <td></td>

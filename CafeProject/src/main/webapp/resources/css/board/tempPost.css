@@ -12,7 +12,6 @@
     background-color:  #fff;
     box-shadow: 0 2px 14px 0 rgb(0 0 0 / 10%);
     border-radius: 12px;
-
     position: relative;
 }
 
@@ -37,25 +36,20 @@
 
 
 /* 종료 X버튼*/
-.btn-close {
-    width: 10px;
-    height: 10px;
-    position:absolute;
-    top: 0;
-    right : 0;
-    padding: 20px;
+#btn-close { 
     border: none;
     background-color: #fff;
+    display: inline;
+    float: right;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
+    text-shadow: 1px 1px 2px gray;
+    
 }
 
 /* i태그 */
-.btn-close i {
+#btn-close i {
     font-size: 20px;
     pointer-events: none;
-    margin-right: 10px;
 }
 
 

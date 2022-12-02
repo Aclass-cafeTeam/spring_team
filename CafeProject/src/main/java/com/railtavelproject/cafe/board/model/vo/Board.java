@@ -36,8 +36,8 @@ public class Board {
     private int mainCategoryNo; //MAIN_CATEGORY_NO
     private String mainCategoryName; // MAIN_CATEGORY_NAME
     
-    // 이미지 목록
-    private List<BoardImage> imageList;
+    private String noticeFlag; // NOTICE_FL 0:일반 1:게시판 2:전체
+    
     // 댓글 목록
     private List<Comment> commentList;
 }

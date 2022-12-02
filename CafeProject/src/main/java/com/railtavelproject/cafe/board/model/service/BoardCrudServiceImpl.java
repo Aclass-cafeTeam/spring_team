@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.railtavelproject.cafe.board.model.dao.BoardCrudDAO;
 import com.railtavelproject.cafe.board.model.vo.Board;
@@ -33,5 +34,23 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	public int writeBoard(Board board) {
 		return dao.writeBoard(board);
 	}
-	
+
+	// 게시글 삭제
+	@Override
+	public int deleteBoard(int boardNo) {
+		return dao.deleteBoard(boardNo);
+	}
+
+	// 임시 저장
+	@Override
+	public int tempPost(Board board) {
+		return dao.tempPost(board);
+	}
+
+	// 게시글 상세 조회
+	@Override
+	public Board boardDetail(int boardNo) {
+		return dao.boardDetail(boardNo);
+	}
+
 }
