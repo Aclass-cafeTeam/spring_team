@@ -59,25 +59,25 @@
                   <div class="nav_menu">
                       <ul>
                           <li clss="managerHome">
-                              <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                              <a href="/manager/managerMain"><img src="/resources/images/free-icon-house-1835281.png">관리홈</a>
                           </li>
                           <li>
-                              <a href="/manager/basicInfoManager"><img src="../../resources/images/settings.png">카페운영</a>
+                              <a href="/manager/basicInfoManager"><img src="/resources/images/settings.png">카페운영</a>
                           </li>
                           <li>
-                              <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                              <a href="/manager/totalMemberManager"><img src="/resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                           </li>
                           <li>
-                              <a href="/manager/joinMemberManager"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                              <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                           </li>
                           <li>
-                              <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
+                              <a href="../managerMain/menuManager.html"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                           </li>
                           <li>
-                              <a href=""><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
+                              <a href=""><img src="/resources/images/free-icon-edit-4386594.png">글•글양식</a>
                           </li>
                           <li>
-                              <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                              <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                           </li>
                       </ul>
                   </div>
@@ -128,7 +128,7 @@
                         </label> 
                         <select  id = "srchOption" class="${srchOption}" name="srchOption" >
                           <option value="0" selected="">아이디</option>
-                          <option value="1">별명</option>
+                          <option value="1">닉네임</option>
                         </select>
                         <input type="text" name="inputMember" id="inputMember" class="inputMember">
                         <!-- <input type="hidden" name="where"> -->
@@ -340,16 +340,15 @@
              
             <th scope="col"><strong class="line_n">멤버 등급</strong></th>
             
-            <th scope="col" class="selected "><strong class="line_r"><a href="#" class="_sortType" code="0">가입일<span class="bu _sortType" code="0">▼</span></a></strong></th>
+            <th scope="col" class="selected "><strong class="line_r"><a href="#" class="_sortType" code="0">가입일<span class="bu _sortType" code="0"></span></a></strong></th>
             
-            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="1">최종방문일<span class="bu _sortType" code="1">▼</span></a></strong></th>
+            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="1">최종방문일<span class="bu _sortType" code="1"></span></a></strong></th>
             
-            <th scope="col" class=""><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType" code="2">▼</span></a></
-              strong></th>
+            <th scope="col" class=""><a href="#" class="_sortType" code="2">방문수<span class="bu _sortType" code="2"></span></a></strong></th>
             
-            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="3">게시글수<span class="bu _sortType" code="3">▼</span></a></strong></th>
+            <th scope="col" class=""><strong class="line_r"><a href="#" class="_sortType" code="3">게시글수<span class="bu _sortType" code="3"></span></a></strong></th>
             
-            <th scope="col" class="last"><strong><a href="#" class="_sortType" code="4">댓글수<span class="bu _sortType" code="4">▼</span></a></strong></th>
+            <th scope="col" class="last"><strong><a href="#" class="_sortType" code="4">댓글수<span class="bu _sortType" code="4"></span></a></strong></th>
             
           </tr>
             </thead>

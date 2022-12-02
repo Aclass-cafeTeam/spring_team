@@ -144,7 +144,7 @@
                         <div class="srch_in">
                           <select id="searchType" name="searchType" style="width: 86px; height: 19px">
                             <option value="0">아이디</option>
-                            <option value="1">별명</option>
+                            <option value="1">닉네임</option>
                           </select> 
                           <input type="text" id="mem_srch" name="SearchMember" class="text _keydown(ManageCafeStaff|SearchMember)" style="width: 248px; padding-left: 7px"> 
                           <a class="btn_type _click(ManageCafeStaff|SearchMember) _stopDefault" href="#" id="searchmemberBtn">
