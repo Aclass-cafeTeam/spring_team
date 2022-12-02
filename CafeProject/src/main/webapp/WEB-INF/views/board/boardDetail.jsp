@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="/resources/css/board/board4.css">
     <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/board/comment-style.css">
 
     <%-- fontawesome 한지훈 kit --%>
     <script src="https://kit.fontawesome.com/9f94c365a1.js" crossorigin="anonymous"></script>
@@ -119,6 +120,8 @@
                     <h3 class="h3-comment">
                         댓글
                     </h3>
+                        <!-- 댓글 include-->
+                        <jsp:include page="comment.jsp"/>
                 </div>
             </article>
         </section>
@@ -133,5 +136,6 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/boardDetail.js"></script>
+    <script src="/resources/js/board/comment.js"></script>
 </body>
 </html>

@@ -11,8 +11,8 @@
                             alt="NEVER">
                     </a>
                 </div>
+                
                 <div id="header-top-menu">
-                    
                     <c:choose>
                         <c:when test="${empty sessionScope.loginMember}">
                             <a href="/member/signUp"> 회원가입 </a>
@@ -21,12 +21,21 @@
                         </c:when>
                         
                         <c:otherwise>
+                            <!-- 로그인인 경우 -->
                             <a href="/"> 카페홈 </a>
                             <span>|</span>
-                            <a href="/member/myPage/info">${loginMember.memberNickname}</a>
+                            <!-- <a href="/member/myPage/info">${loginMember.memberNickname}</a> -->
+                            <label for="header-menu-toggle">
+                                ${loginMember.memberNickname}
+                                <i class="fa-solid fa-caret-down"></i>
+                            </label>
+                            <input type="checkbox" id="header-menu-toggle">
+                            <div id="header-menu">
+                                <a href="/member/myPage/info">나의활동</a>
+                                <a href="/member/logout">로그아웃</a>
+                            </div>
                         </c:otherwise>
                     </c:choose>
-                    
                 </div>
             </div>
             <!-- 헤더 오른쪽 상단 메뉴 -->

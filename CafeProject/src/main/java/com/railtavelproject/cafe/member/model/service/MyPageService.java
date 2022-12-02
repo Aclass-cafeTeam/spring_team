@@ -52,10 +52,17 @@ public interface MyPageService {
 	 */
 	int secession(int memberNo, String memberPw);
 
+	/** 마이 페이지 내정보 수정(닉네임, 지역)
+	 * @param inputMember
+	 * @return result
+	 */
+	int updateInfo(Member inputMember);
+
 	/** 닉네임 중복 검사 서비스
 	 * @param memberNickname
 	 * @return result
 	 */
 	int nicknameDupCheck(String memberNickname);
+
 
 }
