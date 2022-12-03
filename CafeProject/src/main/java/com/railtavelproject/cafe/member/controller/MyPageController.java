@@ -116,16 +116,19 @@ public class MyPageController {
 		 int result = service.changePw(paramMap);
 		 
 		 String message = null;
+		 String path = null;
 		 
 		 if(result >0) { //성공
 			message = "비밀번호가 변경 되었습니다.";
+			path = "pwConfirm";
 			 
 		 } else { // 실패
 			message = "현재 사용중인 비밀번호로 변경할 수 없습니다.";
+			path = "changePw";
 		 }
+		 
 		 ra.addFlashAttribute("message", message);
-		
-		return "redirect:changePw";
+		 return "redirect:"+path;
 	}
 	
 	// 마이페이지 프로필 이미지

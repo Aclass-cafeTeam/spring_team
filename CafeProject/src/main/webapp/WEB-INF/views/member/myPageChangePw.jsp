@@ -44,7 +44,7 @@
 
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
-                            <button class="myPage-update-btn">수정</button>
+                            <button class="myPage-update-btn" onclick="return myPageChangePwValidate()">수정</button>
                         </div>
                     </div> 
                 </form>
