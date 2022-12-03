@@ -57,6 +57,13 @@ public class ManagerCafeInfoController {
 			return "redirect:/manager/basicInfoManager";
 		}
 		
+		/** 회원 가입 막기 여부
+		 * @param ra
+		 * @param model
+		 * @param cafeInfo
+		 * @param join_get
+		 * @return
+		 */
 		@PostMapping("/joinMemberManager/updateJoin")
 		public String updateJoin(RedirectAttributes ra, /* 메세지 전달용 */
 				Model model,

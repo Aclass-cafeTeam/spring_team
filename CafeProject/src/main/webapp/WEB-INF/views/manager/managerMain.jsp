@@ -43,9 +43,6 @@
                                 <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
                             </li>
                             <li>
-                                <a href="#"><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
-                            </li>
-                            <li>
                                 <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                             </li>
                         </ul>
@@ -158,14 +155,14 @@
                             </ul>
                         </div>
                         
-                        <div class="menu_lst_area">
+                        <!-- <div class="menu_lst_area">
                             <strong class="tit5">글 · 글양식</strong>
                             <ul>
                                 <li class="_manageAuth(BoardStaff)">
                                     <a id="menu9" href="" class="N=a:LNB*a.list">글양식</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <div class="menu_lst_area">
                             <strong class="tit6">삭제글</strong>
