@@ -473,6 +473,15 @@ public class ManagerMemberDAO {
 	public int manageCafeStaffViewCount() {
 		return sqlsession.selectOne("managerMapper.manageCafeStaffViewCount");
 	}
+
+	/**부매니저 임명
+	 * @param electedStaffId
+	 * @return
+	 */
+	public int updateSubManagerSelect(String electedStaffId) {
+		
+		return sqlsession.update("managerMapper.updateSubManagerSelect", electedStaffId);
+	}
 	
 	
    

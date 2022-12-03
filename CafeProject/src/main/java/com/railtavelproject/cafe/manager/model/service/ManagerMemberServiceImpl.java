@@ -366,5 +366,14 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return dao.manageCafeStaffViewCount();
 	}
 
+	/**
+	 *부매니저 임명
+	 */
+	@Override
+	public int updateSubManagerSelect(String electedStaffId) {
+		
+		return dao.updateSubManagerSelect(electedStaffId);
+	}
+
 	
 }

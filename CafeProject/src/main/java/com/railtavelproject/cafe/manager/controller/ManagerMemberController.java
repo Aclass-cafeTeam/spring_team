@@ -403,12 +403,25 @@ public class ManagerMemberController {
 		//멤버 부매니저로 임명하기
 		@PostMapping("/ManageCafeStaffView/updateSubManagerSelect")
 		public String updateSubManagerSelect(
-		
-				RedirectAttributes ra, /* 메세지 전달용 */
-				HttpServletRequest req /* 저장할 서버 경로 */
+				@RequestParam(value="electedStaffId") String electedStaffId,
+				@RequestParam(value="subManagerFL", required = false, defaultValue = "false") String subManagerFL,
+				RedirectAttributes ra /* 메세지 전달용 */
 				) throws Exception{
-
+			int result;
+			if(subManagerFL.equals("true")) {
+				result = service.updateSubManagerSelect(electedStaffId);
+			}else {
+				result =0;
+			}
 			
+			String message = null;
+			if(result > 0){
+				message = "성공적으로 반영되었습니다.";
+			}else{
+				message = "반영에 실패하셨습니다.";
+			}
+			
+			ra.addFlashAttribute("message", message);
 			return "redirect:/manager/ManageCafeStaffView";
 		}
 		
