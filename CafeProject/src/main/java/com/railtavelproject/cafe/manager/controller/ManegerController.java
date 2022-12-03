@@ -194,9 +194,12 @@ public class ManegerController {
 		
 		//manager등급관리
 		@GetMapping("/manager/gradeMemberManager")
-		public String gradeMemberManager() {
-		
+		public String gradeMemberManager(Model model) {
+			List<CafeInfo> memberGrade = cafeInfoService.selectmemberLevel();
+			model.addAttribute("memberGrade", memberGrade);
 			return "manager/gradeMemberManager";
 		}
+		
+				
 
 }

@@ -1,6 +1,8 @@
 package com.railtavelproject.cafe.manager.model.service;
 
 import java.io.File;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -70,6 +72,24 @@ public class ManagerCafeInfoServiceImpl implements ManagerCafeInfoService{
 	@Override
 	public int updateJoin(String join_get) {
 		return dao.updateJoin(join_get);
+	}
+
+	/**카페 등업 등급 테이블 검색해오는 서비스 
+	 *
+	 */
+	@Override
+	public List<CafeInfo> selectmemberLevel() {
+		
+		return dao.selectmemberLevel();
+	}
+
+	/** 카페 등업 조건 업데이트(수정)
+	 *
+	 */
+	@Override
+	public int updateMemberLevelTable(List<Object> cafeInfo) {
+		
+		return dao.updateMemberLevelTable(cafeInfo);
 	}
 
 	

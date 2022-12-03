@@ -1,5 +1,8 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
@@ -24,6 +27,7 @@ public class ManagerCafeInfoController {
 	
 	@Autowired
 	private ManagerCafeInfoService service;
+	
 	
 	// 프로필 이미지 수정
 		@PostMapping("/basicInfoManager/updateCafeProfile")
@@ -88,5 +92,37 @@ public class ManagerCafeInfoController {
 			
 			ra.addFlashAttribute("message", message);
 			return "redirect:/manager/joinMemberManager";
+		}
+		
+		@PostMapping("/updateMemberLevelTable")
+		public String updateMemberLevelTable(Model model,
+				RedirectAttributes ra, /* 메세지 전달용 */
+				CafeInfo cafe1,
+				@RequestParam(value="boardCount") ArrayList<Object> boardCount,
+				@RequestParam(value="commentCount") ArrayList<Object> commentCount,
+				@RequestParam(value="visitCount") ArrayList<Object> visitCount,
+				@RequestParam(value="memberLevelName") ArrayList<Object> memberLevelName) {
+			
+			List<Object> cafeInfo = new ArrayList<Object>();
+			
+			for(int i =0; i < boardCount.size(); i++) {
+				CafeInfo cafe = new CafeInfo();
+				cafe.setBoardCount(Integer.valueOf( (String) boardCount.get(i)));
+				cafe.setCommentCount(Integer.valueOf( (String) commentCount.get(i)));
+				cafe.setVisitCount(Integer.valueOf( (String) visitCount.get(i)));
+				cafe.setMemberLevelName(String.valueOf(memberLevelName.get(i)));		
+				cafeInfo.add(cafe);
+			}
+			
+			System.out.println(cafeInfo);
+			
+			int result = service.updateMemberLevelTable(cafeInfo);
+			String message = null;
+			if(result == 5){
+				message = "성공적으로 반영되었습니다.";
+			}else{
+				message = "반영에 실패하셨습니다.";
+			}
+			return "redirect:/manager/gradeMemberManager";
 		}
 }

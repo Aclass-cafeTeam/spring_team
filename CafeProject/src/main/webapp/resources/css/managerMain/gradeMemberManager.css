@@ -300,6 +300,10 @@ input.text4 {
     text-align: center;
 }
 
+.btn_type_edt2 , .btn_type_edt{
+    border: none;
+}
+
 .btn_type_edt2 span, .btn_type_edt2 strong {
     display: inline-block;
     height: 32px;

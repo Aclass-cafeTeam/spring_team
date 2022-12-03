@@ -90,7 +90,7 @@
 			
 
 
-            <form id="manageLevelForm" method="post" action="/ManageMemberLevelUpdate.nhn">
+            <form id="manageLevelForm" method="post" action="/manager/updateMemberLevelTable">
             <input type="hidden" name="clubid" value="30828148">
             <input type="hidden" name="memberLevelInfo.clubid" value="30828148">
             <input type="hidden" name="memberLevelInfo.useautolevel" value="true">
@@ -114,26 +114,61 @@
                 </thead>
                 <tbody>
                 
-                <tr>
-                <td class="ico"><img id="iconImg1" src="../../resources/images/manager/새내기.png" width="11" height="11"></td><!-- 불러올값 -->
-                <td class="level"><input id="conditionName1" type="text" readonly name="firstLevel.memberlevelname" value="새내기" maxlength="10" class="text2"></td><!-- 불러올값 -->
-                <td>
-                    <input id="conditionDesc1" type="text" readonly name="firstLevel.memberleveldesc" value="가입 후, 별다른 승인을 받지 않은 초기 회원, 또는 활동이 없는 유령회원" maxlength="50" class="text2">
-                </td>
+                <c:if test="${!empty memberGrade}">
+                    <c:forEach var="memberGradeIn" items="${memberGrade}">
+                    <tr>
+                        <td class="ico">
+                            <img id="iconImg1" src="${memberGradeIn.memberLevelImg}" width="11" height="11">
+                        </td>
+                        <td class="level">
+                            <input id="conditionName1" type="text" readonly name="memberLevelName" value="${memberGradeIn.memberLevelName}" maxlength="10" class="text2">
+                        </td>
+                        <td>
+                            <input id="conditionDesc1" type="text" readonly name="firstLevel.memberleveldesc" value="<c:choose><c:when test="${memberGradeIn.memberLeverNo == 2}">가입 후, 별다른 승인을 받지 않은 초기 회원, 또는 활동이 없는 유령회원</c:when><c:when test="${memberGradeIn.memberLeverNo == 3}">기차로 카페 기본 등급</c:when><c:when test="${memberGradeIn.memberLeverNo == 4}">기차로 카페에서 회원들과 많은 이야기를 나누고 있는 회원</c:when><c:when test="${memberGradeIn.memberLeverNo == 5}">기차로 카페에서 오랜 기간, 활발하게 소통하고 활동하는 회원</c:when><c:when test="${memberGradeIn.memberLeverNo == 6}">기차로 카페에서 사는 회원</c:when></c:choose>" maxlength="50" class="text2">
+                                <c:if test="${memberGradeIn.memberLeverNo gt 2}">
+                                        <p id="condition2" class="detail">                    
+                                            <label for="sum_write">게시글</label>
+                                            <input type="text" name="boardCount" id="sum_write" class="text4" value="${memberGradeIn.boardCount}" maxlength="5"> 개,&nbsp;&nbsp;
+                                            <label for="sum_reply">댓글</label>
+                                            <input type="text" name="commentCount" id="sum_reply" class="text4" value="${memberGradeIn.commentCount}" maxlength="5"> 개,&nbsp;&nbsp;
+                                            <label for="sum_visit">방문</label>
+                                            <input type="text" name="visitCount" id="sum_visit" class="text4" value="${memberGradeIn.visitCount}" maxlength="5"> 회,&nbsp;&nbsp;
+                                            <label for="sum_join">가입 0주 후 만족 시 등업 신청</label>
+                                        </p>
+                                </c:if>
+                                <c:if test="${memberGradeIn.memberLeverNo == 2}">
+                                        <p> 
+                                            <input type="hidden" name="boardCount" id="sum_write" class="text4" value="${memberGradeIn.boardCount}" maxlength="5">
+                                            <input type="hidden" name="commentCount" id="sum_reply" class="text4" value="${memberGradeIn.commentCount}" maxlength="5"> 
+                                            <input type="hidden" name="visitCount" id="sum_visit" class="text4" value="${memberGradeIn.visitCount}" maxlength="5">
+                                        </p>
+                                </c:if>
+                        </td>
+                    </tr>
+                    </c:forEach>
+                </c:if>
+                <!-- <tr>
+                    <td class="ico"><img id="iconImg1" src="../../resources/images/manager/새내기.png" width="11" height="11">
+                    </td>
+                    <td class="level"><input id="conditionName1" type="text" readonly name="firstLevel.memberlevelname" value="새내기" maxlength="10" class="text2">
+                    </td>
+                    <td>
+                        <input id="conditionDesc1" type="text" readonly name="firstLevel.memberleveldesc" value="가입 후, 별다른 승인을 받지 않은 초기 회원, 또는 활동이 없는 유령회원" maxlength="50" class="text2">
+                    </td>
                 </tr>
                 
                 <tr>
-                    <td class="ico"><img id="iconImg2" src="../../resources/images/manager/일반여행자.png" width="11" height="11"></td><!-- 불러올값 -->
-                    <td class="level"><input id="conditionName2" type="text" readonly name="secondLevel.memberlevelname" value="일반여행자" maxlength="10" class="text2"></td><!-- 불러올값 -->
+                    <td class="ico"><img id="iconImg2" src="../../resources/images/manager/일반여행자.png" width="11" height="11"></td>
+                    <td class="level"><input id="conditionName2" type="text" readonly name="secondLevel.memberlevelname" value="일반여행자" maxlength="10" class="text2"></td>
                     <td>
                         <input id="conditionDesc2" type="text" readonly name="secondLevel.memberleveldesc" value="기차로 카페 기본 등급" maxlength="50" class="text2">
                         <p id="condition2" class="detail" style="">                    
                             <label for="sum_write">게시글</label>
-                            <input type="text" name="secondLevel.articlecount" id="sum_write" class="text4" value="5" maxlength="5"> 개,&nbsp;&nbsp;<!-- 불러올값 -->
+                            <input type="text" name="secondLevel.articlecount" id="sum_write" class="text4" value="5" maxlength="5"> 개,&nbsp;&nbsp;
                             <label for="sum_reply">댓글</label>
-                            <input type="text" name="secondLevel.commentcount" id="sum_reply" class="text4" value="10" maxlength="5"> 개,&nbsp;&nbsp;<!-- 불러올값 -->
+                            <input type="text" name="secondLevel.commentcount" id="sum_reply" class="text4" value="10" maxlength="5"> 개,&nbsp;&nbsp;
                             <label for="sum_visit">방문</label>
-                            <input type="text" name="secondLevel.visitcount" id="sum_visit" class="text4" value="20" maxlength="5"> 회,&nbsp;&nbsp;<!-- 불러올값 -->
+                            <input type="text" name="secondLevel.visitcount" id="sum_visit" class="text4" value="20" maxlength="5"> 회,&nbsp;&nbsp;
                             <label for="sum_join">가입 0주 후 만족 시 등업 신청</label>
                         </p>
                     </td>
@@ -188,12 +223,12 @@
                             <label for="sum_join">가입 0주 후 만족 시 등업 신청</label>
                         </p>
                     </td>
-                </tr>
+                </tr> -->
                 </tbody>
                 </table>
             </div>
             <div class="btn_area">
-                <a class="btn_type_edt2 _click(ManageMemberLevel|Cancel) _stopDefault" href="/ManageMemberLevel.nhn?clubid=30828148"><strong>취소</strong></a> <a class="btn_type_edt _click(ManageMemberLevel|Submit) _stopDefault" href="#"><strong>저장하기</strong></a>
+                <button type="reset" class="btn_type_edt2 _click(ManageMemberLevel|Cancel) _stopDefault" ><strong>취소</strong></button> <button type ="submit" class="btn_type_edt _click(ManageMemberLevel|Submit) _stopDefault"><strong>저장하기</strong></button>
             </div>
             </form>
         </div>
