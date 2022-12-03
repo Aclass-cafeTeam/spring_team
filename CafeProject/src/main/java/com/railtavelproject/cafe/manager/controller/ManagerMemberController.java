@@ -443,6 +443,7 @@ public class ManagerMemberController {
 				result =0;
 			}
 			
+			
 			String message = null;
 			if(result > 0){
 				message = "성공적으로 반영되었습니다.";
