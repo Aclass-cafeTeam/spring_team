@@ -49,7 +49,9 @@
                                     <td class="boardNo">${myDeleteBoard.boardNo}</td>
                                     <td><a href="#" class="title">
                                         <c:if test="${not empty myDeleteBoard.titleTagName}">
-                                        <span>[${myDeleteBoard.titleTagName}] </span>
+                                            <c:if test="${myDeletBoard.titleTagNo ne '0'}">
+                                                <span>[${myDeleteBoard.titleTagName}] </span>
+                                            </c:if>
                                         </c:if>
                                     ${myDeleteBoard.boardTitle}</a>
                                     </td>

@@ -51,7 +51,9 @@
                                     <td class="boardNo">${myLikeBoard.boardNo}</td>
                                     <td><a href="/board/${myLikeBoard.boardCode}/${myLikeBoard.boardNo}" class="title">
                                         <c:if test="${not empty myLikeBoard.titleTagName}">
-                                        <span>[${myLikeBoard.titleTagName}] </span>
+                                            <c:if test="${myLikeBoard.titleTagNo ne '0'}">
+                                                <span>[${myLikeBoard.titleTagName}] </span>
+                                            </c:if>
                                         </c:if>
                                     ${myLikeBoard.boardTitle}</a>
                                         <c:if test="${myLikeBoard.commentCount!=0}">

@@ -14,12 +14,6 @@ public interface BoardCrudService {
 	 */
 	List<Map<String, Object>> selectTitleTag();
 
-	
-	/** 글양식 조회
-	 * @return writingFormType
-	 */
-	List<Map<String, Object>> selectWritingFormType();
-
 
 	/** 게시글 작성
 	 * @param board

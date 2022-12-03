@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>${board.boardTitle}</title>
 
-    <link rel="stylesheet" href="/resources/css/board/board4.css">
+    <link rel="stylesheet" href="/resources/css/board/boardDetail.css">
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/board/comment-style.css">
 
@@ -24,9 +24,11 @@
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
 
-    <!-- **************************************사이드메뉴************************************** -->
+    
         <section id="flex">
+            <!-- ****************사이드메뉴***************-->
             <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
+            <!-- ****************사이드메뉴***************-->
             <article class="article">
                 <div class="top-menu">
                     <div>
@@ -41,29 +43,32 @@
                         <button onclick="location.href='${referer}'" id="goToListBtn" class="top-list">목록</button >
                     </div>
                 </div>
+                
                 <div class="board-all">    
                     <div class="profile-all">
-                        <a href="/board/${boardCode}?cp=1"><div class="board-list">${boardName}</div></a>
-
-                            <%-- 말머리가 있을 경우 --%>
+                        <div class="titleBox">
+                            <a href="/board/${boardCode}?cp=1"><div class="board-list">${boardName} > </div></a>
+                            <!-- 말머리가 있을 경우 -->
                             <c:if test="${not empty board.titleTagName}">
-                                <c:choose>
-                                    <c:when test="board.titleTagNo ne 0">
-                                        <div class="title-tag">[${board.titleTagName}]</div>
-                                    </c:when>
-                                </c:choose> 
+                                <c:if test="${board.titleTagNo ne 0}"> 
+                                    <div class="title-tag">[${board.titleTagName}]</div>
+                                </c:if>
                             </c:if>
-                        <div class="board-title">${board.boardTitle}</div>
-
+                            <div class="board-title">${board.boardTitle}</div>
+                        </div>
+                            
                         <div class="profile">
-                            <!-- 프로필 이미지가 없을 경우 -->
-                            <c:if test="${empty board.profileImage}">
-                                <img width="36" height="36" src="/resources/images/main/프로필.PNG">
-                            </c:if>
-                            <!-- 프로필 이미지가 있을 경우 -->
-                            <c:if test="${not empty board.profileImage}">
-                                <img  width="36" height="36" src="${board.profileImage}">
-                            </c:if>
+                            <div class="pi">
+                                <!-- 프로필 이미지가 없을 경우 -->
+                                <c:if test="${empty board.profileImage}">
+                                    <img src="/resources/images/main/프로필.PNG">
+                                </c:if>
+                                <!-- 프로필 이미지가 있을 경우 -->
+                                <c:if test="${not empty board.profileImage}">
+                                    <img src="${board.profileImage}">
+                                </c:if>
+                            </div>
+                            
 
                             <div class="detail-info-area">
                                 <div class="nick-area">
@@ -85,14 +90,13 @@
                             </div>    
                         </div>
                     </div>
-                    <br>
-
-                    <div class="board-content">
-                        ${board.boardContent}
+                    
+                    <div class="contentBox">
+                        <div class="board-content"> ${board.boardContent} </div>
                     </div>
 
-                    <br>
-
+                    
+                    <div class="sideBox">
                         <%-- 좋아요 --%>
                         <div class="like-comment">
                             <div class="count-like">
@@ -101,17 +105,17 @@
                                     <%-- 빈 하트 --%>
                                     <i class="fa-regular fa-heart" id="boardLike"></i>
                                 </c:if>
-
+    
                                 <%-- likeCheck가 있다면 == 로그인O, 좋아요O --%>
                                 <c:if test="${not empty likeCheck}">
                                     <%-- 채워진 하트 --%>
                                     <i class="fa-solid fa-heart" id="boardLike"></i>
                                 </c:if>
                             </div>
-
+    
                                 <div class="board-like">좋아요</div>
                                 <div class="like-count" id="likeCount">${board.likeCount}</div>
-
+    
                             <div class="bottom-comment">
                                 <a href="#">
                                     <div class="count-comment"><i class="fa-regular fa-comment"></i></div>
@@ -120,13 +124,18 @@
                                 </a>
                             </div>
                         </div>
+                    </div>
+                    
 
-                    <h3 class="h3-comment">
-                        댓글
-                    </h3>
-                        <!-- 댓글 include-->
-                        <jsp:include page="comment.jsp"/>
-                </div>
+                    <!-- 댓글 영역 -->
+                    <div class="commentBox">
+                        <h3 class="h3-comment"> 댓글 </h3>
+                        <div>
+                            <!-- 댓글 include-->
+                            <jsp:include page="comment.jsp"/>
+                        </div>
+                    </div>
+                </div>    
             </article>
         </section>
     </main>
