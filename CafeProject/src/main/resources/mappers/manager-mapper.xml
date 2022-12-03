@@ -744,14 +744,13 @@
   SELECT COUNT(*) FROM "MEMBER" WHERE AUTHORITY_NO IN (0,1)
   </select>
   <!-- 부매니저 임명 -->
-  <update id="updateSubManagerSelect">
+  <update id="updateSubManagerSelect" parameterType="string">
   UPDATE "MEMBER" SET
   MEMBER_LEVEL_NO = 1,
   AUTHORITY_NO = 1
   WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{electedStaffId}
   </update>
-  <update id="subManagerDelete">
-  INSERT
+  <update id="deleteSubManagerSelect" parameterType="string">
   UPDATE "MEMBER" SET
   MEMBER_LEVEL_NO = 2,
   AUTHORITY_NO = 2

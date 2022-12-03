@@ -408,6 +408,9 @@ public class ManagerMemberController {
 				RedirectAttributes ra /* 메세지 전달용 */
 				) throws Exception{
 			int result;
+			System.out.println("삭제페이지로 들어옴");
+			System.out.println("electedStaffId");
+			System.out.println("subManagerFL");
 			if(subManagerFL.equals("true")) {
 				result = service.updateSubManagerSelect(electedStaffId);
 			}else {
@@ -433,6 +436,7 @@ public class ManagerMemberController {
 				RedirectAttributes ra /* 메세지 전달용 */
 				) throws Exception{
 			int result;
+			System.out.println(subManagerDelete);
 			if(cafeStaffauthorityNo == 0) {
 				result = service.deleteSubManagerSelect(subManagerDelete);
 			}else {
