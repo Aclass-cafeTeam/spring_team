@@ -224,7 +224,7 @@
                 <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="stopLayerBtn" href="#"><span class="blind">닫기</span></a>
               </div>
               
-              <form id="staffListFrm" action="/" method="post">
+              <form id="staffListFrm" name="deletestafffrm" action="/ManageCafeStaffView/deleteSubManagerSelect" method="post">
               <input type="hidden" name="cafeStaff" value="${loginMember.memberEmail}">
               <input type="hidden" name="cafeStaffauthorityNo" value="${loginMember.authorityNo}">
               <table border="1" cellspacing="0" class="tbl_lst_type">
