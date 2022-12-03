@@ -42,6 +42,7 @@
 		<mapper resource="/mappers/intro-mapper.xml"/>
 		<mapper resource="/mappers/boardDetail-mapper.xml"/>
 		<mapper resource="/mappers/boardCrud-mapper.xml"/>
+		<mapper resource="/mappers/memberInfo-mapper.xml"/>
 	</mappers>
 	
 	

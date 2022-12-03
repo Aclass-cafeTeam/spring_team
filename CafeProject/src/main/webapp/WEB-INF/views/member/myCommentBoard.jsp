@@ -58,7 +58,7 @@
                                     ${myCommentBoard.boardTitle}</a>
                                         <a href="#" class="comment">[${myCommentBoard.commentCount}]</a>
                                     </td>
-                                    <td class="writer">${myCommentBoard.memberNickname}</td>
+                                    <td class="writer"><a href="/member/${myCommentBoard.memberNo}">${myCommentBoard.memberNickname}</td></a>
                                     <td class="reporting-date">${myCommentBoard.boardCreateDate}</td>
                                     <td class="hits">${myCommentBoard.readCount}</td>
                                 </tr>

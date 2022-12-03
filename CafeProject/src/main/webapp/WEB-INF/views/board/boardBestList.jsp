@@ -95,7 +95,7 @@
                                             </c:if>                        
                                         </td>
                                         <td></td>
-                                        <td class="writer">${board.memberNickname}</td>
+                                        <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
                                         <td class="reporting-date">${board.boardCreateDate}</td>
                                         <td class="hits">${board.readCount}</td>
                                         <td class="like">${board.likeCount}</td>
@@ -127,7 +127,7 @@
                                             </c:if>                   
                                         </td>
                                         <td></td>
-                                        <td class="writer">${board.memberNickname}</td>
+                                        <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
                                         <td class="reporting-date">${board.boardCreateDate}</td>
                                         <td class="hits">${board.readCount}</td>
                                         <td class="like">${board.likeCount}</td>
