@@ -142,11 +142,25 @@ smt_btn.addEventListener("click", function () {
   }else{
     alert("멤버를 선택해주세요.")
   }
-  
 
- 
+});
 
-  
-  
+/* 부매니저 삭제 */
+const staffDelete = document.getElementById("staffDelete");
 
+staffDelete.addEventListener("click", function () {
+  if($('input[name =cafeStaffauthorityNo]').val() == '0'){
+    document.getElementById("DeleteLayer").style.display = "block";
+
+    $("._click(LayerManager|ClickLayer|DeleteLayer|Confirm)").click(function() {
+      /* 이제 form 태그로 보내기 */
+      document.forms["deletestafffrm"].submit();
+    });
+  }else{
+    alert("카페(총) 매니저만 삭제 권한이 있습니다.")
+  }
+})
+
+$("._click(LayerManager|CloseLayer|DeleteLayer)").click(function() {
+  document.getElementById("DeleteLayer").style.display = "none";
 });

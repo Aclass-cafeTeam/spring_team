@@ -218,17 +218,15 @@
                   <p class="c_gy2">권한을 삭제하시면, 해당 멤버는 스탭이 아닌<br><span class="c_gy5">일반 카페 멤버</span>로 돌아갑니다.<br><strong class="c_gy5"><span class="c_og">스탭 권한을 삭제</span>하시겠습니까?</strong></p>
                 <div class="btn">
                   <a class="btn_type3 _click(LayerManager|ClickLayer|DeleteLayer|Confirm) _stopDefault" href="#"><strong>확인</strong></a>
-                  <a class="btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" href="#"><span>취소</span></a>
+                  <a class="btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="closeLayerBtn" href="#"><span>취소</span></a>
                 </div>
                 </div>
-                <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" href="#"><span class="blind">닫기</span></a>
+                <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="stopLayerBtn" href="#"><span class="blind">닫기</span></a>
               </div>
               
-              <form id="staffListFrm" action="/ManageStaffMessageAuthModify.nhn" method="post">
-              <input type="hidden" name="clubid" value="30828148">
-              <input type="hidden" name="cafeStaff.memberid" value="">
-              <input type="hidden" name="cafeStaff.managetype" value="">
-              <input type="hidden" name="cafeStaff.wholeMessageSendAuth" value="">
+              <form id="staffListFrm" action="/" method="post">
+              <input type="hidden" name="cafeStaff" value="${loginMember.memberEmail}">
+              <input type="hidden" name="cafeStaffauthorityNo" value="${loginMember.authorityNo}">
               <table border="1" cellspacing="0" class="tbl_lst_type">
                 <caption><span class="blind">스탭 선정 목록</span></caption>
                 <colgroup>
@@ -270,8 +268,9 @@
                   
                       <td class="tc">
                         <c:if test="${member.authorityNo == 1}">
-                          <a href="#" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|${member.memberEmail}|${member.authorityNo}) _stopDefault">
+                          <a href="#" id="staffDelete" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|${member.memberEmail}|${member.authorityNo}) _stopDefault">
                             <span>삭제</span>
+                            <input type="hidden" name="subManagerDelete" value="${member.memberEmail}">
                           </a>
                         </c:if>
                       </td>
