@@ -411,7 +411,7 @@ public class ManagerMemberController {
 			System.out.println("삭제페이지로 들어옴");
 			System.out.println("electedStaffId");
 			System.out.println("subManagerFL");
-			if(subManagerFL.equals("true")) {
+			if(subManagerFL.equals("false")) {
 				result = service.updateSubManagerSelect(electedStaffId);
 			}else {
 				result =0;
