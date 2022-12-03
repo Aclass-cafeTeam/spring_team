@@ -186,34 +186,44 @@ public class MyPageServiceImpl implements MyPageService{
 		return result;
 	}
 
-
+	// 비밀번호 변경 전 비밀번호 확인
+	@Override
+	public int pwConfirm(int memberNo, String memberPw) {
+		
+		// 현재 비밀번호 조회
+		String nowPw = dao.selectCurrentPw(memberNo);
+		
+		// 암호화된 비밀번호와 현재 비밀번호 일치하는지 확인
+		if(bcrypt.matches(memberPw, nowPw)) {
+			return 1;
+		}
+		return 0;
+	}
+	
 	// 마이페이지 비밀번호 변경
+	@Transactional
 	@Override
 	public int changePw(Map<String, Object> paramMap) {
-		// 현재 비밀번호 일치 시 새 비밀번호로 변경
-		
-		// 1. 회원 번호를 이용해서 DB에서 암호화된 비밀번호를 조회
-		String nowPw = dao.selectCurrentPw((int)paramMap.get("memberNo"));
-		
-		// 2. matches(입력PW, 암호화PW) 결과가 true인 경우
-		// 새 비밀번호로 UPDATE하는 DAO 코드를 호출
 
-		if(bcrypt.matches((String)paramMap.get("currentPw"), nowPw)) {
-			// 새 비밀번호 암호화
-			String newPw = bcrypt.encode((String)paramMap.get("newPw"));
+			// 1. DB에서 암호화된 현재 비밀번호 조회
+			int memberNo = (int)paramMap.get("memberNo");
+			String memberPw = dao.selectCurrentPw(memberNo);
 			
+			// 2. map에서 입력한 비밀번호(새 비밀번호) 꺼내기
+			String newPw = (String)paramMap.get("newPw");
+			
+			// 3. 입력한 비밀번호(새 비밀번호)와 현재 비밀번호 비교
+			if(bcrypt.matches(newPw, memberPw)) {
+				// 같은 경우 로그인한 사용자가 이미 사용중인 비밀번호로는 변경할 수 없으므로 0 반환
+				return 0;
+			}
+			
+			// 4. 현재 비밀번호와 다른 경우 새 비밀번호를 암호화해 비밀번호 변경 DAO 실행
+			newPw = bcrypt.encode(newPw);
 			paramMap.put("newPw", newPw);
-			// paramMap에 존재하는 기존 "newPw"를 덮어쓰기
 			
-			// DAO 호출
-			int result = dao.changePw(paramMap);
-			
-			return result;
-		}
-		
-		return 0; // 비밀번호 불일치시 0 반환 
+			return dao.changePw(paramMap);
+	
 	}
-
-
 
 }

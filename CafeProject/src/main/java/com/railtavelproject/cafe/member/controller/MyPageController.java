@@ -71,36 +71,57 @@ public class MyPageController {
 		return "redirect:info"; // 내 정보 재요청
 	}
 	
+	// 비밀번호 변경 전 - 비밀번호 확인 페이지
+	@GetMapping("/pwConfirm")
+	public String pwConfirm() {
+		
+		return "member/myPagePwConfirm";
+	}
+	
+	// 비밀번호 확인 후 비밀번호 변경 페이지로 전환
+	@PostMapping("/pwConfirm")
+	public String confirmPw ( @ModelAttribute("loginMember") Member loginMember,
+			                 String memberPw,
+			                 RedirectAttributes ra) {
+
+		int result = service.pwConfirm(loginMember.getMemberNo(), memberPw);
+		
+		if(result>0) {
+			return "member/myPageChangePw"; // 비밀번호 변경 페이지로 이동
+		}else {
+			ra.addFlashAttribute("message", "현재 비밀번호가 일치하지 않습니다.");
+			return "redirect:pwConfirm"; // 비밀번호 확인 페이지 재요청
+		}
+		
+	}
+	
 	// 마이페이지 비밀번호 변경
 	@GetMapping("/changePw")
-	public String MyPageChangePw() {
+	public String changePw() {
+		
 		return "member/myPageChangePw";
 	}
 	
 	// 마이페이지 비밀번호 변경
 	@PostMapping("/changePw")
 	public String changePw(@SessionAttribute("loginMember") Member loginMember,
-			//String cuttentPw, String newPw //파라미터 각각 전달 받기
 			@RequestParam Map<String, Object> paramMap,
 			RedirectAttributes ra
 			) {
 		
-		// @RequestParam Map<String, Object> paramMap,
-		// - 모든 파라미터를 맵 형식으로 얻어와 저장
-		
-		// 1. loginMember에서 회원 번호를 얻어와 paramMap에 추가
+		 // 1. loginMember에서 회원 번호를 얻어와 paramMap에 추가
 		 paramMap.put("memberNo", loginMember.getMemberNo());
 		 
 		 // 2. 서비스 호출 후 결과 반환 받기
 		 int result = service.changePw(paramMap);
-
+		 
 		 String message = null;
 		 
 		 if(result >0) { //성공
-			message = "비밀번호가 변경되었습니다.";
+			message = "비밀번호가 변경 되었습니다.";
 			 
 		 } else { // 실패
-			message = "현재 비밀번호가 일치하지 않습니다.";
+			message = "현재 사용중인 비밀번호로 변경할 수 없습니다.";
 		 }
 		 ra.addFlashAttribute("message", message);
 		
