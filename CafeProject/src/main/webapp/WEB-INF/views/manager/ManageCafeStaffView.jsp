@@ -217,8 +217,8 @@
                 <div style="width:267px" class="ly_cont ly_cont_v2">
                   <p class="c_gy2">권한을 삭제하시면, 해당 멤버는 스탭이 아닌<br><span class="c_gy5">일반 카페 멤버</span>로 돌아갑니다.<br><strong class="c_gy5"><span class="c_og">스탭 권한을 삭제</span>하시겠습니까?</strong></p>
                 <div class="btn">
-                  <a class="btn_type3 _click(LayerManager|ClickLayer|DeleteLayer|Confirm) _stopDefault" href="#"><strong>확인</strong></a>
-                  <a class="btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="closeLayerBtn" href="#"><span>취소</span></a>
+                  <a class="deleteStaffCon btn_type3 _click(LayerManager|ClickLayer|DeleteLayer|Confirm) _stopDefault" href="#"><strong>확인</strong></a>
+                  <a class="clse btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="closeLayerBtn" href="#"><span>취소</span></a>
                 </div>
                 </div>
                 <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="stopLayerBtn" href="#"><span class="blind">닫기</span></a>

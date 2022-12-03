@@ -428,13 +428,13 @@ public class ManagerMemberController {
 		//부 매니저 삭제하기		
 		@PostMapping("/ManageCafeStaffView/deleteSubManagerSelect")
 		public String deleteSubManagerSelect(
-				@RequestParam(value="electedStaffId") String electedStaffId,
-				@RequestParam(value="subManagerFL", required = false, defaultValue = "false") String subManagerFL,
+				@RequestParam(value="subManagerDelete") String subManagerDelete,
+				@RequestParam(value="cafeStaffauthorityNo", required = false, defaultValue = "1") int cafeStaffauthorityNo,
 				RedirectAttributes ra /* 메세지 전달용 */
 				) throws Exception{
 			int result;
-			if(subManagerFL.equals("true")) {
-				result = service.updateSubManagerSelect(electedStaffId);
+			if(cafeStaffauthorityNo == 0) {
+				result = service.deleteSubManagerSelect(subManagerDelete);
 			}else {
 				result =0;
 			}

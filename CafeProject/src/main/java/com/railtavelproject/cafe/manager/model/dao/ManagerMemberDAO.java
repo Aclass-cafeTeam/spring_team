@@ -482,6 +482,11 @@ public class ManagerMemberDAO {
 		
 		return sqlsession.update("managerMapper.updateSubManagerSelect", electedStaffId);
 	}
+
+	public int deleteSubManagerSelect(String subManagerDelete) {
+	
+		return sqlsession.update("managerMapper.deleteSubManagerSelect",subManagerDelete);
+	}
 	
 	
    

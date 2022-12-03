@@ -202,7 +202,6 @@ tr {
 }
 
 .tbl_lst_type2 th {
-  border-top: 1px solid #ececec;
   vertical-align: top;
   text-align: left;
   color: #272727;
@@ -346,7 +345,6 @@ strong {
 .board_tit {
   margin-bottom: 1px;
   padding: 22px 0 7px 2px;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .board_tit strong {
@@ -361,7 +359,16 @@ strong {
   font-weight: bold;
   font-family: tahoma;
 }
-
+/* 삭제 버튼 눌렀을때 */
+.ly_type {
+  position: absolute;
+  z-index: 100;
+  padding: 18px 19px 16px;
+  border: 1px solid #888;
+  background-color: #fff;
+  left: 628px;
+  top: 592px;
+}
 /* 출력 테이블 */
 .tbl_lst_type {
   width: 920px;
@@ -492,7 +499,7 @@ input.check {
   padding-left: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
-  display: inline-block;
+  display: block;
   line-height: 21px;
 }
 

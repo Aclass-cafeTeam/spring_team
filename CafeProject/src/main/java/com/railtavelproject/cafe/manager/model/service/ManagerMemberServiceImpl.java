@@ -375,5 +375,14 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return dao.updateSubManagerSelect(electedStaffId);
 	}
 
+	/**
+	 *부매니저 삭제하기
+	 */
+	@Override
+	public int deleteSubManagerSelect(String subManagerDelete) {
+		
+		return dao.deleteSubManagerSelect(subManagerDelete);
+	}
+
 	
 }

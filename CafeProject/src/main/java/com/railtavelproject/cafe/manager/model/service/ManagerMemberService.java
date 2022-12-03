@@ -115,6 +115,12 @@ public interface ManagerMemberService {
 	 */
 	int updateSubManagerSelect(String electedStaffId);
 
+	/**부매니저 삭제하기
+	 * @param subManagerDelete
+	 * @return
+	 */
+	int deleteSubManagerSelect(String subManagerDelete);
+
 
 
 }

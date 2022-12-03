@@ -151,8 +151,10 @@ const staffDelete = document.getElementById("staffDelete");
 staffDelete.addEventListener("click", function () {
   if($('input[name =cafeStaffauthorityNo]').val() == '0'){
     document.getElementById("DeleteLayer").style.display = "block";
+    document.getElementById("DeleteLayer").style.overflow = "visible";
+    document.getElementById("DeleteLayer").style.zoom = "1";
 
-    $("._click(LayerManager|ClickLayer|DeleteLayer|Confirm)").click(function() {
+    $('.deleteStaffCon').click(function() {
       /* 이제 form 태그로 보내기 */
       document.forms["deletestafffrm"].submit();
     });
@@ -161,6 +163,6 @@ staffDelete.addEventListener("click", function () {
   }
 })
 
-$("._click(LayerManager|CloseLayer|DeleteLayer)").click(function() {
+$('.clse').click(function() {
   document.getElementById("DeleteLayer").style.display = "none";
 });
