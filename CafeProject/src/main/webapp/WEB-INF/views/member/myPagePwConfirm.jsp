@@ -24,27 +24,22 @@
 
             <section class="myPage-main">
 
-                <form action="changePw" method="POST" name="changePwForm">
+                <form action="pwConfirm" method="POST" name="pwConfirmForm">
 
                     <div class="myInfoArea">
-                        <div class="myPage-subTitle"><label>비밀번호 변경</label></div>
+                        <div class="myPage-subTitle"><label name="memberPw">비밀번호 확인</label></div>
                         
-                        <span class="myPage-script">새 비밀번호를 입력한 후 수정 버튼을 누르세요.</span>
-                        <div class="myPage-subTitle">
-                            <label>새 비밀번호</label>
-                            <input type="password" name="newPw" id="newPw" maxlength="20" autocomplete="off">
-                        </div>
-                        <span id="pwMessage"></span>
+                        <span class="myPage-script">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한 번 더 확인합니다.</span>
 
                         <div class="myPage-subTitle">
-                            <label>새 비밀번호 확인</label>
-                            <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="20" autocomplete="off">
+                            <label>현재 비밀번호</label>
+                            <input type="password" name="memberPw" id="currentPw" maxlength="20"  autocomplete="off">
                         </div>
-                        <span id="pwConfirm"></span>
+                        <span class="myPage-script" id="currentPwMessage">비밀번호를 입력해주세요.</span>
 
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
-                            <button class="myPage-update-btn" onclick="return myPageChangePwValidate()">수정</button>
+                            <button class="myPage-update-btn">확인</button>
                         </div>
                     </div> 
                 </form>
@@ -55,7 +50,7 @@
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
-    <script src="/resources/js/member/myPageChangePw.js"></script>
+    <script src="/resources/js/member/myPagePwConfirm.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
 </html>

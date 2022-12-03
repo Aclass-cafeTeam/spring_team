@@ -38,7 +38,7 @@
                         </div>
                         <div id="secession-terms">
                             <br>
-                            1. 회원 탈퇴시 고객님의 개인 정보는 관련 법률에 의거한 개인 정보 보호정책에 따라 관리/파기됩니다.
+                            1. 회원 탈퇴시 회원님의 개인 정보는 관련 법률에 의거한 개인 정보 보호정책에 따라 관리/파기됩니다.
                             <br><br>
                             2. 회원 탈퇴시 작성된 게시글 및 댓글은 자동으로 삭제되지 않습니다.
                             
@@ -70,7 +70,7 @@
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 
-    <script src="/resources/js/member/myPage.js"></script>
+    <script src="/resources/js/member/myPageSecession.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
 </html>
