@@ -20,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
@@ -396,7 +398,63 @@ public class ManagerMemberController {
 									
 				return new Gson().toJson(map);
 		}
-				
+		
+		
+		//멤버 부매니저로 임명하기
+		@PostMapping("/ManageCafeStaffView/updateSubManagerSelect")
+		public String updateSubManagerSelect(
+				@RequestParam(value="electedStaffId") String electedStaffId,
+				@RequestParam(value="subManagerFL", required = false, defaultValue = "false") String subManagerFL,
+				RedirectAttributes ra /* 메세지 전달용 */
+				) throws Exception{
+			int result;
+			System.out.println("삭제페이지로 들어옴");
+			System.out.println("electedStaffId");
+			System.out.println("subManagerFL");
+			if(subManagerFL.equals("false")) {
+				result = service.updateSubManagerSelect(electedStaffId);
+			}else {
+				result =0;
+			}
+			
+			String message = null;
+			if(result > 0){
+				message = "성공적으로 반영되었습니다.";
+			}else{
+				message = "반영에 실패하셨습니다.";
+			}
+			
+			ra.addFlashAttribute("message", message);
+			return "redirect:/manager/ManageCafeStaffView";
+		}
+		
+		//부 매니저 삭제하기		
+		@PostMapping("/ManageCafeStaffView/deleteSubManagerSelect")
+		public String deleteSubManagerSelect(
+				@RequestParam(value="subManagerDelete") String subManagerDelete,
+				@RequestParam(value="cafeStaffauthorityNo", required = false, defaultValue = "1") int cafeStaffauthorityNo,
+				RedirectAttributes ra /* 메세지 전달용 */
+				) throws Exception{
+			int result;
+			System.out.println(subManagerDelete);
+			if(cafeStaffauthorityNo == 0) {
+				result = service.deleteSubManagerSelect(subManagerDelete);
+			}else {
+				result =0;
+			}
+			
+			
+			String message = null;
+			if(result > 0){
+				message = "성공적으로 반영되었습니다.";
+			}else{
+				message = "반영에 실패하셨습니다.";
+			}
+			
+			ra.addFlashAttribute("message", message);
+			return "redirect:/manager/ManageCafeStaffView";
+		}
+		
 		
 		
 }

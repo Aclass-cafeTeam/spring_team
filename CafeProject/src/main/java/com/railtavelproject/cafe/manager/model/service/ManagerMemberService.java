@@ -109,6 +109,17 @@ public interface ManagerMemberService {
 	 */
 	int manageCafeStaffViewCount();
 
+	/**부매니저 임명하기(부매니저가 없을 시 화면에서 조건문으로 다 막아 놓았지만 다시 한번 컨트롤에서 확인함)
+	 * @param electedStaffId
+	 * @return
+	 */
+	int updateSubManagerSelect(String electedStaffId);
+
+	/**부매니저 삭제하기
+	 * @param subManagerDelete
+	 * @return
+	 */
+	int deleteSubManagerSelect(String subManagerDelete);
 
 
 }

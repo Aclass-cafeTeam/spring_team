@@ -13,11 +13,26 @@
 	      <result property="topFrontImg" column="CAFE_MAIN_HEADER_IMG" />
 	      <result property="bottomFrontImg" column="CAFE_BOTTOM_FRONT_IMG" />
 	      <result property="cafeJoinFL" column="CAFE_JOIN_FL" />
+	      
+	      <result property="memberLeverNo" column="MEMBER_LEVEL_NO" />
+	      <result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
+	      <result property="boardCount" column="BOARD_COUNT" />
+	      <result property="commentCount" column="COMMENT_COUNT" />
+	      <result property="visitCount" column="VISIT_COUNT" />
+	      <result property="memberLevelImg" column="MEMBER_LEVEL_IMG" />
 
 
     	</resultMap>
     	
-		<!--  private int cafeNo; //CAFE_NO
+		<!--  
+			private int memberLeverNo;//MEMBER_LEVEL_NO //멤버 등급 0,1(권한)은 빼기
+			private String memberLevelName;//MEMBER_LEVEL_NAME 등급 이름
+			private int boardCount;//BOARD_COUNT 게시글 수(등업)
+			private int commentCount;//COMMENT_COUNT 댓글 수(등업)
+			private int visitCount;//VISIT_COUNT 방문 수(등업)
+			private String memberLevelImg;//MEMBER_LEVEL_IMG 등급 이미지
+		
+			private int cafeNo; //CAFE_NO
 			private String profileImg;  // PROFILE_IMG;
 			private String mainHeaderImg;  // CAFE_MAIN_HEADER_IMG;
 			private String topFrontImg;  // CAFE_TOP_FRONT_IMG;
@@ -36,5 +51,22 @@
    		UPDATE "CAFE_INFO" SET
    		CAFE_JOIN_FL = #{join_get}
    		WHERE CAFE_NO = 1
+   	</update>
+   	<!-- 등업 등급 테이블 검색해오기 -->
+   	<select id="selectmemberLevel" resultMap="cafeInfo_rm">
+   	SELECT * FROM MEMBER_LEVEL WHERE MEMBER_LEVEL_NO > 1
+   	</select>
+   	<!-- 등업 조건 수정 -->
+   	<update id="updateMemberLevelTable">
+   	 <selectKey keyProperty="cafeNo" resultType="_int" order="AFTER">
+		SELECT COUNT(*) FROM MEMBER_LEVEL WHERE MEMBER_LEVEL_NO > 1	
+	</selectKey>
+   	 <foreach collection="list" item="cafeInfo"
+      open="DECLARE BEGIN" separator=";" close="; END;">
+        UPDATE "MEMBER_LEVEL" SET 
+			BOARD_COUNT = #{cafeInfo.boardCount}, 
+			COMMENT_COUNT = #{cafeInfo.commentCount}, 
+			VISIT_COUNT = #{cafeInfo.visitCount} 
+			WHERE MEMBER_LEVEL_NAME=#{cafeInfo.memberLevelName}</foreach>
    	</update>
 </mapper>

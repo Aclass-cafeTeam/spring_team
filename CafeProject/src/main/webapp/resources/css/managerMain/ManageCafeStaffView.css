@@ -39,7 +39,7 @@ body{
 
 .lnb_sub > ul{
   overflow: hidden;
-  width: 920px;
+  width: 850px;
   margin: 0 auto;
   display: inline-flex;
   align-items: center;
@@ -83,7 +83,7 @@ body{
 
 /* 내용 */
 #content {
-  padding: 138px 0 123px;
+  padding: 138px 0 220px;
 }
 
 body, input, textarea, select, button, table {
@@ -202,7 +202,6 @@ tr {
 }
 
 .tbl_lst_type2 th {
-  border-top: 1px solid #ececec;
   vertical-align: top;
   text-align: left;
   color: #272727;
@@ -343,10 +342,10 @@ strong {
   padding: 6px 0 2px;
 }
 
+
 .board_tit {
   margin-bottom: 1px;
   padding: 22px 0 7px 2px;
-  border-bottom: 1px solid #eaeaea;
 }
 
 .board_tit strong {
@@ -360,6 +359,73 @@ strong {
   color: #2e9901;
   font-weight: bold;
   font-family: tahoma;
+}
+/* 삭제 버튼 눌렀을때 */
+.board_area{
+  position: relative;
+}
+.ly_type {
+  display: block;
+  position: absolute;
+  z-index: 100;
+  padding: 18px 19px 16px;
+  border: 1px solid #888;
+  background-color: #fff;
+  left: 574px;
+  top: 93px;
+}
+
+.ly_type .ly_cont {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  line-height: 18px;
+  width: 250px;
+}
+
+.c_gy2 {
+  color: #666 !important;
+  display: inline-block;
+}
+
+.c_gy5 {
+  color: #404040 !important;
+  display: inline-block;
+}
+
+.c_og {
+  color: #ff7200 !important;
+  display: inline-block;
+}
+/* 위에 닫기 버튼 */
+#stopLayerBtn {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 34px;
+  height: 34px;
+  color: #404040;
+  text-decoration: none;
+}
+
+.btn_type3 strong, .btn_type3 span {
+  display: inline-block;
+  height: 24px;
+  padding: 0 10px 0 8px;
+  line-height: 23px;
+  font-family: '돋움', Dotum, Helvetica, sans-serif;
+  font-size: 12px;
+  border: 1px solid #B7B7B8;
+  border-radius: 7%;
+  color: #404040;
+}
+
+.ly_type .ly_cont .btn {
+  display: block;
+  padding-top: 6px;
+  text-align: center;
+  text-decoration: none;
 }
 
 /* 출력 테이블 */
@@ -492,7 +558,7 @@ input.check {
   padding-left: 4px;
   padding-top: 2px;
   padding-bottom: 2px;
-  display: inline-block;
+  display: block;
   line-height: 21px;
 }
 
