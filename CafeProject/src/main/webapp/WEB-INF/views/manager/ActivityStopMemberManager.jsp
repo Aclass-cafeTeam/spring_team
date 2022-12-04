@@ -279,12 +279,14 @@
 
   </main>
   <!-- 푸터 -->
-  <footer>
+  <!-- <footer>
     <p class="cr">
         <em>Since 2022.10.14. © </em> 
         <span> 내일로, 기차로! 카페</span>
     </p>
-  </footer>
+  </footer> -->
+  <!-- 푸터 -->
+  <jsp:include page="/WEB-INF/views/manager/managerFooter.jsp" />
   <!-- 푸터 -->
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>

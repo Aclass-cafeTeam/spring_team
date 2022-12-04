@@ -169,6 +169,32 @@ ul, li{
 .admin_menu_management .add_lst li .ba_v3 span, .admin_menu_management .member_table_2.stat_cafe_app .ba_v3 {
     background-position: 12px -123px;
 }
+
+.borderNone{
+    border: none !important;
+}
+
+.admin_menu_management .add_lst li a span{
+    display: block;
+    min-height: 16px;
+    padding: 0 0 0 27px;
+    color: #333;
+    line-height: 16px;
+}
+
+.admin_menu_management .add_lst .h_menu_tit {
+    position: relative;
+    min-height: 16px;
+    margin-top: -1px;
+    padding: 10px 20px 9px 11px;
+    border-top: 1px solid #e5e5e5;
+    border-bottom: 1px solid #e5e5e5;
+    color: #333;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 16px;
+    cursor: pointer;
+}
 /* 글 메뉴 이미지 */
 /* 메뉴 추가 부분 ************************************/
 .admin_menu_management .btn_add {
@@ -194,7 +220,9 @@ ul, li{
 a {
     color: inherit;
     text-decoration: none;
+    
 }
+
 
 /* 메뉴 순서 부분 */
 .admin_menu_management .edit_set_group .edit_area .edit_btn_area {
@@ -202,6 +230,57 @@ a {
     height: 31px;
     padding-left: 1px;
     display: block;
+    border: 1px solid #b1b1b1;
+    background: #fafafa;
+}
+
+.admin_menu_management .edit_set_group .edit_area .edit_btn_area ul {
+    display: flex;
+}
+.admin_menu_management .edit_set_group .edit_area .edit_btn_area li {
+    float: left;
+}
+.bt_v1{
+    border-right: 1px solid #b1b1b1;
+    background-image: url(../../images/manager/downicon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+}
+.bt_v2{
+    border-right: 1px solid #b1b1b1;
+    background-image: url(../../images/manager/uparrowicon.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+}
+.edit_set_group .edit_area .edit_btn_area li a {
+    float: left;
+    position: relative;
+    z-index: 10;
+    width: 80px;
+    height: 30px;
+    margin-left: -1px;
+    cursor: default;
+}
+.delete{
+    width: 100px !important;
+    text-align: center;
+    padding-top: 6px;
+    text-align: center;
+    font-weight: bold;
+}
+.none{
+    text-indent: -500em;
+}
+
+.edit_lst_area{
+    overflow-y: scroll;
+    position: relative;
+    height: 665px;
+    border-bottom: 1px solid #b1b1b1;
+    border-right: 1px solid #b1b1b1;
+    border-left: 1px solid #b1b1b1;
 }
 /* 메뉴 순서 부분 *************************************/
 

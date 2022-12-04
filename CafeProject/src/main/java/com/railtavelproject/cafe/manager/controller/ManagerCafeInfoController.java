@@ -123,6 +123,7 @@ public class ManagerCafeInfoController {
 			}else{
 				message = "반영에 실패하셨습니다.";
 			}
+			ra.addFlashAttribute("message", message);
 			return "redirect:/manager/gradeMemberManager";
 		}
 }
