@@ -150,7 +150,7 @@
                             <strong class="tit4">메뉴</strong>
                             <ul class="lst">
                                 <li class="_manageAuth(BoardStaff)">
-                                    <a id="menu8" href="../managerMain/menuManager.html" class="N=a:LNB*a.list">메뉴 관리</a>
+                                    <a id="menu8" href="/managerMain/menuManager" class="N=a:LNB*a.list">메뉴 관리</a>
                                 </li>
                             </ul>
                         </div>

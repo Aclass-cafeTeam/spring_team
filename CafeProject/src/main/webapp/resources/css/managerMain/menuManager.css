@@ -178,7 +178,8 @@ ul, li{
 .admin_menu_management .btn_add.on a {
     background-position: -30px 0;
     cursor: pointer;
-
+    background-image: url(../../images/manager/btn_add_color.jpg);
+    
 }
 .admin_menu_management .btn_add a {
     display: block;
@@ -188,6 +189,7 @@ ul, li{
     text-indent: -500em;
     cursor: default;
     border: 1px solid #b1b1b1;
+    background-image: url(../../images/manager/btn_add_dis.jpg);
 }
 a {
     color: inherit;
@@ -195,7 +197,12 @@ a {
 }
 
 /* 메뉴 순서 부분 */
-
+.admin_menu_management .edit_set_group .edit_area .edit_btn_area {
+    width: 262px;
+    height: 31px;
+    padding-left: 1px;
+    display: block;
+}
 /* 메뉴 순서 부분 *************************************/
 
 /* 메뉴 에디터 부분 */

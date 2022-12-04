@@ -118,7 +118,7 @@ public class ManagerCafeInfoController {
 			
 			int result = service.updateMemberLevelTable(cafeInfo);
 			String message = null;
-			if(result == 5){
+			if(result == 5){//boardCount.size()해도 될거 같음
 				message = "성공적으로 반영되었습니다.";
 			}else{
 				message = "반영에 실패하셨습니다.";
