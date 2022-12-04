@@ -1,5 +1,7 @@
 package com.railtavelproject.cafe.manager.model.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -22,6 +24,15 @@ public class ManagerCafeInfoDAO {
 
 	public int updateJoin(String join_get) {
 		return sqlSession.update("managerCafeMapper.updateJoin", join_get);
+	}
+
+	public List<CafeInfo> selectmemberLevel() {
+		return sqlSession.selectList("managerCafeMapper.selectmemberLevel");
+	}
+
+	public int updateMemberLevelTable(List<Object> cafeInfo) {
+		
+		return sqlSession.update("managerCafeMapper.updateMemberLevelTable", cafeInfo);
 	}
 		
 }

@@ -12,10 +12,26 @@ public class Board {
 	   
 	   private int readCount; // 게시글 조회수 READ_COUNT
 	   
+		/* 게시판 타입 */
+	   private int boardCode; 			// 게시판 코드 BOARD_CODE
+	   private String boardName;   		// 게시판 이름 BOARD_NAME
+	   private int boardOrder;   		// 게시판 순서 BOARD_ORDER
+	   private int mainCategoryNo;    	//게시판 큰(메인) 카페고리 MAIN_CATEGORY_NO
+	   private String titleTagYN;   	//TITLE_TAG_YN 말머리 사용 여부(사용: Y , 사용 안할 시: N)
+	   private String boardForm;        //BOARD_FORM  A: 앨범형 B: 게시판형
+	   private String boardLikeYN;      //BOARD_LIKE_YN  좋아요 기능여부(하는 걸로 체크:Y, 체크 안하면: N)
+	   private int boardMemberLevelNo;	//MEMBER_LEVEL_NO 게시판별 멤버 등급 조건
+	   private String TypeDelFL;        //TYPE_DEL_FL 게시판 삭제여부(N: 삭제x / Y:삭제o)
+	   /* 게시판 타입 */
 	   
-	   private int boardCode; // 게시판 코드 BOARD_CODE
-	   private int titleTagNo; // 말머리 번호 TITLE_TAG_NO
-	   private String noticeFlag; // 공지여부   NOTICE_FL
+	   /* 게시판 큰(메인) 카페고리 */
+	   private String mainCategoryName; //MAIN_CATEGORY_NAME 1.기본 게시판(삭제 불가) 2.여행 정보 3.질문 코너 4.갤러리 자료
+	   private String CategoryDelFL;    //CATEGORY_DEL_FL
+	   /* 게시판 큰(메인) 카페고리 */
+	   
+	   
+	   private int titleTagNo; 			// 말머리 번호 TITLE_TAG_NO 
+	   private String noticeFlag; 		// 공지여부   NOTICE_FL
 	   
 
 	   
@@ -23,7 +39,6 @@ public class Board {
 
 	   private int memberNo; // 게시글 작성자 번호 
 	   private String memberName; // 게시글 작성자 이름 
-	   private int memberLevelNo;   // 등급번호   MEMBER_LEVEL_NO
 	   
 	   private List<Comment> commentList; // 댓글과 관련된 List
 
@@ -31,7 +46,7 @@ public class Board {
 	   
 	   
 	   
-	   private String boardName;   // 게시판 이름   BOARD_NAME
+	   
 	   // 게시판 대분류 번호   MAIN_CATEGORY_NO
 	   // 말머리 사용 여부   TITLE_TAG_YN
 	   // 게시판 형식   BOARD_FORM   
