@@ -1,5 +1,14 @@
 package com.railtavelproject.cafe.board.model.vo;
 
+import java.util.List;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
 public class Comment {
 	   private int commentNo; // 댓글 번호   COMMENT_NO
 	   private String commentContent; // 댓글 내용   COMMENT_CONTENT
@@ -13,5 +22,4 @@ public class Comment {
 	   private String profileImage; // 댓글 작성자 프로필
 	   private String memberLevelImage; // 등급 레벨 이미지
 
-	    
 }
