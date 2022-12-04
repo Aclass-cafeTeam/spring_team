@@ -13,5 +13,4 @@ public class Comment {
 	   private String profileImage; // 댓글 작성자 프로필
 	   private String memberLevelImage; // 등급 레벨 이미지
 
-	    
 }
