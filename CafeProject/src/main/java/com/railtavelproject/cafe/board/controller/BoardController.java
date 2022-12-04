@@ -61,26 +61,26 @@ public class BoardController {
 		return "board/boardBestList";
 	}
 	
-	
-//	@GetMapping("/board/{boardCode}")
-//	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-//			Model model,
-//			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
-//			@RequestParam Map<String, Object> pm
-//			) {
-//		
-//		if(pm.get("key") == null) { // 검색이 아닌 경우
-//			Map<String, Object> map = service.selectBoardList(boardCode, cp);
-//			model.addAttribute("map", map);
-//			
-//		} else { // 검색인 경우
-//			pm.put("boardCode", boardCode);
-//			Map<String, Object> map = service.selectBoardList(pm, cp);
-//			model.addAttribute("map", map);
-//		}
-//		
-//		return "board/boardList"; // forward
-//	}
+	// 검색 목록 조회
+	@GetMapping("/board/{boardCode}")
+	public String selectBoardList(@PathVariable("boardCode") int boardCode,
+			Model model,
+			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
+			@RequestParam Map<String, Object> pm
+			) {
+		
+		if(pm.get("key") == null) { // 검색이 아닌 경우
+			Map<String, Object> map = service.selectBoardList(boardCode, cp);
+			model.addAttribute("map", map);
+			
+		} else { // 검색인 경우
+			pm.put("boardCode", boardCode);
+			Map<String, Object> map = service.selectBoardList(pm, cp);
+			model.addAttribute("map", map);
+		}
+		
+		return "board/boardList"; // forward
+	}
 	
 	
 	

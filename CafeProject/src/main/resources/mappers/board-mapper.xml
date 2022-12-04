@@ -156,7 +156,7 @@ ORDER BY LIKE_COUNT
 </select>
    
 <!-- 검색 조건 일치 게시글 수 조회 -->   
-<!-- <select id="selectBoardList_search" parameterType="_int" resultMap="board_rm">
+<select id="selectBoardList_search" parameterType="_int" resultMap="board_rm">
 SELECT BOARD_NO, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 <![CDATA[
 CASE  
@@ -181,7 +181,7 @@ FROM BOARD B
 JOIN MEMBER USING(MEMBER_NO)
 WHERE BOARD_CODE = #{boardCode}
 AND BOARD_DEL_FL = 'N'
-검색어가 있을 경우
+<!-- 검색어가 있을 경우 -->
 <if test='query != null and query != "" ' >
 	<choose>
 		<when test='key == "aa" ' >
@@ -203,7 +203,7 @@ AND BOARD_DEL_FL = 'N'
 	</choose>
 </if>
 ORDER BY BOARD_NO DESC
-</select> -->
+</select>
    
    
    

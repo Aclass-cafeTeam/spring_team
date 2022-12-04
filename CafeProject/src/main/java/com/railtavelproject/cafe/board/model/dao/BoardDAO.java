@@ -102,14 +102,14 @@ public class BoardDAO {
 	 * @param pm
 	 * @return boardList
 	 */
-//	public List<Board> selectBoardList(Pagination pagination, Map<String, Object> pm) {
-//		
-//		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-//		
-//		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
-//		
-//		return sqlSession.selectList("boardMapper.selectBoardList_search", pm, rowBounds);
-//	}
+	public List<Board> selectBoardList(Pagination pagination, Map<String, Object> pm) {
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("boardMapper.selectBoardList_search", pm, rowBounds);
+	}
 
 	
 
