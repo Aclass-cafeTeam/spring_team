@@ -115,10 +115,13 @@ public class ManagerCafeInfoController {
 			}
 			
 			System.out.println(cafeInfo);
-			
+			// 업데이트 수 파악 하기 위해서 다오 쪽에서 cafeCount랑 cafeInfo랑
+			// Map으로 넣어준 후에 boardCount.size()랑 cafeCount 비교 하는 작업이 
+			// 필요할 거같음 --- 추후 기능 다 완성하면 추가!!!! 
 			int result = service.updateMemberLevelTable(cafeInfo);
+			System.out.println(result);
 			String message = null;
-			if(result == 5){//boardCount.size()해도 될거 같음
+			if(result == -1){//boardCount.size()해도 될거 같음
 				message = "성공적으로 반영되었습니다.";
 			}else{
 				message = "반영에 실패하셨습니다.";

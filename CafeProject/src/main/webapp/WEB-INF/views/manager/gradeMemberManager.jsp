@@ -239,14 +239,19 @@
 
     </main>
     <!-- 푸터 -->
-    <!-- 푸터 -->
-    <jsp:include page="/WEB-INF/views/manager/managerFooter.jsp" />
-    <!-- <footer>
+    <footer>
         <p class="cr">
             <em>Since 2022.10.14. © </em> 
             <span> 내일로, 기차로! 카페</span>
         </p>
-    </footer> -->
+        <c:if test="${not empty message}">
+            <script>
+                alert("${message}");
+            </script>
+            <%-- message 1회 출력 후 모든 scope 삭제 --%>
+            <c:remove var="message" />
+        </c:if>
+    </footer>
     <!-- 푸터 -->
 </body>
 </html>

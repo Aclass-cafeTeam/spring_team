@@ -180,8 +180,11 @@
         </section>    
         <!-- 관리자 홈페이지 메인 관리 홈 -->
     </main>
-    <!-- 푸터 -->
-    <jsp:include page="/WEB-INF/views/manager/managerFooter.jsp"/>
-    <!-- 푸터 -->
+    <footer>
+        <p class="cr">
+            <em>Since 2022.10.14. © </em> 
+            <span> 내일로, 기차로! 카페</span>
+        </p>
+    </footer>
 </body>
 </html>
