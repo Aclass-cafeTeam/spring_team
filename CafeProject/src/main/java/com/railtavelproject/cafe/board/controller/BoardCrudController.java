@@ -110,10 +110,9 @@ public class BoardCrudController {
 		// boardCode를 board 객체에 세팅
 		int boardCode = board.getBoardCode();
 		board.setBoardCode(boardCode);
-
+		
 		// 로그인 한 회원의 번호를 board 객체에 세팅
 		board.setMemberNo(loginMember.getMemberNo());
-
 		
 		// 게시글 작성 서비스 수행 후 작성된 게시글의 번호로 반환
 		int boardNo = service.writeBoard(board);
@@ -167,7 +166,7 @@ public class BoardCrudController {
 		
 		
 
-	// 게시글 상세 조회(게시글 수정 화면으로 전환)
+	// 게시글 수정 페이지
 	@GetMapping("/board/{boardCode}/{boardNo}/update")
 	public String boardUpdate(	@PathVariable("boardCode") int boardCode,
 								@PathVariable("boardNo") int boardNo,

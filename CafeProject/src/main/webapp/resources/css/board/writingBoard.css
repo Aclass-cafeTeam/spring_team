@@ -246,8 +246,8 @@ a{ text-decoration: none; }
     flex-direction: column;
 }
 
-.settingArea:last-child{
-    margin-top: 20px;
+.settingArea:first-child{
+    margin-bottom: 20px;
 }
 
 /* 공지 여부 (select box) */
