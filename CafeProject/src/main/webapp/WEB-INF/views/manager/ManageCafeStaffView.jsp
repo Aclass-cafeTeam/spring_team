@@ -17,30 +17,7 @@
         <!-- ************************************* managerHeader ************************************************** -->
         <%-- 검색을 진행한 경우 --%>
         <div class="managerHeader">
-          <header>
-              <div class="managerHeader-gnb">
-
-                  <div class="tit_area">
-                      <h1><a href="#" class="go_nvr">NEVER</a>
-                          <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
-                      <p><a href="/" class="title">내일로, 기차로! 카페</a></p>
-                  </div>
-
-                  <div class="tit_menu">
-                      <label for="header-menu-toggle">
-                          지윤
-                          <!-- <i class="fa-solid fa-caret-down"></i> -->
-                      </label>
-  
-                      <input class="header__menu-btn" type="checkbox" id="header-menu-toggle">
-                      <div class="header__nav">
-                          <a href="#">내정보</a>
-                          <a href="#">로그아웃</a>
-                      </div>
-                  </div>
-
-              </div>
-          </header>
+          <jsp:include page="/WEB-INF/views/manager/managerHeader.jsp" />
 
           <nav>
               <div class="nav_menu_back">
@@ -59,11 +36,11 @@
                               <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                           </li>
                           <li>
-                              <a href="../managerMain/menuManager.html"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
+                              <a href="/manager/menuManager"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                           </li>
-                          <li>
+                          <!-- <li>
                               <a href="#"><img src="/resources/images/free-icon-edit-4386594.png">글•글양식</a>
-                          </li>
+                          </li> -->
                           <li>
                               <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                           </li>
@@ -189,7 +166,7 @@
               </div>
               <%-- 검색하면 보이고 아니면 보이지 않음 --%>
             <%-- 위에 저장 폼인데 사용할지 안할지 미정 --%>
-            <form name="staffFrm" action="/updateSubManagerSelect" method="post">
+            <form name="staffFrm" action="/ManageCafeStaffView/updateSubManagerSelect" method="post">
             <input type="hidden" name="loginMember" value="${loginMember.memberEmail}">
             <input type="hidden" name="loginMemberauthorityNo" value="${loginMember.authorityNo}"><%-- 카페매니저만 매니저 임명 권한 --%>
             <input type="hidden" id="electedStaffId" name="electedStaffId" value="">
@@ -213,22 +190,20 @@
                   <strong>전체 스탭 </strong> <em>${stepMemberCount}</em>
                 </p>
               </div>
-              <div id="DeleteLayer" style="display:none;left:595px;top:109px;" class="ly_type">
+              <div id="DeleteLayer" style="display:none;" class="ly_type">
                 <div style="width:267px" class="ly_cont ly_cont_v2">
                   <p class="c_gy2">권한을 삭제하시면, 해당 멤버는 스탭이 아닌<br><span class="c_gy5">일반 카페 멤버</span>로 돌아갑니다.<br><strong class="c_gy5"><span class="c_og">스탭 권한을 삭제</span>하시겠습니까?</strong></p>
                 <div class="btn">
-                  <a class="btn_type3 _click(LayerManager|ClickLayer|DeleteLayer|Confirm) _stopDefault" href="#"><strong>확인</strong></a>
-                  <a class="btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" href="#"><span>취소</span></a>
+                  <a class="deleteStaffCon btn_type3 _click(LayerManager|ClickLayer|DeleteLayer|Confirm) _stopDefault" href="#"><strong>확인</strong></a>
+                  <a class="clse btn_type3 _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="closeLayerBtn" href="#"><span>취소</span></a>
                 </div>
                 </div>
-                <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" href="#"><span class="blind">닫기</span></a>
+                <a class="clse _click(LayerManager|CloseLayer|DeleteLayer) _stopDefault" id="stopLayerBtn" href="#"><span class="blind">닫기</span></a>
               </div>
               
-              <form id="staffListFrm" action="/ManageStaffMessageAuthModify.nhn" method="post">
-              <input type="hidden" name="clubid" value="30828148">
-              <input type="hidden" name="cafeStaff.memberid" value="">
-              <input type="hidden" name="cafeStaff.managetype" value="">
-              <input type="hidden" name="cafeStaff.wholeMessageSendAuth" value="">
+              <form id="staffListFrm" name="deletestafffrm" action="/ManageCafeStaffView/deleteSubManagerSelect" method="post">
+              <input type="hidden" name="cafeStaff" value="${loginMember.memberEmail}">
+              <input type="hidden" name="cafeStaffauthorityNo" value="${loginMember.authorityNo}">
               <table border="1" cellspacing="0" class="tbl_lst_type">
                 <caption><span class="blind">스탭 선정 목록</span></caption>
                 <colgroup>
@@ -269,9 +244,12 @@
                       <td class="tc"><span class="num">${member.loginDate}.</span></td>
                   
                       <td class="tc">
-                        <a href="#" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|${member.memberEmail}|${member.authorityNo}) _stopDefault">
-                          <span>삭제</span>
-                        </a>
+                        <c:if test="${member.authorityNo == 1}">
+                          <a href="#" id="staffDelete" class="btn_type _click(ManageCafeStaff|ShowDeleteLayer|${member.memberEmail}|${member.authorityNo}) _stopDefault">
+                            <span>삭제</span>
+                            <input type="hidden" name="subManagerDelete" value="${member.memberEmail}">
+                          </a>
+                        </c:if>
                       </td>
                     </tr>
                     </c:forEach>

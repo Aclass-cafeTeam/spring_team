@@ -104,33 +104,113 @@ searchmemberBtn.addEventListener("click", function () {
 
 const smt_btn = document.getElementById("smt_btn");
 
+// 변수명.key  또는 변수명["key"] 를 이용하면 객체 속성 접근 가능
+const checkObj = {
+  "loginMemberauthorityNo": false,
+  "memberDeleteFlag": false,
+  "authorityNo": false,
+  "subManagerFL": false,
+};
+
 smt_btn.addEventListener("click", function () {
-  if($('input:radio[name=이름]').is(':checked')){
-    if($('input[name =memberDeleteFlag]').val()=='S'){
-      alert("활동 정지된 멤버를 매니저로 임명 할 수 없습니다. 활동 정지 해제 후 임명해주세요.")
-    }
-  
-    if($('input[name =authorityNo]').val() == 0 ||$('input[name =authorityNo]').val() == 1||$('input[name =loginMemberauthorityNo]').val() != 0){
-      
-      if($('input[name =loginMemberauthorityNo]').val() != 0){
-        alert("권한 카페매니저가 아니면 매니저 임명이 불가능합니다.")
-      }else{
-        if($('input[name =subManagerFL]').val() == 'true'){
-          alert("부 매니저는 1명만 임명할 수 있습니다. 부 매니저 삭제 후 임명해주세요.")
-        }else{
-          alert("매니저로 임명된 멤버는 매니저로 임명할 수 없습니다.")
+  if($('input:radio[name=electedStaffId]').is(':checked')){
+      if($('input[name =loginMemberauthorityNo]').val() == 0){
+        checkObj["loginMemberauthorityNo"] = true;
+      }  
+
+      if($('input[name =memberDeleteFlag]').val() !='S'){
+        checkObj["memberDeleteFlag"] = true;
+      }
+
+      if($('input[name =authorityNo]').val() != 0 && $('input[name =authorityNo]').val() != 1){
+        checkObj["authorityNo"] = true;
+      }
+
+      if($('input[name =subManagerFL]').val() != 'true'){
+        checkObj["subManagerFL"] = true;
+      }
+
+      for (let key in checkObj) {
+
+        let str;
+
+        // checkObj 속성 하나를 꺼내 값을 검사했는데 false인 경우
+        if (!checkObj[key]) {
+
+            switch (key) {
+                case "loginMemberauthorityNo": str = "권한 카페매니저가 아니면 매니저 임명이 불가능합니다."; break;
+                case "memberDeleteFlag": str = "활동 정지된 멤버를 매니저로 임명 할 수 없습니다. 활동 정지 해제 후 임명해주세요."; break;
+                case "authorityNo": str = "매니저로 임명된 멤버는 매니저로 임명할 수 없습니다."; break;
+                case "subManagerFL": str = "부 매니저는 1명만 임명할 수 있습니다. 부 매니저 삭제 후 임명해주세요."; break;
+            }
+
+            alert(str); // 대화상자 출력
+
+            // 유효하지 않은 입력으로 포커스 이동
+            //document.getElementById(key).focus();
+
+            //event.preventDefault(); // 제출 이벤트 제거
+            return; // 함수 종료
         }
       }
-  
-    }
+
+      document.forms["staffFrm"].submit();  // 이제 form 태그로 보내기 
+    
+
+      /* if($('input[name =authorityNo]').val() == 0 ||$('input[name =authorityNo]').val() == 1
+      ||$('input[name =memberDeleteFlag]').val()=='S'||
+      $('input[name =subManagerFL]').val()=='true'){
+        
+        if($('input[name =loginMemberauthorityNo]').val() != 0){
+          alert("권한 카페매니저가 아니면 매니저 임명이 불가능합니다.")
+        }else{
+          if($('input[name =memberDeleteFlag]').val()=='S'){
+            alert("활동 정지된 멤버를 매니저로 임명 할 수 없습니다. 활동 정지 해제 후 임명해주세요.")
+          }else{
+            if($('input[name =authorityNo]').val() == 0){
+              alert("매니저로 임명된 멤버는 매니저로 임명할 수 없습니다.")
+            }else{
+              if($('input[name =subManagerFL]').val() == 'true'){
+                alert("부 매니저는 1명만 임명할 수 있습니다. 부 매니저 삭제 후 임명해주세요.")
+              }else{
+                
+                
+                document.forms["staffFrm"].submit();  // 이제 form 태그로 보내기 
+
+              }
+              
+            }
+          }
+          
+        }
+    
+      } */
+
+
   }else{
     alert("멤버를 선택해주세요.")
   }
-  
 
- 
+});
 
-  
-  
+/* 부매니저 삭제 */
+const staffDelete = document.getElementById("staffDelete");
 
+staffDelete.addEventListener("click", function () {
+  if($('input[name =cafeStaffauthorityNo]').val() == '0'){
+    document.getElementById("DeleteLayer").style.display = "block";
+    document.getElementById("DeleteLayer").style.overflow = "visible";
+    document.getElementById("DeleteLayer").style.zoom = "1";
+
+    $('.deleteStaffCon').click(function() {
+      /* 이제 form 태그로 보내기 */
+      document.forms["deletestafffrm"].submit();
+    });
+  }else{
+    alert("카페(총) 매니저만 삭제 권한이 있습니다.")
+  }
+})
+
+$('.clse').click(function() {
+  document.getElementById("DeleteLayer").style.display = "none";
 });

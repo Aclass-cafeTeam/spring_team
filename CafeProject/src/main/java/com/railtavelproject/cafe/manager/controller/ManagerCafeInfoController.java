@@ -1,5 +1,8 @@
 package com.railtavelproject.cafe.manager.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.websocket.server.PathParam;
 
@@ -24,6 +27,7 @@ public class ManagerCafeInfoController {
 	
 	@Autowired
 	private ManagerCafeInfoService service;
+	
 	
 	// 프로필 이미지 수정
 		@PostMapping("/basicInfoManager/updateCafeProfile")
@@ -57,6 +61,13 @@ public class ManagerCafeInfoController {
 			return "redirect:/manager/basicInfoManager";
 		}
 		
+		/** 회원 가입 막기 여부
+		 * @param ra
+		 * @param model
+		 * @param cafeInfo
+		 * @param join_get
+		 * @return
+		 */
 		@PostMapping("/joinMemberManager/updateJoin")
 		public String updateJoin(RedirectAttributes ra, /* 메세지 전달용 */
 				Model model,
@@ -81,5 +92,41 @@ public class ManagerCafeInfoController {
 			
 			ra.addFlashAttribute("message", message);
 			return "redirect:/manager/joinMemberManager";
+		}
+		
+		@PostMapping("/updateMemberLevelTable")
+		public String updateMemberLevelTable(Model model,
+				RedirectAttributes ra, /* 메세지 전달용 */
+				CafeInfo cafe1,
+				@RequestParam(value="boardCount") ArrayList<Object> boardCount,
+				@RequestParam(value="commentCount") ArrayList<Object> commentCount,
+				@RequestParam(value="visitCount") ArrayList<Object> visitCount,
+				@RequestParam(value="memberLevelName") ArrayList<Object> memberLevelName) {
+			
+			List<Object> cafeInfo = new ArrayList<Object>();
+			
+			for(int i =0; i < boardCount.size(); i++) {
+				CafeInfo cafe = new CafeInfo();
+				cafe.setBoardCount(Integer.valueOf( (String) boardCount.get(i)));
+				cafe.setCommentCount(Integer.valueOf( (String) commentCount.get(i)));
+				cafe.setVisitCount(Integer.valueOf( (String) visitCount.get(i)));
+				cafe.setMemberLevelName(String.valueOf(memberLevelName.get(i)));		
+				cafeInfo.add(cafe);
+			}
+			
+			System.out.println(cafeInfo);
+			// 업데이트 수 파악 하기 위해서 다오 쪽에서 cafeCount랑 cafeInfo랑
+			// Map으로 넣어준 후에 boardCount.size()랑 cafeCount 비교 하는 작업이 
+			// 필요할 거같음 --- 추후 기능 다 완성하면 추가!!!! 
+			int result = service.updateMemberLevelTable(cafeInfo);
+			System.out.println(result);
+			String message = null;
+			if(result == -1){//boardCount.size()해도 될거 같음
+				message = "성공적으로 반영되었습니다.";
+			}else{
+				message = "반영에 실패하셨습니다.";
+			}
+			ra.addFlashAttribute("message", message);
+			return "redirect:/manager/gradeMemberManager";
 		}
 }
