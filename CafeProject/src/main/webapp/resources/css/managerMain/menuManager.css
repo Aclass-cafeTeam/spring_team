@@ -157,6 +157,31 @@ ul, li{
     word-break: break-all;
     zoom: 1;
 }
+
+/* 게시판 글 앞에 아이콘 */
+.B{
+    background-image: url(../../images/게시판.PNG);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position-x: 8px;
+    background-position-y: 5px;
+}
+
+.A{
+    background-image: url(../../images/앨범.PNG);
+    background-repeat: no-repeat;
+    background-size: 15px 15px;
+    background-position-x: 8px;
+    background-position-y: 5px;
+}
+
+.filImg{
+    background-image: url(../../images/manager/그룹파일.png);
+    background-repeat: no-repeat;
+    background-size: 13px 14px;
+    background-position-x: 10px;
+    background-position-y: 1px;
+}
 /* 글 메뉴 이미지 */
 .admin_menu_management .add_lst li a span, .admr_table_2.stat_cafe_app span {
     display: block;

@@ -122,5 +122,4 @@ public interface ManagerMemberService {
 	int deleteSubManagerSelect(String subManagerDelete);
 
 
-
 }

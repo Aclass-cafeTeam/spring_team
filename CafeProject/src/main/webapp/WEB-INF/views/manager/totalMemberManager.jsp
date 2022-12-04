@@ -48,7 +48,7 @@
                               <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                           </li>
                           <li>
-                              <a href="../managerMain/menuManager.html"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
+                              <a href="/manager/menuManager"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                           </li>
                           <li>
                               <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
