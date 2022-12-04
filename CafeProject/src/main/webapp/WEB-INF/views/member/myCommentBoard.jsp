@@ -51,12 +51,14 @@
                                     <td class="boardNo">${myCommentBoard.boardNo}</td>
                                     <td><a href="/board/${myCommentBoard.boardCode}/${myCommentBoard.boardNo}" class="title">
                                         <c:if test="${not empty myCommentBoard.titleTagName}">
-                                        <span>[${myCommentBoard.titleTagName}] </span>
+                                            <c:if test="${myCommentBoard.titleTagNo ne '0'}">
+                                                <span>[${myCommentBoard.titleTagName}] </span>
+                                            </c:if>
                                         </c:if>
                                     ${myCommentBoard.boardTitle}</a>
                                         <a href="#" class="comment">[${myCommentBoard.commentCount}]</a>
                                     </td>
-                                    <td class="writer">${myCommentBoard.memberNickname}</td>
+                                    <td class="writer"><a href="/member/${myCommentBoard.memberNo}">${myCommentBoard.memberNickname}</td></a>
                                     <td class="reporting-date">${myCommentBoard.boardCreateDate}</td>
                                     <td class="hits">${myCommentBoard.readCount}</td>
                                 </tr>
@@ -96,7 +98,6 @@
         
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-    <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
 </html>

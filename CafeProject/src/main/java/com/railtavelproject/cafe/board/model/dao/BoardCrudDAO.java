@@ -20,12 +20,7 @@ public class BoardCrudDAO {
 		return sqlSession.selectList("boardCrudMapper.selectTitleTag");
 	}
 
-	// 글양식 조회
-	public List<Map<String, Object>> selectWritingFormType() {
-		return sqlSession.selectList("boardCrudMapper.selectWritingFormType");
-	}
 
-	
 	/** 게시글 작성
 	 * @param board
 	 * @return boardNo

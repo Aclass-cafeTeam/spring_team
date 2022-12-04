@@ -45,11 +45,7 @@ public class BoardCrudController {
 		// 태그조회
 		List<Map<String, Object>> titleTagList = service.selectTitleTag();
 		
-		// 글양식조회
-		List<Map<String, Object>> writingFormType = service.selectWritingFormType();
-
 		model.addAttribute("titleTagList",titleTagList);
-		model.addAttribute("writingFormType", writingFormType);
 		
 		return "board/writingBoard";
 	}	

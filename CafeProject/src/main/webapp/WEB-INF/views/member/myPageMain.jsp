@@ -43,12 +43,11 @@
                         </div>
                         <div class="myPage-subTitle">
                             <label for="memberNickname">닉네임</label>
-                            <input type="text" name="memberNickname" id="memberNickname" maxlength="20"
+                            <input type="text" name="memberNickname" id="myPageNickname" maxlength="20"
                                 value="${loginMember.memberNickname}" autocomplete="off">
-                            <button class="myPage-check-btn">중복 확인</button>
+                            <%-- <button class="myPage-check-btn" id="nickCheck-btn">중복 확인</button> --%>
                         </div>
-                            <div class="signUp-message">
-                                <span id="nickMessage"></span><span id="bite"></span>
+                            <div id="nickMsg"></div>
 
 <%--                         <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
                         <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span> --%>
@@ -56,7 +55,7 @@
                         <div class="myPage-subTitle">
                             <label for="residence">지역(선택사항)</label>
                             <div class="select">
-                                <select name="memberResidence" id="residence">
+                                <select name="memberResidence" id="myPageResidence">
                                     <option <c:if test="${loginMember.memberResidence == null }">selected</c:if> disabled>시/도 선택</option>
                                     <option value="서울" <c:if test="${loginMember.memberResidence eq '서울' }">selected</c:if>>서울</option>
                                     <option value="경기" <c:if test="${loginMember.memberResidence eq '경기' }">selected</c:if>>경기</option>
@@ -80,7 +79,7 @@
                         </div>
                         <div class="myPage-btn-area">
                             <button class="myPage-update-btn" type="reset">취소</button>
-                            <button class="myPage-update-btn" type="submit">수정</button>
+                            <button class="myPage-update-btn" type="submit" onclick="return myPageUpdateValidate()">수정</button>
                         </div>
                     </div> 
                 </form>
@@ -93,6 +92,11 @@
 
     <%-- jQuery 라이브러리 추가 --%>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+     <script>
+        const NowNickname = "${loginMember.memberNickname}";
+        const NowResidence = "${loginMember.memberResidence}";
+
+    </script>
     <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
