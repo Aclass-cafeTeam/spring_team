@@ -21,55 +21,29 @@
         <!-- ************************************* managerHeader ************************************************** -->
         
         <div class="managerHeader">
-            <header>
-                <div class="managerHeader-gnb">
-
-                    <div class="tit_area">
-                        <h1><a href="/" class="go_nvr">NEVER</a>
-                            <a href="/manager/managerMain" class="go_adm">카페관리</a></h1>
-                        <p><a href="/" class="title">내일로, 기차로! 카페</a></p>
-                    </div>
-
-                    <div class="tit_menu">
-                        <label for="header-menu-toggle">
-                            지윤
-                            <!-- <i class="fa-solid fa-caret-down"></i> -->
-                        </label>
-    
-                        <input class="header__menu-btn" type="checkbox" id="header-menu-toggle">
-                        <div class="header__nav">
-                            <a href="#">내정보</a>
-                            <a href="#">로그아웃</a>
-                        </div>
-                    </div>
-
-                </div>
-            </header>
+            <jsp:include page="/WEB-INF/views/manager/managerHeader.jsp" />
 
             <nav>
                 <div class="nav_menu_back">
                     <div class="nav_menu">
                         <ul>
                             <li clss="managerHome">
-                                <a href="/manager/managerMain"><img src="../../resources/images/free-icon-house-1835281.png">관리홈</a>
+                                <a href="/manager/managerMain"><img src="/resources/images/free-icon-house-1835281.png">관리홈</a>
                             </li>
                             <li>
-                                <a href="/manager/basicInfoManager"><img src="../../resources/images/settings.png">카페운영</a>
+                                <a href="/manager/basicInfoManager"><img src="/resources/images/settings.png">카페운영</a>
                             </li>
                             <li>
-                                <a href="/manager/totalMemberManager"><img src="../../resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
+                                <a href="/manager/totalMemberManager"><img src="/resources/images/free-icon-friends-7218085.png">멤버•스탭</a>
                             </li>
                             <li>
-                                <a href="/manager/joinMemberManager"><img src="../../resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
+                                <a href="/manager/joinMemberManager"><img src="/resources/images/free-icon-add-friend-4458569.png">가입•등급</a>
                             </li>
                             <li>
-                                <a href="../managerMain/menuManager.html"><img src="../../resources/images/free-icon-menu-2550222.png">메뉴</a>
+                                <a href="/manager/menuManager"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                             </li>
                             <li>
-                                <a href="#"><img src="../../resources/images/free-icon-edit-4386594.png">글•글양식</a>
-                            </li>
-                            <li>
-                                <a href=""><img src="../../resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                                <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                             </li>
                         </ul>
                     </div>
@@ -103,13 +77,13 @@
 						<ul class="info_lst">
                             <li>
                                 <span class="ico_mem">
-                                    <img src="../../resources/images/free-icon-multiple-users-silhouette-33308.png" alt="멤버수" class="blind">
+                                    <img src="/resources/images/free-icon-multiple-users-silhouette-33308.png" alt="멤버수" class="blind">
                                 </span>
                                 <em class="thm">${memberCount}</em>
                             </li>
                             <li>
                                 <span class="ico_cnt">
-                                    <img src="../../resources/images/free-icon-chat-5465360.png" alt="게시글수" class="blind">
+                                    <img src="/resources/images/free-icon-chat-5465360.png" alt="게시글수" class="blind">
                                 </span>
                                 <em class="thm">${boardCount}</em>
                             </li>
@@ -176,19 +150,19 @@
                             <strong class="tit4">메뉴</strong>
                             <ul class="lst">
                                 <li class="_manageAuth(BoardStaff)">
-                                    <a id="menu8" href="../managerMain/menuManager.html" class="N=a:LNB*a.list">메뉴 관리</a>
+                                    <a id="menu8" href="/manager/menuManager" class="N=a:LNB*a.list">메뉴 관리</a>
                                 </li>
                             </ul>
                         </div>
                         
-                        <div class="menu_lst_area">
+                        <!-- <div class="menu_lst_area">
                             <strong class="tit5">글 · 글양식</strong>
                             <ul>
                                 <li class="_manageAuth(BoardStaff)">
                                     <a id="menu9" href="" class="N=a:LNB*a.list">글양식</a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
 
                         <div class="menu_lst_area">
                             <strong class="tit6">삭제글</strong>
@@ -206,13 +180,11 @@
         </section>    
         <!-- 관리자 홈페이지 메인 관리 홈 -->
     </main>
-    <!-- 푸터 -->
     <footer>
         <p class="cr">
             <em>Since 2022.10.14. © </em> 
             <span> 내일로, 기차로! 카페</span>
         </p>
     </footer>
-    <!-- 푸터 -->
 </body>
 </html>

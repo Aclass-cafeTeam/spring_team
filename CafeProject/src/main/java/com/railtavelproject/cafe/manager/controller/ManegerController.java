@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.railtavelproject.cafe.manager.model.service.ManagerBoardService;
 import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
@@ -38,6 +39,9 @@ public class ManegerController {
 	
 	@Autowired
 	private ManagerCafeInfoService cafeInfoService;
+	
+	@Autowired
+	private ManagerBoardService boardService;
 	
 	//managerjoin 이동
 	@GetMapping("/manager/joinMemberManager")
@@ -194,9 +198,20 @@ public class ManegerController {
 		
 		//manager등급관리
 		@GetMapping("/manager/gradeMemberManager")
-		public String gradeMemberManager() {
-		
+		public String gradeMemberManager(Model model) {
+			List<CafeInfo> memberGrade = cafeInfoService.selectmemberLevel();
+			model.addAttribute("memberGrade", memberGrade);
 			return "manager/gradeMemberManager";
 		}
+		
+		
+		//manager메뉴 추가 삭제 상세설정 관리(게시판 메뉴)
+		@GetMapping("/manager/menuManager")
+		public String menuManager(Model model) {
+			List<Map<String, Object>> boardType = boardService.selectBoardType();
+			return "manager/menuManager";
+		}
+		
+				
 
 }
