@@ -236,6 +236,8 @@ a {
     background-color: #fff;
     border: 1px solid #d3d3d3;
     color: #333;
+    width: 60px;
+    height: 30px;
 }
 
 /* 다음 */
@@ -255,7 +257,9 @@ a {
     justify-content: center;
     align-items: center;
     background-color: #f9f9f9;
-    border-top: 1px solid #ebebea
+    border-top: 1px solid #ebebea;
+    border-bottom: 1px solid #ebebea;
+    margin-top: 20px;
 }
 
 /* 날짜 */
@@ -388,4 +392,9 @@ a {
 }
 .writer a:hover{
     text-decoration: underline;
+}
+
+/* ////////////////////////////////////////////////////////// */
+.pagination-area {
+    margin-top: 10px;
 }

@@ -143,7 +143,10 @@
 
                 <div>
                     <div class="writing">
-                        <button type="submit" class="writing-btn">글쓰기</button>
+                        <!-- 로그인 상태인 경우에만 글쓰기 버튼 노출 -->
+                        <c:if test="${not empty loginMember}">
+                            <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
+                        </c:if>
                     </div>
                 </div>
 
@@ -213,8 +216,6 @@
                     <article class="search-area">
 
                         <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
-
-
                             <input type="text" class="query" name="query" id="search-query"
                             placeholder="검색어를 입력해주세요">
                             <button class="search-btn">검색</button>
@@ -231,6 +232,9 @@
 
     <!-- **************************************푸터************************************** -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <!-- ******************************************************************************** -->
+
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/board/boardList.js"></script>
 </body>
 </html>

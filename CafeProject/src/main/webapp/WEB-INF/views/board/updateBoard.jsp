@@ -105,27 +105,26 @@
                 <!-- writingContent 우 (세팅 영역) -->
                 <div class="writingSide">
                     <!-- 관리자일때만 보이는 화면 -->
-                    <!-- <c:choose>
+                    <c:choose>
                         <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1}">
-
                             <div class="settingArea">
-                                <p><input type="checkbox" id="boardNotice" name="boardNotice">  <label for="boardNotice">공지로 등록</label></p>
+                                <p><input type="checkbox" id="boardNotice"> <label for="boardNotice">공지로 등록</label></p>
 
                                 <div id="setting"> 
                                     <p>전체공지 또는 게시판 공지로 등록가능합니다.</p>
                                     <select name="noticeFlag" id="noticeFlag">
-                                        <option value="2">전체공지</option>
                                         <option value="1">게시판공지</option>
+                                        <option value="2">전체공지</option>
                                     </select>
                                 </div>
                             </div>
                         </c:when>
-                    </c:choose> -->
+                    </c:choose> 
                     
                     <!-- 댓글 허용 -->
-                    <!-- <div class="settingArea">
-                        <p><input type="checkbox" id="comment" name="comment">  <label for="comment">댓글 허용</label></p>
-                    </div>  -->
+                    <div class="settingArea">
+                        <p><input type="checkbox" id="comment" name="comment"> <label for="comment">댓글 허용</label></p>
+                    </div>  
                 </div>
             </div>
         </form>
