@@ -38,7 +38,7 @@ body{
 
 .lnb_sub > ul{
     overflow: hidden;
-    width: 850px;
+    width: 810px;
     margin: 0 auto;
     display: inline-flex;
     align-items: center;
