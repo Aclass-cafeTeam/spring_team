@@ -220,14 +220,27 @@ ul, li{
     line-height: 16px;
     cursor: pointer;
 }
+
+.admin_menu_management .add_lst .h_menu_tit span {
+    min-height: 0;
+    padding: 0;
+}
+
+.admin_menu_management .add_lst .h_menu_tit a {
+    padding: 0 !important;
+}
+
+
 /* 글 메뉴 이미지 */
 /* 메뉴 추가 부분 ************************************/
+.delete a{
+    color: #000;
+}
 .admin_menu_management .btn_add {
     float: left;
     width: 35px;
 }
 .admin_menu_management .btn_add.on a {
-    background-position: -30px 0;
     cursor: pointer;
     background-image: url(../../images/manager/btn_add_color.jpg);
     
@@ -242,13 +255,28 @@ ul, li{
     border: 1px solid #b1b1b1;
     background-image: url(../../images/manager/btn_add_dis.jpg);
 }
+
+.bt_v1 , .bt_v2 , .bt_v3 a{
+    cursor: default;
+} 
+
+.edit_btn_area .on a{
+    cursor: pointer;
+    font-weight: bold;
+    color: #127f24;
+}
+
 a {
     color: inherit;
     text-decoration: none;
     
 }
 
-
+/* 클릭한 게시판 메뉴만 색깔   클릭 이벤트*/
+.admin_menu_management .add_lst li.on {
+    background: #e4ecf0;
+}
+/*  */
 /* 메뉴 순서 부분 */
 .admin_menu_management .edit_set_group .edit_area .edit_btn_area {
     width: 262px;
@@ -272,12 +300,19 @@ a {
     background-repeat: no-repeat;
     background-size: 15px 15px;
 }
+
+.bt_v1.on{
+    background-image: url(../../images/manager/downiconOn.png);
+}
 .bt_v2{
     border-right: 1px solid #b1b1b1;
     background-image: url(../../images/manager/uparrowicon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
+}
+.bt_v2.on{
+    background-image: url(../../images/manager/uparrowiconON.png);
 }
 .edit_set_group .edit_area .edit_btn_area li a {
     float: left;

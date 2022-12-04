@@ -111,7 +111,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="add_lst">
+                                <div class="add_lst  add_lst_btn">
                                     <h3>일반메뉴</h3>
                                     <ul>
                                         <li class="">
@@ -126,7 +126,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="add_lst last">
+                                <div class="add_lst last add_lst_btn">
                                     <h3>관리도구</h3>
                                     <ul>
                                         <li class="">
@@ -139,8 +139,11 @@
                                 <!---->
                             </div>
                             <!-- 더하기 부분 -->
-                            <div class="btn_add">
+                            <div class="btn_add" id="plusBtn">
                                 <a href="#">추가</a>
+                                <input type="hidden" name="" value=""><!-- 메인 카테고리 추가 -->
+                                <input type="hidden" name="" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
                             </div>
                             <div class="edit_set_group">
                                 <!-- 게시판 순서 -->
@@ -163,15 +166,18 @@
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="전체글보기" class="ba_v2None B"><span data-v-bd0068e8="">전체글보기</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X -->
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="베스트게시글" class="ba_v2None B"><span data-v-bd0068e8="">베스트게시글</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X boardType-->
                                                 </ul>
-                                                <ul>
+                                                <!-- <ul> -->
                                                     <c:if test="${not empty mainCategory}">
                                                       <c:forEach items="${mainCategory}" var="mainVar" >
-                                                        <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></li>
+                                                        <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory"></c:if>
+                                                          <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn"></c:if>
+                                                        <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                         <c:forEach items="${boardType}" var="var">
                                                           <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
                                                               <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" class="ge_v1 ${var.boardForm}" id="${var.boardName}" title="${var.boardOrder}"><span data-v-bd0068e8="">${var.boardName}</span></a></li>
                                                           </c:if>
                                                         </c:forEach>
+                                                        </ul>
                                                       </c:forEach>
                                                     </c:if>
                                                     
@@ -196,7 +202,7 @@
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v4"><span data-v-bd0068e8="">여행 후기</span></a></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v4"><span data-v-bd0068e8="">맛집 사진 공유</span></a></li> -->
                                                     
-                                                </ul>
+                                                <!-- </ul> -->
                                             </div>
                                         </div>
                                     </div>
@@ -243,5 +249,8 @@
         </p>
     </footer>
     <!-- 푸터 -->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="/resources/js/managerMain/menuManager.js"></script>
 </body>
 </html>
