@@ -964,4 +964,10 @@ SELECT MEMBER_NO FROM "MEMBER" WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL,
 
 SELECT COUNT(*) FROM "MEMBER" WHERE AUTHORITY_NO IN (0,1);
 
-SELECT 
+UPDATE "MEMBER" SET
+  MEMBER_LEVEL_NO = 1,
+  AUTHORITY_NO = 1
+  WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) = #{electedStaffId};
+--------------------------------------------------------------------------------------------
+--가입등급 가져오기
+SELECT * FROM MEMBER_LEVEL WHERE MEMBER_LEVEL_NO > 1;
