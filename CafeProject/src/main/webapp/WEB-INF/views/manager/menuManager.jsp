@@ -144,6 +144,7 @@
                                 <input type="hidden" name="" value=""><!-- 메인 카테고리 추가 -->
                                 <input type="hidden" name="" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
+                                <input type="hidden" name="" value=""><!-- 게시판이 순서-->
                             </div>
                             <div class="edit_set_group">
                                 <!-- 게시판 순서 -->
