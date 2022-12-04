@@ -210,7 +210,7 @@ ul, li{
 .admin_menu_management .add_lst .h_menu_tit {
     position: relative;
     min-height: 16px;
-    margin-top: -1px;
+    margin-top: 2px;
     padding: 10px 20px 9px 11px;
     border-top: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;

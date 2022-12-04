@@ -971,3 +971,11 @@ UPDATE "MEMBER" SET
 --------------------------------------------------------------------------------------------
 --가입등급 가져오기
 SELECT * FROM MEMBER_LEVEL WHERE MEMBER_LEVEL_NO > 1;
+
+
+-----------------------------------------------------------------------------------------------------------
+--게시판 종류별로 대분류랑 다 묶어서 들고 오기
+SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
+WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N';
+--대분류  
+SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL = 'N';

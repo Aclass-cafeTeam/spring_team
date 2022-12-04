@@ -2,6 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"  %>
 
+<%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
+<c:set var="boardType" value="${map.boardType}"/>
+<c:set var="mainCategory" value="${map.mainCategory}"/>
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -80,28 +84,28 @@
                                     <!-- <h3>기본메뉴</h3> -->
                                     <ul>
                                         <li class="off">
-                                            <a href="#" class="ba_v1 B">
+                                            <a class="ba_v1 B">
                                                 <span>전체글보기</span>
                                             </a>
                                         </li>
                                         <li class="off">
-                                            <a href="#" class="ba_v2 B">
+                                            <a class="ba_v2 B">
                                                 <span class="">베스트게시글</span>
                                             </a>
                                         </li>
                                         <h3>기본 게시판</h3>
                                         <li class="off">
-                                            <a href="#" class="be_v3 B">
+                                            <a class="be_v3 B">
                                                 <span class="">공지 사항</span>
                                             </a>
                                         </li>
                                         <li class="off">
-                                            <a href="#" class="be_v4 B">
+                                            <a class="be_v4 B">
                                                 <span class="">자유 게시판</span>
                                             </a>
                                         </li>
                                         <li class="off">
-                                            <a href="#" class="be_v4 B">
+                                            <a class="be_v4 B">
                                                 <span class="">등업 게시판</span>
                                             </a>
                                         </li>
@@ -142,7 +146,7 @@
                                 <!-- 게시판 순서 -->
                                 <div class="edit_area">
                                     <div class="edit_btn_area">
-                                        <ul>
+                                        <ul> 
                                             <li class="bt_v1">
                                                 <a href="#" class="none">아래로</a>
                                             </li>
@@ -155,15 +159,27 @@
                                     <div class="edit_lst_area">
                                         <div class="edit_lst_box">
                                             <div class="add_lst borderNone">
-                                                <ul>
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="전체글보기" class="ba_v2None"><span data-v-bd0068e8="">전체글보기</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X -->
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="베스트게시글" class="ba_v2None"><span data-v-bd0068e8="">베스트게시글</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X -->
+                                                <ul> 
+                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="전체글보기" class="ba_v2None B"><span data-v-bd0068e8="">전체글보기</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X -->
+                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="베스트게시글" class="ba_v2None B"><span data-v-bd0068e8="">베스트게시글</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X boardType-->
                                                 </ul>
                                                 <ul>
-                                                    <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목">■ 기본 게시판</span></li>
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">공지사항</span></a></li><!-- DB에서 꺼내오는 고정값 클릭 이벤트 X -->
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">자유게시판</span></a></li><!-- DB에서 꺼내오는 고정값 클릭 이벤트 X -->
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="간편게시판" class="ge_v13"><span data-v-bd0068e8="">등업게시판</span></a></li><!-- DB에서 꺼내오는 고정값 클릭 이벤트 X -->
+                                                    <c:if test="${not empty mainCategory}">
+                                                      <c:forEach items="${mainCategory}" var="mainVar" >
+                                                        <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></li>
+                                                        <c:forEach items="${boardType}" var="var">
+                                                          <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
+                                                              <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" class="ge_v1 ${var.boardForm}" id="${var.boardName}" title="${var.boardOrder}"><span data-v-bd0068e8="">${var.boardName}</span></a></li>
+                                                          </c:if>
+                                                        </c:forEach>
+                                                      </c:forEach>
+                                                    </c:if>
+                                                    
+                                                    <!-- <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">공지사항</span></a></li>
+                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">자유게시판</span></a></li>
+                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="간편게시판" class="ge_v13"><span data-v-bd0068e8="">등업게시판</span></a></li>
+
+
                                                     <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목">■ 여행 정보</span></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">제주 여행지</span></a></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">충청권 여행지</span></a></li>
@@ -171,12 +187,14 @@
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">전라권 여행지</span></a></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">경상권 여행지</span></a></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">서울/수도권 나들이</span></a></li>
+                                                    
                                                     <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목">■ 질문 코너</span></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">국내 여행 Q/A</span></a></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">기타 Q/A</span></a></li>
+
                                                     <li data-v-bd0068e8="" class="h_menu_tit"><span data-v-bd0068e8="" title="그룹 제목">■ 갤러리 자료</span></li>
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v4"><span data-v-bd0068e8="">여행 후기</span></a></li>
-                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v4"><span data-v-bd0068e8="">맛집 사진 공유</span></a></li>
+                                                    <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v4"><span data-v-bd0068e8="">맛집 사진 공유</span></a></li> -->
                                                     
                                                 </ul>
                                             </div>

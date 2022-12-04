@@ -2,6 +2,16 @@ package com.railtavelproject.cafe.manager.model.vo;
 
 import java.util.List;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+//lombok 라이브러리
+@NoArgsConstructor
+@Getter
+@Setter
+@ToString
 public class Board {
 	   private int boardNo; // 게시글 번호   BOARD_NO
 	   private String boardTitle; // 게시글 제목   BOARD_TITLE

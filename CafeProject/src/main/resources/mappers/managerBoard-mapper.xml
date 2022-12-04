@@ -1,28 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="managerBoard">
+<mapper namespace="managerBoardmapper">
 
-    	<!-- <resultMap type="ManagerCafeInfo" id="cafeInfo_rm">
+    	<resultMap type="ManagerBoard" id="managerboard_rm">
     	
-    		DB에서 PK에 해당하는 필드, 컬럼을 작성하는 태그 
-    		<id property="cafeNo" column="CAFE_NO"/>
+    		<id property="boardNo" column="BOARD_NO"/>
     		
-    		나머지 일반 컬럼
-	      <result property="profileImg" column="PROFILE_IMG" />
-	      <result property="mainHeaderImg" column="CAFE_MAIN_HEADER_IMG" />
-	      <result property="topFrontImg" column="CAFE_MAIN_HEADER_IMG" />
-	      <result property="bottomFrontImg" column="CAFE_BOTTOM_FRONT_IMG" />
-	      <result property="cafeJoinFL" column="CAFE_JOIN_FL" />
+	      <result property="boardCode" column="BOARD_CODE" /><!-- 게시판 코드 -->
+	      <result property="boardName" column="BOARD_NAME" /><!-- 게시판 이름 -->
+	      <result property="boardOrder" column="BOARD_ORDER" /><!-- 게시판 순서 -->
+	      <result property="mainCategoryNo" column="MAIN_CATEGORY_NO" /><!-- 게시판 큰(메인) 카페고리 -->
+	      <result property="titleTagYN" column="TITLE_TAG_YN" /><!-- 말머리 사용 여부(사용: Y , 사용 안할 시: N) -->
+	      <result property="boardForm" column="BOARD_FORM" /><!-- A: 앨범형 B: 게시판형  -->
+	      <result property="boardLikeYN" column="BOARD_LIKE_YN" /><!-- 좋아요 기능여부(하는 걸로 체크:Y, 체크 안하면: N) -->
+	      <result property="boardMemberLevelNo" column="MEMBER_LEVEL_NO" /><!-- 게시판별 멤버 등급 조건 외래키 부모키랑 맞아야함 2,3,4,5,6 -->
+	      <result property="TypeDelFL" column="TYPE_DEL_FL" /><!-- 게시판 삭제여부(N: 삭제x / Y:삭제o) -->
 	      
-	      <result property="memberLeverNo" column="MEMBER_LEVEL_NO" />
-	      <result property="memberLevelName" column="MEMBER_LEVEL_NAME" />
-	      <result property="boardCount" column="BOARD_COUNT" />
-	      <result property="commentCount" column="COMMENT_COUNT" />
-	      <result property="visitCount" column="VISIT_COUNT" />
-	      <result property="memberLevelImg" column="MEMBER_LEVEL_IMG" />
+	      <result property="mainCategoryName" column="MAIN_CATEGORY_NAME" /><!--  1.기본 게시판(삭제 불가) 2.여행 정보 3.질문 코너 4.갤러리 자료 -->
+	      <result property="CategoryDelFL" column="CATEGORY_DEL_FL" /><!-- 대분류 메인 카페고리 삭제 유무(기본 게시판 삭제 불가)  -->
 
-
-    	</resultMap> -->
+    	</resultMap>
     	
-	
+    	<!--
+    	게시판 종류별로 대분류랑 다 묶어서 들고 오기
+		SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
+		WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N';
+		대분류  
+		SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL = 'N'; 
+		-->
+		
+    	<select id="selectBoardType" resultMap="managerboard_rm">
+    	SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
+		WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N'
+    	</select>
+    	
+    	<select id="selectMainCategory" resultMap="managerboard_rm">
+    	SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL = 'N'
+    	</select>
+		
 </mapper>
