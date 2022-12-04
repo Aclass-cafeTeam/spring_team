@@ -85,7 +85,6 @@ const select =document.querySelectorAll(".select")
 const wrapper = document.querySelectorAll(".wrapper");
 const boardCode = document.getElementById("boardCode");
 const titleTagNo = document.getElementById("titleTagNo");
-const noticeFlag = document.getElementById("noticeFlag");
 
 
 // 게시판 선택 
@@ -116,37 +115,27 @@ function selectTag(type) {
 }    
 
 
-// noticeFlag 선택
-// const boardNotice = document.getElementById("boardNotice");
-// const setting = document.getElementById("setting");
+// 공지 여부 선택
+const boardNotice = document.getElementById("boardNotice");
+const setting = document.getElementById("setting");
+const noticeFlag = document.getElementsByName("[name:'noticeFlag']");
 
-// // 공지로 등록을 선택하면
-// boardNotice.addEventListener("change", ()=>{
-    
-//     if(this.checked){
-//         // noticeFlag 선택
-//         setting.style.display="block";
-//     } else{
-//         this.checked = false;
-//         setting.style.display="none";
-//     }
-// });
+if(boardNotice != null) {
+    // (관리자들) 공지로 등록이 체크되었을 때
+    boardNotice.addEventListener("change", (e)=>{
 
+        if(boardNotice.checked) {
+            console.log(e);
+            setting.style.display='block';
 
-// function noticeFlag(type) {
-//     wrapper[2].classList.remove("open");
-//     select[2].firstElementChild.innerText = type.innerText;
-//     noticeFlag.value = parseInt(type.getAttribute("id"));
-//     select[2].firstElementChild.style.lineHeight= "1px";
-//     console.log(noticeFlag);
+        } else {
+            setting.style.display='none';
+        }
 
-// }    
-
-
-// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
-
-
-
+        console.log("공지여부");
+        console.log(noticeFlag);    
+    });
+}
 
 // 글쓰기 작성 기본 유효성 검사
 const boardTitle = document.querySelector("[name='boardTitle']");
@@ -155,7 +144,6 @@ const boardContent = document.querySelector("[name='boardContent']");
 function writeValidate() {
     console.log("글 작성 유효성 검사");
     
-
     if(boardCode.value=='') {
         alert("게시판을 선택하세요.");
         return false;
@@ -222,8 +210,6 @@ tempSave.addEventListener("click", (e)=>{
         error:()=>{
             alert("임시등록 실패");
         }
-
-
     })
 })
 
@@ -232,7 +218,26 @@ tempSave.addEventListener("click", (e)=>{
 modalBtn.addEventListener("click",()=>{
     if(boardModal != null) {
         boardModal.style.display="flex";
-    }
+        
+        $.ajax({
+            url: "/board/tempPost",
+            type: "get",
+            data: {"boardTitle", boardTitle},
+    
+            success: ()=>{
+                // 저장 성공 시 알럿창 띄우기
+                if(result > 0) {
+                    alert("임시등록이 완료되었습니다.");
+                }
+            },
+            error:()=>{
+                alert("임시등록 실패");
+            }
+        })
+    } 
+
+
+
 })
 
 btnClose.addEventListener("click", () =>{
