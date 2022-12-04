@@ -98,11 +98,11 @@ public class BoardServiceImpl implements BoardService{
 		
 		List<Board> boardList = dao.selectBoardList(pagination, pm);
 		
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("pagination", pagination);
-		map.put("boardList", boardList);
+		Map<String, Object> search = new HashMap<String, Object>();
+		search.put("pagination", pagination);
+		search.put("boardList", boardList);
 		
-		return map;
+		return search;
 	}
 
 
