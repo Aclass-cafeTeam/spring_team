@@ -72,7 +72,7 @@
 
                             <div class="detail-info-area">
                                 <div class="nick-area">
-                                    <div class="p-writer">${board.memberNickname}</div>
+                                    <div class="p-writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></div>
                                     <div class="p-tier">
                                         ${board.memberLevelName}
                                         <img id="levelImage" src="${board.memberLevelImage}">

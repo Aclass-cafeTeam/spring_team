@@ -49,7 +49,9 @@
                                     <td class="boardNo">${myDeleteBoard.boardNo}</td>
                                     <td><a href="#" class="title">
                                         <c:if test="${not empty myDeleteBoard.titleTagName}">
-                                        <span>[${myDeleteBoard.titleTagName}] </span>
+                                            <c:if test="${myDeletBoard.titleTagNo ne '0'}">
+                                                <span>[${myDeleteBoard.titleTagName}] </span>
+                                            </c:if>
                                         </c:if>
                                     ${myDeleteBoard.boardTitle}</a>
                                     </td>
@@ -91,7 +93,6 @@
         
     <%-- footer.jsp --%>
     <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
-    <script src="/resources/js/member/myPage.js"></script>
     <script src="/resources/js/main/main.js"></script>
 </body>
 </html>

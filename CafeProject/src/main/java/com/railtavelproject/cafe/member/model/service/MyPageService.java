@@ -58,11 +58,16 @@ public interface MyPageService {
 	 */
 	int updateInfo(Member inputMember);
 
-	/** 닉네임 중복 검사 서비스
-	 * @param memberNickname
+	/** 비밀번호 변경 전 비밀번호 확인 서비스
+	 * @param paramMap
+	 * @return result
+	 */	
+	int pwConfirm(int memberNo, String memberPw);
+
+	/** 마이페이지 비밀번호 변경 서비스
+	 * @param paramMap
 	 * @return result
 	 */
-	int nicknameDupCheck(String memberNickname);
-
+	int changePw(Map<String, Object> paramMap);
 
 }

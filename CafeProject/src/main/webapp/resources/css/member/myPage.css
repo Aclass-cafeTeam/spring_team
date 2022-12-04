@@ -397,4 +397,36 @@ tr{
 }
 
 
+/* 메세지 색상 지정 */
+.confirm{ color : green; }
+.error{ color : red; }
 
+
+/* 작성자 */
+.writer a{
+    text-decoration: none;
+    color: black;
+}
+.writer a:hover{
+    text-decoration: underline;
+}
+/* 뒤로가기 */
+
+.top-list{
+    border: 1px solid #EFF0F2;
+    background-color: #EFF0F2;
+    border-radius: 15%;
+    height: 36px;
+    color: black;
+    margin-left: auto;
+    font-weight: 700;
+    text-align: center;
+
+    min-width: 46px;
+    margin-left: 10px;
+    padding: 0 12px;
+    font-size: 13px;
+    line-height: 36px;
+    float: right;
+    cursor: pointer;
+}

@@ -37,11 +37,6 @@ public class MyPageController {
 		return "member/myPageMain";
 	}
 	
-	// 마이페이지 비밀번호 변경
-	@GetMapping("/ChangePw")
-	public String MyPageChangePw() {
-		return "member/myPageChangePw";
-	}
 	
 	// 마이 페이지 내정보 수정(닉네임, 지역)
 	@PostMapping("/info")
@@ -76,19 +71,64 @@ public class MyPageController {
 		return "redirect:info"; // 내 정보 재요청
 	}
 	
-	// 닉네임 중복 검사
-	@GetMapping("/nicknameDupCheck")
-	@ResponseBody // 반환된 값을 jsp 경로가 아닌 값 자체로 인식
-	public int nicknameDupCheck(String memberNickname) {
-				// data: { "memberNickname": memberNickname.value }
+	// 비밀번호 변경 전 - 비밀번호 확인 페이지
+	@GetMapping("/pwConfirm")
+	public String pwConfirm() {
+		
+		return "member/myPagePwConfirm";
+	}
+	
+	// 비밀번호 확인 후 비밀번호 변경 페이지로 전환
+	@PostMapping("/pwConfirm")
+	public String confirmPw ( @ModelAttribute("loginMember") Member loginMember,
+			                 String memberPw,
+			                 RedirectAttributes ra) {
 
-		// 닉네임 중복검사 서비스 호출
-		int result = service.nicknameDupCheck(memberNickname);
-
-		// @ResponseBody 어노테이션 덕분에
-		// result가 View Resolver로 전달되지 않고
-		// 호출했던 ajax 함수로 반환됨
-		return result;
+		int result = service.pwConfirm(loginMember.getMemberNo(), memberPw);
+		
+		if(result>0) {
+			return "member/myPageChangePw"; // 비밀번호 변경 페이지로 이동
+		}else {
+			ra.addFlashAttribute("message", "현재 비밀번호가 일치하지 않습니다.");
+			return "redirect:pwConfirm"; // 비밀번호 확인 페이지 재요청
+		}
+		
+	}
+	
+	// 마이페이지 비밀번호 변경
+	@GetMapping("/changePw")
+	public String changePw() {
+		
+		return "member/myPageChangePw";
+	}
+	
+	// 마이페이지 비밀번호 변경
+	@PostMapping("/changePw")
+	public String changePw(@SessionAttribute("loginMember") Member loginMember,
+			@RequestParam Map<String, Object> paramMap,
+			RedirectAttributes ra
+			) {
+		
+		 // 1. loginMember에서 회원 번호를 얻어와 paramMap에 추가
+		 paramMap.put("memberNo", loginMember.getMemberNo());
+		 
+		 // 2. 서비스 호출 후 결과 반환 받기
+		 int result = service.changePw(paramMap);
+		 
+		 String message = null;
+		 String path = null;
+		 
+		 if(result >0) { //성공
+			message = "비밀번호가 변경 되었습니다.";
+			path = "pwConfirm";
+			 
+		 } else { // 실패
+			message = "현재 사용중인 비밀번호로 변경할 수 없습니다.";
+			path = "changePw";
+		 }
+		 
+		 ra.addFlashAttribute("message", message);
+		 return "redirect:"+path;
 	}
 	
 	// 마이페이지 프로필 이미지
@@ -213,6 +253,7 @@ public class MyPageController {
 			path = "/"; // 메인페이지로 이동
 			
 			// 로그아웃 코드
+			//"loginMember" 무효화
 			status.setComplete();
 			
 		} else { // 탈퇴 실패
@@ -225,17 +266,6 @@ public class MyPageController {
 		
 		
 		return "redirect:"+path;
-		
-		// status.setComplete();// 세션 무효화
-		// -> 클래스 레벨에 작성된
-		// @SessionAttributes("key")에 작성된
-		// key가 일치하는 값만 무효화
-		
-		// ex) session에서 "loginMember"를 없애야 한다
-		// == @SessionAttributes("loginMember")
-		//	...
-		//	status.complate(); //"loginMember" 무효화
-
 	}
 	
 }

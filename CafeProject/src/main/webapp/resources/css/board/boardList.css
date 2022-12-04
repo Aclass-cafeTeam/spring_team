@@ -380,3 +380,12 @@ a {
     text-align: center;
 }
 /* 베스트 게시글 css 끝*/
+
+/* 게시글 작성자 클릭시 */
+.writer a{
+    text-decoration: none;
+    color: black;
+}
+.writer a:hover{
+    text-decoration: underline;
+}
