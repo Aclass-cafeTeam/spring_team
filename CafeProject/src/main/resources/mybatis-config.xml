@@ -45,6 +45,7 @@
 		<mapper resource="/mappers/boardDetail-mapper.xml"/>
 		<mapper resource="/mappers/boardCrud-mapper.xml"/>
 		<mapper resource="/mappers/memberInfo-mapper.xml"/>
+		<mapper resource="/mappers/comment-mapper.xml"/>
 	</mappers>
 	
 	
