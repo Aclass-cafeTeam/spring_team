@@ -17,8 +17,6 @@
       <result property="memberLevelImage" column="MEMBER_LEVEL_IMG"/>
    </resultMap>
       
-      
-</resultMap>
 
 
 
