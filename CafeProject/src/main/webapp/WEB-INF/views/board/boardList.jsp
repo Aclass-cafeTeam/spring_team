@@ -247,6 +247,7 @@
                                 <option value="bb">내용</option>
                                 <option value="cc">제목 + 내용</option>
                                 <option value="dd">작성자</option>
+                                <option value="ee">말머리</option>
                             </select>
 
                     </div>

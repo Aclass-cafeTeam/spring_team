@@ -430,6 +430,7 @@ a {
 .allComment{
     color: #c53a43;
     font-size: 13px;
+    font-weight: bold;
     text-align: center;
 }
 /* 전체 공지 전용 css 끝 */

@@ -197,8 +197,12 @@ AND NOTICE_FL = 0
 		AND (BOARD_TITLE LIKE '%${query}%' OR BOARD_CONTENT LIKE '%${query}%')
 		</when>
 		
-		<otherwise>
+		<when test='key == "dd" ' >
 		AND MEMBER_NICKNAME LIKE '%${query}%'
+		</when>
+		
+		<otherwise>
+		AND TITLE_TAG_NAME LIKE '%${query}%'
 		</otherwise>	
 		
 	</choose>
@@ -240,6 +244,7 @@ ORDER BY BOARD_NO DESC
 <select id="getListCount_search" resultType="_int">
 SELECT COUNT(*) FROM BOARD
 JOIN "MEMBER" USING(MEMBER_NO)
+LEFT JOIN TITLE_TAG USING(TITLE_TAG_NO)
 WHERE BOARD_CODE = #{boardCode}
 AND BOARD_DEL_FL = 'N'
 AND NOTICE_FL = 0
@@ -259,11 +264,14 @@ AND NOTICE_FL = 0
 		AND (BOARD_TITLE LIKE '%${query}%' OR BOARD_CONTENT LIKE '%${query}%')
 		</when>
 		
-		<otherwise>
+		<when test='key == "dd" ' >
 		AND MEMBER_NICKNAME LIKE '%${query}%'
-		</otherwise>	
+		</when>
 		
-	</choose>
+		<otherwise>
+		AND TITLE_TAG_NAME LIKE '%${query}%'
+		</otherwise>
+</choose>
 </if>
 
 </select>
