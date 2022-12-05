@@ -117,7 +117,7 @@
                                     <tr>
                                         <td class="bestNo">Best</td>
                                         <td>
-                                            <a class="best-title" href="/board/selectAll/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="best-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                             <c:if test="${not empty board.titleTagName}">
                                             <span>[${board.titleTagName}]</span>
                                             </c:if>
