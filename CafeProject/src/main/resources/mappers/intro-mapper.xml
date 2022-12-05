@@ -22,19 +22,22 @@
 		
 		<!-- 전체글조회 -->
 		<select id="selectBoardList" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_TITLE, BOARD_CODE, READ_COUNT,
-			(SELECT COUNT(*) FROM "COMMENT" C
-			WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
-			FROM "BOARD" B
-			WHERE BOARD_DEL_FL = 'N'
-			ORDER BY BOARD_NO DESC
+				SELECT BOARD_TITLE, READ_COUNT, NOTICE_FL,
+					(SELECT COUNT(*) FROM "COMMENT" C
+					WHERE C.BOARD_NO = B.BOARD_NO
+					AND COMMENT_DEL_FL='N') COMMENT_COUNT
+				FROM "BOARD" B
+				WHERE NOT NOTICE_FL = 1
+				AND BOARD_DEL_FL = 'N'
+				ORDER BY BOARD_NO DESC
 		</select>
 		
 		<!-- 전체공지만 조회 -->
 		<select id="selectNoticeList" parameterType="_int" resultMap="introBoard_rm">
 			SELECT BOARD_NO, BOARD_TITLE, BOARD_CODE, READ_COUNT,
 				(SELECT COUNT(*) FROM "COMMENT" C
-				WHERE C.BOARD_NO = B.BOARD_NO) COMMENT_COUNT
+				WHERE C.BOARD_NO = B.BOARD_NO
+				AND COMMENT_DEL_FL='N') COMMENT_COUNT
 			FROM "BOARD" B
 			WHERE NOTICE_FL = 2
 			ORDER BY BOARD_NO DESC
@@ -44,7 +47,8 @@
 		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
 			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
 							(SELECT COUNT(*) FROM "COMMENT" C
-							WHERE C.BOARD_NO =B.BOARD_NO) COMMENT_COUNT
+							WHERE C.BOARD_NO =B.BOARD_NO
+							AND COMMENT_DEL_FL='N') COMMENT_COUNT
 			FROM BOARD B
 			JOIN MEMBER USING(MEMBER_NO)
 			WHERE BOARD_DEL_FL = 'N'

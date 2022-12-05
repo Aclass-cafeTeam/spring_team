@@ -8,6 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SideMenu</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </head>
 <body>
     <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
@@ -369,7 +370,7 @@
 
             <div id="ranking">
                 <div id="ranking_title">
-                    지난주 멤버 랭킹
+                    어제의 멤버 랭킹
                 </div>
                 <div id="ranking_category">
                     <ul>
@@ -385,7 +386,7 @@
                 <div id="member_ranking" class="memberCommentRank">
                     <c:choose>
                         <c:when test="${empty commentRank.commentRankList}">
-                            <div>랭킹업슴</div>
+                            <div>랭킹이없어요</div>
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="commentRank" items="${commentRank.commentRankList}" varStatus="status">
@@ -600,6 +601,7 @@
 
         </section>
         <script src="/resources/js/main/sideMenu.js"></script>
+        
 </body>
 </html>
 

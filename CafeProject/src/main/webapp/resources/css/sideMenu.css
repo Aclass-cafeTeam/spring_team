@@ -567,6 +567,12 @@ section #border-img {
     color: #333333;
 }
 
+#ranking_category>ul>li>a#member_comment{
+    color: red;
+    cursor: text;
+    text-decoration: none;
+}
+
 /* 댓글/게시글/방문 구분선 */
 #ranking_line {
     width: 1px;
@@ -594,7 +600,7 @@ section #border-img {
     text-decoration-line: underline;
 }
 
-#ranking_category>ul>li>a:focus {
+#ranking_category>ul>li>a:active {
     color: red;
     cursor: text;
     text-decoration: none;
@@ -803,5 +809,12 @@ section #border-img {
     text-decoration: underline;
 }
 
+.memberBoardRank{
+    display: none;
+}
+
+.memberLoginRank{
+    display: none;
+}
 
 
