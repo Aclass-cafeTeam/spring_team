@@ -26,9 +26,13 @@ function selectCommentList(){
                 if(comment.parentNo != 0)  commentRow.classList.add("child-comment");
 
 
-                // 작성자
-                const commentWriter = document.createElement("p");
+                // 프로필 + 댓글내용 등이 들어간 div
+                const commentWriter = document.createElement("div");
                 commentWriter.classList.add("comment-writer");
+
+                // 프로필이미지 div
+                const piArea = document.createElement("div");
+                piArea.classList.add("pi-area");
 
                 // 프로필 이미지
                 const profileImage = document.createElement("img");
@@ -38,30 +42,58 @@ function selectCommentList(){
                 }else{ // 없을 경우 == 기본이미지
                     profileImage.setAttribute("src", "/resources/images/main/프로필.PNG");
                 }
-  
-                // 작성자 닉네임
-                const memberNickname = document.createElement("span");
+
+                // 프로필이미지 div에 프로필이미지 추가
+                piArea.append(profileImage);
+
+                // 닉네임 + 등급이미지 + 댓글 내용 + 작성일이 들어간 div
+                const commentArea = document.createElement("div");
+                commentArea.classList.add("comment-area");
+
+                // 닉네임 a태그가 들어간 span
+                const commentWriterArea = document.createElement("span");
+                commentWriterArea.classList.add("comment-writer-area");
+
+                // 닉네임을 누르면 회원정보 페이지로 이동하는 a태그
+                const memberNickname = document.createElement("a");
+                memberNickname.setAttribute("href", "/member/"+comment.memberNo);
                 memberNickname.innerText = comment.memberNickname;
+
+                // commentWriterArea에 닉네임 a태그 추가
+                commentWriterArea.append(memberNickname);
+
+                // 등급이미지가 들어간 span
+                const commentWriterLevel = document.createElement("span");
+                commentWriterLevel.classList.add("comment-writer-level");
+
+                // 등급이미지
+                const levelImage = document.createElement("img");
+                levelImage.classList.add("levelImage");
+                levelImage.setAttribute("src", comment.memberLevelImage);
+
+                // commentWriterLevel에 등급이미지 추가
+                commentWriterLevel.append(levelImage);
+
+                // 댓글 내용이 들어간 p태그
+                const commentContentArea = document.createElement("p");
+                commentContentArea.classList.add("comment-content-area");
+                commentContentArea.innerHTML = comment.commentContent;
+
+                // 작성일이 들어간 div
+                const commentDate = document.createElement("div");
+                commentDate.classList.add("comment-date");
+                commentDate.innerText = comment.commentCreateDate;
+
+                // comment-area에 합치기
+                commentArea.append(commentWriterArea, commentWriterLevel, commentContentArea, commentDate);
+
+                // commentWriter div에 piArea commentArea 추가
+                commentWriter.append(piArea, commentArea);
+
+                // comment-row 에 comment-writer추가
+                commentRow.append(commentWriter);
                 
-                // 작성일
-                const commentDate = document.createElement("span");
-                commentDate.classList.add("p-date");
-                commentDate.innerText =  "(" + comment.commentCreateDate + ")";
 
-                // 작성자 영역(p)에 프로필,닉네임,작성일 마지막 자식으로(append) 추가
-                commentWriter.append(profileImage , memberNickname , commentDate);
-
-                // 댓글 내용
-                const commentContent = document.createElement("p");
-                commentContent.classList.add("comment-content");
-
-                // 왜 innerHTML?  <br> 태그 인식을 위해서
-                commentContent.innerHTML = comment.commentContent;
-
-                // 행에 작성자, 내용 추가
-                commentRow.append(commentWriter, commentContent);
-
-              
                 // 로그인이 되어있는 경우 답글 버튼 추가
                 if(memberNo != ""){
                     // 버튼 영역
@@ -86,24 +118,25 @@ function selectCommentList(){
                         // 수정 버튼에 onclick 이벤트 속성 추가
                         updateBtn.setAttribute("onclick", "showUpdateComment("+comment.commentNo+", this)");                        
 
+                        // 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출
+                        if((authorityNo==0 ||authorityNo==1) || memberNo == comment.memberNo){
 
-                        // 삭제 버튼
-                        const deleteBtn = document.createElement("button");
-                        deleteBtn.innerText = "삭제";
-                        // 삭제 버튼에 onclick 이벤트 속성 추가
-                        deleteBtn.setAttribute("onclick", "deleteComment("+comment.commentNo+")");                       
-
-
-                        // 버튼 영역 마지막 자식으로 수정/삭제 버튼 추가
-                        commentBtnArea.append(updateBtn, deleteBtn);
+                            // 삭제 버튼
+                            const deleteBtn = document.createElement("button");
+                            deleteBtn.innerText = "삭제";
+                            // 삭제 버튼에 onclick 이벤트 속성 추가
+                            deleteBtn.setAttribute("onclick", "deleteComment("+comment.commentNo+")");                       
+                            // 버튼 영역 마지막 자식으로 수정/삭제 버튼 추가
+                            commentBtnArea.append(updateBtn, deleteBtn);
+                        }
+                        // 버튼 영역 마지막 자식으로 수정 버튼 추가
+                        commentBtnArea.append(updateBtn);
 
                     } // if 끝
-                    
 
                     // 행에 버튼영역 추가
                     commentRow.append(commentBtnArea); 
                 }
-                
 
                 // 댓글 목록(ul)에 행(li)추가
                 commentList.append(commentRow);

@@ -23,51 +23,48 @@
 
                 <c:if test="${comment.commentDeleteFlag == 'N'}">
                 <li class="comment-row  <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                    <p class="comment-writer">
-                        <div class="profile">
-                            <div class="pi">
-                                <!-- 프로필 이미지가 없을 경우 -->
-                                <c:if test="${empty comment.profileImage}">
-                                    <img src="/resources/images/main/프로필.PNG">
-                                </c:if>
-                                <!-- 프로필 이미지가 있을 경우 -->
-                                <c:if test="${!empty comment.profileImage}">
-                                    <img src="${comment.profileImage}">
-                                </c:if>
-                            </div>
-                            <div class="nick-area">
-                                <span class="p-writer"><a href="/member/${comment.memberNo}">${comment.memberNickname}</a></span>
-                                <span class="p-tier"><img id="levelImage" src="${comment.memberLevelImage}"></span>
-                                <p class="comment-content">${comment.commentContent}</p>
-                            </div>
+                    <div class="comment-writer">
+                        <div class="pi-area">
+                            <!-- 프로필 이미지가 없을 경우 -->
+                            <c:if test="${empty comment.profileImage}">
+                                <img src="/resources/images/main/프로필.PNG">
+                            </c:if>
+                            <!-- 프로필 이미지가 있을 경우 -->
+                            <c:if test="${!empty comment.profileImage}">
+                                <img src="${comment.profileImage}">
+                            </c:if>
                         </div>
-                    </p>
-                    
-                    <div class="date-area">
-                        <div class="comment-date p-date"> ${comment.commentCreateDate} </div>
-                    </div>
 
+                        <div class="comment-area">
+                            <span class="comment-writer-area">
+                                <a href="/member/${comment.memberNo}">${comment.memberNickname}</a>
+                            </span>
+                            <span class="comment-writer-level">
+                                <img class="levelImage" src="${comment.memberLevelImage}">
+                            </span>
+                            <p class="comment-content-area">${comment.commentContent}</p>
+                            <div class="comment-date"> ${comment.commentCreateDate} </div>
+                        </div>
+                    </div>
                     <%-- 로그인 상태일 경우에 답글 버튼 노출 --%>
                     <c:if test="${!empty loginMember}">
                         <div class="comment-btn-area">
                             <%-- this == 클릭된 답글 버튼 --%>
                             <button onclick="showInsertComment(${comment.commentNo}, this)">답글</button>   
 
-                        <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
-                        <c:if test="${loginMember.memberNo == comment.memberNo}">
-                                <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
-                                <%-- 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출 --%>
-                            <c:if test="${(loginMember.authorityNo==0 ||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">
+                            <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
+                            <c:if test="${loginMember.memberNo == comment.memberNo}">
+                                    <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
+                                    <%-- 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출 --%>
+                                <c:if test="${(loginMember.authorityNo==0 ||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">
                                     <button onclick="deleteComment(${comment.commentNo})">삭제</button>
+                                </c:if>
                             </c:if>
-                        </c:if>
                         </div>
                     </c:if>
-
                 </li>
                 </c:if>
             </c:forEach>
-            
         </ul>
     </div>
     
