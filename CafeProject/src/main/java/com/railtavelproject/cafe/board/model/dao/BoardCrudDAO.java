@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardImage;
 
 @Repository
 public class BoardCrudDAO {
@@ -45,15 +46,6 @@ public class BoardCrudDAO {
 
 	
 	
-	/** 임시 저장
-	 * @param board
-	 * @return result
-	 */
-	public int tempPost(Board board) {
-
-		return sqlSession.insert("boardCrudMapper.tempPost", board);
-
-	}
 
 	/** 게시글 상세조회
 	 * @param boardNo
@@ -61,5 +53,41 @@ public class BoardCrudDAO {
 	 */
 	public Board boardDetail(int boardNo) {
 		return sqlSession.selectOne("boardCrudMapper.boardDetail", boardNo);
+	}
+
+
+	/** 게시글 첨부 이미지 삽입
+	 * @param boardImageList
+	 * @return result(insert된 행의 개수-다수)
+	 */
+	public int insertBoardImageList(List<BoardImage> boardImageList) {
+		return sqlSession.insert("boardCrudMapper.insertBoardImageList", boardImageList);
+	}
+
+	
+	/** 임시등록(INSERT)
+	 * @param board
+	 * @return result
+	 */
+	public int tempPost(Board board) {
+		return sqlSession.insert("boardCrudMapper.tempPost", board);
+	}
+	
+
+	/** 임시등록 조회
+	 * @param boardNo
+	 * @return
+	 */
+	public List<Board> selectTempPost(int memberNo) {
+		return sqlSession.selectList("boardCrudMapper.selectTempPost", memberNo);
+	}
+
+
+	/** 임시등록 전체 삭제
+	 * @param memberNo
+	 * @return result
+	 */
+	public int deleteTempAll(int memberNo) {
+		return sqlSession.update("boardCrudMapper.deleteTempAll", memberNo);
 	}
 }
