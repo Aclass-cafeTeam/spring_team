@@ -85,12 +85,15 @@
                                         <td class="strong allStrong ">공지</td>
                                         <td>
                                             <a class="strong-title allStrong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                        <!-- 말머리를 사용하는 게시판일 경우 -->
+                                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
                                             <!-- 말머리가 있을 경우 -->
                                             <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                    <span>[${board.titleTagName}]</span>
+                                                <c:if test="${board.titleTagNo ne 0}"> 
+                                                    <div class="title-tag">[${board.titleTagName}]</div>
                                                 </c:if>
                                             </c:if>
+                                        </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment allComment">[${board.commentCount}]</a>
@@ -100,7 +103,9 @@
                                         <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
                                         <td class="reporting-date">${board.boardCreateDate}</td>
                                         <td class="hits">${board.readCount}</td>
+                                        <c:if test="${boardInfo.boardLikeFlag=='Y'}">
                                         <td class="like">${board.likeCount}</td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
@@ -120,12 +125,15 @@
                                         <td class="strong">공지</td>
                                         <td>
                                             <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                        <!-- 말머리를 사용하는 게시판일 경우 -->
+                                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
                                             <!-- 말머리가 있을 경우 -->
                                             <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                    <span>[${board.titleTagName}]</span>
+                                                <c:if test="${board.titleTagNo ne 0}"> 
+                                                    <div class="title-tag">[${board.titleTagName}]</div>
                                                 </c:if>
                                             </c:if>
+                                        </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
@@ -135,7 +143,9 @@
                                         <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
                                         <td class="reporting-date">${board.boardCreateDate}</td>
                                         <td class="hits">${board.readCount}</td>
+                                        <c:if test="${boardInfo.boardLikeFlag=='Y'}">
                                         <td class="like">${board.likeCount}</td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
@@ -155,12 +165,15 @@
                                         <td class="board-number">${board.boardNo}</td>
                                         <td>
                                             <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                            <%-- 말머리가 있을 경우 --%>
+                                        <!-- 말머리를 사용하는 게시판일 경우 -->
+                                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                            <!-- 말머리가 있을 경우 -->
                                             <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                    <span>[${board.titleTagName}]</span>
+                                                <c:if test="${board.titleTagNo ne 0}"> 
+                                                    <div class="title-tag">[${board.titleTagName}]</div>
                                                 </c:if>
                                             </c:if>
+                                        </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
@@ -170,7 +183,9 @@
                                         <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
                                         <td class="reporting-date">${board.boardCreateDate}</td>
                                         <td class="hits">${board.readCount}</td>
+                                        <c:if test="${boardInfo.boardLikeFlag=='Y'}">
                                         <td class="like">${board.likeCount}</td>
+                                        </c:if>
                                     </tr>
                                 </c:forEach>
                             </c:otherwise>
@@ -184,6 +199,7 @@
                         <c:if test="${not empty loginMember}">
                             <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
                         </c:if>
+                        
                     </div>
                 </div>
 
