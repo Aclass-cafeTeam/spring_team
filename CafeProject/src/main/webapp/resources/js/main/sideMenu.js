@@ -1,3 +1,5 @@
+
+
 // 카페정보 버튼
 const btn1 = document.getElementById("btn1");
 // 나의활동 버튼
@@ -42,6 +44,13 @@ const memberBoard = document.getElementById("member_board");
 // 멤버 랭킹-방문 버튼
 const memberVisit = document.getElementById("member_visit");
 
+// 멤버랭킹 - 댓글
+const memberCommentRank = document.getElementsByClassName("memberCommentRank");
+// 멤버랭킹 - 게시글
+const memberBoardRank = document.getElementsByClassName("memberBoardRank");
+// 멤버랭킹 - 방문
+const memberLoginRank = document.getElementsByClassName("membeLoginRank");
+
 // memberBoard.addEventListener("click", function(){ // 랭킹-게시글 보이고 싶을때
     
 //     const comment = document.querySelectorclass("#ranking > .memberCommentRank");
@@ -56,14 +65,109 @@ const memberVisit = document.getElementById("member_visit");
     
 // });
 
-$(function(){
+// $(function(){
 
-    $("#member_comment").on("click", function(){
+//     memberComment.on("click", function(){
+//         console.log("버튼누름");
+//         memberBoardRank.show();
+//         memberVisitRank.hide();
+//         memberCommentRank.hide();
+//     })
+
+// });
+
+$(function() {
+    // 멤버랭킹 - 게시글 버튼 눌렀을 때
+    $("#member_board").on("click", function() {
         $(".memberBoardRank").show();
         $(".memberCommentRank").hide();
+        $(".memberLoginRank").hide();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $("#member_board").css("color", "red");
+        $("#member_board").css("cursor", "text");
+        $("#member_board").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $("#member_visit").css("color", "#333333");
+        $("#member_visit").css("cursor", "pointer");
+        $("#member_comment").css("color", "#333333");
+        $("#member_comment").css("cursor", "pointer");
+    });
+
+    // 멤버랭킹 - 방문 버튼 눌렀을 때
+    $("#member_visit").on("click", function() {
+        $(".memberBoardRank").hide();
+        $(".memberCommentRank").hide();
+        $(".memberLoginRank").show();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $("#member_visit").css("color", "red");
+        $("#member_visit").css("cursor", "text");
+        $("#member_visit").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $("#member_board").css("color", "#333333");
+        $("#member_board").css("cursor", "pointer");
+        $("#member_comment").css("color", "#333333");
+        $("#member_comment").css("cursor", "pointer");
+        $("#member_board").css("text-decoration", "none");
     })
 
+    $("#member_comment").on("click", function() {
+        $(".memberBoardRank").hide();
+        $(".memberCommentRank").show();
+        $(".memberLoginRank").hide();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $("#member_comment").css("color", "red");
+        $("#member_comment").css("cursor", "text");
+        $("#member_comment").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $("#member_visit").css("color", "#333333");
+        $("#member_visit").css("cursor", "pointer");
+        $("#member_board").css("color", "#333333");
+        $("#member_board").css("cursor", "pointer");
+    })
+
+    // 게시글랭킹 - 댓글수 버튼 눌렀을 때
+    $(".boardComment").on("click", function() {
+        $(".boardCommentRank").show();
+        $(".boardLikeRank").hide();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $(".boardComment").css("color", "red");
+        $(".boardComment").css("cursor", "text");
+        $(".boardComment").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $(".boardLike").css("color", "#333333");
+        $(".boardLike").css("cursor", "pointer");
+    });
+
+    // 게시글랭킹 - 좋아요 횟수 버튼 눌렀을 때
+    $(".boardLike").on("click", function() {
+        $(".boardCommentRank").hide();
+        $(".boardLikeRank").show();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $(".boardLike").css("color", "red");
+        $(".boardLike").css("cursor", "text");
+        $(".boardLike").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $(".boardComment").css("color", "#333333");
+        $(".boardComment").css("cursor", "pointer");
+    });
+
+
+    
 })
+
+// memberBoard.addEventListener("click", function(){
+
+//     console.log("버튼누름");
+//     memberCommentRank.hide();
+//     memberVisitRank.hide();
+//     // memberBoardRank.add();
+
+// });
 
 // memberComment.addEventListener("click", function(){ // 랭킹-게시글 보이고 싶을때
     

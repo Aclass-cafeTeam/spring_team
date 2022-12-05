@@ -79,6 +79,16 @@ public class MainController{
 			loginRank = service.loginRank();
 			model.addAttribute("loginRank", loginRank);
 			
+			// 지난주 게시글 랭킹 - 좋아요
+			Map<String, Object> boardLike = null;
+			boardLike = service.boardLike();
+			model.addAttribute("boardLike", boardLike);
+			
+			// 지난주 게시글 랭킹 - 댓글
+			Map<String, Object> boardComment = null;
+			boardComment = service.boardComment();
+			model.addAttribute("boardComment", boardComment);
+			
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성
