@@ -475,6 +475,9 @@ input.check {
     display: block;
 }
 /* 메뉴 에디터 부분 ************************************/
+.delete{
+    margin-left: 9px!important;
+}
 
 /* 취소 저장 버튼 부분 */
 

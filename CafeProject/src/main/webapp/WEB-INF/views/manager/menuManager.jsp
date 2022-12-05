@@ -131,7 +131,7 @@
                                     <ul>
                                         <li class="">
                                             <a href="#" class="ad_v1">
-                                                <span class="filImg">그룹 제목</span>
+                                                <span id="mainTitlenameIn" class="filImg">그룹 제목</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -145,7 +145,8 @@
                                 <input type="hidden" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
                                 <input type="hidden" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
-                                <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
+                                <input type="hidden" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
+                                <input type="hidden" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
                                 <input type="hidden" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
                                 <input type="hidden" id="boardCodeIn" name="boardCodeIn" value=""><!-- 게시판이 순서-->
                             </div>
@@ -173,8 +174,8 @@
                                                 <!-- <ul> -->
                                                     <c:if test="${not empty mainCategory}">
                                                         <c:forEach items="${mainCategory}" var="mainVar" >
-                                                            <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}"></c:if>
-                                                            <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}"></c:if>
+                                                            <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
+                                                            <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                         <c:forEach items="${boardType}" var="var">
                                                             <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
@@ -233,9 +234,8 @@
                                 <div class="set_box set_boxBasic">
                                     <h3 class="set_tit">메뉴 설정 안내</h3>
                                     <ul class="set_lst_type">
-                                        <li>드래그 앤 드롭으로 게시판 순서를 변경할 수 있습니다.</li>
-                                        <li>단축키(ctrl)를 이용해 여러 개의 게시판을 선택한 후<br>일괄 설정 변경 할 수 있습니다.</li>
-                                        <li><span style="color:#2e9901;!important">메뉴를 편집한 후에 저장하기 버튼을 꼭 클릭해야 	변경된<br>내용이 메뉴에 반영됩니다.</span></li>
+                                        <li>버튼으로 한 칸씩 게시판 순서를 변경할 수 있습니다. <br>순서 변경과 추가는 자동 변경됩니다.</li>
+                                        <li><span style="color:#2e9901;!important">메뉴를 상세 설정 한 후에는 저장하기 버튼을 꼭 클릭해야 	변경된<br>내용이 메뉴에 반영됩니다.</span></li>
                                     </ul>
                                 </div>
                                 <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
@@ -243,7 +243,6 @@
                                         <h3 class="set_tit">통합게시판</h3><%-- 통합게시판 --%>
                                         <ul class="set_lst_type">
                                             <li>- 용도에 따라 다양한 형태로 사용 가능한 일반 게시판입니다.</li>
-                                            <li>- 공지게시판으로 사용하려면 글쓰기 권한을 스탭 이상으로 설정하세요.</li>
                                         </ul>
                                         <div class="detail_area">
                                             <table border="1" cellspacing="0" width="100%" summary="메뉴관리 설정">
