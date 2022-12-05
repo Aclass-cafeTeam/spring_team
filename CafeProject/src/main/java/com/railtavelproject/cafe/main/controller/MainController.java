@@ -89,6 +89,26 @@ public class MainController{
 			boardComment = service.boardComment();
 			model.addAttribute("boardComment", boardComment);
 			
+			// 멤버 소식 - 방문
+			Map<String, Object> memberVisit = null;
+			memberVisit = service.memberVisit();
+			model.addAttribute("memberVisit", memberVisit);
+			
+			// 멤버 소식 - 신입
+			Map<String, Object> memberNew = null;
+			memberNew = service.memberNew();
+			model.addAttribute("memberNew", memberNew);
+			
+			// 최근 게시글/댓글 - 게시글
+			Map<String, Object> newBoard = null;
+			newBoard = service.newBoard();
+			model.addAttribute("newBoard", newBoard);
+			
+			// 최근 게시글/댓글 - 댓글
+			Map<String, Object> newComment = null;
+			newComment = service.newComment();
+			model.addAttribute("newComment", newComment);
+			
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성

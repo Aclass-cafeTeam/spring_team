@@ -559,7 +559,7 @@ section #border-img {
 }
 
 /* 지난주 멤버 랭킹 */
-#ranking_category {
+.ranking_category {
     height: 30px;
     margin-top: -6px;
     padding-bottom: 8px;
@@ -568,19 +568,19 @@ section #border-img {
 }
 
 /* 지난주 멤버랭킹 - 댓글버튼 기본값 */
-#ranking_category>ul>li>a#member_comment{
+.ranking_category>ul>li>a#member_comment{
     color: red;
     cursor: text;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
 /* 지난주 멤버랭킹 - 좋아요횟수 기본값 */
-#ranking_category>ul>li>a.boardLike{
+.ranking_category>ul>li>a.boardLike{
     color: red;
     cursor: text;
-    text-decoration: none;
+    /* text-decoration: none; */
 }
-#ranking_category>ul>li>a.boardLike:hover{
-    text-decoration: none;
+.ranking_category>ul>li>a.boardLike:hover{
+    /* text-decoration: none; */
 }
 
 /* 댓글/게시글/방문 구분선 */
@@ -594,23 +594,23 @@ section #border-img {
 }
 
 /* 댓글/게시글/방문 */
-#ranking_category>ul {
+.ranking_category>ul {
     list-style: none;
     font-size: 13px;
     display: flex;
     align-items: center;
 }
 
-#ranking_category>ul>li>a {
+.ranking_category>ul>li>a {
     text-decoration: none;
     color: #333333;
 }
 
-#ranking_category>ul>li>a:hover {
+.ranking_category>ul>li>a:hover {
     text-decoration-line: underline;
 }
 
-#ranking_category>ul>li>a:active {
+.ranking_category>ul>li>a:active {
     color: red;
     cursor: text;
     text-decoration: none;
@@ -630,6 +630,13 @@ section #border-img {
 #member_id>a {
     text-decoration: none;
     color: #333333;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
 }
 
 #member_id>a:hover {
@@ -820,15 +827,26 @@ section #border-img {
 }
 
 /* 멤버랭킹 게시글,방문 div 숨기기 */
-.memberBoardRank{
+#memberBoardRank{
     display: none;
 }
-.memberLoginRank{
+#memberLoginRank{
     display: none;
 }
 /* 게시글랭킹 댓글수 div 숨기기 */
-.boardCommentRank{
+#boardCommentRank{
+    display: none;
+}
+/* 멤버소식 - 신입 div 숨기기 */
+#memberNewRank{
+    display: none;
+}
+/* 최근 게시글/댓글 - 댓글 div 숨기기 */
+#newComment{
     display: none;
 }
 
-
+.noData{
+    align-items: center;
+    justify-content: center;
+}
