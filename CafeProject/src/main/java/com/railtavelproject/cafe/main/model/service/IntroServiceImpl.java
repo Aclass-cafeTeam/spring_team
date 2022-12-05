@@ -141,6 +141,56 @@ public class IntroServiceImpl implements IntroService{
 				
 		return boardComment;
 	}
+
+	// 멤버 소식 - 방문
+	@Override
+	public Map<String, Object> memberVisit() {
+		List<IntroBoard> memberVisitList = dao.memberVisit();
+		
+		Map<String, Object> memberVisit = new HashMap<String, Object>();
+		memberVisit.put("memberVisitList", memberVisitList);
+				
+		return memberVisit;
+	}
+
+	// 멤버 소식 - 신입
+	@Override
+	public Map<String, Object> memberNew() {
+		List<IntroBoard> memberNewList = dao.memberNew();
+		
+		Map<String, Object> memberNew = new HashMap<String, Object>();
+		memberNew.put("memberNewList", memberNewList);
+				
+		return memberNew;
+	}
+
+	// 최근 게시글 - 게시글
+	@Override
+	public Map<String, Object> newBoard() {
+		List<IntroBoard> newBoardList = dao.newBoard();
+		
+		Map<String, Object> newBoard = new HashMap<String, Object>();
+		newBoard.put("newBoardList", newBoardList);
+				
+		return newBoard;
+	}
+
+	@Override
+	public Map<String, Object> newComment() {
+		List<IntroBoard> newCommentList = dao.newComment();
+		
+		Map<String, Object> newComment = new HashMap<String, Object>();
+		newComment.put("newCommentList", newCommentList);
+		
+		return newComment;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
