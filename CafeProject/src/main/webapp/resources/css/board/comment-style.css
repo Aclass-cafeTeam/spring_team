@@ -35,19 +35,13 @@
 	align-items: center;
 }
 
-.comment-writer > img{
-	width: 40px;
-    height: 40px
-}
-
-.comment-writer > span{
-    font-weight: bold;
-    margin-left : 10px;
-}
-
 .comment-date{
 	font-size: 0.8em;
 	color: #aaa;
+}
+
+.comment-content{
+	font-size: 14px;
 }
 
 
@@ -110,4 +104,13 @@
     height: 90px;
     resize: none;
     margin-top : 20px;
+}
+
+/* 게시글 작성자 클릭시 */
+.p-writer a{
+    text-decoration: none;
+    color: black;
+}
+.p-writer a:hover{
+    text-decoration: underline;
 }

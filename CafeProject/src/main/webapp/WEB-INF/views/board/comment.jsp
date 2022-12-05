@@ -10,13 +10,13 @@
             <c:forEach var="comment" items="${board.commentList}">
                 <c:if test="${comment.commentDeleteFlag == 'Y'}">
                         <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p>삭제된 댓글입니다.</p>
+                            <p class="comment-content">삭제된 댓글입니다.</p>
                             <span class="comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
                 <c:if test="${comment.commentDeleteFlag == 'M'}">
                         <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p>카페 스탭에 의해 삭제된 댓글입니다.</p>
+                            <p class="comment-content"><%-- 카페 스탭에 의해 --%>삭제된 댓글입니다.</p>
                             <span class="comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
@@ -24,21 +24,28 @@
                 <c:if test="${comment.commentDeleteFlag == 'N'}">
                 <li class="comment-row  <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
                     <p class="comment-writer">
-
-                        <!-- 프로필 이미지가 없을 경우 -->
-                        <c:if test="${empty comment.profileImage}">
-                            <img src="/resources/images/main/프로필.PNG">
-                        </c:if>
-                        <!-- 프로필 이미지가 있을 경우 -->
-                        <c:if test="${!empty comment.profileImage}">
-                            <img src="${comment.profileImage}">
-                        </c:if>
-
-                        <span>${comment.memberNickname}</span>
-                        <span class="comment-date">(${comment.commentCreateDate})</span>
+                        <div class="profile">
+                            <div class="pi">
+                                <!-- 프로필 이미지가 없을 경우 -->
+                                <c:if test="${empty comment.profileImage}">
+                                    <img src="/resources/images/main/프로필.PNG">
+                                </c:if>
+                                <!-- 프로필 이미지가 있을 경우 -->
+                                <c:if test="${!empty comment.profileImage}">
+                                    <img src="${comment.profileImage}">
+                                </c:if>
+                            </div>
+                            <div class="nick-area">
+                                <span class="p-writer"><a href="/member/${comment.memberNo}">${comment.memberNickname}</a></span>
+                                <span class="p-tier"><img id="levelImage" src="${comment.memberLevelImage}"></span>
+                                <p class="comment-content">${comment.commentContent}</p>
+                            </div>
+                        </div>
                     </p>
                     
-                    <p class="comment-content">${comment.commentContent}</p>
+                    <div class="date-area">
+                        <div class="comment-date p-date"> ${comment.commentCreateDate} </div>
+                    </div>
 
                     <%-- 로그인 상태일 경우에 답글 버튼 노출 --%>
                     <c:if test="${!empty loginMember}">
