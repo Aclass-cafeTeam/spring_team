@@ -122,5 +122,41 @@ public class IntroDAO {
 		return sqlSession.selectList("introMapper.boardCommentRank", null ,rowBounds);
 	}
 
+	/**
+	 * 멤버 소식 - 방문
+	 * @return
+	 */
+	public List<IntroBoard> memberVisit() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.memberVisit", null ,rowBounds);
+	}
+
+	/**
+	 * 멤버 소식 - 신입
+	 * @return
+	 */
+	public List<IntroBoard> memberNew() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.memberNew", null ,rowBounds);
+	}
+
+	/**
+	 * 최근 게시글/댓글 - 게시글
+	 * @return
+	 */
+	public List<IntroBoard> newBoard() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.newBoard", null ,rowBounds);
+	}
+
+	/**
+	 * 최근 게시글/댓글 - 댓글
+	 * @return
+	 */
+	public List<IntroBoard> newComment() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.newComment", null ,rowBounds);
+	}
+
 
 }

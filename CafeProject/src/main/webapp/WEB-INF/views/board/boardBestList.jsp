@@ -79,7 +79,7 @@
 
                             <c:otherwise>
                                 <c:forEach var="board" items="${noticeList}">
-                                    <tr>
+                                    <tr >
                                         <td class="strong">공지</td>
                                         <td>
                                             <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">

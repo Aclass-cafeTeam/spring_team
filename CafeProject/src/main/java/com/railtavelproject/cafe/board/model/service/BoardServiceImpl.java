@@ -105,6 +105,18 @@ public class BoardServiceImpl implements BoardService{
 		return search;
 	}
 
+	@Override
+	public Map<String, Object> selectBoardAllNoticeList(int boardCode) {
+		
+		List<Board> allNoticeList = dao.selectBoardAllNoticeList(boardCode);
+		
+		Map<String, Object> allNotice = new HashMap<String, Object>();
+		
+		allNotice.put("allNoticeList", allNoticeList);
+		
+		return allNotice;
+	}
+
 
 
 	

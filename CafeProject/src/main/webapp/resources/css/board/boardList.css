@@ -352,17 +352,18 @@ a {
     font-size: 22px;
     width: 549.99px;
     height: 26.01px;
-    color: #73358C;
+    color: #c53a43;
+    font-weight: bold;
 }
 
 /* Best */
 .bestNo{
 
-    background-color: #ffe3e4;
-    color: #73358C;
+    background-color: #f7cecf;
+    color: #c53a43;
     border-radius: 15%;
     text-align: center;
-    font-size: 11px;
+    font-size: 13px;
     font-weight: 800;
     line-height: 19px;
     border-bottom: 1px solid #f2f2f2;
@@ -371,16 +372,18 @@ a {
 
 /* 베스트 게시글 제목 */
 .best-title{
-    color: #73358C;
+    color: #c53a43;
     font-size: 13px;
+    font-weight: bold;
     text-align: left;
     white-space: nowrap;
 }
 
 /* 베스트 게시글 댓글  */
 .best-comment{
-    color: #73358C;
+    color: #c53a43;
     font-size: 13px;
+    font-weight: bold;
     text-align: center;
 }
 /* 베스트 게시글 css 끝*/
@@ -398,3 +401,36 @@ a {
 .pagination-area {
     margin-top: 10px;
 }
+
+/* 전체 공지 전용 css 시작 */
+/* 전체 공지 */
+.allStrong{
+
+    background-color: #f7cecf;
+    color: #c53a43;
+    border-radius: 15%;
+    text-align: center;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 19px;
+    border-bottom: 1px solid #f2f2f2;
+
+}
+
+/* 전체 공지 제목 */
+.allStrong-title{
+    color: #c53a43;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+}
+
+/* 전체 공지 댓글 */
+.allComment{
+    color: #c53a43;
+    font-size: 13px;
+    font-weight: bold;
+    text-align: center;
+}
+/* 전체 공지 전용 css 끝 */
