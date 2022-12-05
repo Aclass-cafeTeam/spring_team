@@ -50,7 +50,7 @@ public class ManagerBoardController {
 			@RequestParam(value= "mainCategoryNameAdd") String mainCategoryNameAdd   //카테고리 이름
 			) throws Exception{
 		
-		
+		System.out.println(mainCategoryNameAdd);
 		
 		Map<String, Object> map = service.insertMainCategoryBoardType(mainCategoryAdd+1,mainCategoryNameAdd);
 	

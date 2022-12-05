@@ -52,7 +52,7 @@
     <!-- 메인 카테고리 -->
     <insert id="insertMainCategoryBoardType" parameterType="java.util.HashMap">
 		INSERT INTO "MAIN_CATEGORY"
-		VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL,#{mainCategoryNameAdd},DEFAULT)
+		VALUES(SEQ_MAIN_CATEGORY_NO.NEXTVAL,#{mainCategoryName},DEFAULT)
 		</insert>
 		
 		<select id="selectAddMainCategory" resultMap="managerboard_rm">
