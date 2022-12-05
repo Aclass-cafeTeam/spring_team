@@ -32,6 +32,9 @@ public class BoardController {
 		
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
+		
+		Map<String, Object> allNotice = service.selectBoardAllNoticeList(boardCode);
+		model.addAttribute("allNotice", allNotice);
 
 		if(pm.get("key") == null) { // 검색이 아닌 경우
 			Map<String, Object> search = service.selectBoardList(boardCode, cp);

@@ -59,3 +59,39 @@
         }
     }
 })();
+
+
+// 공지 숨기기
+document.getElementById("noticeHide").addEventListener("change", function(e){
+    console.log(e);
+    const strongList = document.getElementsByClassName("strong");
+    let ds;
+    if(e.target.checked){ // 체크 되었을 때
+        ds = "none";
+    }else{
+        ds = "table-row";
+    }
+
+    // ajax -> 숨기기 체크 여부 세션에 올리기
+    // $.ajax({
+    //     url : "/board",
+    //     data: {},
+    //     type: "GET",
+    //     success: function(result){
+    //         if(result > 0){
+
+    //         }
+    //     }
+
+    // })
+    // ajax-success
+    for(let item of strongList){
+        item.parentElement.style.display = ds;
+    }
+
+    
+})
+
+// + 페이지 이동 시 체크여부를 확인해서 
+// 1) 체크박스 체크 할지 말지
+// 2) 공지 출력 할지 말지
