@@ -470,9 +470,50 @@ input.check {
 .set_boxON{
     display: block;
 }
+
+.set_boxBasic{
+    display: block;
+}
 /* 메뉴 에디터 부분 ************************************/
 
 /* 취소 저장 버튼 부분 */
+
+.admin_menu_management .btn_area2, .admin_menu_management .edit_btn_box {
+    position: relative;
+    margin: 15px 0 0 450px;
+    text-align: center;
+    
+}
+
+.btn_type_edt2 span, .btn_type_edt2 strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    border-radius: 6%;
+    color: #666;
+}
+
+.btn_type_edt strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    background-color: #73358C;
+    border-radius: 6%;
+}
 /* 취소 저장 버튼 부분 ************************************/
 
 

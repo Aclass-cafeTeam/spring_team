@@ -228,7 +228,16 @@
                                 </div>
                                 <!-- 에디터 부분 -->
                                 <form>
+                                
                                 <div class="set_area">
+                                <div class="set_box set_boxBasic">
+                                    <h3 class="set_tit">메뉴 설정 안내</h3>
+                                    <ul class="set_lst_type">
+                                        <li>드래그 앤 드롭으로 게시판 순서를 변경할 수 있습니다.</li>
+                                        <li>단축키(ctrl)를 이용해 여러 개의 게시판을 선택한 후<br>일괄 설정 변경 할 수 있습니다.</li>
+                                        <li><span style="color:#2e9901;!important">메뉴를 편집한 후에 저장하기 버튼을 꼭 클릭해야 	변경된<br>내용이 메뉴에 반영됩니다.</span></li>
+                                    </ul>
+                                </div>
                                 <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
                                     <div class="set_box">
                                         <h3 class="set_tit">통합게시판</h3><%-- 통합게시판 --%>

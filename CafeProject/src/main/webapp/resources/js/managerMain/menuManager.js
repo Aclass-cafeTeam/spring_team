@@ -119,8 +119,8 @@ $('#BoardPlusBtn').click(function() {
             $("#in_type7").prop("checked", true);
           }
 
-
-          document.getElementsByClassName("set_box")[0].classList.add("set_boxON");
+          document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+          document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
 
 
         }else{
