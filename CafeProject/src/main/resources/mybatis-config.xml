@@ -30,6 +30,7 @@
 		<typeAlias type="com.railtavelproject.cafe.main.model.vo.IntroBoard" alias="IntroBoard"/>
 		<typeAlias type="com.railtavelproject.cafe.board.model.vo.Comment" alias="Comment"/>
 		<typeAlias type="com.railtavelproject.cafe.board.model.vo.BoardImage" alias="BoardImage"/>
+		<typeAlias type="com.railtavelproject.cafe.board.model.vo.BoardType" alias="BoardType"/>
 	</typeAliases>
 	
 	<!-- mapper 파일(SQL 작성되는파일) 위치 등록 부분 -->
