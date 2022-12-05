@@ -36,20 +36,20 @@
 
             <article class="article">
                     <div class="board-bestname">베스트 게시글</div>
-                    <p class="board-start">좋아요 수가 가장 많은 게시글 TOP 10 입니다.</p>
+                    <p class="board-start">조회 수가 가장 많은 게시글 TOP 10 입니다.</p>
 
                     <div class="hidden">
-                        <input type="checkbox" name="hidden" id="#">
-                        <label for="hidden" id="#">공지 숨기기</label>
+                        <%-- <input type="checkbox" name="hidden" id="#">
+                        <label for="hidden" id="#">공지 숨기기</label> --%>
 
-                        <span class="span">|</span>
+                        <span class="span"></span>
 
                         <form action="#">
-                            <select name="amount">
+                            <%-- <select name="amount">
                                 <option value="a">5개씩</option>
                                 <option value="b">10개씩</option>
                                 <option value="c">15개씩</option>
-                            </select>
+                            </select> --%>
                         </form>
                     </div>
     
@@ -140,7 +140,7 @@
 
                 <div>
                     <div class="writing">
-                        <button type="submit" class="writing-btn">글쓰기</button>
+                        <%-- <button type="submit" class="writing-btn">글쓰기</button> --%>
                     </div>
                 </div>
 
@@ -151,13 +151,13 @@
                     <ul class="pagination">
         
                         <!-- 첫 페이지로 이동 -->
-                        <li><a href="?cp=1${sURL}">&lt;&lt;</a></li>
+                        <%-- <li><a href="?cp=1${sURL}">&lt;&lt;</a></li> --%>
 
                         <!-- 이전 목록 마지막 번호로 이동 -->
-                        <li><a href="?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
+                        <%-- <li><a href="?cp=${pagination.prevPage}${sURL}">&lt;</a></li> --%>
 
                         <%-- 몇부터 시작(begin)해서 몇까지(end) 몇칸씩 증가(step) --%>
-                        <c:forEach var="i" begin="${pagination.startPage}" 
+                        <%-- <c:forEach var="i" begin="${pagination.startPage}" 
                         end="${pagination.endPage}" step="1">
             
                             <c:choose>
@@ -174,10 +174,10 @@
 
                         </c:forEach>
 
-                        <li><a href="?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
+                        <li><a href="?cp=${pagination.nextPage}${sURL}">&gt;</a></li> --%>
 
                         <!-- 끝 페이지로 이동 -->
-                        <li><a href="?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+                        <%-- <li><a href="?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li> --%>
 
                     </ul>
                 </div>
@@ -198,12 +198,12 @@
 
                     <div class="choice_">
                         <form action="${boardCode}" method="get" id="boardSearch" onsubmit="return true">
-                            <select name="key" id="search-key" class="choice">
+                            <%-- <select name="key" id="search-key" class="choice">
                                 <option value="aa">제목</option>
                                 <option value="bb">내용</option>
                                 <option value="cc">제목 + 내용</option>
                                 <option value="dd">작성자</option>
-                            </select>
+                            </select> --%>
 
                     </div>
 
@@ -211,10 +211,10 @@
 
                         <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
 
-
+<%-- 
                             <input type="text" class="query" name="query" id="search-query"
                             placeholder="검색어를 입력해주세요">
-                            <button class="search-btn">검색</button>
+                            <button class="search-btn">검색</button> --%>
                     
                         </form>
                     </article>
