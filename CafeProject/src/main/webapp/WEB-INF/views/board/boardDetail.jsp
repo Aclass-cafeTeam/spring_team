@@ -30,10 +30,7 @@
             <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
             <!-- ****************사이드메뉴***************-->
             <c:choose>
-                <c:when test="${loginMember.memberLevelNo<boardInfo.memberLevelNo}">
-                    <jsp:include page="/WEB-INF/views/board/doNotRead.jsp"/>
-                </c:when>
-                <c:otherwise>
+                <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardInfo.memberLevelNo)}">
                     <article class="article">
                         <div class="top-menu">
                             <div>
@@ -155,6 +152,9 @@
                             </div>
                         </div>
                     </article>
+                </c:when>
+                <c:otherwise>
+                    <jsp:include page="/WEB-INF/views/board/doNotRead.jsp"/>
                 </c:otherwise>
             </c:choose>   
         </section>
