@@ -63,6 +63,18 @@ public interface IntroService {
 	 * @return
 	 */
 	Map<String, Object> loginRank();
+
+	/**
+	 * 게시글 랭킹-좋아요
+	 * @return
+	 */
+	Map<String, Object> boardLike();
+
+	/**
+	 * 게시글 랭킹-댓글
+	 * @return
+	 */
+	Map<String, Object> boardComment();
 	
 	
 
