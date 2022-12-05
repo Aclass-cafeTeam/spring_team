@@ -38,4 +38,13 @@
     	SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL = 'N'
     	</select>
 		
+		<insert id="insertBoardType" parameterType="java.util.HashMap">
+		INSERT INTO "BOARD_TYPE" 
+		VALUES(SEQ_BOARD_CODE.NEXTVAL,#{boardName},#{boardOrder},#{mainCategoryNo},DEFAULT,#{boardForm},DEFAULT, 2,DEFAULT)
+		</insert>
+		
+		<select id="selectBoard" resultMap="managerboard_rm">
+    	SELECT * FROM "BOARD_TYPE" WHERE BOARD_ORDER = #{boardOrder}
+    	AND MAIN_CATEGORY_NO = #{mainCategoryNo}
+    	</select>
 </mapper>

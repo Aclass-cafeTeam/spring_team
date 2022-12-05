@@ -10,4 +10,9 @@ public interface ManagerBoardService {
 	 * @return
 	 */
 	Map<String, Object> selectBoardType();
+
+	Map<String, Object> insertBoardType(int mainCategoryNo, String mainCategoryName, String boardName, int boardOrder,
+			String boardForm) throws Exception;
+
+	/* Board selectBoard(int i, int mainCategoryNo); */
 }
