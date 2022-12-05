@@ -30,10 +30,7 @@
             <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
             <!-- ****************사이드메뉴***************-->
             <c:choose>
-                <c:when test="${loginMember.memberLevelNo<boardInfo.memberLevelNo}">
-                    <jsp:include page="/WEB-INF/views/board/doNotRead.jsp"/>
-                </c:when>
-                <c:otherwise>
+                <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardInfo.memberLevelNo)}">
                     <article class="article">
                         <div class="top-menu">
                             <div>
@@ -53,10 +50,14 @@
                             <div class="profile-all">
                                 <div class="titleBox">
                                     <a href="/board/${boardCode}?cp=1"><div class="board-list">${boardName} > </div></a>
-                                    <!-- 말머리가 있을 경우 -->
-                                    <c:if test="${not empty board.titleTagName}">
-                                        <c:if test="${board.titleTagNo ne 0}"> 
-                                            <div class="title-tag">[${board.titleTagName}]</div>
+                                    
+                                    <!-- 말머리를 사용하는 게시판일 경우 -->
+                                    <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                        <!-- 말머리가 있을 경우 -->
+                                        <c:if test="${not empty board.titleTagName}">
+                                            <c:if test="${board.titleTagNo ne 0}"> 
+                                                <div class="title-tag">[${board.titleTagName}]</div>
+                                            </c:if>
                                         </c:if>
                                     </c:if>
                                     <div class="board-title">${board.boardTitle}</div>
@@ -102,25 +103,36 @@
 
                             
                             <div class="sideBox">
-                                <%-- 좋아요 --%>
+                                <%-- 좋아요 & 댓글--%>
                                 <div class="like-comment">
-                                    <div class="count-like">
-                                        <%-- likeCheck가 없다면 == 로그인X 또는 좋아요X --%>
-                                        <c:if test="${empty likeCheck}">
-                                            <%-- 빈 하트 --%>
-                                            <i class="fa-regular fa-heart" id="boardLike"></i>
-                                        </c:if>
-            
-                                        <%-- likeCheck가 있다면 == 로그인O, 좋아요O --%>
-                                        <c:if test="${not empty likeCheck}">
-                                            <%-- 채워진 하트 --%>
-                                            <i class="fa-solid fa-heart" id="boardLike"></i>
-                                        </c:if>
-                                    </div>
-            
-                                        <div class="board-like">좋아요</div>
-                                        <div class="like-count" id="likeCount">${board.likeCount}</div>
-            
+                                    <c:choose>
+                                        <c:when test="${boardInfo.boardLikeFlag=='Y'}">
+                                            <!-- 좋아요 기능을 사용하는 게시판일 경우 -->
+                                            <div class="count-like">
+                                                    <%-- likeCheck가 없다면 == 로그인X 또는 좋아요X --%>
+                                                    <c:if test="${empty likeCheck}">
+                                                        <%-- 빈 하트 --%>
+                                                        <i class="fa-regular fa-heart" id="boardLike"></i>
+                                                    </c:if>
+                        
+                                                    <%-- likeCheck가 있다면 == 로그인O, 좋아요O --%>
+                                                    <c:if test="${not empty likeCheck}">
+                                                        <%-- 채워진 하트 --%>
+                                                        <i class="fa-solid fa-heart" id="boardLike"></i>
+                                                    </c:if>
+                                                </div>
+                                                    <div class="board-like">좋아요</div>
+                                                    <div class="like-count" id="likeCount">${board.likeCount}</div>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <!-- 좋아요 기능을 사용하지 않는 게시판일 경우(회색하트) -->
+                                            <div class="gray-heart">
+                                                <i class="fa-regular fa-heart"></i>
+                                            </div>
+                                                <div class="dont-like">좋아요</div>
+                                                <%-- <div class="like-count" id="likeCount"></div>?- --%>
+                                        </c:otherwise>
+                                    </c:choose>
                                     <div class="bottom-comment">
                                         <a href="#">
                                             <div class="count-comment"><i class="fa-regular fa-comment"></i></div>
@@ -130,8 +142,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
-
                             <!-- 댓글 영역 -->
                             <div class="commentBox">
                                 <h3 class="h3-comment"> 댓글 </h3>
@@ -142,6 +152,9 @@
                             </div>
                         </div>
                     </article>
+                </c:when>
+                <c:otherwise>
+                    <jsp:include page="/WEB-INF/views/board/doNotRead.jsp"/>
                 </c:otherwise>
             </c:choose>   
         </section>
