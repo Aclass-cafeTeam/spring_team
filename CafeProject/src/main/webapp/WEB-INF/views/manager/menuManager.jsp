@@ -140,8 +140,9 @@
                             </div>
                             <!-- 더하기 부분 -->
                             <div class="btn_add" id="plusBtn">
-                                <a href="#">추가</a>
+                                <a href="#" id="BoardPlusBtn">추가</a>
                                 <input type="hidden" id = "mainCategoryNameIn" name="mainCategoryNameIn" value=""><!-- 메인 카테고리 추가 -->
+                                <input type="hidden" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
                                 <input type="hidden" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
                                 <input type="hidden" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
@@ -170,8 +171,8 @@
                                                 <!-- <ul> -->
                                                     <c:if test="${not empty mainCategory}">
                                                       <c:forEach items="${mainCategory}" var="mainVar" >
-                                                        <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory"></c:if>
-                                                          <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn"></c:if>
+                                                        <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}"></c:if>
+                                                          <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}"></c:if>
                                                         <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                         <c:forEach items="${boardType}" var="var">
                                                           <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">

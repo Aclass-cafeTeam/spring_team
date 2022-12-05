@@ -7,7 +7,7 @@ $(".add_lst_btn a").click(function() {
   this.parentNode.classList.add('on');
 
   const bordTitleName= this.firstElementChild;
-  document.getElementsByName("bordTitleNameIn")[0].value = bordTitleName.innerText;
+  document.getElementById("bordTitleNameIn").value = bordTitleName.innerText;
   
 });
 
@@ -21,7 +21,11 @@ $(".mainCategoryOn a").click(function() {
 
   const mainCategoryName = this.parentNode.parentNode.id;
 
-  document.getElementById("bordTitleNameIn").value = mainCategoryName;
+  document.getElementById("mainCategoryNameIn").value = mainCategoryName;
+
+  const mainCategoryName2 = this.parentNode.parentNode.title;
+
+  document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
 
   const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
 
@@ -30,13 +34,12 @@ $(".mainCategoryOn a").click(function() {
 });
 
 
-
-document.getElementById("plusBtn").click(function() {
+$('#BoardPlusBtn').click(function() {
   const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;
   const bordTitleNameIn = document.getElementById("bordTitleNameIn").value;
   const boardOrderIn = document.getElementById("boardOrderIn").value;
-
-  if(mainCategoryNameIn != '' ||bordTitleNameIn !='' ||boardOrderIn !=''){
+  console.log("들어옴??");
+  if(mainCategoryNameIn != '' && bordTitleNameIn !='' && boardOrderIn !=''){
 
     alert("값 넣기 성공");
    /*  $.ajax({
