@@ -5,6 +5,8 @@
 <c:set var="boardList" value="${map.boardList}" />
 <c:set var="noticeList" value="${notice.noticeList}" />
 <c:set var="pagination" value="${map.pagination}" />
+<c:set var="pagination" value="${search.pagination}" />
+<c:set var="boardList" value="${search.boardList}" />
 
 <!DOCTYPE html>
 <html lang="ko">

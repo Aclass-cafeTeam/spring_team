@@ -8,16 +8,29 @@
         <ul id="comment-list">
 
             <c:forEach var="comment" items="${board.commentList}">
+                <c:if test="${comment.commentDeleteFlag == 'Y'}">
+                        <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
+                            <p>삭제된 댓글입니다.</p>
+                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                        </li>
+                </c:if>
+                <c:if test="${comment.commentDeleteFlag == 'M'}">
+                        <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
+                            <p>카페 스탭에 의해 삭제된 댓글입니다.</p>
+                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                        </li>
+                </c:if>
+
+                <c:if test="${comment.commentDeleteFlag == 'N'}">
                 <li class="comment-row  <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
                     <p class="comment-writer">
 
+                        <!-- 프로필 이미지가 없을 경우 -->
                         <c:if test="${empty comment.profileImage}">
-                            <!-- 프로필 이미지가 없을 경우 -->
-                            <img src="/resources/images/user.png">
+                            <img src="/resources/images/main/프로필.PNG">
                         </c:if>
-
+                        <!-- 프로필 이미지가 있을 경우 -->
                         <c:if test="${!empty comment.profileImage}">
-                            <!-- 프로필 이미지가 있을 경우 -->
                             <img src="${comment.profileImage}">
                         </c:if>
 
@@ -33,18 +46,19 @@
                             <%-- this == 클릭된 답글 버튼 --%>
                             <button onclick="showInsertComment(${comment.commentNo}, this)">답글</button>   
 
-                        <%-- 로그인회원 == 댓글 작성자가 같으면 수정/삭제 버튼 노출 --%>
-                          <c:if test="${loginMember.memberNo == comment.memberNo}">
-                                  <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>     
-                                  <button onclick="deleteComment(${comment.commentNo})">삭제</button>
-                          </c:if>
-                          
+                        <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
+                        <c:if test="${loginMember.memberNo == comment.memberNo}">
+                                <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
+                                <%-- 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출 --%>
+                            <c:if test="${(loginMember.authorityNo==0 ||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">
+                                    <button onclick="deleteComment(${comment.commentNo})">삭제</button>
+                            </c:if>
+                        </c:if>
                         </div>
                     </c:if>
-                    
-                    
 
                 </li>
+                </c:if>
             </c:forEach>
             
         </ul>
