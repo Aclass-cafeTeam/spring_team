@@ -82,7 +82,7 @@
                                     <tr>
                                         <td class="strong">공지</td>
                                         <td>
-                                            <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="strong-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                             <c:if test="${not empty board.titleTagName}">
                                             <span>[${board.titleTagName}]</span>
                                             </c:if>
@@ -114,7 +114,7 @@
                                     <tr>
                                         <td class="board-number">${board.boardNo}</td>
                                         <td>
-                                            <a class="normal-title" href="/board/selectAll/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="normal-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
                                             <!-- 말머리가 있을 경우  -->
                                             <c:if test="${not empty board.titleTagName}">
                                                 <c:if test="${board.titleTagName ne '선택 안 함'}">
