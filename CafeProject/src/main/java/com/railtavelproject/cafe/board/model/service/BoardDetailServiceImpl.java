@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.railtavelproject.cafe.board.model.dao.BoardDetailDAO;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 
 @Service
 public class BoardDetailServiceImpl implements BoardDetailService{
@@ -46,6 +47,12 @@ public class BoardDetailServiceImpl implements BoardDetailService{
 	@Override
 	public int boardLikeDown(Map<String, Object> paramMap) {
 		return dao.boardLikeDown(paramMap);
+	}
+
+	// 특정 게시판 정보(등급제한) 조회
+	@Override
+	public BoardType selectBoardInfo(int boardCode) {
+		return dao.selectBoardInfo(boardCode);
 	}
 
 }
