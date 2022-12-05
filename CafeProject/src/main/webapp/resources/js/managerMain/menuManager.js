@@ -88,18 +88,18 @@ $('#BoardPlusBtn').click(function() {
 
           const ul = document.createElement("ul");
           ul.id = "mainCategory."+result.newBoard.mainCategoryNo;
-          ul.classList.add("mainCategory");
+          ul.setAttribute("class","mainCategory");
           ul.classList.add("mainCategoryOn");
           ul.setAttribute("title",result.newBoard.mainCategoryName);
           ul.setAttribute("number",result.newBoard.mainCategoryNo);
 
-          document.getElementsByClassName("borderNone")[0].append(ul);
+          document.getElementById("borderNone").append(ul);
 
 
           //<ul id="mainCategory.4" class="mainCategory mainCategoryOn" title="갤러리 자료" number="4"></ul>
 
 
-          $(a).click(function() {
+          $(".mainCategoryOn a").click(function() {
             $('.edit_btn_area li').addClass("on");
           
             $('.edit_lst_box li').removeClass("on");
@@ -116,6 +116,8 @@ $('#BoardPlusBtn').click(function() {
             const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
           
             document.getElementById("boardOrderIn").value = boardAddOrder;
+          
+            document.getElementById("boardCodeIn").value= this.name;
           
           });
 

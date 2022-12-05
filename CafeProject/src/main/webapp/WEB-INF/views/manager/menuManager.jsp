@@ -166,7 +166,7 @@
                                     </div>
                                     <div class="edit_lst_area">
                                         <div class="edit_lst_box">
-                                            <div class="add_lst borderNone">
+                                            <div class="add_lst borderNone" id="borderNone">
                                                 <ul> 
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="전체글보기" class="ba_v2None B"><span data-v-bd0068e8="">전체글보기</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X -->
                                                     <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="베스트게시글" class="ba_v2None B"><span data-v-bd0068e8="">베스트게시글</span></a></li><!-- DB에서 꺼내오지 않는 고정값 클릭 이벤트 X boardType-->
@@ -314,7 +314,7 @@
                                                     <tr>
                                                         <th>그룹제목</th>
                                                         <td>
-                                                            <input type="text" class="ipt_type" id=""><!---->
+                                                            <input type="text" class="ipt_type" id="mainCategoryNameupdateIN"><!---->
                                                         </td>
                                                     </tr>
                                                     <tr>
