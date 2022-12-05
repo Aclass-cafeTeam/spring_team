@@ -114,7 +114,6 @@
                                     <th colspan="7"></th>
                                 </tr>
                             </c:when>
-
                             <c:otherwise>
                                 <c:forEach var="board" items="${noticeList}">
                                     <tr>
@@ -130,7 +129,7 @@
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
-                                            </c:if>                        
+                                            </c:if>
                                         </td>
                                         <td></td>
                                         <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
