@@ -23,4 +23,13 @@ public class CommentDAO {
 		return sqlSession.selectList("boardDetailMapper.selectCommentList", boardNo);
 	}
 
+	/** 댓글 등록
+	 * @param comment
+	 * @return result
+	 */
+	public int insertComment(Comment comment) {
+
+		return sqlSession.insert("commentMapper.insertComment", comment);
+	}
+
 }

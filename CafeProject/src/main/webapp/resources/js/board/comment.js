@@ -7,16 +7,16 @@ function selectCommentList(){
         data : {"boardNo" : boardNo},
         type : "GET",
         dataType : "JSON", // JSON 형태의 문자열 응답 데이터를 JS 객체로 자동 변환
-        success : function(commentList){
-            // commentList : 반환 받은 댓글 목록 
-            console.log(commentList);
+        success : function(replyList){
+            // replyList : 반환 받은 댓글 목록 
+            console.log(replyList);
 
             // 화면에 출력되어 있는 댓글 목록 삭제
             const commentList = document.getElementById("comment-list"); // ul태그
             commentList.innerHTML = "";
 
-            // commentList에 저장된 요소를 하나씩 접근
-            for(let comment of commentList){
+            // replyList에 저장된 요소를 하나씩 접근
+            for(let comment of replyList){
 
                 // 행
                 const commentRow = document.createElement("li");
@@ -36,7 +36,7 @@ function selectCommentList(){
                 if( comment.profileImage != null ){ // 프로필 이미지가 있을 경우
                     profileImage.setAttribute("src", comment.profileImage);
                 }else{ // 없을 경우 == 기본이미지
-                    profileImage.setAttribute("src", "/resources/images/user.png");
+                    profileImage.setAttribute("src", "/resources/images/main/프로필.PNG");
                 }
   
                 // 작성자 닉네임
@@ -45,13 +45,11 @@ function selectCommentList(){
                 
                 // 작성일
                 const commentDate = document.createElement("span");
-                commentDate.classList.add("comment-date");
+                commentDate.classList.add("p-date");
                 commentDate.innerText =  "(" + comment.commentCreateDate + ")";
 
                 // 작성자 영역(p)에 프로필,닉네임,작성일 마지막 자식으로(append) 추가
                 commentWriter.append(profileImage , memberNickname , commentDate);
-
-                
 
                 // 댓글 내용
                 const commentContent = document.createElement("p");
@@ -118,3 +116,55 @@ function selectCommentList(){
         }
     });
 }
+
+// 댓글 등록
+const addComment = document.getElementById("addComment");
+const commentContent = document.getElementById("commentContent");
+
+addComment.addEventListener("click", function(){ // 댓글 등록 버튼이 클릭이 되었을 때
+
+    // 1) 로그인이 되어있나? -> 전역변수 memberNo 이용
+    if(memberNo == ""){ // 로그인 X
+        alert("로그인 후 이용해주세요.");
+        return;
+    }
+
+    // 2) 댓글 내용이 작성되어있나?
+    if(commentContent.value.trim().length == 0){ // 미작성인 경우
+        alert("댓글을 작성한 후 버튼을 클릭해주세요.");
+
+        commentContent.value = ""; // 띄어쓰기, 개행문자 제거
+        commentContent.focus();
+        return;
+    }
+
+    // 3) AJAX를 이용해서 댓글 내용 DB에 저장(INSERT)
+    $.ajax({
+        url : "/comment/insert",
+        data : {"commentContent" : commentContent.value,
+                "memberNo" : memberNo,
+                "boardNo" : boardNo },
+        type : "post",
+        success : function(result){
+
+            if(result > 0){ // 등록 성공
+                alert("댓글이 등록되었습니다.");
+
+                commentContent.value = ""; // 작성했던 댓글 삭제
+
+                selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
+                // -> 새로운 댓글이 추가되어짐
+
+            } else { // 실패
+                alert("댓글 등록에 실패했습니다...");
+            }
+
+        },
+
+        error : function(req, status, error){
+            console.log("댓글 등록 실패")
+            console.log(req.responseText);
+        }
+    });
+
+});

@@ -11,6 +11,8 @@
 	flex-basis: 75%;
     margin-right: 10px;
 	resize: none;
+	border: solid 2px #ebecef;
+	outline-style: none;
 }
 
 .comment-write-area > button{
@@ -50,6 +52,11 @@
 	justify-content: flex-end;
 }
 
+/* 내가 쓴 댓글일 경우 */
+/* .myCommentCK{
+	background-color: #73358c2d;
+} */
+
 /* 버튼 */
 .comment-btn-area button{
     width: 50px;
@@ -77,7 +84,7 @@
 }
 
 .comment-row{
-	border-top : 1px solid #ccc;
+	border-top : 1px solid #ebecef;
 	padding : 15px 0;
 }
 

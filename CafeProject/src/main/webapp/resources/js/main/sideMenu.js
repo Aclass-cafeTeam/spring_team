@@ -56,14 +56,14 @@ const memberVisit = document.getElementById("member_visit");
     
 // });
 
-$(function(){
+// $(function(){
 
-    $("#member_comment").on("click", function(){
-        $(".memberBoardRank").show();
-        $(".memberCommentRank").hide();
-    })
+//     $("#member_comment").on("click", function(){
+//         $(".memberBoardRank").show();
+//         $(".memberCommentRank").hide();
+//     })
 
-})
+// })
 
 // memberComment.addEventListener("click", function(){ // 랭킹-게시글 보이고 싶을때
     

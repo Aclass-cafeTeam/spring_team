@@ -9,13 +9,13 @@
 
             <c:forEach var="comment" items="${board.commentList}">
                 <c:if test="${comment.commentDeleteFlag == 'Y'}">
-                        <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
+                        <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
                             <p class="comment-content">삭제된 댓글입니다.</p>
                             <span class="comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
                 <c:if test="${comment.commentDeleteFlag == 'M'}">
-                        <li class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
+                        <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
                             <p class="comment-content"><%-- 카페 스탭에 의해 --%>삭제된 댓글입니다.</p>
                             <span class="comment-date">(${comment.commentDeleteDate})</span>
                         </li>
