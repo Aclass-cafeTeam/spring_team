@@ -292,8 +292,16 @@ a {
 } 
 
 
-
 /* 댓글 영역 */
-.commentBox{
+/* .commentBox{
     margin
+} */
+
+/* 게시글 작성자 클릭시 */
+.p-writer a{
+    text-decoration: none;
+    color: black;
+}
+.p-writer a:hover{
+    text-decoration: underline;
 }
