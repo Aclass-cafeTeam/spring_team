@@ -116,12 +116,12 @@
                                     <ul>
                                         <li class="">
                                             <a href="#" class="ge_v1 A">
-                                                <span class="">앨범형 통합게시판</span>
+                                                <span class="mainCategory.A">앨범형 통합게시판</span>
                                             </a>
                                         </li>
                                         <li class="">
                                             <a href="#" class="ge_v13 B">
-                                                <span class="">게시글형 통합게시판</span>
+                                                <span class="mainCategory.B">게시글형 통합게시판</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -141,10 +141,10 @@
                             <!-- 더하기 부분 -->
                             <div class="btn_add" id="plusBtn">
                                 <a href="#">추가</a>
-                                <input type="hidden" name="" value=""><!-- 메인 카테고리 추가 -->
-                                <input type="hidden" name="" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" id = "mainCategoryNameIn" name="mainCategoryNameIn" value=""><!-- 메인 카테고리 추가 -->
+                                <input type="hidden" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
-                                <input type="hidden" name="" value=""><!-- 게시판이 순서-->
+                                <input type="hidden" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
                             </div>
                             <div class="edit_set_group">
                                 <!-- 게시판 순서 -->
