@@ -370,7 +370,7 @@
 
             <div id="ranking">
                 <div id="ranking_title">
-                    어제의 멤버 랭킹
+                    지난주 멤버 랭킹
                 </div>
                 <div id="ranking_category">
                     <ul>
@@ -456,46 +456,53 @@
 
                 <div id="ranking_category">
                     <ul>
-                        <li><a href="#" onclick="return false;">좋아요 횟수</a></li>
+                        <li><a href="#" onclick="return false;" class="boardLike">좋아요 횟수</a></li>
                         <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;">댓글수</a></li>
+                        <li><a href="#" onclick="return false;" class="boardComment">댓글수</a></li>
                     </ul>
                 </div>
 
-                <div id="member_ranking">
-                    <ul>
-                        <li id="ranking-member">
-                            <span>1.</span>
-                            <div>
-                                <span id="member_id"><a href="#">이빨다뽑힘</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>2.</span>
-                            <div>
-                                <span id="member_id"><a href="#">JH</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>3.</span>
-                            <div>
-                                <span id="member_id"><a href="#">상남자</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>4.</span>
-                            <div>
-                                <span id="member_id"><a href="#">김지윤1010</a></span>
-                            </div>
-                        </li>
-                        <li id="ranking-member">
-                            <span>5.</span>
-                            <div>
-                                <span id="member_id"><a href="#">김서희</a></span>
-                            </div>
-                        </li>
-                    </ul>
+                <%-- 게시글 랭킹 <좋아요> --%>
+                <div id="member_ranking" class="boardLikeRank">
+                    <c:choose>
+                        <c:when test="${empty boardLike.boardLikeList}">
+                            <div>랭킹업슴</div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="boardLike" items="${boardLike.boardLikeList}" varStatus="status">
+                                    <ul>
+                                        <li id="ranking-member">
+                                            <span>${status.count}. </span>
+                                            <div>
+                                                <span id="member_id"><a href="#">${boardLike.boardTitle}</a></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
 
+                <%-- 게시글 랭킹 <댓글> --%>
+                <div id="member_ranking" class="boardCommentRank">
+                    <c:choose>
+                        <c:when test="${empty boardComment.boardCommentList}">
+                            <div>랭킹업슴</div>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="boardComment" items="${boardComment.boardCommentList}" varStatus="status">
+                                    <ul>
+                                        <li id="ranking-member">
+                                            <span>${status.count}. </span>
+                                            <div>
+                                                <span id="member_id"><a href="#">${boardComment.boardTitle}</a></span>
+                                            </div>
+                                        </li>
+                                    </ul>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
                 </div>
             </div>
 

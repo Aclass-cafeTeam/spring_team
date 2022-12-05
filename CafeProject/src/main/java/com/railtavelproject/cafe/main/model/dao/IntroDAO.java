@@ -104,5 +104,23 @@ public class IntroDAO {
 		return sqlSession.selectOne("introMapper.memberCount");
 	}
 
+	/**
+	 * 게시글 랭킹-좋아요
+	 * @return
+	 */
+	public List<IntroBoard> boardLike() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.boardLikeRank", null ,rowBounds);
+	}
+
+	/**
+	 * 게시글 랭킹-댓글
+	 * @return
+	 */
+	public List<IntroBoard> boardComment() {
+		RowBounds rowBounds = new RowBounds(0, 5);
+		return sqlSession.selectList("introMapper.boardCommentRank", null ,rowBounds);
+	}
+
 
 }

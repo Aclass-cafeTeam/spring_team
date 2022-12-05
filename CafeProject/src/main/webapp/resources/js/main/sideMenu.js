@@ -128,6 +128,34 @@ $(function() {
         $("#member_board").css("cursor", "pointer");
     })
 
+    // 게시글랭킹 - 댓글수 버튼 눌렀을 때
+    $(".boardComment").on("click", function() {
+        $(".boardCommentRank").show();
+        $(".boardLikeRank").hide();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $(".boardComment").css("color", "red");
+        $(".boardComment").css("cursor", "text");
+        $(".boardComment").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $(".boardLike").css("color", "#333333");
+        $(".boardLike").css("cursor", "pointer");
+    });
+
+    // 게시글랭킹 - 좋아요 횟수 버튼 눌렀을 때
+    $(".boardLike").on("click", function() {
+        $(".boardCommentRank").hide();
+        $(".boardLikeRank").show();
+        console.log("버튼누름");
+        // 버튼 css 바뀌기
+        $(".boardLike").css("color", "red");
+        $(".boardLike").css("cursor", "text");
+        $(".boardLike").css("text-decoration", "none");
+        // 다른 버튼 css 기본값으로
+        $(".boardComment").css("color", "#333333");
+        $(".boardComment").css("cursor", "pointer");
+    });
+
 
     
 })

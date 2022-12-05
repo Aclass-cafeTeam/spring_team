@@ -567,9 +567,19 @@ section #border-img {
     color: #333333;
 }
 
+/* 지난주 멤버랭킹 - 댓글버튼 기본값 */
 #ranking_category>ul>li>a#member_comment{
     color: red;
     cursor: text;
+    text-decoration: none;
+}
+/* 지난주 멤버랭킹 - 좋아요횟수 기본값 */
+#ranking_category>ul>li>a.boardLike{
+    color: red;
+    cursor: text;
+    text-decoration: none;
+}
+#ranking_category>ul>li>a.boardLike:hover{
     text-decoration: none;
 }
 
@@ -809,11 +819,15 @@ section #border-img {
     text-decoration: underline;
 }
 
+/* 멤버랭킹 게시글,방문 div 숨기기 */
 .memberBoardRank{
     display: none;
 }
-
 .memberLoginRank{
+    display: none;
+}
+/* 게시글랭킹 댓글수 div 숨기기 */
+.boardCommentRank{
     display: none;
 }
 
