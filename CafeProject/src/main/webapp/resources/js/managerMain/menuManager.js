@@ -32,27 +32,30 @@ $(".mainCategoryOn a").click(function() {
 
   document.getElementById("boardOrderIn").value = boardAddOrder;
 
+  document.getElementById("boardCodeIn").value= this.name;
+
 });
 
 
 $('#BoardPlusBtn').click(function() {
-  const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;
-  const mainCategoryNameIn2 = document.getElementById("mainCategoryNameIn2").value;
+  const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;  //mainCategory.B
+  const mainCategoryNameIn2 = document.getElementById("mainCategoryNameIn2").value; //질문코너
   const bordTitleNameIn = document.getElementById("bordTitleNameIn").value;
   const boardOrderIn = document.getElementById("boardOrderIn").value;
   const bordTitleFormIn = document.getElementById("bordTitleFormIn").value;
-  console.log("들어옴??");
+  const boardCodeIn = document.getElementById("boardCodeIn").value;
+
   if(mainCategoryNameIn != '' && bordTitleNameIn !='' && boardOrderIn !=''){
 
     alert("값 넣기 성공");
     $.ajax({
       url: "/insertBoardType",
       data:{
-        "mainCategoryNameIn" : mainCategoryNameIn,
-        "mainCategoryNameIn2" : mainCategoryNameIn2,
-        "bordTitleNameIn" : bordTitleNameIn,
-        "boardOrderIn" : boardOrderIn,
-        "bordTitleFormIn" : bordTitleFormIn,
+        "mainCategoryNameIn" : mainCategoryNameIn, //mainCategory.3
+        "mainCategoryNameIn2" : mainCategoryNameIn2,//질문 코너
+        "bordTitleNameIn" : bordTitleNameIn,//앨범형 통합게시판 
+        "boardOrderIn" : boardOrderIn,// 현재 게시판 마지막 순서 (넣어줄 때 +1 해줘야함)
+        "bordTitleFormIn" : bordTitleFormIn,//A
 
       },
       type: "POST",
@@ -102,6 +105,23 @@ $('#BoardPlusBtn').click(function() {
             document.getElementById("boardOrderIn").value = boardAddOrder;
           
           });
+
+
+          document.getElementById("boardCodeUpdate").value = result.newBoard.boardCode;
+          document.getElementById("settingboardName").value = result.newBoard.boardName;
+          document.getElementById("LevelNo").value =result.newBoard.boardMemberLevelNo;
+          
+          if(result.newBoard.boardLikeYN == 'Y'){
+            $("#in_type6").prop("checked", true);
+          }
+
+          if(result.newBoard.titleTagYN == 'Y'){
+            $("#in_type7").prop("checked", true);
+          }
+
+
+          document.getElementsByClassName("set_box")[0].classList.add("set_boxON");
+
 
         }else{
           alert(result.message);

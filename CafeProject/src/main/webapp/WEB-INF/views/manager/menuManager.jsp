@@ -126,7 +126,7 @@
                                         </li>
                                     </ul>
                                 </div>
-                                <div class="add_lst last add_lst_btn">
+                                <div class="add_lst last add_lst_btn2">
                                     <h3>관리도구</h3>
                                     <ul>
                                         <li class="">
@@ -147,6 +147,7 @@
                                 <input type="hidden" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" name="" value=""><!-- 게시판이 추가되는 메인카테고리 -->
                                 <input type="hidden" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
+                                <input type="hidden" id="boardCodeIn" name="boardCodeIn" value=""><!-- 게시판이 순서-->
                             </div>
                             <div class="edit_set_group">
                                 <!-- 게시판 순서 -->
@@ -171,17 +172,22 @@
                                                 </ul>
                                                 <!-- <ul> -->
                                                     <c:if test="${not empty mainCategory}">
-                                                      <c:forEach items="${mainCategory}" var="mainVar" >
-                                                        <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}"></c:if>
-                                                          <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}"></c:if>
-                                                        <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
+                                                        <c:forEach items="${mainCategory}" var="mainVar" >
+                                                            <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}"></c:if>
+                                                            <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}"></c:if>
+                                                            <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                         <c:forEach items="${boardType}" var="var">
-                                                          <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
-                                                              <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" class="ge_v1 ${var.boardForm}" id="${var.boardName}" title="${var.boardOrder}"><span data-v-bd0068e8="">${var.boardName}</span></a></li>
-                                                          </c:if>
+                                                            <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
+                                                                <input type="hidden" id="varboardCode" name="varboardCode" value="${var.boardCode}">
+                                                                <input type="hidden" id="varboardName" name="varboardName" value="${var.boardName}">
+                                                                <input type="hidden" id="titleTagYN" name="titleTagYN" value="${var.titleTagYN}">
+                                                                <input type="hidden" id="boardLikeYN" name="boardLikeYN" value="${var.boardLikeYN}">
+                                                                <input type="hidden" id="boardMemberLevelNo" name="boardMemberLevelNo" value="${var.boardMemberLevelNo}">
+                                                                <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" class="ge_v1 ${var.boardForm}" id="${var.boardName}" title="${var.boardOrder}" name="${var.boardCode}"><span data-v-bd0068e8="">${var.boardName}</span></a></li>
+                                                            </c:if>
                                                         </c:forEach>
                                                         </ul>
-                                                      </c:forEach>
+                                                        </c:forEach>
                                                     </c:if>
                                                     
                                                     <!-- <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" title="통합게시판" class="ge_v1"><span data-v-bd0068e8="">공지사항</span></a></li>
@@ -221,7 +227,76 @@
                                     </div>
                                 </div>
                                 <!-- 에디터 부분 -->
-                                <div class="set_area"></div>
+                                <form>
+                                <div class="set_area">
+                                <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
+                                    <div class="set_box">
+                                        <h3 class="set_tit">통합게시판</h3><%-- 통합게시판 --%>
+                                        <ul class="set_lst_type">
+                                            <li>- 용도에 따라 다양한 형태로 사용 가능한 일반 게시판입니다.</li>
+                                            <li>- 공지게시판으로 사용하려면 글쓰기 권한을 스탭 이상으로 설정하세요.</li>
+                                        </ul>
+                                        <div class="detail_area">
+                                            <table border="1" cellspacing="0" width="100%" summary="메뉴관리 설정">
+                                                <caption style="display: none;">메뉴관리 설정 정보</caption>
+                                                <colgroup><col width="130"><col width="*"></colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>메뉴명</th>
+                                                        <td>
+                                                            <input type="text" class="ipt_type" id="settingboardName"><!---->
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="line"></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">권한 설정</th>
+                                                        <td class="">
+                                                            <div class="type_box">
+                                                                <p class="">
+                                                                    <strong> 모든 </strong>
+                                                                    <select id="LevelNo" name="LevelNo" style="width: 145px;">
+                                                                        <option value="2">새내기</option>
+                                                                        <option value="3">일반여행자</option>
+                                                                        <option value="4">성실여행자</option>
+                                                                        <option value="5">우수여행자</option>
+                                                                        <option value="150">감사멤버</option>
+                                                                    </select>
+                                                                    이상<!----></p>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="line"></th>
+                                                    </tr><!----><!---->
+                                                    <tr>
+                                                        <th scope="row" class="solo">좋아요 기능</th>
+                                                        <td class="solo"><input id="in_type6" type="checkbox" class="check"><label for="in_type6">사용</label></td>
+                                                    </tr>
+                                                
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="line"></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" class="solo">말머리</th>
+                                                        <td class="solo"><input id="in_type7" type="checkbox" class="check"><label for="in_type7">사용</label><!----></td>
+                                                    </tr><!----><!---->
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="line"></th>
+                                                    </tr>
+                                                </tbody>
+                                            </table><!---->
+                                        </div>
+                                    </div>
+                                    <div class="ly_loading" style="height: 624px; display: none;">
+                                        <div class="loading_area">
+                                        <img src="https://cafe.pstatic.net/img/manage/img_loading.gif" width="50" height="50" alt="로딩중" class="img_loading">
+                                        </div>
+                                    </div>
+                                </div>
+                                </form>
                             </div>
                         </div>
                         <!--  -->
