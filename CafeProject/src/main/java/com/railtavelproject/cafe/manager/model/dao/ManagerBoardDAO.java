@@ -31,6 +31,14 @@ public class ManagerBoardDAO {
 		return sqlSession.selectList("managerBoardmapper.selectMainCategory");
 	}
 
+	/** 게시판 삽입
+	 * @param mainCategoryNo
+	 * @param mainCategoryName
+	 * @param boardName
+	 * @param boardOrder
+	 * @param boardForm
+	 * @return
+	 */
 	public int insertBoardType(int mainCategoryNo, String mainCategoryName, String boardName, int boardOrder,
 			String boardForm) {
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -42,11 +50,40 @@ public class ManagerBoardDAO {
 		return sqlSession.insert("managerBoardmapper.insertBoardType", map);
 	}
 
+	/** 삽입한 게시판 들고오기
+	 * @param boardOrder
+	 * @param mainCategoryNo
+	 * @return
+	 */
 	public Board selectBoard(int boardOrder, int mainCategoryNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mainCategoryNo", mainCategoryNo); //게시판 메인 카테고리
 		map.put("boardOrder", boardOrder);
 		return sqlSession.selectOne("managerBoardmapper.selectBoard", map);
+	}
+
+	/** 메인 카테고리 삽입
+	 * @param mainCategoryAdd
+	 * @param mainCategoryNameAdd
+	 * @return
+	 */
+	public int insertMainCategoryBoardType(int mainCategoryAdd, String mainCategoryNameAdd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mainCategoryNo", mainCategoryAdd); //게시판 메인 카테고리
+		map.put("mainCategoryName", mainCategoryNameAdd);
+		return sqlSession.insert("managerBoardmapper.insertMainCategoryBoardType", map);
+	}
+
+	/** 삽입한 메인 카테고리 들고 오기
+	 * @param mainCategoryAdd
+	 * @param mainCategoryNameAdd
+	 * @return
+	 */
+	public Board selectMainCategory(int mainCategoryAdd, String mainCategoryNameAdd) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mainCategoryNo", mainCategoryAdd); //게시판 메인 카테고리
+		map.put("mainCategoryName", mainCategoryNameAdd);
+		return sqlSession.selectOne("managerBoardmapper.selectAddMainCategory", map);
 	}
 	
 }

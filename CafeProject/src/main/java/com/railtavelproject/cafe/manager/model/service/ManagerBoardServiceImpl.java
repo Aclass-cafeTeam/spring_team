@@ -59,6 +59,32 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return map;
 	}
 
+	/**메인 카테고리 삽입
+	 *
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public Map<String, Object> insertMainCategoryBoardType(int mainCategoryAdd, String mainCategoryNameAdd)
+			throws Exception {
+		String message ="";
+		Map<String, Object> map = new HashMap<String, Object>();
+		int result = dao.insertMainCategoryBoardType(mainCategoryAdd,mainCategoryNameAdd);
+		if(result > 0) {
+			message = "게시판 카테고리가 추가 되었습니다. 상세 설정해주세요.";
+			
+			
+			Board newBoard = dao.selectMainCategory(mainCategoryAdd,mainCategoryNameAdd);
+			map.put("message", message);
+			map.put("newBoard", newBoard);
+			
+		}else {
+			message = "게시판 카테고리 추가 실패했습니다.";
+			map.put("message", message);
+			throw new Exception("게시판 카테고리 추가에 실패");
+		}
+		return map;
+	}
+
 	/*
 	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {
 	 * 

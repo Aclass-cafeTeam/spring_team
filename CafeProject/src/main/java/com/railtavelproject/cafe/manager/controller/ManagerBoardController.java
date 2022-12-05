@@ -41,6 +41,23 @@ public class ManagerBoardController {
 		
 		return new Gson().toJson(map);
 	}
+	
+	
+	@PostMapping("/insertMainCategoryBoardType")
+	@ResponseBody
+	public String insertMainCategoryBoardType(
+			@RequestParam(value= "mainCategoryAdd") int mainCategoryAdd,          //카테고리 순서 +1
+			@RequestParam(value= "mainCategoryNameAdd") String mainCategoryNameAdd   //카테고리 이름
+			) throws Exception{
+		
+		
+		
+		Map<String, Object> map = service.insertMainCategoryBoardType(mainCategoryAdd+1,mainCategoryNameAdd);
+	
+		
+		
+		return new Gson().toJson(map);
+	}
 }
 
 

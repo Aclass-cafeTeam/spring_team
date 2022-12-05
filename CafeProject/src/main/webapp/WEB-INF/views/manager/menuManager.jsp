@@ -141,14 +141,14 @@
                             <!-- 더하기 부분 -->
                             <div class="btn_add" id="plusBtn">
                                 <a href="#" id="BoardPlusBtn">추가</a>
-                                <input type="hidden" id = "mainCategoryNameIn" name="mainCategoryNameIn" value=""><!-- 메인 카테고리 추가 -->
-                                <input type="hidden" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
-                                <input type="hidden" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
-                                <input type="hidden" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
-                                <input type="hidden" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
-                                <input type="hidden" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
-                                <input type="hidden" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
-                                <input type="hidden" id="boardCodeIn" name="boardCodeIn" value=""><!-- 게시판이 순서-->
+                                <input type="hidden" class="valueRemove" id = "mainCategoryNameIn" name="mainCategoryNameIn" value=""><!-- 메인 카테고리 추가 -->
+                                <input type="hidden" class="valueRemove" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
+                                <input type="hidden" class="valueRemove" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" class="valueRemove" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" class="valueRemov2" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
+                                <input type="hidden" class="valueRemov2" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리 이름 -->
+                                <input type="hidden" class="valueRemove" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
+                                <input type="hidden" class="valueRemove" id="boardCodeIn" name="boardCodeIn" value=""><!-- 게시판이 순서-->
                             </div>
                             <div class="edit_set_group">
                                 <!-- 게시판 순서 -->
@@ -239,6 +239,7 @@
                                     </ul>
                                 </div>
                                 <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
+                                <input type="hidden" id="MainCategoryUpdate" name="MainCategoryUpdate" value="">
                                     <div class="set_box">
                                         <h3 class="set_tit">통합게시판</h3><%-- 통합게시판 --%>
                                         <ul class="set_lst_type">
@@ -298,6 +299,34 @@
                                             </table><!---->
                                         </div>
                                     </div>
+
+                                    <%-- 그룹 --%>
+                                    <div class="set_box">
+                                        <h3 class="set_ti">그룹</h3><%-- 통합게시판 --%>
+                                        <ul class="set_lst_type">
+                                            <li>- 게시판을 한 그룹으로 묶을 때 사용합니다.</li>
+                                        </ul>
+                                        <div class="detail_are">
+                                            <table border="1" cellspacing="0" width="100%" summary="메뉴관리 설정">
+                                                <caption style="display: none;">메뉴관리 설정 정보</caption>
+                                                <colgroup><col width="130"><col width="*"></colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <th>그룹제목</th>
+                                                        <td>
+                                                            <input type="text" class="ipt_type" id=""><!---->
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row" colspan="2" class="line"></th>
+                                                    </tr>
+                                                    
+                                                </tbody>
+                                            </table><!---->
+                                        </div>
+                                    </div>
+                                    <%--  --%>
+
                                     <div class="ly_loading" style="height: 624px; display: none;">
                                         <div class="loading_area">
                                         <img src="https://cafe.pstatic.net/img/manage/img_loading.gif" width="50" height="50" alt="로딩중" class="img_loading">
