@@ -23,7 +23,8 @@ public class BoardController {
 	@GetMapping("/board/{boardCode}")
 	public String selectBoardList(@PathVariable("boardCode") int boardCode,
 			Model model,
-			@RequestParam(value="cp", required = false, defaultValue="1") int cp
+			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
+			@RequestParam Map<String, Object> pm
 			) {
 		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
@@ -31,6 +32,16 @@ public class BoardController {
 		
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
+
+		if(pm.get("key") == null) { // 검색이 아닌 경우
+			Map<String, Object> search = service.selectBoardList(boardCode, cp);
+			model.addAttribute("search", search);
+			
+		} else { // 검색인 경우
+			pm.put("boardCode", boardCode);
+			Map<String, Object> search = service.selectBoardList(pm, cp);
+			model.addAttribute("search", search);
+		}		
 		
 		return "board/boardList";
 	}
@@ -61,7 +72,7 @@ public class BoardController {
 		return "board/boardBestList";
 	}
 	
-	
+//	// 검색 목록 조회
 //	@GetMapping("/board/{boardCode}")
 //	public String selectBoardList(@PathVariable("boardCode") int boardCode,
 //			Model model,

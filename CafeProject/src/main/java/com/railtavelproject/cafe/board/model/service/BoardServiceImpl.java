@@ -88,21 +88,22 @@ public class BoardServiceImpl implements BoardService{
 		return best;
 	}
 
-//	@Override
-//	public Map<String, Object> selectBoardList(Map<String, Object> pm, int cp) {
-//		
-//		int listCount = dao.getListCount(pm);
-//		
-//		Pagination pagination = new Pagination(listCount, cp);
-//		
-//		List<Board> boardList = dao.selectBoardList(pagination, pm);
-//		
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put("pagination", pagination);
-//		map.put("boardList", boardList);
-//		
-//		return map;
-//	}
+	// 검색 목록 조회
+	@Override
+	public Map<String, Object> selectBoardList(Map<String, Object> pm, int cp) {
+		
+		int listCount = dao.getListCount(pm);
+		
+		Pagination pagination = new Pagination(listCount, cp);
+		
+		List<Board> boardList = dao.selectBoardList(pagination, pm);
+		
+		Map<String, Object> search = new HashMap<String, Object>();
+		search.put("pagination", pagination);
+		search.put("boardList", boardList);
+		
+		return search;
+	}
 
 
 
