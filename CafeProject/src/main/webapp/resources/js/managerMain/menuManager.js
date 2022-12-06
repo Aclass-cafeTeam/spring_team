@@ -99,16 +99,19 @@ $(".ge_v1click").click(function() {
     document.getElementById("boardCodeIn").value ="";
     //document.getElementById("settingboardName").readOnly = true;
     document.getElementById("settingboardName").disabled = true;
+    document.getElementById("inputDisabled").value =true;
     //document.getElementById("boardCodeUpdate").value =
     
   }else{
     document.getElementById("settingboardName").disabled = false;
+    document.getElementById("inputDisabled").value =false;
   }
   const thisID = this.id;
     document.getElementById("boardCodeUpdate").value = this.name;
     document.getElementById("MainCategoryUpdate").value = "";
     //document.getElementById("boardCodeIn").value;
     document.getElementById("settingboardName").value = this.innerText;
+    document.getElementById("beginboardName").value = this.innerText;
     document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNo"+thisID).value;
                 
     if(document.getElementById("boardLikeYN"+thisID).value == 'Y'){
@@ -533,3 +536,44 @@ $('#BoardPlusBtn').click(function() {
 
 
 });
+
+document.getElementById("edt2_delete_button").addEventListener('click',function(){
+
+  if(document.getElementById("boardCodeUpdate").value == ''){
+    document.getElementById("mainCategoryNameupdateIN").value = document.getElementById("mainCategoryNameIn2").value;
+    document.getElementById("MainCategoryUpdate").value = document.getElementById("mainCategoryNameIn").value;
+  
+    //document.forms["boardUpdateFrm"].reset();
+  }else{
+
+    if(document.getElementById("inputDisabled").value =='true'){
+    
+ 
+      //document.getElementById("settingboardName").readOnly = true;
+      document.getElementById("settingboardName").disabled = true;
+      //document.getElementById("boardCodeUpdate").value =
+      
+    }else{
+      document.getElementById("settingboardName").disabled = false;
+    }
+    const thisID = document.getElementById("boardCodeUpdate").value;
+      document.getElementById("settingboardName").value =  document.getElementById("beginboardName").value;
+      document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNoboard"+thisID).value;
+                  
+      if(document.getElementById("boardLikeYNboard"+thisID).value == 'Y'){
+              $("#in_type6").prop("checked", true);
+      }else{
+              $("#in_type6").prop("checked", false);
+      }
+  
+      if(document.getElementById("titleTagYNboard"+thisID).value == 'Y'){
+          $("#in_type7").prop("checked", true);
+      }else{
+          $("#in_type7").prop("checked", false);
+      }
+
+  }
+
+
+})
+

@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                                 <!-- 에디터 부분 -->
-                                <form>
+                                <form action ="" method="get" name="boardUpdateFrm">
                                 
                                 <div class="set_area">
                                 <div class="set_box set_boxBasic">
@@ -245,6 +245,8 @@
                                 </div>
                                 <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
                                 <input type="hidden" id="MainCategoryUpdate" name="MainCategoryUpdate" value="">
+                                <input type="hidden" id="inputDisabled" name="inputDisabled" value="">
+                                <input type="hidden" id="beginboardName" name="beginboardName" value="">
                                     <div class="set_box">
                                         <h3 class="set_tit">통합게시판</h3>
                                         <ul class="set_lst_type">
@@ -344,10 +346,10 @@
                         <!--  -->
                     </div>
                     <div class="edit_btn_box">
-                        <a href="#" class="btn_type_edt2">
+                        <a href="#" class="btn_type_edt2" id="edt2_delete_button">
                             <strong>취소</strong>
                         </a>
-                        <a href="#" class="btn_type_edt">
+                        <a href="#" class="btn_type_edt" id="edt2_save_button">
                             <strong>저장하기</strong>
                         </a>
                     </div>
