@@ -33,4 +33,5 @@ public class IntroBoard {
 	
 	private String commentContent;
 	
+    private String thumbnail; // 썸네일
 }

@@ -18,6 +18,7 @@
 	      <result property="memberNo" column="MEMBER_NO"/>
 	      <result property="likeCount" column="LIKE_COUNT"/>
 	      <result property="loginDate" column="LOGIN_DATE"/>
+	      <result property="thumbnail" column="THUMBNAIL"/>
 		</resultMap>
 
 		
@@ -50,6 +51,12 @@
 							(SELECT COUNT(*) FROM "COMMENT" C
 							WHERE C.BOARD_NO =B.BOARD_NO
 							AND COMMENT_DEL_FL='N') COMMENT_COUNT
+			,
+		  (SELECT IMG_PATH || IMG_RENAME 
+		  FROM (SELECT IMG_PATH, IMG_RENAME FROM BOARD_IMG I
+		  WHERE I.BOARD_NO = B.BOARD_NO
+		  ORDER BY IMG_NO) 
+		  WHERE ROWNUM = 1) THUMBNAIL
 			FROM BOARD B
 			JOIN MEMBER USING(MEMBER_NO)
 			WHERE BOARD_DEL_FL = 'N'
@@ -76,22 +83,22 @@
 		
 		<!-- 하루전 댓글 랭킹 -->
 		<select id="commentRank" parameterType="_int" resultMap="introBoard_rm">
-					SELECT A.*
-					FROM (SELECT MEMBER_NICKNAME
-					MEMBER_NO,COUNT(C.MEMBER_NO) COMMENT_COUNT
-					FROM "MEMBER" M
-					JOIN "COMMENT" C ON M.MEMBER_NO = C.MEMBER_NO
-					WHERE TO_CHAR(C.C_CREATE_DATE, 'YYYYMMDD' ) >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
-					GROUP BY M.MEMBER_NO, M.MEMBER_NICKNAME ) A
-					WHERE A.COMMENT_COUNT > 0
-					ORDER BY COMMENT_COUNT DESC
+				SELECT A.*
+				FROM (SELECT MEMBER_NICKNAME, M.MEMBER_NO,
+				COUNT(C.MEMBER_NO) COMMENT_COUNT
+				FROM "MEMBER" M
+				JOIN "COMMENT" C ON M.MEMBER_NO = C.MEMBER_NO
+				WHERE TO_CHAR(C.C_CREATE_DATE, 'YYYYMMDD' ) >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
+				GROUP BY M.MEMBER_NO, M.MEMBER_NICKNAME ) A
+				WHERE A.COMMENT_COUNT > 0
+				ORDER BY COMMENT_COUNT DESC
 		</select>
 		
 		<!-- 하루전 게시글 랭킹 -->
 		<select id="boardRank" parameterType="_int" resultMap="introBoard_rm">
 				SELECT A.*
-				FROM (SELECT MEMBER_NICKNAME
-				MEMBER_NO,COUNT(B.MEMBER_NO) BOARD_COUNT
+				FROM (SELECT MEMBER_NICKNAME, M.MEMBER_NO,
+				COUNT(B.MEMBER_NO) BOARD_COUNT
 				FROM "MEMBER" M
 				JOIN "BOARD" B ON M.MEMBER_NO = B.MEMBER_NO
 				WHERE TO_CHAR(B.B_CREATE_DATE, 'YYYYMMDD' ) >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
@@ -103,8 +110,8 @@
 		<!-- 멤버랭킹 -로그인 -->
 		<select id="loginRank" parameterType="_int" resultMap="introBoard_rm">
 				SELECT A.*
-				FROM (SELECT MEMBER_NICKNAME
-				MEMBER_NO,COUNT(L.MEMBER_NO) LOGIN_COUNT
+				FROM (SELECT MEMBER_NICKNAME, M.MEMBER_NO,
+				COUNT(L.MEMBER_NO) LOGIN_COUNT
 				FROM "MEMBER" M
 				JOIN "LOGIN_HISTORY" L ON M.MEMBER_NO = L.MEMBER_NO
 				WHERE TO_CHAR(L.LOGIN_DATE, 'YYYYMMDD' ) >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
@@ -124,11 +131,11 @@
 		<select id="boardLikeRank" parameterType="_int" resultMap="introBoard_rm">
 				SELECT A.*
 				FROM(
-				SELECT BOARD_TITLE, COUNT(L.MEMBER_NO) LIKE_COUNT
+				SELECT BOARD_TITLE, B.BOARD_NO, B.BOARD_CODE, COUNT(L.MEMBER_NO) LIKE_COUNT
 				FROM "BOARD" B
 				JOIN "BOARD_LIKE" L ON B.BOARD_NO = L.BOARD_NO
 				WHERE TO_CHAR(B.B_CREATE_DATE, 'YYYYMMDD') >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
-				GROUP BY B.BOARD_TITLE)A
+				GROUP BY B.BOARD_TITLE, B.BOARD_NO, B.BOARD_CODE)A
 				WHERE A.LIKE_COUNT > 0
 				ORDER BY LIKE_COUNT DESC
 		</select>
@@ -137,19 +144,19 @@
 		<select id="boardCommentRank" parameterType="_int" resultMap="introBoard_rm">
 				SELECT A.*
 				FROM(
-				SELECT BOARD_TITLE, COUNT(C.COMMENT_NO) COMMENT_COUNT
+				SELECT BOARD_TITLE, B.BOARD_NO, B.BOARD_CODE, COUNT(C.COMMENT_NO) COMMENT_COUNT
 				FROM "BOARD" B
 				JOIN "COMMENT" C ON C.BOARD_NO = B.BOARD_NO
 				WHERE TO_CHAR(B.B_CREATE_DATE, 'YYYYMMDD') >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
 				AND TO_CHAR(C.C_CREATE_DATE, 'YYYYMMDD') >= TO_CHAR( SYSDATE-7, 'YYYYMMDD')
-				GROUP BY B.BOARD_TITLE)A
+				GROUP BY B.BOARD_TITLE, B.BOARD_NO, B.BOARD_CODE)A
 				WHERE A.COMMENT_COUNT > 0
 				ORDER BY COMMENT_COUNT DESC
 		</select>
 		
 		<!-- 멤버 소식 - 방문 -->
 		<select id="memberVisit" parameterType="_int" resultMap="introBoard_rm">
-				SELECT M.MEMBER_NICKNAME, L.LOGIN_DATE
+				SELECT M.MEMBER_NICKNAME, M.MEMBER_NO, L.LOGIN_DATE
 				FROM LOGIN_HISTORY L
 				JOIN "MEMBER" M ON L.MEMBER_NO = M.MEMBER_NO
 				WHERE L.LOGIN_DATE = (SELECT MAX(LL.LOGIN_DATE)
@@ -160,7 +167,7 @@
 		
 		<!-- 멤버 소식 - 신입 -->
 		<select id="memberNew" parameterType="_int" resultMap="introBoard_rm">
-				SELECT MEMBER_NICKNAME, ENROLL_DATE
+				SELECT *
 				FROM "MEMBER"
 				ORDER BY ENROLL_DATE DESC		
 		</select>
@@ -176,9 +183,10 @@
  		<!-- 최근 게시글/댓글 - 댓글 -->
  		<select id="newComment" parameterType="_int" resultMap="introBoard_rm">
 				SELECT *
-				FROM "COMMENT"
+				FROM "COMMENT" C
+				JOIN "BOARD" B ON(B.BOARD_NO=C.BOARD_NO)
 				WHERE COMMENT_DEL_FL = 'N'
-				ORDER BY C_CREATE_DATE DESC 		
+				ORDER BY C_CREATE_DATE DESC	
  		</select>
  
 </mapper>
