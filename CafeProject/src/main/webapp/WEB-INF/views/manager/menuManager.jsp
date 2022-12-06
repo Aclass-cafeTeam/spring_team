@@ -143,8 +143,8 @@
                                 <a href="#" id="BoardPlusBtn">추가</a>
                                 <input type="hidden" class="valueRemove" id = "mainCategoryNameIn" name="mainCategoryNameIn" value=""><!-- 메인 카테고리 추가 -->
                                 <input type="hidden" class="valueRemove" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
-                                <input type="hidden" class="valueRemove" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
-                                <input type="hidden" class="valueRemove" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" class="valueRemove valueRemove3" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
+                                <input type="hidden" class="valueRemove valueRemove3" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" class="valueRemove2" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
                                 <input type="hidden" class="valueRemove2" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리 이름 -->
                                 <input type="hidden" class="valueRemove" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
@@ -177,6 +177,9 @@
                                                             <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <li data-v-bd0068e8="" class="h_menu_tit"><c:if test="${mainVar.mainCategoryNo == 1}"><a></c:if><c:if test="${mainVar.mainCategoryNo > 1}"><a class="mainCategoryClick"></c:if><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo} mainCategory${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
+                                                            <li class="" style="height: 0px; width: 0px;">
+                                                                <a class="" id="" title="0" name="0"><span></span></a>
+                                                            </li>
                                                         <c:forEach items="${boardType}" var="var">
                                                             <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
                                                                 <input type="hidden" id="varboardCodeboard${var.boardCode}" name="varboardCode" value="${var.boardCode}">

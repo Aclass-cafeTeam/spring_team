@@ -57,6 +57,10 @@ $(".mainCategoryOn a").click(function() {
 
   document.getElementById("boardCodeIn").value= this.name;
 
+  for(i=0; i<$(".valueRemove2").length;i++){
+    $('.valueRemove2')[i].value ="";
+  }
+
 });
 
 /* 메인 카테고리 클릭 하면 a태그 class = mainCategoryClick */
@@ -155,17 +159,36 @@ $('#BoardPlusBtn').click(function() {
           span.classList.add("mainCategory"+result.newBoard.mainCategoryNo);
           span.innerText = "■ " + result.newBoard.mainCategoryName;
 
+          const li2 = document.createElement("li");
+          li2.setAttribute("class","");
+          li2.setAttribute("style","height: 0px; width: 0px;");
+          const a2 = document.createElement("a");
+          a2.setAttribute("class","");
+          a2.setAttribute("id","");
+          a2.setAttribute("title","0");
+          a2.setAttribute("name","0");
+          const span2 = document.createElement("span");
+
+
           document.getElementById("borderNone").append(ul);
-          ul.append(li)
+          ul.append(li);
+          ul.append(li2);
           li.append(a);
           a.append(span);
+          li2.append(a2);
+          a2.append(span2);
 
           //<ul id="mainCategory.4" class="mainCategory mainCategoryOn" title="갤러리 자료" number="4"></ul>
           /* <li data-v-bd0068e8="" class="h_menu_tit">
                 <a>
                 <span data-v-bd0068e8="" title="그룹 제목" id="여행 정보" class="2">■ 여행 정보</span>
                 </a>
-            </li> */
+            </li> 
+
+            <li class="" style="height: 0px; width: 0px;">
+                <a class="" id="" title="0" name="0"><span></span></a>
+            </li>
+            */
 
 
           $(".mainCategoryOn a").click(function() {
@@ -187,6 +210,10 @@ $('#BoardPlusBtn').click(function() {
             document.getElementById("boardOrderIn").value = boardAddOrder;
           
             document.getElementById("boardCodeIn").value= this.name;
+            
+            for(i=0; i<$(".valueRemove2").length;i++){
+              $('.valueRemove2')[i].value ="";
+            }
           
           });
 
@@ -202,6 +229,33 @@ $('#BoardPlusBtn').click(function() {
            
           });
 
+          $(".ge_v1click").click(function() {
+            const thisID = this.id;
+              document.getElementById("boardCodeUpdate").value = document.getElementById("boardCodeIn").value;
+              document.getElementById("settingboardName").value = this.innerText;
+              document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNo"+thisID).value;
+                          
+              if(document.getElementById("boardLikeYN"+thisID).value == 'Y'){
+                      $("#in_type6").prop("checked", true);
+              }else{
+                      $("#in_type6").prop("checked", false);
+              }
+          
+              if(document.getElementById("titleTagYN"+thisID).value == 'Y'){
+                  $("#in_type7").prop("checked", true);
+              }else{
+                  $("#in_type7").prop("checked", false);
+              }
+          
+              document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+              document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+              document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
+          
+              //$('.valueRemove').value ="";
+              //id="titleTagYNboard${var.boardCode}"
+             //boardLikeYNboard${var.boardCode}
+          });
+
 
           document.getElementById("mainCategoryNameupdateIN").value = result.newBoard.mainCategoryName;
           document.getElementById("MainCategoryUpdate").value = result.newBoard.mainCategoryNo;
@@ -212,6 +266,10 @@ $('#BoardPlusBtn').click(function() {
 
           for(i=0; i<$(".valueRemove2").length;i++){
             $('.valueRemove2')[i].value ="";
+          }
+
+          for(i=0; i<$(".valueRemove3").length;i++){
+            $('.valueRemove3')[i].value ="";
           }
 
         }else{
@@ -277,7 +335,7 @@ $('#BoardPlusBtn').click(function() {
 
                 const input5 = document.createElement("input");
                 input5.setAttribute("type","hidden");
-                input5.id = "boardMemberLevelNoboard" + result.newBoard.boardMemberLevelNo;
+                input5.id = "boardMemberLevelNoboard" + result.newBoard.boardCode;
                 input5.setAttribute("name","boardMemberLevelNo");
                 input5.setAttribute("value",result.newBoard.boardMemberLevelNo);
                 /* 인풋태그 5개*/
@@ -287,7 +345,7 @@ $('#BoardPlusBtn').click(function() {
                 const a = document.createElement("a");
                 li.setAttribute("class","");
                 a.id = "board" + result.newBoard.boardCode;//board${var.boardCode}
-                a.setAttribute("title", result.newBoard.boardOrder);
+                a.setAttribute("title", result.newBoard.boardOrder);  // 보드 순서 잘하기!
                 a.setAttribute("class", result.newBoard.boardForm);
                 a.classList.add("ge_v1click");
                 a.classList.add("ge_v1");
@@ -311,6 +369,7 @@ $('#BoardPlusBtn').click(function() {
                 document.getElementById(mainCategoryNameIn).append(li);
                 li.append(a);
                 a.append(span);
+                document.getElementById("boardOrderIn").value = result.newBoard.boardOrder; //순서 +1시키는 코드
 
                 $(a).click(function() {
                   $('.edit_btn_area li').addClass("on");
@@ -353,7 +412,7 @@ $('#BoardPlusBtn').click(function() {
                     document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
                     document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
                     document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
-                
+                    
                     //$('.valueRemove').value ="";
                     //id="titleTagYNboard${var.boardCode}"
                    //boardLikeYNboard${var.boardCode}
@@ -380,10 +439,10 @@ $('#BoardPlusBtn').click(function() {
                 document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
                 document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
 
-                for(i=0; i<$(".valueRemove").length;i++){
+                /* for(i=0; i<$(".valueRemove").length;i++){
                   $('.valueRemove')[i].value ="";
                 }
-                
+                 */
 
 
               }else{
