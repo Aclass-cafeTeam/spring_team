@@ -210,16 +210,13 @@ public class BoardCrudController {
 			) throws Exception {
 		
 		 
-		// 1. board 객체에 boardCode 세팅
+		// board 객체에 boardCode 세팅
 		board.setBoardCode(boardCode);
+		board.setBoardNo(boardNo);
+		// System.out.println(board);
 		
-		
-		// 2. 이미지 저장 경로 얻어오기
-		String webPath = "/resources/images/board/";
-		String folderPath = session.getServletContext().getRealPath(webPath); // 서버 내에서 진짜 webPath 경로 반영
-		
-		// 3. 게시글 수정 서비스 호출
-		int result = service.boardUpdate(board, webPath, folderPath);
+		// 게시글 수정 서비스 호출
+		int result = service.boardUpdate(board);
 		
 		// 4. 서비스 결과에 따른 응답 제어
 		String path = null;
@@ -291,5 +288,48 @@ public class BoardCrudController {
 	}
 	
 	
+	// 임시등록에서 하나 조회
+	@GetMapping("/board/{boardCode}/{boardNo}/tempPost")
+	public String writeTempPost (	
+			@PathVariable("boardCode") int boardCode,
+			@PathVariable("boardNo") int boardNo,
+			Model model) {
+
+		// 게시글 번호를 이용한 게시글 내용 상세 조회
+		Board board = service.boardDetail(boardNo);
+		model.addAttribute("board", board);
+		
+		return "board/updateBoard";
+	}
+	
+	
+	
+	// 임시등록-> 일반 게시글로 변동
+	@PostMapping("/board/{boardCode}/{boardNo}/tempPost")
+	public String updateTempPost(@RequestHeader("referer") String referer,
+			@PathVariable int boardCode, @PathVariable int boardNo,
+			RedirectAttributes ra) {
+		
+		System.out.println(boardNo);
+
+		// 게시글 번호를 이용해서 게시글 수정 -> BOARD_DEL_FL = 'N' (UPDATE)
+		int result = service.updateTempPost(boardNo);
+		
+		String message = null;
+		String path = null;
+						
+		if( result > 0 ) { // 게시글 삭제 성공 시
+			message = "게시글이 정상적으로 등록되었습니다.";
+			path = "/board/" + boardCode +"/"+ boardNo;
+		
+		} else { // 게시글 삭제 실패 시
+			message = "다시 확인해주세요.";
+			path = referer;
+		}
+		
+		ra.addFlashAttribute(message);		
+
+		return "redirect:" + path;
+	}
 	
 }

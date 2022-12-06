@@ -82,7 +82,7 @@
                                     <tr>
                                         <td class="strong">공지</td>
                                         <td>
-                                            <a class="strong-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <a class="strong-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
                                             <c:if test="${not empty board.titleTagName}">
                                             <span>[${board.titleTagName}]</span>
                                             </c:if>

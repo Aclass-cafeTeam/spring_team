@@ -32,6 +32,7 @@
 		FROM BOARD_TYPE
 		LEFT JOIN MEMBER USING(MEMBER_LEVEL_NO)
 		WHERE MEMBER_LEVEL_NO BETWEEN 2 AND #{memberLevelNo}
+		AND TYPE_DEL_FL = 'N'
 		OR #{authorityNo} IN (0, 1)
 		ORDER BY BOARD_CODE
 	</select>
@@ -82,7 +83,7 @@
  		
  		<!-- 게시글 상세 조회(수정) -->
 		<select id="boardDetail" resultMap="board_rm">
-			SELECT BOARD_CODE, BOARD_NO, BOARD_NAME, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT
+			SELECT BOARD_CODE, BOARD_NO, BOARD_NAME, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FORM
 			FROM BOARD 
 			JOIN TITLE_TAG USING (TITLE_TAG_NO)
 			JOIN BOARD_TYPE USING (BOARD_CODE)
@@ -125,10 +126,8 @@
  		
  		<!-- 임시등록 전체 삭제 -->
  		<update id="deleteTempAll">
-	 		UPDATE BOARD 
-			SET BOARD_DEL_FL = 'Y'
-			WHERE MEMBER_NO = #{memberNo}
-			AND BOARD_DEL_FL = 'T'
+	 		UPDATE BOARD SET BOARD_DEL_FL = 'Y'
+			WHERE MEMBER_NO = #{memberNo} AND BOARD_DEL_FL = 'T'
  		</update>
  			
  			
@@ -151,6 +150,21 @@
 			DELETE FROM BOARD_IMG 
 			WHERE BOARD_NO = #{boardNo}	
 		</delete>
- 		
+		
+		
+		<!-- 게시글 수정 -->
+		<update id="boardUpdate">
+			UPDATE BOARD SET
+			BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}
+			WHERE BOARD_NO = #{boardNo}
+		</update>
+		
+		
+		<!-- 임시등록 -> 일반 게시글로 변동 -->
+		<update id="updateTempPost">
+			UPDATE BOARD SET BOARD_DEL_FL = 'N'
+			WHERE BOARD_NO = #{boardNo}
+			AND BOARD_DEL_FL = 'T'
+		</update>
 
 </mapper>

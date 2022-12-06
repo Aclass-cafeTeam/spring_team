@@ -163,5 +163,6 @@
     </script>
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
+    <script src="/resources/js/board/tempPost.js"></script>
 </body>
 </html>
