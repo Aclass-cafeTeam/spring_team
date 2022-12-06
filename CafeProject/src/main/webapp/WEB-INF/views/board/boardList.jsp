@@ -185,10 +185,12 @@
                     </table>
                     <div>
                         <div class="writing">
-                            <!-- 로그인 상태인 경우에만 글쓰기 버튼 노출 -->
-                            <c:if test="${not empty loginMember}">
+                        <!-- 로그인 상태인 경우에만 글쓰기 버튼 노출 -->
+                        <c:if test="${not empty loginMember}">
+                            <c:if test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardInfo.memberLevelNo)}">
                                 <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
                             </c:if>
+                        </c:if>
                         </div>
                     </div>
                     <div>&nbsp</div>
