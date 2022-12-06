@@ -119,6 +119,30 @@ public class IntroServiceImpl implements IntroService{
 		int memberCount = dao.memberCount();
 		return memberCount;
 	}
+
+	// 게시글 랭킹-좋아요
+	@Override
+	public Map<String, Object> boardLike() {
+		List<IntroBoard> boardLikeList = dao.boardLike();
+		
+		Map<String, Object> boardLike = new HashMap<String, Object>();
+		boardLike.put("boardLikeList", boardLikeList);
+				
+		return boardLike;
+	}
+
+	// 게시글 랭킹-댓글
+	@Override
+	public Map<String, Object> boardComment() {
+		List<IntroBoard> boardCommentList = dao.boardComment();
+		
+		Map<String, Object> boardComment = new HashMap<String, Object>();
+		boardComment.put("boardCommentList", boardCommentList);
+				
+		return boardComment;
+	}
+	
+	
 	
 	
 	
