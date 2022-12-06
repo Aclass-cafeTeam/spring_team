@@ -116,5 +116,29 @@ public class ManagerBoardDAO {
 		map.put("mainCategoryName", mainCategoryName);
 		return sqlSession.update("managerBoardmapper.updateMainCategory", map);
 	}
+
+	/** 게시판 삭제--update로 delFN를 Y로
+	 * @param boardCode
+	 */
+	public int deleteBoardType(int boardCode) {
+		return sqlSession.update("managerBoardmapper.deleteBoardType",boardCode);
+	}
+
+	/**카테고리 삭제 --update로 delFN를 Y로
+	 * 카테고리 안에 있는 게시판도 --update로 delFN를 Y로
+	 * @param mainCategoryNo
+	 */
+	public int deletemainCategory(int mainCategoryNo) {
+		return sqlSession.update("managerBoardmapper.deletemainCategory",mainCategoryNo); 
+	}
+
+	/** 카테고리 안에 있는 게시판도 --update로 delFN를 Y로 위에 카테고리 안에 있는 게시판
+	 * @param mainCategoryNo
+	 * @return
+	 */
+	public int deletemainCategoryBoardType(int mainCategoryNo) {
+		
+		return sqlSession.update("managerBoardmapper.deletemainCategoryBoardType",mainCategoryNo); 
+	}
 	
 }

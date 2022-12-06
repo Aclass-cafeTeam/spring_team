@@ -19,5 +19,7 @@ public interface ManagerBoardService {
 	int updateBoarddetail(int boardCode, String mainCategoryUpdate, String mainCategoryName, String boardName,
 			int boardMemberLevelNo, String boardLikeYN, String typeDelFL);
 
+	String deleteBoardType(int boardCode, int mainCategoryNo) throws Exception;
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }

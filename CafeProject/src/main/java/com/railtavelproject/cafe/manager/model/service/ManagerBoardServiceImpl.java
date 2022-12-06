@@ -123,6 +123,32 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		
 		return result;
 	}
+	
+	@Transactional(rollbackFor = Exception.class)
+	@Override
+	public String deleteBoardType(int boardCode, int mainCategoryNo) throws Exception {
+		
+		String message = "";
+		int result = 0;
+		
+		if(boardCode != -1) {
+			result = dao.deleteBoardType(boardCode);
+		}else {
+			int result2 = dao.deletemainCategoryBoardType(mainCategoryNo); //메인 카테고리에 있는 게시판 삭제
+			System.out.println("result2:" +result2);
+			result = dao.deletemainCategory(mainCategoryNo);
+		}
+		
+		
+		if(result > 0) {
+			message = "삭제되었습니다.";
+		}else {
+			message = "삭제 실패되었습니다.";
+			throw new Exception("삭제 실패");
+		}
+		
+		return message;
+	}
 
 	/*
 	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {

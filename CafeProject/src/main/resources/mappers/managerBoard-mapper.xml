@@ -77,4 +77,14 @@
 	MEMBER_LEVEL_NO = #{boardMemberLevelNo}
 	WHERE BOARD_CODE = #{boardCode}
     </update>
+    
+    <!-- 게시판 삭제 -->
+    <update id="deleteBoardType" parameterType="_int">
+    </update>
+    <!-- 메인 카테고리 삭제 -->
+    <update id="deletemainCategory" parameterType="_int">
+    </update>
+    <!-- 메인 카테고리 안에 게시판 삭제 -->
+    <update id="deletemainCategoryBoardType" parameterType="_int">
+    </update>
 </mapper>
