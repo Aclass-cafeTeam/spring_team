@@ -25,9 +25,6 @@ public class BoardController {
 	@Autowired
 	private BoardDetailService dService;
 	
-	@Autowired
-	private BoardDetailService dService;
-	
 	// 특정 게시판 목록 조회
 	@GetMapping("/board/{boardCode}")
 	public String selectBoardList(@PathVariable("boardCode") int boardCode,

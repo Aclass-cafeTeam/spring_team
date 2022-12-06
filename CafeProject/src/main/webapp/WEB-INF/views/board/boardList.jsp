@@ -34,7 +34,6 @@
 
             <%-- 게시판 앨범형인 경우 --%>
             <c:if test="${boardInfo.boardForm=='A'}">
-                앨범형 화면 만드는중
                 <jsp:include page="/WEB-INF/views/board/albumBoard.jsp"/>
             </c:if>
             <%-- 게시판 목록형인경우 --%>

@@ -4,6 +4,8 @@
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="boardList" value="${img.boardList}" />
 <c:set var="pagination" value="${img.pagination}" />
+<c:set var="noticeList" value="${notice.noticeList}" />
+<c:set var="allNoticeList" value="${allNotice.allNoticeList}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +21,58 @@
 </head>
 <body>
     <main>
+    <section class="article">
+                <div class="board-name">${boardList[0].boardName}</div>
+                <p class="board-start"></p>
+
+                    <div class="hidden">
+                        <input type="checkbox" name="hidden" id="noticeHide">
+                        <label for="hidden" id="noticeHide">공지 숨기기</label>
+                    </div>
+            
+            <!-- 7행 14열 -->
+            <div>
+                <table board="1" class="table">
+
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th class="empty"></th>
+                            <th colspan="2" class="title">제목</th>
+                            <th class="th-writer">작성자</th>
+                            <th class="th-date">작성일</th>
+                            <th class="th-hits">조회</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <c:forEach var="board" items="${noticeList}">
+                        <tr>
+                            <td>&nbsp</td>
+                            <td class="strong">공지</td>
+                            <td><a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                            <!-- 말머리가 있을 경우 -->
+                            <c:if test="${not empty board.titleTagName}">
+                                <c:if test="${board.titleTagName ne '선택 안 함'}"> 
+                                    <span>[${board.titleTagName}]</span>
+                                </c:if>
+                            </c:if>
+                            ${board.boardTitle}</a>
+                            <c:if test="${board.commentCount!=0}">
+                            <a href="#" class="comment">[${board.commentCount}]</a>
+                            </c:if>
+                            </td>
+                            <td></td>
+                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                            <td class="reporting-date">${board.boardCreateDate}</td>
+                            <td class="hits">${board.readCount}</td>
+                        </tr>
+                        </c:forEach>
+                    </tbody>
+
+                </table>
+            </div>
+            
             <%-- 앨범형 게시판 내용 --%>
             <ul class="ul">
                 <c:forEach var="board" items="${boardList}">
