@@ -172,6 +172,5 @@
     <script src="/resources/js/main/sideMenu.js"></script>
     <script src="/resources/js/board/boardDetail.js"></script>
     <script src="/resources/js/board/comment.js"></script>
-    <script src="/resources/js/board/boardUpdate.js"></script><!-- 게시글 수정/삭제 -->
 </body>
 </html>
