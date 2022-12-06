@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.service.BoardService;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
@@ -18,6 +20,8 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private BoardDetailService dService;
 	
 	// 특정 게시판 목록 조회
 	@GetMapping("/board/{boardCode}")
@@ -26,6 +30,10 @@ public class BoardController {
 			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
 			@RequestParam Map<String, Object> pm
 			) {
+		
+		// 특정 게시판 정보(등급제한/말머리/좋아요/게시판형식) 조회 서비스 호출
+		BoardType boardInfo = dService.selectBoardInfo(boardCode);
+		model.addAttribute("boardInfo", boardInfo);
 		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);
