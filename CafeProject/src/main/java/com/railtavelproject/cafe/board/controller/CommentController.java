@@ -30,8 +30,27 @@ public class CommentController {
 	// 댓글 등록
 	@PostMapping("/insert")
 	public int insertComment(Comment comment /* 커맨드 객체 */) {
-		
-		
+
 		return service.insertComment(comment);
+	}
+	
+	// 댓글 삭제(회원)
+	@GetMapping("/delete")
+	public int deleteComment(int commentNo) {
+		
+		return service.deleteComment(commentNo);
+	}
+	
+	// 댓글 삭제(관리자)
+	@GetMapping("/deleteManager")
+	public int deleteCommentManager(int commentNo) {
+		
+		return service.deleteCommentManager(commentNo);
+	}
+	
+	// 댓글 수정
+	@PostMapping("/update")
+	public int updateComment(Comment comment) {
+		return service.updateComment(comment);
 	}
 }

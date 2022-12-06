@@ -34,4 +34,28 @@ public class CommentServiceImpl implements CommentService{
 		return dao.insertComment(comment);
 	}
 
+	// 댓글 삭제(회원)
+	@Override
+	public int deleteComment(int commentNo) {
+		return dao.deleteComment(commentNo);
+	}
+
+	// 댓글 삭제(관리자)
+	@Override
+	public int deleteCommentManager(int commentNo) {
+		return dao.deleteCommentManager(commentNo);
+	}
+
+	// 댓글 수정
+	@Override
+	public int updateComment(Comment comment) {
+		
+		// XSS 방지, 개행 문자 처리
+		comment.setCommentContent(Util.XSSHandling(comment.getCommentContent()));
+		
+		comment.setCommentContent(Util.newLineHandling(comment.getCommentContent()));
+				
+		return dao.updateComment(comment);
+	}
+
 }
