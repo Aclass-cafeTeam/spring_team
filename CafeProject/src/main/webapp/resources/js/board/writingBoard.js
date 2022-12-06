@@ -126,23 +126,20 @@ function selectTag(type) {
 // 공지 여부 선택
 const boardNotice = document.getElementById("boardNotice");
 const setting = document.getElementById("setting");
-const noticeFlag = document.getElementsByName("[name:'noticeFlag']");
+const flagSelect = document.getElementById("noticeFlag");
 
 if(boardNotice != null) {
     // (관리자들) 공지로 등록이 체크되었을 때
     boardNotice.addEventListener("change", (e)=>{
-
         if(boardNotice.checked) {
             console.log(e);
             setting.style.display='block';
-
         } else {
             setting.style.display='none';
         }
-
-        console.log("공지여부");
-        console.log(noticeFlag);    
     });
+
+    
 }
 
 

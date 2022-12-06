@@ -150,7 +150,15 @@
 								#{img.boardNo} BOARD_NO
 								FROM DUAL
 			</foreach>
-		</insert> 			
+		</insert> 	
+		
+		
+		
+		<!-- 이미지 삭제  -->
+		<delete id="deleteImgList">
+			DELETE FROM BOARD_IMG 
+			WHERE BOARD_NO = #{boardNo}	
+		</delete>
  		
 
 </mapper>

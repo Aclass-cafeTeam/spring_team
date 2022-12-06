@@ -86,6 +86,11 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	// 게시글 삭제
 	@Override
 	public int deleteBoard(int boardNo) {
+		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제
+		// System.out.println(boardNo);
+		dao.deleteImgList(boardNo);
+
+		// 게시글 삭제
 		return dao.deleteBoard(boardNo);
 	}
 

@@ -90,4 +90,15 @@ public class BoardCrudDAO {
 	public int deleteTempAll(int memberNo) {
 		return sqlSession.update("boardCrudMapper.deleteTempAll", memberNo);
 	}
+
+
+	/** 게시글이 삭제될 경우 이미지 테이블 내에서도 삭제
+	 * @param boardNo
+	 */
+	public void deleteImgList(int boardNo) {
+		System.out.println(boardNo);
+		sqlSession.delete("boardCrudMapper.deleteImgList", boardNo);
+		
+		
+	}
 }
