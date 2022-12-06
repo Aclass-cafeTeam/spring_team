@@ -6,6 +6,7 @@
 <resultMap type="Board" id="board_rm">
       <id property="boardNo" column="BOARD_NO"/>
       <result property="boardTitle" column="BOARD_TITLE"/>
+      <result property="boardCode" column="BOARD_CODE"/>
       <result property="boardName" column="BOARD_NAME"/>
       <result property="boardContent" column="BOARD_CONTENT"/>
       <result property="boardCreateDate" column="B_CREATE_DATE"/>
