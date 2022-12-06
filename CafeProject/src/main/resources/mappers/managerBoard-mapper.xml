@@ -59,4 +59,13 @@
     SELECT * FROM "MAIN_CATEGORY" 
 		WHERE MAIN_CATEGORY_NO = (SELECT MAX(MAIN_CATEGORY_NO) FROM "MAIN_CATEGORY")
     </select>
+    
+    <!-- 메인 카테고리 수정 -->
+    <update id="updateMainCategory" parameterType="java.util.HashMap">
+    	
+    </update>
+    <!-- 게시판 상세 수정 기본 게시판일 경우에 제목 수정 불가-->
+    <update id="updateBoarddetail" parameterType="java.util.HashMap">
+    
+    </update>
 </mapper>

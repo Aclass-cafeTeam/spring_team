@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.google.gson.Gson;
 import com.railtavelproject.cafe.manager.model.service.ManagerBoardService;
@@ -62,16 +63,48 @@ public class ManagerBoardController {
 	/* 게시판 상세설정 및 게시판 분류 메인 카테고리 상세설정 */
 	@PostMapping("/manager/menuManager/updateBoarddetail")
 	public String updateBoarddetail(
-			@RequestParam(value ="boardCodeUpdate" ,required=false) int boardCode,
-			@RequestParam(value ="MainCategoryUpdate" ,required=false) String MainCategoryUpdate,
-			@RequestParam(),
-			@RequestParam(),
-			@RequestParam(),
-			@RequestParam(),
+			@RequestParam(value ="boardCodeUpdate" ,required=false, defaultValue="-1") int boardCode,
+			@RequestParam(value ="MainCategoryUpdate" ,required=false, defaultValue ="") String MainCategoryUpdate,
+			@RequestParam(value ="mainCategoryNameupdateIN" ,required=false, defaultValue ="") String mainCategoryName,
+			@RequestParam(value ="settingboardName" ,required=false) String boardName, //boardName이 null이면 기본 게시판이라서 이름 수정 불가
+			@RequestParam(value ="LevelNo" ,required=false) int boardMemberLevelNo,
+			@RequestParam(value ="boardLikeCheckbox" ,required=false, defaultValue ="N") String boardLikeYN,
+			@RequestParam(value ="titleTagCheckbox" ,required=false, defaultValue ="N") String TypeDelFL,
 			RedirectAttributes ra
 			) {
 		
+				/*
+				 * if(MainCategoryUpdate != null) { String[] arr =
+				 * MainCategoryUpdate.split("\\."); int mainCategoryNo =
+				 * Integer.parseInt(arr[1]);
+				 * 
+				 * System.out.println(mainCategoryNo); }
+				 * 
+				 * if(boardCode != -1) { // 게시판 수정         
+			
+					}else { // -1  메인 카테고리 이름 수정
+						
+					}
+				 */
 		
+		int result = service.updateBoarddetail(boardCode,MainCategoryUpdate,mainCategoryName,boardName,boardMemberLevelNo,boardLikeYN,TypeDelFL);;
+		String message = null;
+		if(result > 0) {
+			message = "성공적으로 반영되었습니다.";
+		}else {
+			message = "반영에 실패하셨습니다.";
+		}
+		
+		System.out.println(boardCode);
+		System.out.println(MainCategoryUpdate);
+		System.out.println(mainCategoryName);
+		System.out.println(boardName);
+		System.out.println(boardMemberLevelNo);
+		System.out.println(boardLikeYN);
+		System.out.println(TypeDelFL);
+		
+
+		ra.addFlashAttribute("message", message);
 		return "redirect:/manager/menuManager";
 	}
 }

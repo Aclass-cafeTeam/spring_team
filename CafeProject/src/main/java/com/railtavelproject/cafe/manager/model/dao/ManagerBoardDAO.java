@@ -85,5 +85,36 @@ public class ManagerBoardDAO {
 		map.put("mainCategoryName", mainCategoryNameAdd);
 		return sqlSession.selectOne("managerBoardmapper.selectAddMainCategory", map);
 	}
+
+	/** 게시판 상세 수정
+	 * @param boardCode 
+	 * @param boardName //기본게시판인 경우 3개는 게시판 이름 수정 불가로 null
+	 * @param boardMemberLevelNo
+	 * @param boardLikeYN
+	 * @param typeDelFL
+	 * @return
+	 */
+	public int updateBoarddetail(int boardCode, String boardName, int boardMemberLevelNo, String boardLikeYN,
+			String typeDelFL) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode); 
+		map.put("boardName", boardName);
+		map.put("boardMemberLevelNo", boardMemberLevelNo);
+		map.put("boardLikeYN", boardLikeYN);
+		map.put("typeDelFL", typeDelFL);
+		return sqlSession.update("managerBoardmapper.updateBoarddetail", map);
+	}
+
+	/** 메인 카테고리 수정
+	 * @param mainCategoryName
+	 * @param mainCategoryNo
+	 * @return
+	 */
+	public int updateMainCategory(String mainCategoryName, int mainCategoryNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("mainCategoryNo", mainCategoryNo); 
+		map.put("mainCategoryName", mainCategoryName);
+		return sqlSession.update("managerBoardmapper.updateMainCategory", map);
+	}
 	
 }

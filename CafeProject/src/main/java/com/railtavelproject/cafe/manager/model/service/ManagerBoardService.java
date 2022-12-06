@@ -16,5 +16,8 @@ public interface ManagerBoardService {
 
 	Map<String, Object> insertMainCategoryBoardType(int mainCategoryAdd, String mainCategoryNameAdd) throws Exception;
 
+	int updateBoarddetail(int boardCode, String mainCategoryUpdate, String mainCategoryName, String boardName,
+			int boardMemberLevelNo, String boardLikeYN, String typeDelFL);
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }

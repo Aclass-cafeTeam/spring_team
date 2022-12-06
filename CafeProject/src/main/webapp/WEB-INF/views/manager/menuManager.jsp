@@ -260,7 +260,7 @@
                                                     <tr>
                                                         <th>메뉴명</th>
                                                         <td>
-                                                            <input type="text" class="ipt_type" id="settingboardName"><!---->
+                                                            <input type="text" class="ipt_type" id="settingboardName" name="settingboardName"><!---->
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -277,7 +277,7 @@
                                                                         <option value="3">일반여행자</option>
                                                                         <option value="4">성실여행자</option>
                                                                         <option value="5">우수여행자</option>
-                                                                        <option value="150">감사멤버</option>
+                                                                        <option value="6">감사멤버</option>
                                                                     </select>
                                                                     이상<!----></p>
                                                             </div>
@@ -289,7 +289,7 @@
                                                     </tr><!----><!---->
                                                     <tr>
                                                         <th scope="row" class="solo">좋아요 기능</th>
-                                                        <td class="solo"><input id="in_type6" type="checkbox" class="check"><label for="in_type6">사용</label></td>
+                                                        <td class="solo"><input id="in_type6" type="checkbox" class="check" name="boardLikeCheckbox"><label for="in_type6">사용</label></td>
                                                     </tr>
                                                 
                                                     <tr>
@@ -297,7 +297,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="row" class="solo">말머리</th>
-                                                        <td class="solo"><input id="in_type7" type="checkbox" class="check"><label for="in_type7">사용</label><!----></td>
+                                                        <td class="solo"><input id="in_type7" type="checkbox" class="check" name="titleTagCheckbox"><label for="in_type7">사용</label><!----></td>
                                                     </tr><!----><!---->
                                                     <tr>
                                                         <th scope="row" colspan="2" class="line"></th>

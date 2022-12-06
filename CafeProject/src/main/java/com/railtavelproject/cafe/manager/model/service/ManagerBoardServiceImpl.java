@@ -88,6 +88,42 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return map;
 	}
 
+	@Override
+	public int updateBoarddetail(int boardCode, String mainCategoryUpdate, String mainCategoryName, String boardName,
+			int boardMemberLevelNo, String boardLikeYN, String typeDelFL) {
+		int result =0;
+		if(boardLikeYN.equals("on")) {
+			boardLikeYN = "Y";
+		}
+		if(typeDelFL.equals("on")) {
+			typeDelFL = "Y";
+		}
+		
+		if(boardCode != -1) { // 게시판 수정         
+			result = dao.updateBoarddetail(boardCode,boardName,boardMemberLevelNo,boardLikeYN,typeDelFL); // 기본게시판은 이름 수정 불가
+		}else { // -1  메인 카테고리 이름 수정
+			int mainCategoryNo =0 ; 
+			if(!mainCategoryUpdate.equals("") ) { 
+				String[] arr = mainCategoryUpdate.split("\\."); 
+				mainCategoryNo = Integer.parseInt(arr[1]);
+			}
+			if(mainCategoryNo != 0) {
+				result = dao.updateMainCategory(mainCategoryName,mainCategoryNo);
+			}
+			
+		}
+		
+		/*@RequestParam(value ="boardCodeUpdate" ,required=false, defaultValue="-1") int boardCode,
+			@RequestParam(value ="MainCategoryUpdate" ,required=false, defaultValue ="") String MainCategoryUpdate,
+			@RequestParam(value ="mainCategoryNameupdateIN" ,required=false, defaultValue ="") String mainCategoryName,
+			@RequestParam(value ="settingboardName" ,required=false) String boardName, //boardName이 null이면 기본 게시판이라서 이름 수정 불가
+			@RequestParam(value ="LevelNo" ,required=false) int boardMemberLevelNo,
+			@RequestParam(value ="boardLikeCheckbox" ,required=false, defaultValue ="N") String boardLikeYN,
+			@RequestParam(value ="titleTagCheckbox" ,required=false, defaultValue ="N") String TypeDelFL*/
+		
+		return result;
+	}
+
 	/*
 	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {
 	 * 
