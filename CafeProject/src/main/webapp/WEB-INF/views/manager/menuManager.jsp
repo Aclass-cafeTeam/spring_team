@@ -233,7 +233,7 @@
                                     </div>
                                 </div>
                                 <!-- 에디터 부분 -->
-                                <form action ="" method="get" name="boardUpdateFrm">
+                                <form action ="/manager/menuManager/updateBoarddetail" method="post" name="boardUpdateFrm">
                                 
                                 <div class="set_area">
                                 <div class="set_box set_boxBasic">

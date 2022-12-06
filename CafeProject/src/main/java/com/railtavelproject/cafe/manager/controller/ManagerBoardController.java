@@ -58,6 +58,22 @@ public class ManagerBoardController {
 		
 		return new Gson().toJson(map);
 	}
+	
+	/* 게시판 상세설정 및 게시판 분류 메인 카테고리 상세설정 */
+	@PostMapping("/manager/menuManager/updateBoarddetail")
+	public String updateBoarddetail(
+			@RequestParam(value ="boardCodeUpdate" ,required=false) int boardCode,
+			@RequestParam(value ="MainCategoryUpdate" ,required=false) String MainCategoryUpdate,
+			@RequestParam(),
+			@RequestParam(),
+			@RequestParam(),
+			@RequestParam(),
+			RedirectAttributes ra
+			) {
+		
+		
+		return "redirect:/manager/menuManager";
+	}
 }
 
 

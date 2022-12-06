@@ -577,3 +577,11 @@ document.getElementById("edt2_delete_button").addEventListener('click',function(
 
 })
 
+
+
+document.getElementById("edt2_save_button").addEventListener('click',function(){
+
+
+  document.forms["boardUpdateFrm"].submit();
+
+});
