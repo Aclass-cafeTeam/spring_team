@@ -585,3 +585,11 @@ document.getElementById("edt2_save_button").addEventListener('click',function(){
   document.forms["boardUpdateFrm"].submit();
 
 });
+
+
+document.getElementById("deleteBoardA").addEventListener('click',function(){
+
+
+  
+
+});

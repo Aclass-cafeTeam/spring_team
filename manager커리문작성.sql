@@ -1003,15 +1003,18 @@ CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE; -- 회원 번호
 -----------------------------------------------------------------------
 --게시판 카테고리 상세수정
 --게시판 수정
-UPDATE "MEMBER" SET 
-MEMBER_DEL_FL = 'Y'
-WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 회원이메일
-AND AUTHORITY_NO NOT IN (0);
+UPDATE "BOARD_TYPE" SET 
+<if test="boardName != null">
+BOARD_NAME = #{boardName},  
+</if>
+TITLE_TAG_YN = #{},
+BOARD_LIKE_YN = #{},
+MEMBER_LEVEL_NO = #{},
+WHERE BOARD_CODE = #{};
 --카테고리 수정
-UPDATE "MEMBER" SET 
-MEMBER_DEL_FL = 'Y'
-WHERE SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) IN 회원이메일
-AND AUTHORITY_NO NOT IN (0);
+UPDATE "MAIN_CATEGORY" SET 
+MAIN_CATEGORY_NAME = #{}
+WHERE MAIN_CATEGORY_NO = #{};
 
 
 

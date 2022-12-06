@@ -62,10 +62,19 @@
     
     <!-- 메인 카테고리 수정 -->
     <update id="updateMainCategory" parameterType="java.util.HashMap">
-    	
+    UPDATE "MAIN_CATEGORY" SET 
+	MAIN_CATEGORY_NAME = #{mainCategoryName}
+	WHERE MAIN_CATEGORY_NO = #{mainCategoryNo}	
     </update>
     <!-- 게시판 상세 수정 기본 게시판일 경우에 제목 수정 불가-->
     <update id="updateBoarddetail" parameterType="java.util.HashMap">
-    
+    UPDATE "BOARD_TYPE" SET 
+	<if test="boardName != null">
+	BOARD_NAME = #{boardName},  
+	</if>
+	TITLE_TAG_YN = #{typeDelFL},
+	BOARD_LIKE_YN = #{boardLikeYN},
+	MEMBER_LEVEL_NO = #{boardMemberLevelNo}
+	WHERE BOARD_CODE = #{boardCode}
     </update>
 </mapper>

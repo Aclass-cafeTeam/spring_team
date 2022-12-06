@@ -160,7 +160,7 @@
                                             </li>
                                             <li class="bt_v2"><a href="#" class="none">위로</a>
                                             </li>
-                                            <li class="bt_v3 txt"><a href="#" class="delete">삭제</a>
+                                            <li class="bt_v3 txt"><a href="#" class="delete" id="deleteBoardA">삭제</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -321,7 +321,7 @@
                                                     <tr>
                                                         <th>그룹제목</th>
                                                         <td>
-                                                            <input type="text" class="ipt_type2" id="mainCategoryNameupdateIN"><!---->
+                                                            <input type="text" class="ipt_type2" id="mainCategoryNameupdateIN" name="mainCategoryNameupdateIN"><!---->
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -369,6 +369,14 @@
             <em>Since 2022.10.14. © </em> 
             <span> 내일로, 기차로! 카페</span>
         </p>
+        <c:if test="${not empty message}">
+            <script>
+                alert("${message}");
+            </script>
+
+            <%-- message 1회 출력 후 모든 scope 삭제 --%>
+            <c:remove var="message" />
+        </c:if>
     </footer>
     <!-- 푸터 -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
