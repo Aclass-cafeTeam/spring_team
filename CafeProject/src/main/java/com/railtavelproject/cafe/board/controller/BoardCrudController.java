@@ -51,10 +51,10 @@ public class BoardCrudController {
 		List<Map<String, Object>> titleTagList = service.selectTitleTag();
 		
 		// 임시 저장목록 조회
-		List<Board> tPost = service.selectTempPost(loginMember.getMemberNo());
+		// List<Board> tPost = service.selectTempPost(loginMember.getMemberNo());
 		
 		model.addAttribute("titleTagList",titleTagList);
-		model.addAttribute("tPost", tPost);
+		// model.addAttribute("tPost", tPost);
 		
 		
 		return "board/writingBoard";
@@ -209,7 +209,6 @@ public class BoardCrudController {
 		 
 		// 1. board 객체에 boardCode 세팅
 		board.setBoardCode(boardCode);
-		board.setBoardNo(boardNo);
 		
 		
 		// 2. 이미지 저장 경로 얻어오기
@@ -286,21 +285,4 @@ public class BoardCrudController {
 	
 	
 	
-	
-
-	
-	// 앨범형 게시판 목록 조회
-//	@GetMapping("/board/{boardCode}")
-//	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-//			Model model,
-//			@RequestParam(value="cp", required = false, defaultValue="1") int cp
-//			) {
-//		
-//		Map<String, Object> map = service.selectBoardList(boardCode, cp);
-//		model.addAttribute("map", map);
-//		
-//		List<BoardImage> imgList = service.selectImgList(boardCode, cp);
-//		model.addAttribute("imgList", imgList);
-//		return "board/albumBoard";
-//	}
 }
