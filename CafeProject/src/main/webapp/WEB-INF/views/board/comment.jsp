@@ -54,7 +54,7 @@
 
                             <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
                             <c:if test="${loginMember.memberNo == comment.memberNo}">
-                                    <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
+                                <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
                             </c:if>
                             <%-- 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출 --%>
                             <c:if test="${(loginMember.authorityNo==0||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">

@@ -47,7 +47,7 @@
                             <c:forEach var="myDeleteBoard" items="${myDeleteBoardList}">
                                 <tr>
                                     <td class="boardNo">${myDeleteBoard.boardNo}</td>
-                                    <td><a href="#" class="title">
+                                    <td class="dTitle">
                                         <c:if test="${not empty myDeleteBoard.titleTagName}">
                                             <c:if test="${myDeletBoard.titleTagNo ne '0'}">
                                                 <span>[${myDeleteBoard.titleTagName}] </span>

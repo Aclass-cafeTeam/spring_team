@@ -301,3 +301,131 @@ function deleteComment(commentNo, commentMemberNo){
         }
     }
 }
+
+
+// 댓글 수정 화면 전환
+let beforeCommentRow; // 수정 전 원래 행의 상태를 저장할 변수
+
+
+function showUpdateComment(commentNo, btn){
+                     // 댓글번호, 이벤트발생요소(수정버튼)
+
+    // ** 댓글 수정이 한 개만 열릴 수 있도록 만들기 **
+    const temp = document.getElementsByClassName("update-textarea");  
+    
+    if(temp.length > 0){ // 수정이 한 개 이상 열려 있는 경우
+
+        if(confirm("다른 댓글이 수정 중입니다. 현재 댓글을 수정 하시겠습니까?")){ // 확인
+
+            temp[0].parentElement.innerHTML = beforeCommentRow;
+            // comment-row                       // 백업한 댓글
+            // 백업 내용으로 덮어 씌워 지면서 textarea 사라짐
+
+        }else{ // 취소
+            return;
+        }
+    }
+
+
+    // 1. 댓글 수정이 클릭된 행을 선택
+    const commentRow = btn.parentElement.parentElement; // 수정 버튼의 부모의 부모
+
+    // 2. 행 내용 삭제 전 현재 상태를 저장(백업) (문자열)
+    //    (전역변수 이용)
+    beforeCommentRow = commentRow.innerHTML;
+
+    // 취소 버튼 동작 코드
+    //commentRow.innerHTML = beforeCommentRow;
+
+
+    // 3. 댓글에 작성되어 있던 내용만 얻어오기 -> 새롭게 생성된 textarea 추가될 예정
+    
+    // document.getElementsByClassName("comment-row")[0].children[0].children[1].children[2].innerHTML;
+    // <br> 태그 유지를 위해서 innerHTML 사용
+    let beforeContent = commentRow.children[0].children[1].children[2].innerHTML;
+
+
+    // 4. 댓글 행 내부 내용을 모두 삭제
+    commentRow.innerHTML = "";
+
+    // 5. textarea 요소 생성 + 클래스 추가  +  **내용 추가**
+    const textarea = document.createElement("textarea");
+    textarea.classList.add("update-textarea");
+
+    // ******************************************
+    // XSS 방지 처리 해제
+    beforeContent =  beforeContent.replaceAll("&amp;", "&");
+    beforeContent =  beforeContent.replaceAll("&lt;", "<");
+    beforeContent =  beforeContent.replaceAll("&gt;", ">");
+    beforeContent =  beforeContent.replaceAll("&quot;", "\"");
+    
+    // 개행문자 처리 해제
+    beforeContent =  beforeContent.replaceAll("<br>", "\n");
+
+    // ******************************************
+    textarea.value = beforeContent; // 내용 추가
+
+    // 6. commentRow에 생성된 textarea 추가
+    commentRow.append(textarea);
+
+
+    // 7. 버튼 영역 + 수정/취소 버튼 생성
+    const commentBtnArea = document.createElement("div");
+    commentBtnArea.classList.add("comment-btn-area");
+    
+
+    const updateBtn = document.createElement("button");
+    updateBtn.innerText = "수정";
+    updateBtn.setAttribute("onclick", "updateComment("+commentNo+", this)");
+
+
+    const cancelBtn = document.createElement("button");
+    cancelBtn.innerText = "취소";
+    cancelBtn.setAttribute("onclick", "updateCancel(this)");
+
+
+    // 8. 버튼영역에 버튼 추가 후 
+    //    commentRow(행)에 버튼영역 추가
+    commentBtnArea.append(updateBtn, cancelBtn);
+    commentRow.append(commentBtnArea);
+
+}
+
+
+// -----------------------------------------------------------------------------------
+// 댓글 수정 취소
+function updateCancel(btn){
+    // 매개변수 btn : 클릭된 취소 버튼
+    // 전역변수 beforeCommentRow : 수정 전 원래 행(댓글)을 저장한 변수
+
+    if(confirm("댓글 수정을 취소하시겠습니까?")){
+        btn.parentElement.parentElement.innerHTML = beforeCommentRow;
+    }
+}
+
+// -----------------------------------------------------------------------------------
+// 댓글 수정(AJAX)
+function updateComment(commentNo, btn){
+
+    // 새로 작성된 댓글 내용 얻어오기
+    const commentContent = btn.parentElement.previousElementSibling.value;
+
+    $.ajax({
+        url : "/comment/update",
+        data : {"commentNo" : commentNo,
+                "commentContent" : commentContent},
+        type : "POST",
+        success : function(result){
+            if(result > 0){
+                alert("댓글이 수정되었습니다.");
+                selectCommentList();
+            }else{
+                alert("댓글 수정 실패");
+            }
+        },
+        error : function(req, status, error){
+            console.log("댓글 수정 실패");
+            console.log(req.responseText);
+        }
+    });
+}
