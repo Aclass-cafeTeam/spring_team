@@ -285,21 +285,4 @@ public class BoardCrudController {
 	
 	
 	
-	
-
-	
-	// 앨범형 게시판 목록 조회
-//	@GetMapping("/board/{boardCode}")
-//	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-//			Model model,
-//			@RequestParam(value="cp", required = false, defaultValue="1") int cp
-//			) {
-//		
-//		Map<String, Object> map = service.selectBoardList(boardCode, cp);
-//		model.addAttribute("map", map);
-//		
-//		List<BoardImage> imgList = service.selectImgList(boardCode, cp);
-//		model.addAttribute("imgList", imgList);
-//		return "board/albumBoard";
-//	}
 }
