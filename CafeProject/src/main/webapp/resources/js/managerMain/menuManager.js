@@ -689,8 +689,126 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
 
 document.getElementById("downButton").addEventListener('click',function(){
 
+  const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;
+  const boardCodeIn = document.getElementById("boardCodeIn").value; //없으면 메인 카테고리
+
+  const boardOrderupdate = document.getElementById("board"+boardCodeIn).getAttribute("title"); //없으면 메인 카테고리 title="1"
+
 //document.getElementById("mainCategory.11").previousElementSibling // 메인 카페고리 이전 요소 
 //document.getElementById("mainCategory.11").nextElementSibling // null이면 마지막 요소이면 V(아래로 순서변경X)
 //document.getElementById("mainCategory.2").previousElementSibling.getAttribute('number'); 1(기본게시판)이면 순서 변경 X  ^(위로 순서변경X)
+
+
+
+//document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //게시판 이전 요소
+//document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //의 title이 0이면 이동 X
+
+//document.getElementById("board35").parentNode.nextElementSibling  이 null이면 마지막 요소 
+//아니면 document.getElementById("board34").parentNode.nextElementSibling.lastElementChild //의 title값
+if($("#mainCategoryNameIn").val()!=''){
+  var boolean = false;
+  if($("#boardCodeIn").val()==''){ //메인 카테고리 삭제
+    /* if(document.getElementById(mainCategoryNameIn).previousElementSibling.getAttribute('number') ==1){
+      boolean = false;
+    }else{
+      boolean = true;
+    } */
+
+    if(document.getElementById(mainCategoryNameIn).nextElementSibling == null){
+      boolean = false;
+    }else{
+      boolean = true;
+    }
+
+  }else{ //기본 게시판 이동 
+
+    if(document.getElementById("board35").parentNode.nextElementSibling == null){
+      boolean = false;
+    }else{
+      boolean = true;
+    }
+
+  }
+
+  if(boolean){ //마지막 요소가 아닐 때 추가 가능
+    
+    $.ajax({
+      // 디비에서 delete가 아닌 보드
+      url: "/updateBoardOrderPage",
+      data: { 
+              "mainCategoryNameIn"  : mainCategoryNameIn,
+              "boardCodeIn"  : boardCodeIn, //값이 들어 있으면 게시판 삭제 없으면 메인 카테고리 삭제
+              "boardOrderupdate"  : boardOrderupdate, //수정할 요소의 DB값 순서
+              "message"      : ""
+      },
+      type: "POST",
+      dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+
+
+      success: (result) => {
+          if(result.message === "삭제 실패되었습니다."){
+              
+            alert(result.message);
+      
+        
+          }else{
+            alert(result.message);
+            
+
+            if($("#boardCodeIn").val()==''){ //메인 카테고리 삭제
+              
+              document.getElementById(mainCategoryNameIn).remove(); 
+
+
+            }else{ //게시판 삭제
+              
+              document.getElementById("varboardCodeboard"+boardCodeIn).remove(); 
+              document.getElementById("varboardNameboard"+boardCodeIn).remove(); 
+              document.getElementById("titleTagYNboard"+boardCodeIn).remove(); 
+              document.getElementById("boardLikeYNboard"+boardCodeIn).remove(); 
+              document.getElementById("boardMemberLevelNoboard"+boardCodeIn).remove(); 
+
+              document.getElementById("board"+boardCodeIn).parentNode.remove();
+
+
+
+            }
+
+            /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+            document.getElementById("mainCategoryNameIn").value = "";
+            document.getElementById("mainCategoryNameIn2").value = "";
+            document.getElementById("boardOrderIn").value = "";
+            document.getElementById("boardCodeIn").value = "";
+
+
+            document.getElementById("boardCodeUpdate").value = "";
+            document.getElementById("MainCategoryUpdate").value = "";
+            document.getElementById("inputDisabled").value = "";
+            document.getElementById("beginboardName").value = "";
+            /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+
+            /* 기본 에디터 보여주기 */
+            document.getElementsByClassName("set_box")[0].classList.add("set_boxBasic");
+            document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+            document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
+
+          }
+      },
+      error: () => {
+          console.log("삭제 반영 실패")
+      }
+
+
+    });
+
+
+  }
+
+}else{
+    alert("이동 가능한 대상이 아닙니다.")
+}
+
+
+
 
 });
