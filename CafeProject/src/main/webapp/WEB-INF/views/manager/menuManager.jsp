@@ -174,7 +174,7 @@
                                                 <!-- <ul> -->
                                                     <c:if test="${not empty mainCategory}">
                                                         <c:forEach items="${mainCategory}" var="mainVar" >
-                                                            <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
+                                                            <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryNone" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <li data-v-bd0068e8="" class="h_menu_tit"><c:if test="${mainVar.mainCategoryNo == 1}"><a></c:if><c:if test="${mainVar.mainCategoryNo > 1}"><a class="mainCategoryClick"></c:if><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo} mainCategory${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                             <li class="" style="height: 0px; width: 0px;">

@@ -1,5 +1,5 @@
 
-/* 게시판 추가  게시판 클릭---맨 왼쪽 통합게시판(앨번 게시판)*/
+/* 게시판 추가  게시판 클릭---맨 왼쪽 통합게시판(일반 게시판)*/
 $(".add_lst_btn a").click(function() {
   console.log("클릭");
   document.getElementById("plusBtn").classList.add("on");
@@ -11,6 +11,10 @@ $(".add_lst_btn a").click(function() {
   const bordTitleName= this.firstElementChild;
   document.getElementById("bordTitleNameIn").value = bordTitleName.innerText;
   document.getElementById("bordTitleFormIn").value = bordTitleName.title;
+
+  for(i=0; i<$(".valueRemove2").length;i++){
+    $('.valueRemove2')[i].value ="";
+  } 
   
 });
 
@@ -28,6 +32,10 @@ $(".add_lst_btn2 a").click(function() {
 
   const mainTitlenameIn= document.getElementById("mainTitlenameIn").innerText;
   document.getElementById("mainCategoryNameAdd").value = mainTitlenameIn;
+
+  for(i=0; i<$(".valueRemove3").length;i++){
+    $('.valueRemove3')[i].value ="";
+  }
   
 });
 
@@ -63,6 +71,8 @@ $(".mainCategoryOn a").click(function() {
 
 });
 
+
+
 /* 메인 카테고리 클릭 하면 a태그 class = mainCategoryClick */
 /* 그냥 게시판 클릭하면 a 태그 class= ge_v1 */
 /* 게시판 클릭 or 메인 카테고리 별 누르면 상세설명 세팅 */
@@ -73,14 +83,31 @@ $(".mainCategoryClick").click(function() {
   document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
   document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
   document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
-
+  document.getElementById("boardCodeUpdate").value ="";
   //$('.valueRemov2').value ="";
  
 });
 
 $(".ge_v1click").click(function() {
+
+  if(this.parentNode.parentNode.classList.contains("mainCategoryNone")){
+    
+    $('.edit_lst_box li').removeClass("on");
+    document.getElementById("mainCategoryNameIn").value ="";
+    document.getElementById("mainCategoryNameIn2").value ="";
+    document.getElementById("boardOrderIn").value ="";
+    document.getElementById("boardCodeIn").value ="";
+    //document.getElementById("settingboardName").readOnly = true;
+    document.getElementById("settingboardName").disabled = true;
+    //document.getElementById("boardCodeUpdate").value =
+    
+  }else{
+    document.getElementById("settingboardName").disabled = false;
+  }
   const thisID = this.id;
-    document.getElementById("boardCodeUpdate").value = document.getElementById("boardCodeIn").value;
+    document.getElementById("boardCodeUpdate").value = this.name;
+    document.getElementById("MainCategoryUpdate").value = "";
+    //document.getElementById("boardCodeIn").value;
     document.getElementById("settingboardName").value = this.innerText;
     document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNo"+thisID).value;
                 
@@ -188,8 +215,41 @@ $('#BoardPlusBtn').click(function() {
             <li class="" style="height: 0px; width: 0px;">
                 <a class="" id="" title="0" name="0"><span></span></a>
             </li>
-            */
+          */
 
+          /* 색깔 바꾼걸로 변경 */
+          $('.edit_btn_area li').addClass("on");
+
+          $('.edit_lst_box li').removeClass("on");
+          //li.classList.add('on');  
+          a.parentNode.classList.add('on');  
+          /* 색깔 바꾼걸로 변경 */
+          document.getElementById("mainCategoryNameIn").value = "mainCategory."+result.newBoard.mainCategoryNo;
+          document.getElementById("mainCategoryNameIn2").value =result.newBoard.mainCategoryName;
+
+          document.getElementById("mainCategoryAdd").value =result.newBoard.mainCategoryNo;
+          document.getElementById("mainCategoryNameAdd").value =result.newBoard.mainCategoryName;
+
+          document.getElementById("boardOrderIn").value ="0";
+          //
+
+          /* 상세설정 세팅 */
+          document.getElementById("mainCategoryNameupdateIN").value = result.newBoard.mainCategoryName;
+          document.getElementById("MainCategoryUpdate").value = result.newBoard.mainCategoryNo;
+
+          document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+          document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
+          document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
+
+          /* for(i=0; i<$(".valueRemove2").length;i++){
+            $('.valueRemove2')[i].value ="";
+          } */
+
+          $('.edit_lst_area').scrollTop(document.getElementById(ul.id).offsetTop-450);
+
+          for(i=0; i<$(".valueRemove3").length;i++){
+            $('.valueRemove3')[i].value ="";
+          }
 
           $(".mainCategoryOn a").click(function() {
             $('.edit_btn_area li').addClass("on");
@@ -210,7 +270,7 @@ $('#BoardPlusBtn').click(function() {
             document.getElementById("boardOrderIn").value = boardAddOrder;
           
             document.getElementById("boardCodeIn").value= this.name;
-            
+
             for(i=0; i<$(".valueRemove2").length;i++){
               $('.valueRemove2')[i].value ="";
             }
@@ -256,22 +316,7 @@ $('#BoardPlusBtn').click(function() {
              //boardLikeYNboard${var.boardCode}
           });
 
-
-          document.getElementById("mainCategoryNameupdateIN").value = result.newBoard.mainCategoryName;
-          document.getElementById("MainCategoryUpdate").value = result.newBoard.mainCategoryNo;
-
-          document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
-          document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
-          document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
-
-          for(i=0; i<$(".valueRemove2").length;i++){
-            $('.valueRemove2')[i].value ="";
-          }
-
-          for(i=0; i<$(".valueRemove3").length;i++){
-            $('.valueRemove3')[i].value ="";
-          }
-
+        
         }else{
           alert(result.message);
         }
@@ -356,6 +401,7 @@ $('#BoardPlusBtn').click(function() {
                   a.classList.add("B"); //a.classList.add("ge_v13");
                   a.classList.add("ge_v13"); //a.classList.add("ge_v13");
                 }
+                a.setAttribute("name", result.newBoard.boardCode);
 
                 const span = document.createElement("span");
                 span.innerText = result.newBoard.boardName;
@@ -370,6 +416,44 @@ $('#BoardPlusBtn').click(function() {
                 li.append(a);
                 a.append(span);
                 document.getElementById("boardOrderIn").value = result.newBoard.boardOrder; //순서 +1시키는 코드
+
+                /* 색깔 새로 생긴 카테고리에 설정하고 세팅값 변경 */
+                $('.edit_btn_area li').addClass("on");
+                
+                $('.edit_lst_box li').removeClass("on");
+                a.parentNode.classList.add('on');
+
+                
+                //document.getElementById("boardOrderIn").value = 위에 세팅값 변경해줌 
+                document.getElementById("boardCodeIn").value =result.newBoard.boardCode;
+
+                /* 상세설정 세팅 */
+                document.getElementById("boardCodeUpdate").value = result.newBoard.boardCode;
+                document.getElementById("settingboardName").value = result.newBoard.boardName;
+                document.getElementById("LevelNo").value =result.newBoard.boardMemberLevelNo;
+                
+                if(result.newBoard.boardLikeYN == 'Y'){
+                  $("#in_type6").prop("checked", true);
+                }else{
+                  $("#in_type6").prop("checked", false);
+                }
+
+                if(result.newBoard.titleTagYN == 'Y'){
+                  $("#in_type7").prop("checked", true);
+                }else{
+                  $("#in_type7").prop("checked", false);
+                }
+
+                document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+                document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+                document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
+
+                /* for(i=0; i<$(".valueRemove").length;i++){
+                  $('.valueRemove')[i].value ="";
+                }
+                 */
+                /* 위치이동 */
+                $('.edit_lst_area').scrollTop(document.getElementById(a.id).offsetTop-450);
 
                 $(a).click(function() {
                   $('.edit_btn_area li').addClass("on");
@@ -388,6 +472,8 @@ $('#BoardPlusBtn').click(function() {
                   const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
                 
                   document.getElementById("boardOrderIn").value = boardAddOrder;
+
+                  document.getElementById("boardCodeIn").value= this.name;
                 
                 });
 
@@ -417,32 +503,6 @@ $('#BoardPlusBtn').click(function() {
                     //id="titleTagYNboard${var.boardCode}"
                    //boardLikeYNboard${var.boardCode}
                 });
-
-
-                document.getElementById("boardCodeUpdate").value = result.newBoard.boardCode;
-                document.getElementById("settingboardName").value = result.newBoard.boardName;
-                document.getElementById("LevelNo").value =result.newBoard.boardMemberLevelNo;
-                
-                if(result.newBoard.boardLikeYN == 'Y'){
-                  $("#in_type6").prop("checked", true);
-                }else{
-                  $("#in_type6").prop("checked", false);
-                }
-
-                if(result.newBoard.titleTagYN == 'Y'){
-                  $("#in_type7").prop("checked", true);
-                }else{
-                  $("#in_type7").prop("checked", false);
-                }
-
-                document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
-                document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
-                document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
-
-                /* for(i=0; i<$(".valueRemove").length;i++){
-                  $('.valueRemove')[i].value ="";
-                }
-                 */
 
 
               }else{
