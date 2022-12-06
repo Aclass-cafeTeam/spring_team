@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
 import com.railtavelproject.cafe.board.model.vo.BoardImage;
+import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Repository
 public class BoardCrudDAO {
@@ -76,7 +77,7 @@ public class BoardCrudDAO {
 
 	/** 임시등록 조회
 	 * @param boardNo
-	 * @return
+	 * @return tPost
 	 */
 	public List<Board> selectTempPost(int memberNo) {
 		return sqlSession.selectList("boardCrudMapper.selectTempPost", memberNo);
@@ -89,5 +90,25 @@ public class BoardCrudDAO {
 	 */
 	public int deleteTempAll(int memberNo) {
 		return sqlSession.update("boardCrudMapper.deleteTempAll", memberNo);
+	}
+
+
+	/** 게시글이 삭제될 경우 이미지 테이블 내에서도 삭제
+	 * @param boardNo
+	 */
+	public void deleteImgList(int boardNo) {
+		System.out.println(boardNo);
+		sqlSession.delete("boardCrudMapper.deleteImgList", boardNo);
+		
+		
+	}
+
+
+	/** 게시판 목록 조회(로그인한 회원 등급에 따라)
+	 * @param memberLevelNo
+	 * @return boardTypeList
+	 */
+	public List<Map<String, Object>> selectBoardType(Member loginMember) {
+		return sqlSession.selectList("boardCrudMapper.selectBoardType", loginMember) ;
 	}
 }
