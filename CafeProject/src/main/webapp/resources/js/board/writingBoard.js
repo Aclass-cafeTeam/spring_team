@@ -90,6 +90,7 @@ const titleTagNo = document.getElementById("titleTagNo");
 // 게시판 선택 
 select[0].addEventListener("click", ()=>{
     wrapper[0].classList.toggle("open")
+
 });
 
 function selectType(type) {
@@ -97,7 +98,14 @@ function selectType(type) {
     select[0].firstElementChild.innerText = type.innerText;
     boardCode.value = parseInt(type.getAttribute("id"));
     select[0].firstElementChild.style.lineHeight= "1px";
-    console.log(boardCode);
+
+    if(boardCode.value >= 12) {
+        confirm("선택하신 게시판은 앨범형으로 사진과 함께 작성해주세요");
+            if (!confirm) {
+                type.preventDefault;
+            }
+    }
+    // console.log(boardCode.value);
 }    
 
 
@@ -150,6 +158,7 @@ function writeValidate() {
         alert("게시판을 선택하세요.");
         return false;
     }
+
 
     if(titleTagNo.value=='') {
         alert("태그여부를 선택하세요.");
