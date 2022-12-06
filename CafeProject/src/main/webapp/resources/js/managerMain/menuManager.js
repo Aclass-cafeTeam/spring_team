@@ -589,7 +589,89 @@ document.getElementById("edt2_save_button").addEventListener('click',function(){
 
 document.getElementById("deleteBoardA").addEventListener('click',function(){
 
+  if($("#mainCategoryNameIn").val()!=''){
 
-  
+    var confirmMessage ='';
+    if($("#boardCodeIn").val()!=''){
+      confirmMessage = '메인 카테고리를 삭제하시면 안에 게시판도 삭제됩니다. 정말 삭제하시겠습니까?';
+    }else{
+      confirmMessage = '해당 게시판을 삭제하시겠습니까?';
+    }
+
+
+    if(confirm(confirmMessage)){
+
+      const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value; //삭제할 메인카테고리No
+      const boardCodeIn = document.getElementById("boardCodeIn").value; //삭제할 게시판코드
+
+      $.ajax({
+        // 디비에서 delete가 아닌 보드
+        url: "/deleteBoardType",
+        data: { 
+                "mainCategoryNameIn"  : mainCategoryNameIn,
+                "boardCodeIn"  : boardCodeIn, //값이 들어 있으면 게시판 삭제 없으면 메인 카테고리 삭제
+                "message"      : ""
+        },
+        type: "POST",
+        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+        success: (result) => {
+            if(result.message === "삭제 실패되었습니다."){
+                
+              alert(result.message);
+        
+              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+              document.getElementById("mainCategoryNameIn").value = "";
+              document.getElementById("mainCategoryNameIn2").value = "";
+              document.getElementById("boardOrderIn").value = "";
+              document.getElementById("boardCodeIn").value = "";
+
+
+              document.getElementById("boardCodeUpdate").value = "";
+              document.getElementById("MainCategoryUpdate").value = "";
+              document.getElementById("inputDisabled").value = "";
+              document.getElementById("beginboardName").value = "";
+              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+
+              /* 기본 에디터 보여주기 */
+              document.getElementsByClassName("set_box")[0].classList.add("set_boxBasic");
+              document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+              document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
+
+            }else{
+
+              if($("#boardCodeIn").val()!=''){ //메인 카테고리 삭제
+                
+                document.getElementById(mainCategoryNameIn).remove(); 
+
+
+              }else{ //게시판 삭제
+                
+                document.getElementById("varboardCodeboard"+boardCodeIn).remove(); 
+                document.getElementById("varboardNameboard"+boardCodeIn).remove(); 
+                document.getElementById("titleTagYNboard"+boardCodeIn).remove(); 
+                document.getElementById("boardLikeYNboard"+boardCodeIn).remove(); 
+                document.getElementById("boardMemberLevelNoboard"+boardCodeIn).remove(); 
+
+                document.getElementById("board"+boardCodeIn).parentNode.remove();
+
+
+
+              }
+
+            }
+        },
+        error: () => {
+            console.log("멤버 활동 정지 해제 반영 실패")
+        }
+
+
+      });
+
+    }
+    
+
+  }else{
+    alert("삭제할 수 있는 게시판이 없습니다.")
+  }
 
 });

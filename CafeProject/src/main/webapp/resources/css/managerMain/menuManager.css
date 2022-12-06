@@ -160,7 +160,7 @@ ul, li{
 
 /* 게시판 글 앞에 아이콘 */
 .B{
-    background-image: url(../../images/게시판.PNG);
+    background-image: url(/resources/images/게시판.PNG);
     background-repeat: no-repeat;
     background-size: 15px 15px;
     background-position-x: 8px;
@@ -168,7 +168,7 @@ ul, li{
 }
 
 .A{
-    background-image: url(../../images/앨범.PNG);
+    background-image: url(/resources/images/앨범.PNG);
     background-repeat: no-repeat;
     background-size: 15px 15px;
     background-position-x: 8px;
@@ -176,7 +176,7 @@ ul, li{
 }
 
 .filImg{
-    background-image: url(../../images/manager/그룹파일.png);
+    background-image: url(/resources/images/manager/그룹파일.png);
     background-repeat: no-repeat;
     background-size: 13px 14px;
     background-position-x: 10px;
@@ -242,7 +242,7 @@ ul, li{
 }
 .admin_menu_management .btn_add.on a {
     cursor: pointer;
-    background-image: url(../../images/manager/btn_add_color.jpg);
+    background-image: url(/resources/images/manager/btn_add_color.jpg);
     
 }
 .admin_menu_management .btn_add a {
@@ -253,7 +253,7 @@ ul, li{
     text-indent: -500em;
     cursor: default;
     border: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/btn_add_dis.jpg);
+    background-image: url(/resources/images/manager/btn_add_dis.jpg);
 }
 
 .bt_v1 , .bt_v2 , .bt_v3 a{
@@ -295,24 +295,24 @@ a {
 }
 .bt_v1{
     border-right: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/downicon.png);
+    background-image: url(/resources/images/manager/downicon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
 }
 
 .bt_v1.on{
-    background-image: url(../../images/manager/downiconOn.png);
+    background-image: url(/resources/images/manager/downiconOn.png);
 }
 .bt_v2{
     border-right: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/uparrowicon.png);
+    background-image: url(/resources/images/manager/uparrowicon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
 }
 .bt_v2.on{
-    background-image: url(../../images/manager/uparrowiconON.png);
+    background-image: url(/resources/images/manager/uparrowiconON.png);
 }
 .edit_set_group .edit_area .edit_btn_area li a {
     float: left;

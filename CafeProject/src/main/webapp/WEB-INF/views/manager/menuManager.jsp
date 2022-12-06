@@ -221,7 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="ly_loading" style="top: 1px; left: 1px; display: none;">
+                                    <!-- <div class="ly_loading" style="top: 1px; left: 1px; display: none;">
                                         <div class="loading_area"><img src="https://cafe.pstatic.net/img/manage/img_loading.gif" width="50" height="50" alt="로딩중" class="img_loading">
                                         </div>
                                     </div>
@@ -230,7 +230,7 @@
                                         <div class="drag_area2">
                                             <p class="drag_txt"></p>
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <!-- 에디터 부분 -->
                                 <form action ="/manager/menuManager/updateBoarddetail" method="post" name="boardUpdateFrm">

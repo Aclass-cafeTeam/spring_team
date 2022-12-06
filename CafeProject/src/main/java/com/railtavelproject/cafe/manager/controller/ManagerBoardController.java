@@ -107,6 +107,8 @@ public class ManagerBoardController {
 		ra.addFlashAttribute("message", message);
 		return "redirect:/manager/menuManager";
 	}
+	
+	//   /deleteBoardType
 }
 
 
