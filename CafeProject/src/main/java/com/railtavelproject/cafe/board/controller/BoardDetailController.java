@@ -19,17 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"boardInfo"})
 public class BoardDetailController {
 
 	@Autowired
 	private BoardDetailService service;
-	
 	
 	// 게시글 상세조회
 	@GetMapping("/board/{boardCode}/{boardNo}")
@@ -40,6 +42,9 @@ public class BoardDetailController {
 			HttpServletRequest req, HttpServletResponse resp,
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember) throws ParseException {
 		// Session에 loginMember가 없으면 null
+		
+		// 특정 게시판 정보(등급제한) 조회 서비스
+		BoardType boardInfo = service.selectBoardInfo(boardCode);
 		
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);
@@ -156,6 +161,7 @@ public class BoardDetailController {
 		}
 		
 		model.addAttribute("board", board);
+		model.addAttribute("boardInfo", boardInfo);
 		model.addAttribute("referer", referer);
 		
 		return "board/boardDetail";

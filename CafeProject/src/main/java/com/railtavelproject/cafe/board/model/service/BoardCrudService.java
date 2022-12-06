@@ -22,25 +22,52 @@ public interface BoardCrudService {
 	int writeBoard(Board board);
 
 
-	/** 게시글 삭제
+	/** 게시글 삭제 / 임시등록 한행씩 삭제 
 	 * @param boardNo
 	 * @return result
 	 */
 	int deleteBoard(int boardNo);
 
+	
+	/** 게시글 상세 조회
+	 * @param boardNo
+	 * @return board
+	 */
+	Board boardDetail(int boardNo);
+	
+	
+	/** 게시글 수정 
+	 * @param board
+	 * @param webPath
+	 * @param folderPath
+	 * @return result
+	 */
+	int boardUpdate(Board board, String webPath, String folderPath);
 
-	/** 임시 저장
+	
+	/** 임시등록(INSERT)
 	 * @param  board
 	 * @return result
 	 */
 	int tempPost(Board board);
 
 
-	/** 게시글 상세 조회
+
+	/** 임시등록 조회
 	 * @param boardNo
-	 * @return board
+	 * @return
 	 */
-	Board boardDetail(int boardNo);
+	List<Board> selectTempPost(int memberNo);
+
+
+	/** 임시등록 전체 삭제
+	 * @param memberNo
+	 * @return result
+	 */
+	int deleteTempAll(int memberNo);
+
+
+	
 
 
 

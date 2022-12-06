@@ -305,3 +305,77 @@ a {
 .p-writer a:hover{
     text-decoration: underline;
 }
+
+/* 등급 제한 페이지 */
+#mainArea{
+    width: 860px;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+
+    font-size : 12px;
+    color: #666666;
+    font-family: sans-serif;
+}
+
+/* 사용자 정보 출력 */
+.user-level {
+    padding : 14px 13px 11px; 
+    margin: 8px 0 28px;
+    border: 1px solid #ccc;
+    color: #666666;
+}
+
+.info-list {
+    display: flex;
+    list-style: none;
+    padding-top:8px;
+}
+
+/*  |  ::after 사용*/
+.info-list li::after {
+    content: "|";
+    margin: 0 10px;
+}
+
+.info-list li:last-child::after{
+    content: none;
+}
+
+/* 등급별 포인트 컬러 */
+.g{
+    color : #73358C;
+    font-weight: bold;
+}
+
+/* 등급명 강조 */
+.user-level-name{
+    font-weight: bold;
+    color: red;
+}
+
+/* 자세히보기 */
+.view-detail{
+    text-decoration: none;
+    color: black;
+}
+
+.view-detail:hover{
+    text-decoration: underline;
+}
+
+/* 좋아요 기능을 사용하지 않을 때 */
+
+/* 좋아요 이모티콘(하트) */
+.gray-heart{
+    display: inline;
+    font-size: 13px;
+    color: #ccc;
+}
+
+/* 좋아요 */
+.dont-like{
+    display: inline;
+    font-size: 13px;
+    color: #ccc;
+}

@@ -41,6 +41,25 @@
       <result property="profileImage" column="PROFILE_IMG"/>
       <result property="memberLevelImage" column="MEMBER_LEVEL_IMG"/>
    </resultMap>
+   
+      <!-- BoardType resultMap -->
+		<resultMap type="BoardType" id="boardType_rm">
+      <id property="boardCode" column="COMMENT_NO"/>
+      <result property="boardName" column="BOARD_NAME"/>
+      <result property="titleTagFlag" column="TITLE_TAG_YN"/>
+      <result property="boardForm" column="BOARD_FORM"/>
+      <result property="boardLikeFlag" column="BOARD_LIKE_YN"/>
+      <result property="memberLevelNo" column="MEMBER_LEVEL_NO"/>
+      <result property="memberLevelName" column="MEMBER_LEVEL_NAME"/>
+    </resultMap>
+ 
+	<!-- 특정 게시판 정보(등급제한) 조회 -->
+	<select id="boardInfo" parameterType="_int" resultMap="boardType_rm">
+	SELECT BOARD_CODE, BOARD_NAME, TITLE_TAG_YN, BOARD_FORM, BOARD_LIKE_YN, MEMBER_LEVEL_NO, MEMBER_LEVEL_NAME
+	FROM BOARD_TYPE
+	JOIN MEMBER_LEVEL USING(MEMBER_LEVEL_NO)
+	WHERE BOARD_CODE = #{boardCode}
+	</select>
  
 	<!-- 게시글 상세 조회 -->
 	<select id="selectBoardDetail" resultMap="board_rm">

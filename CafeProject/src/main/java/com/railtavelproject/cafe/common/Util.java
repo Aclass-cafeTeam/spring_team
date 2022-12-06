@@ -33,9 +33,8 @@ public class Util {
 		   content = content.replaceAll("<", "&lt;");
 		   content = content.replaceAll(">", "&gt;");
 		   content = content.replaceAll("'", "&#039;");
-		   content = content.replaceAll("(", "&#040;");
-		   content = content.replaceAll(")", "&#041;");
-		   content = content.replaceAll(")", "&#041;");
+		   content = content.replaceAll("\\(", "&#040;");
+		   content = content.replaceAll("\\)", "&#041;");
 		   content = content.replaceAll("/", "&#x2F;");		   
 	   }
 	   return content;
