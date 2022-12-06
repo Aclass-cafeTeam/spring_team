@@ -80,11 +80,20 @@
     
     <!-- 게시판 삭제 -->
     <update id="deleteBoardType" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET 
+	TYPE_DEL_FL = 'Y'
+	WHERE BOARD_CODE = #{boardCode}
     </update>
     <!-- 메인 카테고리 삭제 -->
     <update id="deletemainCategory" parameterType="_int">
+    UPDATE "MAIN_CATEGORY" SET 
+	CATEGORY_DEL_FL = 'Y'
+	WHERE MAIN_CATEGORY_NO = #{mainCategoryNo}
     </update>
     <!-- 메인 카테고리 안에 게시판 삭제 -->
     <update id="deletemainCategoryBoardType" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET 
+	TYPE_DEL_FL = 'Y'
+	WHERE MAIN_CATEGORY_NO = #{mainCategoryNo}
     </update>
 </mapper>

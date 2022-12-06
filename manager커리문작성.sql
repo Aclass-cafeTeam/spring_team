@@ -1016,6 +1016,10 @@ UPDATE "MAIN_CATEGORY" SET
 MAIN_CATEGORY_NAME = #{}
 WHERE MAIN_CATEGORY_NO = #{};
 
+---카테고리 삭제 
+--카테고리 안에 있는 게시판 삭제
+--게시판 삭제
+
 
 
 

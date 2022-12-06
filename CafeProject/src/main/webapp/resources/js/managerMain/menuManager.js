@@ -592,7 +592,7 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
   if($("#mainCategoryNameIn").val()!=''){
 
     var confirmMessage ='';
-    if($("#boardCodeIn").val()!=''){
+    if($("#boardCodeIn").val() ==''){
       confirmMessage = '메인 카테고리를 삭제하시면 안에 게시판도 삭제됩니다. 정말 삭제하시겠습니까?';
     }else{
       confirmMessage = '해당 게시판을 삭제하시겠습니까?';
@@ -619,27 +619,12 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
                 
               alert(result.message);
         
-              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
-              document.getElementById("mainCategoryNameIn").value = "";
-              document.getElementById("mainCategoryNameIn2").value = "";
-              document.getElementById("boardOrderIn").value = "";
-              document.getElementById("boardCodeIn").value = "";
-
-
-              document.getElementById("boardCodeUpdate").value = "";
-              document.getElementById("MainCategoryUpdate").value = "";
-              document.getElementById("inputDisabled").value = "";
-              document.getElementById("beginboardName").value = "";
-              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
-
-              /* 기본 에디터 보여주기 */
-              document.getElementsByClassName("set_box")[0].classList.add("set_boxBasic");
-              document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
-              document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
-
+          
             }else{
+              alert(result.message);
+              
 
-              if($("#boardCodeIn").val()!=''){ //메인 카테고리 삭제
+              if($("#boardCodeIn").val()==''){ //메인 카테고리 삭제
                 
                 document.getElementById(mainCategoryNameIn).remove(); 
 
@@ -657,6 +642,24 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
 
 
               }
+
+              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+              document.getElementById("mainCategoryNameIn").value = "";
+              document.getElementById("mainCategoryNameIn2").value = "";
+              document.getElementById("boardOrderIn").value = "";
+              document.getElementById("boardCodeIn").value = "";
+
+
+              document.getElementById("boardCodeUpdate").value = "";
+              document.getElementById("MainCategoryUpdate").value = "";
+              document.getElementById("inputDisabled").value = "";
+              document.getElementById("beginboardName").value = "";
+              /* 게시판이나 메인카테고리 눌렀을 때 세팅되는 값 다 지우기 */
+
+              /* 기본 에디터 보여주기 */
+              document.getElementsByClassName("set_box")[0].classList.add("set_boxBasic");
+              document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+              document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
 
             }
         },
