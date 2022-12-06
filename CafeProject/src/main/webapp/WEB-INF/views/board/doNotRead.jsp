@@ -13,8 +13,8 @@
 <body>
     <div id="mainArea">
         <div class="user-level">
-            <span><strong>${boardInfo.boardName}</strong> 게시판은</span>
-            <span class="user-level-name">${boardInfo.memberLevelName}</span>
+            <span><strong>${boardLimit.boardName}</strong> 게시판은</span>
+            <span class="user-level-name">${boardLimit.memberLevelName}</span>
             <span>등급이 되시면 게시글 읽기가 가능한 게시판 입니다.</span>
             <p class="user-level-txt"> 현재 <strong>${loginMember.memberNickname}</strong>님은 <span class="g">${loginMember.memberLevelName}</span> 등급이시며, 등업에 관련된 궁금하신 사항은 카페 매니저나 멤버관리 스탭에게 문의해 주세요.</p>
             <div>
