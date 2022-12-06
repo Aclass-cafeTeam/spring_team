@@ -43,9 +43,7 @@ public class BoardDetailController {
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember) throws ParseException {
 		// Session에 loginMember가 없으면 null
 		
-		// 특정 게시판 정보(등급제한) 조회 서비스
-		BoardType boardInfo = service.selectBoardInfo(boardCode);
-		
+
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);
 		
@@ -161,7 +159,6 @@ public class BoardDetailController {
 		}
 		
 		model.addAttribute("board", board);
-		model.addAttribute("boardInfo", boardInfo);
 		model.addAttribute("referer", referer);
 		
 		return "board/boardDetail";
