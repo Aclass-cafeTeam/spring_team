@@ -89,6 +89,7 @@ $(function() {
         $(e.target).parent().parent().parent().parent().find(".member_ranking").hide();
         $(e.target).parent().parent().parent().parent().find(".member_ranking").eq(idx).show();
     });
+   
 
 
     // 멤버랭킹 - 게시글 버튼 눌렀을 때
@@ -212,3 +213,15 @@ $(function() {
 //     }
 
 // });
+
+// 로그인안했을때 누르는 랭킹에 표시되는 데이터
+const logunbtn = document.getElementsByClassName("rank-logun");
+// 로그인했을때 누르는 랭킹에 표시되는 데이터
+const loginbtn = document.getElementById("rank-login");
+
+if(logunbtn!= null){
+    logunbtn.addEventListener("click", function(event){
+        return false;
+    });
+
+}

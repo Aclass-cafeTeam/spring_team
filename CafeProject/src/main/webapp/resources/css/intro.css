@@ -245,10 +245,23 @@ a{
 
 #photo-title> div> a{
     color: #333333;
+    display: block;
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all;
+}
+#photo-title> div> a:hover{
+    text-decoration: underline;
 }
 
 #photo-nick > div > a{
     color: #333333;
+}
+#photo-nick > div > a:hover{
+    text-decoration: underline;
 }
 
 #photo-nick{
@@ -266,3 +279,10 @@ a{
     object-fit: cover;
 }
 
+#photo-title{
+    display: flex;
+}
+
+#album{
+    width: 132px;
+}
