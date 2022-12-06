@@ -32,6 +32,7 @@
     	<select id="selectBoardType" resultMap="managerboard_rm">
     	SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
 		WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N'
+		ORDER BY MAIN_CATEGORY_NO, BOARD_ORDER
     	</select>
     	
     	<select id="selectMainCategory" resultMap="managerboard_rm">

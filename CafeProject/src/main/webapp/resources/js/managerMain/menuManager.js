@@ -59,7 +59,7 @@ $(".mainCategoryOn a").click(function() {
 
   document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
 
-  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title;
 
   document.getElementById("boardOrderIn").value = boardAddOrder;
 
@@ -268,7 +268,7 @@ $('#BoardPlusBtn').click(function() {
           
             document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
           
-            const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+            const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title; ////////변경
           
             document.getElementById("boardOrderIn").value = boardAddOrder;
           
@@ -409,13 +409,18 @@ $('#BoardPlusBtn').click(function() {
                 const span = document.createElement("span");
                 span.innerText = result.newBoard.boardName;
 
-                document.getElementById(mainCategoryNameIn).append(input);
-                document.getElementById(mainCategoryNameIn).append(input2);
-                document.getElementById(mainCategoryNameIn).append(input3);
-                document.getElementById(mainCategoryNameIn).append(input4);
-                document.getElementById(mainCategoryNameIn).append(input5);
+                //document.getElementById(mainCategoryNameIn).append(input);
+                //document.getElementById(mainCategoryNameIn).append(input2);
+                //document.getElementById(mainCategoryNameIn).append(input3);
+                //document.getElementById(mainCategoryNameIn).append(input4);
+                //document.getElementById(mainCategoryNameIn).append(input5);
 
                 document.getElementById(mainCategoryNameIn).append(li);
+                li.append(input);
+                li.append(input2);
+                li.append(input3);
+                li.append(input4);
+                li.append(input5);
                 li.append(a);
                 a.append(span);
                 document.getElementById("boardOrderIn").value = result.newBoard.boardOrder; //순서 +1시키는 코드
@@ -472,7 +477,7 @@ $('#BoardPlusBtn').click(function() {
                 
                   document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
                 
-                  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+                  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title;//.lastElementChild.firstElementChild.title;
                 
                   document.getElementById("boardOrderIn").value = boardAddOrder;
 
@@ -664,7 +669,7 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
             }
         },
         error: () => {
-            console.log("멤버 활동 정지 해제 반영 실패")
+            console.log("삭제 반영 실패")
         }
 
 
@@ -676,5 +681,16 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
   }else{
     alert("삭제할 수 있는 게시판이 없습니다.")
   }
+
+});
+
+
+
+
+document.getElementById("downButton").addEventListener('click',function(){
+
+//document.getElementById("mainCategory.11").previousElementSibling // 메인 카페고리 이전 요소 
+//document.getElementById("mainCategory.11").nextElementSibling // null이면 마지막 요소이면 V(아래로 순서변경X)
+//document.getElementById("mainCategory.2").previousElementSibling.getAttribute('number'); 1(기본게시판)이면 순서 변경 X  ^(위로 순서변경X)
 
 });

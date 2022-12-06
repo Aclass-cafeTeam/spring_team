@@ -156,9 +156,10 @@
                                     <div class="edit_btn_area">
                                         <ul> 
                                             <li class="bt_v1">
-                                                <a href="#" class="none">아래로</a>
+                                                <a href="#" class="none" id="downButton">아래로</a>
                                             </li>
-                                            <li class="bt_v2"><a href="#" class="none">위로</a>
+                                            <li class="bt_v2"><a href="#" class="none"
+                                                id="upButton">위로</a>
                                             </li>
                                             <li class="bt_v3 txt"><a href="#" class="delete" id="deleteBoardA">삭제</a>
                                             </li>
@@ -182,12 +183,13 @@
                                                             </li>
                                                         <c:forEach items="${boardType}" var="var">
                                                             <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
-                                                                <input type="hidden" id="varboardCodeboard${var.boardCode}" name="varboardCode" value="${var.boardCode}">
+                                                                
+                                                                <li data-v-bd0068e8="" class="">
+                                                                    <input type="hidden" id="varboardCodeboard${var.boardCode}" name="varboardCode" value="${var.boardCode}">
                                                                     <input type="hidden" id="varboardNameboard${var.boardCode}" name="varboardName" value="${var.boardName}">
                                                                     <input type="hidden" id="titleTagYNboard${var.boardCode}" name="titleTagYN" value="${var.titleTagYN}">
                                                                     <input type="hidden" id="boardLikeYNboard${var.boardCode}" name="boardLikeYN" value="${var.boardLikeYN}">
                                                                     <input type="hidden" id="boardMemberLevelNoboard${var.boardCode}" name="boardMemberLevelNo" value="${var.boardMemberLevelNo}">
-                                                                <li data-v-bd0068e8="" class="">
                                                                     <a data-v-bd0068e8="" class="ge_v1click ge_v1 ${var.boardForm}" id="board${var.boardCode}" title="${var.boardOrder}" name="${var.boardCode}"><span data-v-bd0068e8="">${var.boardName}</span></a>
                                                                 </li>
                                                             </c:if>
