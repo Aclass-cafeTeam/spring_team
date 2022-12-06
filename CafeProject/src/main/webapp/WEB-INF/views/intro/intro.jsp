@@ -23,7 +23,9 @@
                                     </tr>
                                     <tr>
                                         <td id="gate-content">
-                                            <img src="../resources/images/배너1.png">
+                                            <a href="https://www.letskorail.com/ebizprd/EbizPrdPassRailroIntroW_hc11902.do" target="_blank" onclick="alert('내일로 홈페이지로 이동합니다.')";>
+                                                <img src="../resources/images/배너1.png">
+                                            </a>
                                             <br><br>
                                             <img src="../resources/images/배너2.png">
                                         </td>
@@ -36,121 +38,253 @@
                         </div>
                     </div>
                 </div>
-                <div id="intro2">
-                    <div id="intro-content">
-                        <!-- <div id="content1"> -->
-                            <!-- 메인화면 전체글보기 -->
-                            <div id="intro-board">
-                                <div id="intro-board-tit-box">
-                                    <div id="intro-board-tit">
-                                        <h3>전체글보기</h3><span><a href="#">더보기 ></a></span>
+                <%-- 로그인안함 --%>
+                <c:choose>
+                    <c:when test="${empty sessionScope.loginMember}">
+                        <div id="intro2">
+                            <div id="intro-content">
+                                <!-- <div id="content1"> -->
+                                    <!-- 메인화면 전체글보기 -->
+                                    <div id="intro-board">
+                                        <div id="intro-board-tit-box">
+                                            <div id="intro-board-tit">
+                                                <h3>전체글보기</h3><span><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">더보기 ></a></span>
+                                            </div>
+                                        </div>
+                                        <table id="intro-board-list">
+                                            <tbody id="tbody">
+                                                <!-- 공지글 -->
+                                                <c:choose>
+                                                    <c:when test="${empty noticeList.introNoticeList}">
+                                                        안돼
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="introNotice" items="${noticeList.introNoticeList}">
+                                                            <tr id="intro-notice-list">
+                                                            <td id="board-content">
+                                                                <div id="notice-tag-block">
+                                                                    <div id="notice-tag">
+                                                                        <strong>공지</strong>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="notice-board">
+                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="notice">${introNotice.boardTitle}</span></a>
+                                                                    <c:if test="${0 != introNotice.commentCount}">
+                                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${introNotice.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                </div>
+                                                            </td>
+                                                            <td id="board-view">
+                                                                ${introNotice.readCount}
+                                                            </td>
+                                                        </tr>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <!-- 게시글 -->
+                                                <c:choose>
+                                                    <c:when test="${empty boardList.introBoardList}">
+                                                        <div>안돼</div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="introBoard" items="${boardList.introBoardList}">
+                                                            <tr id="boardTitle">
+                                                                <td id="board-content">
+                                                                    <div id="board-dot">ㆍ</div>
+                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                                    <c:if test="${0 != introBoard.commentCount}">
+                                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                </td>
+                                                                <td id="board-view">
+                                                                    ${introBoard.readCount}
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <table id="intro-board-list">
-                                    <tbody id="tbody">
-                                        <!-- 공지글 -->
-                                        <c:choose>
-                                            <c:when test="${empty noticeList.introNoticeList}">
-                                                안돼
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:forEach var="introNotice" items="${noticeList.introNoticeList}">
-                                                    <tr id="intro-notice-list">
-                                                    <td id="board-content">
-                                                        <div id="notice-tag-block">
-                                                            <div id="notice-tag">
-                                                                <strong>공지</strong>
-                                                            </div>
-                                                        </div>
-                                                        <div id="notice-board">
-                                                            <a href="/board/${introNotice.boardCode}/${introNotice.boardNo}"><span id="notice">${introNotice.boardTitle}</span></a>
-                                                            <c:if test="${0 != introNotice.commentCount}">
-                                                                <a href="#"><span id="commentCount1">[${introNotice.commentCount}]</span></a>
-                                                            </c:if>
-                                                        </div>
-                                                    </td>
-                                                    <td id="board-view">
-                                                        ${introNotice.readCount}
-                                                    </td>
-                                                </tr>
-                                                </c:forEach>
-                                            </c:otherwise>
-                                        </c:choose>
-                                        <!-- 게시글 -->
-                                        <c:choose>
-                                            <c:when test="${empty boardList.introBoardList}">
-                                                <div>안돼</div>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <c:forEach var="introBoard" items="${boardList.introBoardList}">
-                                                    <tr id="boardTitle">
-                                                        <td id="board-content">
-                                                            <div id="board-dot">ㆍ</div>
-                                                            <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><div id="board-name">${introBoard.boardTitle}</div></a>
-                                                            <c:if test="${0 != introBoard.commentCount}">
-                                                                <a href="#"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
-                                                            </c:if>
-                                                        </td>
-                                                        <td id="board-view">
-                                                            ${introBoard.readCount}
-                                                        </td>
-                                                    </tr>
-                                                </c:forEach>
-                                            </c:otherwise>
-                                        </c:choose>
-                                    </tbody>
-                                </table>
+                                    <div id="intro-album">
+                                        <div id="intro-board-tit-box">
+                                            <div id="intro-board-tit">
+                                                <h3>여행 후기</h3><span><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">더보기 ></a></span>
+                                            </div>
+                                        </div>
+                                        <ul id="album-content">
+                                            <c:choose>
+                                                <c:when test="${empty travelReviewList.introTravelReviewList}">
+                                                    안된단다
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:forEach var="travelReview" items="${travelReviewList.introTravelReviewList}">
+                                                        <li>
+                                                            <dl>
+                                                                <dt id="photo-img">
+                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="${travelReviewList.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </dt>
+                                                                <dd id="photo-title">
+                                                                    <div id="comment">
+                                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
+                                                                            ${travelReview.boardTitle}
+                                                                            <c:if test="${0 != travelReview.commentCount}">
+                                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                            </c:if>
+                                                                        </a>
+                                                                    </div>
+                                                                </dd>
+                                                                <dd id="photo-nick">
+                                                                    <div>
+                                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
+                                                                            ${travelReview.memberNickname}
+                                                                        </a>
+                                                                    </div>
+                                                                </dd>
+                                                                <dd id="photo-date">
+                                                                    <span>
+                                                                        22.01.10
+                                                                    </span>
+                                                                    <span>
+                                                                        ㆍ조회 ${travelReview.readCount}
+                                                                    </span>
+                                                                </dd>
+                                                            </dl>
+                                                        </li>
+                                                    </c:forEach>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </ul>
+                                    </div>
                             </div>
                         </div>
-                            <div id="intro-album">
-                                <div id="intro-board-tit-box">
-                                    <div id="intro-board-tit">
-                                        <h3>여행 후기</h3><span><a href="#">더보기 ></a></span>
+                    </c:when>
+                </c:choose>
+
+                <%-- 로그인함 --%>
+                <c:choose>
+                    <c:when test="${!empty sessionScope.loginMember}">
+                        <div id="intro2">
+                            <div id="intro-content">
+                                <!-- <div id="content1"> -->
+                                    <!-- 메인화면 전체글보기 -->
+                                    <div id="intro-board">
+                                        <div id="intro-board-tit-box">
+                                            <div id="intro-board-tit">
+                                                <h3>전체글보기</h3><span><a href="board/selectAll">더보기 ></a></span>
+                                            </div>
+                                        </div>
+                                        <table id="intro-board-list">
+                                            <tbody id="tbody">
+                                                <!-- 공지글 -->
+                                                <c:choose>
+                                                    <c:when test="${empty noticeList.introNoticeList}">
+                                                        안돼
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="introNotice" items="${noticeList.introNoticeList}">
+                                                            <tr id="intro-notice-list">
+                                                            <td id="board-content">
+                                                                <div id="notice-tag-block">
+                                                                    <div id="notice-tag">
+                                                                        <strong>공지</strong>
+                                                                    </div>
+                                                                </div>
+                                                                <div id="notice-board">
+                                                                    <a href="/board/${introNotice.boardCode}/${introNotice.boardNo}"><span id="notice">${introNotice.boardTitle}</span></a>
+                                                                    <c:if test="${0 != introNotice.commentCount}">
+                                                                        <a href="#"><span id="commentCount1">[${introNotice.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                </div>
+                                                            </td>
+                                                            <td id="board-view">
+                                                                ${introNotice.readCount}
+                                                            </td>
+                                                        </tr>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <!-- 게시글 -->
+                                                <c:choose>
+                                                    <c:when test="${empty boardList.introBoardList}">
+                                                        <div>안돼</div>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="introBoard" items="${boardList.introBoardList}">
+                                                            <tr id="boardTitle">
+                                                                <td id="board-content">
+                                                                    <div id="board-dot">ㆍ</div>
+                                                                    <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                                    <c:if test="${0 != introBoard.commentCount}">
+                                                                        <a href="#"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                </td>
+                                                                <td id="board-view">
+                                                                    ${introBoard.readCount}
+                                                                </td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
-                                <ul id="album-content">
-                                    <c:choose>
-                                        <c:when test="${empty travelReviewList.introTravelReviewList}">
-                                            안된단다
-                                        </c:when>
-                                        <c:otherwise>
-                                            <c:forEach var="travelReview" items="${travelReviewList.introTravelReviewList}">
-                                                <li>
-                                                    <dl>
-                                                        <dt id="photo-img">
-                                                        <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="../resources/images/고양아.jpg" width="132px" height="132px"alt=""></a>
-                                                        </dt>
-                                                        <dd id="photo-title">
-                                                            <div>
-                                                                <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}">
-                                                                    ${travelReview.boardTitle}
-                                                                </a>
-                                                            </div>
-                                                        </dd>
-                                                        <dd id="photo-nick">
-                                                            <div>
-                                                                <a href="#">
-                                                                    ${travelReview.memberNickname}
-                                                                </a>
-                                                            </div>
-                                                        </dd>
-                                                        <dd id="photo-date">
-                                                            <span>
-                                                                22.01.10
-                                                            </span>
-                                                            <span>
-                                                                ㆍ조회 ${travelReview.readCount}
-                                                            </span>
-                                                        </dd>
-                                                    </dl>
-                                                </li>
-                                            </c:forEach>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </ul>
+                                    <div id="intro-album">
+                                        <div id="intro-board-tit-box">
+                                            <div id="intro-board-tit">
+                                                <h3>여행 후기</h3><span><a href="/board/12">더보기 ></a></span>
+                                            </div>
+                                        </div>
+                                        <ul id="album-content">
+                                            <c:choose>
+                                                <c:when test="${empty travelReviewList.introTravelReviewList}">
+                                                    안된단다
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:forEach var="travelReview" items="${travelReviewList.introTravelReviewList}">
+                                                        <li id="album">
+                                                            <dl>
+                                                                <dt id="photo-img">
+                                                                <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="${travelReview.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </dt>
+                                                                <dd id="photo-title">
+                                                                    <div>
+                                                                        <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}">
+                                                                            ${travelReview.boardTitle}
+                                                                        </a>
+                                                                    </div>
+                                                                    <c:if test="${0 != travelReview.commentCount}">
+                                                                        <a href="/member/login"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                </dd>
+                                                                <dd id="photo-nick">
+                                                                    <div>
+                                                                        <a href="#">
+                                                                            ${travelReview.memberNickname}
+                                                                        </a>
+                                                                    </div>
+                                                                </dd>
+                                                                <dd id="photo-date">
+                                                                    <span>
+                                                                        22.01.10
+                                                                    </span>
+                                                                    <span>
+                                                                        ㆍ조회 ${travelReview.readCount}
+                                                                    </span>
+                                                                </dd>
+                                                            </dl>
+                                                        </li>
+                                                    </c:forEach>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </ul>
+                                    </div>
                             </div>
-                    </div>
-                </div>
+                        </div>
+                    </c:when>
+                </c:choose>
             </section>
 </body>
 </html>
