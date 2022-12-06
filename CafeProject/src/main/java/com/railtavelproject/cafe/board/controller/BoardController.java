@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.service.BoardService;
@@ -16,6 +17,7 @@ import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"boardInfo"})
 public class BoardController {
 
 	@Autowired
