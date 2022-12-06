@@ -32,4 +32,29 @@ public class CommentDAO {
 		return sqlSession.insert("commentMapper.insertComment", comment);
 	}
 
+	/** 댓글 삭제(회원)
+	 * @param commentNo
+	 * @return result
+	 */
+	public int deleteComment(int commentNo) {
+		return sqlSession.update("commentMapper.deleteComment", commentNo);
+	}
+
+	/** 댓글 삭제(관리자)
+	 * @param commentNo
+	 * @return result
+	 */
+	public int deleteCommentManager(int commentNo) {
+		return sqlSession.update("commentMapper.deleteCommentManager", commentNo);
+	}
+
+	/** 댓글 수정
+	 * @param comment
+	 * @return
+	 */
+	public int updateComment(Comment comment) {
+
+		return sqlSession.update("commentMapper.updateComment", comment);
+	}
+
 }

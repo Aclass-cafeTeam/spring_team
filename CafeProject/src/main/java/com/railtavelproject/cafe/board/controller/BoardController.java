@@ -22,6 +22,8 @@ public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private BoardDetailService dService;
 	
 	@Autowired
 	private BoardDetailService dService;
@@ -34,10 +36,9 @@ public class BoardController {
 			@RequestParam Map<String, Object> pm
 			) {
 		
-		// 특정 게시판 정보(등급제한) 조회 서비스
+		// 특정 게시판 정보(등급제한/말머리/좋아요/게시판형식) 조회 서비스 호출
 		BoardType boardInfo = dService.selectBoardInfo(boardCode);
 		model.addAttribute("boardInfo", boardInfo);
-		
 		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);

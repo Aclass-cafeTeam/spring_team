@@ -44,7 +44,7 @@
    
       <!-- BoardType resultMap -->
 		<resultMap type="BoardType" id="boardType_rm">
-      <id property="boardCode" column="COMMENT_NO"/>
+      <id property="boardCode" column="BOARD_CODE"/>
       <result property="boardName" column="BOARD_NAME"/>
       <result property="titleTagFlag" column="TITLE_TAG_YN"/>
       <result property="boardForm" column="BOARD_FORM"/>

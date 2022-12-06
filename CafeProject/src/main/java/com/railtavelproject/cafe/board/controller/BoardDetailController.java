@@ -44,6 +44,7 @@ public class BoardDetailController {
 		// Session에 loginMember가 없으면 null
 		
 
+		
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);
 		

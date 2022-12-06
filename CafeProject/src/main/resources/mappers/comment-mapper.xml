@@ -31,7 +31,30 @@
 		 #{parentNo}
 		</if>
 		)
-</insert>
-
-
+	</insert>
+	
+	<!-- 댓글 삭제(회원) -->
+	<update id="deleteComment">
+	UPDATE "COMMENT" SET
+	COMMENT_DEL_FL = 'Y',
+	C_DELETE_DATE = SYSDATE
+	WHERE COMMENT_NO=#{commentNo}
+	OR PARENT_NO = #{commentNo}
+	</update>
+	
+	<!-- 댓글 삭제(매니저) -->
+	<update id="deleteCommentManager">
+	UPDATE "COMMENT" SET
+	COMMENT_DEL_FL = 'M',
+	C_DELETE_DATE = SYSDATE
+	WHERE COMMENT_NO=#{commentNo}
+	OR PARENT_NO = #{commentNo}
+	</update>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateComment">
+	UPDATE "COMMENT" SET
+	COMMENT_CONTENT =#{commentContent}
+	WHERE COMMENT_NO = #{commentNo}
+	</update>
 </mapper>

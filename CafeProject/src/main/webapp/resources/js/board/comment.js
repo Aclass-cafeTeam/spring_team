@@ -14,133 +14,181 @@ function selectCommentList(){
             // 화면에 출력되어 있는 댓글 목록 삭제
             const commentList = document.getElementById("comment-list"); // ul태그
             commentList.innerHTML = "";
+    
+                // replyList에 저장된 요소를 하나씩 접근
+                for(let comment of replyList){
+                    
+                    // 행
+                    const commentRow = document.createElement("li");
+                    commentRow.classList.add("comment-row");
+    
+                    // 답글일 경우 child-comment 클래스 추가
+                    if(comment.parentNo != 0)  commentRow.classList.add("child-comment");
 
-            // replyList에 저장된 요소를 하나씩 접근
-            for(let comment of replyList){
+                    // 삭제된 댓글일 경우(회원)
+                    if(comment.commentDeleteFlag == 'Y'){
 
-                // 행
-                const commentRow = document.createElement("li");
-                commentRow.classList.add("comment-row");
+                        commentRow.setAttribute("style", "color:#979797");
+        
+                        // 삭제된 댓글입니다 p태그
+                        const commentContent = document.createElement("p");
+                        commentContent.classList.add("comment-content-area");
+                        commentContent.innerText = "삭제된 댓글입니다";
+        
+                        // 삭제일이 들어간 span
+                        const commentDeleteDate = document.createElement("span");
+                        commentDeleteDate.classList.add("comment-date");
+                        commentDeleteDate.innerText = "(" + comment.commentDeleteDate + ")";
+        
+                        // comment-row에 삭제된 댓글입니다 + 삭제일 추가
+                        commentRow.append(commentContent, commentDeleteDate);
 
-                // 답글일 경우 child-comment 클래스 추가
-                if(comment.parentNo != 0)  commentRow.classList.add("child-comment");
+                        // 댓글 목록(ul)에 행(li)추가
+                        commentList.append(commentRow);
+                    }
 
+                    // 삭제된 댓글일 경우(관리자)
+                    if(comment.commentDeleteFlag == 'M'){
 
-                // 프로필 + 댓글내용 등이 들어간 div
-                const commentWriter = document.createElement("div");
-                commentWriter.classList.add("comment-writer");
+                        commentRow.setAttribute("style", "color:#979797");
+        
+                        // 삭제된 댓글입니다 p태그
+                        const commentContent = document.createElement("p");
+                        commentContent.classList.add("comment-content-area");
+                        commentContent.innerText = "카페 스탭에 의해 삭제된 댓글입니다.";
+        
+                        // 삭제일이 들어간 span
+                        const commentDeleteDate = document.createElement("span");
+                        commentDeleteDate.classList.add("comment-date");
+                        commentDeleteDate.innerText = "(" + comment.commentDeleteDate + ")";
+        
+                        // comment-row에 삭제된 댓글입니다 + 삭제일 추가
+                        commentRow.append(commentContent, commentDeleteDate);
 
-                // 프로필이미지 div
-                const piArea = document.createElement("div");
-                piArea.classList.add("pi-area");
+                        // 댓글 목록(ul)에 행(li)추가
+                        commentList.append(commentRow);
+                    }
 
-                // 프로필 이미지
-                const profileImage = document.createElement("img");
+                    // 삭제되지 않은 댓글일 경우
+                    if(comment.commentDeleteFlag == 'N'){
 
-                if( comment.profileImage != null ){ // 프로필 이미지가 있을 경우
-                    profileImage.setAttribute("src", comment.profileImage);
-                }else{ // 없을 경우 == 기본이미지
-                    profileImage.setAttribute("src", "/resources/images/main/프로필.PNG");
-                }
+                            // 프로필 + 댓글내용 등이 들어간 div
+                            const commentWriter = document.createElement("div");
+                            commentWriter.classList.add("comment-writer");
+            
+                            // 프로필이미지 div
+                            const piArea = document.createElement("div");
+                            piArea.classList.add("pi-area");
+            
+                            // 프로필 이미지
+                            const profileImage = document.createElement("img");
+            
+                            if( comment.profileImage != null ){ // 프로필 이미지가 있을 경우
+                                profileImage.setAttribute("src", comment.profileImage);
+                            }else{ // 없을 경우 == 기본이미지
+                                profileImage.setAttribute("src", "/resources/images/main/프로필.PNG");
+                            }
+            
+                            // 프로필이미지 div에 프로필이미지 추가
+                            piArea.append(profileImage);
+            
+                            // 닉네임 + 등급이미지 + 댓글 내용 + 작성일이 들어간 div
+                            const commentArea = document.createElement("div");
+                            commentArea.classList.add("comment-area");
+            
+                            // 닉네임 a태그가 들어간 span
+                            const commentWriterArea = document.createElement("span");
+                            commentWriterArea.classList.add("comment-writer-area");
+            
+                            // 닉네임을 누르면 회원정보 페이지로 이동하는 a태그
+                            const memberNickname = document.createElement("a");
+                            memberNickname.setAttribute("href", "/member/"+comment.memberNo);
+                            memberNickname.innerText = comment.memberNickname;
+            
+                            // commentWriterArea에 닉네임 a태그 추가
+                            commentWriterArea.append(memberNickname);
+            
+                            // 등급이미지가 들어간 span
+                            const commentWriterLevel = document.createElement("span");
+                            commentWriterLevel.classList.add("comment-writer-level");
+            
+                            // 등급이미지
+                            const levelImage = document.createElement("img");
+                            levelImage.classList.add("levelImage");
+                            levelImage.setAttribute("src", comment.memberLevelImage);
+            
+                            // commentWriterLevel에 등급이미지 추가
+                            commentWriterLevel.append(levelImage);
+            
+                            // 댓글 내용이 들어간 p태그
+                            const commentContentArea = document.createElement("p");
+                            commentContentArea.classList.add("comment-content-area");
+                            commentContentArea.innerHTML = comment.commentContent;
+            
+                            // 작성일이 들어간 div
+                            const commentDate = document.createElement("div");
+                            commentDate.classList.add("comment-date");
+                            commentDate.innerText = comment.commentCreateDate;
+            
+                            // comment-area에 합치기
+                            commentArea.append(commentWriterArea, commentWriterLevel, commentContentArea, commentDate);
+            
+                            // commentWriter div에 piArea commentArea 추가
+                            commentWriter.append(piArea, commentArea);
+            
+                            // comment-row 에 comment-writer추가
+                            commentRow.append(commentWriter);
+                            
+            
+                            // 로그인이 되어있는 경우 답글 버튼 추가
+                            if(memberNo != ""){
+                                // 버튼 영역
+                                const commentBtnArea = document.createElement("div");
+                                commentBtnArea.classList.add("comment-btn-area");
+            
+                                // 답글 버튼
+                                const childCommentBtn = document.createElement("button");
+                                childCommentBtn.setAttribute("onclick", "showInsertComment("+comment.commentNo+", this)");
+                                childCommentBtn.innerText = "답글";
+            
+                                // 버튼 영역에 답글 버튼 추가
+                                commentBtnArea.append(childCommentBtn);
+            
+                                // 로그인한 회원번호와 댓글 작성자의 회원번호가 같을 때 수정 버튼 추가
+                                if( memberNo == comment.memberNo ){
 
-                // 프로필이미지 div에 프로필이미지 추가
-                piArea.append(profileImage);
+                                    // 수정 버튼
+                                    const updateBtn = document.createElement("button");
+                                    updateBtn.innerText = "수정";
+            
+                                    // 수정 버튼에 onclick 이벤트 속성 추가
+                                    updateBtn.setAttribute("onclick", "showUpdateComment("+comment.commentNo+", this)");                        
+            
+                                    // 버튼 영역 마지막 자식으로 수정 버튼 추가
+                                    commentBtnArea.append(updateBtn);
+                                } // if 끝
+                                
+                                // 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출
+                                if((authorityNo==0 ||authorityNo==1) || memberNo == comment.memberNo){
+        
+                                    // 삭제 버튼
+                                    const deleteBtn = document.createElement("button");
+                                    deleteBtn.innerText = "삭제";
+                                    // 삭제 버튼에 onclick 이벤트 속성 추가
+                                    deleteBtn.setAttribute("onclick", "deleteComment("+comment.commentNo+", "+comment.memberNo+")");                       
+                                    // 버튼 영역 마지막 자식으로 수정/삭제 버튼 추가
+                                    commentBtnArea.append(deleteBtn);
+                                }
 
-                // 닉네임 + 등급이미지 + 댓글 내용 + 작성일이 들어간 div
-                const commentArea = document.createElement("div");
-                commentArea.classList.add("comment-area");
-
-                // 닉네임 a태그가 들어간 span
-                const commentWriterArea = document.createElement("span");
-                commentWriterArea.classList.add("comment-writer-area");
-
-                // 닉네임을 누르면 회원정보 페이지로 이동하는 a태그
-                const memberNickname = document.createElement("a");
-                memberNickname.setAttribute("href", "/member/"+comment.memberNo);
-                memberNickname.innerText = comment.memberNickname;
-
-                // commentWriterArea에 닉네임 a태그 추가
-                commentWriterArea.append(memberNickname);
-
-                // 등급이미지가 들어간 span
-                const commentWriterLevel = document.createElement("span");
-                commentWriterLevel.classList.add("comment-writer-level");
-
-                // 등급이미지
-                const levelImage = document.createElement("img");
-                levelImage.classList.add("levelImage");
-                levelImage.setAttribute("src", comment.memberLevelImage);
-
-                // commentWriterLevel에 등급이미지 추가
-                commentWriterLevel.append(levelImage);
-
-                // 댓글 내용이 들어간 p태그
-                const commentContentArea = document.createElement("p");
-                commentContentArea.classList.add("comment-content-area");
-                commentContentArea.innerHTML = comment.commentContent;
-
-                // 작성일이 들어간 div
-                const commentDate = document.createElement("div");
-                commentDate.classList.add("comment-date");
-                commentDate.innerText = comment.commentCreateDate;
-
-                // comment-area에 합치기
-                commentArea.append(commentWriterArea, commentWriterLevel, commentContentArea, commentDate);
-
-                // commentWriter div에 piArea commentArea 추가
-                commentWriter.append(piArea, commentArea);
-
-                // comment-row 에 comment-writer추가
-                commentRow.append(commentWriter);
-                
-
-                // 로그인이 되어있는 경우 답글 버튼 추가
-                if(memberNo != ""){
-                    // 버튼 영역
-                    const commentBtnArea = document.createElement("div");
-                    commentBtnArea.classList.add("comment-btn-area");
-
-                    // 답글 버튼
-                    const childCommentBtn = document.createElement("button");
-                    childCommentBtn.setAttribute("onclick", "showInsertComment("+comment.commentNo+", this)");
-                    childCommentBtn.innerText = "답글";
-
-                    // 버튼 영역에 답글 버튼 추가
-                    commentBtnArea.append(childCommentBtn);
-
-                    // 로그인한 회원번호와 댓글 작성자의 회원번호가 같을 때만 버튼 추가
-                    if( memberNo == comment.memberNo   ){
-
-                        // 수정 버튼
-                        const updateBtn = document.createElement("button");
-                        updateBtn.innerText = "수정";
-
-                        // 수정 버튼에 onclick 이벤트 속성 추가
-                        updateBtn.setAttribute("onclick", "showUpdateComment("+comment.commentNo+", this)");                        
-
-                        // 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출
-                        if((authorityNo==0 ||authorityNo==1) || memberNo == comment.memberNo){
-
-                            // 삭제 버튼
-                            const deleteBtn = document.createElement("button");
-                            deleteBtn.innerText = "삭제";
-                            // 삭제 버튼에 onclick 이벤트 속성 추가
-                            deleteBtn.setAttribute("onclick", "deleteComment("+comment.commentNo+")");                       
-                            // 버튼 영역 마지막 자식으로 수정/삭제 버튼 추가
-                            commentBtnArea.append(updateBtn, deleteBtn);
+                                // 행에 버튼영역 추가
+                                commentRow.append(commentBtnArea); 
+                            }
+            
+                            // 댓글 목록(ul)에 행(li)추가
+                            commentList.append(commentRow);
                         }
-                        // 버튼 영역 마지막 자식으로 수정 버튼 추가
-                        commentBtnArea.append(updateBtn);
 
-                    } // if 끝
-
-                    // 행에 버튼영역 추가
-                    commentRow.append(commentBtnArea); 
-                }
-
-                // 댓글 목록(ul)에 행(li)추가
-                commentList.append(commentRow);
-            }
+                    }
 
         },
         error : function(req, status, error){
@@ -186,7 +234,7 @@ addComment.addEventListener("click", function(){ // 댓글 등록 버튼이 클�
                 commentContent.value = ""; // 작성했던 댓글 삭제
 
                 selectCommentList(); // 비동기 댓글 목록 조회 함수 호출
-                // -> 새로운 댓글이 추가되어짐
+                // -> 새로운 댓글이 추가됨
 
             } else { // 실패
                 alert("댓글 등록에 실패했습니다...");
@@ -201,3 +249,55 @@ addComment.addEventListener("click", function(){ // 댓글 등록 버튼이 클�
     });
 
 });
+
+// 댓글 삭제
+function deleteComment(commentNo, commentMemberNo){
+    
+    if( confirm("정말로 삭제 하시겠습니까?") ){
+        
+        if(memberNo != commentMemberNo){
+        // authorityNo==0||authorityNo==1
+            
+            $.ajax({
+                url : "/comment/deleteManager",
+                data : {"commentNo" : commentNo},
+                type : "GET",
+                success: function(result){
+                    if(result > 0){
+                        alert("카페 스탭 권한으로 삭제되었습니다");
+                        selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+                    }else{
+                        alert("삭제 실패");
+                    }
+                },
+    
+                error : function(req, status, error){
+                    console.log("댓글 삭제 실패")
+                    console.log(req.responseText);
+                }
+    
+            });
+        } else{
+
+            $.ajax({
+                url : "/comment/delete",
+                data : {"commentNo" : commentNo},
+                type : "GET",
+                success: function(result){
+                    if(result > 0){
+                        alert("댓글이 삭제되었습니다");
+                        selectCommentList(); // 목록을 다시 조회해서 삭제된 글을 제거
+                    }else{
+                        alert("삭제 실패");
+                    }
+                },
+    
+                error : function(req, status, error){
+                    console.log("댓글 삭제 실패")
+                    console.log(req.responseText);
+                }
+    
+            });
+        }
+    }
+}
