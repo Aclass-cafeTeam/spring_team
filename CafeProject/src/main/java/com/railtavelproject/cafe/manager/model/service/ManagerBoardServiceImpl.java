@@ -50,7 +50,7 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 			message = "게시판이 추가 되었습니다. 상세 설정해주세요.";
 			
 			
-			Board newBoard = dao.selectBoard(boardOrder+1,mainCategoryNo);
+			Board newBoard = dao.selectBoard(result,mainCategoryNo);
 			map.put("message", message);
 			map.put("newBoard", newBoard);
 			
@@ -132,10 +132,13 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		int result = 0;
 		
 		if(boardCode != -1) {
+			int result4=  dao.deleteBoardTypeBoard(boardCode);
 			result = dao.deleteBoardType(boardCode);
 		}else {
+			int resul3 = dao.deletemainCategoryBoard(mainCategoryNo);
+			
 			int result2 = dao.deletemainCategoryBoardType(mainCategoryNo); //메인 카테고리에 있는 게시판 삭제
-			System.out.println("result2:" +result2);
+			
 			result = dao.deletemainCategory(mainCategoryNo);
 		}
 		

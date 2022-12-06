@@ -40,12 +40,15 @@
     	
 		<!-- 게시판 삽입 -->
 		<insert id="insertBoardType" parameterType="java.util.HashMap">
+		<selectKey keyProperty="boardNo" resultType="_int" order="BEFORE">
+			SELECT SEQ_BOARD_CODE.NEXTVAL FROM DUAL
+		</selectKey>
 		INSERT INTO "BOARD_TYPE" 
-		VALUES(SEQ_BOARD_CODE.NEXTVAL,#{boardName},#{boardOrder},#{mainCategoryNo},DEFAULT,#{boardForm},DEFAULT, 2,DEFAULT)
+		VALUES(#{boardNo},#{boardName},#{boardOrder},#{mainCategoryNo},DEFAULT,#{boardForm},DEFAULT, 2,DEFAULT)
 		</insert>
 		
 		<select id="selectBoard" resultMap="managerboard_rm">
-    	SELECT * FROM "BOARD_TYPE" WHERE BOARD_ORDER = #{boardOrder}
+    	SELECT * FROM "BOARD_TYPE" WHERE BOARD_CODE = #{boardCode}
     	AND MAIN_CATEGORY_NO = #{mainCategoryNo}
     </select>
     	
@@ -84,6 +87,13 @@
 	TYPE_DEL_FL = 'Y'
 	WHERE BOARD_CODE = #{boardCode}
     </update>
+    <!--게시판 삭제 시 게시글 삭제  -->
+    <update id="deleteBoardTypeBoard" parameterType="_int">
+    UPDATE "BOARD" SET
+	BOARD_DEL_FL ='M'
+	WHERE BOARD_CODE = #{boardCode}
+    </update>
+    
     <!-- 메인 카테고리 삭제 -->
     <update id="deletemainCategory" parameterType="_int">
     UPDATE "MAIN_CATEGORY" SET 
@@ -95,5 +105,14 @@
     UPDATE "BOARD_TYPE" SET 
 	TYPE_DEL_FL = 'Y'
 	WHERE MAIN_CATEGORY_NO = #{mainCategoryNo}
+    </update>
+    
+    <!-- 메인 카테고리 안에 게시판 삭제 시 게시글도-->
+    <update id="deletemainCategoryBoard" parameterType="_int">
+    UPDATE "BOARD" SET
+	BOARD_DEL_FL ='M'
+	WHERE BOARD_NO IN (SELECT BOARD_NO  FROM (SELECT * FROM BOARD 
+	JOIN (SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO))
+	USING(BOARD_CODE)) WHERE MAIN_CATEGORY_NO = #{mainCategoryNo})
     </update>
 </mapper>

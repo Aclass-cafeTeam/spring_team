@@ -47,7 +47,9 @@ public class ManagerBoardDAO {
 		map.put("boardName", boardName); //이름
 		map.put("boardOrder", boardOrder+1); //순서
 		map.put("boardForm", boardForm); //A B
-		return sqlSession.insert("managerBoardmapper.insertBoardType", map);
+		sqlSession.insert("managerBoardmapper.insertBoardType", map);
+		int result = (int)map.get("boardNo");
+		return result;
 	}
 
 	/** 삽입한 게시판 들고오기
@@ -55,10 +57,10 @@ public class ManagerBoardDAO {
 	 * @param mainCategoryNo
 	 * @return
 	 */
-	public Board selectBoard(int boardOrder, int mainCategoryNo) {
+	public Board selectBoard(int result, int mainCategoryNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("mainCategoryNo", mainCategoryNo); //게시판 메인 카테고리
-		map.put("boardOrder", boardOrder);
+		map.put("boardCode", result);
 		return sqlSession.selectOne("managerBoardmapper.selectBoard", map);
 	}
 
@@ -118,11 +120,22 @@ public class ManagerBoardDAO {
 	}
 
 	/** 게시판 삭제--update로 delFN를 Y로
+	 * 게시글도 삭제
 	 * @param boardCode
 	 */
 	public int deleteBoardType(int boardCode) {
 		return sqlSession.update("managerBoardmapper.deleteBoardType",boardCode);
 	}
+	
+	/** 게시판 삭제 시 게시글 삭제
+	 * @param boardCode
+	 * @return
+	 */
+	public int deleteBoardTypeBoard(int boardCode) {
+	
+		return sqlSession.update("managerBoardmapper.deleteBoardTypeBoard",boardCode);
+	}
+
 
 	/**카테고리 삭제 --update로 delFN를 Y로
 	 * 카테고리 안에 있는 게시판도 --update로 delFN를 Y로
@@ -139,6 +152,16 @@ public class ManagerBoardDAO {
 	public int deletemainCategoryBoardType(int mainCategoryNo) {
 		
 		return sqlSession.update("managerBoardmapper.deletemainCategoryBoardType",mainCategoryNo); 
+	}
+
+	
+	/** 카테고리 안에 있는 게시판 삭제되면서 게시글도 모두 삭제
+	 * @param mainCategoryNo
+	 * @return
+	 */
+	public int deletemainCategoryBoard(int mainCategoryNo) {
+	
+		return sqlSession.update("managerBoardmapper.deletemainCategoryBoard",mainCategoryNo); 
 	}
 	
 }
