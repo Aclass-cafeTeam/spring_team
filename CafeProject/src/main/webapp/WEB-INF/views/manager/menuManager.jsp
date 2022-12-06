@@ -145,8 +145,8 @@
                                 <input type="hidden" class="valueRemove" id = "mainCategoryNameIn2" name="mainCategoryNameIn2" value=""><!-- 메인 카테고리 추가 -->
                                 <input type="hidden" class="valueRemove" id="bordTitleNameIn" name="bordTitleNameIn" value=""><!-- 게시판 추가 -->
                                 <input type="hidden" class="valueRemove" id="bordTitleFormIn" name="bordTitleFormIn" value=""><!-- 게시판 추가 -->
-                                <input type="hidden" class="valueRemov2" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
-                                <input type="hidden" class="valueRemov2" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리 이름 -->
+                                <input type="hidden" class="valueRemove2" id="mainCategoryAdd" name="mainCategoryAdd" value=""><!-- 게시판이 추가되는 메인카테고리(메인 카테고리 마지막 순서 번호) -->
+                                <input type="hidden" class="valueRemove2" id="mainCategoryNameAdd" name="mainCategoryNameAdd" value=""><!-- 게시판이 추가되는 메인카테고리 이름 -->
                                 <input type="hidden" class="valueRemove" id="boardOrderIn" name="boardOrderIn" value=""><!-- 게시판이 순서-->
                                 <input type="hidden" class="valueRemove" id="boardCodeIn" name="boardCodeIn" value=""><!-- 게시판이 순서-->
                             </div>
@@ -176,15 +176,17 @@
                                                         <c:forEach items="${mainCategory}" var="mainVar" >
                                                             <c:if test="${mainVar.mainCategoryNo == 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
                                                             <c:if test="${mainVar.mainCategoryNo > 1}"><ul id="mainCategory.${mainVar.mainCategoryNo}" class="mainCategory mainCategoryOn" title="${mainVar.mainCategoryName}" number="${mainVar.mainCategoryNo}"></c:if>
-                                                            <li data-v-bd0068e8="" class="h_menu_tit"><a><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
+                                                            <li data-v-bd0068e8="" class="h_menu_tit"><c:if test="${mainVar.mainCategoryNo == 1}"><a></c:if><c:if test="${mainVar.mainCategoryNo > 1}"><a class="mainCategoryClick"></c:if><span data-v-bd0068e8="" title="그룹 제목" id="${mainVar.mainCategoryName}" class="${mainVar.mainCategoryNo} mainCategory${mainVar.mainCategoryNo}">■ ${mainVar.mainCategoryName}</span></a></li>
                                                         <c:forEach items="${boardType}" var="var">
                                                             <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
-                                                                <input type="hidden" id="varboardCode" name="varboardCode" value="${var.boardCode}">
-                                                                <input type="hidden" id="varboardName" name="varboardName" value="${var.boardName}">
-                                                                <input type="hidden" id="titleTagYN" name="titleTagYN" value="${var.titleTagYN}">
-                                                                <input type="hidden" id="boardLikeYN" name="boardLikeYN" value="${var.boardLikeYN}">
-                                                                <input type="hidden" id="boardMemberLevelNo" name="boardMemberLevelNo" value="${var.boardMemberLevelNo}">
-                                                                <li data-v-bd0068e8="" class=""><a data-v-bd0068e8="" class="ge_v1 ${var.boardForm}" id="${var.boardName}" title="${var.boardOrder}" name="${var.boardCode}"><span data-v-bd0068e8="">${var.boardName}</span></a></li>
+                                                                <input type="hidden" id="varboardCodeboard${var.boardCode}" name="varboardCode" value="${var.boardCode}">
+                                                                    <input type="hidden" id="varboardNameboard${var.boardCode}" name="varboardName" value="${var.boardName}">
+                                                                    <input type="hidden" id="titleTagYNboard${var.boardCode}" name="titleTagYN" value="${var.titleTagYN}">
+                                                                    <input type="hidden" id="boardLikeYNboard${var.boardCode}" name="boardLikeYN" value="${var.boardLikeYN}">
+                                                                    <input type="hidden" id="boardMemberLevelNoboard${var.boardCode}" name="boardMemberLevelNo" value="${var.boardMemberLevelNo}">
+                                                                <li data-v-bd0068e8="" class="">
+                                                                    <a data-v-bd0068e8="" class="ge_v1click ge_v1 ${var.boardForm}" id="board${var.boardCode}" title="${var.boardOrder}" name="${var.boardCode}"><span data-v-bd0068e8="">${var.boardName}</span></a>
+                                                                </li>
                                                             </c:if>
                                                         </c:forEach>
                                                         </ul>
@@ -241,7 +243,7 @@
                                 <input type="hidden" id="boardCodeUpdate" name="boardCodeUpdate" value="">
                                 <input type="hidden" id="MainCategoryUpdate" name="MainCategoryUpdate" value="">
                                     <div class="set_box">
-                                        <h3 class="set_tit">통합게시판</h3><%-- 통합게시판 --%>
+                                        <h3 class="set_tit">통합게시판</h3>
                                         <ul class="set_lst_type">
                                             <li>- 용도에 따라 다양한 형태로 사용 가능한 일반 게시판입니다.</li>
                                         </ul>
@@ -302,11 +304,11 @@
 
                                     <%-- 그룹 --%>
                                     <div class="set_box">
-                                        <h3 class="set_ti">그룹</h3><%-- 통합게시판 --%>
+                                        <h3 class="set_tit2">그룹</h3><%-- 통합게시판 --%>
                                         <ul class="set_lst_type">
                                             <li>- 게시판을 한 그룹으로 묶을 때 사용합니다.</li>
                                         </ul>
-                                        <div class="detail_are">
+                                        <div class="detail_area2">
                                             <table border="1" cellspacing="0" width="100%" summary="메뉴관리 설정">
                                                 <caption style="display: none;">메뉴관리 설정 정보</caption>
                                                 <colgroup><col width="130"><col width="*"></colgroup>
@@ -314,7 +316,7 @@
                                                     <tr>
                                                         <th>그룹제목</th>
                                                         <td>
-                                                            <input type="text" class="ipt_type" id="mainCategoryNameupdateIN"><!---->
+                                                            <input type="text" class="ipt_type2" id="mainCategoryNameupdateIN"><!---->
                                                         </td>
                                                     </tr>
                                                     <tr>

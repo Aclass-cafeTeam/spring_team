@@ -479,6 +479,55 @@ input.check {
     margin-left: 9px!important;
 }
 
+.admin_menu_management .set_box .set_tit2 {
+    padding: 0 0 6px;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 16px;
+}
+
+.admin_menu_management .detail_area2 {
+    width: 426px;
+    margin: 15px 0 19px;
+    padding: 4px 0 35px;
+    border-top: 1px solid #565b62;
+}
+
+.admin_menu_management .detail_area td {
+    padding: 12px 0 0;
+    color: #404040;
+    vertical-align: top;
+}
+
+.admin_menu_management .detail_area2 .ipt_type2 {
+    width: 289px;
+    height: 29px;
+    padding-left: 4px;
+    border: 1px solid #c5c5c5;
+    color: #404040;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 29px;
+    margin-bottom: 14px;
+    margin-top: 10px;
+}
+
+.admin_menu_management .detail_area2 .line {
+    overflow: hidden;
+    height: 2px;
+    padding: 0;
+    border-top: 1px solid #e9e9e9;
+    *background: #e9e9e9;
+}
+.admin_menu_management .detail_area2 th {
+    padding: 16px 0 0 9px;
+    color: #272727;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+}
 /* 취소 저장 버튼 부분 */
 
 .admin_menu_management .btn_area2, .admin_menu_management .edit_btn_box {
@@ -520,3 +569,6 @@ input.check {
 /* 취소 저장 버튼 부분 ************************************/
 
 
+ul {
+    display: block;
+}

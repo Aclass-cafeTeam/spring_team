@@ -1,4 +1,5 @@
-/* 게시판 추가  게시판 클릭*/
+
+/* 게시판 추가  게시판 클릭---맨 왼쪽 통합게시판(앨번 게시판)*/
 $(".add_lst_btn a").click(function() {
   console.log("클릭");
   document.getElementById("plusBtn").classList.add("on");
@@ -13,7 +14,7 @@ $(".add_lst_btn a").click(function() {
   
 });
 
-/* 메인 카테고리 추가 그룹 제목(메인 카테고리 클릭)*/
+/* 메인 카테고리 추가 --맨 왼쪽 그룹 제목(메인 카테고리 클릭)*/
 $(".add_lst_btn2 a").click(function() {
   console.log("클릭");
   document.getElementById("plusBtn").classList.add("on");
@@ -32,7 +33,10 @@ $(".add_lst_btn2 a").click(function() {
 
 
 
+
+
 /* 게시판 순서 위 아래 삭제 버튼 세팅 및 값 세팅 */
+/* 게시판 기본 게시판을 제외한 나머지 게시판들  */
 $(".mainCategoryOn a").click(function() {
   $('.edit_btn_area li').addClass("on");
 
@@ -55,7 +59,52 @@ $(".mainCategoryOn a").click(function() {
 
 });
 
+/* 메인 카테고리 클릭 하면 a태그 class = mainCategoryClick */
+/* 그냥 게시판 클릭하면 a 태그 class= ge_v1 */
+/* 게시판 클릭 or 메인 카테고리 별 누르면 상세설명 세팅 */
+$(".mainCategoryClick").click(function() {
+  document.getElementById("mainCategoryNameupdateIN").value = document.getElementById("mainCategoryNameIn2").value;
+  document.getElementById("MainCategoryUpdate").value = document.getElementById("mainCategoryNameIn").value;
 
+  document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+  document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
+  document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
+
+  //$('.valueRemov2').value ="";
+ 
+});
+
+$(".ge_v1click").click(function() {
+  const thisID = this.id;
+    document.getElementById("boardCodeUpdate").value = document.getElementById("boardCodeIn").value;
+    document.getElementById("settingboardName").value = this.innerText;
+    document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNo"+thisID).value;
+                
+    if(document.getElementById("boardLikeYN"+thisID).value == 'Y'){
+            $("#in_type6").prop("checked", true);
+    }else{
+            $("#in_type6").prop("checked", false);
+    }
+
+    if(document.getElementById("titleTagYN"+thisID).value == 'Y'){
+        $("#in_type7").prop("checked", true);
+    }else{
+        $("#in_type7").prop("checked", false);
+    }
+
+    document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+    document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+    document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
+
+    //$('.valueRemove').value ="";
+    //id="titleTagYNboard${var.boardCode}"
+   //boardLikeYNboard${var.boardCode}
+});
+
+
+
+
+/* +(추가) 버튼 눌렀을 때 이벤트 */
 $('#BoardPlusBtn').click(function() {
   const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;  //mainCategory.B
   const mainCategoryNameIn2 = document.getElementById("mainCategoryNameIn2").value; //질문코너
@@ -64,7 +113,7 @@ $('#BoardPlusBtn').click(function() {
   const bordTitleFormIn = document.getElementById("bordTitleFormIn").value;
   const boardCodeIn = document.getElementById("boardCodeIn").value;
 
-  /* 메인 카테고리 추가(그룹) */
+  /* 메인 카테고리 추가(그룹)  이벤트*/
   const mainCategoryAdd = document.getElementById("mainCategoryAdd").value; //4
   const mainCategoryNameAdd = document.getElementById("mainCategoryNameAdd").value; //그룹 제목
 
@@ -82,7 +131,7 @@ $('#BoardPlusBtn').click(function() {
       dataType:"JSON",
       async: false,
       success:(result)=>{
-        if(result.message != '게시판 추가에 실패했습니다.'){
+        if(result.message != '게시판 카테고리 추가 실패했습니다.'){
 
           alert(result.message);
 
@@ -93,10 +142,30 @@ $('#BoardPlusBtn').click(function() {
           ul.setAttribute("title",result.newBoard.mainCategoryName);
           ul.setAttribute("number",result.newBoard.mainCategoryNo);
 
-          document.getElementById("borderNone").append(ul);
+          const li = document.createElement("li");
+          li.setAttribute("class","h_menu_tit");
 
+          const a = document.createElement("a");
+          a.classList.add("mainCategoryClick");
+          const span = document.createElement("span");
+
+          span.setAttribute("title","그룹 제목");
+          span.id = result.newBoard.mainCategoryName;
+          span.setAttribute("class",result.newBoard.mainCategoryNo);
+          span.classList.add("mainCategory"+result.newBoard.mainCategoryNo);
+          span.innerText = "■ " + result.newBoard.mainCategoryName;
+
+          document.getElementById("borderNone").append(ul);
+          ul.append(li)
+          li.append(a);
+          a.append(span);
 
           //<ul id="mainCategory.4" class="mainCategory mainCategoryOn" title="갤러리 자료" number="4"></ul>
+          /* <li data-v-bd0068e8="" class="h_menu_tit">
+                <a>
+                <span data-v-bd0068e8="" title="그룹 제목" id="여행 정보" class="2">■ 여행 정보</span>
+                </a>
+            </li> */
 
 
           $(".mainCategoryOn a").click(function() {
@@ -121,6 +190,18 @@ $('#BoardPlusBtn').click(function() {
           
           });
 
+          $(".mainCategoryClick").click(function() {
+            document.getElementById("mainCategoryNameupdateIN").value = document.getElementById("mainCategoryNameIn2").value;
+            document.getElementById("MainCategoryUpdate").value = document.getElementById("mainCategoryNameIn").value;
+          
+            document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+            document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
+            document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
+          
+            //$('.valueRemov2').value ="";
+           
+          });
+
 
           document.getElementById("mainCategoryNameupdateIN").value = result.newBoard.mainCategoryName;
           document.getElementById("MainCategoryUpdate").value = result.newBoard.mainCategoryNo;
@@ -129,7 +210,9 @@ $('#BoardPlusBtn').click(function() {
           document.getElementsByClassName("set_box")[1].classList.remove("set_boxON");
           document.getElementsByClassName("set_box")[2].classList.add("set_boxON");
 
-          $('.valueRemov2').value ="";
+          for(i=0; i<$(".valueRemove2").length;i++){
+            $('.valueRemove2')[i].value ="";
+          }
 
         }else{
           alert(result.message);
@@ -145,7 +228,7 @@ $('#BoardPlusBtn').click(function() {
 
   }else{
 
-    
+        //게시판 추가했을 떄 코드
         if(mainCategoryNameIn != '' && bordTitleNameIn !='' && boardOrderIn !=''){
 
           alert("값 넣기 성공");
@@ -166,22 +249,64 @@ $('#BoardPlusBtn').click(function() {
               if(result.message != '게시판 추가에 실패했습니다.'){
 
                 alert(result.message);
+                /* 요소 만들어서 넣기 */
+                /* 인풋태그 5개*/
+                const input = document.createElement("input");
+                input.setAttribute("type","hidden");
+                input.id = "varboardCodeboard" + result.newBoard.boardCode;
+                input.setAttribute("name","varboardCode");
+                input.setAttribute("value",result.newBoard.boardCode);
+
+                const input2 = document.createElement("input");
+                input2.setAttribute("type","hidden");
+                input2.id = "varboardNameboard" + result.newBoard.boardCode;
+                input2.setAttribute("name","varboardName");
+                input2.setAttribute("value",result.newBoard.boardName);
+
+                const input3 = document.createElement("input");
+                input3.setAttribute("type","hidden");
+                input3.id = "titleTagYNboard" + result.newBoard.boardCode;
+                input3.setAttribute("name","titleTagYN");
+                input3.setAttribute("value",result.newBoard.titleTagYN);
+
+                const input4 = document.createElement("input");
+                input4.setAttribute("type","hidden");
+                input4.id = "boardLikeYNboard" + result.newBoard.boardCode;
+                input4.setAttribute("name","boardLikeYN");
+                input4.setAttribute("value",result.newBoard.boardLikeYN);
+
+                const input5 = document.createElement("input");
+                input5.setAttribute("type","hidden");
+                input5.id = "boardMemberLevelNoboard" + result.newBoard.boardMemberLevelNo;
+                input5.setAttribute("name","boardMemberLevelNo");
+                input5.setAttribute("value",result.newBoard.boardMemberLevelNo);
+                /* 인풋태그 5개*/
 
                 const li = document.createElement("li");
+                
                 const a = document.createElement("a");
                 li.setAttribute("class","");
-                a.id = result.newBoard.boardName;
+                a.id = "board" + result.newBoard.boardCode;//board${var.boardCode}
                 a.setAttribute("title", result.newBoard.boardOrder);
                 a.setAttribute("class", result.newBoard.boardForm);
+                a.classList.add("ge_v1click");
+                a.classList.add("ge_v1");
                 if(result.newBoard.boardForm == 'A'){
-                  a.classList.add("ge_v1");
+                  a.classList.add("A"); //a.classList.add("ge_v1");
                 }
                 if(result.newBoard.boardForm == 'B'){
-                  a.classList.add("ge_v13");
+                  a.classList.add("B"); //a.classList.add("ge_v13");
+                  a.classList.add("ge_v13"); //a.classList.add("ge_v13");
                 }
 
                 const span = document.createElement("span");
                 span.innerText = result.newBoard.boardName;
+
+                document.getElementById(mainCategoryNameIn).append(input);
+                document.getElementById(mainCategoryNameIn).append(input2);
+                document.getElementById(mainCategoryNameIn).append(input3);
+                document.getElementById(mainCategoryNameIn).append(input4);
+                document.getElementById(mainCategoryNameIn).append(input5);
 
                 document.getElementById(mainCategoryNameIn).append(li);
                 li.append(a);
@@ -207,6 +332,33 @@ $('#BoardPlusBtn').click(function() {
                 
                 });
 
+                $(".ge_v1click").click(function() {
+                  const thisID = this.id;
+                    document.getElementById("boardCodeUpdate").value = document.getElementById("boardCodeIn").value;
+                    document.getElementById("settingboardName").value = this.innerText;
+                    document.getElementById("LevelNo").value =document.getElementById("boardMemberLevelNo"+thisID).value;
+                                
+                    if(document.getElementById("boardLikeYN"+thisID).value == 'Y'){
+                            $("#in_type6").prop("checked", true);
+                    }else{
+                            $("#in_type6").prop("checked", false);
+                    }
+                
+                    if(document.getElementById("titleTagYN"+thisID).value == 'Y'){
+                        $("#in_type7").prop("checked", true);
+                    }else{
+                        $("#in_type7").prop("checked", false);
+                    }
+                
+                    document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+                    document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
+                    document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
+                
+                    //$('.valueRemove').value ="";
+                    //id="titleTagYNboard${var.boardCode}"
+                   //boardLikeYNboard${var.boardCode}
+                });
+
 
                 document.getElementById("boardCodeUpdate").value = result.newBoard.boardCode;
                 document.getElementById("settingboardName").value = result.newBoard.boardName;
@@ -214,16 +366,24 @@ $('#BoardPlusBtn').click(function() {
                 
                 if(result.newBoard.boardLikeYN == 'Y'){
                   $("#in_type6").prop("checked", true);
+                }else{
+                  $("#in_type6").prop("checked", false);
                 }
 
                 if(result.newBoard.titleTagYN == 'Y'){
                   $("#in_type7").prop("checked", true);
+                }else{
+                  $("#in_type7").prop("checked", false);
                 }
 
                 document.getElementsByClassName("set_box")[0].classList.remove("set_boxBasic");
+                document.getElementsByClassName("set_box")[2].classList.remove("set_boxON");
                 document.getElementsByClassName("set_box")[1].classList.add("set_boxON");
 
-                $('.valueRemove').value ="";
+                for(i=0; i<$(".valueRemove").length;i++){
+                  $('.valueRemove')[i].value ="";
+                }
+                
 
 
               }else{
