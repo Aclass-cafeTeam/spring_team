@@ -105,7 +105,7 @@ function selectType(type) {
                 type.preventDefault;
             }
     }
-    // console.log(boardCode.value);
+    console.log(boardCode);
 }    
 
 

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
 import com.railtavelproject.cafe.board.model.vo.BoardImage;
+import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Repository
 public class BoardCrudDAO {
@@ -100,5 +101,14 @@ public class BoardCrudDAO {
 		sqlSession.delete("boardCrudMapper.deleteImgList", boardNo);
 		
 		
+	}
+
+
+	/** 게시판 목록 조회(로그인한 회원 등급에 따라)
+	 * @param memberLevelNo
+	 * @return boardTypeList
+	 */
+	public List<Map<String, Object>> selectBoardType(Member loginMember) {
+		return sqlSession.selectList("boardCrudMapper.selectBoardType", loginMember) ;
 	}
 }

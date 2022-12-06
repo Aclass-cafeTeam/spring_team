@@ -43,7 +43,17 @@
 		SELECT * FROM TITLE_TAG ORDER BY 1
 	</select>
 	
-
+	
+	<!-- 게시판 목록 조회(회원등급) -->
+	<select id="selectBoardType" resultType="map"> 
+		SELECT DISTINCT(BOARD_CODE), BOARD_NAME, BOARD_FORM, MEMBER_LEVEL_NO, AUTHORITY_NO 
+		FROM BOARD_TYPE
+		LEFT JOIN MEMBER USING(MEMBER_LEVEL_NO)
+		WHERE MEMBER_LEVEL_NO BETWEEN 2 AND #{memberLevelNo}
+		OR #{authorityNo} IN (0, 1)
+		ORDER BY BOARD_CODE
+	</select>
+	
 	
  		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
  				useGeneratedKeys="true" : JDBC getGeneratedKeys()메서드 사용 허용 ** 필수 사용
@@ -83,7 +93,7 @@
  		
  		<!-- 게시글 삭제 -->
  		<update id="deleteBoard">
- 			UPDATE BOARD SET BOARD_DEL_FL = 'Y' 
+ 			UPDATE BOARD SET BOARD_DEL_FL = 'Y', B_UPDATE_DATE = SYSDATE 
 			WHERE BOARD_NO = #{boardNo}
  		</update>
  		

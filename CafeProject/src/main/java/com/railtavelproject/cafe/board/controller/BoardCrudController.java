@@ -47,6 +47,11 @@ public class BoardCrudController {
 	public String writeBoard(@SessionAttribute("loginMember") Member loginMember,
 							Model model) {
 		
+		// 게시판 목록 조회(로그인한 회원 등급에 따라)
+		loginMember.setMemberLevelNo(loginMember.getMemberLevelNo());
+		loginMember.setAuthorityNo(loginMember.getAuthorityNo());
+		List<Map<String, Object>> boardTypeList = service.selectBoardType(loginMember); 
+		
 		// 태그조회
 		List<Map<String, Object>> titleTagList = service.selectTitleTag();
 		
@@ -55,6 +60,8 @@ public class BoardCrudController {
 		
 		model.addAttribute("titleTagList",titleTagList);
 		model.addAttribute("tPost", tPost);
+		model.addAttribute("boardTypeList", boardTypeList);
+		
 		 
 		return "board/writingBoard";
 	}	
