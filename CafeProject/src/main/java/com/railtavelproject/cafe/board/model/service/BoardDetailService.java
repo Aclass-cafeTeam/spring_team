@@ -3,6 +3,7 @@ package com.railtavelproject.cafe.board.model.service;
 import java.util.Map;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 
 public interface BoardDetailService {
 
@@ -37,5 +38,12 @@ public interface BoardDetailService {
 	 * @return result
 	 */
 	int boardLikeDown(Map<String, Object> paramMap);
+
+
+	/** 특정 게시판 정보(등급제한) 조회
+	 * @param boardCode
+	 * @return boardInfo
+	 */
+	BoardType selectBoardInfo(int boardCode);
 	
 }

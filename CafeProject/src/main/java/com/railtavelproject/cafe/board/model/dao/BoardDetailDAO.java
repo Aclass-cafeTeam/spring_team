@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 
 @Repository
 public class BoardDetailDAO {
@@ -54,6 +55,14 @@ public class BoardDetailDAO {
 	public int boardLikeDown(Map<String, Object> paramMap) {
 
 		return sqlSession.delete("boardDetailMapper.boardLikeDown", paramMap);
+	}
+
+	/** 특정 게시판 정보(등급제한) 조회
+	 * @param boardCode
+	 * @return boardInfo
+	 */
+	public BoardType selectBoardInfo(int boardCode) {
+		return sqlSession.selectOne("boardDetailMapper.boardInfo",boardCode);
 	}
 
 }
