@@ -49,7 +49,7 @@ public class MainController{
 			
 			// 회원수 조회
 			int memberCount = service.memberCount();
-			model.addAttribute("memberCount", memberCount);
+			session.getServletContext().setAttribute("memberCount", memberCount);
 			
 			// 사이드메뉴(카테고리명+게시판명) 조회
 			List<Map<String, Object>> mainList = service.selectMainList();
@@ -58,56 +58,56 @@ public class MainController{
 			
 			// 오늘 방문수 조회
 			int todayVisitCount = service.todayVisitCount();
-			model.addAttribute("todayVisitCount", todayVisitCount);
+			session.getServletContext().setAttribute("todayVisitCount", todayVisitCount);
 			
 			// 전체 방문수 조회
 			int allVisitCount = service.AllVisitCount();
-			model.addAttribute("allVisitCount", allVisitCount);
+			session.getServletContext().setAttribute("allVisitCount", allVisitCount);
 			
 			// 지난주 멤버 랭킹 - 댓글
 			Map<String, Object> commentRank = null;
 			commentRank = service.commentRank();
-			model.addAttribute("commentRank", commentRank);
+			session.getServletContext().setAttribute("commentRank", commentRank);
 			
 			// 지난주 멤버 랭킹 - 게시글
 			Map<String, Object> boardRank = null;
 			boardRank = service.boardRank();
-			model.addAttribute("boardRank", boardRank);
+			session.getServletContext().setAttribute("boardRank", boardRank);
 			
 			// 지난주 멤버 랭킹 - 로그인
 			Map<String, Object> loginRank = null;
 			loginRank = service.loginRank();
-			model.addAttribute("loginRank", loginRank);
+			session.getServletContext().setAttribute("loginRank", loginRank);
 			
 			// 지난주 게시글 랭킹 - 좋아요
 			Map<String, Object> boardLike = null;
 			boardLike = service.boardLike();
-			model.addAttribute("boardLike", boardLike);
+			session.getServletContext().setAttribute("boardLike", boardLike);
 			
 			// 지난주 게시글 랭킹 - 댓글
 			Map<String, Object> boardComment = null;
 			boardComment = service.boardComment();
-			model.addAttribute("boardComment", boardComment);
+			session.getServletContext().setAttribute("boardComment", boardComment);
 			
 			// 멤버 소식 - 방문
 			Map<String, Object> memberVisit = null;
 			memberVisit = service.memberVisit();
-			model.addAttribute("memberVisit", memberVisit);
+			session.getServletContext().setAttribute("memberVisit", memberVisit);
 			
 			// 멤버 소식 - 신입
 			Map<String, Object> memberNew = null;
 			memberNew = service.memberNew();
-			model.addAttribute("memberNew", memberNew);
+			session.getServletContext().setAttribute("memberNew", memberNew);
 			
 			// 최근 게시글/댓글 - 게시글
 			Map<String, Object> newBoard = null;
 			newBoard = service.newBoard();
-			model.addAttribute("newBoard", newBoard);
+			session.getServletContext().setAttribute("newBoard", newBoard);
 			
 			// 최근 게시글/댓글 - 댓글
 			Map<String, Object> newComment = null;
 			newComment = service.newComment();
-			model.addAttribute("newComment", newComment);
+			session.getServletContext().setAttribute("newComment", newComment);
 			
 			
 			// * forward 방법 *

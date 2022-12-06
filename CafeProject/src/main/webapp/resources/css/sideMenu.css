@@ -846,7 +846,7 @@ section #border-img {
     display: none;
 }
 
-.noData{
-    align-items: center;
-    justify-content: center;
+.member_ranking > ul > li:first-child{
+    list-style: none;
 }
+

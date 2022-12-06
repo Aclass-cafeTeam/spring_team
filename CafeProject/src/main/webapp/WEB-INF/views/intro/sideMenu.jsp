@@ -14,6 +14,7 @@
     <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
         <section id="sideMenu">
             <div id="content">
+
                 <ul id="ul-1">
                     <li><a href="#" id="btn1" onclick="return false;">
                             <p>카페정보</p>
@@ -22,73 +23,67 @@
                             <p>나의활동</p>
                         </a></li>
                 </ul>
-
                 <c:choose>
                 <c:when test="${empty sessionScope.loginMember}">
                 
-                <div>
-                    <span>
-                        <div id="cafe">
-                            <ul>
-                                <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
-                                            height="58px"/></a></li>
-                                <li id="name">
-                                    <div id="inline">
-                                        <div id="manager">매니저</div>
-                                        <div><a href="#">카페팀</a></div>
+                    <div>
+                        <span>
+                            <div id="cafe">
+                                <ul>
+                                    <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
+                                                height="58px"/></a></li>
+                                    <li id="name">
+                                        <div id="inline">
+                                            <div id="manager">매니저</div>
+                                            <div><a href="#">카페팀</a></div>
+                                        </div>
+                                        <div id="since">since 2022.10.18.</div>
+                                    </li>
+                                </ul>
+                                <c:choose>
+                                <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
+                                <div class="managerLink">
+                                    <div class="managerLinkBox">
+                                        <a href="/manager/managerMain.jsp"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
                                     </div>
-                                    <div id="since">since 2022.10.18.</div>
-                                </li>
-                            </ul>
-                            <c:choose>
-                            <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
-                            <div class="managerLink">
-                                <div class="managerLinkBox">
-                                    <a href="/manager/managerMain.jsp"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                </div>
+                                </c:when>
+                                </c:choose>
+                            </div>
+
+                            <div id="cafe-member">
+                                <div id="cafe-grade">
+                                    <img src="/resources/images/카페등급.PNG" width="17px">
+                                    <a><a href="#">나무3단계
+                                </div>
+
+                                <div id="member-count">
+                                    <img src="/resources/images/회원수.PNG" height="16px">
+                                    <a href="#" id="count">${memberCount}</a>
+                                    <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>
-                            </c:when>
-                            </c:choose>
-                        </div>
 
-                        <div id="cafe-member">
-                            <div id="cafe-grade">
-                                <img src="/resources/images/카페등급.PNG" width="17px">
-                                <a><a href="#">나무3단계
+                            <div id="count-3">
+                                <div id="star">
+                                    <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
+                                    <div id="star1">밤하늘에</div>
+                                    <div id="star-count">퍼어얼~</div>
+                                </div>
                             </div>
 
-                            <div id="member-count">
-                                <img src="/resources/images/회원수.PNG" height="16px">
-                                <a href="#" id="count">${memberCount}</a>
-                                <a href="#" id="count1">초대하기</a>
+                            <div id="cafe-type">
+                                <div>팀프로젝트</div>
+                                <div>주제 > 카페</div>
                             </div>
-                        </div>
-
-                        <div id="count-3">
-                            <div id="star">
-                                <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                                <div id="star1">밤하늘에</div>
-                                <div id="star-count">퍼어얼~</div>
-                            </div>
-                        </div>
-
-                        <div id="cafe-type">
-                            <div>팀프로젝트</div>
-                            <div>주제 > 카페</div>
-                        </div>
-                    </span>
-                </div>
+                        </span>
+                    </div>
                 </c:when>
                 </c:choose>
-                
-
-
 
                 <c:choose>
                 <c:when test="${!empty sessionScope.loginMember}">
-                    
-    
-                    <div  class="basicCafe-info cafe-info" id="cafe-info"><%-- tyrtyrtyrttyyyytttttttttttttttttttttttttttttttttttttttttttttttttttt --%>
+                    <div  class="basicCafe-info cafe-info" id="cafe-info">
                         <span>
                             <div id="cafe">
                                 <ul>
@@ -122,7 +117,7 @@
                                 <div id="member-count">
                                     <img src="/resources/images/회원수.PNG" height="16px">
                                     <a href="#" id="count">${memberCount}</a>
-                                    <a href="#" id="count1">초대하기</a>
+                                    <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>
             
@@ -203,12 +198,8 @@
                     </span>
                 </div>
                 </c:when>
-                
-
                 </c:choose>
                 <!------------------------- 나의활동 ------------------------->
-
-
             </div>
 
             <c:choose>
@@ -247,78 +238,8 @@
                         </li>
                     </ul>
                 </div>
-                <!-- <div id="calender">
-                    <ul>
-                        <li><img src="../resources/images/캘린더.PNG" id="border-img"><a href="#">캘린더</a></li>
-                    </ul>
-                </div> -->
-
+                
                 <%-- <section id="board-basic">
-                    <div name="board-title">■ 기본 게시판</div>
-                </section>
-
-
-                <div id="cafe-menu">
-                    <ul id="cafe-menu-basic">
-                        <li id="notice"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">공지사항</a>
-                        </li>
-                        <li id="board-any"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">자유게시판</a>
-                        </li>
-                        <li id="board-gradeup"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">등업게시판</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <section id="board-basic">
-
-                    <div name="board-title">■ 여행 정보</div>
-
-                    <div>
-                        <ul id="board-menu">
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">제주 여행지</a>
-                            </li>
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">충청권 여행지</a>
-                            </li>
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">강원권 여행지</a>
-                            </li>
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">전라권 여행지</a>
-                            </li>
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">경상권 여행지</a>
-                            </li>
-                            <li class="board">
-                                <img src="/resources/images/게시판.PNG" id="border-img">
-                                <a href="#">서울/수도권 나들이</a>
-                            </li>
-                        </ul>
-                    </div>
-                </section>
-
-                <section id="board-basic">
-                    <div name="board-title">■ 질문 코너</div>
-
-                    <ul id="board-menu">
-                        <li class="board">
-                            <img src="/resources/images/게시판.PNG" id="border-img">
-                            <a href="#">국내 여행 Q/A</a>
-                        </li>
-                        <li class="board">
-                            <img src="/resources/images/게시판.PNG" id="border-img">
-                            <a href="#">기타 Q/A</a>
-                        </li>
-                    </ul>
-                </section> --%>
-<%-- 
-                <section id="board-basic">
                     <div name="board-title">■ 갤러리 자료</div>
                     <ul id="board-menu">
                         <li class="board">
@@ -332,330 +253,641 @@
                     </ul>
                 </section> --%>
 
-                <c:forEach var="category" items="${mainList}">
-                    <section id="board-basic">
-                    <div name="board-title">■ ${category.MAIN_CATEGORY_NAME}</div>
-                        <ul id="board-menu">
-                            <c:forEach var="board" items="${boardTypeList}">
-                                <c:choose>
-                                    <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}">
-                                            <li class="board">
-                                            <img src="/resources/images/게시판.PNG" id="border-img">
-                                            <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
-                                            </li>
-                                    </c:when>
-                                </c:choose>
-                            </c:forEach>
-                        </ul>
-                    </section>
-                </c:forEach>        
+                <%-------------------------------------------------- 로그인 안했을때 보여지는 게시판 --------------------------------------------------%>
+                <c:choose>
+                    <c:when test="${empty sessionScope.loginMember}">
+                        <c:forEach var="category" items="${mainList}">
+                            <section id="board-basic">
+                            <div name="board-title">■ ${category.MAIN_CATEGORY_NAME}</div>
+                                <ul id="board-menu">
+                                    <c:forEach var="board" items="${boardTypeList}">
+                                        <c:choose>
+                                            <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}" >
+                                                    <li class="board">
+                                                    <img src="/resources/images/게시판.PNG" id="border-img">
+                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${board.BOARD_NAME}</a>
+                                                    </li>
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                </ul>
+                            </section>
+                        </c:forEach>
+                    </c:when>        
+                </c:choose>
+                <%-------------------------------------------------- 로그인 했을때 보여지는 게시판 --------------------------------------------------%>
+                <c:choose>
+                    <c:when test="${!empty sessionScope.loginMember}">
+                        <c:forEach var="category" items="${mainList}">
+                            <section id="board-basic">
+                            <div name="board-title">■ ${category.MAIN_CATEGORY_NAME}</div>
+                                <ul id="board-menu">
+                                    <c:forEach var="board" items="${boardTypeList}">
+                                        <c:choose>
+                                            <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}" >
+                                                    <li class="board">
+                                                    <img src="/resources/images/게시판.PNG" id="border-img">
+                                                    <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
+                                                    </li>
+                                            </c:when>
+                                        </c:choose>
+                                    </c:forEach>
+                                </ul>
+                            </section>
+                        </c:forEach>
+                    </c:when>        
+                </c:choose>
             </div>
-
 
             <!-- **************************************카페 사이드 메뉴*************************************** -->
 
             <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
-            <div id="invite">
-                <div>
-                    <div id="invite_today">
-                        <span>오늘</span>
-                        <div>${todayVisitCount}</div>
+
+            <%-------------------------------------------------- 로그인 안했을때 보여지는 랭킹 --------------------------------------------------%>
+                <div id="invite">
+                    <div>
+                        <div id="invite_today">
+                            <span>오늘</span>
+                            <div>${todayVisitCount}</div>
+                        </div>
+                        <div id="invite_total">
+                            <span>전체</span>
+                            <div>${allVisitCount}</div>
+                        </div>
                     </div>
-                    <div id="invite_total">
-                        <span>전체</span>
-                        <div>${allVisitCount}</div>
+                </div>
+            <c:choose>
+            <c:when test="${empty sessionScope.loginMember}">
+                <div id="ranking">
+                    <div id="ranking_title">
+                        지난주 멤버 랭킹
+                    </div>
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" id="member_comment" style="color: red; cursor: text; text-decoration: none;">댓글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" id="member_board">게시글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" id="member_visit">방문</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 지난주 댓글 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberCommentRank">
+                        <c:choose>
+                            <c:when test="${empty commentRank.commentRankList}">
+                                <div>랭킹이없어요</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="commentRank" items="${commentRank.commentRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}.</span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${commentRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
+                    <%---------------------------------------- 지난주 게시글 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberBoardRank">
+                        <c:choose>
+                            <c:when test="${empty boardRank.boardRankList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardRank" items="${boardRank.boardRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${boardRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    
+                    <%---------------------------------------- 지난주 로그인 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberLoginRank">
+                        <c:choose>
+                            <c:when test="${empty loginRank.loginRankList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="loginRank" items="${loginRank.loginRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${loginRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
                     </div>
                 </div>
-            </div>
 
-            <div id="ranking">
-                <div id="ranking_title">
-                    지난주 멤버 랭킹
-                </div>
-                <div class="ranking_category">
-                    <ul>
-                        <li><a href="#" onclick="return false;" id="member_comment" style="color: red; cursor: text; text-decoration: none;">댓글</a></li>
-                        <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;" id="member_board">게시글</a></li>
-                        <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;" id="member_visit">방문</a></li>
-                    </ul>
-                </div>
+                <div id="ranking">
+                    <div id="ranking_title">
+                        지난주 게시글 랭킹
+                    </div>
 
-                <%---------------------------------------- 지난주 댓글 랭킹 ----------------------------------------%>
-                <div class="member_ranking" id="memberCommentRank">
-                    <c:choose>
-                        <c:when test="${empty commentRank.commentRankList}">
-                            <div>랭킹이없어요</div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="commentRank" items="${commentRank.commentRankList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>${status.count}.</span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${commentRank.memberNo}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" class="boardLike" style="color: red; cursor: text; text-decoration: none;">좋아요 횟수</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" class="boardComment">댓글수</a></li>
+                        </ul>
+                    </div>
 
-                <%---------------------------------------- 지난주 게시글 랭킹 ----------------------------------------%>
-                <div class="member_ranking" id="memberBoardRank">
-                    <c:choose>
-                        <c:when test="${empty boardRank.boardRankList}">
-                            <div>랭킹업슴</div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="boardRank" items="${boardRank.boardRankList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>${status.count}. </span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${boardRank.memberNo}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                
-                <%---------------------------------------- 지난주 로그인 랭킹 ----------------------------------------%>
-                <div class="member_ranking" id="memberLoginRank">
-                    <c:choose>
-                        <c:when test="${empty loginRank.loginRankList}">
-                            <div>랭킹업슴</div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="loginRank" items="${loginRank.loginRankList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>${status.count}. </span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${loginRank.memberNo}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-            </div>
+                    <%---------------------------------------- 게시글 랭킹 <좋아요> ----------------------------------------%>
+                    <div class="member_ranking" id="boardLikeRank">
+                        <c:choose>
+                            <c:when test="${empty boardLike.boardLikeList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardLike" items="${boardLike.boardLikeList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${boardLike.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
 
-            <div id="ranking">
-                <div id="ranking_title">
-                    지난주 게시글 랭킹
+                    <%---------------------------------------- 게시글 랭킹 <댓글> ----------------------------------------%>
+                    <div class="member_ranking" id="boardCommentRank">
+                        <c:choose>
+                            <c:when test="${empty boardComment.boardCommentList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardComment" items="${boardComment.boardCommentList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${boardComment.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    </div>
                 </div>
 
-                <div class="ranking_category">
-                    <ul>
-                        <li><a href="#" onclick="return false;" class="boardLike" style="color: red; cursor: text; text-decoration: none;">좋아요 횟수</a></li>
-                        <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;" class="boardComment">댓글수</a></li>
-                    </ul>
+                <div id="ranking">
+                    <div id="ranking_title">
+                        멤버 소식
+                    </div>
+
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" style="color: red; cursor: text; text-decoration: none;">방문</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;">신입</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 멤버 랭킹 <방문> ----------------------------------------%>
+                    <div class="member_ranking" id="memberVisitRank">
+                        <c:choose>
+                            <c:when test="${empty memberVisit.memberVisitList}">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span class="noData"><br>최근 방문자</a></span>
+                                        </div>
+                                    </li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span class="noData">정보가 없습니다.</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="memberVisit" items="${memberVisit.memberVisitList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${memberVisit.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
+                    <%---------------------------------------- 멤버 랭킹 <신입> ----------------------------------------%>
+                    <div class="member_ranking" id="memberNewRank">
+                        <c:choose>
+                            <c:when test="${empty memberNew.memberNewList}">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id"><br>가입한 회원 정보가 없습니다.</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="memberNew" items="${memberNew.memberNewList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${memberNew.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
 
-                <%---------------------------------------- 게시글 랭킹 <좋아요> ----------------------------------------%>
-                <div class="member_ranking" id="boardLikeRank">
-                    <c:choose>
-                        <c:when test="${empty boardLike.boardLikeList}">
-                            <div>랭킹업슴</div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="boardLike" items="${boardLike.boardLikeList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>${status.count}. </span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${boardLike.boardTitle}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
+                <div id="ranking">
+                    <div id="ranking_title">
+                        최근 게시글 / 댓글
+                    </div>
 
-                <%---------------------------------------- 게시글 랭킹 <댓글> ----------------------------------------%>
-                <div class="member_ranking" id="boardCommentRank">
-                    <c:choose>
-                        <c:when test="${empty boardComment.boardCommentList}">
-                            <div>랭킹업슴</div>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="boardComment" items="${boardComment.boardCommentList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>${status.count}. </span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${boardComment.boardTitle}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                </div>
-            </div>
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;"style="color: red; cursor: text; text-decoration: none;">게시글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;">댓글</a></li>
+                        </ul>
+                    </div>
 
-            <div id="ranking">
-                <div id="ranking_title">
-                    멤버 소식
+                    <%---------------------------------------- 최근 게시글 ----------------------------------------%>
+                    <div class="member_ranking" id="newBoard">
+                        <c:choose>
+                            <c:when test="${empty newBoard.newBoardList}">
+                                <ul>
+                                    <li></li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id">최근 정보를 업데이트중입니다</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="newBoard" items="${newBoard.newBoardList}">
+                                        <ul>
+                                            <li id="ranking-member"class="rank-logun">
+                                                <span>ㆍ</span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${newBoard.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <%---------------------------------------- 최근 댓글 ----------------------------------------%>
+                    <div class="member_ranking" id="newComment">
+                        <c:choose>
+                            <c:when test="${empty newComment.newCommentList}">
+                                <ul>
+                                    <li></li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id">최근 정보를 업데이트중입니다</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="newComment" items="${newComment.newCommentList}">
+                                        <ul>
+                                            <li id="ranking-member"class="rank-logun">
+                                                <span>ㆍ</span>
+                                                <div class="rank-logun">
+                                                    <span id="member_id" class="rank-logun">
+                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
+                                                            ${newComment.commentContent}
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
                 </div>
+            </c:when>
+            </c:choose>
 
-                <div class="ranking_category">
-                    <ul>
-                        <li><a href="#" onclick="return false;" style="color: red; cursor: text; text-decoration: none;">방문</a></li>
-                        <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;">신입</a></li>
-                    </ul>
-                </div>
-
-                <%---------------------------------------- 멤버 랭킹 <방문> ----------------------------------------%>
-                <div class="member_ranking" id="memberVisitRank">
-                    <c:choose>
-                        <c:when test="${empty dmemberVisit.memberVisitList}">
-                            <ul>
-                                <li></li>
-                                <li id="ranking-member">
-                                    <div>
-                                        <span class="noData">최근 방문자</a></span>
-                                    </div>
-                                </li>
-                                <li id="ranking-member">
-                                    <div>
-                                        <span class="noData">정보가 없습니다.</a></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="memberVisit" items="${memberVisit.memberVisitList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <div>
-                                                <span id="member_id"><a href="#">${memberVisit.memberNickname}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-
-                <%---------------------------------------- 멤버 랭킹 <신입> ----------------------------------------%>
-                <div class="member_ranking" id="memberNewRank">
-                    <c:choose>
-                        <c:when test="${empty memberNew.memberNewList}">
-                            <ul>
-                                <li></li>
-                                <li id="ranking-member">
-                                    <div>
-                                        <span id="member_id">가입한 회원 정보가 없습니다.</a></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="memberNew" items="${memberNew.memberNewList}" varStatus="status">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <div>
-                                                <span id="member_id"><a href="#">${memberNew.memberNickname}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-            </div>
-
-            <div id="ranking">
-                <div id="ranking_title">
-                    최근 게시글 / 댓글
-                </div>
-
-                <div class="ranking_category">
-                    <ul>
-                        <li><a href="#" onclick="return false;"style="color: red; cursor: text; text-decoration: none;">게시글</a></li>
-                        <div id="ranking_line"></div>
-                        <li><a href="#" onclick="return false;">댓글</a></li>
-                    </ul>
-                </div>
-
-                <%---------------------------------------- 최근 게시글 ----------------------------------------%>
-                <div class="member_ranking" id="newBoard">
-                    <c:choose>
-                        <c:when test="${empty newBoard.newBoardList}">
-                            <ul>
-                                <li></li>
-                                <li id="ranking-member">
-                                    <div>
-                                        <span id="member_id">최근 정보를 업데이트중입니다</a></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="newBoard" items="${newBoard.newBoardList}">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>ㆍ</span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${newBoard.boardTitle}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-                <%---------------------------------------- 최근 댓글 ----------------------------------------%>
-                <div class="member_ranking" id="newComment">
-                    <c:choose>
-                        <c:when test="${empty newComment.newCommentList}">
-                            <ul>
-                                <li></li>
-                                <li id="ranking-member">
-                                    <div>
-                                        <span id="member_id">최근 정보를 업데이트중입니다</a></span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </c:when>
-                        <c:otherwise>
-                            <c:forEach var="newComment" items="${newComment.newCommentList}">
-                                    <ul>
-                                        <li id="ranking-member">
-                                            <span>ㆍ</span>
-                                            <div>
-                                                <span id="member_id"><a href="#">${newComment.commentContent}</a></span>
-                                            </div>
-                                        </li>
-                                    </ul>
-                            </c:forEach>
-                        </c:otherwise>
-                    </c:choose>
-                </div>
-            </div>
-
-            <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
-
+            <%-------------------------------------------------- 로그인했을때 보여지는 랭킹 --------------------------------------------------%>
             <c:if test="${!empty sessionScope.loginMember}">
+
+                <div id="ranking">
+                    <div id="ranking_title">
+                        지난주 멤버 랭킹
+                    </div>
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" id="member_comment" style="color: red; cursor: text; text-decoration: none;">댓글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" id="member_board">게시글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" id="member_visit">방문</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 지난주 댓글 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberCommentRank">
+                        <c:choose>
+                            <c:when test="${empty commentRank.commentRankList}">
+                                <div>랭킹이없어요</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="commentRank" items="${commentRank.commentRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}.</span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/${commentRank.memberNo}">${commentRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
+                    <%---------------------------------------- 지난주 게시글 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberBoardRank">
+                        <c:choose>
+                            <c:when test="${empty boardRank.boardRankList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardRank" items="${boardRank.boardRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/${boardRank.memberNo}">${boardRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    
+                    <%---------------------------------------- 지난주 로그인 랭킹 ----------------------------------------%>
+                    <div class="member_ranking" id="memberLoginRank">
+                        <c:choose>
+                            <c:when test="${empty loginRank.loginRankList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="loginRank" items="${loginRank.loginRankList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/member/${loginRank.memberNo}">${loginRank.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+
+                <div id="ranking">
+                    <div id="ranking_title">
+                        지난주 게시글 랭킹
+                    </div>
+
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" class="boardLike" style="color: red; cursor: text; text-decoration: none;">좋아요 횟수</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;" class="boardComment">댓글수</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 게시글 랭킹 <좋아요> ----------------------------------------%>
+                    <div class="member_ranking" id="boardLikeRank">
+                        <c:choose>
+                            <c:when test="${empty boardLike.boardLikeList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardLike" items="${boardLike.boardLikeList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/board/${boardLike.boardCode}/${boardLike.boardNo}">${boardLike.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
+                    <%---------------------------------------- 게시글 랭킹 <댓글> ----------------------------------------%>
+                    <div class="member_ranking" id="boardCommentRank">
+                        <c:choose>
+                            <c:when test="${empty boardComment.boardCommentList}">
+                                <div>랭킹업슴</div>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="boardComment" items="${boardComment.boardCommentList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>${status.count}. </span>
+                                                <div>
+                                                    <span id="member_id"><a href="/board/${boardComment.boardCode}/${boardComment.boardNo}">${boardComment.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    </div>
+                </div>
+
+                <div id="ranking">
+                    <div id="ranking_title">
+                        멤버 소식
+                    </div>
+
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;" style="color: red; cursor: text; text-decoration: none;">방문</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;">신입</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 멤버 랭킹 <방문> ----------------------------------------%>
+                    <div class="member_ranking" id="memberVisitRank">
+                        <c:choose>
+                            <c:when test="${empty memberVisit.memberVisitList}">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span class="noData"><br>최근 방문자</a></span>
+                                        </div>
+                                    </li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span class="noData">정보가 없습니다.</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="memberVisit" items="${memberVisit.memberVisitList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <div>
+                                                    <span id="member_id"><a href="/member/${memberVisit.memberNo}">${memberVisit.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+
+                    <%---------------------------------------- 멤버 랭킹 <신입> ----------------------------------------%>
+                    <div class="member_ranking" id="memberNewRank">
+                        <c:choose>
+                            <c:when test="${empty memberNew.memberNewList}">
+                                <ul>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id"><br>가입한 회원 정보가 없습니다.</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="memberNew" items="${memberNew.memberNewList}" varStatus="status">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <div>
+                                                    <span id="member_id"><a href="/member/${memberNew.memberNo}">${memberNew.memberNickname}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
+
+                <div id="ranking">
+                    <div id="ranking_title">
+                        최근 게시글 / 댓글
+                    </div>
+
+                    <div class="ranking_category">
+                        <ul>
+                            <li><a href="#" onclick="return false;"style="color: red; cursor: text; text-decoration: none;">게시글</a></li>
+                            <div id="ranking_line"></div>
+                            <li><a href="#" onclick="return false;">댓글</a></li>
+                        </ul>
+                    </div>
+
+                    <%---------------------------------------- 최근 게시글 ----------------------------------------%>
+                    <div class="member_ranking" id="newBoard">
+                        <c:choose>
+                            <c:when test="${empty newBoard.newBoardList}">
+                                <ul>
+                                    <li></li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id">최근 정보를 업데이트중입니다</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="newBoard" items="${newBoard.newBoardList}">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>ㆍ</span>
+                                                <div>
+                                                    <span id="member_id"><a href="/board/${newBoard.boardCode}/${newBoard.boardNo}">${newBoard.boardTitle}</a></span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                    <%---------------------------------------- 최근 댓글 ----------------------------------------%>
+                    <div class="member_ranking" id="newComment">
+                        <c:choose>
+                            <c:when test="${empty newComment.newCommentList}">
+                                <ul>
+                                    <li></li>
+                                    <li id="ranking-member">
+                                        <div>
+                                            <span id="member_id">최근 정보를 업데이트중입니다</a></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </c:when>
+                            <c:otherwise>
+                                <c:forEach var="newComment" items="${newComment.newCommentList}">
+                                        <ul>
+                                            <li id="ranking-member">
+                                                <span>ㆍ</span>
+                                                <div>
+                                                    <span id="member_id">
+                                                        <a href="/board/${newComment.boardCode}/${newComment.boardNo}" class="toggle-btn">
+                                                            ${newComment.commentContent}
+                                                        </a>
+                                                    </span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
+                    </div>
+                </div>
                 <section id="delete">
                     <p><a href="/member/myPage/secession">카페탈퇴하기</a></p>
                 </section>
             </c:if>
 
+            <!-- **************************************카페 사이드 랭킹 쪽************************************** -->
         </section>
         <script src="/resources/js/main/sideMenu.js"></script>
-        
 </body>
 </html>
 

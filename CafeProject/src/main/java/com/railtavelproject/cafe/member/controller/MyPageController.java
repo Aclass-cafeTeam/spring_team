@@ -24,7 +24,7 @@ import com.railtavelproject.cafe.member.model.vo.Member;
 
 
 @RequestMapping("/member/myPage")
-@SessionAttributes({"loginMember"}) // 로그인 멤버 정보를 얻어오는 어노테이션
+@SessionAttributes({"loginMember", "boardInfo"}) // 로그인 멤버 정보, 게시판 등급 정보를 얻어오는 어노테이션
 @Controller
 public class MyPageController {
 	
