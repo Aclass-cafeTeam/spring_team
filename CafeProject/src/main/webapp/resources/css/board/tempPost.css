@@ -13,6 +13,7 @@
     box-shadow: 0 2px 14px 0 rgb(0 0 0 / 10%);
     border-radius: 12px;
     position: relative;
+    
 }
 
 
@@ -105,9 +106,10 @@
 
 
 /* 임시저장 목록 전체*/
-.temp-list li{
+.temp-list-area li{
     padding-bottom: 20px;
     list-style: none;
+
 }
 
 

@@ -27,7 +27,10 @@ public class IntroBoard {
 	private String memberNo;
 	private int todayVisitCount;
 	
+	// 게시글 랭킹
+	private int likeCount;
+	private String loginDate;
 	
-
+	private String commentContent;
 	
 }

@@ -4,7 +4,10 @@
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="boardList" value="${map.boardList}" />
 <c:set var="noticeList" value="${notice.noticeList}" />
+<c:set var="allNoticeList" value="${allNotice.allNoticeList}" />
 <c:set var="pagination" value="${map.pagination}" />
+<c:set var="pagination" value="${search.pagination}" />
+<c:set var="boardList" value="${search.boardList}" />
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -39,8 +42,8 @@
                     <p class="board-start"></p>
 
                     <div class="hidden">
-                        <input type="checkbox" name="hidden" id="#">
-                        <label for="hidden" id="#">공지 숨기기</label>
+                        <input type="checkbox" name="hidden" id="noticeHide">
+                        <label for="hidden" id="noticeHide">공지 숨기기</label>
 
                         <span class="span">|</span>
 
@@ -67,16 +70,50 @@
                     </thead>
 
                     <tbody>
+                        <%-- if-else문 --%>
+                        <c:choose>
+                            <c:when test="${empty allNoticeList}">
+                            <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                                <tr>
+                                    <th colspan="7"></th>
+                                </tr>
+                            </c:when>
+
+                            <c:otherwise>
+                                <c:forEach var="board" items="${allNoticeList}">
+                                    <tr>
+                                        <td class="strong allStrong ">공지</td>
+                                        <td>
+                                            <a class="strong-title allStrong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                            <!-- 말머리가 있을 경우 -->
+                                            <c:if test="${not empty board.titleTagName}">
+                                                <c:if test="${board.titleTagName ne '선택 안 함'}"> 
+                                                    <span>[${board.titleTagName}]</span>
+                                                </c:if>
+                                            </c:if>
+                                            ${board.boardTitle}</a>
+                                            <c:if test="${board.commentCount!=0}">
+                                            <a href="#" class="comment allComment">[${board.commentCount}]</a>
+                                            </c:if>                        
+                                        </td>
+                                        <td></td>
+                                        <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                        <td class="reporting-date">${board.boardCreateDate}</td>
+                                        <td class="hits">${board.readCount}</td>
+                                        <td class="like">${board.likeCount}</td>
+                                    </tr>
+                                </c:forEach>
+                            </c:otherwise>
+                        </c:choose>
 
                         <%-- if-else문 --%>
                         <c:choose>
                             <c:when test="${empty noticeList}">
                             <!-- 게시글 목록 조회 결과가 비어있다면 -->
                                 <tr>
-                                    <th colspan="7">게시글이 존재하지 않습니다.</th>
+                                    <th colspan="7"></th>
                                 </tr>
                             </c:when>
-
                             <c:otherwise>
                                 <c:forEach var="board" items="${noticeList}">
                                     <tr>
@@ -92,7 +129,7 @@
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
-                                            </c:if>                        
+                                            </c:if>
                                         </td>
                                         <td></td>
                                         <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
@@ -143,7 +180,10 @@
 
                 <div>
                     <div class="writing">
-                        <button type="submit" class="writing-btn">글쓰기</button>
+                        <!-- 로그인 상태인 경우에만 글쓰기 버튼 노출 -->
+                        <c:if test="${not empty loginMember}">
+                            <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
+                        </c:if>
                     </div>
                 </div>
 
@@ -206,6 +246,7 @@
                                 <option value="bb">내용</option>
                                 <option value="cc">제목 + 내용</option>
                                 <option value="dd">작성자</option>
+                                <option value="ee">말머리</option>
                             </select>
 
                     </div>
@@ -213,8 +254,6 @@
                     <article class="search-area">
 
                         <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
-
-
                             <input type="text" class="query" name="query" id="search-query"
                             placeholder="검색어를 입력해주세요">
                             <button class="search-btn">검색</button>
@@ -231,6 +270,9 @@
 
     <!-- **************************************푸터************************************** -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+    <!-- ******************************************************************************** -->
+
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/board/boardList.js"></script>
 </body>
 </html>

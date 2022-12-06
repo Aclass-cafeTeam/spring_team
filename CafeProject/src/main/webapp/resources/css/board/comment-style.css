@@ -1,4 +1,4 @@
-/*댓글*/
+/*댓글 작성*/
 .comment-write-area {
 	display: flex;
 	min-height: 85px;
@@ -11,6 +11,8 @@
 	flex-basis: 75%;
     margin-right: 10px;
 	resize: none;
+	border: solid 2px #ebecef;
+	outline-style: none;
 }
 
 .comment-write-area > button{
@@ -25,6 +27,7 @@
     cursor: pointer;
 }
 
+/* 댓글 조회 */
 #comment-list{
 	padding: 0;
 	list-style: none;
@@ -35,26 +38,24 @@
 	align-items: center;
 }
 
-.comment-writer > img{
-	width: 40px;
-    height: 40px
-}
-
-.comment-writer > span{
-    font-weight: bold;
-    margin-left : 10px;
-}
-
 .comment-date{
 	font-size: 0.8em;
 	color: #aaa;
 }
 
+.comment-content-area{
+	font-size: 14px;
+}
 
 .comment-btn-area { 
 	display: flex;
 	justify-content: flex-end;
 }
+
+/* 내가 쓴 댓글일 경우 */
+/* .myCommentCK{
+	background-color: #73358c2d;
+} */
 
 /* 버튼 */
 .comment-btn-area button{
@@ -83,11 +84,12 @@
 }
 
 .comment-row{
-	border-top : 1px solid #ccc;
+	border-top : 1px solid #ebecef;
 	padding : 15px 0;
 }
 
 
+/* 대댓글 */
 .child-comment{
 	padding-left : 50px;
 	position: relative;
@@ -111,3 +113,65 @@
     resize: none;
     margin-top : 20px;
 }
+
+/* 댓글 작성자 클릭시 */
+.comment-writer-area a{
+    text-decoration: none;
+    color: black;
+}
+.comment-writer-area a:hover{
+    text-decoration: underline;
+}
+
+/* 댓글 작성자 */
+.comment-writer-area{
+	display: inline;
+	font-size: 13px;
+	color: black;
+	font-weight: 700;
+}
+
+/* 닉네임 옆 등급 */
+/* .comment-writer-level{
+    display: inline;
+    font-size: 13px;
+    color: #676767;
+} */
+
+/* 등급 이미지 */
+.levelImage{
+    width: 10px;
+    height: 10px; 
+}
+
+/* 날짜 */
+/* .p-date2{
+    display: inline-block;
+	position:absolute;
+	display: inherit;
+    font-size: 12px;
+    color: #979797;
+	margin-bottom: 10px;
+} */
+
+/* 멤버 프로필 이미지 */
+.pi-area {
+    position: relative;
+    width: 40px;
+    height: 40px;
+    padding : auto;
+    margin-right: 10px;
+}
+
+.pi-area img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+

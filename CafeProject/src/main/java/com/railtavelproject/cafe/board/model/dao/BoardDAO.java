@@ -46,6 +46,10 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardList", boardCode, rowBounds);
 	}
 
+	/** 게시판 별 공지 게시판 목록 조회
+	 * @param boardCode
+	 * @return
+	 */
 	public List<Board> selectBoardNoticeList(int boardCode) {
 		
 		RowBounds rowBounds = new RowBounds(0, 5);
@@ -102,14 +106,25 @@ public class BoardDAO {
 	 * @param pm
 	 * @return boardList
 	 */
-//	public List<Board> selectBoardList(Pagination pagination, Map<String, Object> pm) {
-//		
-//		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-//		
-//		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
-//		
-//		return sqlSession.selectList("boardMapper.selectBoardList_search", pm, rowBounds);
-//	}
+	public List<Board> selectBoardList(Pagination pagination, Map<String, Object> pm) {
+		
+		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		
+		return sqlSession.selectList("boardMapper.selectBoardList_search", pm, rowBounds);
+	}
+
+	/** 전체 게시판 공지 목록 조회
+	 * @param boardCode
+	 * @return
+	 */
+	public List<Board> selectBoardAllNoticeList(int boardCode) {
+		
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return sqlSession.selectList("boardMapper.selectBoardAllNoticeList", boardCode ,rowBounds);
+	}
 
 	
 

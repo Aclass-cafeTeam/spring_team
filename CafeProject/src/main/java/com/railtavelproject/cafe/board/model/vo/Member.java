@@ -27,15 +27,4 @@ public class Member {
 	   private int logHistoryNo; // 로그인 이력 번호
 	   private String loginDate; // 로그인 시간 
 
-	
-//	"MEMBER_NO"   NUMBER      NOT NULL,
-//	   "MEMBER_EMAIL"   VARCHAR2(50)      NOT NULL,
-//	   "MEMBER_PW"   VARCHAR2(100)      NOT NULL,
-//	   "MEMBER_NICKNAME"   VARCHAR2(30)      NOT NULL,
-//	   "MEMBER_RESIDENCE"   VARCHAR2(30)      NULL,
-//	   "PROFILE_IMG"   VARCHAR2(300)      NULL,
-//	   "ENROLL_DATE"   DATE   DEFAULT SYSDATE   NOT NULL,
-//	   "MEMBER_DEL_FL"   CHAR(1)   DEFAULT 'N'   NOT NULL,
-//	   "AUTHORITY_NAME"   CHAR(1)   DEFAULT 'G'   NOT NULL,
-//	   "MEMBER_LEVEL_NO"   NUMBER      NULL
 }

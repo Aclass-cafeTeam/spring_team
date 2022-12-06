@@ -19,17 +19,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"boardInfo"})
 public class BoardDetailController {
 
 	@Autowired
 	private BoardDetailService service;
-	
 	
 	// 게시글 상세조회
 	@GetMapping("/board/{boardCode}/{boardNo}")
@@ -40,6 +42,8 @@ public class BoardDetailController {
 			HttpServletRequest req, HttpServletResponse resp,
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember) throws ParseException {
 		// Session에 loginMember가 없으면 null
+		
+
 		
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);

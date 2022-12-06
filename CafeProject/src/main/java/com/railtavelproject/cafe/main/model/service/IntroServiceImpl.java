@@ -119,6 +119,80 @@ public class IntroServiceImpl implements IntroService{
 		int memberCount = dao.memberCount();
 		return memberCount;
 	}
+
+	// 게시글 랭킹-좋아요
+	@Override
+	public Map<String, Object> boardLike() {
+		List<IntroBoard> boardLikeList = dao.boardLike();
+		
+		Map<String, Object> boardLike = new HashMap<String, Object>();
+		boardLike.put("boardLikeList", boardLikeList);
+				
+		return boardLike;
+	}
+
+	// 게시글 랭킹-댓글
+	@Override
+	public Map<String, Object> boardComment() {
+		List<IntroBoard> boardCommentList = dao.boardComment();
+		
+		Map<String, Object> boardComment = new HashMap<String, Object>();
+		boardComment.put("boardCommentList", boardCommentList);
+				
+		return boardComment;
+	}
+
+	// 멤버 소식 - 방문
+	@Override
+	public Map<String, Object> memberVisit() {
+		List<IntroBoard> memberVisitList = dao.memberVisit();
+		
+		Map<String, Object> memberVisit = new HashMap<String, Object>();
+		memberVisit.put("memberVisitList", memberVisitList);
+				
+		return memberVisit;
+	}
+
+	// 멤버 소식 - 신입
+	@Override
+	public Map<String, Object> memberNew() {
+		List<IntroBoard> memberNewList = dao.memberNew();
+		
+		Map<String, Object> memberNew = new HashMap<String, Object>();
+		memberNew.put("memberNewList", memberNewList);
+				
+		return memberNew;
+	}
+
+	// 최근 게시글 - 게시글
+	@Override
+	public Map<String, Object> newBoard() {
+		List<IntroBoard> newBoardList = dao.newBoard();
+		
+		Map<String, Object> newBoard = new HashMap<String, Object>();
+		newBoard.put("newBoardList", newBoardList);
+				
+		return newBoard;
+	}
+
+	@Override
+	public Map<String, Object> newComment() {
+		List<IntroBoard> newCommentList = dao.newComment();
+		
+		Map<String, Object> newComment = new HashMap<String, Object>();
+		newComment.put("newCommentList", newCommentList);
+		
+		return newComment;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

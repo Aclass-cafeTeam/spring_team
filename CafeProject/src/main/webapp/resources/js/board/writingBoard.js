@@ -5,7 +5,7 @@ $(function(){
     // summernote 출력 및 부가 기능 메소드
     $('#summernote').summernote({
         width : 859.99,      // 에디터 넓이
-        height: 410,        // 에디터 높이
+        height: 500,        // 에디터 높이
         focus: true,        // 에디터 로딩후 포커스를 맞출지 여부
         lang: 'ko-KR',      // 언어 : 한국어 설정
         placeholder: '내용을 입력하세요.',
@@ -85,12 +85,12 @@ const select =document.querySelectorAll(".select")
 const wrapper = document.querySelectorAll(".wrapper");
 const boardCode = document.getElementById("boardCode");
 const titleTagNo = document.getElementById("titleTagNo");
-const noticeFlag = document.getElementById("noticeFlag");
 
 
 // 게시판 선택 
 select[0].addEventListener("click", ()=>{
     wrapper[0].classList.toggle("open")
+
 });
 
 function selectType(type) {
@@ -98,7 +98,14 @@ function selectType(type) {
     select[0].firstElementChild.innerText = type.innerText;
     boardCode.value = parseInt(type.getAttribute("id"));
     select[0].firstElementChild.style.lineHeight= "1px";
-    console.log(boardCode);
+
+    if(boardCode.value >= 12) {
+        confirm("선택하신 게시판은 앨범형으로 사진과 함께 작성해주세요");
+            if (!confirm) {
+                type.preventDefault;
+            }
+    }
+    // console.log(boardCode.value);
 }    
 
 
@@ -116,35 +123,27 @@ function selectTag(type) {
 }    
 
 
-// noticeFlag 선택
-// const boardNotice = document.getElementById("boardNotice");
-// const setting = document.getElementById("setting");
+// 공지 여부 선택
+const boardNotice = document.getElementById("boardNotice");
+const setting = document.getElementById("setting");
+const noticeFlag = document.getElementsByName("[name:'noticeFlag']");
 
-// // 공지로 등록을 선택하면
-// boardNotice.addEventListener("change", ()=>{
-    
-//     if(this.checked){
-//         // noticeFlag 선택
-//         setting.style.display="block";
-//     } else{
-//         this.checked = false;
-//         setting.style.display="none";
-//     }
-// });
+if(boardNotice != null) {
+    // (관리자들) 공지로 등록이 체크되었을 때
+    boardNotice.addEventListener("change", (e)=>{
 
+        if(boardNotice.checked) {
+            console.log(e);
+            setting.style.display='block';
 
-// function noticeFlag(type) {
-//     wrapper[2].classList.remove("open");
-//     select[2].firstElementChild.innerText = type.innerText;
-//     noticeFlag.value = parseInt(type.getAttribute("id"));
-//     select[2].firstElementChild.style.lineHeight= "1px";
-//     console.log(noticeFlag);
+        } else {
+            setting.style.display='none';
+        }
 
-// }    
-
-
-// 게시판 공지사항/자유게시판일 때만 말머리가 활성화....
-
+        console.log("공지여부");
+        console.log(noticeFlag);    
+    });
+}
 
 
 
@@ -155,11 +154,11 @@ const boardContent = document.querySelector("[name='boardContent']");
 function writeValidate() {
     console.log("글 작성 유효성 검사");
     
-
     if(boardCode.value=='') {
         alert("게시판을 선택하세요.");
         return false;
     }
+
 
     if(titleTagNo.value=='') {
         alert("태그여부를 선택하세요.");
@@ -183,6 +182,25 @@ function writeValidate() {
 }
 
 
+// 임시등록글 목록 조회
+function selectTempPost() {
+    console.log(memberNo);
+    $.ajax({
+        url: "/board/tempPost/list",
+        date: {"memberNo":memberNo},
+        type: "GET",
+        dataType : "JSON",
+        success: function(tPost) {
+            console.log(tPost);
+        },
+        error:function(){
+            console.log("임시등록 에러 발생");
+        }
+    })
+}
+
+
+
 
 
 // 임시등록(modal사용)
@@ -192,50 +210,110 @@ const boardModal = document.getElementById("boardModal"); // 모달창
 const btnClose = document.getElementById("btn-close"); // 닫기버튼
 
 
+
 // 임시등록 버튼 누르면 임시저장
 tempSave.addEventListener("click", (e)=>{
     // const boardTitle = document.querySelector("[name='boardTitle']");
     // const boardContent = document.querySelector("[name='boardContent']");
+
+    if(boardCode.value=='') {
+        alert("게시판을 선택하세요.");
+        return false;
+    }
+
+    if(titleTagNo.value=='') {
+        alert("태그여부를 선택하세요.");
+        return false;
+    }
 
     // 제목이나 내용이 없을 때
     if(boardTitle.value.trim().length==0 || boardContent.value.trim(). length==0) {
         alert("제목이나 내용을 입력해주세요.");
         e.preventDefault();
     }
-        
+
     // 임시등록 테이블에 저장
     // var formValues = new FormData($("form[name='boardWriteForm']")[0]);
     // alert(formValues.boardTitle);
     const fm = document.getElementById("boardWriteForm");
-
+    // console.log(fm);
+    
     $.ajax({
         url: "/board/write/tempPost",
         type: "post",
         data: $(fm).serialize(),
-
-        success: (result)=>{
+        success: (boardNo)=>{
             // 저장 성공 시 알럿창 띄우기
-            if(result > 0) {
+            if(boardNo > 0) {
                 alert("임시등록이 완료되었습니다.");
+                modalBtn.innerText = Number(modalBtn.innerText) + 1; // 갯수 1 증가
+                selectTempPost();// 비동기로 임시등록글 목록 조회
             }
         },
         error:()=>{
             alert("임시등록 실패");
         }
-
-
     })
 })
 
 
+
 // 카운트(수)를 누르면 임시등록 모달창으로 이동
 modalBtn.addEventListener("click",()=>{
-    if(boardModal != null) {
-        boardModal.style.display="flex";
-    }
+    boardModal.style.display="flex";
 })
 
+// 모달창 닫기 버튼
 btnClose.addEventListener("click", () =>{
-
     boardModal.style.display="none";
 })
+
+
+// 임시 저장글 한 행 삭제
+$(".btn-temp-del").click(function(){
+    const boardNo = document.getElementById("boardNo").value;
+    console.log(boardNo);
+    
+    $.ajax({
+        url: "/board/tempPost/delete",
+        type: "post",
+        data: {"boardNo" : boardNo},
+        success: (result)=>{
+            // 저장 성공 시 알럿창 띄우기
+            if(result > 0) {
+                alert("내용이 삭제되었습니다.");
+                $("#temp-list").remove();
+            }
+        },
+        error:()=>{
+            alert("임시등록 삭제 실패");
+        }
+    })
+});
+
+
+// 임시등록글 전체 삭제
+$(".all-del-btn").click(function(){
+    console.log(memberNo);
+
+    $.ajax({
+        url: "/board/tempPost/deleteAll",
+        type: "post",
+        data: { "memberNo" : memberNo},
+        success: (result)=>{
+            // 저장 성공 시 알럿창 띄우기
+            if(result > 0) {
+                confirm("임시글을 모두 삭제하겠습니까?");
+
+                if(confirm){
+                    $(".temp-list-area").remove();
+                }
+            }
+        },
+        error:()=>{
+            alert("임시등록 삭제 실패");
+        }
+    })
+
+})
+

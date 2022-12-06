@@ -9,28 +9,52 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.service.BoardService;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"boardInfo"})
 public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private BoardDetailService dService;
 	
 	// 특정 게시판 목록 조회
 	@GetMapping("/board/{boardCode}")
 	public String selectBoardList(@PathVariable("boardCode") int boardCode,
 			Model model,
-			@RequestParam(value="cp", required = false, defaultValue="1") int cp
+			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
+			@RequestParam Map<String, Object> pm
 			) {
+		
+		// 특정 게시판 정보(등급제한/말머리/좋아요/게시판형식) 조회 서비스 호출
+		BoardType boardInfo = dService.selectBoardInfo(boardCode);
+		model.addAttribute("boardInfo", boardInfo);
 		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);
 		
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
+		
+		Map<String, Object> allNotice = service.selectBoardAllNoticeList(boardCode);
+		model.addAttribute("allNotice", allNotice);
+
+		if(pm.get("key") == null) { // 검색이 아닌 경우
+			Map<String, Object> search = service.selectBoardList(boardCode, cp);
+			model.addAttribute("search", search);
+			
+		} else { // 검색인 경우
+			pm.put("boardCode", boardCode);
+			Map<String, Object> search = service.selectBoardList(pm, cp);
+			model.addAttribute("search", search);
+		}		
 		
 		return "board/boardList";
 	}
@@ -61,7 +85,7 @@ public class BoardController {
 		return "board/boardBestList";
 	}
 	
-	
+//	// 검색 목록 조회
 //	@GetMapping("/board/{boardCode}")
 //	public String selectBoardList(@PathVariable("boardCode") int boardCode,
 //			Model model,

@@ -40,7 +40,13 @@ public interface BoardService {
 	 * @param cp
 	 * @return boardList
 	 */
-//	Map<String, Object> selectBoardList(Map<String, Object> pm, int cp);
+	Map<String, Object> selectBoardList(Map<String, Object> pm, int cp);
+
+	/** 전체 공지 게시판 목록 조회
+	 * @param boardCode
+	 * @return
+	 */
+	Map<String, Object> selectBoardAllNoticeList(int boardCode);
 
 
 }

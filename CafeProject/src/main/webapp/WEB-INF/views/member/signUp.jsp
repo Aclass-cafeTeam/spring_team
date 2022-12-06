@@ -73,7 +73,7 @@
                         <div class="inputArea">
                             <input type="text" name="memberEmail" id="memberEmail" placeholder="아이디(이메일)"
                             maxlength="30" autocomplete="off" required >
-                            <button type="button" class="verify-btn">인증번호 받기</button> 
+                            <button type="button" id="sendAuthKeyBtn">인증번호 받기</button> 
                             <div class="signUp-message">
                                 <span id="emailMessage"></span>
                             </div>
@@ -82,13 +82,13 @@
 
                     <!-- 인증번호 입력 -->
                     <div class="signUpRow verify-frm">
-                        <label for="verify">인증번호</label>
+                        <label for="authKey">인증번호</label>
                         <div class="inputArea">
-                            <input type="text" name="verify" id="verify" placeholder="인증번호 입력"
+                            <input type="text" name="authKey" id="authKey" placeholder="인증번호 입력"
                             maxlength="6" autocomplete="off">
-                            <button type="button" class="verify-btn">인증하기</button> 
+                            <button type="button" id="checkAuthKeyBtn">인증하기</button> 
                             <div class="signUp-message">
-                                <span id="verifyMessage">인증되었습니다.</span>
+                                <span id="authKeyMessage" class="authKey-message"></span>
                             </div>
                         </div>
                         
