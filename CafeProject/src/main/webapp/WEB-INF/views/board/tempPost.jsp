@@ -3,7 +3,7 @@
 
 <div class="modal-wrapper">
     <div class="modal-header">
-        <strong class="modal-title">이 카페 임시글 ${tPost[0].tempCount}</strong>
+        <strong class="modal-title">이 카페 임시글</strong>
         <div id="btn-close"><i class="fa-solid fa-xmark"></i></div>
         <!-- x 버튼 &times;-->
     </div>
@@ -14,23 +14,23 @@
                 <button type="button" class="all-del-btn"><span>전체삭제</span></button>
             </div>
 
-            <c:forEach items="${tPost}" var="tPost">  
-            <div class="temp-list-area">
-            <ul id="temp-list">
-                <li class="temp-item">
-                    <a href="/board/${tPost.boardCode}/${tPost.boardNo}/update" class="temp-link">
-                        <strong class="temp-item-title">${tPost.boardTitle}</strong>
-                    </a>
-                    <div class="temp-item-tool">
-                        <span class="temp-time">${tPost.boardCreateDate}</span>
-                        <input type="hidden" id="boardNo" name="boardNo" value="${tPost.boardNo}">
-                        <input type="hidden" id="boardCode" name="boardCode" value="${tPost.boardCode}">
-                        <button type="button" class="btn-temp-del"><i class="fa-regular fa-trash-can"></i></button>
-                    </div>
-                </li>
-            </ul>
+            <div id="temp-list-area">
+                <ul id="temp-list">
+                    <c:forEach items="${tPost}" var="tPost">  
+                        <li class="temp-item">
+                            <a href="/board/${tPost.boardCode}/${tPost.boardNo}/update" class="temp-link">
+                                <strong class="temp-item-title">${tPost.boardTitle}</strong>
+                            </a>
+                            <div class="temp-item-tool">
+                                <span class="temp-time">${tPost.boardCreateDate}</span>
+                                <input type="hidden" id="boardNo" name="boardNo" value="${tPost.boardNo}">
+                                <input type="hidden" id="boardCode" name="boardCode" value="${tPost.boardCode}">
+                                <button type="button" class="btn-temp-del"><i class="fa-regular fa-trash-can"></i></button>
+                            </div>
+                        </li>
+                    </c:forEach>
+                </ul>
             </div>
-            </c:forEach>
         </div>
     </div>
 

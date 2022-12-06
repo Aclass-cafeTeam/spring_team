@@ -55,7 +55,7 @@ public interface BoardCrudService {
 
 	/** 임시등록 조회
 	 * @param boardNo
-	 * @return
+	 * @return tPost
 	 */
 	List<Board> selectTempPost(int memberNo);
 

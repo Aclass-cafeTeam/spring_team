@@ -76,7 +76,7 @@ public class BoardCrudDAO {
 
 	/** 임시등록 조회
 	 * @param boardNo
-	 * @return
+	 * @return tPost
 	 */
 	public List<Board> selectTempPost(int memberNo) {
 		return sqlSession.selectList("boardCrudMapper.selectTempPost", memberNo);
