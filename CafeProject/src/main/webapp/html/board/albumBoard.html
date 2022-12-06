@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>앨범형</title>
+
+    <link rel="stylesheet" href="/resources/css/main.css">
+    <link rel="stylesheet" href="/resources/css/board/albumBoard.css">
+
+</head>
+<body>
+    <main>
+        <!-- header -->
+        <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+
+        
+        <section id="flex">
+            <!-- sideMenu -->
+            <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
+
+            <se class="article">
+                <div class="board-name">${boardList[0].boardName}</div>
+                <p class="board-start"></p>
+
+                    <div class="hidden">
+                        <input type="checkbox" name="hidden" id="noticeHide">
+                        <label for="hidden" id="noticeHide">공지 숨기기</label>
+                    </div>
+            
+            <!-- 7행 14열 -->
+            <div>
+                <table board="1" class="table">
+
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <th class="empty"></th>
+                            <th colspan="2" class="title">제목</th>
+                            <th class="th-writer">작성자</th>
+                            <th class="th-date">작성일</th>
+                            <th class="th-hits">조회</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>&nbsp</td>
+                            <td class="strong">공지</td>
+                            <td><a href="#" class="strong-title">	
+                                팀프로젝트 테스트 카페 카페를 시작합니다.
+                            </a></td>
+                            <td><a href="#" class="comment">[1]</a></td>
+                            <td><a href="#" class="writer">JH</a></td>
+                            <td class="reporting-date">2022.10.14.</td>
+                            <td class="hits">2</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+            </div>
+
+            <ul class="ul">
+                <li>
+                    <a href="#"><img width="200" height="200" src="${board.thumbnail}"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"" class="img-title">
+                        <!-- 말머리를 사용하는 게시판일 경우 -->
+                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                            <!-- 말머리가 있을 경우 -->
+                            <c:if test="${not empty board.titleTagName}">
+                                <c:if test="${board.titleTagNo ne 0}"> 
+                                    <div class="title-tag">[${board.titleTagName}]</div>
+                                </c:if>
+                            </c:if>
+                        </c:if>
+                        ${board.boardTitle}</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment">
+                        <c:if test="${board.commentCount!=0}">
+                        <a href="#" class="comment">[${board.commentCount}]</a>
+                        </c:if>
+                        </a></div>
+                    </div>
+                    <div class="img-writer"><a href="/member/${board.memberNo}" class="img-writer">${board.memberNickname}</a></div>
+                    <div class="flex">
+                        <div class="img-date">${board.boardCreateDate}</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 ${board.readCount}</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진 입니당</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.26.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 0</div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진2</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.25.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 1</div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진1</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.25.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 0</div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <ul class="ul">
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">글 + 사진 입니당</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment">[2]</a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.26.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 4</div>
+                    </div>
+                </li>
+                
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진 입니당</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.26.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 0</div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진2</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.25.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 1</div>
+                    </div>
+                </li>
+
+                <li>
+                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
+                    <div class="flex">
+                        <div class="img-title"><a href="#" class="img-title">사진1</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
+                    </div>
+                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
+                    <div class="flex">
+                        <div class="img-date">2022.10.25.</div>
+                        <span class="img-span">•</span>
+                        <div class="img-hits">조회 0</div>
+                    </div>
+                </li>
+
+            </ul>
+
+            <div>
+                <div class="writing">
+                    <c:if test="${not empty loginMember}">
+                        <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
+                    </c:if>
+                </div>
+            </div>
+            <div>&nbsp</div>
+
+            <div class="page">
+
+                    <ul class="pagination">
+        
+                        <!-- 첫 페이지로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=1${sURL}">&lt;&lt;</a></li>
+
+                        <!-- 이전 목록 마지막 번호로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
+
+                        <%-- 몇부터 시작(begin)해서 몇까지(end) 몇칸씩 증가(step) --%>
+                        <c:forEach var="i" begin="${imgPagination.startPage}" 
+                        end="${pagination.endPage}" step="1">
+            
+                            <c:choose>
+                                <c:when test="${i == imgPagination.currentPage}">
+                                    <!-- 현재 보고있는 페이지 -->
+                                    <li><a class="current">${i}</a></li>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <!-- 현재 페이지를 제외한 나머지 -->
+                                    <li><a href="/board/${boardCode}?cp=${i}${sURL}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:forEach>
+
+                        <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
+
+                        <!-- 끝 페이지로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+
+                    </ul>
+
+            </div>
+
+        <div class="last">
+            <div class="time-">
+                <%-- <form action="#">
+                    <select name="time" class="time">
+                        <option value="aa">전체기간</option>
+                        <option value="bb">1일</option>
+                        <option value="cc">1주</option>
+                        <option value="dd">1개월</option>
+                        <option value="ee">6개월</option>
+                        <option value="ff">1년</option>
+                    </select>
+                </form> --%>
+            </div>
+
+                    <div class="choice_">
+                        <form action="${boardCode}" method="get" id="boardSearch" onsubmit="return true">
+                            <select name="key" id="search-key" class="choice">
+                                <option value="aa">제목</option>
+                                <option value="bb">내용</option>
+                                <option value="cc">제목 + 내용</option>
+                                <option value="dd">작성자</option>
+                                <option value="ee">말머리</option>
+                            </select>
+
+                    </div>
+
+            <article class="search-area">
+
+                <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
+                <form action="#">
+
+                        <input type="text" class="query" name="query"
+                        placeholder="검색어를 입력해주세요">
+                        <button type="submit" id="search-btn" class="search">검색</button>
+                        
+                </form>
+            </article>
+
+        </div>
+        </section>
+</body>
+</html>

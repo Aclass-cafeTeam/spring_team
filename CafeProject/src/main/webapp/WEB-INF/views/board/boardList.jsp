@@ -9,6 +9,7 @@
 <c:set var="pagination" value="${search.pagination}" />
 <c:set var="boardList" value="${search.boardList}" />
 
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -151,45 +152,56 @@
                             </c:otherwise>
                         </c:choose>
 
+                        <%-- 게시판 형태 앨범/게시글 분리 --%>
                         <c:choose>
-                            <c:when test="${empty boardList}">
-                            <!-- 게시글 목록 조회 결과가 비어있다면 -->
-                                <tr>
-                                    <th colspan="7">게시글이 존재하지 않습니다.</th>
-                                </tr>
+                            <c:when test="${boardInfo.boardForm == 'A'}">
+                            <%-- 앨범형일 때 --%>
+                            test 하는중 입니다.
+                                    <jsp:include page="/WEB-INF/views/board/albumBoard.jsp" />
                             </c:when>
-
                             <c:otherwise>
-                                <c:forEach var="board" items="${boardList}">
-                                    <tr>
-                                        <td class="board-number">${board.boardNo}</td>
-                                        <td>
-                                            <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                        <!-- 말머리를 사용하는 게시판일 경우 -->
-                                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
-                                            <!-- 말머리가 있을 경우 -->
-                                            <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagNo ne 0}"> 
-                                                    <div class="title-tag">[${board.titleTagName}]</div>
+                                <c:choose>
+                                    <c:when test="${empty boardList}">
+                                    <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                                        <tr>
+                                            <th colspan="7">게시글이 존재하지 않습니다.</th>
+                                        </tr>
+                                    </c:when>
+
+                                    <c:otherwise>
+                                        <c:forEach var="board" items="${boardList}">
+                                            <tr>
+                                                <td class="board-number">${board.boardNo}</td>
+                                                <td>
+                                                    <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
+                                                <!-- 말머리를 사용하는 게시판일 경우 -->
+                                                <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                                    <!-- 말머리가 있을 경우 -->
+                                                    <c:if test="${not empty board.titleTagName}">
+                                                        <c:if test="${board.titleTagNo ne 0}"> 
+                                                            <div class="title-tag">[${board.titleTagName}]</div>
+                                                        </c:if>
+                                                    </c:if>
                                                 </c:if>
-                                            </c:if>
-                                        </c:if>
-                                            ${board.boardTitle}</a>
-                                            <c:if test="${board.commentCount!=0}">
-                                            <a href="#" class="comment">[${board.commentCount}]</a>
-                                            </c:if>                   
-                                        </td>
-                                        <td></td>
-                                        <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
-                                        <td class="reporting-date">${board.boardCreateDate}</td>
-                                        <td class="hits">${board.readCount}</td>
-                                        <c:if test="${boardInfo.boardLikeFlag=='Y'}">
-                                        <td class="like">${board.likeCount}</td>
-                                        </c:if>
-                                    </tr>
-                                </c:forEach>
+                                                    ${board.boardTitle}</a>
+                                                    <c:if test="${board.commentCount!=0}">
+                                                    <a href="#" class="comment">[${board.commentCount}]</a>
+                                                    </c:if>                   
+                                                </td>
+                                                <td></td>
+                                                <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                                <td class="reporting-date">${board.boardCreateDate}</td>
+                                                <td class="hits">${board.readCount}</td>
+                                                <c:if test="${boardInfo.boardLikeFlag=='Y'}">
+                                                <td class="like">${board.likeCount}</td>
+                                                </c:if>
+                                            </tr>
+                                        </c:forEach>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:otherwise>
                         </c:choose>
+
                     </tbody>
                 </table>
 
@@ -288,7 +300,7 @@
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <!-- ******************************************************************************** -->
 
-    <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/main/main.js"></scrip>
     <script src="/resources/js/board/boardList.js"></script>
 </body>
 </html>

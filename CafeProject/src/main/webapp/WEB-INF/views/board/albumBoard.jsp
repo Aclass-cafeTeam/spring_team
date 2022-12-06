@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="boardList" value="${img.boardList}" />
+<c:set var="imgPagination" value="${img.imgPagination}" />
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,27 +17,7 @@
 </head>
 <body>
     <main>
-        <!-- header -->
-        <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-
-        
-        <section id="flex">
-            <!-- sideMenu -->
-            <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
-
-            <se class="article">
-                <div class="board-name">게시판명(메뉴명)</div>
-                <p class="board-start">게시판 설명(메뉴 설명)</p>
-
-                    <div class="hidden">
-                        <input type="checkbox" name="hidden" id="#">
-                        <label for="hidden" id="#">
-                            <!-- announcement-dissimulate -->
-                            공지 숨기기
-                        </label>
-                    </div>
-            
             <!-- 7행 14열 -->
             <div>
                 <table board="1" class="table">
@@ -69,19 +51,35 @@
             </div>
 
             <ul class="ul">
+                                            <c:forEach var="board" items="${boardList}">
                 <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
+                    <a href="#"><img width="200" height="200" src="${board.thumbnail}"></a>
                     <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">글 + 사진 입니당</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment">[2]</a></div>
+                        <div class="img-title"><a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"" class="img-title">
+                        <!-- 말머리를 사용하는 게시판일 경우 -->
+                        <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                            <!-- 말머리가 있을 경우 -->
+                            <c:if test="${not empty board.titleTagName}">
+                                <c:if test="${board.titleTagNo ne 0}"> 
+                                    <div class="title-tag">[${board.titleTagName}]</div>
+                                </c:if>
+                            </c:if>
+                        </c:if>
+                        ${board.boardTitle}</a></div>
+                        <div class="img-comment"><a href="#" class="img-comment">
+                        <c:if test="${board.commentCount!=0}">
+                        <a href="#" class="comment">[${board.commentCount}]</a>
+                        </c:if>
+                        </a></div>
                     </div>
-                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
+                    <div class="img-writer"><a href="/member/${board.memberNo}" class="img-writer">${board.memberNickname}</a></div>
                     <div class="flex">
-                        <div class="img-date">2022.10.26.</div>
+                        <div class="img-date">${board.boardCreateDate}</div>
                         <span class="img-span">•</span>
-                        <div class="img-hits">조회 4</div>
+                        <div class="img-hits">조회 ${board.readCount}</div>
                     </div>
                 </li>
+                                                </c:forEach>
                 
                 <li>
                     <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
@@ -96,157 +94,53 @@
                         <div class="img-hits">조회 0</div>
                     </div>
                 </li>
-
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">사진2</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.25.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 1</div>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">사진1</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.25.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 0</div>
-                    </div>
-                </li>
-
-            </ul>
-
-            <ul class="ul">
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">글 + 사진 입니당</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment">[2]</a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.26.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 4</div>
-                    </div>
-                </li>
-                
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">사진 입니당</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">상남자</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.26.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 0</div>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/고양아.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">사진2</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.25.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 1</div>
-                    </div>
-                </li>
-
-                <li>
-                    <a href="#"><img width="200" height="200" src="../../resources/images/작은고양이.jpg"></a>
-                    <div class="flex">
-                        <div class="img-title"><a href="#" class="img-title">사진1</a></div>
-                        <div class="img-comment"><a href="#" class="img-comment"></a></div>
-                    </div>
-                    <div class="img-writer"><a href="#" class="img-writer">JH</a></div>
-                    <div class="flex">
-                        <div class="img-date">2022.10.25.</div>
-                        <span class="img-span">•</span>
-                        <div class="img-hits">조회 0</div>
-                    </div>
-                </li>
-
             </ul>
 
             <div>
                 <div class="writing">
-                <button type="submit" class="writing-btn">글쓰기</button>
+                    <c:if test="${not empty loginMember}">
+                        <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
+                    </c:if>
                 </div>
             </div>
             <div>&nbsp</div>
 
             <div class="page">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">5</a>
-                <a href="#">6</a>
-                <a href="#">7</a>
-                <a href="#">8</a>
-                <a href="#">9</a>
-                <a href="#">10</a>
-                <span>|</span>
-                <span><a href="#" class="daum">다음</a></span>
+
+                    <ul class="pagination">
+        
+                        <!-- 첫 페이지로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=1${sURL}">&lt;&lt;</a></li>
+
+                        <!-- 이전 목록 마지막 번호로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
+
+                        <%-- 몇부터 시작(begin)해서 몇까지(end) 몇칸씩 증가(step) --%>
+                        <c:forEach var="i" begin="${imgPagination.startPage}" 
+                        end="${pagination.endPage}" step="1">
+            
+                            <c:choose>
+                                <c:when test="${i == imgPagination.currentPage}">
+                                    <!-- 현재 보고있는 페이지 -->
+                                    <li><a class="current">${i}</a></li>
+                                </c:when>
+
+                                <c:otherwise>
+                                    <!-- 현재 페이지를 제외한 나머지 -->
+                                    <li><a href="/board/${boardCode}?cp=${i}${sURL}">${i}</a></li>
+                                </c:otherwise>
+                            </c:choose>
+
+                        </c:forEach>
+
+                        <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
+
+                        <!-- 끝 페이지로 이동 -->
+                        <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+
+                    </ul>
 
             </div>
 
-        <div class="last">
-            <div class="time-">
-                <form action="#">
-                    <select name="time" class="time">
-                        <option value="aa">전체기간</option>
-                        <option value="bb">1일</option>
-                        <option value="cc">1주</option>
-                        <option value="dd">1개월</option>
-                        <option value="ee">6개월</option>
-                        <option value="ff">1년</option>
-                    </select>
-                </form>
-            </div>
-
-            <div class="choice-">
-                <form action="#">
-                    <select name="choice" class="choice">
-                        <option value="aa">제목만</option>
-                        <option value="bb">글작성자</option>
-                        <option value="cc">댓글내용</option>
-                        <option value="dd">댓글작성자</option>
-                    </select>
-                </form>
-            </div>
-
-            <article class="search-area">
-
-                <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
-                <form action="#">
-
-                        <input type="text" class="query" name="query"
-                        placeholder="검색어를 입력해주세요">
-                        <button type="submit" id="search-btn" class="search">검색</button>
-                        
-                </form>
-            </article>
-
-        </div>
-        </section>
 </body>
 </html>

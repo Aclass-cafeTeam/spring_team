@@ -30,6 +30,9 @@ public class BoardController {
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);
 		
+		Map<String, Object> img = service.selectBoardImgList(boardCode, cp);
+		model.addAttribute("img", img);
+		
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
 		
