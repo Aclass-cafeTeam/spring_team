@@ -75,6 +75,14 @@
             
             <%-- 앨범형 게시판 내용 --%>
             <ul class="ul">
+            <c:choose>
+                <c:when test="${empty boardList}">
+                    <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                    <ul>
+                        <li></li>
+                    </ul>
+                </c:when>
+            <c:otherwise>
                 <c:forEach var="board" items="${boardList}">
                     <li>
                         <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"><img width="200" height="200" src="${board.thumbnail}"></a>
@@ -104,6 +112,8 @@
                         </div>
                     </li>
                 </c:forEach>
+            </c:otherwise>
+            </c:choose>
             </ul>
 
                     <div>
