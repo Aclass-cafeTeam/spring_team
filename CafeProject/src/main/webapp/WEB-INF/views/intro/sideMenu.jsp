@@ -37,29 +37,29 @@
                                             <div id="manager">매니저</div>
                                             <div><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${managerNickname}</a></div>
                                         </div>
-                                        <div id="since">since 2022.10.18.</div>
+                                        <div id="since">since 2022.10.14.</div>
+                                        <c:choose>
+                                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
+                                        <div class="managerLink">
+                                            <div class="managerLinkBox">
+                                                <a href="/manager/managerMain.jsp"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
+                                            </div>
+                                        </div>
+                                        </c:when>
+                                        </c:choose>
                                     </li>
                                 </ul>
-                                <c:choose>
-                                <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
-                                <div class="managerLink">
-                                    <div class="managerLinkBox">
-                                        <a href="/manager/managerMain.jsp"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
-                                    </div>
-                                </div>
-                                </c:when>
-                                </c:choose>
                             </div>
 
                             <div id="cafe-member">
                                 <div id="cafe-grade">
-                                    <img src="/resources/images/intro/kh-logo.jpg" width="17px">
-                                    <a><a href="https://iei.or.kr/main/main.kh?null">KH정보교육원
+                                    <img src="/resources/images/intro/train1.png" width="17px">
+                                    <a><a href="#" onclick="return=false;">내일로, 기차로!
                                 </div>
 
                                 <div id="member-count">
                                     <img src="/resources/images/회원수.PNG" height="16px">
-                                    <a href="#" id="count">${memberCount}</a>
+                                    <a href="#" id="count" onclick="return=false;">${memberCount}</a>
                                     <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>
@@ -96,29 +96,29 @@
                                             <div id="manager">매니저</div>
                                             <div><a href="/member/${managerNo}">${managerNickname}</a></div>
                                         </div>
-                                        <div id="since">since 2022.10.18.</div>
+                                        <div id="since">since 2022.10.14.</div>
+                                        <c:choose>
+                                        <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
+                                        <div class="managerLink">
+                                            <div class="managerLinkBox">
+                                                <a href="/manager/managerMain"><img src="/resources/images/settings.png" width="10px" height="10px"/>카페관리</a>
+                                            </div>
+                                        </div>
+                                        </c:when>
+                                        </c:choose>
                                     </li>
                                 </ul>
-                                <c:choose>
-                                <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
-                                <div class="managerLink">
-                                    <div class="managerLinkBox">
-                                        <a href="/manager/managerMain"><img src="/resources/images/settings.png" width="10px" height="10px" />카페관리</a>
-                                    </div>
-                                </div>
-                                </c:when>
-                                </c:choose>
                             </div>
             
                             <div id="cafe-member">
                                 <div id="cafe-grade">
-                                    <img src="/resources/images/intro/kh-logo.jpg" width="17px">
-                                    <a><a href="https://iei.or.kr/main/main.kh?null">KH정보교육원
+                                    <img src="/resources/images/intro/train1.png" width="17px">
+                                    <a><a href="#" onclick="return=false;">내일로, 기차로!
                                 </div>
             
                                 <div id="member-count">
                                     <img src="/resources/images/회원수.PNG" height="16px">
-                                    <a href="#" id="count">${memberCount}</a>
+                                    <a href="#" id="count" onclick="return=false;">${memberCount}</a>
                                     <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>

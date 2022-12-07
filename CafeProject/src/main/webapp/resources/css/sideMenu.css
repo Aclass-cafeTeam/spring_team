@@ -130,14 +130,16 @@ div#cafe {
     display: inline-flex;
     justify-content: flex-start;
     align-content: center;
+    font-size: 10.6px;
 }
 .managerLinkBox > a{
-    font-size: 13px;
+    font-size: 10.6px;
     color: rgb(102, 102, 102);
     text-decoration: none;
 }
 .managerLinkBox img{
     margin-right: 5px;
+    font-size: 10.6px;
 }
 .managerLinkBox > a:hover{
     text-decoration: underline;
