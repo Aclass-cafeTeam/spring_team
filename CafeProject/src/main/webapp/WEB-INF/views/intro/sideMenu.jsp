@@ -53,8 +53,8 @@
 
                             <div id="cafe-member">
                                 <div id="cafe-grade">
-                                    <img src="/resources/images/카페등급.PNG" width="17px">
-                                    <a><a href="#">나무3단계
+                                    <img src="/resources/images/intro/kh-logo.jpg" width="17px">
+                                    <a><a href="#">KH정보교육원
                                 </div>
 
                                 <div id="member-count">
@@ -67,8 +67,8 @@
                             <div id="count-3">
                                 <div id="star">
                                     <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                                    <div id="star1">밤하늘에</div>
-                                    <div id="star-count">퍼어얼~</div>
+                                    <div id="star1">프로젝트 팀원</div>
+                                    <div id="star-count">5명</div>
                                 </div>
                             </div>
 
@@ -92,7 +92,7 @@
                                     <li id="name">
                                         <div id="inline">
                                             <div id="manager">매니저</div>
-                                            <div><a href="#">카페팀</a></div>
+                                            <div><a href="#" onclick="return=false;">카페팀</a></div>
                                         </div>
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
