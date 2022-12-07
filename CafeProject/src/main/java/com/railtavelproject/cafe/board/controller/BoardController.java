@@ -37,21 +37,27 @@ public class BoardController {
 		BoardType boardInfo = dService.selectBoardInfo(boardCode);
 		model.addAttribute("boardInfo", boardInfo);
 		
+		// 특정 게시글 목록 조회
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);
 		
+		// 앨범형 게시글 목록 조회
 		Map<String, Object> img = service.selectBoardImgList(boardCode, cp);
 		model.addAttribute("img", img);
 		
+		// 게시글 별 공지 게시글 목록 조회
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
 		
+		// 앨범형 공지 게시글 목록 조회
 		Map<String, Object> albumNotice = service.selectBoardAlbumNoticeList(boardCode);
 		model.addAttribute("albumNotice", albumNotice);
 		
+		// 전체 공지 게시글 목록 조회
 		Map<String, Object> allNotice = service.selectBoardAllNoticeList(boardCode);
 		model.addAttribute("allNotice", allNotice);
 
+		// 게시글형 게시글 검색
 		if(pm.get("key") == null) { // 검색이 아닌 경우
 			Map<String, Object> search = service.selectBoardList(boardCode, cp);
 			model.addAttribute("search", search);
@@ -90,38 +96,5 @@ public class BoardController {
 		
 		return "board/boardBestList";
 	}
-	
-//	// 검색 목록 조회
-//	@GetMapping("/board/{boardCode}")
-//	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-//			Model model,
-//			@RequestParam(value="cp", required = false, defaultValue="1") int cp,
-//			@RequestParam Map<String, Object> pm
-//			) {
-//		
-//		if(pm.get("key") == null) { // 검색이 아닌 경우
-//			Map<String, Object> map = service.selectBoardList(boardCode, cp);
-//			model.addAttribute("map", map);
-//			
-//		} else { // 검색인 경우
-//			pm.put("boardCode", boardCode);
-//			Map<String, Object> map = service.selectBoardList(pm, cp);
-//			model.addAttribute("map", map);
-//		}
-//		
-//		return "board/boardList"; // forward
-//	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
