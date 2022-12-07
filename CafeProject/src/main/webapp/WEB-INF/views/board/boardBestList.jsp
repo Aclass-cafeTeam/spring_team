@@ -83,12 +83,6 @@
                                         <td class="strong">공지</td>
                                         <td>
                                             <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                            <!-- 말머리가 있을 경우  -->
-                                            <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagName ne '선택 안 함'}">
-                                                    <span>[${board.titleTagName}]</span>
-                                                </c:if>
-                                            </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
@@ -118,9 +112,6 @@
                                         <td class="bestNo">Best</td>
                                         <td>
                                             <a class="best-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                            <c:if test="${not empty board.titleTagName}">
-                                            <span>[${board.titleTagName}]</span>
-                                            </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="best-comment">[${board.commentCount}]</a>
