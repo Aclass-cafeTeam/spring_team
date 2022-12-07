@@ -396,7 +396,7 @@
 	</where>
 	)
   </select>
-  <select id="getselectDetailVisit" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정중 -->
+  <select id="getselectDetailVisit" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정중!!!!! -->
   SELECT *
 	FROM (SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
@@ -420,6 +420,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -465,7 +466,7 @@
 	</if>
 	ORDER BY 1
   </select>
-  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정 중 -->
+  <select id="selectDetailDate" parameterType="java.util.HashMap" resultMap="member_rm"><!-- 수정 중!!!! -->
   SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -485,6 +486,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -704,7 +706,7 @@
 	AND S_MANAGER_NO IS NOT NULL
   </update>
   <!-- 스탭 멤버 검색해오기 -->
-  <select id="manageCafeStaffView" resultMap="member_rm">
+  <select id="manageCafeStaffView" resultMap="member_rm"><!-- 수정 중!!!! -->
   SELECT PROFILE_IMG, MEMBER_NICKNAME,
 	SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL,
 	TO_CHAR(ENROLL_DATE ,'YYYY.MM.DD') ENROLL_DATE, 
@@ -725,6 +727,7 @@
 	ORDER BY 2) USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(BOARD_NO) BOARD_COUNT ,MEMBER_NO 
 	FROM BOARD b 
+	WHERE BOARD_DEL_FL IN ('N')
 	GROUP BY MEMBER_NO
 	ORDER BY 2)
 	USING(MEMBER_NO)
