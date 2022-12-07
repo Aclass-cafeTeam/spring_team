@@ -39,7 +39,6 @@
 	COMMENT_DEL_FL = 'Y',
 	C_DELETE_DATE = SYSDATE
 	WHERE COMMENT_NO=#{commentNo}
-	OR PARENT_NO = #{commentNo}
 	</update>
 	
 	<!-- 댓글 삭제(매니저) -->
@@ -48,7 +47,6 @@
 	COMMENT_DEL_FL = 'M',
 	C_DELETE_DATE = SYSDATE
 	WHERE COMMENT_NO=#{commentNo}
-	OR PARENT_NO = #{commentNo}
 	</update>
 	
 	<!-- 댓글 수정 -->
