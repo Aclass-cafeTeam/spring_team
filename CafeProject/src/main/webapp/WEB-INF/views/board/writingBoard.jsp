@@ -161,6 +161,7 @@
     <script>
         const memberNo = "${loginMember.memberNo}";
         const memberLevelNo = "${loginMember.memberLevelNo}";
+        
     </script>
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>

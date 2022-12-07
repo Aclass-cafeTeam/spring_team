@@ -19,7 +19,7 @@
         <header class="header">
             <div class="header-inner">
                 
-                <a href="#" target="_blank">
+                <a href="/" target="_blank">
                     <img src="/resources/images/NEVER_logo.png" alt="logo" id="logo">
                 </a>
                 
@@ -57,9 +57,8 @@
             <a href="/member/login"><div>로그인 화면으로 돌아가기</div></a>
         </p>
     </footer>
-        
 
-    <script src="/resources/js/login.js"></script>        
+    <script src="/resources/js/member/findPw.js"></script>        
 
 </body>
 </html>

@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.google.gson.Gson;
@@ -305,31 +306,31 @@ public class BoardCrudController {
 	
 	
 	// 임시등록-> 일반 게시글로 변동
-	@PostMapping("/board/{boardCode}/{boardNo}/tempPost")
-	public String updateTempPost(@RequestHeader("referer") String referer,
-			@PathVariable int boardCode, @PathVariable int boardNo,
-			RedirectAttributes ra) {
-		
-		System.out.println(boardNo);
-
-		// 게시글 번호를 이용해서 게시글 수정 -> BOARD_DEL_FL = 'N' (UPDATE)
-		int result = service.updateTempPost(boardNo);
-		
-		String message = null;
-		String path = null;
-						
-		if( result > 0 ) { // 게시글 삭제 성공 시
-			message = "게시글이 정상적으로 등록되었습니다.";
-			path = "/board/" + boardCode +"/"+ boardNo;
-		
-		} else { // 게시글 삭제 실패 시
-			message = "다시 확인해주세요.";
-			path = referer;
-		}
-		
-		ra.addFlashAttribute(message);		
-
-		return "redirect:" + path;
-	}
+//	@PostMapping("/board/{boardCode}/{boardNo}/tempPost")
+//	public String updateTempPost(@RequestHeader("referer") String referer,
+//			@PathVariable int boardCode, @PathVariable int boardNo,
+//			RedirectAttributes ra) {
+//		
+//		System.out.println(boardNo);
+//
+//		// 게시글 번호를 이용해서 게시글 수정 -> BOARD_DEL_FL = 'N' (UPDATE)
+//		int result = service.updateTempPost(boardNo);
+//		
+//		String message = null;
+//		String path = null;
+//						
+//		if( result > 0 ) { // 게시글 삭제 성공 시
+//			message = "게시글이 정상적으로 등록되었습니다.";
+//			path = "/board/" + boardCode +"/"+ boardNo;
+//		
+//		} else { // 게시글 삭제 실패 시
+//			message = "다시 확인해주세요.";
+//			path = referer;
+//		}
+//		
+//		ra.addFlashAttribute(message);		
+//
+//		return "board/write/;
+//	}
 	
 }

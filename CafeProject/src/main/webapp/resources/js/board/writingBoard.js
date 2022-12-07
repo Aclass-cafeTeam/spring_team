@@ -84,6 +84,7 @@ function uploadImageFile(file, editor){
 const select =document.querySelectorAll(".select")
 const wrapper = document.querySelectorAll(".wrapper");
 const boardCode = document.getElementById("boardCode");
+const boardForm = document.getElementById("boardForm");
 const titleTagNo = document.getElementById("titleTagNo");
 
 
@@ -93,18 +94,12 @@ select[0].addEventListener("click", ()=>{
 
 });
 
+
 function selectType(type) {
     wrapper[0].classList.remove("open");
     select[0].firstElementChild.innerText = type.innerText;
     boardCode.value = parseInt(type.getAttribute("id"));
     select[0].firstElementChild.style.lineHeight= "1px";
-
-    if(boardCode.value >= 12) {
-        confirm("선택하신 게시판은 앨범형으로 사진과 함께 작성해주세요");
-            if (!confirm) {
-                type.preventDefault;
-            }
-    }
     console.log(boardCode);
 }    
 

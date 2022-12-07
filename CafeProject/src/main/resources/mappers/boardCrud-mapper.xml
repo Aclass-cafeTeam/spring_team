@@ -149,6 +149,7 @@
 		<delete id="deleteImgList">
 			DELETE FROM BOARD_IMG 
 			WHERE BOARD_NO = #{boardNo}	
+			AND BOARDT_DEL_FL IN ('Y', 'T')
 		</delete>
 		
 		

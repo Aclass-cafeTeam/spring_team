@@ -90,7 +90,7 @@ modalBtn.addEventListener("click",()=>{
                 tempLink.classList.add("temp-link");
                 const boardCode = temp.boardCode;
                 const boardNo = temp.boardNo;
-                tempLink.setAttribute('href',  "/board/" + boardCode +"/"+ boardNo +"/tempPost");
+                tempLink.setAttribute('href',  "#");
 
                 const tempTitle = document.createElement("strong");
                 tempTitle.classList.add("temp-item-title");
@@ -150,12 +150,14 @@ modalBtn.addEventListener("click",()=>{
                 // 임시 저장글 -> 일반 게시글로
                 tempLink.addEventListener("click", function(e){
                     
-                    if(!confirm("임시글을 불러오면 작성 중인 글은 사라집니다. <br>" 
+                    if(!confirm("임시글을 불러오면 작성 중인 글은 사라집니다. \n" 
                             + "선택한 글을 불러오시겠습니까?")) {
                         e.preventDefault;
+                        e.stopPropagation;
+                        location.href = referer;
 
                     } else {
-                        location.href = "/board/" + boardCode +"/"+ boardNo +"/tempPost";
+                        // location.href = "/board/" + boardCode +"/"+ boardNo +"/tempPost";
                     }
                 })
 
