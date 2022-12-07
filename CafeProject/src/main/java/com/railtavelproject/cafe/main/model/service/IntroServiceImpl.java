@@ -207,6 +207,19 @@ public class IntroServiceImpl implements IntroService{
 	public int managerNo() {
 		return dao.managerNo();
 	}
+
+	// 이미지가 첨부된 게시글
+	@Override
+	public Map<String, Object> boardImg() {
+		List<IntroBoard> boardImgList = dao.boardImg();
+		
+		Map<String, Object> boardImg = new HashMap<String, Object>();
+		boardImg.put("boardImgList", boardImgList);
+		
+		return boardImg;
+	}
+	
+	
 	
 	
 	

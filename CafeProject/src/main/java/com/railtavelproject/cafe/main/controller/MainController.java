@@ -122,6 +122,11 @@ public class MainController{
 			int managerNo = service.managerNo();
 			session.getServletContext().setAttribute("managerNo", managerNo);
 			
+			// 이미지 첨부된 게시글 불러오기
+			Map<String, Object> boardImg = null;
+			boardImg = service.boardImg();
+			session.getServletContext().setAttribute("boardImg", boardImg);
+			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성
 			return "common/main";

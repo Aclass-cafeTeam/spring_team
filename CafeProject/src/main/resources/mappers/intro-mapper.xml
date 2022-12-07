@@ -212,4 +212,9 @@
 				FROM "MEMBER"
 				WHERE MEMBER_LEVEL_NO = 0
  		</select>
+ 		
+ 		<!-- 이미지 첨부된 게시글 테이블 -->
+ 		<select id="boardImg" parameterType="_int" resultMap="introBoard_rm">
+				SELECT DISTINCT BOARD_NO FROM BOARD_IMG
+ 		</select>
 </mapper>
