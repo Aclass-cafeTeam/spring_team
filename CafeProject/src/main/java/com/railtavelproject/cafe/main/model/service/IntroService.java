@@ -117,6 +117,12 @@ public interface IntroService {
 	 * @return
 	 */
 	int managerNo();
+
+	/**
+	 * 이미지가 첨부된 게시글
+	 * @return
+	 */
+	Map<String, Object> boardImg();
 	
 	
 

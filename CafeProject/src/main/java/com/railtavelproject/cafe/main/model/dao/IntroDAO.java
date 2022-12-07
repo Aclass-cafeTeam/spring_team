@@ -182,5 +182,13 @@ public class IntroDAO {
 		return sqlSession.selectOne("introMapper.managerNo");
 	}
 
+	/**
+	 * 이미지가 첨부된 게시글
+	 * @return
+	 */
+	public List<IntroBoard> boardImg() {
+		return sqlSession.selectList("introMapper.boardImg", null);
+	}
+
 
 }

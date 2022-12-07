@@ -91,7 +91,19 @@
                                                             <tr id="boardTitle">
                                                                 <td id="board-content">
                                                                     <div id="board-dot">ㆍ</div>
-                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
+                                                                        <div id="board-name">
+                                                                            ${introBoard.boardTitle}
+                                                                        </div>
+                                                                    </a>
+                                                                    이미지
+                                                                    <%-- <c:choose>
+                                                                    <c:forEach var="img" items="${boardImg.boardImgList}">
+                                                                        <c:if test="${img.boardNo eq introBoard.boardNo}">
+                                                                        이미지?
+                                                                        </c:if>
+                                                                    </c:forEach>
+                                                                    </c:choose> --%>
                                                                     <c:if test="${0 != introBoard.commentCount}">
                                                                         <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
                                                                     </c:if>
