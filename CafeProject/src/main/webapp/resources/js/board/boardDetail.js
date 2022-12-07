@@ -83,3 +83,7 @@ updateBtn.addEventListener("click", ()=>{
 });
 
 
+// const countComment = document.getElementById("count-comment");
+// updateBtn.addEventListener("click", ()=>{
+//     document.getElementById("commentContent").focus();
+// });
