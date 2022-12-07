@@ -210,6 +210,12 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return map;
 	}
 
+	@Override
+	public Board selectdetailBoardList(int boardNo) {
+		
+		return dao.selectdetailBoardList(boardNo);
+	}
+
 	/*
 	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {
 	 * 

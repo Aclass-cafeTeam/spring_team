@@ -400,3 +400,8 @@ table, th, td {
 .tbl_lst_type .tc {
   text-align: center;
 }
+
+.ellipsis{
+  pointer-events: none; /* //(a링크를 비활성화 해준다.) */
+  cursor: default; /* //(마우스 커서를 가져갔을때의 모양을 지정하는 것으로 굳이 작성하지 않아도 된다.) */
+}

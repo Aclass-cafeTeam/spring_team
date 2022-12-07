@@ -227,5 +227,10 @@ public class ManagerBoardDAO {
 	
 	    return sqlSession.selectList("managerBoardmapper.getDeleteBoardList",null,rowBounds);
 	}
+
+	public Board selectdetailBoardList(int boardNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("managerBoardmapper.selectdetailBoardList",boardNo);
+	}
 	
 }

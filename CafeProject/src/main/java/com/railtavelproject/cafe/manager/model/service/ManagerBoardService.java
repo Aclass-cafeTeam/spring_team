@@ -46,5 +46,7 @@ public interface ManagerBoardService {
 	 */
 	Map<String, Object> selectboardList(int cp);
 
+	Board selectdetailBoardList(int boardNo);
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }

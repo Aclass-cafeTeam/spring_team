@@ -164,10 +164,10 @@
                             <div class="ellipsis"><span class="txt4 c_gy2">${Board.boardName}</span></div>
                           </td>
                           <td> 
-                            <a href="#" class="tit c_gy3 _click(ManageRemoveArticleList|ArticleRead|${Board.boardCode}) _stopDefault">${Board.boardTitle}</a>
+                            <a href="#" class="tit c_gy3 _click(ManageRemoveArticleList|ArticleRead|${Board.boardCode}) _stopDefault" id="${Board.boardNo}">${Board.boardTitle}</a>
                           </td>
                           <td class="tl">
-                            <div class="ellipsis"><a href="#" class="txt4 c_gy _click(NicknameUI|OpenUI|${Board.memberEmail}) _stopDefault">${Board.memberNickname}(${Board.memberEmail})</a></div>
+                            <div class="ellipsis"><a href="#" class="txt4 c_gy _click(NicknameUI|OpenUI|${Board.memberEmail}) _stopDefault" disabled='true'>${Board.memberNickname}(${Board.memberEmail})</a></div>
                           </td>
                           <td class="tc">
                             <span class="num">${Board.BCreateDate}.</span>
@@ -277,6 +277,6 @@
   <!-- jQuery  -->
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
   
-  <script src="/resources/js/managerMain/ActivityStopMamberManger.js"></script>
+  <script src="/resources/js/managerMain/manageRemoveArticleList.js"></script>
 </body>
 </html>

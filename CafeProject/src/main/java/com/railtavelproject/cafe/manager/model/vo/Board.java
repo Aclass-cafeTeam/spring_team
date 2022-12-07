@@ -55,6 +55,7 @@ public class Board {
 	   private String profileImage; // 게시글 작성자 이름 
 	   private String thumbnail; // 게시글 작성자 이름 
 	   private String memberLevelImage; // 게시글 작성자 이름 
+	   private String memberLevelName; // 게시글 작성자 이름 
 	   
 	   private List<Comment> commentList; // 댓글과 관련된 List
 

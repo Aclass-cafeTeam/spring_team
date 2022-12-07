@@ -1,0 +1,118 @@
+.ArticleContentBox {
+  padding: 29px 29px 0;
+  border: 1px solid var(--skinLayoutBorder);
+  border-radius: 6px;
+}
+
+.ArticleTitle .link_board {
+  color: #03c75a;
+}
+
+address, em {
+  font-style: normal;
+}
+
+.ArticleTitle {
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+.WriterInfo .thumb {
+  position: relative;
+  float: left;
+  margin-right: 10px;
+  width: 36px;
+  height: 36px;
+}
+
+.WriterInfo .profile_area {
+  float: left;
+}
+
+body {
+  position: relative;
+  text-size-adjust: none;
+  font-weight: 400;
+  font-family: "Apple SD Gothic Neo", "맑은 고딕", "Malgun Gothic", 돋움, dotum, sans-serif;
+}
+
+.WriterInfo .thumb:after {
+  content: "";
+  border: 1px solid var(--skinThumbBorder);
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.WriterInfo .profile_info .nick_box .nickname {
+  margin-right: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.WriterInfo .profile_info .nick_level {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 13px;
+  vertical-align: top;
+
+}
+
+.WriterInfo .article_info {
+  font-size: 12px;
+  line-height: 13px;
+  
+}
+
+.ArticleContentBox .article_header {
+  position: relative;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--skinLayoutBorder);
+}
+
+div {
+  display: block;
+}
+
+.se-viewer .se-state-error {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  padding-top: 56%;
+  background: #fcfcfc;
+  border: 1px solid #e9e9e9;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+
+.ArticleContentBox .article_writer {
+  position: relative;
+  min-height: 36px;
+  margin: 40px 0 26px;
+}
+
+.se-viewer{
+  position: relative;
+  min-height: 36px;
+  margin: 40px 0 26px;
+
+}
+
+.se-viewer .se-section-text.se-l-default .se-text-paragraph {
+  line-height: 1.8;
+}
+
+.se-viewer .se-text-paragraph {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+}
