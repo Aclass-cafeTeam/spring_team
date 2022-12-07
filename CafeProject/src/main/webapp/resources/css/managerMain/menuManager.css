@@ -160,7 +160,7 @@ ul, li{
 
 /* 게시판 글 앞에 아이콘 */
 .B{
-    background-image: url(../../images/게시판.PNG);
+    background-image: url(/resources/images/게시판.PNG);
     background-repeat: no-repeat;
     background-size: 15px 15px;
     background-position-x: 8px;
@@ -168,7 +168,7 @@ ul, li{
 }
 
 .A{
-    background-image: url(../../images/앨범.PNG);
+    background-image: url(/resources/images/앨범.PNG);
     background-repeat: no-repeat;
     background-size: 15px 15px;
     background-position-x: 8px;
@@ -176,7 +176,7 @@ ul, li{
 }
 
 .filImg{
-    background-image: url(../../images/manager/그룹파일.png);
+    background-image: url(/resources/images/manager/그룹파일.png);
     background-repeat: no-repeat;
     background-size: 13px 14px;
     background-position-x: 10px;
@@ -210,7 +210,7 @@ ul, li{
 .admin_menu_management .add_lst .h_menu_tit {
     position: relative;
     min-height: 16px;
-    margin-top: -1px;
+    margin-top: 2px;
     padding: 10px 20px 9px 11px;
     border-top: 1px solid #e5e5e5;
     border-bottom: 1px solid #e5e5e5;
@@ -220,16 +220,29 @@ ul, li{
     line-height: 16px;
     cursor: pointer;
 }
+
+.admin_menu_management .add_lst .h_menu_tit span {
+    min-height: 0;
+    padding: 0;
+}
+
+.admin_menu_management .add_lst .h_menu_tit a {
+    padding: 0 !important;
+}
+
+
 /* 글 메뉴 이미지 */
 /* 메뉴 추가 부분 ************************************/
+.delete a{
+    color: #000;
+}
 .admin_menu_management .btn_add {
     float: left;
     width: 35px;
 }
 .admin_menu_management .btn_add.on a {
-    background-position: -30px 0;
     cursor: pointer;
-    background-image: url(../../images/manager/btn_add_color.jpg);
+    background-image: url(/resources/images/manager/btn_add_color.jpg);
     
 }
 .admin_menu_management .btn_add a {
@@ -240,15 +253,30 @@ ul, li{
     text-indent: -500em;
     cursor: default;
     border: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/btn_add_dis.jpg);
+    background-image: url(/resources/images/manager/btn_add_dis.jpg);
 }
+
+.bt_v1 , .bt_v2 , .bt_v3 a{
+    cursor: default;
+} 
+
+.edit_btn_area .on a{
+    cursor: pointer;
+    font-weight: bold;
+    color: #127f24;
+}
+
 a {
     color: inherit;
     text-decoration: none;
     
 }
 
-
+/* 클릭한 게시판 메뉴만 색깔   클릭 이벤트*/
+.admin_menu_management .add_lst li.on {
+    background: #e4ecf0;
+}
+/*  */
 /* 메뉴 순서 부분 */
 .admin_menu_management .edit_set_group .edit_area .edit_btn_area {
     width: 262px;
@@ -267,23 +295,30 @@ a {
 }
 .bt_v1{
     border-right: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/downicon.png);
+    background-image: url(/resources/images/manager/downicon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
 }
+
+.bt_v1.on{
+    background-image: url(/resources/images/manager/downiconOn.png);
+}
 .bt_v2{
     border-right: 1px solid #b1b1b1;
-    background-image: url(../../images/manager/uparrowicon.png);
+    background-image: url(/resources/images/manager/uparrowicon.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: 15px 15px;
+}
+.bt_v2.on{
+    background-image: url(/resources/images/manager/uparrowiconON.png);
 }
 .edit_set_group .edit_area .edit_btn_area li a {
     float: left;
     position: relative;
     z-index: 10;
-    width: 80px;
+    width: 80px !important;
     height: 30px;
     margin-left: -1px;
     cursor: default;
@@ -298,21 +333,242 @@ a {
 .none{
     text-indent: -500em;
 }
-
-.edit_lst_area{
+.admin_menu_management .edit_set_group .edit_area .edit_lst_area {
     overflow-y: scroll;
     position: relative;
-    height: 665px;
-    border-bottom: 1px solid #b1b1b1;
     border-right: 1px solid #b1b1b1;
     border-left: 1px solid #b1b1b1;
+    height: 665px;
+    border-bottom: 1px solid #b1b1b1;
 }
+
 /* 메뉴 순서 부분 *************************************/
-
+.admin_menu_management .edit_set_group {
+    display: inline-flex;
+    flex-direction: row;
+    float: left;
+    position: relative;
+    width: 729px;
+    border-right: 1px solid #ccc;
+    *zoom: 1;
+}
 /* 메뉴 에디터 부분 */
-/* 메뉴 에디터 부분 ************************************/
+.admin_menu_management .edit_set_group .set_area {
+    display: block;
+    float: left;
+    position: relative;
+    width: 466px;
+    height: 100%;
+    border-top: 1px solid #b1b1b1;
+    border-bottom: 1px solid #b1b1b1;
+    color: #666;
+}
+.admin_menu_management .set_box {
+    padding: 19px 0 0 20px;
+}
 
+.admin_menu_management .set_box .set_tit {
+    padding: 0 0 6px;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 16px;
+}
+
+.admin_menu_management .set_box .set_lst_type li {
+    padding-left: 8px;
+    line-height: 18px;
+}
+
+.admin_menu_management .detail_area {
+    width: 426px;
+    margin: 15px 0 19px;
+    padding: 4px 0 35px;
+    border-top: 1px solid #565b62;
+}
+
+.admin_menu_management .detail_area th {
+    padding: 14px 0 0;
+    color: #272727;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+}
+
+table, td, th {
+    border: 0 none;
+}
+
+.admin_menu_management .detail_area .ipt_type {
+    width: 289px;
+    height: 29px;
+    padding-left: 4px;
+    border: 1px solid #c5c5c5;
+    color: #404040;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 29px;
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+.admin_menu_management .detail_area .line {
+    overflow: hidden;
+    height: 2px;
+    padding: 0;
+    border-top: 1px solid #e9e9e9;
+    *background: #e9e9e9;
+}
+
+.admin_menu_management .detail_area td {
+    padding: 12px 0 0;
+    padding-bottom: 12px;
+    color: #404040;
+    vertical-align: top;
+}
+
+.admin_menu_management .detail_area .type_box p strong {
+    display: inline-block;
+    width: 58px;
+    color: #404040;
+    font-weight: 400;
+    line-height: 16px;
+}
+
+.admin_menu_management .detail_area td .check{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    margin-top: -3px;
+}
+
+.admin_menu_management .detail_area td .check+label{
+    margin-left: 3px;
+}
+
+input.check {
+    width: 13px;
+    height: 13px;
+    vertical-align: middle;
+}
+
+.admin_menu_management .detail_area .type_box p select {
+    margin-right: 2px;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+
+.set_box{
+    display: none;
+}
+
+.set_boxON{
+    display: block;
+}
+
+.set_boxBasic{
+    display: block;
+}
+/* 메뉴 에디터 부분 ************************************/
+.delete{
+    margin-left: 9px!important;
+}
+
+.admin_menu_management .set_box .set_tit2 {
+    padding: 0 0 6px;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: -1px;
+    line-height: 16px;
+}
+
+.admin_menu_management .detail_area2 {
+    width: 426px;
+    margin: 15px 0 19px;
+    padding: 4px 0 35px;
+    border-top: 1px solid #565b62;
+}
+
+.admin_menu_management .detail_area td {
+    padding: 12px 0 0;
+    color: #404040;
+    vertical-align: top;
+}
+
+.admin_menu_management .detail_area2 .ipt_type2 {
+    width: 289px;
+    height: 29px;
+    padding-left: 4px;
+    border: 1px solid #c5c5c5;
+    color: #404040;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: -1px;
+    line-height: 29px;
+    margin-bottom: 14px;
+    margin-top: 10px;
+}
+
+.admin_menu_management .detail_area2 .line {
+    overflow: hidden;
+    height: 2px;
+    padding: 0;
+    border-top: 1px solid #e9e9e9;
+    *background: #e9e9e9;
+}
+.admin_menu_management .detail_area2 th {
+    padding: 16px 0 0 9px;
+    color: #272727;
+    font-weight: 400;
+    text-align: left;
+    vertical-align: top;
+}
 /* 취소 저장 버튼 부분 */
+
+.admin_menu_management .btn_area2, .admin_menu_management .edit_btn_box {
+    position: relative;
+    margin: 15px 0 0 450px;
+    text-align: center;
+    
+}
+
+.btn_type_edt2 span, .btn_type_edt2 strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    border-radius: 6%;
+    color: #666;
+}
+
+.btn_type_edt strong {
+    display: inline-block;
+    height: 32px;
+    width: 80px;
+    font-size: 12px;
+    line-height: 34px;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+    letter-spacing: -1px;
+    border: 1px solid rgb(133, 132, 132);
+    background-color: #73358C;
+    border-radius: 6%;
+}
 /* 취소 저장 버튼 부분 ************************************/
 
 
+ul {
+    display: block;
+}

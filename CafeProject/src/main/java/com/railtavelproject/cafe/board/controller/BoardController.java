@@ -9,15 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.railtavelproject.cafe.board.model.service.BoardDetailService;
 import com.railtavelproject.cafe.board.model.service.BoardService;
+import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
+@SessionAttributes({"boardInfo"})
 public class BoardController {
 
 	@Autowired
 	private BoardService service;
+	@Autowired
+	private BoardDetailService dService;
 	
 	// 특정 게시판 목록 조회
 	@GetMapping("/board/{boardCode}")
@@ -27,8 +33,15 @@ public class BoardController {
 			@RequestParam Map<String, Object> pm
 			) {
 		
+		// 특정 게시판 정보(등급제한/말머리/좋아요/게시판형식) 조회 서비스 호출
+		BoardType boardInfo = dService.selectBoardInfo(boardCode);
+		model.addAttribute("boardInfo", boardInfo);
+		
 		Map<String, Object> map = service.selectBoardList(boardCode, cp);
 		model.addAttribute("map", map);
+		
+		Map<String, Object> img = service.selectBoardImgList(boardCode, cp);
+		model.addAttribute("img", img);
 		
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);

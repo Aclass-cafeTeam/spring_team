@@ -27,7 +27,7 @@ import com.railtavelproject.cafe.board.model.vo.BoardType;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 @Controller
-@SessionAttributes({"boardInfo"})
+@SessionAttributes({"boardInfo", "boardLimit"})
 public class BoardDetailController {
 
 	@Autowired
@@ -43,8 +43,9 @@ public class BoardDetailController {
 			@SessionAttribute(value = "loginMember", required = false) Member loginMember) throws ParseException {
 		// Session에 loginMember가 없으면 null
 		
-		// 특정 게시판 정보(등급제한) 조회 서비스
-		BoardType boardInfo = service.selectBoardInfo(boardCode);
+		// 특정 게시판 정보(등급제한/말머리/좋아요) 조회 서비스 호출
+		BoardType boardLimit = service.selectBoardInfo(boardCode);
+		model.addAttribute("boardLimit", boardLimit);
 		
 		// 게시글 상세조회 서비스
 		Board board = service.selectBoardDetail(boardNo);
@@ -161,7 +162,6 @@ public class BoardDetailController {
 		}
 		
 		model.addAttribute("board", board);
-		model.addAttribute("boardInfo", boardInfo);
 		model.addAttribute("referer", referer);
 		
 		return "board/boardDetail";

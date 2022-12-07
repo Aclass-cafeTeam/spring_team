@@ -70,7 +70,7 @@ input {
 
 
 /* 인증번호 버튼 */
-.verify-btn {
+#checkAuthKeyBtn, #sendAuthKeyBtn{
     width: 150px;
     letter-spacing: -1px;
     padding: 8px 20px;

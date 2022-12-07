@@ -15,7 +15,6 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,12 +25,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.railtavelproject.cafe.board.model.service.BoardCrudService;
 import com.railtavelproject.cafe.board.model.vo.Board;
-import com.railtavelproject.cafe.board.model.vo.BoardImage;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 
@@ -47,6 +44,11 @@ public class BoardCrudController {
 	public String writeBoard(@SessionAttribute("loginMember") Member loginMember,
 							Model model) {
 		
+		// 게시판 목록 조회(로그인한 회원 등급에 따라)
+		loginMember.setMemberLevelNo(loginMember.getMemberLevelNo());
+		loginMember.setAuthorityNo(loginMember.getAuthorityNo());
+		List<Map<String, Object>> boardTypeList = service.selectBoardType(loginMember); 
+		
 		// 태그조회
 		List<Map<String, Object>> titleTagList = service.selectTitleTag();
 		
@@ -55,8 +57,9 @@ public class BoardCrudController {
 		
 		model.addAttribute("titleTagList",titleTagList);
 		model.addAttribute("tPost", tPost);
+		model.addAttribute("boardTypeList", boardTypeList);
 		
-		
+		 
 		return "board/writingBoard";
 	}	
 	
@@ -209,7 +212,6 @@ public class BoardCrudController {
 		 
 		// 1. board 객체에 boardCode 세팅
 		board.setBoardCode(boardCode);
-		board.setBoardNo(boardNo);
 		
 		
 		// 2. 이미지 저장 경로 얻어오기
@@ -262,10 +264,14 @@ public class BoardCrudController {
 	
 	
 	// 임시등록 조회(AJAX)
-	@GetMapping("/tempPost/list")
-	public String selectTempPost(@SessionAttribute("loginMember") Member loginMember) {
-		List<Board> tPost = service.selectTempPost(loginMember.getMemberNo());
-		return new Gson().toJson(tPost);
+	@ResponseBody
+	@GetMapping("/board/tempPost/list")
+	public String selectTempPost(@RequestParam(value="memberNo") int memberNo) {
+		
+		List<Board> tPost = service.selectTempPost(memberNo);
+		
+		// System.out.println(tPost);
+		return new Gson().toJson(tPost); // JSON형태로 변환(GSON라이브러리 이용)
 	}
 	
 	
@@ -286,21 +292,4 @@ public class BoardCrudController {
 	
 	
 	
-	
-
-	
-	// 앨범형 게시판 목록 조회
-//	@GetMapping("/board/{boardCode}")
-//	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-//			Model model,
-//			@RequestParam(value="cp", required = false, defaultValue="1") int cp
-//			) {
-//		
-//		Map<String, Object> map = service.selectBoardList(boardCode, cp);
-//		model.addAttribute("map", map);
-//		
-//		List<BoardImage> imgList = service.selectImgList(boardCode, cp);
-//		model.addAttribute("imgList", imgList);
-//		return "board/albumBoard";
-//	}
 }

@@ -30,7 +30,7 @@
             <jsp:include page="/WEB-INF/views/intro/sideMenu.jsp"/>
             <!-- ****************사이드메뉴***************-->
             <c:choose>
-                <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardInfo.memberLevelNo)}">
+                <c:when test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardLimit.memberLevelNo)}">
                     <article class="article">
                         <div class="top-menu">
                             <div>
@@ -52,7 +52,7 @@
                                     <a href="/board/${boardCode}?cp=1"><div class="board-list">${boardName} > </div></a>
                                     
                                     <!-- 말머리를 사용하는 게시판일 경우 -->
-                                    <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                    <c:if test="${boardLimit.titleTagFlag=='Y'}">
                                         <!-- 말머리가 있을 경우 -->
                                         <c:if test="${not empty board.titleTagName}">
                                             <c:if test="${board.titleTagNo ne 0}"> 
@@ -106,7 +106,7 @@
                                 <%-- 좋아요 & 댓글--%>
                                 <div class="like-comment">
                                     <c:choose>
-                                        <c:when test="${boardInfo.boardLikeFlag=='Y'}">
+                                        <c:when test="${boardLimit.boardLikeFlag=='Y'}">
                                             <!-- 좋아요 기능을 사용하는 게시판일 경우 -->
                                             <div class="count-like">
                                                     <%-- likeCheck가 없다면 == 로그인X 또는 좋아요X --%>
@@ -169,8 +169,8 @@
     </script>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/main/sideMenu.js"></script>
     <script src="/resources/js/board/boardDetail.js"></script>
     <script src="/resources/js/board/comment.js"></script>
-    <script src="/resources/js/board/boardUpdate.js"></script><!-- 게시글 수정/삭제 -->
 </body>
 </html>

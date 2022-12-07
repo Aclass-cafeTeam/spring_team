@@ -1,14 +1,19 @@
 package com.railtavelproject.cafe.board.model.service;
 
 import java.util.List;
+
 import java.util.Map;
-
-import org.springframework.web.multipart.MultipartFile;
-
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.member.model.vo.Member;
 
 public interface BoardCrudService {
-
+	
+	/** 게시판 목록 조회(로그인한 회원 등급에 따라)
+	 * @param memberLevelNo
+	 * @return boardTypeList
+	 */
+	List<Map<String, Object>> selectBoardType(Member loginMember);
+	
 	/** 태그 조회
 	 * @return titleTagList
 	 */
@@ -55,7 +60,7 @@ public interface BoardCrudService {
 
 	/** 임시등록 조회
 	 * @param boardNo
-	 * @return
+	 * @return tPost
 	 */
 	List<Board> selectTempPost(int memberNo);
 
@@ -68,9 +73,6 @@ public interface BoardCrudService {
 
 
 	
-
-
-
 
 
 }

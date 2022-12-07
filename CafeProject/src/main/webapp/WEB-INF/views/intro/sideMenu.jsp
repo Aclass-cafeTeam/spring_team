@@ -232,9 +232,9 @@
 
                 <div id="cafe-menu">
                     <ul id="cafe-menu-top">
-                        <li id="total-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">전체글보기</a>
+                        <li id="total-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="/board/selectAll">전체글보기</a>
                         </li>
-                        <li id="best-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="#">베스트게시글</a>
+                        <li id="best-post"><img src="/resources/images/게시판.PNG" id="border-img"><a href="/board/bestBoard">베스트게시글</a>
                         </li>
                     </ul>
                 </div>

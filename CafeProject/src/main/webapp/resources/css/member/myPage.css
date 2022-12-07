@@ -237,6 +237,13 @@ form[name="myPage-form"]{
     text-decoration: underline;
     cursor: pointer;
 }
+
+.dTitle{
+    text-align: left;
+    color: black;
+    text-decoration: none;
+}
+
 .writer{
     text-align: left;
 }

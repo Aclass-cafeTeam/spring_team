@@ -104,7 +104,7 @@
 
                         <!-- 게시글 내용 -->
                         <div class="test">
-                            <textarea id="summernote" name="boardContent"></textarea>    
+                            <textarea id="summernote" name="boardContent" id="boardContent"></textarea>    
                         </div>
                         
                 </div>
@@ -120,7 +120,7 @@
                                 <div id="setting"> 
                                     <p>전체공지 또는 게시판 공지로 등록가능합니다.</p>
                                     <select name="noticeFlag" id="noticeFlag">
-                                        <option value="0">선택</option>
+                                        <option value="0" disabled selected>선택</option>
                                         <option value="1">게시판공지</option>
                                         <option value="2">전체공지</option>
                                     </select>

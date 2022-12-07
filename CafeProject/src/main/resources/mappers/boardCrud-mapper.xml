@@ -18,32 +18,24 @@
       <result property="writingFormContent" column="WRITING_FORM_CONTENT"/>
       <result property="noticeFlag" column="NOTICE_FL"/>
       <result property="tempCount" column="TEMP_COUNT"/>
-
-<!--  			<collection property="imageList" 
-      						javaType="java.util.ArrayList"
-      						ofType ="BoardImage"
-      						select="selectImageList"
-      						column="BOARD_NO" /> -->
-    
 	</resultMap>
-	
-	      
- 	<!-- BoardImage resultMap -->
-  <resultMap type="BoardImage" id="boardImage_rm">
-     <id property="imageNo" column="IMG_NO"/>
-     <result property="imagePath" column="IMG_PATH"/>
-     <result property="imageReName" column="IMG_RENAME"/>
-     <result property="boardNo" column="BOARD_NO"/>     
-  </resultMap> 
-   
-
 	
 	<!-- 말머리 목록 조회 -->
 	<select id="selectTitleTag" resultType="map">
 		SELECT * FROM TITLE_TAG ORDER BY 1
 	</select>
 	
-
+	
+	<!-- 게시판 목록 조회(회원등급) -->
+	<select id="selectBoardType" resultType="map"> 
+		SELECT DISTINCT(BOARD_CODE), BOARD_NAME, BOARD_FORM, MEMBER_LEVEL_NO, AUTHORITY_NO 
+		FROM BOARD_TYPE
+		LEFT JOIN MEMBER USING(MEMBER_LEVEL_NO)
+		WHERE MEMBER_LEVEL_NO BETWEEN 2 AND #{memberLevelNo}
+		OR #{authorityNo} IN (0, 1)
+		ORDER BY BOARD_CODE
+	</select>
+	
 	
  		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
  				useGeneratedKeys="true" : JDBC getGeneratedKeys()메서드 사용 허용 ** 필수 사용
@@ -83,7 +75,7 @@
  		
  		<!-- 게시글 삭제 -->
  		<update id="deleteBoard">
- 			UPDATE BOARD SET BOARD_DEL_FL = 'Y' 
+ 			UPDATE BOARD SET BOARD_DEL_FL = 'Y', B_DELETE_DATE = SYSDATE 
 			WHERE BOARD_NO = #{boardNo}
  		</update>
  		
@@ -150,7 +142,15 @@
 								#{img.boardNo} BOARD_NO
 								FROM DUAL
 			</foreach>
-		</insert> 			
+		</insert> 	
+		
+		
+		
+		<!-- 게시글이 삭제될 경우 DB에서 삭제  -->
+		<delete id="deleteImgList">
+			DELETE FROM BOARD_IMG 
+			WHERE BOARD_NO = #{boardNo}	
+		</delete>
  		
 
 </mapper>

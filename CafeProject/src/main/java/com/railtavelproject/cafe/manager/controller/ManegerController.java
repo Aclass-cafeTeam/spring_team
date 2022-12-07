@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.railtavelproject.cafe.manager.model.service.ManagerBoardService;
 import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
+import com.railtavelproject.cafe.manager.model.vo.Board;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
 import com.railtavelproject.cafe.manager.model.vo.Member;
 import com.railtavelproject.cafe.member.model.service.MemberService;
@@ -208,7 +209,8 @@ public class ManegerController {
 		//manager메뉴 추가 삭제 상세설정 관리(게시판 메뉴)
 		@GetMapping("/manager/menuManager")
 		public String menuManager(Model model) {
-			List<Map<String, Object>> boardType = boardService.selectBoardType();
+			Map<String, Object> map = boardService.selectBoardType();
+			model.addAttribute("map",map);
 			return "manager/menuManager";
 		}
 		
