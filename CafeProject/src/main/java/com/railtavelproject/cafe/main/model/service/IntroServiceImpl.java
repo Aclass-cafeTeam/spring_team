@@ -184,6 +184,25 @@ public class IntroServiceImpl implements IntroService{
 		
 		return newComment;
 	}
+
+	@Override
+	public Map<String, Object> cafeInfo() {
+		List<IntroBoard> cafeInfoList = dao.cafeInfo();
+		
+		Map<String, Object> cafeInfo = new HashMap<String, Object>();
+		cafeInfo.put("cafeInfoList", cafeInfoList);
+		
+		return cafeInfo;
+	}
+
+	@Override
+	public String managerNickname() {
+ 
+		return dao.managerNickname();
+	}
+	
+	
+
 	
 	
 	
