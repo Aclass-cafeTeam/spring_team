@@ -123,6 +123,12 @@ public interface IntroService {
 	 * @return
 	 */
 	Map<String, Object> boardImg();
+
+	/**
+	 * 오늘날짜 가져오기
+	 * @return
+	 */
+	String sysdate();
 	
 	
 

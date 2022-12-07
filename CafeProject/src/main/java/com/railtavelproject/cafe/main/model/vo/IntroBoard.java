@@ -39,6 +39,9 @@ public class IntroBoard {
     
     private String managerNickname; // 매니저 이름
     private int managerNo; // 매니저 멤버넘버
+    private String imgNo;
+    private String sysdate; // 오늘 날짜
     
+    private String boardCreate; // 게시글 작성날짜
     
 }

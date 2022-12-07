@@ -121,5 +121,10 @@ public interface ManagerMemberService {
 	 */
 	int deleteSubManagerSelect(String subManagerDelete);
 
+	/** 등업 스케줄러 검색
+	 * @return
+	 */
+	List<Member> selectMemberListALL();
+
 
 }
