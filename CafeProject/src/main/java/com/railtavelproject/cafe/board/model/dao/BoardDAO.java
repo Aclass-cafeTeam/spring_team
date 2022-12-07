@@ -67,7 +67,6 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getListCount_search", pm);
 	}
 
-	
 	/** 전체 게시글 조회
 	 * @param boardNo
 	 * @param cp
@@ -99,8 +98,6 @@ public class BoardDAO {
 		
 		return sqlSession.selectList("boardMapper.selectBoardBestList", null ,rowBounds);
 	}
-
-
 
 	/** 검색 조건 일치 게시글 목록 조회
 	 * @param pagination
@@ -160,8 +157,5 @@ public class BoardDAO {
 	}
 
 
-	
-
-	
 	
 }
