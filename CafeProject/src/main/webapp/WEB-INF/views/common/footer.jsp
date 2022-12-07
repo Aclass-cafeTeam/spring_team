@@ -4,9 +4,9 @@
 <!-- **************************************푸터************************************** -->
     <footer class="footer">
 
-        <h2 class="cafe_name">세미프로젝트 - 내일로, 기차로!</h2>
+        <h2 class="cafe_name">내일로, 기차로! 카페</h2>
         <span class="cafe_nbsp">|</span>
-        <a href="#" class="cafe_link">https://cafe.never.com/hkct
+        <a href="http://kh-classa.xyz/" class="cafe_link">http://kh-classa.xyz/
         </a>
         <h2>
             <a href="#" class="never_cafe">

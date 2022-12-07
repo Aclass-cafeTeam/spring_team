@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글</title>
+    <title>${boardInfo.boardName}</title>
 
     <link rel="stylesheet" href="/resources/css/board/boardList.css">
     <link rel="stylesheet" href="/resources/css/main.css">

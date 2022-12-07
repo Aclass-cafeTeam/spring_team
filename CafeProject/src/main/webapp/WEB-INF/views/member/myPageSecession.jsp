@@ -48,7 +48,7 @@
                             <label for="agree">위 유의사항을 확인했습니다.</label>
                         </div>
                         
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label>비밀번호</label>
                             <input type="password" name="memberPw" id="memberPw" maxlength="30">   
                             
