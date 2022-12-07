@@ -31,7 +31,8 @@ public class ManagerBoardController {
 			@RequestParam(value= "mainCategoryNameIn2") String mainCategoryName,//질문 코너
 			@RequestParam(value= "bordTitleNameIn") String boardName,   //앨범형 통합게시판  
 			@RequestParam(value= "boardOrderIn") int boardOrder, // 현재 게시판 마지막 순서 (넣어줄 때 +1 해줘야함)
-			@RequestParam(value= "bordTitleFormIn") String boardForm //A		
+			@RequestParam(value= "bordTitleFormIn") String boardForm //A	
+			
 			) throws Exception{
 		System.out.println(mainCategoryNameNo);
 		String[] arr = mainCategoryNameNo.split("\\.");
