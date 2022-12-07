@@ -273,18 +273,18 @@
                                 <input type="text" class="query" name="query" id="search-query"
                                 placeholder="검색어를 입력해주세요">
                                 <button class="search-btn">검색</button>
-                        
                             </form>
                         </article>
                     </div>
                 </article>
-
             </c:if>
         </section>
     </main>
+
     <!-- **************************************푸터************************************** -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <!-- ******************************************************************************** -->
+    
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/boardList.js"></script>
     

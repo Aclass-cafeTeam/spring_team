@@ -14,14 +14,14 @@ import com.railtavelproject.cafe.email.model.service.EmailService;
 
 
 @Controller
-@RequestMapping("/member/sendEmail")
+//@RequestMapping("/member/sendEmail")
 @SessionAttributes("authKey")
 public class EmailController {
 
     @Autowired
     private EmailService service;
 
-    @GetMapping("/signUp")
+    @GetMapping("/member/sendEmail/signUp")
     @ResponseBody
     public int signUp(String email, Model model) {
 
@@ -36,7 +36,7 @@ public class EmailController {
     }
 
 
-    @GetMapping("/checkAuthKey")
+    @GetMapping("/member/sendEmail/checkAuthKey")
     @ResponseBody
     public int checkAuthKey(String inputKey, @SessionAttribute("authKey") String authKey, 
             SessionStatus status){
@@ -47,4 +47,12 @@ public class EmailController {
         }
         return 0;
     }
+    
+    
+    @GetMapping("/member/findPw")
+    public String findPw() {
+    	return "member/findPw";
+    }
+  
+
 }

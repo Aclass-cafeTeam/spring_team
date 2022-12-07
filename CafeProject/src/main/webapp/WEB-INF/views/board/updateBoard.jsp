@@ -39,19 +39,6 @@
                 <h1 id="HeaderTitle">카페 글쓰기</h1>
                 
                 <div class="toolArea">
-                    <p class="tempSave">
-                        <button type="button" id="btn-tempSave">임시등록</button>
-                        <%-- 임시등록 버튼 누르면 임시저장 --%>
-                        <c:choose>
-                            <c:when test="${tPost[0].tempCount eq null}">
-                                <button type="button" id="modalBtn">0</button>
-                            </c:when>
-                            <c:otherwise>
-                                <button type="button" id="modalBtn">${tPost[0].tempCount}</button>
-                            </c:otherwise>
-                        </c:choose>
-                        <%-- 수를 누르면 임시등록 모달창으로 이동 --%>
-                    </p>
                     <button type="submit" id="btn-submit">등록</button>
                 </div>
             </div>
@@ -75,7 +62,7 @@
                                             ${boardType.BOARD_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${boardType.BOARD_NAME}">
+                                </ul> <input type="hidden" id="boardCode" name="boardCode" value="${board.boardCode}">
                             </div>
                         
                             
@@ -92,7 +79,7 @@
                                             ${titleTag.TITLE_TAG_NAME}
                                         </li>
                                     </c:forEach>
-                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagName}">
+                                </ul> <input type="hidden" id="titleTagNo" name="titleTagNo" value="${board.titleTagNo}">
                             </div> 
                         </div>
                         
@@ -138,12 +125,6 @@
         </form>
     </div>
     
-
-    <!-- 임시저장 모달 -->
-    <div id="boardModal">
-        <jsp:include page="/WEB-INF/views/board/tempPost.jsp" />
-    </div>
-
     <script>
         const memberNo = "${loginMember.memberNo}";
     </script>
