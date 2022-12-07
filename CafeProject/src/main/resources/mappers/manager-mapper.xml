@@ -276,6 +276,7 @@
 	USING(MEMBER_NO)
 	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 	FROM "COMMENT" c 
+	WHERE COMMENT_DEL_FL IN ('N') <!-- !!!! -->
 	GROUP BY MEMBER_NO 
 	ORDER BY 2)
 	USING(MEMBER_NO)
@@ -293,7 +294,7 @@
 	ORDER BY MEMBER_NICKNAME
   </select>
   
-  <!-- 댓글 수로 상세조회111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111-->
+  <!-- 댓글 수로 상세조회111111111111111111111111111111333333333333333333333333333333333333333333333331-->
   <select id="getselectDetailCommentCount" parameterType="java.util.HashMap" resultType="_int">
   SELECT COUNT(*) 
 	FROM (SELECT COMMENT_COUNT, MEMBER_NO ,MEMBER_LEVEL_NO
@@ -301,8 +302,9 @@
 	FROM "MEMBER" m
 	LEFT JOIN (SELECT COUNT(COMMENT_NO) COMMENT_COUNT,MEMBER_NO 
 	FROM "COMMENT" c 
+	WHERE COMMENT_DEL_FL IN ('N')
 	<if test ="periodOption == 1">
-		WHERE to_char(C_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
+		AND to_char(C_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
 	</if>
 	GROUP BY MEMBER_NO  
 	ORDER BY 2)
