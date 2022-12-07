@@ -123,7 +123,12 @@
                                                         <li id="album">
                                                             <dl>
                                                                 <dt id="photo-img">
+                                                                <c:if test="${not empty travelReview.thumbnail}">  
                                                                 <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="${travelReview.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
+                                                                <c:if test="${empty travelReview.thumbnail}">
+                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="/resources/images/intro/default-img.png" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
                                                                 </dt>
                                                                 <dd id="photo-title">
                                                                     <div>
@@ -247,7 +252,12 @@
                                                         <li id="album">
                                                             <dl>
                                                                 <dt id="photo-img">
+                                                                <c:if test="${not empty travelReview.thumbnail}">  
                                                                 <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="${travelReview.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
+                                                                <c:if test="${empty travelReview.thumbnail}">
+                                                                <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="/resources/images/intro/default-img.png" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
                                                                 </dt>
                                                                 <dd id="photo-title">
                                                                     <div>

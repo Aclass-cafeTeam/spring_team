@@ -114,6 +114,9 @@ public class MainController{
 			cafeInfo = service.cafeInfo();
 			session.getServletContext().setAttribute("cafeInfo", cafeInfo);
 			
+			// 카페매니저 닉네임
+			String managerNickname = service.managerNickname();
+			session.getServletContext().setAttribute("managerNickname", managerNickname);
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성

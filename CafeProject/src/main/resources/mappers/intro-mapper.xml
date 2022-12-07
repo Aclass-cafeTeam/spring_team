@@ -20,6 +20,7 @@
 	      <result property="loginDate" column="LOGIN_DATE"/>
 	      <result property="thumbnail" column="THUMBNAIL"/>
 	      <result property="cafeProfile" column="PROFILE_IMG"/>
+	      <result property="managerNickname" column="MANAGER_NICKNAME"/>
 		</resultMap>
 
 		
@@ -195,6 +196,13 @@
 				SELECT *
 				FROM CAFE_INFO
 				WHERE CAFE_NO = 1
+ 		</select>
+ 		
+ 		<!-- 매니저 등급 멤버닉네임 -->
+ 		<select id="managerNickname" resultType="string"> 
+				SELECT MEMBER_NICKNAME MANAGER_NICKNAME
+				FROM "MEMBER"
+				WHERE MEMBER_LEVEL_NO = 0
  		</select>
  
 </mapper>

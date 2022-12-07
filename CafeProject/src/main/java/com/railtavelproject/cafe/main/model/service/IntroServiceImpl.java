@@ -195,6 +195,14 @@ public class IntroServiceImpl implements IntroService{
 		return cafeInfo;
 	}
 
+	@Override
+	public String managerNickname() {
+ 
+		return dao.managerNickname();
+	}
+	
+	
+
 	
 	
 	

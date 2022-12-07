@@ -166,5 +166,13 @@ public class IntroDAO {
 		return sqlSession.selectList("introMapper.cafeInfo", null);
 	}
 
+	/**
+	 * 매니저 닉네임
+	 * @return
+	 */
+	public String managerNickname() {
+		return sqlSession.selectOne("introMapper.managerNickname");
+	}
+
 
 }

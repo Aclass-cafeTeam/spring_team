@@ -33,14 +33,14 @@
                                     <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px"
                                                 height="58px"/></a></li>
                                     <li id="name">
+                                </c:forEach>
                                         <div id="inline">
                                             <div id="manager">매니저</div>
-                                            <div><a href="#">카페팀</a></div>
+                                            <div><a href="#">${managerNickname}</a></div>
                                         </div>
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
                                 </ul>
-                                </c:forEach>
                                 <c:choose>
                                 <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                                 <div class="managerLink">
@@ -92,14 +92,14 @@
                                     <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px"
                                                 height="58px"/></a></li>
                                     <li id="name">
+                                </c:forEach>
                                         <div id="inline">
                                             <div id="manager">매니저</div>
-                                            <div><a href="#" onclick="return=false;">카페팀</a></div>
+                                            <div><a href="#" onclick="return=false;">${managerNickname}</a></div>
                                         </div>
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
                                 </ul>
-                                </c:forEach>
                                 <c:choose>
                                 <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                                 <div class="managerLink">
