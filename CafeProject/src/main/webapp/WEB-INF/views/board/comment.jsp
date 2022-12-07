@@ -10,14 +10,14 @@
             <c:forEach var="comment" items="${board.commentList}">
                 <c:if test="${comment.commentDeleteFlag == 'Y'}">
                         <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p class="comment-content">삭제된 댓글입니다.</p>
-                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                            <p class="delete-comment-content">삭제된 댓글입니다.</p>
+                            <span class="delete-comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
                 <c:if test="${comment.commentDeleteFlag == 'M'}">
                         <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p class="comment-content">카페 스탭에 의해 삭제된 댓글입니다.</p>
-                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                            <p class="delete-comment-content">카페 스탭에 의해 삭제된 댓글입니다.</p>
+                            <span class="delete-comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
 
@@ -46,12 +46,12 @@
                             <div class="comment-date"> ${comment.commentCreateDate} </div>
                         </div>
                     </div>
-                    <div class="comment-btn-area">
-                    <%-- 부모댓글일 경우에 답글 버튼 노출 --%>
-                    <c:if test="${comment.parentNo==0}">
+                    <%-- 로그인 상태일 경우에 답글 버튼 노출 --%>
+                    <c:if test="${!empty loginMember}">
+                        <div class="comment-btn-area">
                             <%-- this == 클릭된 답글 버튼 --%>
                             <button onclick="showInsertComment(${comment.commentNo}, this)">답글</button>   
-                    </c:if>
+
                             <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
                             <c:if test="${loginMember.memberNo == comment.memberNo}">
                                 <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
@@ -60,8 +60,8 @@
                             <c:if test="${(loginMember.authorityNo==0||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">
                                 <button onclick="deleteComment(${comment.commentNo},${comment.memberNo})">삭제</button>
                             </c:if>
-                    </div>
-
+                        </div>
+                    </c:if>
                 </li>
                 </c:if>
             </c:forEach>
