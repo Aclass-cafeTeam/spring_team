@@ -139,10 +139,12 @@ public class BoardDAO {
 	 */
 	public List<Board> selectBoardImgList(ImgPagination imgPagination, int boardCode) {
 		
-		int offset = (imgPagination.getCurrentPage() - 1) * imgPagination.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, imgPagination.getLimit());
+//		RowBounds rowBounds = new RowBounds(0, 20);
 		
-		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode, rowBounds);
+//		int offset = (imgPagination.getCurrentPage() - 1) * imgPagination.getLimit();
+//		RowBounds rowBounds = new RowBounds(offset, imgPagination.getLimit());
+		
+		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode/*,rowBounds*/);
 	}
 
 	/** 앨범형 게시글 별 공지 목록 조회

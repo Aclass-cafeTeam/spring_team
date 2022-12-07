@@ -98,10 +98,9 @@
                         <img src="/resources/images/intro/default-img.png" width="200px" height="200px"alt=""></a>
                         </c:if>                        
                         
-                        
-                        
                         <div class="flex">
-                            <div class="img-title"><a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="img-title">
+                            <div class="img-title">
+                            <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="img-title">
                             <!-- 말머리를 사용하는 게시판일 경우 -->
                             <c:if test="${boardInfo.titleTagFlag=='Y'}">
                                 <!-- 말머리가 있을 경우 -->
@@ -140,8 +139,7 @@
                         </c:if>
                         </div>
                     </div>
-                    <%-- <ul class="pagination">
-            
+                    <ul class="pagination">
                             <!-- 첫 페이지로 이동 -->
                             <li><a href="/board/${boardCode}?cp=1${sURL}">&lt;&lt;</a></li>
                             <!-- 이전 목록 마지막 번호로 이동 -->
@@ -163,7 +161,7 @@
                             <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
                             <!-- 끝 페이지로 이동 -->
                             <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
-                        </ul> --%>
+                        </ul>
                         </section>
             </main>
 </body>

@@ -162,7 +162,7 @@
                                                                 </dd>
                                                                 <dd id="photo-date">
                                                                     <span>
-                                                                        22.01.10
+                                                                        ${travelReview.boardCreate}
                                                                     </span>
                                                                     <span>
                                                                         ㆍ조회 ${travelReview.readCount}
@@ -300,7 +300,7 @@
                                                                 </dd>
                                                                 <dd id="photo-date">
                                                                     <span>
-                                                                        22.01.10
+                                                                        ${travelReview.boardCreate}
                                                                     </span>
                                                                     <span>
                                                                         ㆍ조회 ${travelReview.readCount}
