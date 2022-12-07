@@ -39,17 +39,17 @@
                     <p class="board-start"></p>
 
                     <div class="hidden">
-                        <input type="checkbox" name="hidden" id="#">
-                        <label for="hidden" id="#">공지 숨기기</label>
+                        <%-- <input type="checkbox" name="hidden" id="#">
+                        <label for="hidden" id="#">공지 숨기기</label> --%>
 
-                        <span class="span">|</span>
+                        <%-- <span class="span">|</span> --%>
 
                         <form action="#">
-                            <select name="amount">
+                            <%-- <select name="amount">
                                 <option value="a">5개씩</option>
                                 <option value="b">10개씩</option>
                                 <option value="c">15개씩</option>
-                            </select>
+                            </select> --%>
                         </form>
                     </div>
     
@@ -83,9 +83,6 @@
                                         <td class="strong">공지</td>
                                         <td>
                                             <a class="strong-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
-                                            <c:if test="${not empty board.titleTagName}">
-                                            <span>[${board.titleTagName}]</span>
-                                            </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="#" class="comment">[${board.commentCount}]</a>
@@ -115,12 +112,6 @@
                                         <td class="board-number">${board.boardNo}</td>
                                         <td>
                                             <a class="normal-title" href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
-                                            <!-- 말머리가 있을 경우  -->
-                                            <c:if test="${not empty board.titleTagName}">
-                                                <c:if test="${board.titleTagName ne '선택 안 함'}">
-                                                    <span>[${board.titleTagName}]</span>
-                                                </c:if>
-                                            </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
                                             <a href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>

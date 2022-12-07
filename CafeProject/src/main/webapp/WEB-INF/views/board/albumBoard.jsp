@@ -75,9 +75,31 @@
             
             <%-- 앨범형 게시판 내용 --%>
             <ul class="ul">
+            <c:choose>
+                <c:when test="${empty boardList}">
+                    <!-- 게시글 목록 조회 결과가 비어있다면 -->
+                    <ul>
+                        <li></li>
+                    </ul>
+                </c:when>
+            <c:otherwise>
                 <c:forEach var="board" items="${boardList}">
                     <li>
-                        <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"><img width="200" height="200" src="${board.thumbnail}"></a>
+                        <%-- <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
+                        <img width="200" height="200" src="${board.thumbnail}"></a> --%>
+                        
+                        <c:if test="${not empty board.thumbnail}">  
+                        <a href="/board/${boardCode}/${board.boardNo}">
+                        <img src="${board.thumbnail}" width="200px" height="200px"alt=""></a>
+                        </c:if>
+
+                        <c:if test="${empty board.thumbnail}">
+                        <a href="/board/${boardCode}/${board.boardNo}">
+                        <img src="/resources/images/intro/default-img.png" width="200px" height="200px"alt=""></a>
+                        </c:if>                        
+                        
+                        
+                        
                         <div class="flex">
                             <div class="img-title"><a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="img-title">
                             <!-- 말머리를 사용하는 게시판일 경우 -->
@@ -104,6 +126,8 @@
                         </div>
                     </li>
                 </c:forEach>
+            </c:otherwise>
+            </c:choose>
             </ul>
 
                     <div>
