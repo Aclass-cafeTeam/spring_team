@@ -32,6 +32,7 @@
     	<select id="selectBoardType" resultMap="managerboard_rm">
     	SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
 		WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N'
+		ORDER BY MAIN_CATEGORY_NO, BOARD_ORDER
     	</select>
     	
     	<select id="selectMainCategory" resultMap="managerboard_rm">
@@ -114,5 +115,30 @@
 	WHERE BOARD_NO IN (SELECT BOARD_NO  FROM (SELECT * FROM BOARD 
 	JOIN (SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO))
 	USING(BOARD_CODE)) WHERE MAIN_CATEGORY_NO = #{mainCategoryNo})
+    </update>
+    
+    <update id="updateBoardOrderPage" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET
+	BOARD_ORDER = #{boardOrderupdate}
+	WHERE BOARD_CODE = #{boardCode}
+    </update>
+    
+    <update id="updateNextBoardOrderPage" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET
+	BOARD_ORDER = #{nexTBoardOrderupdate}
+	WHERE BOARD_CODE = #{boardNextupdateCode}
+    </update>
+    <!-- 이동 기준 이전 게시판 순서로 이동(위 버튼) -->
+    <update id="updateBoardOrderPageUP" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET
+	BOARD_ORDER = #{preBoardOrderupdate}
+	WHERE BOARD_CODE = #{boardCode}
+    </update>
+    
+    <!-- 이전 게시판이 기준 게시판으로 이동(위 버튼) -->
+    <update id="updatePreviousBoardOrderPageUP" parameterType="_int">
+    UPDATE "BOARD_TYPE" SET
+	BOARD_ORDER = #{boardOrderupdate}
+	WHERE BOARD_CODE = #{preBoardOrderupdateCode}
     </update>
 </mapper>

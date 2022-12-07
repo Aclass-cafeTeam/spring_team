@@ -163,5 +163,53 @@ public class ManagerBoardDAO {
 	
 		return sqlSession.update("managerBoardmapper.deletemainCategoryBoard",mainCategoryNo); 
 	}
+
+	/**게시판 이동 다음 순서로 변경(아래 버튼)
+	 * @param boardCode
+	 * @param boardOrderupdate
+	 * @return
+	 */
+	public int updateBoardOrderPage(int boardCode, int boardOrderupdate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode); 
+		map.put("boardOrderupdate", boardOrderupdate);
+		return sqlSession.update("managerBoardmapper.updateBoardOrderPage",map); 
+	}
+
+	/**이동 기준 다음 게시판을 그 전 순서로 변경(아래 버튼)
+	 * @param boardNextupdateCode
+	 * @param nexTBoardOrderupdate
+	 * @return
+	 */
+	public int updateNextBoardOrderPage(int boardNextupdateCode, int nexTBoardOrderupdate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardNextupdateCode", boardNextupdateCode); 
+		map.put("nexTBoardOrderupdate", nexTBoardOrderupdate);
+		return sqlSession.update("managerBoardmapper.updateNextBoardOrderPage",map); 
+	}
+
+	/** 이동 기준 이전 게시판 순서로 이동(위 버튼)
+	 * @param boardCode
+	 * @param preBoardOrderupdate
+	 * @return
+	 */
+	public int updateBoardOrderPageUP(int boardCode, int preBoardOrderupdate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode); 
+		map.put("preBoardOrderupdate", preBoardOrderupdate);
+		return sqlSession.update("managerBoardmapper.updateBoardOrderPageUP",map);
+	}
+
+	/**이전 게시판이 기준 게시판으로 이동(위 버튼)
+	 * @param preBoardOrderupdateCode
+	 * @param boardOrderupdate
+	 * @return
+	 */
+	public int updatePreviousBoardOrderPageUP(int preBoardOrderupdateCode, int boardOrderupdate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("preBoardOrderupdateCode", preBoardOrderupdateCode); 
+		map.put("boardOrderupdate", boardOrderupdate);
+		return sqlSession.update("managerBoardmapper.updatePreviousBoardOrderPageUP",map);
+	}
 	
 }
