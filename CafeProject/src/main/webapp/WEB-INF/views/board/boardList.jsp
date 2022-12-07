@@ -103,7 +103,7 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment allComment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment allComment">[${board.commentCount}]</a>
                                                 </c:if>                        
                                             </td>
                                             <td></td>
@@ -145,7 +145,7 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>
                                             </td>
                                             <td></td>
@@ -188,7 +188,7 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>                   
                                             </td>
                                             <td></td>
