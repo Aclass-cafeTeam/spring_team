@@ -123,7 +123,7 @@
                                             </c:if>
                                             ${board.boardTitle}</a>
                                             <c:if test="${board.commentCount!=0}">
-                                            <a href="#" class="best-comment">[${board.commentCount}]</a>
+                                            <a href="/board/${board.boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="best-comment">[${board.commentCount}]</a>
                                             </c:if>                   
                                         </td>
                                         <td></td>
