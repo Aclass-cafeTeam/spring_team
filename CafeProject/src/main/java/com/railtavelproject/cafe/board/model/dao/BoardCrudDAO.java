@@ -46,6 +46,15 @@ public class BoardCrudDAO {
 	}
 
 	
+	/** 게시글이 삭제될 경우 게시물 이미지는 DB에서 삭제
+	 * @param boardNo
+	 */
+	public void deleteImgList(int boardNo) {
+		// System.out.println(boardNo);
+		sqlSession.delete("boardCrudMapper.deleteImgList", boardNo);
+	}
+
+	
 	
 
 	/** 게시글 상세조회
@@ -93,20 +102,29 @@ public class BoardCrudDAO {
 	}
 
 
-	/** 게시글이 삭제될 경우 DB에서 삭제
-	 * @param boardNo
-	 */
-	public void deleteImgList(int boardNo) {
-		System.out.println(boardNo);
-		sqlSession.delete("boardCrudMapper.deleteImgList", boardNo);
-	}
-
-
 	/** 게시판 목록 조회(로그인한 회원 등급에 따라)
 	 * @param memberLevelNo
 	 * @return boardTypeList
 	 */
 	public List<Map<String, Object>> selectBoardType(Member loginMember) {
 		return sqlSession.selectList("boardCrudMapper.selectBoardType", loginMember) ;
+	}
+
+
+	/** 게시글 수정
+	 * @param board
+	 * @return result
+	 */
+	public int boardUpdate(Board board) {
+		return sqlSession.update("boardCrudMapper.boardUpdate", board);
+	}
+
+
+	/** 임시등록-> 일반 게시글로 변동
+	 * @param boardNo
+	 * @return result
+	 */
+	public int updateTempPost(int boardNo) {
+		return sqlSession.update("boardCrudMapper.updateTempPost", boardNo);
 	}
 }

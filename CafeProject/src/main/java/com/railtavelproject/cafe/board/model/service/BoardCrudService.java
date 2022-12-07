@@ -41,13 +41,11 @@ public interface BoardCrudService {
 	Board boardDetail(int boardNo);
 	
 	
-	/** 게시글 수정 
+	/** 게시글 수정
 	 * @param board
-	 * @param webPath
-	 * @param folderPath
 	 * @return result
 	 */
-	int boardUpdate(Board board, String webPath, String folderPath);
+	int boardUpdate(Board board);
 
 	
 	/** 임시등록(INSERT)
@@ -70,6 +68,16 @@ public interface BoardCrudService {
 	 * @return result
 	 */
 	int deleteTempAll(int memberNo);
+
+	
+	/** 임시등록-> 일반 게시글로 변동
+	 * @param boardNo
+	 * @return result
+	 */
+	int updateTempPost(int boardNo);
+
+	
+	
 
 
 	
