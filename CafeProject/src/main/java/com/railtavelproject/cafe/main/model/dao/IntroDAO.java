@@ -158,5 +158,21 @@ public class IntroDAO {
 		return sqlSession.selectList("introMapper.newComment", null ,rowBounds);
 	}
 
+	/**
+	 * 카페인포
+	 * @return
+	 */
+	public List<IntroBoard> cafeInfo() {
+		return sqlSession.selectList("introMapper.cafeInfo", null);
+	}
+
+	/**
+	 * 매니저 닉네임
+	 * @return
+	 */
+	public String managerNickname() {
+		return sqlSession.selectOne("introMapper.managerNickname");
+	}
+
 
 }

@@ -92,22 +92,30 @@
                                             <td class="strong allStrong ">공지</td>
                                             <td>
                                                 <a class="strong-title allStrong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                                <!-- 말머리가 있을 경우 -->
-                                                <c:if test="${not empty board.titleTagName}">
-                                                    <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                        <span>[${board.titleTagName}]</span>
+                                                <!-- 말머리를 사용하는 게시판일 경우 -->
+                                                <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                                    <!-- 말머리가 있을 경우 -->
+                                                    <c:if test="${not empty board.titleTagName}">
+                                                        <c:if test="${board.titleTagNo ne 0}"> 
+                                                            <div class="title-tag">[${board.titleTagName}]</div>
+                                                        </c:if>
                                                     </c:if>
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment allComment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment allComment">[${board.commentCount}]</a>
                                                 </c:if>                        
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
-                                            <td class="like">${board.likeCount}</td>
+                                            <td class="like">
+                                            <%-- 좋아요를 사용하는 게시판일 경우 --%>
+                                            <c:if test="${boardInfo.boardLikeFlag=='Y'}">
+                                            ${board.likeCount}
+                                            </c:if>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -126,22 +134,30 @@
                                             <td class="strong">공지</td>
                                             <td>
                                                 <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                                <!-- 말머리가 있을 경우 -->
-                                                <c:if test="${not empty board.titleTagName}">
-                                                    <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                        <span>[${board.titleTagName}]</span>
+                                                <!-- 말머리를 사용하는 게시판일 경우 -->
+                                                <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                                    <!-- 말머리가 있을 경우 -->
+                                                    <c:if test="${not empty board.titleTagName}">
+                                                        <c:if test="${board.titleTagNo ne 0}"> 
+                                                            <div class="title-tag">[${board.titleTagName}]</div>
+                                                        </c:if>
                                                     </c:if>
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
-                                            <td class="like">${board.likeCount}</td>
+                                            <td class="like">
+                                            <%-- 좋아요를 사용하는 게시판일 경우 --%>
+                                            <c:if test="${boardInfo.boardLikeFlag=='Y'}">
+                                            ${board.likeCount}
+                                            </c:if>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>
@@ -161,22 +177,30 @@
                                             <td class="board-number">${board.boardNo}</td>
                                             <td>
                                                 <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
-                                                <%-- 말머리가 있을 경우 --%>
-                                                <c:if test="${not empty board.titleTagName}">
-                                                    <c:if test="${board.titleTagName ne '선택 안 함'}"> 
-                                                        <span>[${board.titleTagName}]</span>
+                                                <!-- 말머리를 사용하는 게시판일 경우 -->
+                                                <c:if test="${boardInfo.titleTagFlag=='Y'}">
+                                                    <!-- 말머리가 있을 경우 -->
+                                                    <c:if test="${not empty board.titleTagName}">
+                                                        <c:if test="${board.titleTagNo ne 0}"> 
+                                                            <div class="title-tag">[${board.titleTagName}]</div>
+                                                        </c:if>
                                                     </c:if>
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>                   
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
-                                            <td class="like">${board.likeCount}</td>
+                                            <td class="like">
+                                            <%-- 좋아요를 사용하는 게시판일 경우 --%>
+                                            <c:if test="${boardInfo.boardLikeFlag=='Y'}">
+                                            ${board.likeCount}
+                                            </c:if>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </c:otherwise>

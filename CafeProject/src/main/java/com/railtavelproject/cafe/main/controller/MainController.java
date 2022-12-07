@@ -109,6 +109,14 @@ public class MainController{
 			newComment = service.newComment();
 			session.getServletContext().setAttribute("newComment", newComment);
 			
+			// 카페프로필 이미지
+			Map<String, Object> cafeInfo = null;
+			cafeInfo = service.cafeInfo();
+			session.getServletContext().setAttribute("cafeInfo", cafeInfo);
+			
+			// 카페매니저 닉네임
+			String managerNickname = service.managerNickname();
+			session.getServletContext().setAttribute("managerNickname", managerNickname);
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성

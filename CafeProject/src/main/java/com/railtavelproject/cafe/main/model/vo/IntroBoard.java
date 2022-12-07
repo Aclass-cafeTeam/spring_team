@@ -34,4 +34,10 @@ public class IntroBoard {
 	private String commentContent;
 	
     private String thumbnail; // 썸네일
+    
+    private String cafeProfile; // 카페프로필 이미지
+    
+    private String managerNickname; // 매니저 이름
+    
+    
 }

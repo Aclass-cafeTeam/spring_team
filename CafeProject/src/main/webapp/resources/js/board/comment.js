@@ -32,12 +32,12 @@ function selectCommentList(){
         
                         // 삭제된 댓글입니다 p태그
                         const commentContent = document.createElement("p");
-                        commentContent.classList.add("comment-content-area");
+                        commentContent.classList.add("delete-comment-content");
                         commentContent.innerText = "삭제된 댓글입니다";
         
                         // 삭제일이 들어간 span
                         const commentDeleteDate = document.createElement("span");
-                        commentDeleteDate.classList.add("comment-date");
+                        commentDeleteDate.classList.add("delete-comment-date");
                         commentDeleteDate.innerText = "(" + comment.commentDeleteDate + ")";
         
                         // comment-row에 삭제된 댓글입니다 + 삭제일 추가
@@ -54,12 +54,12 @@ function selectCommentList(){
         
                         // 삭제된 댓글입니다 p태그
                         const commentContent = document.createElement("p");
-                        commentContent.classList.add("comment-content-area");
+                        commentContent.classList.add("delete-comment-content");
                         commentContent.innerText = "카페 스탭에 의해 삭제된 댓글입니다.";
         
                         // 삭제일이 들어간 span
                         const commentDeleteDate = document.createElement("span");
-                        commentDeleteDate.classList.add("comment-date");
+                        commentDeleteDate.classList.add("delete-comment-date");
                         commentDeleteDate.innerText = "(" + comment.commentDeleteDate + ")";
         
                         // comment-row에 삭제된 댓글입니다 + 삭제일 추가
