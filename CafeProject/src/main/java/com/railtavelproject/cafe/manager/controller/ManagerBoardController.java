@@ -91,7 +91,7 @@ public class ManagerBoardController {
 					}
 				 */
 		
-		int result = service.updateBoarddetail(boardCode,MainCategoryUpdate,mainCategoryName,boardName,boardMemberLevelNo,boardLikeYN,TypeDelFL);;
+		int result = service.updateBoarddetail(boardCode,MainCategoryUpdate,mainCategoryName,boardName,boardMemberLevelNo,boardLikeYN,TypeDelFL);
 		String message = null;
 		if(result > 0) {
 			message = "성공적으로 반영되었습니다.";
