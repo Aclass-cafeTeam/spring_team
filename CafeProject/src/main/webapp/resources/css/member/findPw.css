@@ -1,0 +1,153 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* 로그인 화면 전체 위치와 높이 */
+main {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}    
+
+/* 헤더 */
+.header {
+    height: 186px;
+    padding-bottom: 48px;
+    text-align: center;
+}
+
+.header-inner > div{
+    margin-top: 15px;
+}
+
+/* never logo */
+#logo{
+    width: 155px;
+    height: 30px;
+    margin-top: 108px;
+}
+
+
+.find-content {
+    height: 500px;
+}
+
+
+/* 로그인 영역 */
+.find-frm {
+    width: 458px;
+    height: 291px;
+    padding: 20px 28px;
+    margin: 0px auto;    
+}
+
+
+.find-wrap {
+    flex-direction: column;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+}
+
+
+.find-row {
+    width: 100%;
+    height: 48px;
+    padding:14px 17px 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
+.find-row:focus-within{
+    border: 2px solid #73358C;
+    border-radius: 5px;
+}
+
+.icon {
+    width: 24px;
+    height: 19px;
+    color: #b58cc3;
+}
+
+
+.find-wrap input {
+    width: 342px;
+    height: 19px;
+    padding-right: 30px;
+    border: none;
+}
+
+.find-wrap input:focus {
+    outline:none;
+}
+
+
+
+/**************************************************************************/
+
+/* 로그인 버튼 */
+.find-btn{
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    width: 100%;
+    background-color:#73358C ;
+    border : none;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: 3px;
+    padding: 13px 0px;
+    border-radius: 5px;
+
+    margin-top: 20px;
+}
+
+
+
+/* 에러메세지 출력 */
+.message-area{
+    margin: 10px 0px 5px;
+    padding-right: 40px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+
+/* 이전 화면으로 */
+.backMain {
+    padding: 20px 0px 10px; 
+}
+
+a, span {
+    text-decoration: none;
+    cursor: pointer;
+    color: #888888;
+    font-size: 18px;
+} 
+
+
+/* footer */
+.find-footer{
+    height: 0px;
+
+    display: flex;
+
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+footer > p{
+    margin: 16px 0;
+}
+

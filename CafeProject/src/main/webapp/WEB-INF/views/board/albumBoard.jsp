@@ -77,7 +77,7 @@
             <ul class="ul">
                 <c:forEach var="board" items="${boardList}">
                     <li>
-                        <a href="#"><img width="200" height="200" src="${board.thumbnail}"></a>
+                        <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"><img width="200" height="200" src="${board.thumbnail}"></a>
                         <div class="flex">
                             <div class="img-title"><a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="img-title">
                             <!-- 말머리를 사용하는 게시판일 경우 -->
