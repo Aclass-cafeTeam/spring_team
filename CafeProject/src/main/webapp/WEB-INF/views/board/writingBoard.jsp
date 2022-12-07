@@ -158,12 +158,21 @@
         <jsp:include page="/WEB-INF/views/board/tempPost.jsp" />
     </div>
 
+    <c:if test="${!empty message}">
+        <script> 
+            alert("${message}");
+        </script> 
+        <%-- message 1회 출력 후 c:remove - 전체 scope에서 모두 다 삭제
+            session scope에 있으면 브라우저 종료 전까지 계속 유지 --%>
+        <c:remove var="message" />
+    </c:if>
+
     <script>
         const memberNo = "${loginMember.memberNo}";
         const memberLevelNo = "${loginMember.memberLevelNo}";
-        
     </script>
     <script src="/resources/js/main/main.js"></script>
+    <script src="/resources/js/board/summernote.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
     <script src="/resources/js/board/tempPost.js"></script>
 </body>

@@ -121,7 +121,10 @@
 		SELECT * FROM MEMBER_LEVEL
 		ORDER BY MEMBER_LEVEL_NO
 	</select>
-  
+	
+	<!-- 새로운 비밀번호 -->
+	<update id="updatePw" >
+		UPDATE MEMBER SET MEMBER_PW = #{memberPw} WHERE MEMBER_EMAIL = #{memberEmail}
+	</update>
 
-  
 </mapper>

@@ -65,10 +65,11 @@
                 </div>
             </form>
         
-            <p class="find-area">
-                <%-- <a href="/member/findPw" onclick="window.open(this.href, '_blank', 'width=800, height=500 top=300, left=600'); return false;">비밀번호 찾기</a>
-                <span> | </span> --%>
-                <a href="/member/signUp">회원가입 GoGo</a>
+            <p class="find-area"> <%--  onclick="window.open(this.href, '_blank', 'width=800, height=500 top=300, left=600'); return false;" --%>
+                <a href="/member/findPw" target="_black">
+                <i class="fa-solid fa-magnifying-glass"></i> 비밀번호가 기억나지 않는다면??</a>
+                <span> | </span>
+                <a href="/member/signUp">회원가입</a>
             </p>
         </section>
     </main>

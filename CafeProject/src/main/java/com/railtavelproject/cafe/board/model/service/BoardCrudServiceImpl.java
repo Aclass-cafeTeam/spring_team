@@ -20,13 +20,18 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	
 	@Autowired
 	private BoardCrudDAO dao;
+	
+	// 게시판 목록 조회(로그인한 회원 등급에 따라)
+	@Override
+	public List<Map<String, Object>> selectBoardType(Member loginMember) {
+		return dao.selectBoardType(loginMember);
+	}
 
 	// 태그 조회
 	@Override
 	public List<Map<String, Object>> selectTitleTag() {
 		return dao.selectTitleTag();
 	}
-
 
 	
 	// 게시글 작성
@@ -35,6 +40,7 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		
 		// 게시글 삽입의 결과로 새로 작성된 게시글 번호를 반환
 		int boardNo = dao.writeBoard(board);
+		
 		
 		if(boardNo > 0) {	
 			
@@ -77,16 +83,18 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		return boardNo;
 	}
 
-	    
-	
 	
 	// 게시글 삭제
 	@Transactional
 	@Override
 	public int deleteBoard(int boardNo) {
-		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제
 		// System.out.println(boardNo);
-		dao.deleteImgList(boardNo);
+		
+		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제
+		List<BoardImage> img = new ArrayList<>();
+		if(!img.isEmpty()) {
+			dao.deleteImgList(boardNo);
+		}
 
 		// 게시글 삭제
 		return dao.deleteBoard(boardNo);
@@ -105,13 +113,14 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	public int boardUpdate(Board board) {
 		
 		// 게시물 수정시에 기존 DB에 있는 게시물 이미지 삭제
-		dao.deleteImgList(board.getBoardNo());
+		List<BoardImage> img = new ArrayList<>();
+		if(!img.isEmpty()) {
+			dao.deleteImgList(board.getBoardNo());
+		}
 		
 		// 게시글 수정
 		return dao.boardUpdate(board);
 	}
-
-
 	
 	// 임시등록(INSERT)
 	@Override
@@ -134,17 +143,25 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	}
 
 
-	// 게시판 목록 조회(로그인한 회원 등급에 따라)
+
+	// 임시등록글 상세조회
 	@Override
-	public List<Map<String, Object>> selectBoardType(Member loginMember) {
-		return dao.selectBoardType(loginMember);
+	public Board tempPostDetail(int boardNo) {
+		return dao.tempPostDetail(boardNo);
 	}
 
-
-	// 임시등록-> 일반 게시글로 변동
+	
+	// 임시저장글을 저장글로 수정
 	@Override
-	public int updateTempPost(int boardNo) {
-		return dao.updateTempPost(boardNo);
+	public int updateTempPost(Board board) {
+		// 게시물 수정시에 기존 DB에 있는 게시물 이미지 삭제
+		List<BoardImage> img = new ArrayList<>();
+		if(!img.isEmpty()) {
+			dao.deleteImgList(board.getBoardNo());
+		}
+		
+		// 게시글 수정
+		return dao.updateTempPost(board);
 	}
 
 

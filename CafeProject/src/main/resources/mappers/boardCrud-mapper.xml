@@ -81,14 +81,14 @@
  		</update>
  		
  		
- 		<!-- 게시글 상세 조회(수정) -->
+ 		<!-- 게시글 상세 조회(수정 화면에 사용) -->
 		<select id="boardDetail" resultMap="board_rm">
-			SELECT BOARD_CODE, BOARD_NO, BOARD_NAME, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FORM
+			SELECT BOARD_CODE, BOARD_NAME, BOARD_NO, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FORM
 			FROM BOARD 
 			JOIN TITLE_TAG USING (TITLE_TAG_NO)
 			JOIN BOARD_TYPE USING (BOARD_CODE)
 			WHERE BOARD_NO = #{boardNo}
-			AND BOARD_DEL_FL IN ('N','T')
+			AND BOARD_DEL_FL = 'N'
 		</select>
  		
  		
@@ -110,7 +110,7 @@
  		</insert>
  			
  			
- 		<!-- 임시등록 조회-->
+ 		<!-- 임시등록 조회 -->
  		<select id="selectTempPost" resultMap="board_rm">
  			SELECT BOARD_CODE, BOARD_NO, BOARD_NAME, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT,
  			TO_CHAR(B_CREATE_DATE, 'YYYY.MM.DD HH24:MI') B_CREATE_DATE,
@@ -155,16 +155,30 @@
 		<!-- 게시글 수정 -->
 		<update id="boardUpdate">
 			UPDATE BOARD SET
+			BOARD_CODE = #{boardCode}, TITLE_TAG_NO = #{titleTagNo},
 			BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}
 			WHERE BOARD_NO = #{boardNo}
 		</update>
 		
 		
-		<!-- 임시등록 -> 일반 게시글로 변동 -->
-		<update id="updateTempPost">
-			UPDATE BOARD SET BOARD_DEL_FL = 'N'
+		<!-- 임시등록글 상세조회 -->
+		<select id="tempPostDetail" resultMap="board_rm">
+			SELECT BOARD_CODE, BOARD_NAME, BOARD_NO, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FORM
+			FROM BOARD 
+			JOIN TITLE_TAG USING (TITLE_TAG_NO)
+			JOIN BOARD_TYPE USING (BOARD_CODE)
 			WHERE BOARD_NO = #{boardNo}
 			AND BOARD_DEL_FL = 'T'
+		</select>
+		
+		<!-- 임시저장글을 저장글로 수정 -->
+		<update id="updateTempPost">
+			UPDATE BOARD SET
+			BOARD_DEL_FL = 'N', BOARD_CODE = #{boardCode}, TITLE_TAG_NO = #{titleTagNo},
+			BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}
+			WHERE BOARD_NO = #{boardNo}
 		</update>
+		
+
 
 </mapper>

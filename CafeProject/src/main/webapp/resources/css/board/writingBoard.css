@@ -27,6 +27,7 @@ body{
     letter-spacing: -1px;
 }
 
+
 /* ::after | 사용 */
 .tempSave > button:first-child::after{
     content: "|";
@@ -225,6 +226,10 @@ a{ text-decoration: none; }
     line-height: 17px;
     font-size: 16px;
 }
+
+/* .writeTitle input::placeholder {
+    font-weight: bold;
+} */
 
 
 /* 공지로 등록, 댓글 허용 세팅 */
