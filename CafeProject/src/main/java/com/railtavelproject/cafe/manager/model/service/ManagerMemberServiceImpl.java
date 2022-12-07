@@ -384,5 +384,14 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		return dao.deleteSubManagerSelect(subManagerDelete);
 	}
 
+	/**
+	 * 등업 스케줄러 검색
+	 */
+	@Override
+	public List<Member> selectMemberListALL() {
+		
+		return dao.selectMemberListALL();
+	}
+
 	
 }

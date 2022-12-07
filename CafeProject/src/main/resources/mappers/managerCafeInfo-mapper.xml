@@ -69,4 +69,15 @@
 			VISIT_COUNT = #{cafeInfo.visitCount} 
 			WHERE MEMBER_LEVEL_NAME=#{cafeInfo.memberLevelName}</foreach>
    	</update>
+   	
+   	<!-- 멤버 등업 스케줄러 작업 -->
+   	<update id="memberLevelUpdate">
+   	UPDATE "MEMBER" SET
+   	MEMBER_LEVEL_NO = #{memberLeverNo}
+   	WHERE MEMBER_NO IN 
+   	<foreach collection="inputMember" item="no"
+      open=" (" separator="," close=") ">
+        #{no}
+  </foreach>
+   	</update>
 </mapper>

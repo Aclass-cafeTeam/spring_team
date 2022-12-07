@@ -1,6 +1,8 @@
 package com.railtavelproject.cafe.manager.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +35,13 @@ public class ManagerCafeInfoDAO {
 	public int updateMemberLevelTable(List<Object> cafeInfo) {
 		
 		return sqlSession.update("managerCafeMapper.updateMemberLevelTable", cafeInfo);
+	}
+
+	public int memberLevelUpdate(List<String> temp, int i) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("inputMember", temp);
+		map.put("memberLeverNo", i);
+		return sqlSession.update("managerCafeMapper.memberLevelUpdate" ,map);
 	}
 		
 }

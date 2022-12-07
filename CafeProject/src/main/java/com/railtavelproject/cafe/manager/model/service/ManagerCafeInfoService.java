@@ -6,6 +6,7 @@ import java.util.Map;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
+import com.railtavelproject.cafe.manager.model.vo.Member;
 
 public interface ManagerCafeInfoService {
 
@@ -22,5 +23,11 @@ public interface ManagerCafeInfoService {
 	 * @return
 	 */
 	int updateMemberLevelTable(List<Object> cafeInfo);
+
+	/** 멤버 등업 스케줄러
+	 * @param seccessMember
+	 * @return
+	 */
+	int LevelUPSchedulingUpdate(List<Member> seccessMember);
 
 }
