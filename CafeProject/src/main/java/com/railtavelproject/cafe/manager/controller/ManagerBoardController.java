@@ -135,6 +135,61 @@ public class ManagerBoardController {
 								
 			return new Gson().toJson(map);
 	}
+	
+	//게시판 이동(아래로 누르는 거)
+	@PostMapping("/updateBoardOrderPage")
+	@ResponseBody
+	public String updateBoardOrderPage(
+			@RequestParam(value="mainCategoryNameIn") String mainCategoryNameIn, 
+			@RequestParam(value="boardCodeIn",required=false, defaultValue="-1") int boardCode,
+			@RequestParam(value="boardOrderupdate",required=false, defaultValue="-1") int boardOrderupdate,
+			@RequestParam(value="nexTBoardOrderupdate",required=false, defaultValue="-1") int nexTBoardOrderupdate,
+			@RequestParam(value="nexTBoardOrderupdateCode",required=false, defaultValue="-1") int boardNextupdateCode
+			) throws Exception {
+			
+			System.out.println(boardCode);
+			System.out.println(boardOrderupdate);
+			System.out.println(nexTBoardOrderupdate);
+			System.out.println(boardNextupdateCode);
+				
+			String message = service.updateBoardOrderPage(boardCode,boardOrderupdate,nexTBoardOrderupdate,boardNextupdateCode);
+
+										
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("message",message);
+			map.put("boardOrderupdate",boardOrderupdate);	
+			map.put("nexTBoardOrderupdate",nexTBoardOrderupdate);	
+			map.put("boardCode",boardCode);	
+								
+			return new Gson().toJson(map);
+	}
+	
+	
+	
+	//게시판 이동(위로 누르는 거)
+	@PostMapping("/updateBoardOrderPageUP")
+	@ResponseBody
+	public String updateBoardOrderPageUP(
+			@RequestParam(value="mainCategoryNameIn") String mainCategoryNameIn, 
+			@RequestParam(value="boardCodeIn",required=false, defaultValue="-1") int boardCode,
+			@RequestParam(value="boardOrderupdate",required=false, defaultValue="-1") int boardOrderupdate,
+			@RequestParam(value="preBoardOrderupdate",required=false, defaultValue="-1") int preBoardOrderupdate,
+			@RequestParam(value="preBoardOrderupdateCode",required=false, defaultValue="-1") int preBoardOrderupdateCode
+			) throws Exception {
+			
+			System.out.println(boardCode);
+			System.out.println(boardOrderupdate);
+			System.out.println(preBoardOrderupdate);
+			System.out.println(preBoardOrderupdateCode);
+				
+			String message = service.updateBoardOrderPageUP(boardCode,boardOrderupdate,preBoardOrderupdate,preBoardOrderupdateCode);
+
+										
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("message",message);
+								
+			return new Gson().toJson(map);
+	}
 }
 
 

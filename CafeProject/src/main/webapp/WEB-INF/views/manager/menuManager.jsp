@@ -184,7 +184,7 @@
                                                         <c:forEach items="${boardType}" var="var">
                                                             <c:if test="${var.mainCategoryNo eq mainVar.mainCategoryNo}">
                                                                 
-                                                                <li data-v-bd0068e8="" class="">
+                                                                <li data-v-bd0068e8="" class="board${var.boardCode}">
                                                                     <input type="hidden" id="varboardCodeboard${var.boardCode}" name="varboardCode" value="${var.boardCode}">
                                                                     <input type="hidden" id="varboardNameboard${var.boardCode}" name="varboardName" value="${var.boardName}">
                                                                     <input type="hidden" id="titleTagYNboard${var.boardCode}" name="titleTagYN" value="${var.titleTagYN}">

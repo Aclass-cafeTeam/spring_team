@@ -21,5 +21,24 @@ public interface ManagerBoardService {
 
 	String deleteBoardType(int boardCode, int mainCategoryNo) throws Exception;
 
+	/**게시판 위치 이동 버튼 아래로 
+	 * @param boardCode
+	 * @param boardOrderupdate
+	 * @param nexTBoardOrderupdate
+	 * @param boardNextupdateCode
+	 * @return
+	 */
+	String updateBoardOrderPage(int boardCode, int boardOrderupdate, int nexTBoardOrderupdate, int boardNextupdateCode);
+
+	/** 게시판  위치 이동  버튼 위에 올리기
+	 * @param boardCode
+	 * @param boardOrderupdate
+	 * @param preBoardOrderupdate
+	 * @param preBoardOrderupdateCode
+	 * @return
+	 */
+	String updateBoardOrderPageUP(int boardCode, int boardOrderupdate, int preBoardOrderupdate,
+			int preBoardOrderupdateCode);
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }
