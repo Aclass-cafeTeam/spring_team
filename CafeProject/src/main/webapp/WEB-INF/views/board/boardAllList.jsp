@@ -198,12 +198,12 @@
 
                     <div class="choice_">
                         <form action="${boardCode}" method="get" id="boardSearch" onsubmit="return true">
-                            <select name="key" id="search-key" class="choice">
+                            <%-- <select name="key" id="search-key" class="choice">
                                 <option value="aa">제목</option>
                                 <option value="bb">내용</option>
                                 <option value="cc">제목 + 내용</option>
                                 <option value="dd">작성자</option>
-                            </select>
+                            </select> --%>
 
                     </div>
 
@@ -212,9 +212,9 @@
                         <!-- 내부 input 태그의 값을 서버 또는 페이지로 전달(제출) -->
 
 
-                            <input type="text" class="query" name="query" id="search-query"
+                            <%-- <input type="text" class="query" name="query" id="search-query"
                             placeholder="검색어를 입력해주세요">
-                            <button class="search-btn">검색</button>
+                            <button class="search-btn">검색</button> --%>
                     
                         </form>
                     </article>
