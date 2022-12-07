@@ -30,13 +30,13 @@
                         <div class="myPage-subTitle"><label>비밀번호 변경</label></div>
                         
                         <span class="myPage-script">새 비밀번호를 입력한 후 수정 버튼을 누르세요.</span>
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label>새 비밀번호</label>
                             <input type="password" name="newPw" id="newPw" maxlength="20" autocomplete="off">
                         </div>
                         <span id="pwMessage"></span>
 
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label>새 비밀번호 확인</label>
                             <input type="password" name="newPwConfirm" id="newPwConfirm" maxlength="20" autocomplete="off">
                         </div>

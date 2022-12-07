@@ -37,11 +37,11 @@
                         
                         <span class="myPage-script">정보 변경 후 수정 버튼을 누르세요.</span>
 
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label>아이디(이메일)</label>
                             <input type="text" disabled value="${loginMember.memberEmail}">
                         </div>
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label for="memberNickname">닉네임</label>
                             <input type="text" name="memberNickname" id="myPageNickname" maxlength="20"
                                 value="${loginMember.memberNickname}" autocomplete="off">
@@ -52,7 +52,7 @@
 <%--                         <span class="myPage-script">한글 1~10자, 영문 대소문자 2~20자, 숫자를 사용할 수 있습니다.(혼용가능) </span>
                         <span class="myPage-script"> 중복되지 않은 별명으로 변경해주세요. </span> --%>
 
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label for="residence">지역(선택사항)</label>
                             <div class="select">
                                 <select name="memberResidence" id="myPageResidence">
