@@ -127,8 +127,7 @@ if(boardNotice != null) {
     // (관리자들) 공지로 등록이 체크되었을 때
     boardNotice.addEventListener("change", (e)=>{
         if(!(memberLevelNo == 0 || memberLevelNo ==1)) {
-            alert("내일로, 기차로 회원 여러분! 게시판은 모두가 볼 수 있는 공간이니 매너있게 작성해주세요."
-                + "공지로 등록은 관리자만 접근할 수 있습니다.");
+            alert("공지로 등록은 관리자만 접근할 수 있습니다!");
             boardNotice.checked=false;
         } else {
             if(boardNotice.checked) {
@@ -138,6 +137,15 @@ if(boardNotice != null) {
             }
         }
     });
+}
+
+const comment = document.getElementById("comment");
+// 댓글 허용(무조건 체크)
+if(comment != null) {
+    comment.addEventListener("change", (e)=>{
+        comment.checked=true;
+        alert("내일로, 기차로 회원 여러분! 게시판은 모두가 볼 수 있는 공간이니 매너있게 작성해주세요.\n\n")
+    })
 }
 
 
