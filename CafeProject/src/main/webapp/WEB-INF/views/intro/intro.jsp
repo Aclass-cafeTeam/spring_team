@@ -91,9 +91,19 @@
                                                             <tr id="boardTitle">
                                                                 <td id="board-content">
                                                                     <div id="board-dot">ㆍ</div>
-                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                                    <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
+                                                                        <div id="board-name">
+                                                                            ${introBoard.boardTitle}
+                                                                        </div>
+                                                                    </a>
+                                                                    <c:if test="${not empty introBoard.imgNo}">
+                                                                    <img src="/resources/images/intro/image-.png" width="14px" height="14px"alt="" id="img_logo">
+                                                                    </c:if>
                                                                     <c:if test="${0 != introBoard.commentCount}">
                                                                         <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${introBoard.boardCreate==sysdate}">
+                                                                    <img id="newTag" src="/resources/images/intro/N.png" width="12px" height="12px" alt="">
                                                                     </c:if>
                                                                 </td>
                                                                 <td id="board-view">
@@ -138,6 +148,9 @@
                                                                     </div>
                                                                     <c:if test="${0 != travelReview.commentCount}">
                                                                         <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');""><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${travelReview.boardCreate==sysdate}">
+                                                                    <img id="newTag2" src="/resources/images/intro/N.png" width="12px" height="12px" alt="">
                                                                     </c:if>
                                                                 </dd>
                                                                 <dd id="photo-nick">
@@ -221,8 +234,14 @@
                                                                 <td id="board-content">
                                                                     <div id="board-dot">ㆍ</div>
                                                                     <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><div id="board-name">${introBoard.boardTitle}</div></a>
+                                                                    <c:if test="${not empty introBoard.imgNo}">
+                                                                    <img src="/resources/images/intro/image-.png" width="14px" height="14px"alt="" id="img_logo">
+                                                                    </c:if>
                                                                     <c:if test="${0 != introBoard.commentCount}">
                                                                         <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${introBoard.boardCreate==sysdate}">
+                                                                    <img id="newTag" src="/resources/images/intro/N.png" width="12px" height="12px" alt="">
                                                                     </c:if>
                                                                 </td>
                                                                 <td id="board-view">
@@ -267,6 +286,9 @@
                                                                     </div>
                                                                     <c:if test="${0 != travelReview.commentCount}">
                                                                         <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                    </c:if>
+                                                                    <c:if test="${travelReview.boardCreate==sysdate}">
+                                                                    <img id="newTag2" src="/resources/images/intro/N.png" width="12px" height="12px" alt="">
                                                                     </c:if>
                                                                 </dd>
                                                                 <dd id="photo-nick">

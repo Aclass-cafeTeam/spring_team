@@ -15,7 +15,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>게시글</title>
+    <title>${boardInfo.boardName}</title>
 
     <link rel="stylesheet" href="/resources/css/board/boardList.css">
     <link rel="stylesheet" href="/resources/css/main.css">
@@ -52,14 +52,14 @@
                             <input type="checkbox" name="hidden" id="noticeHide">
                             <label for="hidden" id="noticeHide">공지 숨기기</label>
 
-                            <span class="span">|</span>
+                            <%-- <span class="span">|</span> --%>
 
                             <form action="#">
-                                <select name="amount">
+                                <%-- <select name="amount">
                                     <option value="a">5개씩</option>
                                     <option value="b">10개씩</option>
                                     <option value="c">15개씩</option>
-                                </select>
+                                </select> --%>
                             </form>
                         </div>
         
@@ -284,7 +284,7 @@
     <!-- **************************************푸터************************************** -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <!-- ******************************************************************************** -->
-    
+
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/boardList.js"></script>
     

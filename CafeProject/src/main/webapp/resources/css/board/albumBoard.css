@@ -7,7 +7,7 @@
 /* 게시판명 */
 .board-name{
     font-size: 30px;
-    width: 549.99px;
+    width: 859.99px;
     height: 26.01px;
 }
 
@@ -15,7 +15,7 @@
 .board-start{
     font-size: 10px;
     color: #ccc;
-    width: 549.99px;
+    width: 859.99px;
     height: 15px;
 }
 
@@ -334,7 +334,7 @@ ul, li{
     padding: 5px;
 }
 
-li{
+.albumLi{
     padding-left: 10px;
 }
 
@@ -389,4 +389,9 @@ li > div{
 
 .img-comment:hover{
     text-decoration: underline;
+}
+
+.px{
+    width: 859.99px;
+    margin: 0;
 }

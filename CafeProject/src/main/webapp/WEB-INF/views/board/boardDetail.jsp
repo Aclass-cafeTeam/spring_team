@@ -42,7 +42,8 @@
                             </div>
                             
                             <div>
-                                <button onclick="location.href='${referer}'" id="goToListBtn" class="top-list">목록</button >
+                            <!-- onclick="location.href='${referer}'" -->
+                                <a href="/board/${boardCode}?cp=1" class="top-list">목록</a>
                             </div>
                         </div>
                         

@@ -117,6 +117,18 @@ public interface IntroService {
 	 * @return
 	 */
 	int managerNo();
+
+	/**
+	 * 이미지가 첨부된 게시글
+	 * @return
+	 */
+	Map<String, Object> boardImg();
+
+	/**
+	 * 오늘날짜 가져오기
+	 * @return
+	 */
+	String sysdate();
 	
 	
 
