@@ -19,6 +19,7 @@
 	      <result property="likeCount" column="LIKE_COUNT"/>
 	      <result property="loginDate" column="LOGIN_DATE"/>
 	      <result property="thumbnail" column="THUMBNAIL"/>
+	      <result property="cafeProfile" column="PROFILE_IMG"/>
 		</resultMap>
 
 		
@@ -187,6 +188,13 @@
 				JOIN "BOARD" B ON(B.BOARD_NO=C.BOARD_NO)
 				WHERE COMMENT_DEL_FL = 'N'
 				ORDER BY C_CREATE_DATE DESC	
+ 		</select>
+ 		
+ 		<!-- 카페 프로필 이미지 -->
+ 		<select id="cafeInfo" parameterType="_int" resultMap="introBoard_rm">
+				SELECT *
+				FROM CAFE_INFO
+				WHERE CAFE_NO = 1
  		</select>
  
 </mapper>

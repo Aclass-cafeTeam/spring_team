@@ -25,12 +25,12 @@
                 </ul>
                 <c:choose>
                 <c:when test="${empty sessionScope.loginMember}">
-                
                     <div>
                         <span>
                             <div id="cafe">
+                                <c:forEach var="cafe" items="${cafeInfo.cafeInfoList}">
                                 <ul>
-                                    <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
+                                    <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px"
                                                 height="58px"/></a></li>
                                     <li id="name">
                                         <div id="inline">
@@ -40,6 +40,7 @@
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
                                 </ul>
+                                </c:forEach>
                                 <c:choose>
                                 <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                                 <div class="managerLink">
@@ -54,7 +55,7 @@
                             <div id="cafe-member">
                                 <div id="cafe-grade">
                                     <img src="/resources/images/intro/kh-logo.jpg" width="17px">
-                                    <a><a href="#">KH정보교육원
+                                    <a><a href="https://iei.or.kr/main/main.kh?null">KH정보교육원
                                 </div>
 
                                 <div id="member-count">
@@ -86,9 +87,10 @@
                     <div  class="basicCafe-info cafe-info" id="cafe-info">
                         <span>
                             <div id="cafe">
+                                <c:forEach var="cafe" items="${cafeInfo.cafeInfoList}">
                                 <ul>
-                                    <li id="logo"><a href="#"><img src="/resources/images/고양아.jpg" width="58px"
-                                                height="58px" /></a></li>
+                                    <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px"
+                                                height="58px"/></a></li>
                                     <li id="name">
                                         <div id="inline">
                                             <div id="manager">매니저</div>
@@ -97,6 +99,7 @@
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
                                 </ul>
+                                </c:forEach>
                                 <c:choose>
                                 <c:when test="${sessionScope.loginMember.authorityNo==0 ||sessionScope.loginMember.authorityNo==1 }">
                                 <div class="managerLink">
@@ -110,8 +113,8 @@
             
                             <div id="cafe-member">
                                 <div id="cafe-grade">
-                                    <img src="/resources/images/카페등급.PNG" width="17px">
-                                    <a><a href="#">나무3단계
+                                    <img src="/resources/images/intro/kh-logo.jpg" width="17px">
+                                    <a><a href="https://iei.or.kr/main/main.kh?null">KH정보교육원
                                 </div>
             
                                 <div id="member-count">
@@ -124,8 +127,8 @@
                             <div id="count-3">
                                 <div id="star">
                                     <div id="star-img"><img src="/resources/images/즐찾한 멤버.PNG" width="15px" height="14px"></div>
-                                    <div id="star1">알맹이</div>
-                                    <div id="star-count">동글동글</div>
+                                    <div id="star1">프로젝트 팀원</div>
+                                    <div id="star-count">5명</div>
                                 </div>
                             </div>
             
