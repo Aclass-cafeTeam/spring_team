@@ -91,9 +91,11 @@ thead th {
     width: 39px;
 }
 
-tbody{
-    /* background-color: #ebe1e1; */
-}
+
+/* tbody{
+    background-color: #ebe1e1; 
+} */
+
 
 /* 필독 + 공지 */
 .strong{
