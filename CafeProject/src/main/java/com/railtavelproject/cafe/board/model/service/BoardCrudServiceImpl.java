@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.railtavelproject.cafe.board.model.dao.BoardCrudDAO;
 import com.railtavelproject.cafe.board.model.vo.Board;
@@ -48,9 +49,6 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 			Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
 	        Matcher matcher = pattern.matcher(board.getBoardContent());     
 	        
-	        // BoardImage객체 생성
-	        BoardImage img = new BoardImage();
-	        
 	        String src = null; // src 속성값을 저장할 임시 참조 변수
 	        String filePath = null; // 파일명을 제외한 경로만 별도 저장
 	        String fileName = null; // 업로드될 파일명
@@ -63,11 +61,9 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	        	src=  matcher.group(1); // 매칭된 src 속성값을  Matcher 객체에서 꺼내서 src에 저장 
 	        	fileName = src.substring(src.lastIndexOf("/")+ 1); // 업로드된 파일명만 잘라서 별도로 저장.
 	        	
-	        	// BoardImage(VO)내에 값 세팅
-	        	img.setImagePath(filePath);
-	        	img.setImageRename(fileName);
-	        	img.setBoardNo(boardNo);
-	        	
+	        	 // BoardImage객체 생성
+		        BoardImage img = new BoardImage(filePath,fileName,boardNo);
+
 	        	// boardImageList에 이미지 추가
 	        	boardImageList.add(img);
 	        }
@@ -85,6 +81,7 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	
 	
 	// 게시글 삭제
+	@Transactional
 	@Override
 	public int deleteBoard(int boardNo) {
 		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제

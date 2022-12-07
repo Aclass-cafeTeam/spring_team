@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.railtavelproject.cafe.board.model.service.BoardCrudService;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.common.Util;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 
@@ -77,19 +79,8 @@ public class BoardCrudController {
 		// 내부경로로 저장
 		String webPath = "/resources/images/board/";
 		String folderPath = request.getSession().getServletContext().getRealPath(webPath); // application scope
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지널 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
-		// 현재 시간을 기준으로해서 파일명으로 설정
-	    int ranNum = (int) (Math.random() * 100000); // 5자리 랜덤 숫자 생성
-	    String str = "_" + String.format("%05d", ranNum);
-	    
-	    String savedFileName = date+str+extension;	//저장될 파일명
-	
-		File targetFile = new File(folderPath + savedFileName);	
-		
+		String savedFileName = Util.fileRename(multipartFile.getOriginalFilename());	//오리지널 파일명을 새로운 파일명으로 저장
+		File targetFile = new File(folderPath + savedFileName);		
 		
 		try {
 				// 파일 저장
