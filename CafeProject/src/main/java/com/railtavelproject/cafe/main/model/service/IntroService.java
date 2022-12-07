@@ -99,6 +99,18 @@ public interface IntroService {
 	 * @return
 	 */
 	Map<String, Object> newComment();
+
+	/**
+	 * 카페프로필
+	 * @return
+	 */
+	Map<String, Object> cafeInfo();
+
+	/**
+	 * 매니저 닉네임
+	 * @return
+	 */
+	String managerNickname();
 	
 	
 

@@ -120,20 +120,25 @@
                                                 </c:when>
                                                 <c:otherwise>
                                                     <c:forEach var="travelReview" items="${travelReviewList.introTravelReviewList}">
-                                                        <li>
+                                                        <li id="album">
                                                             <dl>
                                                                 <dt id="photo-img">
-                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="${travelReviewList.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                <c:if test="${not empty travelReview.thumbnail}">  
+                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="${travelReview.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
+                                                                <c:if test="${empty travelReview.thumbnail}">
+                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><img src="/resources/images/intro/default-img.png" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
                                                                 </dt>
                                                                 <dd id="photo-title">
-                                                                    <div id="comment">
+                                                                    <div>
                                                                         <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">
                                                                             ${travelReview.boardTitle}
-                                                                            <c:if test="${0 != travelReview.commentCount}">
-                                                                                <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
-                                                                            </c:if>
                                                                         </a>
                                                                     </div>
+                                                                    <c:if test="${0 != travelReview.commentCount}">
+                                                                        <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');""><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                    </c:if>
                                                                 </dd>
                                                                 <dd id="photo-nick">
                                                                     <div>
@@ -247,7 +252,12 @@
                                                         <li id="album">
                                                             <dl>
                                                                 <dt id="photo-img">
+                                                                <c:if test="${not empty travelReview.thumbnail}">  
                                                                 <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="${travelReview.thumbnail}" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
+                                                                <c:if test="${empty travelReview.thumbnail}">
+                                                                <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><img src="/resources/images/intro/default-img.png" width="132px" height="132px"alt=""></a>
+                                                                </c:if>
                                                                 </dt>
                                                                 <dd id="photo-title">
                                                                     <div>
