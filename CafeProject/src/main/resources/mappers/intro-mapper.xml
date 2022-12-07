@@ -19,6 +19,8 @@
 	      <result property="likeCount" column="LIKE_COUNT"/>
 	      <result property="loginDate" column="LOGIN_DATE"/>
 	      <result property="thumbnail" column="THUMBNAIL"/>
+	      <result property="cafeProfile" column="PROFILE_IMG"/>
+	      <result property="managerNickname" column="MANAGER_NICKNAME"/>
 		</resultMap>
 
 		
@@ -187,6 +189,20 @@
 				JOIN "BOARD" B ON(B.BOARD_NO=C.BOARD_NO)
 				WHERE COMMENT_DEL_FL = 'N'
 				ORDER BY C_CREATE_DATE DESC	
+ 		</select>
+ 		
+ 		<!-- 카페 프로필 이미지 -->
+ 		<select id="cafeInfo" parameterType="_int" resultMap="introBoard_rm">
+				SELECT *
+				FROM CAFE_INFO
+				WHERE CAFE_NO = 1
+ 		</select>
+ 		
+ 		<!-- 매니저 등급 멤버닉네임 -->
+ 		<select id="managerNickname" resultType="string"> 
+				SELECT MEMBER_NICKNAME MANAGER_NICKNAME
+				FROM "MEMBER"
+				WHERE MEMBER_LEVEL_NO = 0
  		</select>
  
 </mapper>

@@ -299,6 +299,7 @@ a {
     border: 0;
     margin-top: 5px;
     background-color: #f9f9f9;
+    outline: none;
 }
 
 /* 검색 버튼 */

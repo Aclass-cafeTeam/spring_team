@@ -39,6 +39,7 @@ public class Board {
     private String noticeFlag; // NOTICE_FL 0:일반 1:게시판 2:전체
     
     private int tempCount; // 임시저장글수
+    private String thumbnail; // 썸네일
     
     // 댓글 목록
     private List<Comment> commentList;

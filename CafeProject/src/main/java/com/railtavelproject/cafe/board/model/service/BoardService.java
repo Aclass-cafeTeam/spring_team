@@ -48,5 +48,18 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardAllNoticeList(int boardCode);
 
+	/** 앨범형 게시판 목록 조회
+	 * @param boardCode
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> selectBoardImgList(int boardCode, int cp);
+
+	/** 앨범형 게시판 공지 목록 조회
+	 * @param boardCode
+	 * @return
+	 */
+	Map<String, Object> selectBoardAlbumNoticeList(int boardCode);
+
 
 }

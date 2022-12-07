@@ -10,14 +10,14 @@
             <c:forEach var="comment" items="${board.commentList}">
                 <c:if test="${comment.commentDeleteFlag == 'Y'}">
                         <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p class="comment-content">삭제된 댓글입니다.</p>
-                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                            <p class="delete-comment-content">삭제된 댓글입니다.</p>
+                            <span class="delete-comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
                 <c:if test="${comment.commentDeleteFlag == 'M'}">
                         <li style ="color:#979797" class="comment-row <c:if test="${comment.parentNo != 0 }"> child-comment </c:if>">
-                            <p class="comment-content">카페 스탭에 의해 삭제된 댓글입니다.</p>
-                            <span class="comment-date">(${comment.commentDeleteDate})</span>
+                            <p class="delete-comment-content">카페 스탭에 의해 삭제된 댓글입니다.</p>
+                            <span class="delete-comment-date">(${comment.commentDeleteDate})</span>
                         </li>
                 </c:if>
 
@@ -54,7 +54,7 @@
 
                             <%-- 로그인회원 == 댓글 작성자가 같으면 수정 버튼 노출 --%>
                             <c:if test="${loginMember.memberNo == comment.memberNo}">
-                                    <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
+                                <button onclick="showUpdateComment(${comment.commentNo}, this)">수정</button>
                             </c:if>
                             <%-- 로그인회원의 권한이 스탭이거나 로그인회원 == 댓글작성자가 같으면 삭제 버튼 노출 --%>
                             <c:if test="${(loginMember.authorityNo==0||loginMember.authorityNo==1) || loginMember.memberNo == comment.memberNo}">
