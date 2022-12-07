@@ -4,7 +4,7 @@
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="boardList" value="${img.boardList}" />
 <c:set var="pagination" value="${img.pagination}" />
-<c:set var="noticeList" value="${notice.noticeList}" />
+<c:set var="albumNoticeList" value="${albumNotice.albumNoticeList}" />
 <c:set var="allNoticeList" value="${allNotice.allNoticeList}" />
 
 <!DOCTYPE html>
@@ -26,8 +26,8 @@
                 <p class="board-start"></p>
 
                     <div class="hidden">
-                        <input type="checkbox" name="hidden" id="noticeHide">
-                        <label for="hidden" id="noticeHide">공지 숨기기</label>
+                        <%-- <input type="checkbox" name="hidden" id="noticeHide">
+                        <label for="hidden" id="noticeHide">공지 숨기기</label> --%>
                     </div>
             
             <!-- 7행 14열 -->
@@ -38,10 +38,10 @@
                         <tr>
                             <td></td>
                             <th class="empty"></th>
-                            <th colspan="2" class="title">제목</th>
-                            <th class="th-writer">작성자</th>
-                            <th class="th-date">작성일</th>
-                            <th class="th-hits">조회</th>
+                            <th colspan="2" class="title"><%--제목--%></th>
+                            <th class="th-writer"><%--작성자--%></th>
+                            <th class="th-date"><%--작성일--%></th>
+                            <th class="th-hits"><%--조회--%></th>
                         </tr>
                     </thead>
 
@@ -105,6 +105,41 @@
                     </li>
                 </c:forEach>
             </ul>
+
+                    <div>
+                        <div class="writing">
+                        <!-- 로그인 상태인 경우에만 글쓰기 버튼 노출 -->
+                        <c:if test="${not empty loginMember}">
+                            <c:if test="${(loginMember.authorityNo eq 0) or (loginMember.authorityNo eq 1) or (loginMember.memberLevelNo ge boardInfo.memberLevelNo)}">
+                                <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
+                            </c:if>
+                        </c:if>
+                        </div>
+                    </div>
+                    <%-- <ul class="pagination">
+            
+                            <!-- 첫 페이지로 이동 -->
+                            <li><a href="/board/${boardCode}?cp=1${sURL}">&lt;&lt;</a></li>
+                            <!-- 이전 목록 마지막 번호로 이동 -->
+                            <li><a href="/board/${boardCode}?cp=${pagination.prevPage}${sURL}">&lt;</a></li>
+                            <c:forEach var="i" begin="${pagination.startPage}" 
+                            end="${pagination.endPage}" step="1">
+                
+                                <c:choose>
+                                    <c:when test="${i == pagination.currentPage}">
+                                        <!-- 현재 보고있는 페이지 -->
+                                        <li><a class="current">${i}</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <!-- 현재 페이지를 제외한 나머지 -->
+                                        <li><a href="/board/${boardCode}?cp=${i}${sURL}">${i}</a></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </c:forEach>
+                            <li><a href="/board/${boardCode}?cp=${pagination.nextPage}${sURL}">&gt;</a></li>
+                            <!-- 끝 페이지로 이동 -->
+                            <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
+                        </ul> --%>
             </main>
 </body>
 </html>

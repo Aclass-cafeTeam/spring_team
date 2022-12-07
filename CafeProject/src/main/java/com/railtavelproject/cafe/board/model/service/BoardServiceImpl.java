@@ -123,7 +123,7 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public Map<String, Object> selectBoardImgList(int boardCode, int cp) {
 		
-		int listCount = dao.getListCount(boardCode);
+		int listCount = dao.getAlbumListCount(boardCode);
 		
 		ImgPagination imgPagination = new ImgPagination(listCount, cp);
 		
@@ -134,6 +134,19 @@ public class BoardServiceImpl implements BoardService{
 		img.put("boardList", boardList);
 		
 		return img;
+	}
+
+	// 앨범형 게시글 별 공지 목록 조회
+	@Override
+	public Map<String, Object> selectBoardAlbumNoticeList(int boardCode) {
+		
+		List<Board> albumNoticeList = dao.selectBoardAlbumNoticeList(boardCode);
+		
+		Map<String, Object> albumNotice = new HashMap<String, Object>();
+		
+		albumNotice.put("albumNoticeList", albumNoticeList);
+		
+		return albumNotice;
 	}
 
 
