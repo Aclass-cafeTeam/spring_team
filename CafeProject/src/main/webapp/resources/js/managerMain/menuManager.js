@@ -59,7 +59,7 @@ $(".mainCategoryOn a").click(function() {
 
   document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
 
-  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title;
 
   document.getElementById("boardOrderIn").value = boardAddOrder;
 
@@ -268,7 +268,7 @@ $('#BoardPlusBtn').click(function() {
           
             document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
           
-            const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+            const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title; ////////변경
           
             document.getElementById("boardOrderIn").value = boardAddOrder;
           
@@ -409,13 +409,18 @@ $('#BoardPlusBtn').click(function() {
                 const span = document.createElement("span");
                 span.innerText = result.newBoard.boardName;
 
-                document.getElementById(mainCategoryNameIn).append(input);
-                document.getElementById(mainCategoryNameIn).append(input2);
-                document.getElementById(mainCategoryNameIn).append(input3);
-                document.getElementById(mainCategoryNameIn).append(input4);
-                document.getElementById(mainCategoryNameIn).append(input5);
+                //document.getElementById(mainCategoryNameIn).append(input);
+                //document.getElementById(mainCategoryNameIn).append(input2);
+                //document.getElementById(mainCategoryNameIn).append(input3);
+                //document.getElementById(mainCategoryNameIn).append(input4);
+                //document.getElementById(mainCategoryNameIn).append(input5);
 
                 document.getElementById(mainCategoryNameIn).append(li);
+                li.append(input);
+                li.append(input2);
+                li.append(input3);
+                li.append(input4);
+                li.append(input5);
                 li.append(a);
                 a.append(span);
                 document.getElementById("boardOrderIn").value = result.newBoard.boardOrder; //순서 +1시키는 코드
@@ -472,7 +477,7 @@ $('#BoardPlusBtn').click(function() {
                 
                   document.getElementById("mainCategoryNameIn2").value = mainCategoryName2;
                 
-                  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.firstElementChild.title;
+                  const boardAddOrder= document.getElementById(mainCategoryName).lastElementChild.lastElementChild.title;//.lastElementChild.firstElementChild.title;
                 
                   document.getElementById("boardOrderIn").value = boardAddOrder;
 
@@ -664,7 +669,7 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
             }
         },
         error: () => {
-            console.log("멤버 활동 정지 해제 반영 실패")
+            console.log("삭제 반영 실패")
         }
 
 
@@ -676,5 +681,175 @@ document.getElementById("deleteBoardA").addEventListener('click',function(){
   }else{
     alert("삭제할 수 있는 게시판이 없습니다.")
   }
+
+});
+
+
+
+
+document.getElementById("downButton").addEventListener('click',function(){
+
+  const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;
+  const boardCodeIn = document.getElementById("boardCodeIn").value; //없으면 메인 카테고리
+
+  const boardOrderupdate = document.getElementById("board"+boardCodeIn).getAttribute("title"); 
+  //title="1" 기준 순서  
+
+  //document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //게시판 이전 요소
+  //document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //의 title이 0이면 이동 X
+
+  //document.getElementById("board35").parentNode.nextElementSibling  이 null이면 마지막 요소   
+  //아니면 document.getElementById("board34").parentNode.nextElementSibling.lastElementChild //의 title값
+  if($("#mainCategoryNameIn").val()!=''){
+    var boolean = false;
+
+    if($("#boardCodeIn").val()!=''){
+      if(document.getElementById("board"+boardCodeIn).parentNode.nextElementSibling == null){ //기본 게시판이 마지막이라서 이동X
+        boolean = false;
+        alert("메인 카테고리 안에서만 이동가능합니다. 마지막 게시판 이동불가")
+      }else{
+        boolean = true;
+      }
+    }
+    
+
+    if(boolean){ //마지막 요소가 아닐 때 추가 가능
+      const nexTBoardOrderupdateCode = document.getElementById("board"+boardCodeIn).parentNode.nextElementSibling.lastElementChild.getAttribute("name"); //다음 보드 코드
+      const nextmainCategoryOrder = document.getElementById(mainCategoryNameIn).nextElementSibling.getAttribute('number'); 
+
+      const nexTBoardOrderupdate = document.getElementById("board"+boardCodeIn).parentNode.nextElementSibling.lastElementChild.getAttribute("title");
+      //
+
+      const nextboardCodeIn= document.getElementById("board"+boardCodeIn).parentNode.nextElementSibling.getAttribute('class');
+      $.ajax({
+        // 디비에서 delete가 아닌 보드
+        url: "/updateBoardOrderPage",
+        data: { 
+                "mainCategoryNameIn"  : mainCategoryNameIn, //자르면 순서 들어있음 메인 카테고리
+                "boardCodeIn"  : boardCodeIn,                 //값이 들어 있으면 게시판 순서하는데 게시판 코드 들어있음
+                "boardOrderupdate"  : boardOrderupdate,       //수정할 요소의 DB값 순서 //7
+
+
+                "nexTBoardOrderupdate"  : nexTBoardOrderupdate,       //아래 버튼을 눌렀을 때 밑에 있는 수정 요소의 DB값 순서(게시판 다음 요소) //8
+                "nexTBoardOrderupdateCode"  : nexTBoardOrderupdateCode,
+
+
+                "nextmainCategoryOrder"  : nextmainCategoryOrder,       //아래 버튼을 눌렀을 때 밑에 있는 수정 요소의 DB값 순서(메인카테고리 다음 요소)
+                "message"      : ""
+        },
+        type: "POST",
+        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+
+
+        success: (result) => {
+            if(result.message == "이동 실패되었습니다."){
+                
+              alert(result.message);
+        
+          
+            }else{
+              alert(result.message);
+              $('.'+nextboardCodeIn).after($('.board'+boardCodeIn));
+              document.getElementById("board"+boardCodeIn).parentNode.previousElementSibling.lastElementChild.setAttribute("title",boardOrderupdate); //다음 보드 순서 세팅
+              document.getElementById("board"+boardCodeIn).setAttribute("title",nexTBoardOrderupdate); 
+            }
+        },
+        error: () => {
+            console.log("이동 반영 실패")
+        }
+
+
+      });
+
+
+    }
+
+  }else{
+      alert("이동 가능한 대상이 아닙니다.")
+  }
+
+
+
+
+});
+
+
+//////////////////////////////
+
+document.getElementById("upButton").addEventListener('click',function(){
+
+  const mainCategoryNameIn = document.getElementById("mainCategoryNameIn").value;
+  const boardCodeIn = document.getElementById("boardCodeIn").value; //없으면 메인 카테고리  --현재 기준 보드코드
+
+  const boardOrderupdate = document.getElementById("board"+boardCodeIn).getAttribute("title"); //title="1" 현재 기준 보드 순서  
+ //document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //게시판 이전 요소
+  //document.getElementById("board34").parentNode.previousElementSibling.lastElementChild //의 title이 0이면 이동 X
+
+  //document.getElementById("board35").parentNode.nextElementSibling  이 null이면 마지막 요소   
+  //아니면 document.getElementById("board34").parentNode.nextElementSibling.lastElementChild //의 title값
+  if($("#mainCategoryNameIn").val()!=''){
+    var boolean = false;
+
+    if($("#boardCodeIn").val()!=''){
+      if(document.getElementById("board"+boardCodeIn).parentNode.previousElementSibling.lastElementChild.getAttribute('title') == '0'){ //기본 게시판이 메인 카테고리 안에서 처음이라서 이동X
+        boolean = false;
+        alert("메인 카테고리 안에서만 이동가능합니다. 첫 게시판 이동불가")
+      }else{
+        boolean = true;
+      }
+    }
+    
+
+    if(boolean){ //처음 요소가 아닐 때 추가 가능
+      const preBoardOrderupdateCode = document.getElementById("board"+boardCodeIn).parentNode.previousElementSibling.lastElementChild.getAttribute("name"); //이전 보드 코드
+      const preBoardOrderupdate = document.getElementById("board"+boardCodeIn).parentNode.previousElementSibling.lastElementChild.getAttribute("title");
+      //이전 보드 순서 
+
+      const preboardCodeIn= document.getElementById("board"+boardCodeIn).parentNode.previousElementSibling.getAttribute('class');
+      //순서 다시 세팅
+      $.ajax({
+        // 디비에서 delete가 아닌 보드
+        url: "/updateBoardOrderPageUP",
+        data: { 
+                "mainCategoryNameIn"  : mainCategoryNameIn, //자르면 순서 들어있음 메인 카테고리
+                "boardCodeIn"  : boardCodeIn,                 //값이 들어 있으면 게시판 순서하는데 게시판 코드 들어있음
+                "boardOrderupdate"  : boardOrderupdate,       //수정할 요소의 DB값 순서 //7
+
+
+                "preBoardOrderupdate"  : preBoardOrderupdate,       //아래 버튼을 눌렀을 때 밑에 있는 수정 요소의 DB값 순서(게시판 다음 요소) //8
+                "preBoardOrderupdateCode"  : preBoardOrderupdateCode,
+                "message"      : ""
+        },
+        type: "POST",
+        dataType: "JSON", // 응답 데이터의 형식이 JSON이다. -> 자동으로 JS 객체로 변환
+
+
+        success: (result) => {
+            if(result.message == "이동 실패되었습니다."){
+                
+              alert(result.message);
+        
+          
+            }else{
+              alert(result.message);
+              $('.'+preboardCodeIn).before($('.board'+boardCodeIn));
+              document.getElementById("board"+boardCodeIn).parentNode.nextElementSibling.lastElementChild.setAttribute("title",boardOrderupdate); //다음 보드 순서 세팅
+              document.getElementById("board"+boardCodeIn).setAttribute("title",preBoardOrderupdate); 
+            }
+        },
+        error: () => {
+            console.log("이동 반영 실패")
+        }
+
+
+      });
+
+
+    }
+
+  }else{
+      alert("이동 가능한 대상이 아닙니다.")
+  }
+
 
 });

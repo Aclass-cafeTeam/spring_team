@@ -88,6 +88,9 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return map;
 	}
 
+	/**게시판 상세 설정
+	 *
+	 */
 	@Override
 	public int updateBoarddetail(int boardCode, String mainCategoryUpdate, String mainCategoryName, String boardName,
 			int boardMemberLevelNo, String boardLikeYN, String typeDelFL) {
@@ -124,6 +127,9 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return result;
 	}
 	
+	/**게시판 삭제/메인카테고리 삭제
+	 *
+	 */
 	@Transactional(rollbackFor = Exception.class)
 	@Override
 	public String deleteBoardType(int boardCode, int mainCategoryNo) throws Exception {
@@ -131,10 +137,10 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		String message = "";
 		int result = 0;
 		
-		if(boardCode != -1) {
+		if(boardCode != -1) {//게시판 삭제
 			int result4=  dao.deleteBoardTypeBoard(boardCode);
 			result = dao.deleteBoardType(boardCode);
-		}else {
+		}else {//메인 카테고리 삭제
 			int resul3 = dao.deletemainCategoryBoard(mainCategoryNo);
 			
 			int result2 = dao.deletemainCategoryBoardType(mainCategoryNo); //메인 카테고리에 있는 게시판 삭제
@@ -148,6 +154,42 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		}else {
 			message = "삭제 실패되었습니다.";
 			throw new Exception("삭제 실패");
+		}
+		
+		return message;
+	}
+
+	/**게시판 순서 아래로 보내기
+	 *
+	 */
+	@Override
+	public String updateBoardOrderPage(int boardCode, int boardOrderupdate, int nexTBoardOrderupdate,
+			int boardNextupdateCode) {
+		
+		String message = "";
+		int result = dao.updateBoardOrderPage(boardCode,nexTBoardOrderupdate);
+		int result2 = dao.updateNextBoardOrderPage(boardNextupdateCode,boardOrderupdate);
+		
+		if(result == result2) {
+			message = "이동 반영 완료되었습니다";
+		}else {
+			message = "이동 실패되었습니다.";
+		}
+		
+		return message;
+	}
+
+	@Override
+	public String updateBoardOrderPageUP(int boardCode, int boardOrderupdate, int preBoardOrderupdate,
+			int preBoardOrderupdateCode) {
+		String message = "";
+		int result = dao.updateBoardOrderPageUP(boardCode,preBoardOrderupdate);
+		int result2 = dao.updatePreviousBoardOrderPageUP(preBoardOrderupdateCode,boardOrderupdate);
+		
+		if(result == result2) {
+			message = "이동 반영 완료되었습니다";
+		}else {
+			message = "이동 실패되었습니다.";
 		}
 		
 		return message;
