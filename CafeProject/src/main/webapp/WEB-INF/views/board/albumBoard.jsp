@@ -20,7 +20,7 @@
 
 </head>
 <body>
-    <main>
+    <main class="px">
     <section class="article">
                 <div class="board-name">${boardList[0].boardName}</div>
                 <p class="board-start"></p>
@@ -84,7 +84,7 @@
                 </c:when>
             <c:otherwise>
                 <c:forEach var="board" items="${boardList}">
-                    <li>
+                    <li class="albumLi">
                         <%-- <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}">
                         <img width="200" height="200" src="${board.thumbnail}"></a> --%>
                         
@@ -164,6 +164,7 @@
                             <!-- 끝 페이지로 이동 -->
                             <li><a href="/board/${boardCode}?cp=${pagination.maxPage}${sURL}">&gt;&gt;</a></li>
                         </ul> --%>
+                        </section>
             </main>
 </body>
 </html>
