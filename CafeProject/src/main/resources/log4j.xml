@@ -20,7 +20,7 @@
    <!-- C:\workspace1\spring_team\CafeProject -->
    <!-- //날짜별 로그 파일 생성 하기 -->
    <appender name="dailyRollingFile" class="org.apache.log4j.DailyRollingFileAppender">
-       <param name="File" value="/workspace1/spring_team/CafeProject/logs/runtime.log" />
+       <param name="File" value="/logs/runtime.log" />
        <param name="Append" value="true" />
        <param name="encoding" value="UTF-8" />
        <param name="DatePattern" value="'.'yyyy-MM-dd" />

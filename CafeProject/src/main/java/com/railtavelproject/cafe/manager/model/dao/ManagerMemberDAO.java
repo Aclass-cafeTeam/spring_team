@@ -69,7 +69,7 @@ public class ManagerMemberDAO {
       
    }
 
-	   /** 멤버 조회에서 멤버 한 페이지에 몇명 정렬
+	   /** 멤버 조회에서 멤버 한 페이지에 몇명 정렬selectMemberList
 	 * @param memberLevelNo
 	 * @param pagination
 	 * @return
@@ -486,6 +486,13 @@ public class ManagerMemberDAO {
 	public int deleteSubManagerSelect(String subManagerDelete) {
 	
 		return sqlsession.update("managerMapper.deleteSubManagerSelect",subManagerDelete);
+	}
+
+	/**
+	 * @return
+	 */
+	public List<Member> selectMemberListALL() {
+		return sqlsession.selectList("managerMapper.selectMemberListALL");
 	}
 	
 	

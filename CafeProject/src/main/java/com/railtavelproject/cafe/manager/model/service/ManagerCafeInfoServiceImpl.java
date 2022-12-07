@@ -1,6 +1,9 @@
 package com.railtavelproject.cafe.manager.model.service;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -12,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.railtavelproject.cafe.common.Util;
 import com.railtavelproject.cafe.manager.model.dao.ManagerCafeInfoDAO;
 import com.railtavelproject.cafe.manager.model.vo.CafeInfo;
+import com.railtavelproject.cafe.manager.model.vo.Member;
 
 @Service
 public class ManagerCafeInfoServiceImpl implements ManagerCafeInfoService{
@@ -90,6 +94,40 @@ public class ManagerCafeInfoServiceImpl implements ManagerCafeInfoService{
 	public int updateMemberLevelTable(List<Object> cafeInfo) {
 		
 		return dao.updateMemberLevelTable(cafeInfo);
+	}
+
+	/** 
+	 * 멤버 등업 스케줄러 분류 작업
+	 */
+	@Override
+	public int LevelUPSchedulingUpdate(List<Member> successMember) {
+		
+		System.out.println(successMember);
+		int result =0;
+		
+			
+			
+		for(int i=2; i<=6; i++) {
+			List<String> temp = new ArrayList<String>();
+				
+			for(Member mem :successMember) {
+				System.out.println(mem.getMemberLevelNo());
+				System.out.println(i);
+				if(mem.getMemberLevelNo() == i) {
+					temp.add(mem.getMemberNo() + "");
+				}
+			}
+		
+			System.out.println(temp);
+			System.out.println(temp.size());
+			if(temp.size() != 0 ) {
+				 result = dao.memberLevelUpdate(temp,i);
+			}
+			
+		}
+		
+			
+		return result;
 	}
 
 	
