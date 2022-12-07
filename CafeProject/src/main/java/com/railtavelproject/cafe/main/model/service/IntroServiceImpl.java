@@ -218,6 +218,14 @@ public class IntroServiceImpl implements IntroService{
 		
 		return boardImg;
 	}
+
+	// 오늘날짜 가져오기
+	@Override
+	public String sysdate() {
+		return dao.sysdate();
+	}
+	
+	
 	
 	
 	
