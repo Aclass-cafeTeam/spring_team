@@ -9,6 +9,8 @@
 	      <result property="boardCode" column="BOARD_CODE" /><!-- 게시판 코드 -->
 	      <result property="boardName" column="BOARD_NAME" /><!-- 게시판 이름 -->
 	      <result property="boardOrder" column="BOARD_ORDER" /><!-- 게시판 순서 -->
+	      <result property="boardTitle" column="BOARD_TITLE"/>
+	      <result property="boardContent" column="BOARD_CONTENT"/>
 	      <result property="mainCategoryNo" column="MAIN_CATEGORY_NO" /><!-- 게시판 큰(메인) 카페고리 -->
 	      <result property="titleTagYN" column="TITLE_TAG_YN" /><!-- 말머리 사용 여부(사용: Y , 사용 안할 시: N) -->
 	      <result property="boardForm" column="BOARD_FORM" /><!-- A: 앨범형 B: 게시판형  -->
@@ -16,6 +18,16 @@
 	      <result property="boardMemberLevelNo" column="MEMBER_LEVEL_NO" /><!-- 게시판별 멤버 등급 조건 외래키 부모키랑 맞아야함 2,3,4,5,6 -->
 	      <result property="TypeDelFL" column="TYPE_DEL_FL" /><!-- 게시판 삭제여부(N: 삭제x / Y:삭제o) -->
 	      
+	      <result property="BdeleteDate" column="B_DELETE_DATE"/> 
+	      <result property="BCreateDate" column="B_CREATE_DATE"/>
+	      
+	      <result property="memberNickname" column="MEMBER_NICKNAME"/>
+	      <result property="memberEmail" column="MEMBER_EMAIL"/>
+	      <result property="memberNo" column="MEMBER_NO"/>
+	      <result property="profileImage" column="PROFILE_IMG"/>
+	      <result property="memberLevelImage" column="MEMBER_LEVEL_IMG"/>
+     	  <result property="thumbnail" column="THUMBNAIL"/>
+      
 	      <result property="mainCategoryName" column="MAIN_CATEGORY_NAME" /><!--  1.기본 게시판(삭제 불가) 2.여행 정보 3.질문 코너 4.갤러리 자료 -->
 	      <result property="CategoryDelFL" column="CATEGORY_DEL_FL" /><!-- 대분류 메인 카페고리 삭제 유무(기본 게시판 삭제 불가)  -->
 
@@ -141,4 +153,16 @@
 	BOARD_ORDER = #{boardOrderupdate}
 	WHERE BOARD_CODE = #{preBoardOrderupdateCode}
     </update>
+    
+    <select id="getDeleteBoardListCount" resultType="_int">
+	SELECT COUNT(*) FROM "BOARD" 
+	JOIN "BOARD_TYPE" USING(BOARD_CODE)
+	WHERE BOARD_DEL_FL = 'M'
+	</select>
+	<select id="getDeleteBoardList" resultMap="managerboard_rm">
+	SELECT * FROM (SELECT BOARD_CODE,MEMBER_NO,BOARD_DEL_FL,B_DELETE_DATE,BOARD_CONTENT,BOARD_TITLE,BOARD_NO, to_char(B_CREATE_DATE,'yyyy.mm.dd') B_CREATE_DATE FROM "BOARD") 
+	JOIN "BOARD_TYPE" USING(BOARD_CODE)
+	JOIN (SELECT MEMBER_NO, MEMBER_NICKNAME,SUBSTR(MEMBER_EMAIL, 0, INSTR(MEMBER_EMAIL, '@')-1) MEMBER_EMAIL FROM  "MEMBER") USING(MEMBER_NO)
+	WHERE BOARD_DEL_FL = 'M'
+	</select>
 </mapper>

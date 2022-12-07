@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.railtavelproject.cafe.manager.model.dao.ManagerBoardDAO;
 import com.railtavelproject.cafe.manager.model.vo.Board;
+import com.railtavelproject.cafe.manager.model.vo.Member;
+import com.railtavelproject.cafe.manager.model.vo.Pagination;
 
 
 
@@ -193,6 +195,19 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		}
 		
 		return message;
+	}
+
+	@Override
+	public Map<String, Object> selectboardList(int cp) {
+		
+		int listCount = dao.getDeleteBoardListCount();
+		Pagination pagination = new Pagination(listCount,cp);
+		
+		List<Board> deleteBoardList = dao.getDeleteBoardList(pagination); 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("removeBoardList",deleteBoardList);
+		return map;
 	}
 
 	/*

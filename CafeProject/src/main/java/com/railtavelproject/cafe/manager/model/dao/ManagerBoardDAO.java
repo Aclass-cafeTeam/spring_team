@@ -4,11 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.manager.model.vo.Board;
+import com.railtavelproject.cafe.manager.model.vo.Pagination;
 
 @Repository
 public class ManagerBoardDAO {
@@ -210,6 +212,20 @@ public class ManagerBoardDAO {
 		map.put("preBoardOrderupdateCode", preBoardOrderupdateCode); 
 		map.put("boardOrderupdate", boardOrderupdate);
 		return sqlSession.update("managerBoardmapper.updatePreviousBoardOrderPageUP",map);
+	}
+
+	public int getDeleteBoardListCount() {
+		
+		return sqlSession.selectOne("managerBoardmapper.getDeleteBoardListCount");
+	}
+
+	public List<Board> getDeleteBoardList(Pagination pagination) {
+		
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	
+	    return sqlSession.selectList("managerBoardmapper.getDeleteBoardList",null,rowBounds);
 	}
 	
 }

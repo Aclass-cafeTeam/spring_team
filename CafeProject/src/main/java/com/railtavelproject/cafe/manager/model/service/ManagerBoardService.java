@@ -40,5 +40,11 @@ public interface ManagerBoardService {
 	String updateBoardOrderPageUP(int boardCode, int boardOrderupdate, int preBoardOrderupdate,
 			int preBoardOrderupdateCode);
 
+	/**게시판 불러오기
+	 * @param cp
+	 * @return
+	 */
+	Map<String, Object> selectboardList(int cp);
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }

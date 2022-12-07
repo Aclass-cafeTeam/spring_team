@@ -1074,11 +1074,10 @@ LEFT JOIN
 FROM BOARD b 
 WHERE BOARD_DEL_FL IN ('N')
 AND to_char(B_CREATE_DATE,'yyyy.mm.dd') BETWEEN to_char(add_months(sysdate,-1),'yyyy.mm.dd') AND to_char(SYSDATE,'yyyy.mm.dd')
-
 GROUP BY MEMBER_NO
 ORDER BY 2)
 USING(MEMBER_NO)
-WHERE MEMBER_DEL_FL IN ('N','S'))
+WHERE MEMBER_DEL_FL IN ('N','S'));
 	<where>
 		<if test ="aboveOption == 1">
 			<![CDATA[AND BOARD_COUNT >=]]> #{articleCountInput}

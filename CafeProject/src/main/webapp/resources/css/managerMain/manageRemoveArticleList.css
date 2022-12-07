@@ -1,0 +1,402 @@
+@import url('./managerHeader.css');
+@import url('./managerFooter.css');
+
+body{
+    width: 100%;
+    height: 100%; 
+    margin: auto;
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+}
+
+body{
+    display: block;
+}
+
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+/* 메인홈이라서 메인관리 메뉴만 색깔변경 */
+.nav_menu li:nth-of-type(6) a{
+  background-color: #73358C;
+  color: white;
+  border: 1px solid #797979;
+}
+
+/* menuSub 서브 네비 */
+.lnb_sub{
+  width: 100%;
+  height: 39px;
+  border-bottom: 1.5px solid #898989;
+  display: inline-flex;
+  justify-content: center;
+}
+
+.lnb_sub > ul{
+  overflow: hidden;
+  width: 850px;
+  margin: 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: start;
+  list-style: none;
+}
+
+.lnb_sub li{
+  overflow: hidden;
+  margin: 0px 2px 0px 0px;
+}
+
+.lnb_sub li:nth-of-type(1){
+  margin: 0px 5px 0px 225px;
+}
+
+.lnb_sub li:nth-of-type(1) a{
+  font-weight: bold;
+  color: #73358C;
+  text-decoration: none;
+  font-size: 12px;
+}
+
+.lnb_sub li a{
+  font-weight: bold;
+  text-decoration: none;
+  color: #232628;
+  font-size: 12px;
+}
+
+.lnb_sub li p{
+  font-size: 10px;
+  color: #797979;
+}
+
+.lnb_sub li a:hover{
+  color: #73358C;
+}
+
+/* menuSub 서브 네비 */
+#container {
+  z-index: 20;
+  width: 920px;
+  min-height: 100%;
+  margin: -138px auto -123px;
+}
+
+#content {
+  padding: 138px 0 123px;
+}
+
+.section_top {
+  position: relative;
+  margin-top: 28px;
+  z-index: 30;
+}
+
+.manage_remove_top .manage_remove_title {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 24px;
+}
+
+.manage_remove_top .manage_remove_tab_list {
+  margin-top: 25px;
+  border-bottom: 1px solid #ebecef;
+}
+
+ul, ol {
+  list-style: none;
+}
+
+.manage_remove_top .manage_remove_tab_link {
+  position: relative;
+  display: block;
+  padding-bottom: 15px;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: bold;
+  color: #b7b7b7;
+  padding-right: 30;
+}
+
+a {
+  text-decoration: none;
+}
+
+.manage_remove_top .manage_remove_tab_link.is_active:after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background-color: #000;
+  border-radius: 2px;
+  content: '';
+}
+
+.manage_remove_top .manage_remove_tab_list {
+  margin-top: 25px;
+  border-bottom: 1px solid #ebecef;
+}
+
+.section_top .noti_area {
+  position: relative;
+  padding: 20px 0 14px;
+}
+.action_arr {
+  float: right;
+  position: relative;
+  padding-top: 1px;
+  text-align: right;
+}
+.c_gn {
+  color: #2e9901 !important;
+}
+
+.section_top .noti_area .dsc2 {
+  padding: 0 6px 4px;
+  line-height: 18px;
+  color: #666;
+}
+
+.board_area.bd_n .board_tit {
+  border-bottom: none;
+}
+
+.board_top .board_tit {
+  float: left;
+  border-bottom: none;
+  margin-bottom: 0;
+}
+.board_top {
+  zoom: 1;
+  padding: 6px 0 2px;
+}
+
+.board_tit {
+  margin-bottom: 1px;
+  padding: 22px 0 7px 2px;
+  border-bottom: 1px solid #eaeaea;
+}
+.manage_remove_top .manage_remove_tab_item {
+  display: inline-block;
+}
+
+.manage_remove_top .manage_remove_tab_link.is_active {
+  color: #000;
+}
+
+.board_top.board_top_v1 {
+  position: relative;
+  padding-left: 3px;
+  border-top: 1px solid #eaeaea;
+  color: #272727;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+.action_arr .srch_info {
+  border-top: none;
+  margin: 0;
+  padding: 18px 0 0 0;
+}
+
+.srch_info {
+  margin-top: 8px;
+  padding-top: 7px;
+  border-top: 1px solid #ececec;
+  line-height: 19px;
+  color: #404040;
+}
+
+.action_arr {
+  float: right;
+  position: relative;
+  padding-top: 1px;
+  text-align: right;
+}
+
+.section_cont {
+  position: relative;
+}
+
+div{
+  display: block;
+}
+
+.tbl_lst_type {
+  width: 920px;
+  font-size: 12px;
+  line-height: 16px;
+  table-layout: fixed;
+}
+
+.tbl_lst_type thead tr {
+  height: 29px;
+}
+
+hr, legend, caption {
+  display: none;
+}
+
+.tbl_lst_type th{
+  background-color: #F1F6FA;
+  border: 1px solid #C8CFD4;
+}
+.tbl_lst_type th {
+  height: 27px;
+  line-height: 29px;
+  font-weight: normal;
+  color: #666;
+}
+
+tbody td:nth-of-type(1){
+  width: 146px;
+}
+tbody td:nth-of-type(3){
+  width: 144px;
+}
+tbody td:nth-of-type(4){
+  width: 144px;
+}
+
+tbody td:nth-of-type(6){
+  width: 100px;
+}
+.tbl_lst_type th strong {
+  display: block;
+  font-weight: normal;
+  height: 28px;
+  padding-top: 1px;
+}
+
+.line_n , .line_r{
+  display: inline-block;
+  color: #666;
+  font-weight: normal;
+  font-size: 12px;
+  height: 27px;
+  line-height: 29px;
+}
+
+.tbl_lst_type td {
+  color: #949494;
+}
+
+
+.ellipsis {
+  display: inline-block;
+  overflow: hidden;
+  width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.tbl_lst_type td.tl .txt4 {
+  padding-left: 6px;
+}
+
+.c_gy {
+  color: #959699 !important;
+}
+
+.tbl_lst_type td {
+  border-bottom: 1px solid #eaeaea;
+  color: #949494;
+}
+
+.tbl_v2 td, .tbl_v3 td {
+  height: 29px;
+}
+
+.tl {
+  text-align: left;
+}
+
+table, th, td {
+  border: 0 none;
+}
+.tbl_lst_type td .txt, .tbl_lst_type td .num {
+  display: inline-block;
+  padding-top: 2px;
+}
+
+.tbl_lst_type td {
+  border-bottom: 1px solid #eaeaea;
+  color: #949494;
+}
+
+.c_gy3 {
+  color: #272727 !important;
+}
+
+.tbl_lst_type td .tit, .tbl_lst_type td .tit2 {
+  display: inline-block;
+  overflow: hidden;
+  width: 97%;
+  margin: 0 7px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 화살표 */
+
+.pagination{
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 9px;
+  padding: 0;
+}
+
+.pagination li{
+  width: 20px;
+  margin: 0 5px;
+  text-align: center;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.pagination a{
+  display: flex;
+  font-weight: bold;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  color: #666;
+}
+
+.current{
+  font-weight: bold;
+  border:1px solid #73358C;
+  border-radius: 10%;
+  color: #73358C !important;
+  letter-spacing: 0 !important;
+}
+
+
+.btn_type strong, .btn_type span {
+  display: inline-block;
+  height: 21px;
+  padding: 0 7px;
+}
+
+.btn_type {
+  display: inline-block;
+  height: 21px;
+  padding-left: 1px;
+  color: #404040;
+  text-decoration: none !important;
+  cursor: pointer;
+  border: 1px solid #888;
+  border-radius: 6%;
+}
+
+.tbl_lst_type .tc {
+  text-align: center;
+}

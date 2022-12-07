@@ -119,6 +119,30 @@ public class ManegerController {
 		return "manager/managerMain";
 	}
 	
+	//삭제 게시글 불러오기 
+		@GetMapping("/manager/manageRemoveArticleList")
+		public String manageRemoveArticleList(//Board board,
+			@RequestParam(value="searchType" , required = false, defaultValue = "1")int searchType,
+			Model model,
+			HttpSession session,
+			@RequestParam(value="cp" , required = false, defaultValue = "1") int cp) {
+				
+				Map<String, Object> map= boardService.selectboardList(cp);
+				model.addAttribute("map",map);
+		
+				model.addAttribute("searchType", searchType);
+				/*model.addAttribute("srchOption", srchOption);
+				model.addAttribute("memberLevel", memberLevel);
+				System.out.println(map.get("memberList"));
+				System.out.println(map.get("pagination"));*/
+				return "manager/manageRemoveArticleList";
+		}
+	
+	
+	
+	
+	
+	
 	//전체멤버관리 페이지로 이동
 	@GetMapping("/manager/totalMemberManager")
 	public String totalMemberManagerPage(Member member,

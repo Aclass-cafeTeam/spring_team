@@ -43,7 +43,7 @@
                                 <a href="/manager/menuManager"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                             </li>
                             <li>
-                                <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                                <a href="/manager/manageRemoveArticleList"><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                             </li>
                         </ul>
                     </div>
@@ -168,7 +168,7 @@
                             <strong class="tit6">삭제글</strong>
                             <ul>
                                 <li class="_manageAuth(BoardStaff)">
-                                    <a id="menu10" href="" class="N=a:LNB*a.list">삭제 글/댓글 보기</a>
+                                    <a id="menu10" href="/manager/manageRemoveArticleList" class="N=a:LNB*a.list">삭제 글/댓글 보기</a>
                                 </li>  
                             </ul>
                         </div>
