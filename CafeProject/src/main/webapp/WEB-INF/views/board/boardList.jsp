@@ -103,11 +103,11 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment allComment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment allComment">[${board.commentCount}]</a>
                                                 </c:if>                        
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
@@ -145,11 +145,11 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
@@ -188,11 +188,11 @@
                                                 </c:if>
                                                 ${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
-                                                <a href="#" class="comment">[${board.commentCount}]</a>
+                                                <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                                                 </c:if>                   
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
