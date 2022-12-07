@@ -105,5 +105,6 @@
                     </li>
                 </c:forEach>
             </ul>
+            </main>
 </body>
 </html>
