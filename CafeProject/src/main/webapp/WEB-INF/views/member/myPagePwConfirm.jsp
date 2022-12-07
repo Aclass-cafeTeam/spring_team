@@ -31,7 +31,7 @@
                         
                         <span class="myPage-script">회원님의 정보를 안전하게 보호하기 위해 비밀번호를 한 번 더 확인합니다.</span>
 
-                        <div class="myPage-subTitle">
+                        <div class="myPage-input-area">
                             <label>현재 비밀번호</label>
                             <input type="password" name="memberPw" id="currentPw" maxlength="20"  autocomplete="off">
                         </div>
