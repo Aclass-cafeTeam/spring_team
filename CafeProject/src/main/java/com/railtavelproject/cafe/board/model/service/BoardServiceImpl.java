@@ -125,6 +125,8 @@ public class BoardServiceImpl implements BoardService{
 		
 		int listCount = dao.getAlbumListCount(boardCode);
 		
+		System.out.println(listCount);
+		System.out.println("**********"+cp);
 		ImgPagination imgPagination = new ImgPagination(listCount, cp);
 		
 		List<Board> boardList = dao.selectBoardImgList(imgPagination, boardCode);
