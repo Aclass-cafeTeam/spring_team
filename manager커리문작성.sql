@@ -971,3 +971,56 @@ UPDATE "MEMBER" SET
 --------------------------------------------------------------------------------------------
 --가입등급 가져오기
 SELECT * FROM MEMBER_LEVEL WHERE MEMBER_LEVEL_NO > 1;
+
+
+-----------------------------------------------------------------------------------------------------------
+--게시판 종류별로 대분류랑 다 묶어서 들고 오기
+SELECT * FROM BOARD_TYPE JOIN MAIN_CATEGORY USING(MAIN_CATEGORY_NO) 
+WHERE CATEGORY_DEL_FL = 'N' AND TYPE_DEL_FL = 'N';
+--대분류  
+SELECT * FROM MAIN_CATEGORY WHERE CATEGORY_DEL_FL = 'N';
+----------------------------------------------------------
+--시퀀스 되돌리기
+SELECT SEQ_BOARD_CODE.NEXTVAL FROM DUAL;
+ALTER SEQUENCE SEQ_BOARD_CODE INCREMENT BY -21;
+ALTER SEQUENCE SEQ_BOARD_CODE INCREMENT BY 1;
+--------------------------------------------------
+SELECT SEQ_MAIN_CATEGORY_NO.NEXTVAL FROM DUAL;
+ALTER SEQUENCE SEQ_MAIN_CATEGORY_NO INCREMENT BY -9;
+ALTER SEQUENCE SEQ_MAIN_CATEGORY_NO INCREMENT BY 1;
+
+SELECT SEQ_MAIN_CATEGORY_NO.CURRVAL FROM DUAL;
+-------------------------------------
+INSERT INTO "MAIN_CATEGORY"
+VALUES(SEQ_BOARD_1STCLASS_NO.NEXTVAL,#{mainCategoryNameAdd},DEFAULT);
+
+SELECT * FROM "MAIN_CATEGORY" 
+WHERE MAIN_CATEGORY_NO = (SELECT MAX(MAIN_CATEGORY_NO) FROM "MAIN_CATEGORY");
+
+SELECT SEQ_BOARD_1STCLASS_NO.NEXTVAL FROM DUAL;
+
+CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE; -- 회원 번호
+-----------------------------------------------------------------------
+--게시판 카테고리 상세수정
+--게시판 수정
+UPDATE "BOARD_TYPE" SET 
+<if test="boardName != null">
+BOARD_NAME = #{boardName},  
+</if>
+TITLE_TAG_YN = #{},
+BOARD_LIKE_YN = #{},
+MEMBER_LEVEL_NO = #{},
+WHERE BOARD_CODE = #{};
+--카테고리 수정
+UPDATE "MAIN_CATEGORY" SET 
+MAIN_CATEGORY_NAME = #{}
+WHERE MAIN_CATEGORY_NO = #{};
+
+---카테고리 삭제 
+--카테고리 안에 있는 게시판 삭제
+--게시판 삭제
+
+
+
+
+
