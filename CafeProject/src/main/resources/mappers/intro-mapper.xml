@@ -49,7 +49,7 @@
 		
 		<!-- 여행후기 게시판 글 조회 -->
 		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, MEMBER_NO, READ_COUNT, 
 							(SELECT COUNT(*) FROM "COMMENT" C
 							WHERE C.BOARD_NO =B.BOARD_NO
 							AND COMMENT_DEL_FL='N') COMMENT_COUNT
@@ -193,9 +193,9 @@
  		
  		<!-- 카페 프로필 이미지 -->
  		<select id="cafeInfo" parameterType="_int" resultMap="introBoard_rm">
-				SELECT *
-				FROM CAFE_INFO
-				WHERE CAFE_NO = 1
+SELECT PROFILE_IMG
+FROM CAFE_INFO
+WHERE CAFE_NO = 1
  		</select>
  		
  		<!-- 매니저 등급 멤버닉네임 -->

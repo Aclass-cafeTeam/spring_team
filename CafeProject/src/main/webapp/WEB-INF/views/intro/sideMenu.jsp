@@ -30,8 +30,7 @@
                             <div id="cafe">
                                 <c:forEach var="cafe" items="${cafeInfo.cafeInfoList}">
                                 <ul>
-                                    <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px"
-                                                height="58px"/></a></li>
+                                    <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px" height="58px"/></a></li>
                                     <li id="name">
                                 </c:forEach>
                                         <div id="inline">

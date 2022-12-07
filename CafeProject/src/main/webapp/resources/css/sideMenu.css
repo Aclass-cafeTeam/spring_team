@@ -54,15 +54,21 @@ div#cafe {
     padding-right: 10px;
     padding-top: 12px;
     padding-bottom: 12px;
-    height: 100px;
+    height: 82px;
     display: relative;
     border-bottom: 1px solid rgb(229, 229, 229);
     padding-top: 12px;
     padding-bottom: 12px;
+    
 }
 
 #logo {
     display: flex;
+    border-radius: 10px;
+}
+
+#logo > a > img{
+    border-radius: 16px;
 }
 
 #cafe>ul {

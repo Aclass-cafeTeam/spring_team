@@ -222,7 +222,7 @@
                                                                     <div id="board-dot">ㆍ</div>
                                                                     <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><div id="board-name">${introBoard.boardTitle}</div></a>
                                                                     <c:if test="${0 != introBoard.commentCount}">
-                                                                        <a href="#"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
+                                                                        <a href="/board/${introBoard.boardCode}/${introBoard.boardNo}"><span id="commentCount1">[${introBoard.commentCount}]</span></a>
                                                                     </c:if>
                                                                 </td>
                                                                 <td id="board-view">
@@ -266,12 +266,12 @@
                                                                         </a>
                                                                     </div>
                                                                     <c:if test="${0 != travelReview.commentCount}">
-                                                                        <a href="/member/login"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
+                                                                        <a href="/board/${travelReview.boardCode}/${travelReview.boardNo}"><span id="commentCount1">[${travelReview.commentCount}]</span></a>
                                                                     </c:if>
                                                                 </dd>
                                                                 <dd id="photo-nick">
                                                                     <div>
-                                                                        <a href="#">
+                                                                        <a href="/member/${travelReview.memberNo}">
                                                                             ${travelReview.memberNickname}
                                                                         </a>
                                                                     </div>
