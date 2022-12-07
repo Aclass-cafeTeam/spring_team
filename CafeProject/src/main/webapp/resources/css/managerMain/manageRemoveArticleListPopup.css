@@ -116,3 +116,20 @@ div {
   overflow-wrap: break-word;
   white-space: pre-wrap;
 }
+
+.WriterInfo .profile_info .nick_level {
+  display: inline-block;
+  margin-right: 6px;
+  font-size: 13px;
+  vertical-align: top;
+  color: var(--skinText676767);
+}
+
+.WriterInfo .profile_info .nick_level .icon_level {
+  display: inline-block;
+  margin-top: 1px;
+  margin-left: -1px;
+  vertical-align: baseline!important;
+  width: 11px;
+  height: 11px;
+}

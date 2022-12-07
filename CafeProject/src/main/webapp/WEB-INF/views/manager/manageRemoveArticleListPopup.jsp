@@ -23,7 +23,7 @@
           </h3></div></div><div class="WriterInfo"><a href="#" class="thumb"><img src="https://ssl.pstatic.net/static/cafe/cafe_pc/default/cafe_profile_77.png?type=c77_77" alt="프로필 사진" width="36" height="36"></a><div class="profile_area"><div class="profile_info"><div class="nick_box"><a href="#" role="button" class="nickname">
             ${detailBoardList.memberNickname}
                   </a></div><em class="nick_level">
-                    ${detailBoardList.memberEmail}
+                    ${detailBoardList.memberLevelName}
                   <img src="${detailBoardList.memberLevelImage}" class="icon_level"></em></div><div class="article_info"><span class="date">${detailBoardList.BCreateDate}</span></div></div></div></div><div class="article_container"><!----><!----><div class="article_viewer"><div><div class="content CafeViewer"><div class="se-viewer se-theme-default" lang="ko-KR">
       <!-- SE_DOC_HEADER_START -->
       <!--@CONTENTS_HEADER-->
