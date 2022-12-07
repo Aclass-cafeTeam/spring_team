@@ -76,7 +76,7 @@
 			<dt>변경 이유</dt>
             <dd class="txt_cont mr_b">
 				<textarea id="comment" class="text _focus(ManageLevelUpView|Comment) _keyup(ManageLevelUpView|Comment)" cols="30" rows="5" name="model.comment"></textarea>
-				<p class="t_byte"><strong id="txtLen">0</strong> / 100 byte</p>
+				<!-- <p class="t_byte"><strong id="txtLen">0</strong> / 100 byte</p> -->
 			</dd>
 			</dl>
 			<div class="dsc">
