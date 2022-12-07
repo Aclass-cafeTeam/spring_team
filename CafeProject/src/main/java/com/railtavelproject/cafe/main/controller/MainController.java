@@ -138,6 +138,9 @@ public class MainController{
 			application = request.getSession().getServletContext();
 			application.setAttribute("boardTypeList", boardTypeList);
 			
+			// 오늘날짜 가져오기
+			String sysdate = service.sysdate();
+			session.getServletContext().setAttribute("sysdate", sysdate);
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성

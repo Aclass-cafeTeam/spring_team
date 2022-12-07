@@ -65,6 +65,7 @@ div#cafe {
 #logo {
     display: flex;
     border-radius: 10px;
+    margin-right: 8px;
 }
 
 #logo > a > img{
@@ -75,13 +76,13 @@ div#cafe {
     display: flex;
     list-style: none;
     align-items: center;
-    justify-content: space-between;
+    /* justify-content: space-between; */
 }
 
 #name {
     display: inline;
     align-items: center;
-    padding-left: 20px;
+    /* padding-left: 20px; */
 }
 
 #manager {
@@ -93,6 +94,7 @@ div#cafe {
     line-height: 12px;
     text-align: center;
     vertical-align: top;
+    margin-right: 7px;
 }
 
 #inline {
@@ -126,7 +128,12 @@ div#cafe {
 }
 
 /* 지윤 매니저링크 작성 */
+.managerLinkBox{
+    height: 16px;
+    display: block;
+}
 .manageLink{
+    height: 16px;
     display: inline-flex;
     justify-content: flex-start;
     align-content: center;
@@ -138,7 +145,7 @@ div#cafe {
     text-decoration: none;
 }
 .managerLinkBox img{
-    margin-right: 5px;
+    margin-right: 3px;
     font-size: 10.6px;
 }
 .managerLinkBox > a:hover{
@@ -200,7 +207,7 @@ div#cafe {
 }
 
 #count-3 {
-    padding: 0 10px 12px;
+    padding: 0 10px 0px;
 }
 
 #star-img {
@@ -267,13 +274,15 @@ div#cafe {
 #cafe-type {
     display: flex;
     font-size: 12px;
-    padding: 7px 11px 13px;
+    padding: 0px 11px 13px;
     color: #333333;
 }
 
 #cafe-type :first-child {
     font-weight: bold;
-    padding: 5px 6px;
+    padding-right: 6px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 #cafe-type :last-child {

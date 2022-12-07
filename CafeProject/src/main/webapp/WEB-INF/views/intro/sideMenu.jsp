@@ -32,7 +32,7 @@
                                 <ul>
                                     <li id="logo"><a href="/"><img src="${cafe.cafeProfile}" width="58px" height="58px"/></a></li>
                                     <li id="name">
-                                </c:forEach>
+                                        </c:forEach>
                                         <div id="inline">
                                             <div id="manager">매니저</div>
                                             <div><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${managerNickname}</a></div>
@@ -54,12 +54,12 @@
                             <div id="cafe-member">
                                 <div id="cafe-grade">
                                     <img src="/resources/images/intro/train1.png" width="17px">
-                                    <a><a href="#" onclick="return=false;">내일로, 기차로!
+                                    <a><a href="#" onclick="return false;">내일로, 기차로!
                                 </div>
 
                                 <div id="member-count">
                                     <img src="/resources/images/회원수.PNG" height="16px">
-                                    <a href="#" id="count" onclick="return=false;">${memberCount}</a>
+                                    <a href="#" id="count" onclick="return false;">${memberCount}</a>
                                     <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>
@@ -113,12 +113,12 @@
                             <div id="cafe-member">
                                 <div id="cafe-grade">
                                     <img src="/resources/images/intro/train1.png" width="17px">
-                                    <a><a href="#" onclick="return=false;">내일로, 기차로!
+                                    <a><a href="#" onclick="return false;">내일로, 기차로!
                                 </div>
             
                                 <div id="member-count">
                                     <img src="/resources/images/회원수.PNG" height="16px">
-                                    <a href="#" id="count" onclick="return=false;">${memberCount}</a>
+                                    <a href="#" id="count" onclick="return false;">${memberCount}</a>
                                     <%-- <a href="#" id="count1">초대하기</a> --%>
                                 </div>
                             </div>
@@ -221,12 +221,12 @@
             </c:choose>
 
             <!-- **************************************카페 카페정보/나의활동 상단************************************** -->
-            <div id="search">
+            <%-- <div id="search">
                 <form action="#" method="get">
                     <input type="text" id="inputsearch">
                     <button id="searchbtn">검색</button>
                 </form>
-            </div>
+            </div> --%>
 
             <!-- **************************************카페 사이드 메뉴************************************** -->
             <div id="board">
@@ -266,13 +266,12 @@
                                         <c:choose>
                                             <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}" >
                                                     <li class="board">
-                                                    <c:if test="${board.boardForm=='A'}">
+                                                    <c:if test="${board.BOARD_FORM=='A'}">
                                                     <img src="/resources/images/앨범.PNG" id="border-img">
                                                     </c:if>
-                                                    <c:if test="${board.boardForm=='B'}">
+                                                    <c:if test="${board.BOARD_FORM=='B'}">
                                                     <img src="/resources/images/게시판.PNG" id="border-img">
                                                     </c:if>
-                                                    <img src="/resources/images/게시판.PNG" id="border-img">
                                                     <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${board.BOARD_NAME}</a>
                                                     </li>
                                             </c:when>
@@ -294,7 +293,12 @@
                                         <c:choose>
                                             <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}" >
                                                     <li class="board">
+                                                    <c:if test="${board.BOARD_FORM=='A'}">
+                                                    <img src="/resources/images/앨범.PNG" id="border-img">
+                                                    </c:if>
+                                                    <c:if test="${board.BOARD_FORM=='B'}">
                                                     <img src="/resources/images/게시판.PNG" id="border-img">
+                                                    </c:if>
                                                     <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
                                                     </li>
                                             </c:when>

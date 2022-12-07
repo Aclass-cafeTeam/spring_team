@@ -22,19 +22,23 @@
 	      <result property="cafeProfile" column="PROFILE_IMG"/>
 	      <result property="managerNickname" column="MANAGER_NICKNAME"/>
 	      <result property="managerNo" column="MANAGER_NO"/>
+	      <result property="imgNo" column="IMG_NO"/>
+	      <result property="sysdate" column="SYSDATE"/>
+	      <result property="boardCreate" column="B_CREATE_DATE"/>
 		</resultMap>
 
 		
 		<!-- 전체글조회 -->
 		<select id="selectBoardList" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_TITLE, BOARD_CODE, READ_COUNT,
+				SELECT B.BOARD_NO, B.BOARD_TITLE, B.BOARD_CODE, BI.IMG_NO, TO_CHAR(B.B_CREATE_DATE, 'YYYY.MM.DD') B_CREATE_DATE, READ_COUNT,
 				(SELECT COUNT(*) FROM "COMMENT" C
 				WHERE C.BOARD_NO = B.BOARD_NO 
 				AND COMMENT_DEL_FL='N') COMMENT_COUNT
-			FROM "BOARD" B
-			WHERE BOARD_DEL_FL = 'N'
-			AND NOT NOTICE_FL = 1
-			ORDER BY BOARD_NO DESC
+				FROM "BOARD" B
+				LEFT JOIN BOARD_IMG BI ON(B.BOARD_NO=BI.BOARD_NO)
+				WHERE BOARD_DEL_FL = 'N'
+				AND NOT NOTICE_FL = 1
+				ORDER BY BOARD_NO DESC
 		</select>
 		
 		<!-- 전체공지만 조회 -->
@@ -50,7 +54,7 @@
 		
 		<!-- 여행후기 게시판 글 조회 -->
 		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, MEMBER_NO, READ_COUNT, 
+			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, TO_CHAR(B.B_CREATE_DATE, 'YYYY.MM.DD') B_CREATE_DATE, MEMBER_NO, READ_COUNT, 
 							(SELECT COUNT(*) FROM "COMMENT" C
 							WHERE C.BOARD_NO =B.BOARD_NO
 							AND COMMENT_DEL_FL='N') COMMENT_COUNT
@@ -216,5 +220,10 @@
  		<!-- 이미지 첨부된 게시글 테이블 -->
  		<select id="boardImg" parameterType="_int" resultMap="introBoard_rm">
 				SELECT DISTINCT BOARD_NO FROM BOARD_IMG
+ 		</select>
+ 		
+ 		<!-- 오늘 날짜 가져오기 -->
+ 		<select id="sysdate" resultType="string">
+ 				SELECT TO_CHAR(SYSDATE, 'YYYY.MM.DD') "SYSDATE" FROM DUAL
  		</select>
 </mapper>
