@@ -3,6 +3,8 @@ package com.railtavelproject.cafe.main.controller;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +13,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.railtavelproject.cafe.board.model.service.BoardService;
 import com.railtavelproject.cafe.main.model.service.IntroService;
 import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
 @Controller
 public class MainController{
+	@Autowired
+	private BoardService CommonBoardservice;
+	
+	@Autowired
+    ServletContext application;
+	
 	@Autowired
 	private IntroService service;
 
@@ -25,7 +34,9 @@ public class MainController{
 		// GET 방식 "/" 로 요청이 오면 해당 메서드에서 처리
 		// == Handler Mapping
 		@RequestMapping(value = "/", method = RequestMethod.GET)
-		public String mainPage(Model model, HttpSession session){
+		public String mainPage(Model model, HttpSession session,HttpServletRequest request){
+			
+			
 			// 메인 페이지 요청 시 필요한 코드 작성 ....
 			
 			// 게시글 전체 불러오기
@@ -121,6 +132,12 @@ public class MainController{
 			// 카페매니저 멤버넘버
 			int managerNo = service.managerNo();
 			session.getServletContext().setAttribute("managerNo", managerNo);
+			
+			System.out.println(request.getSession().getServletContext().getAttribute("boardTypeList"));
+			List<Map<String, Object>> boardTypeList = CommonBoardservice.selectBoardType();
+			application = request.getSession().getServletContext();
+			application.setAttribute("boardTypeList", boardTypeList);
+			
 			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성
