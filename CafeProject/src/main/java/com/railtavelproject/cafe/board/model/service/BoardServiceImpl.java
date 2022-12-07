@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.railtavelproject.cafe.board.model.dao.BoardDAO;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.ImgPagination;
 import com.railtavelproject.cafe.board.model.vo.Pagination;
 import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
@@ -105,6 +106,7 @@ public class BoardServiceImpl implements BoardService{
 		return search;
 	}
 
+	// 전체 공지 목록 조회
 	@Override
 	public Map<String, Object> selectBoardAllNoticeList(int boardCode) {
 		
@@ -115,6 +117,23 @@ public class BoardServiceImpl implements BoardService{
 		allNotice.put("allNoticeList", allNoticeList);
 		
 		return allNotice;
+	}
+
+	// 앨범형 게시글 목록 조회
+	@Override
+	public Map<String, Object> selectBoardImgList(int boardCode, int cp) {
+		
+		int listCount = dao.getListCount(boardCode);
+		
+		ImgPagination imgPagination = new ImgPagination(listCount, cp);
+		
+		List<Board> boardList = dao.selectBoardImgList(imgPagination, boardCode);
+		
+		Map<String, Object> img = new HashMap<String, Object>();
+		img.put("imgPagination", imgPagination);
+		img.put("boardList", boardList);
+		
+		return img;
 	}
 
 
