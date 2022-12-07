@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.websocket.server.PathParam;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.railtavelproject.cafe.board.model.service.BoardService;
 import com.railtavelproject.cafe.manager.model.service.ManagerBoardService;
 import com.railtavelproject.cafe.manager.model.service.ManagerCafeInfoService;
 import com.railtavelproject.cafe.manager.model.service.ManagerMemberService;
@@ -31,6 +33,12 @@ import com.railtavelproject.cafe.member.model.vo.MemberLevel;
 @Controller
 @SessionAttributes({"memberCount","memberLevel", "mainCafeInfo","loginMember"})
 public class ManegerController {
+	
+	@Autowired
+    ServletContext application;
+	
+	@Autowired
+	private BoardService CommonBoardservice;
 	
 	@Autowired
 	private ManagerMemberService service;
@@ -211,6 +219,7 @@ public class ManegerController {
 		public String menuManager(Model model) {
 			Map<String, Object> map = boardService.selectBoardType();
 			model.addAttribute("map",map);
+			
 			return "manager/menuManager";
 		}
 		
