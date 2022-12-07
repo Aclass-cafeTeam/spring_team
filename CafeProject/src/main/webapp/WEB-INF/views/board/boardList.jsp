@@ -107,7 +107,7 @@
                                                 </c:if>                        
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a><img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
@@ -149,7 +149,7 @@
                                                 </c:if>
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}</a><img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
@@ -192,7 +192,7 @@
                                                 </c:if>                   
                                             </td>
                                             <td></td>
-                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
+                                            <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
                                             <td class="reporting-date">${board.boardCreateDate}</td>
                                             <td class="hits">${board.readCount}</td>
                                             <td class="like">
