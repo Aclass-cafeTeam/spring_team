@@ -82,7 +82,7 @@ public class LevelUPScheduling {
 			 
 			 List<Member> seccessMember = new ArrayList<Member>(); 
 		  // 배열 -> List로 변환 List<File> fileList = Arrays.asList(arr);
-
+			 
 			 if(!member.isEmpty()) {  
 				 for(CafeInfo level : levelTabel) {
 					 if(level.getMemberLeverNo() <= 1) continue;
@@ -117,7 +117,8 @@ public class LevelUPScheduling {
 				 logger.info(s.getMemberNickname() + "님이 " + s.getMemberLevelNo()+ " 등급이 되었습니다.");
 			 }
 			 
-		  
+			 logger.info("스케줄러 실행");
 		  }
+		 
 		 
 }
