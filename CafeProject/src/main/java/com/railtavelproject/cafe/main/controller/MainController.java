@@ -118,6 +118,10 @@ public class MainController{
 			String managerNickname = service.managerNickname();
 			session.getServletContext().setAttribute("managerNickname", managerNickname);
 			
+			// 카페매니저 멤버넘버
+			int managerNo = service.managerNo();
+			session.getServletContext().setAttribute("managerNo", managerNo);
+			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성
 			return "common/main";

@@ -111,6 +111,12 @@ public interface IntroService {
 	 * @return
 	 */
 	String managerNickname();
+
+	/**
+	 * 매니저 멤버넘버
+	 * @return
+	 */
+	int managerNo();
 	
 	
 

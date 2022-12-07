@@ -174,5 +174,13 @@ public class IntroDAO {
 		return sqlSession.selectOne("introMapper.managerNickname");
 	}
 
+	/**
+	 * 매니저 멤버넘버
+	 * @return
+	 */
+	public int managerNo() {
+		return sqlSession.selectOne("introMapper.managerNo");
+	}
+
 
 }

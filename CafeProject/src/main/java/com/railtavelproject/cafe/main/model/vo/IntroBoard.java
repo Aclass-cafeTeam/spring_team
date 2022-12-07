@@ -38,6 +38,7 @@ public class IntroBoard {
     private String cafeProfile; // 카페프로필 이미지
     
     private String managerNickname; // 매니저 이름
+    private int managerNo; // 매니저 멤버넘버
     
     
 }

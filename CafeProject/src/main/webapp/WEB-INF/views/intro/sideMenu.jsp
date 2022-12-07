@@ -35,7 +35,7 @@
                                 </c:forEach>
                                         <div id="inline">
                                             <div id="manager">매니저</div>
-                                            <div><a href="#">${managerNickname}</a></div>
+                                            <div><a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${managerNickname}</a></div>
                                         </div>
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
@@ -94,7 +94,7 @@
                                 </c:forEach>
                                         <div id="inline">
                                             <div id="manager">매니저</div>
-                                            <div><a href="#" onclick="return=false;">${managerNickname}</a></div>
+                                            <div><a href="/member/${managerNo}">${managerNickname}</a></div>
                                         </div>
                                         <div id="since">since 2022.10.18.</div>
                                     </li>
@@ -266,6 +266,12 @@
                                         <c:choose>
                                             <c:when test="${category.MAIN_CATEGORY_NO eq board.MAIN_CATEGORY_NO}" >
                                                     <li class="board">
+                                                    <c:if test="${board.boardForm=='A'}">
+                                                    <img src="/resources/images/앨범.PNG" id="border-img">
+                                                    </c:if>
+                                                    <c:if test="${board.boardForm=='B'}">
+                                                    <img src="/resources/images/게시판.PNG" id="border-img">
+                                                    </c:if>
                                                     <img src="/resources/images/게시판.PNG" id="border-img">
                                                     <a href="/member/login" onclick="return confirm('로그인 후 서비스 이용 가능하십니다.\n로그인 페이지로 이동 하시겠습니까?');">${board.BOARD_NAME}</a>
                                                     </li>

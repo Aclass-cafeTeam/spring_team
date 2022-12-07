@@ -856,3 +856,6 @@ section #border-img {
     list-style: none;
 }
 
+#commentCount1:hover{
+    text-decoration: underline;
+}
