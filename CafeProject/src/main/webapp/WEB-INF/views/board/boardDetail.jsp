@@ -134,11 +134,11 @@
                                         </c:otherwise>
                                     </c:choose>
                                     <div class="bottom-comment">
-                                        <a href="#">
+                                        <span id="focusComment">
                                             <div class="count-comment"><i class="fa-regular fa-comment"></i></div>
                                             <div class="bottom-comment">댓글</div>
                                             <div class="comment-count">${board.commentCount}</div>
-                                        </a>
+                                        </span>
                                     </div>
                                 </div>
                             </div>
