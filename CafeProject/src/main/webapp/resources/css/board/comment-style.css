@@ -188,3 +188,12 @@
 	border: solid 2px #ebecef;
 	outline-style: none;
 }
+
+/* 삭제된 댓글 */
+.delete-comment-content{
+    font-size: 14px;
+
+}
+.delete-comment-date{
+    font-size: 13px;
+}
