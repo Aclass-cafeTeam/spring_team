@@ -105,10 +105,15 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 	
 	// 게시글 수정
 	@Override
-	public int boardUpdate(Board board, String webPath, String folderPath) {		
+	public int boardUpdate(Board board) {
 		
-		return 0;
+		// 게시물 수정시에 기존 DB에 있는 게시물 이미지 삭제
+		dao.deleteImgList(board.getBoardNo());
+		
+		// 게시글 수정
+		return dao.boardUpdate(board);
 	}
+
 
 	
 	// 임시등록(INSERT)
@@ -138,6 +143,16 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		return dao.selectBoardType(loginMember);
 	}
 
+
+	// 임시등록-> 일반 게시글로 변동
+	@Override
+	public int updateTempPost(int boardNo) {
+		return dao.updateTempPost(boardNo);
+	}
+
+
+
+	
 
 
 	

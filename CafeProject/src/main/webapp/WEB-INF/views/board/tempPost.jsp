@@ -18,7 +18,7 @@
                 <ul id="temp-list">
                     <c:forEach items="${tPost}" var="tPost">  
                         <li class="temp-item">
-                            <a href="/board/${tPost.boardCode}/${tPost.boardNo}/update" class="temp-link">
+                            <a href="/board/${tPost.boardCode}/${tPost.boardNo}/tempPost" class="temp-link">
                                 <strong class="temp-item-title">${tPost.boardTitle}</strong>
                             </a>
                             <div class="temp-item-tool">

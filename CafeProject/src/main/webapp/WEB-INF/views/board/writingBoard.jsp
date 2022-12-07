@@ -129,7 +129,7 @@
                         </c:when>
                         <c:otherwise>
                             <div class="settingArea">
-                                <p><input type="checkbox" id="boardNotice" disabled> <label for="boardNotice">공지로 등록</label></p>
+                                <p><input type="checkbox" id="boardNotice"> <label for="boardNotice">공지로 등록</label></p>
 
                                 <div id="setting"> 
                                     <p>전체공지 또는 게시판 공지로 등록가능합니다.</p>
@@ -160,8 +160,11 @@
 
     <script>
         const memberNo = "${loginMember.memberNo}";
+        const memberLevelNo = "${loginMember.memberLevelNo}";
+        
     </script>
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/writingBoard.js"></script>
+    <script src="/resources/js/board/tempPost.js"></script>
 </body>
 </html>

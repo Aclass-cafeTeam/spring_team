@@ -21,6 +21,7 @@
 	      <result property="thumbnail" column="THUMBNAIL"/>
 	      <result property="cafeProfile" column="PROFILE_IMG"/>
 	      <result property="managerNickname" column="MANAGER_NICKNAME"/>
+	      <result property="managerNo" column="MANAGER_NO"/>
 		</resultMap>
 
 		
@@ -49,7 +50,7 @@
 		
 		<!-- 여행후기 게시판 글 조회 -->
 		<select id="selectTravelReview" parameterType="_int" resultMap="introBoard_rm">
-			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, READ_COUNT, 
+			SELECT BOARD_NO, BOARD_CODE, BOARD_TITLE, MEMBER_NICKNAME, MEMBER_NO, READ_COUNT, 
 							(SELECT COUNT(*) FROM "COMMENT" C
 							WHERE C.BOARD_NO =B.BOARD_NO
 							AND COMMENT_DEL_FL='N') COMMENT_COUNT
@@ -193,7 +194,7 @@
  		
  		<!-- 카페 프로필 이미지 -->
  		<select id="cafeInfo" parameterType="_int" resultMap="introBoard_rm">
-				SELECT *
+				SELECT PROFILE_IMG
 				FROM CAFE_INFO
 				WHERE CAFE_NO = 1
  		</select>
@@ -204,5 +205,11 @@
 				FROM "MEMBER"
 				WHERE MEMBER_LEVEL_NO = 0
  		</select>
- 
+ 		
+ 		<!-- 매니저 등급 멤버넘버 -->
+ 		<select id="managerNo" resultType="_int">
+				SELECT MEMBER_NO
+				FROM "MEMBER"
+				WHERE MEMBER_LEVEL_NO = 0
+ 		</select>
 </mapper>
