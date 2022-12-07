@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.board.model.vo.ImgPagination;
 import com.railtavelproject.cafe.board.model.vo.Pagination;
 import com.railtavelproject.cafe.main.model.vo.IntroBoard;
 
@@ -33,7 +34,7 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getListCount", boardCode);
 	}
 
-	/** 페이징처리
+	/** 특정 게시글 + 페이징처리
 	 * @param pagination
 	 * @param boardCode
 	 * @return
@@ -124,6 +125,19 @@ public class BoardDAO {
 		RowBounds rowBounds = new RowBounds(0, 5);
 		
 		return sqlSession.selectList("boardMapper.selectBoardAllNoticeList", boardCode ,rowBounds);
+	}
+
+	/** 앨범형 게시글 목록 조회
+	 * @param imgPagination
+	 * @param boardCode
+	 * @return
+	 */
+	public List<Board> selectBoardImgList(ImgPagination imgPagination, int boardCode) {
+		
+		int offset = (imgPagination.getCurrentPage() - 1) * imgPagination.getLimit();
+		RowBounds rowBounds = new RowBounds(offset, imgPagination.getLimit());
+		
+		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode, rowBounds);
 	}
 
 	
