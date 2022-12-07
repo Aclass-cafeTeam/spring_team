@@ -127,6 +127,14 @@ public class BoardDAO {
 		return sqlSession.selectList("boardMapper.selectBoardAllNoticeList", boardCode ,rowBounds);
 	}
 
+	/** 앨범형 게시글 수 조회
+	 * @param boardCode
+	 * @return
+	 */
+	public int getAlbumListCount(int boardCode) {
+		return sqlSession.selectOne("boardMapper.getAlbumListCount", boardCode);
+	}
+	
 	/** 앨범형 게시글 목록 조회
 	 * @param imgPagination
 	 * @param boardCode
@@ -139,6 +147,18 @@ public class BoardDAO {
 		
 		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode, rowBounds);
 	}
+
+	/** 앨범형 게시글 별 공지 목록 조회
+	 * @param boardCode
+	 * @return
+	 */
+	public List<Board> selectBoardAlbumNoticeList(int boardCode) {
+		
+		RowBounds rowBounds = new RowBounds(0, 5);
+		
+		return sqlSession.selectList("boardMapper.selectBoardAlbumNoticeList", boardCode ,rowBounds);
+	}
+
 
 	
 

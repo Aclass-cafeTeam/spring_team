@@ -46,6 +46,9 @@ public class BoardController {
 		Map<String, Object> notice = service.selectBoardNoticeList(boardCode);
 		model.addAttribute("notice", notice);
 		
+		Map<String, Object> albumNotice = service.selectBoardAlbumNoticeList(boardCode);
+		model.addAttribute("albumNotice", albumNotice);
+		
 		Map<String, Object> allNotice = service.selectBoardAllNoticeList(boardCode);
 		model.addAttribute("allNotice", allNotice);
 
