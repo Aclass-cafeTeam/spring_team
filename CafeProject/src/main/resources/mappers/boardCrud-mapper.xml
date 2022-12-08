@@ -176,7 +176,7 @@
 			UPDATE BOARD SET
 			BOARD_DEL_FL = 'N', BOARD_CODE = #{boardCode}, TITLE_TAG_NO = #{titleTagNo},
 			BOARD_TITLE = #{boardTitle}, BOARD_CONTENT = #{boardContent}
-			WHERE BOARD_NO = #{boardNo}
+			WHERE BOARD_NO = #{boardNo} AND BOARD_DEL_FL = 'T'
 		</update>
 		
 

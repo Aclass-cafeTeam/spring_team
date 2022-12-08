@@ -66,10 +66,11 @@
             </form>
         
             <p class="find-area"> <%--  onclick="window.open(this.href, '_blank', 'width=800, height=500 top=300, left=600'); return false;" --%>
-                <a href="/member/findPw" target="_black">
-                <i class="fa-solid fa-magnifying-glass"></i> 비밀번호가 기억나지 않는다면??</a>
-                <span> | </span>
-                <a href="/member/signUp">회원가입</a>
+                <%-- <a href="/member/findPw" target="_black">
+                <i class="fa-solid fa-magnifying-glass"></i> 비밀번호가 기억나지 않는다면??</a>--%>
+                <a href="/">메인화면으로</a>
+                <span> | </span> 
+                <a href="/member/signUp">회원가입하기 <i class="fa-solid fa-user-plus"></i></a>
             </p>
         </section>
     </main>

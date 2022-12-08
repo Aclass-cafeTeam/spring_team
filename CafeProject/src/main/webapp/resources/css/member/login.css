@@ -210,7 +210,7 @@ main {
 a, span {
     text-decoration: none;
     cursor: pointer;
-    color: black;
+    color: #888888;
     font-size: 18px;
 }
 
