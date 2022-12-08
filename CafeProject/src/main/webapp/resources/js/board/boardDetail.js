@@ -2,8 +2,10 @@
 // (전역변수 memberNo, boardNo 사용(boardDetail.jsp))
 const boardLike = document.getElementById("boardLike");
 
-boardLike.addEventListener("click", e =>{
-    // 로그인 상태가 아닌 경우
+if (boardLike != null) {
+
+    boardLike.addEventListener("click", e =>{
+        // 로그인 상태가 아닌 경우
     if(memberNo==""){
         alert("로그인 후 이용해주세요.")
         return;
@@ -55,6 +57,7 @@ boardLike.addEventListener("click", e =>{
     }
 });
 
+}
 
 
 // 게시글 삭제
@@ -77,7 +80,7 @@ const updateBtn = document.getElementById("updateBtn");
 updateBtn.addEventListener("click", ()=>{
 
     // /board/{boardCode}/{boardNo}/update?cp=10 GET방식
-    location.href = location.pathname + "/update" + location.search;
+    location.href = location.pathname + "/update"; // + location.search;
                 // /board/{boardCode}/{boardNo}/update      // ?cp=10
     
 });

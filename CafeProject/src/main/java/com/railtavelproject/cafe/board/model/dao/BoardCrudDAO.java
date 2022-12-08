@@ -120,11 +120,20 @@ public class BoardCrudDAO {
 	}
 
 
-	/** 임시등록-> 일반 게시글로 변동
+	/** 임시저장글 상세조회
 	 * @param boardNo
-	 * @return result
+	 * @return
 	 */
-	public int updateTempPost(int boardNo) {
-		return sqlSession.update("boardCrudMapper.updateTempPost", boardNo);
+	public Board tempPostDetail(int boardNo) {
+		return sqlSession.selectOne("boardCrudMapper.tempPostDetail", boardNo) ;
+	}
+
+
+	/** 임시저장글을 저장글로 수정
+	 * @param board
+	 * @return
+	 */
+	public int updateTempPost(Board board) {
+		return sqlSession.update("boardCrudMapper.updateTempPost", board);
 	}
 }

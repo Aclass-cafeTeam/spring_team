@@ -13,30 +13,15 @@
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
-    <fieldset>
-        <p><strong>본인확인 이메일로 인증</strong></p>
-        <p>본인확인 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.</p>
-
-        <table>
-            <tr>
-                <th>이름</th>
-                <td><input type="text"></td>
-            </tr>
-            
-            <tr>
-                <th>이메일 주소</th>
-                <td><input type="text"></td>
-                <td><button>인증번호 받기</button></td>
-            </tr>
-
-            <tr>
-                <td colspan="3"><input type="text" placeholder="인증번호 6자리 숫자 입력"></td>
-            </tr>
-        </table>
-    </fieldset>
-
-    <!-- 인증번호를 발송했습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해 주세요. -->
-    
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="jumbotron">
+            <h2> 임시 비밀번호가 전송되었습니다. </h2><br/>
+                    
+                <h1>${member}</h1><br/>
+                <h2>를 확인해주세요.</h2>
+            <button type="button" class="btn btn-primary" onclick="location.href='/member/login'">로그인페이지</button>
+            <button type="button" class="btn btn-primary" onclick="location.href='/'">메인페이지</button>
+        </div>
+    </div>
 </body>
 </html>
