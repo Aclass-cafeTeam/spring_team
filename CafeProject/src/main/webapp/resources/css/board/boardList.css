@@ -441,3 +441,19 @@ a {
     text-align: center;
 }
 /* 전체 공지 전용 css 끝 */
+
+
+
+
+
+.jytitle{
+    width: 430px;
+}
+
+.jytitle{
+    width: 430px;
+}
+.jytitle > a{
+    width: 430px;
+    word-break:keep-all;
+}
