@@ -29,7 +29,7 @@
         
         
         <section class="find-content">
-            <form action="/authEmail" method="POST">
+            <form action="/authEmail" method="POST" onsubmit="return findValidate()">
                 <div class="find-frm">
                     <div class="find-wrap">
                         <div class="find-row">
@@ -38,9 +38,8 @@
                         </div>
                     </div>
                     
-
                     <div class="message-area">
-                        <p id="Message">일치하는 아이디가 없습니다.</p>
+                        <p id="fMessage"></p>
                     </div>
                     
                     <div>

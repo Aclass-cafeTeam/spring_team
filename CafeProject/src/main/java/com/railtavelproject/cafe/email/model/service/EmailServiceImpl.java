@@ -46,7 +46,7 @@ public class EmailServiceImpl implements EmailService {
         	MimeMessage mail = mailSender.createMimeMessage();
 
             // 제목
-            String subject = "내일로, 기차로 회원가입 인증이메일입니다.";
+            String subject = "내일로, 기차로 인증번호 확인이메일입니다.";
 
             // 문자 인코딩
             String charset = "UTF-8";

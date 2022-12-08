@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.railtavelproject.cafe.email.model.service.EmailService;
 import com.railtavelproject.cafe.member.model.service.MemberService;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
@@ -188,6 +189,19 @@ public class MemberController {
 		model.addAttribute("memberLevel",memberLevel);
 		
 		return "member/viewMemberLevel";
+	}
+	
+	
+    /////////////////////////////////// 비밀번호 찾기 ///////////////////////////////////////////
+    
+	@GetMapping("/member/findPw")
+	public String findPw(Member loginMember, Model model) {
+		
+		// 일치하는 회원이 있는지 확인 후 결과 반환
+   		if(service.emailDupCheck(loginMember.getMemberEmail())==0) {
+   			model.addAttribute("message", "일치하는 아이디가 없습니다. 아이디를 다시 확인해주세요.");
+   		}
+   		return "/member/findPw";
 	}
 
 	

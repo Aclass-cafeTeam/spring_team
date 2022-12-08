@@ -1,4 +1,4 @@
-console.log("writingBoard.js 연결확인");
+console.log("tempToBoard.js 연결확인");
 
 // select 토글 버튼 (∧ ∨)
 const select =document.querySelectorAll(".select")
@@ -41,7 +41,6 @@ if(select[1].firstElementChild.innerText == '말머리 선택') {
     }    
 }
 
-
 // 공지 여부 선택
 const boardNotice = document.getElementById("boardNotice");
 const setting = document.getElementById("setting");
@@ -75,36 +74,23 @@ if(comment != null) {
 }
 
 
+// 게시글 수정 유효성 검사
+function updateValidate() {
+    const boardTitle = document.querySelector("[name='boardTitle']");
+    const boardContent = document.querySelector("[name='boardContent']");
 
-// 글쓰기 작성 기본 유효성 검사
-const boardTitle = document.querySelector("[name='boardTitle']");
-const boardContent = document.querySelector("[name='boardContent']");
-
-function writeValidate() {
-    console.log("글 작성 유효성 검사");
-    
-    if(boardCode.value=='') {
-        alert("게시판을 선택하세요.");
-        return false;
-    }
-
-    // if(titleTagNo.value=='') {
-    //     alert("태그여부를 선택하세요.");
-    //     return false;
-    // }
-    
-    if(boardTitle.value.trim().length==0){
-        alert("제목을 입력하세요.");
-        boardTitle.value="";
+    if(boardTitle.value.trim().length == 0) {
+        alert("제목을 입력해주세요.");
+        boardTitle.value = "";
         boardTitle.focus();
         return false;
     }
 
-    if(boardContent.value.trim().length==0){
-        alert("내용을 입력하세요.");
-        boardContent.value="";
+    if(boardContent.value.trim().length == 0) {
+        alert("내용을 입력해주세요.");
+        boardContent.value = "";
         boardContent.focus();
         return false;
-    }
+    }    
     return true;
 }
