@@ -16,7 +16,7 @@
 	      <result property="boardForm" column="BOARD_FORM" /><!-- A: 앨범형 B: 게시판형  -->
 	      <result property="boardLikeYN" column="BOARD_LIKE_YN" /><!-- 좋아요 기능여부(하는 걸로 체크:Y, 체크 안하면: N) -->
 	      <result property="boardMemberLevelNo" column="MEMBER_LEVEL_NO" /><!-- 게시판별 멤버 등급 조건 외래키 부모키랑 맞아야함 2,3,4,5,6 -->
-	      <result property="TypeDelFL" column="TYPE_DEL_FL" /><!-- 게시판 삭제여부(N: 삭제x / Y:삭제o) -->
+	      <result property="TypeDelFL" column="TYPE_DEL_FL"/><!-- 게시판 삭제여부(N: 삭제x / Y:삭제o) -->
 	      
 	      <result property="BdeleteDate" column="B_DELETE_DATE"/> 
 	      <result property="BCreateDate" column="B_CREATE_DATE"/>
@@ -174,4 +174,12 @@
 	WHERE BOARD_DEL_FL = 'M'
 	AND BOARD_NO = ${boardNo}
 	</select>
+	
+	
+	 <!-- 게시글 복구 -->
+    <update id="RemoveArticle">
+    UPDATE "BOARD" SET
+	BOARD_DEL_FL = 'N'
+	WHERE BOARD_CODE = #{boardCode}
+    </update>
 </mapper>

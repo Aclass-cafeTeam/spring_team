@@ -232,5 +232,12 @@ public class ManagerBoardDAO {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("managerBoardmapper.selectdetailBoardList",boardNo);
 	}
+
+	public int RemoveArticle(String boardCode, String typeDelFL) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("boardCode", boardCode); 
+		map.put("typeDelFL", typeDelFL);
+		return sqlSession.update("managerBoardmapper.RemoveArticle", map);
+	}
 	
 }

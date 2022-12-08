@@ -48,5 +48,7 @@ public interface ManagerBoardService {
 
 	Board selectdetailBoardList(int boardNo);
 
+	String RemoveArticle(String boardCode, String typeDelFL);
+
 	/* Board selectBoard(int i, int mainCategoryNo); */
 }

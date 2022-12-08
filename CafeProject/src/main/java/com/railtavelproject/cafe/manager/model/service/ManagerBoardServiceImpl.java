@@ -216,6 +216,20 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return dao.selectdetailBoardList(boardNo);
 	}
 
+	@Override
+	public String RemoveArticle(String boardCode, String typeDelFL) {
+		String message = "";
+		int result = dao.RemoveArticle(boardCode,typeDelFL);
+		
+		if(result > 0) {
+			message = "게시글이 복구되었습니다.";
+		}else {
+			message = "게시글 복구에 실패하셨습니다.";
+		}
+		
+		return message;
+	}
+
 	/*
 	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {
 	 * 

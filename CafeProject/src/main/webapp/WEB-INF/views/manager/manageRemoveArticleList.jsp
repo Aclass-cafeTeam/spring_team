@@ -98,8 +98,8 @@
           <div class="section_cont">
             <div class="board_area bd_n">
               <div class="board_top board_top_v1">
-                <form id="searchForm" action="/ManageRemoveArticleList.nhn" method="POST">
-                  <input type="hidden" name="search.clubid" value="30828148">
+                <form id="searchForm" action="">
+                  
                   <input type="hidden" name="search.page" value="1">
                   <input type="hidden" name="search.writerid" value="">
                   <input type="hidden" name="search.deleteid" value="">
@@ -159,7 +159,9 @@
                     </c:when>
                     <c:otherwise>
                       <c:forEach var="Board" items="${removeBoardList}">
-                        <tr>
+                        <tr class="tr${Board.boardCode}" id="tr${Board.boardCode}">
+                          <input type="hidden" class="TypeDelFL${Board.boardCode}" id="TypeDelFL${Board.boardCode}" name="TypeDelFL${Board.boardCode}" value="${Board.getTypeDelFL()}">
+                          <input type="hidden" class="boardCode" id="boardCode" name="boardCode" value="${Board.boardCode}">
                           <td class="tl">
                             <div class="ellipsis"><span class="txt4 c_gy2">${Board.boardName}</span></div>
                           </td>
@@ -173,7 +175,7 @@
                             <span class="num">${Board.BCreateDate}.</span>
                           </td>
                           <td class="tc">
-                            <a href="#" class="btn_type _click(ManageRemoveArticleList|Restore|16|${Board.boardCode}) _stopDefault"><span>복구</span></a>
+                            <a href="#" id="reBtn" title="${Board.boardCode}" class="reBtn btn_type _click(ManageRemoveArticleList|Restore|16|${Board.boardCode}) _stopDefault"><span>복구</span></a>
                           </td>
                         </tr>
                       </c:forEach>

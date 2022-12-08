@@ -211,6 +211,33 @@ public class ManagerBoardController {
 			}
 			
 			
+			
+			//게시글 복구
+			@PostMapping("/RemoveArticle")
+			@ResponseBody
+			public String RemoveArticle(
+					@RequestParam(value="boardCode") String boardCode, 
+					@RequestParam(value="TypeDelFL",required=false) String TypeDelFL //Y이면 삭제 X
+					) throws Exception {
+					
+					System.out.println(boardCode);
+					System.out.println(TypeDelFL);
+					String message = "";
+					if(TypeDelFL.equals('Y')) {
+						message = "게시글이 써진 게시판이 삭제되어 북구할 수 없습니다.";
+					}else {
+						message = service.RemoveArticle(boardCode,TypeDelFL);
+					}
+						
+					 
+
+												
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("message",message);
+										
+					return new Gson().toJson(map);
+			}
+			
 		
 }
 
