@@ -3,7 +3,7 @@
 
 <%-- map에 저장된 값을 꺼내어 각각 변수에 저장 --%>
 <c:set var="boardList" value="${img.boardList}" />
-<c:set var="pagination" value="${img.pagination}" />
+<c:set var="pagination" value="${img.imgPagination}" />
 <c:set var="albumNoticeList" value="${albumNotice.albumNoticeList}" />
 <c:set var="allNoticeList" value="${allNotice.allNoticeList}" />
 
