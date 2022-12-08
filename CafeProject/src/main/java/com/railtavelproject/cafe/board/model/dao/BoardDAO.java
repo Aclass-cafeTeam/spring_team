@@ -74,8 +74,8 @@ public class BoardDAO {
 	 */
 	public List<Board> selectBoardAllList(Pagination pagination) {
 		
-		int offset = (pagination.getCurrentPage() - 1) * pagination.getLimit();
-		RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+		int offset = (pagination.getCurrentPage() - 1) * 20;
+		RowBounds rowBounds = new RowBounds(offset, 20);
 		
 		return sqlSession.selectList("boardMapper.selectBoardAllList", null, rowBounds);
 	}
