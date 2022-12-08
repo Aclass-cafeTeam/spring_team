@@ -35,8 +35,10 @@
                         <div class="top-menu">
                             <div>
                                 <!-- 로그인한 회원과 게시글 작성자 번호가 같은 경우-->
-                                <c:if test="${loginMember.memberNo==board.memberNo}">
-                                    <button id="updateBtn" class="top-alter">수정</button>
+                                <c:if test="${loginMember.memberNo==board.memberNo || (loginMember.authorityNo eq 0) || (loginMember.authorityNo eq 1)}">
+                                    <c:if test="${loginMember.memberNo==board.memberNo}">
+                                        <button id="updateBtn" class="top-alter">수정</button>
+                                    </c:if>
                                     <button id="deleteBtn" class="top-delete">삭제</button>
                                 </c:if>
                             </div>
