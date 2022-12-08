@@ -72,7 +72,7 @@
                                 <th class="th-writer">작성자</th>
                                     <th class="th-date">작성일</th>
                                 <th class="th-hits">조회</th>
-                                <th><a href="#" class="th-like">좋아요</a></th>
+                                <th class="th-like"><c:if test="${boardInfo.boardLikeFlag=='Y'}">좋아요</c:if></th>
                             </tr>
                         </thead>
 
