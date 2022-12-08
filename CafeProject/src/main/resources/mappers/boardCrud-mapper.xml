@@ -4,20 +4,22 @@
 
 	<!-- Board resultMap -->
 	<resultMap type="Board" id="board_rm">
-		  <id property="boardNo" column="BOARD_NO"/>
-		  <id property="boardName" column="BOARD_NAME"/>
-		  <id property="boardCode" column="BOARD_CODE"/>
-      <result property="boardTitle" column="BOARD_TITLE"/>
-      <result property="boardContent" column="BOARD_CONTENT"/>
-      <result property="boardCreateDate" column="B_CREATE_DATE"/>
-      <result property="boardUpdateDate" column="B_UPDATE_DATE"/>   
-      <result property="titleTagNo" column="TITLE_TAG_NO"/>
-      <result property="titleTagName" column="TITLE_TAG_NAME"/>
-      <result property="writingFormNo" column="WRITING_FORM_NO"/>
-      <result property="writingFormName" column="WRITING_FORM_NAME"/>
-      <result property="writingFormContent" column="WRITING_FORM_CONTENT"/>
-      <result property="noticeFlag" column="NOTICE_FL"/>
-      <result property="tempCount" column="TEMP_COUNT"/>
+		<id property="boardNo" column="BOARD_NO"/>
+		<result property="boardName" column="BOARD_NAME"/>
+		<result property="boardCode" column="BOARD_CODE"/>
+		<result property="boardTitle" column="BOARD_TITLE"/>
+		<result property="boardContent" column="BOARD_CONTENT"/>
+		<result property="boardCreateDate" column="B_CREATE_DATE"/>
+		<result property="boardUpdateDate" column="B_UPDATE_DATE"/>   
+		<result property="titleTagNo" column="TITLE_TAG_NO"/>
+		<result property="titleTagName" column="TITLE_TAG_NAME"/>
+		<result property="writingFormNo" column="WRITING_FORM_NO"/>
+		<result property="writingFormName" column="WRITING_FORM_NAME"/>
+		<result property="writingFormContent" column="WRITING_FORM_CONTENT"/>
+		<result property="noticeFlag" column="NOTICE_FL"/>
+		<result property="tempCount" column="TEMP_COUNT"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="memberLevelNo" column="MEMBER_LEVEL_NO"/>
 	</resultMap>
 	
 	<!-- 말머리 목록 조회 -->
@@ -28,17 +30,23 @@
 	
 	<!-- 게시판 목록 조회(회원등급) -->
 	<select id="selectBoardType" resultType="map"> 
-		SELECT DISTINCT(BOARD_CODE), BOARD_NAME, BOARD_FORM, MEMBER_LEVEL_NO, AUTHORITY_NO 
+		SELECT DISTINCT(BOARD_CODE), BOARD_NAME, BOARD_FORM, TITLE_TAG_YN, MEMBER_LEVEL_NO, TYPE_DEL_FL
 		FROM BOARD_TYPE
 		LEFT JOIN MEMBER USING(MEMBER_LEVEL_NO)
-		WHERE MEMBER_LEVEL_NO BETWEEN 2 AND #{memberLevelNo}
-		AND TYPE_DEL_FL = 'N'
-		OR #{authorityNo} IN (0, 1)
+		<choose>
+			<when test = "memberLevelNo == 0 || memberLevelNo ==1">
+			WHERE TYPE_DEL_FL = 'N'
+			</when>
+			<otherwise>
+			WHERE MEMBER_LEVEL_NO BETWEEN 2 AND #{memberLevelNo}
+			AND TYPE_DEL_FL = 'N'
+			</otherwise>
+		</choose>
 		ORDER BY BOARD_CODE
 	</select>
 	
 	
- 		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
+		<!--  useGeneratedKeys 속성 : DB 내부적으로 생성한 키(시퀀스 등)
  				useGeneratedKeys="true" : JDBC getGeneratedKeys()메서드 사용 허용 ** 필수 사용
 	
 				* 마이바티스의 동적 SQL *
@@ -76,14 +84,27 @@
  		
  		<!-- 게시글 삭제 -->
  		<update id="deleteBoard">
- 			UPDATE BOARD SET BOARD_DEL_FL = 'Y', B_DELETE_DATE = SYSDATE 
-			WHERE BOARD_NO = #{boardNo}
+ 			UPDATE BOARD 
+ 			<set>
+ 				<if test="memberNo == managerNo">BOARD_DEL_FL = 'Y',</if>
+ 				<if test="memberNo != managerNo">BOARD_DEL_FL = 'M',</if>
+ 				 B_DELETE_DATE = SYSDATE 
+ 			</set>
+			WHERE BOARD_NO = #{boardNo} AND BOARD_DEL_FL ='N'
  		</update>
  		
  		
+ 		<!-- 임시등록 한행씩 삭제 -->
+ 		<update id="deleteTemp">
+ 			UPDATE BOARD SET BOARD_DEL_FL = 'Y', B_DELETE_DATE = SYSDATE 
+			WHERE BOARD_NO = #{boardNo} AND BOARD_DEL_FL = 'T'
+ 		</update> 
+
+ 		
  		<!-- 게시글 상세 조회(수정 화면에 사용) -->
 		<select id="boardDetail" resultMap="board_rm">
-			SELECT BOARD_CODE, BOARD_NAME, BOARD_NO, TITLE_TAG_NO, TITLE_TAG_NAME, BOARD_TITLE, BOARD_CONTENT, BOARD_FORM
+			SELECT BOARD_CODE, BOARD_NAME, BOARD_NO, TITLE_TAG_NO, TITLE_TAG_NAME, 
+						BOARD_TITLE, BOARD_CONTENT, BOARD_FORM, MEMBER_NO
 			FROM BOARD 
 			JOIN TITLE_TAG USING (TITLE_TAG_NO)
 			JOIN BOARD_TYPE USING (BOARD_CODE)

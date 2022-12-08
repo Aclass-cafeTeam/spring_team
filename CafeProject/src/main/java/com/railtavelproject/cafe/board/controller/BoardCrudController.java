@@ -142,16 +142,29 @@ public class BoardCrudController {
 	}
 	
 	
-	
 	// 게시글 삭제
 	@GetMapping("/board/{boardCode}/{boardNo}/delete")
 	public String deleteBoard(@RequestHeader("referer") String referer,
 							@PathVariable int boardCode, @PathVariable int boardNo,
-							RedirectAttributes ra) {
+							RedirectAttributes ra, Board board,
+							@SessionAttribute("loginMember") Member loginMember) {
 
-		// 게시글 번호를 이용해서 게시글 삭제 -> BOARD_DEL_FL = 'Y' (UPDATE)
-		int result = service.deleteBoard(boardNo);
+		// 게시글 번호를 이용해서 게시글 삭제
+		// 단, 관리자에 의해서 삭제된 것인지 직접 삭제한 것인지에 대한 처리
+		// 본인이 삭제인 경우, BOARD_DEL_FL = 'Y' (UPDATE) -> 관리자가 관리자 본인의 글을 삭제한 경우도 포함
+		// 관리자에 의한 삭제인 경우, BOARD_DEL_FL = 'M' (UPDATE)
 
+		// 작성된 게시글의 memberNo 조회
+		board = service.boardDetail(boardNo);
+		
+		// 로그인 회원번호를 관리자 번호로 임시 세팅
+		// 게시글을 작성한 회원번호 == 로그인한 회원번호(본인 OR 관리자) 'Y'
+		// 게시글을 작성한 회원번호 != 로그인한 회원번호 'M'
+		board.setManagerNo(loginMember.getMemberNo());
+		// System.out.println(board);
+
+		int result = service.deleteBoard(board);
+			
 		String message = null;
 		String path = null;
 		
@@ -162,7 +175,6 @@ public class BoardCrudController {
 		} else { // 게시글 삭제 실패 시
 			message = "게시글 삭제 실패";
 			path = referer;
-			
 		}
 		
 		ra.addFlashAttribute(message);		
@@ -271,7 +283,7 @@ public class BoardCrudController {
 	@PostMapping("/board/tempPost/delete")
 	@ResponseBody
 	public int delectTempPost(@RequestParam(value= "boardNo") int boardNo) {
-		return service.deleteBoard(boardNo);
+		return service.deleteTemp(boardNo);
 	}
 	
 	
