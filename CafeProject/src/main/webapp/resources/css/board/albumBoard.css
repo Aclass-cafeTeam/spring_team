@@ -430,3 +430,14 @@ li > div{
     width: 859.99px;
     margin: 0;
 }
+
+
+/* 앨범형 페이징 */
+.pagination {
+    margin-top: 5px;
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    font-size: 13px;
+}

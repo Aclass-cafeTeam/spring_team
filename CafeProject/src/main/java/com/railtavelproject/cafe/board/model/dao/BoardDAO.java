@@ -132,19 +132,18 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getAlbumListCount", boardCode);
 	}
 	
-	/** 앨범형 게시글 목록 조회
+	/** 앨범형 게시글 목록 조회!!!!! 수정중 
 	 * @param imgPagination
 	 * @param boardCode
 	 * @return
 	 */
-	public List<Board> selectBoardImgList(ImgPagination imgPagination, int boardCode) {
-		
-//		RowBounds rowBounds = new RowBounds(0, 20);
-		
-//		int offset = (imgPagination.getCurrentPage() - 1) * imgPagination.getLimit();
-//		RowBounds rowBounds = new RowBounds(offset, imgPagination.getLimit());
-		
-		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode/*,rowBounds*/);
+	public List<Board> selectBoardImgList(ImgPagination pagination, int boardCode) {
+		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
+	      
+	    RowBounds rowBounds = new RowBounds(offset, pagination.getLimit());
+	    
+	   
+		return sqlSession.selectList("boardMapper.selectBoardImgList", boardCode,rowBounds);
 	}
 
 	/** 앨범형 게시글 별 공지 목록 조회
