@@ -62,28 +62,36 @@ if (boardLike != null) {
 
 // 게시글 삭제
 const deleteBtn = document.getElementById("deleteBtn");
-deleteBtn.addEventListener("click", ()=>{
-    
-    console.log("연결확인");
-    if(confirm("게시글을 삭제하시겠습니까?")) {
-        // /board/{boardCode}/{boardNo}/delete GET방식
-        // 삭제 후 /board/{boardCode}
+
+if (deleteBtn != null) {
+    deleteBtn.addEventListener("click", ()=>{
         
-        location.href = location.pathname + "/delete";
-        // /board/1/1998/delete
-    }
-});
+        console.log("연결확인");
+        if(confirm("게시글을 삭제하시겠습니까?")) {
+            // /board/{boardCode}/{boardNo}/delete GET방식
+            // 삭제 후 /board/{boardCode}
+            
+            location.href = location.pathname + "/delete";
+            // /board/1/1998/delete
+        }
+    });
+
+}
 
 
 // 게시글 수정
 const updateBtn = document.getElementById("updateBtn");
-updateBtn.addEventListener("click", ()=>{
 
-    // /board/{boardCode}/{boardNo}/update?cp=10 GET방식
-    location.href = location.pathname + "/update"; // + location.search;
-                // /board/{boardCode}/{boardNo}/update      // ?cp=10
-    
-});
+if (updateBtn != null) {
+    updateBtn.addEventListener("click", ()=>{
+
+        // /board/{boardCode}/{boardNo}/update?cp=10 GET방식
+        location.href = location.pathname + "/update"; // + location.search;
+                    // /board/{boardCode}/{boardNo}/update      // ?cp=10
+        
+    });
+}
+
 
 
 // const countComment = document.getElementById("count-comment");
