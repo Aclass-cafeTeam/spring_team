@@ -13,15 +13,16 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Board {
-	   private int boardNo; // 게시글 번호   BOARD_NO
-	   private String boardTitle; // 게시글 제목   BOARD_TITLE
-	   private String boardContent; // 게시글 내용   BOARD_CONTENT
+//VO객체 변수명 처음이 대문자일 경우 안될 수 도 있음	
+	   private int boardNo;             // 게시글 번호   BOARD_NO
+	   private String boardTitle;       // 게시글 제목   BOARD_TITLE
+	   private String boardContent;     // 게시글 내용   BOARD_CONTENT
 	   
-	   private String BCreateDate; // 게시글 작성일   B_CREATE_DATE
-	   private String BUpdateDate; // 게시글 수정일   B_UPDATE_DATE
+	   private String BCreateDate;      // 게시글 작성일   B_CREATE_DATE
+	   private String BUpdateDate;      // 게시글 수정일   B_UPDATE_DATE
 	   
-	   private int readCount; // 게시글 조회수 READ_COUNT
-	   private String BdeleteDate; // B_DELETE_DATE
+	   private int readCount;           // 게시글 조회수 READ_COUNT
+	   private String BdeleteDate;      // B_DELETE_DATE
 	   
 		/* 게시판 타입 */
 	   private int boardCode; 			// 게시판 코드 BOARD_CODE
@@ -46,25 +47,22 @@ public class Board {
 	   
 
 	   
-	   private String boardDeleteFlag; // 게시글 삭제여부   TYPE_DEL_FL
+	   private String boardDeleteFlag;  // 게시글 삭제여부   TYPE_DEL_FL
 
-	   private int memberNo; // 게시글 작성자 번호 
-	   private String memberName; // 게시글 작성자 이름 
-	   private String memberEmail; // 게시글 작성자 이름 
-	   private String memberNickname; // 게시글 작성자 이름 
-	   private String profileImage; // 게시글 작성자 이름 
-	   private String thumbnail; // 게시글 작성자 이름 
-	   private String memberLevelImage; // 게시글 작성자 이름 
-	   private String memberLevelName; // 게시글 작성자 이름 
+	   	/* 관리자 페이지에서 관리자가 삭제한 게시글 복구 밑 상세 조회 할 때 필요*/	   
+	   private int memberNo; 			  // 회원 번호 
+	   private String memberName; 		  // 회원 이름 
+	   private String memberEmail;		  // 회원 이메일 
+	   private String memberNickname;     // 회원 닉네임 
+	   private String profileImage;       // 작성자 프로필 
+	   private String thumbnail;          // 게시글 이미지  
+	   private String memberLevelImage;   // 멤버 등급 이미지 
+	   private String memberLevelName;    // 멤버 등급 이름
 	   
 	   private List<Comment> commentList; // 댓글과 관련된 List
 
-	   private String boardLike; // 좋아요기능여부   BOARD_LIKE_YN
+	   private String boardLike;           // 좋아요기능여부   BOARD_LIKE_YN
 	   
 	   
 	   
-	   
-	   // 게시판 대분류 번호   MAIN_CATEGORY_NO
-	   // 말머리 사용 여부   TITLE_TAG_YN
-	   // 게시판 형식   BOARD_FORM   
 }
