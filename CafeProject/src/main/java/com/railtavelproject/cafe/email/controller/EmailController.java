@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.railtavelproject.cafe.email.model.service.EmailService;
+import com.railtavelproject.cafe.member.model.vo.Member;
 
 
 @Controller
@@ -47,12 +49,5 @@ public class EmailController {
         }
         return 0;
     }
-    
-    
-    @GetMapping("/member/findPw")
-    public String findPw() {
-    	return "member/findPw";
-    }
-  
 
 }

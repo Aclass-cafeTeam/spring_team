@@ -10,4 +10,13 @@ public class BoardImage {
 	private String imagePath;
 	private String imageRename;
 	private int boardNo;
+	
+	public BoardImage(String imagePath, String imageRename, int boardNo) {
+		super();
+		this.imagePath = imagePath;
+		this.imageRename = imageRename;
+		this.boardNo = boardNo;
+	}
+	
+	
 }

@@ -219,9 +219,9 @@ const logunbtn = document.getElementsByClassName("rank-logun");
 // 로그인했을때 누르는 랭킹에 표시되는 데이터
 const loginbtn = document.getElementById("rank-login");
 
-if(logunbtn!= null){
-    logunbtn.addEventListener("click", function(event){
-        return false;
-    });
+// if(logunbtn!= null){
+//     logunbtn.addEventListener("click", function(event){
+//         return false;
+//     });
 
-}
+// }

@@ -7,6 +7,7 @@ import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -30,6 +31,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.railtavelproject.cafe.board.model.service.BoardCrudService;
 import com.railtavelproject.cafe.board.model.vo.Board;
+import com.railtavelproject.cafe.common.Util;
 import com.railtavelproject.cafe.member.model.vo.Member;
 
 
@@ -77,19 +79,8 @@ public class BoardCrudController {
 		// 내부경로로 저장
 		String webPath = "/resources/images/board/";
 		String folderPath = request.getSession().getServletContext().getRealPath(webPath); // application scope
-		
-		String originalFileName = multipartFile.getOriginalFilename();	//오리지널 파일명
-		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String date = sdf.format(new java.util.Date(System.currentTimeMillis()));
-		// 현재 시간을 기준으로해서 파일명으로 설정
-	    int ranNum = (int) (Math.random() * 100000); // 5자리 랜덤 숫자 생성
-	    String str = "_" + String.format("%05d", ranNum);
-	    
-	    String savedFileName = date+str+extension;	//저장될 파일명
-	
-		File targetFile = new File(folderPath + savedFileName);	
-		
+		String savedFileName = Util.fileRename(multipartFile.getOriginalFilename());	//오리지널 파일명을 새로운 파일명으로 저장
+		File targetFile = new File(folderPath + savedFileName);		
 		
 		try {
 				// 파일 저장
@@ -191,6 +182,10 @@ public class BoardCrudController {
 		// 게시글 번호를 이용한 게시글 내용 상세 조회
 		Board board = service.boardDetail(boardNo);
 		model.addAttribute("board", board);
+		
+		// 태그조회
+		List<Map<String, Object>> titleTagList = service.selectTitleTag();
+		model.addAttribute("titleTagList",titleTagList);
 	
 		return "board/updateBoard";
 	}
@@ -211,15 +206,14 @@ public class BoardCrudController {
 			) throws Exception {
 		
 		 
-		// board 객체에 boardCode 세팅
-		board.setBoardCode(boardCode);
+		// board 객체에 boardNo세팅
 		board.setBoardNo(boardNo);
 		// System.out.println(board);
 		
 		// 게시글 수정 서비스 호출
 		int result = service.boardUpdate(board);
 		
-		// 4. 서비스 결과에 따른 응답 제어
+		// 서비스 결과에 따른 응답 제어
 		String path = null;
 		String message = null;
 		
@@ -289,7 +283,7 @@ public class BoardCrudController {
 	}
 	
 	
-	// 임시등록에서 하나 조회
+	// 임시등록글 상세조회
 	@GetMapping("/board/{boardCode}/{boardNo}/tempPost")
 	public String writeTempPost (	
 			@PathVariable("boardCode") int boardCode,
@@ -297,40 +291,55 @@ public class BoardCrudController {
 			Model model) {
 
 		// 게시글 번호를 이용한 게시글 내용 상세 조회
-		Board board = service.boardDetail(boardNo);
+		Board board = service.tempPostDetail(boardNo);
 		model.addAttribute("board", board);
+		
+		// 태그조회
+		List<Map<String, Object>> titleTagList = service.selectTitleTag();
+		model.addAttribute("titleTagList",titleTagList);
 		
 		return "board/updateBoard";
 	}
 	
-	
-	
-	// 임시등록-> 일반 게시글로 변동
-//	@PostMapping("/board/{boardCode}/{boardNo}/tempPost")
-//	public String updateTempPost(@RequestHeader("referer") String referer,
-//			@PathVariable int boardCode, @PathVariable int boardNo,
-//			RedirectAttributes ra) {
-//		
-//		System.out.println(boardNo);
-//
-//		// 게시글 번호를 이용해서 게시글 수정 -> BOARD_DEL_FL = 'N' (UPDATE)
-//		int result = service.updateTempPost(boardNo);
-//		
-//		String message = null;
-//		String path = null;
-//						
-//		if( result > 0 ) { // 게시글 삭제 성공 시
-//			message = "게시글이 정상적으로 등록되었습니다.";
-//			path = "/board/" + boardCode +"/"+ boardNo;
-//		
-//		} else { // 게시글 삭제 실패 시
-//			message = "다시 확인해주세요.";
-//			path = referer;
-//		}
-//		
-//		ra.addFlashAttribute(message);		
-//
-//		return "board/write/;
-//	}
+			
+			
+			
+	// 임시저장글 수정
+	@PostMapping("/board/{boardCode}/{boardNo}/tempPost")
+	public String updateTempPost(
+			Board board, // boardTitle, boardContent(커맨드 객체)
+			@PathVariable("boardCode") int boardCode, // 게시판 번호
+			@PathVariable("boardNo") int boardNo, // 수정할 게시글 번호
+			@RequestParam(value="cp", required=false, defaultValue="1") int cp, // 현재 페이지
+			@RequestHeader("referer") String referer, // 이전 요청 주소
+			// HttpSession session, // 서버 파일 저장 경로 얻기 용도
+			RedirectAttributes ra // 리다이렉트 시 응답 메세지 전달용
+			) throws Exception {
+		
+		 
+		// board 객체에 boardNo세팅
+		board.setBoardNo(boardNo);
+		// System.out.println(board);
+		
+		// 게시글 수정 서비스 호출
+		int result = service.updateTempPost(board);
+		
+		// 4. 서비스 결과에 따른 응답 제어
+		String path = null;
+		String message = null;
+		
+		if(result > 0) { // 게시글 수정 성공 시 
+			path = "/board/" + boardCode + "/" + boardNo + "?cp=" + cp; // 상세조회 경로로 이동
+			message = "게시글이 정상적으로 수정되었습니다.";
+			
+		} else {
+			message ="게시글 수정 실패";
+			path = referer;
+		}
+			
+		ra.addFlashAttribute(message);
+		
+		return "redirect:" + path;
+	}
 	
 }

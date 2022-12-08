@@ -7,7 +7,6 @@ const boardModal = document.getElementById("boardModal"); // 모달창
 const btnClose = document.getElementById("btn-close"); // 닫기버튼
 
 
-
 // 임시등록 버튼 누르면 임시저장
 tempSave.addEventListener("click", ()=>{
     // const boardTitle = document.querySelector("[name='boardTitle']");
@@ -90,7 +89,7 @@ modalBtn.addEventListener("click",()=>{
                 tempLink.classList.add("temp-link");
                 const boardCode = temp.boardCode;
                 const boardNo = temp.boardNo;
-                tempLink.setAttribute('href',  "#");
+                tempLink.setAttribute('href', "/board/" + boardCode +"/"+ boardNo +"/tempPost");
 
                 const tempTitle = document.createElement("strong");
                 tempTitle.classList.add("temp-item-title");
@@ -154,13 +153,12 @@ modalBtn.addEventListener("click",()=>{
                             + "선택한 글을 불러오시겠습니까?")) {
                         e.preventDefault;
                         e.stopPropagation;
-                        location.href = referer;
 
                     } else {
-                        // location.href = "/board/" + boardCode +"/"+ boardNo +"/tempPost";
+                        location.href = tempLink;
+                        tempRow.remove();
                     }
                 })
-
             }
             console.log(tempList);
         },

@@ -69,12 +69,19 @@ public interface BoardCrudService {
 	 */
 	int deleteTempAll(int memberNo);
 
-	
-	/** 임시등록-> 일반 게시글로 변동
+
+	/** 임시등록글 상세조회
 	 * @param boardNo
-	 * @return result
+	 * @return
 	 */
-	int updateTempPost(int boardNo);
+	Board tempPostDetail(int boardNo);
+
+	
+	/** 임시저장글을 저장글로 수정
+	 * @param board
+	 * @return
+	 */
+	int updateTempPost(Board board);
 
 	
 	

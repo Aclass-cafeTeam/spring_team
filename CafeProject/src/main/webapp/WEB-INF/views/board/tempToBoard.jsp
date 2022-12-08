@@ -20,7 +20,7 @@
     
     <link rel="stylesheet" href="/resources/css/main.css">
     <link rel="stylesheet" href="/resources/css/board/writingBoard.css">
-    
+
     <!-- fontawesome 아이콘 -->
     <script src="https://kit.fontawesome.com/e4f69a07ca.js" crossorigin="anonymous"></script>
 		
@@ -32,10 +32,10 @@
     
     <div class="writing-board">
         
-        <form action="/board/${board.boardCode}/${board.boardNo}/update" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return updateValidate()">  
+        <form action="/board/${board.boardCode}/${board.boardNo}/tempPost" method="POST" enctype="multipart/form-data" class="board-write" id="boardWriteForm" onsubmit ="return updateValidate()">  
 
             <div class="writingHeader">
-                <h1 id="HeaderTitle">카페 글쓰기</h1>
+                <h1 id="HeaderTitle">${board.boardTitle}</h1>
                 
                 <div class="toolArea">
                     <button type="submit" id="btn-submit">등록</button>
@@ -131,6 +131,6 @@
 
     <script src="/resources/js/main/main.js"></script>
     <script src="/resources/js/board/summernote.js"></script>
-    <script src="/resources/js/board/updateBoard.js"></script>
+    <script src="/resources/js/board/tempToBoard.js"></script>
 </body>
 </html>
