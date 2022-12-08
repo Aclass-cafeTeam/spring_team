@@ -52,7 +52,7 @@ memberEmail.addEventListener("input", function(){
     }
     
     // 정규표현식을 이용한 유효성 검사
-    const reg = /^[a-z\d_-]{5,}@[\w_-]+(\.\w+){1,3}$/;
+    const reg = /^[a-z.\d_-]{5,}@[\w_-]+(\.\w+){1,3}$/;
 
     if(reg.test(memberEmail.value)){ // 이메일이 유효한 경우
         $.ajax({

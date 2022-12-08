@@ -298,7 +298,7 @@ public class BoardCrudController {
 		List<Map<String, Object>> titleTagList = service.selectTitleTag();
 		model.addAttribute("titleTagList",titleTagList);
 		
-		return "board/updateBoard";
+		return "board/tempToBoard";
 	}
 	
 			
