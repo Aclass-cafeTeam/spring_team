@@ -36,13 +36,23 @@ public class BoardCrudDAO {
 		return result; // 0 또는 삽입된 게시글 번호
 	}
 	
-
+	
 	/** 게시글 삭제
+	 * @param board
+	 * @return result 
+	 */
+	public int deleteBoard(Board board) {
+		// System.out.println(board);
+		return sqlSession.update("boardCrudMapper.deleteBoard", board);
+	}
+
+	
+	/** 임시등록 한행씩 삭제 
 	 * @param boardNo
 	 * @return result
 	 */
-	public int deleteBoard(int boardNo) {
-		return sqlSession.update("boardCrudMapper.deleteBoard", boardNo);
+	public int deleteTemp(int boardNo) {
+		return sqlSession.update("boardCrudMapper.deleteTemp", boardNo);
 	}
 
 	
