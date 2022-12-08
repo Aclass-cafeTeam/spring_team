@@ -224,7 +224,7 @@ public class ManagerBoardController {
 					System.out.println(TypeDelFL);
 					String message = "";
 					if(TypeDelFL.equals('Y')) {
-						message = "게시글이 써진 게시판이 삭제되어 북구할 수 없습니다.";
+						message = "게시글이 써진 게시판이 삭제되어 복구할 수 없습니다.";
 					}else {
 						message = service.RemoveArticle(boardCode,TypeDelFL);
 					}
