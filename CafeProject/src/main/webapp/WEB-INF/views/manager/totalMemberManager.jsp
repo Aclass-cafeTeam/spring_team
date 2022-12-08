@@ -51,7 +51,7 @@
                               <a href="/manager/menuManager"><img src="/resources/images/free-icon-menu-2550222.png">메뉴</a>
                           </li>
                           <li>
-                              <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                              <a href="/manager/manageRemoveArticleList"><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                           </li>
                       </ul>
                   </div>

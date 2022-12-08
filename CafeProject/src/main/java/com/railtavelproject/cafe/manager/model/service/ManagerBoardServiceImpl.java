@@ -13,6 +13,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.railtavelproject.cafe.manager.model.dao.ManagerBoardDAO;
 import com.railtavelproject.cafe.manager.model.vo.Board;
+import com.railtavelproject.cafe.manager.model.vo.Member;
+import com.railtavelproject.cafe.manager.model.vo.Pagination;
 
 
 
@@ -190,6 +192,39 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 			message = "이동 반영 완료되었습니다";
 		}else {
 			message = "이동 실패되었습니다.";
+		}
+		
+		return message;
+	}
+
+	@Override
+	public Map<String, Object> selectboardList(int cp) {
+		
+		int listCount = dao.getDeleteBoardListCount();
+		Pagination pagination = new Pagination(listCount,cp);
+		
+		List<Board> deleteBoardList = dao.getDeleteBoardList(pagination); 
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("pagination", pagination);
+		map.put("removeBoardList",deleteBoardList);
+		return map;
+	}
+
+	@Override
+	public Board selectdetailBoardList(int boardNo) {
+		
+		return dao.selectdetailBoardList(boardNo);
+	}
+
+	@Override
+	public String RemoveArticle(String boardCode, String typeDelFL) {
+		String message = "";
+		int result = dao.RemoveArticle(boardCode,typeDelFL);
+		
+		if(result > 0) {
+			message = "게시글이 복구되었습니다.";
+		}else {
+			message = "게시글 복구에 실패하셨습니다.";
 		}
 		
 		return message;

@@ -217,6 +217,7 @@ public class ManagerMemberServiceImpl implements ManagerMemberService{
 		
 		map.put("pagination", pagination);
 		map.put("memberList",memberList);
+		map.put("listCount",listCount);
 		
 		return map;
 	}

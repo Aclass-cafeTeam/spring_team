@@ -8,7 +8,11 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -191,6 +195,50 @@ public class ManagerBoardController {
 								
 			return new Gson().toJson(map);
 	}
+	
+	
+	//팝업창(삭제된 상세글 보기)으로 가기
+			@RequestMapping("/manager/manageRemoveArticleListPopup/{boardNo}")
+			public String ManageSecedePopup(Model model,
+					@PathVariable("boardNo") int boardNo) {
+				
+			    Board detailBoardList = service.selectdetailBoardList(boardNo); 
+				Map<String, Object> map = new HashMap<String, Object>();
+				
+				map.put("removeBoardList",detailBoardList);
+				model.addAttribute("map",map);
+				return "manager/manageRemoveArticleListPopup";
+			}
+			
+			
+			
+			//게시글 복구
+			@PostMapping("/RemoveArticle")
+			@ResponseBody
+			public String RemoveArticle(
+					@RequestParam(value="boardCode") String boardCode, 
+					@RequestParam(value="TypeDelFL",required=false) String TypeDelFL //Y이면 삭제 X
+					) throws Exception {
+					
+					System.out.println(boardCode);
+					System.out.println(TypeDelFL);
+					String message = "";
+					if(TypeDelFL.equals('Y')) {
+						message = "게시글이 써진 게시판이 삭제되어 북구할 수 없습니다.";
+					}else {
+						message = service.RemoveArticle(boardCode,TypeDelFL);
+					}
+						
+					 
+
+												
+					Map<String, Object> map = new HashMap<String, Object>();
+					map.put("message",message);
+										
+					return new Gson().toJson(map);
+			}
+			
+		
 }
 
 
