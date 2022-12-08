@@ -131,7 +131,7 @@
 
                 <div>
                     <div class="writing">
-                        <button type="submit" class="writing-btn">글쓰기</button>
+                        <button type="submit" class="writing-btn" id="insertBtn">글쓰기</button>
                     </div>
                 </div>
 
@@ -220,6 +220,6 @@
     <!-- **************************************푸터************************************** -->
     <jsp:include page="/WEB-INF/views/common/footer.jsp" />
     <script src="/resources/js/main/main.js"></script>
-    
+    <script src="/resources/js/board/boardList.js"></script>
 </body>
 </html>
