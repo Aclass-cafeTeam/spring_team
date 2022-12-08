@@ -76,7 +76,8 @@
 	LEFT JOIN TITLE_TAG USING(TITLE_TAG_NO)
 	LEFT JOIN MEMBER_LEVEL USING(MEMBER_LEVEL_NO)
 	WHERE BOARD_NO = #{boardNo}
-	AND BOARD_DEL_FL IN ('N','T')
+	AND BOARD_DEL_FL = 'N'
+	
 	</select>
  <!-- 조회 수 증가 -->
 	<select id="updateReadCount">
