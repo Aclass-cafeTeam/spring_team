@@ -65,6 +65,14 @@
         
 
                     <table class="list-table">
+                        <%-- <colgroup>
+                            <col width="31px">
+                            <col width="430px">
+                            <col width="118px">
+                            <col width="80px">
+                            <col width="68px">
+                            <col width="52px">
+                        </colgroup> --%>
                         <thead>
                             <tr>
                                 <th class="empty"></th>
@@ -132,7 +140,7 @@
                                     <c:forEach var="board" items="${noticeList}">
                                         <tr>
                                             <td class="strong">공지</td>
-                                            <td>
+                                            <td class="title">
                                                 <a class="strong-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                                 <!-- 말머리를 사용하는 게시판일 경우 -->
                                                 <c:if test="${boardInfo.titleTagFlag=='Y'}">
@@ -175,7 +183,7 @@
                                     <c:forEach var="board" items="${boardList}">
                                         <tr>
                                             <td class="board-number">${board.boardNo}</td>
-                                            <td>
+                                            <td class="jytitle">
                                                 <a class="normal-title" href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}"">
                                                 <!-- 말머리를 사용하는 게시판일 경우 -->
                                                 <c:if test="${boardInfo.titleTagFlag=='Y'}">
@@ -186,10 +194,10 @@
                                                         </c:if>
                                                     </c:if>
                                                 </c:if>
-                                                ${board.boardTitle}</a>
+                                                <div class="jytitle">${board.boardTitle}</a>
                                                 <c:if test="${board.commentCount!=0}">
                                                 <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
-                                                </c:if>                   
+                                                </c:if></div>
                                             </td>
                                             <td></td>
                                             <td class="writer"><a href="/member/${board.memberNo}">${board.memberNickname}&nbsp<img width="10" height="10" class="levelImage" src="${board.memberLevelImage}"></a></td>
