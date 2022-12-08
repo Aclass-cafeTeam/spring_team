@@ -42,7 +42,7 @@
                             <a href="#"><img src="/resources/images/free-icon-edit-4386594.png">글•글양식</a>
                         </li> -->
                         <li>
-                            <a href=""><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
+                            <a href="/manager/manageRemoveArticleList"><img src="/resources/images/free-icon-spam-alert-5628585.png">삭제글</a>
                         </li>
                     </ul>
                 </div>

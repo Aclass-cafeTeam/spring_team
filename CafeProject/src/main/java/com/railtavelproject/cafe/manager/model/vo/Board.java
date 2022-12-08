@@ -21,6 +21,7 @@ public class Board {
 	   private String BUpdateDate; // 게시글 수정일   B_UPDATE_DATE
 	   
 	   private int readCount; // 게시글 조회수 READ_COUNT
+	   private String BdeleteDate; // B_DELETE_DATE
 	   
 		/* 게시판 타입 */
 	   private int boardCode; 			// 게시판 코드 BOARD_CODE
@@ -49,6 +50,12 @@ public class Board {
 
 	   private int memberNo; // 게시글 작성자 번호 
 	   private String memberName; // 게시글 작성자 이름 
+	   private String memberEmail; // 게시글 작성자 이름 
+	   private String memberNickname; // 게시글 작성자 이름 
+	   private String profileImage; // 게시글 작성자 이름 
+	   private String thumbnail; // 게시글 작성자 이름 
+	   private String memberLevelImage; // 게시글 작성자 이름 
+	   private String memberLevelName; // 게시글 작성자 이름 
 	   
 	   private List<Comment> commentList; // 댓글과 관련된 List
 
