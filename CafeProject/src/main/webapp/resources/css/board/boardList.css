@@ -232,6 +232,10 @@ a {
     margin-top: 9px;
 }
 
+.writing:hover{
+    cursor: pointer;
+}
+
 /* 글쓰기 버튼 */
 .writing-btn{
     float: right;
@@ -240,6 +244,10 @@ a {
     color: #333;
     width: 60px;
     height: 30px;
+}
+
+.writing-btn:hover{
+    cursor: pointer;
 }
 
 /* 다음 */
