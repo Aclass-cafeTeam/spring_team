@@ -120,8 +120,8 @@ public class ManegerController {
 	}
 	
 	//삭제 게시글 불러오기 
-		@GetMapping("/manager/manageRemoveArticleList")
-		public String manageRemoveArticleList(//Board board,
+	@GetMapping("/manager/manageRemoveArticleList")
+	public String manageRemoveArticleList(//Board board,
 			@RequestParam(value="searchType" , required = false, defaultValue = "1")int searchType,
 			Model model,
 			HttpSession session,
@@ -136,7 +136,7 @@ public class ManegerController {
 				System.out.println(map.get("memberList"));
 				System.out.println(map.get("pagination"));*/
 				return "manager/manageRemoveArticleList";
-		}
+	}
 	
 	
 	
