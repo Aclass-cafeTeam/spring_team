@@ -59,7 +59,7 @@
                             </c:if>
                             ${board.boardTitle}</a>
                             <c:if test="${board.commentCount!=0}">
-                            <a href="#" class="comment">[${board.commentCount}]</a>
+                            <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                             </c:if>
                             </td>
                             <td></td>
@@ -113,7 +113,7 @@
                             ${board.boardTitle}</a></div>
                             <div class="img-comment"><a href="#" class="img-comment">
                             <c:if test="${board.commentCount!=0}">
-                            <a href="#" class="comment">[${board.commentCount}]</a>
+                            <a href="/board/${boardCode}/${board.boardNo}?cp=${pagination.currentPage}${sURL}" class="comment">[${board.commentCount}]</a>
                             </c:if>
                             </a></div>
                         </div>
