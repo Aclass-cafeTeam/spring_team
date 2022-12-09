@@ -37,13 +37,19 @@ div#content {
     font-weight: bold;
 }
 
-#ul-1>li>a {
+#ul-1>li>a{
     /* justify-content: start; */
     font-size: 13px;
     color: black;
     text-decoration: none;
     justify-content: space-between;
 }
+/* #ul-1>li>a #btn2{
+    color: #959595;
+}
+#ul-1>li>a #btn1{
+    color: black;
+} */
 
 
 
@@ -869,4 +875,8 @@ section #border-img {
 
 #commentCount1:hover{
     text-decoration: underline;
+}
+
+#btn2 > a{
+    color: #959595;
 }

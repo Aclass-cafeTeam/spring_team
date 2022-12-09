@@ -89,6 +89,20 @@ $(function() {
         $(e.target).parent().parent().parent().parent().find(".member_ranking").hide();
         $(e.target).parent().parent().parent().parent().find(".member_ranking").eq(idx).show();
     });
+
+    $("#btn2").on("focus", e => {
+        $(e.target).css("color", "black");
+
+        const btn1 = document.getElementById("btn1");
+        $(btn1).css("color", "#959595");
+    });
+
+    $("#btn1").on("focus", e => {
+        $(e.target).css("color", "black");
+
+        const btn2 = document.getElementById("btn2");
+        $(btn2).css("color", "#959595");
+    })
    
 
 

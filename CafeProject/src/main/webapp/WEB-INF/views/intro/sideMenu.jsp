@@ -16,11 +16,11 @@
             <div id="content">
 
                 <ul id="ul-1">
-                    <li><a href="#" id="btn1" onclick="return false;">
-                            <p>카페정보</p>
+                    <li><a href="#" id="btn1" onclick="return false;"  class="changeBtn">
+                            <p id="btn1">카페정보</p>
                         </a></li>
-                    <li><a href="#" id="btn2" onclick="return false;">
-                            <p>나의활동</p>
+                    <li><a href="#" id="btn2" onclick="return false;"  class="changeBtn">
+                            <p id="btn2">나의활동</p>
                         </a></li>
                 </ul>
                 <c:choose>
@@ -283,6 +283,7 @@
                     </c:when>        
                 </c:choose>
                 <%-------------------------------------------------- 로그인 했을때 보여지는 게시판 --------------------------------------------------%>
+                ${todayBoardList.boardCode}
                 <c:choose>
                     <c:when test="${!empty sessionScope.loginMember}">
                         <c:forEach var="category" items="${mainList}">
@@ -299,8 +300,17 @@
                                                     <c:if test="${board.BOARD_FORM=='B'}">
                                                     <img src="/resources/images/게시판.PNG" id="border-img">
                                                     </c:if>
-                                                    <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}</a>
-                                                    </li>
+                                                    <a href="/board/${board.BOARD_CODE}">${board.BOARD_NAME}
+                                                    <%-- <c:forEach var="todayBoard" items="${todayBoardList}">
+                                                    <c:choose>
+                                                    <c:when test="${empty todayBoard}">안불러져<c:if test="${empty todayBoard}">불러져</c:if></c:when>
+                                                    
+                                                    </c:choose>
+                                                    </c:forEach>
+                                                    <c:if test="${todayBoardList.todayBoard.BOARD_CODE!=board.BOARD_CODE}">
+                                                    <img id="newTag" src="/resources/images/intro/N.png" width="12px" height="12px" alt="">
+                                                    </c:if> --%>
+                                                    </a>
                                             </c:when>
                                         </c:choose>
                                     </c:forEach>

@@ -226,4 +226,12 @@
  		<select id="sysdate" resultType="string">
  				SELECT TO_CHAR(SYSDATE, 'YYYY.MM.DD') "SYSDATE" FROM DUAL
  		</select>
+ 		
+ 		<!-- 새로운 글이 올라온 게시판 -->
+ 		<select id="todayBoard" parameterType="_int" resultMap="introBoard_rm">
+				SELECT DISTINCT BOARD_CODE, TO_CHAR(B_CREATE_DATE, 'YYYYMMDD') B_CREATE_DATE
+				FROM BOARD
+				WHERE TO_CHAR(B_CREATE_DATE, 'YYYYMMDD')=TO_CHAR(SYSDATE, 'YYYYMMDD')
+				ORDER BY BOARD_CODE
+ 		</select>
 </mapper>

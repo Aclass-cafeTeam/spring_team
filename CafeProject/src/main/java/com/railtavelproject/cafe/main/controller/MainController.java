@@ -142,6 +142,12 @@ public class MainController{
 			String sysdate = service.sysdate();
 			session.getServletContext().setAttribute("sysdate", sysdate);
 			
+			// 오늘 게시글이 작성된 게시판
+			Map<String, Object> todayBoard = null;
+			todayBoard = service.todayBoard();
+			session.getServletContext().setAttribute("todayBoard", todayBoard);
+			
+			
 			// * forward 방법 *
 			// - View Resolver의 prefix / suffix를 제외한 jsp 경로를 작성
 			return "common/main";

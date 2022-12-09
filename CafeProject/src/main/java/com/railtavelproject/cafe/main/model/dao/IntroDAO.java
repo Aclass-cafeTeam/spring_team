@@ -198,5 +198,13 @@ public class IntroDAO {
 		return sqlSession.selectOne("introMapper.sysdate");
 	}
 
+	/**
+	 * 오늘 게시글이 올라온 게시판
+	 * @return
+	 */
+	public List<IntroBoard> todayBoard() {
+		return sqlSession.selectList("introMapper.todayBoard", null);
+	}
+
 
 }

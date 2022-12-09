@@ -224,37 +224,20 @@ public class IntroServiceImpl implements IntroService{
 	public String sysdate() {
 		return dao.sysdate();
 	}
-	
-	
-	
-	
+
+	// 오늘 게시글이 올라온 게시판
+	@Override
+	public Map<String, Object> todayBoard() {
+		List<IntroBoard> todayBoardList = dao.todayBoard();
+		Map<String, Object> todayBoard = new HashMap<String, Object>();
+		todayBoard.put("todayBoardList", todayBoardList);
+				
+		return todayBoard;
+	}
 	
 	
 	
 	
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

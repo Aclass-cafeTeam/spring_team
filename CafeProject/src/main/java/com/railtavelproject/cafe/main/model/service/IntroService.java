@@ -129,6 +129,12 @@ public interface IntroService {
 	 * @return
 	 */
 	String sysdate();
+
+	/**
+	 * 오늘 게시글이 올라온 게시판
+	 * @return
+	 */
+	Map<String, Object> todayBoard();
 	
 	
 
