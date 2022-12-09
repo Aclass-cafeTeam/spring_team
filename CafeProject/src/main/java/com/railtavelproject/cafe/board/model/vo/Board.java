@@ -21,6 +21,7 @@ public class Board {
     private int memberNo; // 게시글 작성자 번호 MEMBER_NO
     private String memberNickname; // 게시글 작성자 MEMBER_NICKNAME
     private String profileImage; // 프로필 이미지 PROFILE_IMG
+    private String memberLevelNo; // 등급
     private String memberLevelName; // 등급 이름
     private String memberLevelImage; // 등급이미지 
     private int boardCode; // 게시판 코드
@@ -40,6 +41,8 @@ public class Board {
     
     private int tempCount; // 임시저장글수
     private String thumbnail; // 썸네일
+    
+    private int managerNo; 
     
     // 댓글 목록
     private List<Comment> commentList;
