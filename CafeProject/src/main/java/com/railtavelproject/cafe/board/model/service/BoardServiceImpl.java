@@ -72,7 +72,7 @@ public class BoardServiceImpl implements BoardService{
 		return all;
 	}
 
-	// 베스트 게시글 조회 (좋아요 높은 순)
+	// 베스트 게시글 조회 (조회수 높은 순)
 	@Override
 	public Map<String, Object> selectBoardBestList(int cp) {
 		

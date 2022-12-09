@@ -29,7 +29,7 @@ public interface BoardService {
 	 */
 	Map<String, Object> selectBoardAllList(int cp);
 
-	/** 베스트 게시글 조회 (좋아요 높은 순)
+	/** 베스트 게시글 조회 (조회수 높은 순)
 	 * @param cp
 	 * @return
 	 */

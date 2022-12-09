@@ -88,7 +88,7 @@ public class BoardDAO {
 		return sqlSession.selectOne("boardMapper.getAllListCount_search");
 	}
 
-	/** 베스트 게시글 조회 (좋아요 높은 순)
+	/** 베스트 게시글 조회 (조회수 높은 순)
 	 * @param pagination
 	 * @return
 	 */
