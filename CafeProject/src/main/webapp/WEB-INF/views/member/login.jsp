@@ -70,7 +70,7 @@
                 <i class="fa-solid fa-magnifying-glass"></i> 비밀번호가 기억나지 않는다면??</a>--%>
                 <a href="/">메인화면으로</a>
                 <span> | </span> 
-                <a href="/member/signUp">회원가입하기 <i class="fa-solid fa-user-plus"></i></a>
+                <a href="/member/signUp">회원가입하기</a>
             </p>
         </section>
     </main>
