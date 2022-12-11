@@ -85,9 +85,22 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 
 	
 	// 게시글 삭제
-	@Transactional
 	@Override
-	public int deleteBoard(int boardNo) {
+	public int deleteBoard(Board board) {
+		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제
+		List<BoardImage> img = new ArrayList<>();
+		if(!img.isEmpty()) {
+			dao.deleteImgList(board.getBoardNo());
+		}
+
+		// 게시글 삭제
+		return dao.deleteBoard(board);
+	}
+	
+	
+	// 임시등록 한행씩 삭제 
+	@Override
+	public int deleteTemp(int boardNo) {
 		// System.out.println(boardNo);
 		
 		// 게시글이 삭제될 때 이미지테이블에 존재하는 이미지도 삭제
@@ -97,9 +110,10 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		}
 
 		// 게시글 삭제
-		return dao.deleteBoard(boardNo);
+		return dao.deleteTemp(boardNo);
 	}
 
+	
 
 	// 게시글 상세 조회
 	@Override
@@ -163,6 +177,8 @@ public class BoardCrudServiceImpl implements BoardCrudService{
 		// 게시글 수정
 		return dao.updateTempPost(board);
 	}
+
+
 
 
 

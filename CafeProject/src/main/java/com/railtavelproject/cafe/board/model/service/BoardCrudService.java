@@ -27,11 +27,19 @@ public interface BoardCrudService {
 	int writeBoard(Board board);
 
 
-	/** 게시글 삭제 / 임시등록 한행씩 삭제 
+	/** 게시글 삭제 
+	 * @param board
+	 * @return result
+	 */
+	int deleteBoard(Board board);
+
+	
+	
+	/** 임시등록 한행씩 삭제 
 	 * @param boardNo
 	 * @return result
 	 */
-	int deleteBoard(int boardNo);
+	int deleteTemp(int boardNo);
 
 	
 	/** 게시글 상세 조회
@@ -82,6 +90,7 @@ public interface BoardCrudService {
 	 * @return
 	 */
 	int updateTempPost(Board board);
+
 
 	
 	
