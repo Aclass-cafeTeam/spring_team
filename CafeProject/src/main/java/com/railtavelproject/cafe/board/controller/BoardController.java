@@ -84,7 +84,7 @@ public class BoardController {
 		return "board/boardAllList";
 	}
 	
-	// 베스트 게시글 (좋아요 높은 순)
+	// 베스트 게시글 (조회수 높은 순)
 	@GetMapping("/board/bestBoard")
 	public String selectBoardBestList(
 			Model model,
