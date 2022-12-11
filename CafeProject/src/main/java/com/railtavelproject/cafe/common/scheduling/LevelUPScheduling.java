@@ -73,8 +73,8 @@ public class LevelUPScheduling {
 		//@Scheduled(cron = "0,15,30,45 * * * * *") //매분 0초 15초 30초 45초 마다
 		//@Scheduled(cron = "0/15 * * * * *")  // 0부터 시작하여 15초마다
 		
-		 @Scheduled(cron = "0 0 0 * * *") // 매분마다 test용 분마다 하면 부하 심함 public void
-		 public void updateLevelUPMember() { //System.out.println("0초마다 출력");
+		 @Scheduled(cron = "0 0 0 * * *") // 매24:00시 자동 등업 스케줄러
+		 public void updateLevelUPMember() { 
 		 
 	
 			 List<Member> member = service.selectMemberListALL();
@@ -95,7 +95,7 @@ public class LevelUPScheduling {
 							 if(level.getBoardCount() <= m.getBoardCount() && level.getCommentCount() <= m.getCommentCount()
 									 && level.getVisitCount() <= m.getLogHistoryCount()) {
 								 logger.debug("*** : " + m);
-								//m.getBoardCount() //게시글 수
+								 //m.getBoardCount() //게시글 수
 								 //m.getCommentCount() // 댓글 수
 								 //m.getLogHistoryCount() // 방문수
 								  m.setMemberLevelNo(level.getMemberLeverNo());

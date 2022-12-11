@@ -35,7 +35,7 @@ public class ManagerFilter implements Filter {
 		HttpSession session = req.getSession();
 		Member loginMember =  (Member) session.getAttribute("loginMember");
 		
-		System.out.println("에이비씨"+loginMember);
+		System.out.println("로그인 회원: "+loginMember);
 		
 		if(loginMember.getMemberLevelNo() != 0 && loginMember.getMemberLevelNo() != 1 ) {
 			resp.sendRedirect("/");
