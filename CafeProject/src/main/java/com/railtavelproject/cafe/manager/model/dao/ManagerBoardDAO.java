@@ -214,11 +214,19 @@ public class ManagerBoardDAO {
 		return sqlSession.update("managerBoardmapper.updatePreviousBoardOrderPageUP",map);
 	}
 
+	
+	/**관리자가 삭제한 게시글 관리 페이지네이션 카운팅
+	 * @return
+	 */
 	public int getDeleteBoardListCount() {
 		
 		return sqlSession.selectOne("managerBoardmapper.getDeleteBoardListCount");
 	}
 
+	/**관리자가 삭제한 게시글 관리 
+	 * @param pagination
+	 * @return
+	 */
 	public List<Board> getDeleteBoardList(Pagination pagination) {
 		
 		int offset = (pagination.getCurrentPage()-1) * pagination.getLimit(); // 5페이지일때 4*10(10개 정렬) -> 40개의 게시글을 건너뛰어라
@@ -228,11 +236,19 @@ public class ManagerBoardDAO {
 	    return sqlSession.selectList("managerBoardmapper.getDeleteBoardList",null,rowBounds);
 	}
 
+	/**관리자가 삭제한 게시글 상세보기
+	 * @param boardNo
+	 * @return
+	 */
 	public Board selectdetailBoardList(int boardNo) {
-		// TODO Auto-generated method stub
 		return sqlSession.selectOne("managerBoardmapper.selectdetailBoardList",boardNo);
 	}
 
+	/**관리자가 삭제한 게시글 복구
+	 * @param boardCode
+	 * @param typeDelFL
+	 * @return
+	 */
 	public int RemoveArticle(String boardCode, String typeDelFL) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("boardCode", boardCode); 

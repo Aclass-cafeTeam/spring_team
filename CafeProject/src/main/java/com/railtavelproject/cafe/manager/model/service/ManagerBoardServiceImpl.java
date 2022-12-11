@@ -230,12 +230,6 @@ public class ManagerBoardServiceImpl implements ManagerBoardService {
 		return message;
 	}
 
-	/*
-	 * @Override public Board selectBoard(int boardOrder, int mainCategoryNo) {
-	 * 
-	 * return dao.selectBoard(boardOrder,mainCategoryNo); }
-	 */
-	
-	
+
 	
 }
