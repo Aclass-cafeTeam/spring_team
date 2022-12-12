@@ -105,6 +105,7 @@ public class BoardCrudController {
 	@PostMapping("/board/write")
 	public String writeBoard(
 			Board board,
+			@RequestParam(value = "comment", required = false) String comment,
 			@SessionAttribute("loginMember") Member loginMember,
 			RedirectAttributes ra,
 			HttpSession session, 
@@ -120,6 +121,18 @@ public class BoardCrudController {
 		
 		// 웹서버(summernote)에 저장된 이미지를 불러오기 위해 사용
 		board.setBoardContent(board.getBoardContent());
+		
+		
+		String commentFlag = null;
+		if(comment == null || comment.equals("")) {
+			commentFlag = "N";
+		} else {
+			commentFlag = "Y";
+		}
+		
+		board.setCommentFlag(commentFlag);
+		// System.out.println(board.getCommentFlag());
+		
 				
 		// 게시글 작성 서비스 수행 후 작성된 게시글의 번호로 반환
 		int boardNo = service.writeBoard(board);

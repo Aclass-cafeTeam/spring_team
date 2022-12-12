@@ -69,8 +69,13 @@ const comment = document.getElementById("comment");
 // 댓글 허용(무조건 체크)
 if(comment != null) {
     comment.addEventListener("change", (e)=>{
-        comment.checked=true;
-        alert("내일로, 기차로 회원 여러분! 게시판은 모두가 볼 수 있는 공간이니 매너있게 작성해주세요.\n\n")
+
+        if(comment.checked) {
+            alert("내일로, 기차로 회원 여러분! 게시판은 모두가 볼 수 있는 공간이니 매너있게 작성해주세요.\n\n")
+            comment.checked.value = 'Y';
+        } else {
+            comment.checked.value = 'N';
+        }
     })
 }
 
