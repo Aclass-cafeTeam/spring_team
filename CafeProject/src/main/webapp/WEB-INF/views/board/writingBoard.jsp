@@ -127,7 +127,7 @@
                                 </div>
                             </div>
                         </c:when>
-                        <c:otherwise>
+                        <%-- <c:otherwise>
                             <div class="settingArea">
                                 <p><input type="checkbox" id="boardNotice"> <label for="boardNotice">공지로 등록</label></p>
 
@@ -140,7 +140,7 @@
                                     </select>
                                 </div>
                             </div>
-                        </c:otherwise>
+                        </c:otherwise> --%>
                     </c:choose> 
                     
                     <!-- 댓글 허용 --> 
