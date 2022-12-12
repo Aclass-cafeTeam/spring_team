@@ -77,7 +77,7 @@
 							<if test="noticeFlag != null">
 							#{noticeFlag}
 							</if>
-							,#{memberNo}, #{boardCode}, #{titleTagNo})
+							,#{memberNo}, #{boardCode}, #{titleTagNo}, DEFAULT)
  		</insert>
  		
  		
@@ -127,7 +127,7 @@
 							<if test="noticeFlag != null">
 							#{noticeFlag}
 							</if>
-							, #{memberNo}, #{boardCode}, #{titleTagNo})
+							, #{memberNo}, #{boardCode}, #{titleTagNo}, DEFAULT)
  		</insert>
  			
  			
