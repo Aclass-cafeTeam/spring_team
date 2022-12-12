@@ -42,7 +42,9 @@ public class Board {
     private int tempCount; // 임시저장글수
     private String thumbnail; // 썸네일
     
-    private int managerNo; 
+    private int managerNo;
+    
+    private String commentFlag;
     
     // 댓글 목록
     private List<Comment> commentList;

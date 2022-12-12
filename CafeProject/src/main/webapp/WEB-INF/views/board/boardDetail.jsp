@@ -146,13 +146,15 @@
                                 </div>
                             </div>
                             <!-- 댓글 영역 -->
-                            <div class="commentBox">
-                                <h3 class="h3-comment"> 댓글 </h3>
-                                <div>
-                                    <!-- 댓글 include-->
-                                    <jsp:include page="comment.jsp"/>
+                            <c:if test="${board.commentFlag eq 'Y'}">
+                                <div class="commentBox">
+                                    <h3 class="h3-comment"> 댓글 </h3>
+                                    <div>
+                                        <!-- 댓글 include-->
+                                        <jsp:include page="comment.jsp"/>
+                                    </div>
                                 </div>
-                            </div>
+                            </c:if>
                         </div>
                     </article>
                 </c:when>
