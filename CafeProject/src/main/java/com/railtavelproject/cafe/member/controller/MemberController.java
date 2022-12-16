@@ -80,7 +80,7 @@ public class MemberController {
 				
 				// 쿠키 유지 시간 지정
 				if(saveId != null) { 
-					cookie.setMaxAge(60 * 60 * 24 * 365);	// 1년동안 쿠키 유지
+					cookie.setMaxAge(60 * 60 * 24 * 14);	// 14일 동안 쿠키 유지
 					
 				} else {
 					cookie.setMaxAge(0);
