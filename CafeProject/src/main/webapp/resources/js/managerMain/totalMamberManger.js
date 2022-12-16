@@ -39,7 +39,7 @@ var now_utc = Date.now() // 지금 날짜를 밀리초로
 var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
 // new Date(now_utc-timeOff).toISOString()은 '2022-05-11T18:09:38.134Z'를 반환
 var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
-document.getElementById("_startDateInput").setAttribute("max", today);
+document.getElementById("_startDateInput").setAttribute("max", today); //min날짜를 today로 하면 어제 날짜부터 선택 불가
 document.getElementById("_endDateInput").setAttribute("max", today);
 
 

@@ -201,7 +201,7 @@
                       <form action ="/manager/totalMemberManager/selectDetailDate" class="DatefrmSearch" method="get" name="DatefrmSearch" id="DatefrmSearch">
                         <input type="hidden" name="countBy" class="_countBy" value="3">
                         <span class="date _startDate" id="_startDateButton">
-                          <input type="date" class="text cal _startDate" name="startDateInput" id="_startDateInput" max="2022-11-10">
+                          <input type="date" class="text cal _startDate" name="startDateInput" id="_startDateInput"><!-- max="2022-11-10" -->
                         </span>
                         <span class="txt">부터</span>
                         <span class="date _endDate" id="_endDateButton">
